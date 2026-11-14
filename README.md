@@ -1,0 +1,2 @@
+# stitch_b2b_food_auction_marketplace
+Varejista
