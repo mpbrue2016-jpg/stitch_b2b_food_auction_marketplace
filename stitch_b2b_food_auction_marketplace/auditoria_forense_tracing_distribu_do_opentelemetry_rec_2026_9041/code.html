@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-bright": "#f7f9fb", "secondary": "#1b6d24", "primary-fixed-dim": "#b0c6ff", "on-secondary-fixed": "#002204", "surface-container-low": "#f2f4f6", "on-primary-fixed-variant": "#00429c", "outline-variant": "#c3c6d4", "on-surface": "#191c1e", "on-tertiary-container": "#ffa59d", "surface-tint": "#2b5bb5", "on-tertiary-fixed": "#410003", "primary": "#003178", "on-tertiary": "#ffffff", "inverse-on-surface": "#eff1f3", "surface-container": "#eceef0", "surface-container-highest": "#e0e3e5", "on-primary-fixed": "#001945", "secondary-fixed": "#a3f69c", "secondary-fixed-dim": "#88d982", "on-error-container": "#93000a", "error": "#ba1a1a", "background": "#f7f9fb", "error-container": "#ffdad6", "surface": "#f7f9fb", "on-surface-variant": "#434652", "on-primary": "#ffffff", "primary-container": "#0d47a1", "tertiary-fixed": "#ffdad6", "outline": "#737783", "on-background": "#191c1e", "inverse-primary": "#b0c6ff", "on-tertiary-fixed-variant": "#930010", "surface-container-high": "#e6e8ea", "tertiary": "#720009", "on-secondary-fixed-variant": "#005312", "inverse-surface": "#2d3133", "secondary-container": "#a0f399", "surface-container-lowest": "#ffffff", "surface-dim": "#d8dadc", "tertiary-container": "#9d0011", "on-error": "#ffffff", "on-secondary-container": "#217128", "on-primary-container": "#a1bbff", "surface-variant": "#e0e3e5", "tertiary-fixed-dim": "#ffb3ac", "primary-fixed": "#d9e2ff", "on-secondary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "0.75rem", "gutter": "1rem", "margin": "1.5rem", "margin-mobile": "1rem", "space-xl": "2rem", "space-sm": "0.5rem", "gutter-mobile": "0.75rem", "space-xs": "0.25rem", "space-lg": "1.25rem" }, "fontFamily": { "headline-xl-mobile": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "numeric-timer": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "fontWeight": "800" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" } ], "numeric-timer": [ "20px", { "lineHeight": "24px", "fontWeight": "800" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "24px", "fontWeight": "700" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "fontWeight": "800" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center gap-space-sm bg-surface-container-low"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">V</div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary leading-none">Varejista Online</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline mt-space-xs">B2B Core &amp; Liquidação</span></div></div><div class="p-space-md"><div class="px-space-sm py-space-xs mb-space-xs"><span class="font-label-sm text-label-sm uppercase text-outline">Operação &amp; Negociação</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-lg"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="visao-geral" href="#"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">dashboard</span>Visão Geral</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="leiloes-e-lotes" href="#"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">gavel</span>Leilões &amp; Lotes</span><span class="px-space-xs py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm">12 AO VIVO</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="esteira-cnpj-e-homologacao" href="#"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">verified_user</span>Esteira CNPJ &amp; Homologação</span></a></nav><div class="px-space-sm py-space-xs mt-space-lg mb-space-xs"><span class="font-label-sm text-label-sm uppercase text-outline">Liquidação &amp; Integrações</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-lg"><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="gestao-financeira-e-meios" href="#"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">account_balance</span>Gestão Financeira &amp; Meios</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="remessas-e-retornos-cnab-240" href="#"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">receipt_long</span>Remessas &amp; Retornos CNAB 240</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="webhooks-e-erp" href="#"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">webhook</span>Webhooks &amp; ERP</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="auditoria-e-logs" href="#"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">security</span>Auditoria &amp; Logs</span></a></nav></div></div><div class="p-space-md bg-surface-container-low m-space-md rounded-lg flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-outline">Gateway SPB / STR</span><span class="w-2 h-2 rounded-full bg-secondary"></span></div><span class="font-label-md text-label-md text-on-surface">Santander Host-to-Host</span><span class="font-body-sm text-body-sm text-on-surface-variant">SLA 99.98% • Latência 22ms</span></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-1 bg-secondary-fixed/50 rounded-lg text-on-secondary-fixed"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm uppercase">Santander H2H / SPB Online</span></div><div class="px-space-sm py-1 bg-surface-container-high rounded-lg text-on-surface-variant font-label-sm text-label-sm uppercase">PROD-CORE-01</div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-primary-fixed/50 rounded-lg text-on-primary-fixed"><span class="material-symbols-outlined text-[16px]">lock</span><span class="font-label-sm text-label-sm uppercase">ICP-Brasil A3 Válido</span></div></div><div class="flex items-center gap-space-md"><button class="relative p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right"><span class="font-label-lg text-label-lg text-on-surface leading-tight">Carlos Eduardo Brandão</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Master • Fiduciário &amp; Risco</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full p-gutter lg:p-space-xl gap-space-lg">
+<!-- 1. Breadcrumbs Nav -->
+<nav class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md overflow-x-auto whitespace-nowrap">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>Início
+    </a>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span>Liquidação &amp; Integrações</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span>Webhooks &amp; ERP</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant">Fila de Exceções &amp; DLQ</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed/50 text-on-secondary-fixed">Replay Supervisionado</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="text-primary font-bold">Tracing OpenTelemetry #REC-2026-9041</span>
+</nav>
+<!-- 2. Cabeçalho Executivo -->
+<header class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="px-space-sm py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+            200 OK • RESOLVED
+          </span>
+<span class="px-space-sm py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm tracking-wider uppercase">
+            W3C TRACE CONTEXT v1
+          </span>
+<span class="px-space-sm py-1 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+            14 SPANS • 6 MICROSERVIÇOS
+          </span>
+<span class="px-space-sm py-1 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-numeric-timer">
+            DURAÇÃO: 1.874ms
+          </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight mt-space-xs">
+          Tracing Distribuído OpenTelemetry &amp; Auditoria Forense
+        </h1>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm flex-wrap">
+<span>Lote: <strong class="text-on-surface">#SBE-2026-09</strong> (Laticínios Serra Bella Ltda)</span>
+<span>•</span>
+<span>Mensagem DLQ: <span class="font-mono text-primary font-semibold">#MSG-DLQ-84912</span></span>
+<span>•</span>
+<span>Trace ID: <code class="bg-surface-container-high px-space-xs py-0.5 rounded text-on-surface select-all">7a8c801e-cd80-4921-98bc-202610250912</code></span>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+          Voltar ao Replay
+        </button>
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+          Health-check
+        </button>
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+          Dossiê JSON
+        </button>
+<button class="px-space-md py-space-sm rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-colors flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+          Recibo WORM (PDF/A)
+        </button>
+</div>
+</div>
+</header>
+<!-- 3. Sumário Executivo de Métricas (Bento Cards) -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1: Latência & Breakdown -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Tempo Total Pipeline</span>
+<span class="material-symbols-outlined text-primary text-[20px]">timer</span>
+</div>
+<div class="my-space-sm">
+<div class="font-headline-xl text-headline-xl text-on-surface font-numeric-timer">
+          1.874 <span class="text-body-sm font-normal text-on-surface-variant">ms</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden flex mt-space-xs">
+<div class="bg-primary-fixed-dim" style="width: 1.5%" title="Handshake mTLS: 28ms"></div>
+<div class="bg-primary" style="width: 2.7%" title="H2H Transit: 52ms"></div>
+<div class="bg-secondary" style="width: 6.6%" title="SAP CPI: 124ms"></div>
+<div class="bg-surface-tint" style="width: 46.8%" title="RFC SAP ERP: 878ms"></div>
+<div class="bg-primary-container" style="width: 17.6%" title="WORM Ledger: 330ms"></div>
+<div class="bg-secondary-container" style="width: 24.8%" title="Custódia &amp; Finalização: 462ms"></div>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-0.5">
+<div class="flex justify-between"><span>mTLS / H2H:</span> <strong class="text-on-surface">80ms</strong></div>
+<div class="flex justify-between"><span>SAP RFC Post:</span> <strong class="text-on-surface">878ms (46.8%)</strong></div>
+<div class="flex justify-between"><span>WORM Ledger:</span> <strong class="text-on-surface">330ms</strong></div>
+</div>
+</div>
+<!-- Card 2: Topologia Percorrida -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Topologia dos Nós</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">hub</span>
+</div>
+<div class="my-space-sm">
+<div class="font-headline-xl text-headline-xl text-on-surface">
+          6 <span class="text-body-sm font-normal text-on-surface-variant">microserviços ativos</span>
+</div>
+<div class="flex items-center gap-1 mt-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono">gateway</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono">mtls-proxy</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono">dlq-sup</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono">h2h-santander</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono">sap-cpi</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono">worm-logger</span>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">check</span>
+        Zero falhas na cascata síncrona
+      </div>
+</div>
+<!-- Card 3: Status Fiduciário & Custódia -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Custódia Fiduciária</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
+</div>
+<div class="my-space-sm">
+<div class="text-primary font-label-sm text-label-sm uppercase font-bold tracking-wider">CUSTÓDIA LIBERADA</div>
+<div class="font-headline-xl text-headline-xl text-secondary font-numeric-timer">
+          R$ 54.200,00
+        </div>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-0.5">
+<div class="flex justify-between"><span>Modalidade:</span> <strong class="text-on-surface">D+0 SPI (Pix Santander)</strong></div>
+<div class="flex justify-between"><span>Execução:</span> <strong class="text-on-surface">Agendada 19:35 BRT</strong></div>
+</div>
+</div>
+<!-- Card 4: Conformidade & Criptografia -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Garantia Criptográfica</span>
+<span class="material-symbols-outlined text-primary text-[20px]">encrypted</span>
+</div>
+<div class="my-space-sm">
+<div class="flex items-center gap-1 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+          ICP-Brasil A3 Válido
+        </div>
+<p class="font-mono text-body-sm text-body-sm text-on-surface-variant mt-1 truncate" title="SHA-256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855">
+          SHA256: e3b0c44298fc1c14...
+        </p>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex justify-between items-center">
+<span>Carimbo de Tempo:</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface">ACT-BR 19:34:12</span>
+</div>
+</div>
+</section>
+<!-- 4. Visualizador do Diagrama em Cascata / Flamechart OpenTelemetry -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">waterfall_chart</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Cascata de Execução de Spans (Waterfall View)</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Linha do tempo OpenTelemetry padronizada de 0ms a 2.000ms</span>
+</div>
+</div>
+<!-- Timeline Legend -->
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm text-on-surface-variant flex-wrap">
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span>Gateway / Proxy</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-sm bg-primary-container"></span>
+<span>DLQ / Core</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-sm bg-surface-tint"></span>
+<span>Santander H2H</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span>SAP CPI / Bridge</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-sm bg-on-primary-fixed-variant"></span>
+<span>Bacen Ledger</span>
+</div>
+</div>
+</div>
+<!-- Timeline Grid Header (0 to 2000ms) -->
+<div class="w-full flex flex-col">
+<div class="flex items-center w-full font-label-sm text-label-sm text-outline pb-1 pl-72 pr-4 justify-between select-none">
+<span>0ms</span>
+<span>250ms</span>
+<span>500ms</span>
+<span>750ms</span>
+<span>1.000ms</span>
+<span>1.250ms</span>
+<span>1.500ms</span>
+<span>1.750ms</span>
+<span>2.000ms</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container flex rounded-full overflow-hidden">
+<div class="flex-1 bg-surface-container-high"></div>
+<div class="flex-1 bg-surface-container"></div>
+<div class="flex-1 bg-surface-container-high"></div>
+<div class="flex-1 bg-surface-container"></div>
+<div class="flex-1 bg-surface-container-high"></div>
+<div class="flex-1 bg-surface-container"></div>
+<div class="flex-1 bg-surface-container-high"></div>
+<div class="flex-1 bg-surface-container"></div>
+</div>
+</div>
+<!-- Spans Waterfall Rows -->
+<div class="flex flex-col gap-1.5">
+<!-- Span 1 -->
+<div class="flex items-center h-10 hover:bg-surface-container-low transition-colors rounded-lg px-space-xs group cursor-pointer">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pr-space-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">play_arrow</span>
+<span class="font-label-md text-label-md text-on-surface truncate">client-dispatch: POST /replay</span>
+<span class="text-outline font-mono text-label-sm">15ms</span>
+</div>
+<div class="flex-1 relative h-6 bg-surface-container-low/50 rounded flex items-center">
+<div class="absolute h-4 rounded bg-primary text-on-primary text-[10px] font-mono flex items-center px-1 truncate" style="left: 0%; width: 0.75%;">
+</div>
+<span class="absolute text-[11px] font-mono text-on-surface-variant font-semibold" style="left: 1.5%">15ms (Admin Auth)</span>
+</div>
+</div>
+<!-- Span 2 -->
+<div class="flex items-center h-10 hover:bg-surface-container-low transition-colors rounded-lg px-space-xs group cursor-pointer">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pl-4 pr-space-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">shield</span>
+<span class="font-label-md text-label-md text-on-surface truncate">auth-mtls-proxy: Cert Validate</span>
+<span class="text-outline font-mono text-label-sm">30ms</span>
+</div>
+<div class="flex-1 relative h-6 bg-surface-container-low/50 rounded flex items-center">
+<div class="absolute h-4 rounded bg-primary text-on-primary text-[10px] font-mono flex items-center px-1 truncate" style="left: 0.75%; width: 1.5%;">
+</div>
+<span class="absolute text-[11px] font-mono text-on-surface-variant font-semibold" style="left: 2.8%">30ms (serrabella.crt)</span>
+</div>
+</div>
+<!-- Span 3 -->
+<div class="flex items-center h-10 hover:bg-surface-container-low transition-colors rounded-lg px-space-xs group cursor-pointer">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pl-4 pr-space-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-container">lock_clock</span>
+<span class="font-label-md text-label-md text-on-surface truncate">dlq-supervisor: Idempotency Lock</span>
+<span class="text-outline font-mono text-label-sm">75ms</span>
+</div>
+<div class="flex-1 relative h-6 bg-surface-container-low/50 rounded flex items-center">
+<div class="absolute h-4 rounded bg-primary-container text-on-primary text-[10px] font-mono flex items-center px-1 truncate" style="left: 2.25%; width: 3.75%;">
+</div>
+<span class="absolute text-[11px] font-mono text-on-surface-variant font-semibold" style="left: 6.5%">75ms (Redis-Distributed-Lock)</span>
+</div>
+</div>
+<!-- Span 4 -->
+<div class="flex items-center h-10 hover:bg-surface-container-low transition-colors rounded-lg px-space-xs group cursor-pointer">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pl-6 pr-space-sm">
+<span class="material-symbols-outlined text-[16px] text-surface-tint">account_balance</span>
+<span class="font-label-md text-label-md text-on-surface truncate">h2h-santander: TLS 1.3 Handshake</span>
+<span class="text-outline font-mono text-label-sm">28ms</span>
+</div>
+<div class="flex-1 relative h-6 bg-surface-container-low/50 rounded flex items-center">
+<div class="absolute h-4 rounded bg-surface-tint text-on-primary text-[10px] font-mono flex items-center px-1 truncate" style="left: 6%; width: 1.4%;">
+</div>
+<span class="absolute text-[11px] font-mono text-on-surface-variant font-semibold" style="left: 8%">28ms (H2H SPB)</span>
+</div>
+</div>
+<!-- Span 5 (SPAN EM DESTAQUE / SELECIONADO) -->
+<div class="flex items-center h-11 bg-primary-fixed/30 rounded-lg px-space-xs group cursor-pointer ring-2 ring-primary">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pl-6 pr-space-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary">webhook</span>
+<span class="font-label-lg text-label-lg text-primary font-bold truncate">sap-cpi-bridge: Webhook Post</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary text-on-secondary font-mono text-label-sm font-bold">124ms</span>
+</div>
+<div class="flex-1 relative h-7 bg-surface-container-lowest rounded flex items-center">
+<div class="absolute h-5 rounded bg-secondary text-on-secondary text-[11px] font-bold font-mono flex items-center px-2 truncate shadow-sm" style="left: 7.4%; width: 6.2%;">
+            HTTP 200
+          </div>
+<span class="absolute text-[11px] font-mono text-secondary font-bold" style="left: 14.5%">124ms (POST /sap/cpi/v1/webhook-liquidacao)</span>
+</div>
+</div>
+<!-- Span 6 -->
+<div class="flex items-center h-10 hover:bg-surface-container-low transition-colors rounded-lg px-space-xs group cursor-pointer">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pl-8 pr-space-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">sync_alt</span>
+<span class="font-label-md text-label-md text-on-surface truncate">sap-backend: RFC BAPI_ACC_DOC</span>
+<span class="text-outline font-mono text-label-sm">878ms</span>
+</div>
+<div class="flex-1 relative h-6 bg-surface-container-low/50 rounded flex items-center">
+<div class="absolute h-4 rounded bg-surface-tint text-on-primary text-[10px] font-mono flex items-center px-1 truncate" style="left: 13.6%; width: 43.9%;">
+            DOC-FIN-2026-9041
+          </div>
+<span class="absolute text-[11px] font-mono text-on-surface-variant font-semibold" style="left: 58.5%">878ms (Posting GL 1.1.02.01.004)</span>
+</div>
+</div>
+<!-- Span 7 -->
+<div class="flex items-center h-10 hover:bg-surface-container-low transition-colors rounded-lg px-space-xs group cursor-pointer">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pl-4 pr-space-sm">
+<span class="material-symbols-outlined text-[16px] text-on-primary-fixed-variant">fingerprint</span>
+<span class="font-label-md text-label-md text-on-surface truncate">bacen-worm-logger: Digest Ledger</span>
+<span class="text-outline font-mono text-label-sm">330ms</span>
+</div>
+<div class="flex-1 relative h-6 bg-surface-container-low/50 rounded flex items-center">
+<div class="absolute h-4 rounded bg-on-primary-fixed-variant text-on-primary text-[10px] font-mono flex items-center px-1 truncate" style="left: 57.5%; width: 16.5%;">
+            WORM Immutable
+          </div>
+<span class="absolute text-[11px] font-mono text-on-surface-variant font-semibold" style="left: 75%">330ms (AWS S3 ObjectLock + Compliance)</span>
+</div>
+</div>
+<!-- Span 8 -->
+<div class="flex items-center h-10 hover:bg-surface-container-low transition-colors rounded-lg px-space-xs group cursor-pointer">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pl-4 pr-space-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">currency_exchange</span>
+<span class="font-label-md text-label-md text-on-surface truncate">escrow-vault: Unlock Payout</span>
+<span class="text-outline font-mono text-label-sm">240ms</span>
+</div>
+<div class="flex-1 relative h-6 bg-surface-container-low/50 rounded flex items-center">
+<div class="absolute h-4 rounded bg-secondary text-on-secondary text-[10px] font-mono flex items-center px-1 truncate" style="left: 74%; width: 12%;">
+            R$ 54.200,00
+          </div>
+<span class="absolute text-[11px] font-mono text-secondary font-semibold" style="left: 87%">240ms (STATUS: RELEASED)</span>
+</div>
+</div>
+<!-- Span 9 -->
+<div class="flex items-center h-10 hover:bg-surface-container-low transition-colors rounded-lg px-space-xs group cursor-pointer">
+<div class="w-72 shrink-0 flex items-center gap-space-xs truncate pl-2 pr-space-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">done_all</span>
+<span class="font-label-md text-label-md text-on-surface truncate">downstream: Pix SPI &amp; PagerDuty</span>
+<span class="text-outline font-mono text-label-sm">154ms</span>
+</div>
+<div class="flex-1 relative h-6 bg-surface-container-low/50 rounded flex items-center">
+<div class="absolute h-4 rounded bg-primary text-on-primary text-[10px] font-mono flex items-center px-1 truncate" style="left: 86%; width: 7.7%;">
+</div>
+<span class="absolute text-[11px] font-mono text-on-surface-variant font-semibold" style="left: 94.5%">154ms (Auto-resolved)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Inspeção Forense Detalhada do Span Selecionado -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Painel de Metadados / Tags do Span (7 Colunas) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-3 h-3 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Span Ativo Inspecionado</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface font-mono text-label-sm">
+          Span ID: 88f2a9019b4e
+        </span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface">
+          sap-cpi-bridge: POST /sap/cpi/v1/webhook-liquidacao
+        </h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+          Início: +148ms • Término: +272ms • Duração Span: 124ms • Código de Saída: 200 OK
+        </span>
+</div>
+<!-- Atributos e Tags em Alta Densidade -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Atributos &amp; Tags Semânticas (OpenTelemetry)</span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-mono text-label-sm text-outline">http.status_code</span>
+<span class="font-mono text-body-sm font-bold text-secondary">200</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-mono text-label-sm text-outline">http.method</span>
+<span class="font-mono text-body-sm font-bold text-primary">POST</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-mono text-label-sm text-outline">net.peer.name</span>
+<span class="font-mono text-body-sm font-semibold text-on-surface truncate">api.serrabella.ind.br</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-mono text-label-sm text-outline">rpc.system</span>
+<span class="font-mono text-body-sm font-semibold text-on-surface">SAP_RFC (CPI Bridge)</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-mono text-label-sm text-outline">sap.doc_entry</span>
+<span class="font-mono text-body-sm font-bold text-primary">DOC-FIN-2026-9041</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-mono text-label-sm text-outline">idempotency.hit</span>
+<span class="font-mono text-body-sm font-bold text-secondary">true (Key verified)</span>
+</div>
+</div>
+</div>
+<!-- HTTP & Context Headers Propagados -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<span class="font-label-md text-label-md text-on-surface uppercase tracking-wider">W3C Context &amp; Propagação de Cabeçalhos</span>
+<div class="p-space-md bg-surface-container-low rounded font-mono text-body-sm flex flex-col gap-1 overflow-x-auto text-on-surface">
+<div><span class="text-primary font-semibold">traceparent:</span> 00-7a8c801e-cd80-4921-98bc-202610250912-88f2a9019b4e-01</div>
+<div><span class="text-primary font-semibold">tracestate:</span> varejista_b2b=es=prod_core_01,tenant=serrabella</div>
+<div><span class="text-primary font-semibold">X-Idempotency-Key:</span> IDEMP-SBE-2026-09-LIQ-FINAL</div>
+<div><span class="text-primary font-semibold">X-Varejista-Signature:</span> rsa-sha256: 4f8a901bc09312fe8... [ICP-A3 Valid]</div>
+</div>
+</div>
+</div>
+<!-- Painel de Logs e Timeline de Eventos (5 Colunas) -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between gap-space-md">
+<div>
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Log Stream do Span</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+            4 EVENTOS REGISTRADOS
+          </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-sm">
+          Linha do Tempo de Eventos Forenses
+        </h3>
+<!-- Timeline Items -->
+<div class="relative pl-6 flex flex-col gap-space-md before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high">
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-primary border-2 border-surface-container-lowest"></span>
+<div class="flex items-center justify-between font-mono text-label-sm text-outline">
+<span>+148.12 ms</span>
+<span class="text-secondary font-bold">DISPATCH</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Envelope montado e despachado</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Payload validado contra esquema SAP CPI v2.4.</span>
+</div>
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-surface-tint border-2 border-surface-container-lowest"></span>
+<div class="flex items-center justify-between font-mono text-label-sm text-outline">
+<span>+186.40 ms</span>
+<span class="text-primary font-bold">ACK_RECEIVED</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Handshake mTLS remoto estabelecido</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cipher: TLS_AES_256_GCM_SHA384 (api.serrabella).</span>
+</div>
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-secondary border-2 border-surface-container-lowest"></span>
+<div class="flex items-center justify-between font-mono text-label-sm text-outline">
+<span>+254.19 ms</span>
+<span class="text-secondary font-bold">ERP_COMMIT</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Registro contábil executado no SAP</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Documento contábil: DOC-FIN-2026-9041 confirmado.</span>
+</div>
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-secondary border-2 border-surface-container-lowest"></span>
+<div class="flex items-center justify-between font-mono text-label-sm text-outline">
+<span>+272.04 ms</span>
+<span class="text-secondary font-bold">COMPLETED</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Span encerrado com sucesso</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Propagando contexto para bacen-worm-logger.</span>
+</div>
+</div>
+</div>
+<!-- Action Box -->
+<div class="p-space-md bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Auditoria de Cargas Úteis</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">JSON Request &amp; Response criptografados</span>
+</div>
+<button class="px-space-md py-space-xs rounded bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-container-highest transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+          Ver Carga
+        </button>
+</div>
+</div>
+</section>
+<!-- 6. Rodapé Técnico de Rastreabilidade Fiduciária e Compliance -->
+<footer class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col lg:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Resolução BACEN nº 4.656/2018</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">security</span>
+<span>OpenTelemetry Spec v1.28</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-on-surface">shield</span>
+<span>Assinatura Digital ICP-Brasil A3 (HSM Luna)</span>
+</div>
+<span>•</span>
+<span>Ledger WORM SOX / LGPD Compliant</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="font-mono text-label-sm text-outline">HASH DO REGISTRO: <strong class="text-on-surface">9041-SBE-TRACE-OK</strong></span>
+<div class="flex items-center gap-1 text-secondary font-bold font-label-md">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+        IMUTÁVEL
+      </div>
+</div>
+</footer>
+</div>
+<!-- Client-side Micro-interactions -->
+<script>
+  // Simple active feedback on spans for interactivity
+  document.querySelectorAll('[class*="group cursor-pointer"]').forEach(spanRow => {
+    spanRow.addEventListener('click', () => {
+      document.querySelectorAll('[class*="ring-2 ring-primary"]').forEach(el => {
+        el.classList.remove('ring-2', 'ring-primary', 'bg-primary-fixed/30');
+      });
+      spanRow.classList.add('ring-2', 'ring-primary', 'bg-primary-fixed/30');
+    });
+  });
+</script></main></div></body></html>

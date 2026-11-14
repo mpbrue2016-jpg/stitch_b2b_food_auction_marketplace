@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-container": "#ffa59d", "on-surface-variant": "#434652", "surface-tint": "#2b5bb5", "on-error": "#ffffff", "inverse-surface": "#2d3133", "primary": "#003178", "primary-fixed-dim": "#b0c6ff", "tertiary-fixed": "#ffdad6", "surface-variant": "#e0e3e5", "surface": "#f7f9fb", "on-primary-fixed": "#001945", "primary-container": "#0d47a1", "secondary-fixed": "#a3f69c", "on-secondary-fixed-variant": "#005312", "on-surface": "#191c1e", "surface-container-highest": "#e0e3e5", "error": "#ba1a1a", "surface-bright": "#f7f9fb", "background": "#f7f9fb", "surface-container": "#eceef0", "on-tertiary": "#ffffff", "primary-fixed": "#d9e2ff", "on-primary": "#ffffff", "on-error-container": "#93000a", "error-container": "#ffdad6", "secondary-fixed-dim": "#88d982", "surface-dim": "#d8dadc", "on-secondary-fixed": "#002204", "outline": "#737783", "inverse-primary": "#b0c6ff", "on-secondary-container": "#217128", "secondary": "#1b6d24", "outline-variant": "#c3c6d4", "on-tertiary-fixed": "#410003", "on-secondary": "#ffffff", "inverse-on-surface": "#eff1f3", "surface-container-low": "#f2f4f6", "secondary-container": "#a0f399", "on-primary-container": "#a1bbff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#00429c", "on-background": "#191c1e", "surface-container-high": "#e6e8ea", "tertiary-container": "#9d0011", "tertiary-fixed-dim": "#ffb3ac", "tertiary": "#720009", "on-tertiary-fixed-variant": "#930010" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "gutter": "1rem", "space-lg": "1.25rem", "space-xl": "2rem", "space-sm": "0.5rem", "space-md": "0.75rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "margin": "1.5rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm px-margin"><span class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-on-primary"><span class="material-symbols-outlined text-[18px]">hub</span></span><div><span class="block font-headline-md text-headline-md text-primary tracking-tight">VAREJISTA</span><span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">B2B Liquidação</span></div></div><div class="flex flex-col gap-space-md"><div class="px-margin"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider font-bold">OPERAÇÃO &amp; NEGOCIAÇÃO</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-[18px]">analytics</span><span>Visão Geral</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="leiloes-e-lotes" href="#"><span class="material-symbols-outlined text-[18px]">gavel</span><span>Leilões &amp; Lotes</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="esteira-cnpj-homologacao" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span>Esteira CNPJ &amp; Homologação</span></a></nav></div><div class="flex flex-col gap-space-md"><div class="px-margin"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider font-bold">LIQUIDAÇÃO &amp; INTEGRAÇÕES</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="gestao-financeira-meios" href="#"><span class="material-symbols-outlined text-[18px]">payments</span><span>Gestão Financeira &amp; Meios</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="remessas-retornos-cnab-240" href="#"><span class="material-symbols-outlined text-[18px]">receipt_long</span><span>Remessas &amp; Retornos CNAB 240</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="webhooks-erp" href="#"><span class="material-symbols-outlined text-[18px]">sync_alt</span><span>Webhooks &amp; ERP</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="auditoria-logs" href="#"><span class="material-symbols-outlined text-[18px]">security</span><span>Auditoria &amp; Logs</span></a></nav></div></div><div class="px-margin"><div class="p-space-sm rounded-lg bg-surface-container flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Protocolo B2B</span><span class="w-2 h-2 rounded-full bg-secondary"></span></div><span class="font-body-sm text-body-sm text-on-surface font-semibold">SPB / CIP Operante</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-full h-10 pl-10 pr-space-md bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary transition-all" placeholder="Buscar por CNPJ, SKU, EAN/GTIN, ID de Lote ou Protocolo..." type="text"/></div></div><div class="flex items-center gap-space-md shrink-0"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-lg bg-secondary-container"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wide">Host-to-Host Santander 033: Online</span></div><div class="h-6 w-px bg-surface-container-highest"></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container"></span></button><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="text-right"><span class="block font-label-md text-label-md text-on-surface font-semibold">Administrador Master</span><span class="block font-body-sm text-body-sm text-on-surface-variant">Liquidação Direta</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 w-full min-h-screen bg-surface"><div class="flex flex-col w-full">
+<!-- Sub-Header Context Bar -->
+<div class="px-margin py-space-md bg-surface-container-lowest shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<nav class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">Início</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Liquidação &amp; Integrações</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Webhooks &amp; ERP</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Cadastrar Novo Endpoint</span>
+</nav>
+<div class="flex flex-wrap items-center gap-space-sm mt-0.5">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Homologação e Cadastro de Endpoint Corporativo ERP</h1>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          Ambiente: Produção (Live H2H Santander CIP/SPI)
+        </span>
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified_user</span>
+          TLS 1.3 &amp; mTLS X.509 Obrigatório
+        </span>
+</div>
+</div>
+<!-- Quick Action Bar -->
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+        Cancelar
+      </button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors font-label-md text-label-md font-semibold flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+        Salvar Rascunho
+      </button>
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all shadow-sm font-label-md text-label-md font-bold flex items-center gap-1.5" id="btn-top-handshake" type="button">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+        Executar Handshake
+      </button>
+</div>
+</div>
+<!-- Stepper Bar (4 Etapas) -->
+<div class="px-margin py-space-md bg-surface-container-low">
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md relative">
+<!-- Step 1 -->
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-secondary text-on-secondary flex items-center justify-center shrink-0 font-numeric-timer text-[14px]">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<div class="min-w-0">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider font-bold">Etapa 1 • Concluído</span>
+<span class="block font-label-md text-label-md text-on-surface font-bold truncate">Identificação &amp; ERP Parceiro</span>
+</div>
+</div>
+<!-- Step 2 (Active) -->
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0 font-numeric-timer text-[16px] shadow-sm">
+            2
+          </div>
+<div class="min-w-0">
+<span class="block font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Etapa 2 • Em Progresso</span>
+<span class="block font-label-md text-label-md text-primary font-extrabold truncate">Configuração da URL &amp; Eventos</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-center gap-space-sm opacity-60">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 font-numeric-timer text-[16px]">
+            3
+          </div>
+<div class="min-w-0">
+<span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Etapa 3 • Pendente</span>
+<span class="block font-label-md text-label-md text-on-surface font-semibold truncate">Criptografia mTLS &amp; Chave HMAC</span>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex items-center gap-space-sm opacity-60">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 font-numeric-timer text-[16px]">
+            4
+          </div>
+<div class="min-w-0">
+<span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Etapa 4 • Validação</span>
+<span class="block font-label-md text-label-md text-on-surface font-semibold truncate">Homologação em Produção</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar Tracker -->
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-space-md overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 50%;"></div>
+</div>
+</div>
+</div>
+<!-- Main Content Layout (2-Column Dense Grid) -->
+<div class="px-margin py-space-lg">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- LEFT COLUMN: Primary Webhook Configuration (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Entity Selector Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">corporate_fare</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">1. Empresa Credenciada &amp; Operadora</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Selecione o CNPJ homologado na grade de custódia e liquidação</p>
+</div>
+</div>
+<span class="px-space-sm py-1 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Habilitado SPB
+            </span>
+</div>
+<div class="relative">
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1.5">CNPJ Matriz / Filial Cadastrada</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">store</span>
+<input class="w-full h-11 pl-10 pr-10 bg-surface-container-low text-on-surface font-body-md text-body-md rounded-lg font-semibold cursor-default outline-none" readonly="" type="text" value="Laticínios Serra Bella Ltda — CNPJ 18.239.112/0001-90"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
+</div>
+<div class="mt-2 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant px-1">
+<span>Conta Gráfica Santander CC: 033-49201-9</span>
+<span class="text-secondary font-bold">Limite Operacional: R$ 8.500.000,00</span>
+</div>
+</div>
+</div>
+<!-- ERP Connector Cards -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">2. Conector ERP &amp; Middleware</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Selecione a pilha tecnológica de destino para templates de carga automática</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-space-sm">
+<!-- SAP S/4HANA (Selected) -->
+<button class="p-space-sm rounded-lg bg-primary-fixed text-on-primary-fixed text-left shadow-sm flex flex-col gap-1 transition-all" type="button">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[22px] text-primary">cloud_sync</span>
+<span class="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-primary">SAP S/4HANA</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CPI / RFC / REST</span>
+</button>
+<!-- TOTVS Protheus -->
+<button class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex flex-col gap-1" type="button">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">database</span>
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high"></span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">TOTVS Protheus</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">REST AdvPL / PO-UI</span>
+</button>
+<!-- Oracle NetSuite -->
+<button class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex flex-col gap-1" type="button">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">apartment</span>
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high"></span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">Oracle NetSuite</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">RESTlet SuiteTalk</span>
+</button>
+<!-- Senior Sapiens -->
+<button class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex flex-col gap-1" type="button">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">terminal</span>
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high"></span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">Senior Sapiens</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">eDocs / Middleware</span>
+</button>
+<!-- Bling / Tiny -->
+<button class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex flex-col gap-1" type="button">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">inventory_2</span>
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high"></span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">Bling / Tiny</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">OpenAPI v3 B2B</span>
+</button>
+<!-- Custom REST Webhook -->
+<button class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-all flex flex-col gap-1" type="button">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">code</span>
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-high"></span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">Custom REST API</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">HTTP/2 JSON Push</span>
+</button>
+</div>
+</div>
+<!-- URL Callback & Headers -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm pb-space-sm">
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">3. URL de Callback HTTPS &amp; Cabeçalhos</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Canal restrito para tráfego seguro de liquidação financeira B2B</p>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1.5">URL de Notificação Instantânea (POST)</label>
+<div class="flex items-center rounded-lg overflow-hidden bg-surface-container-low shadow-sm">
+<span class="px-space-md py-2.5 bg-surface-container text-primary font-bold font-label-md text-label-md select-none flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">https</span>
+                https://
+              </span>
+<input class="w-full h-11 px-space-md bg-transparent text-on-surface font-body-md text-body-md outline-none focus:bg-surface-container-lowest transition-colors" type="text" value="api.serrabella.ind.br/sap/cpi/v1/webhook-liquidacao"/>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+              Porta 443 liberada no cluster SPB e túnel VPN IPSec ativo com Santander H2H.
+            </p>
+</div>
+<!-- Custom Headers Table -->
+<div class="flex flex-col gap-space-xs mt-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Cabeçalhos HTTP Customizados (Headers)</span>
+<button class="text-primary hover:text-primary-container font-label-sm text-label-sm font-bold flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">add_circle</span> Adicionar Header
+              </button>
+</div>
+<div class="rounded-lg bg-surface-container-low overflow-hidden">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-2 px-space-md">Chave (Header Key)</th>
+<th class="py-2 px-space-md">Valor Configurado</th>
+<th class="py-2 px-space-md text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="bg-surface-container-lowest">
+<td class="py-2.5 px-space-md font-semibold text-primary font-mono text-[12px]">X-Corporate-Tenant-ID</td>
+<td class="py-2.5 px-space-md text-on-surface font-mono text-[12px]">SBE-PROD-01</td>
+<td class="py-2.5 px-space-md text-right text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:text-error">delete</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest">
+<td class="py-2.5 px-space-md font-semibold text-primary font-mono text-[12px]">Authorization</td>
+<td class="py-2.5 px-space-md text-on-surface font-mono text-[12px]">Bearer eyJhbGciOi...[mTLS-Encrypted]</td>
+<td class="py-2.5 px-space-md text-right text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:text-error">delete</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest">
+<td class="py-2.5 px-space-md font-semibold text-primary font-mono text-[12px]">X-Gateway-Auth</td>
+<td class="py-2.5 px-space-md text-on-surface font-mono text-[12px]">Varejista-Santander-v2-CIP</td>
+<td class="py-2.5 px-space-md text-right text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] cursor-pointer hover:text-error">delete</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Topic & Event Subscriptions Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">4. Inscrição de Tópicos e Eventos B2B</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Eventos disparados em D+0 para conciliação contábil e liberação de pallets</p>
+</div>
+</div>
+<span class="px-space-sm py-1 rounded-lg bg-primary-fixed text-primary font-label-sm text-label-sm font-bold">
+              3 de 6 Ativos
+            </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<!-- Event 1: Selected -->
+<label class="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-space-sm cursor-pointer hover:bg-surface-container-low transition-colors">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-primary font-mono">settlement.liquidated</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface mt-0.5">Liquidação confirmada na grade Santander</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">Disparo em D+0 após compensação CIP</span>
+</div>
+</label>
+<!-- Event 2: Selected -->
+<label class="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-space-sm cursor-pointer hover:bg-surface-container-low transition-colors">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-primary font-mono">escrow.released</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface mt-0.5">Liberação de custódia fiduciária</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">Desbloqueio de saída do armazém</span>
+</div>
+</label>
+<!-- Event 3: Selected -->
+<label class="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-space-sm cursor-pointer hover:bg-surface-container-low transition-colors">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-primary font-mono">pix.payout_done</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface mt-0.5">Repasse instantâneo via SPI BACEN</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">Split de pagamento para fornecedor</span>
+</div>
+</label>
+<!-- Event 4: Unselected -->
+<label class="p-space-md rounded-lg bg-surface-container-low opacity-80 flex items-start gap-space-sm cursor-pointer hover:opacity-100 transition-opacity">
+<input class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface font-mono">cnab.retorno_ok</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface mt-0.5">Arquivo de retorno CNAB 240 gerado</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">Importação direta na tesouraria SAP</span>
+</div>
+</label>
+<!-- Event 5: Unselected -->
+<label class="p-space-md rounded-lg bg-surface-container-low opacity-80 flex items-start gap-space-sm cursor-pointer hover:opacity-100 transition-opacity">
+<input class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface font-mono">mdfe.closed</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface mt-0.5">MDF-e e canhoto eletrônico homologados</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">Conclusão de entrega pelo operador logístico</span>
+</div>
+</label>
+<!-- Event 6: Unselected -->
+<label class="p-space-md rounded-lg bg-surface-container-low opacity-80 flex items-start gap-space-sm cursor-pointer hover:opacity-100 transition-opacity">
+<input class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary accent-primary" type="checkbox"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-bold text-tertiary font-mono">dlq.alert</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface mt-0.5">Alerta crítico de retentativa ou DLQ</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">Aciona plantão de suporte ERP</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Security, mTLS, HMAC & Live Handshake Terminal (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Platform Authority Badge Card with IMAGE_108 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<img alt="Logo Oficial Varejista B2B Liquidação" class="h-10 w-auto object-contain rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_7hBvZSOSxAgUC4ZqRna3UCsNw4iNiqfoT56VG8IYJKokaTYG8er7tOqGiJTvlLI6EHshiY60KtFIuJfqF5AQKHK6ArAyuygDLTKlPWBKi9x50uM5FhOhCpv6O_DFt4cTPsyGQdLZRL7vg8-hzDe2b0iWryXPh5lgiXK5SYmSgAOpOqtwd28zpECOF1Rv-ldRn69ROm58k0aTJNeOHnzQgXNYndPha2kXFbIQJkUrTyz3l86eeT2hgQ"/>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Módulo Certificado</span>
+<span class="block font-label-md text-label-md text-primary font-extrabold">H2H Santander 033 / CIP / SPI</span>
+</div>
+</div>
+<span class="px-space-sm py-1 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span> ICP-Brasil
+          </span>
+</div>
+<!-- mTLS X.509 Certificate Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-[20px]">enhanced_encryption</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Criptografia mTLS X.509</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Autenticação mútua exigida pela rede interbancária</p>
+</div>
+</div>
+</div>
+<!-- Uploaded Certificate Status -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px] text-secondary">workspace_premium</span>
+<div>
+<span class="block font-label-md text-label-md font-bold text-on-surface font-mono">serrabella_sap_client_2026.crt</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">DigiCert Global Root CA • ICP-Brasil</span>
+</div>
+</div>
+<span class="px-space-sm py-0.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                Ativo &amp; Válido
+              </span>
+</div>
+<div class="mt-2 pt-2 grid grid-cols-2 gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<div>Validade: <strong class="text-on-surface">31/Out/2027</strong></div>
+<div>Algoritmo: <strong class="text-on-surface">RSA 4096-bit</strong></div>
+<div>SAN Match: <strong class="text-secondary">api.serrabella.ind.br</strong></div>
+<div>Hash: <strong class="text-on-surface font-mono text-[10px]">SHA-256 (FIPS 140-2)</strong></div>
+</div>
+<button class="mt-2 text-left font-label-sm text-label-sm text-primary hover:text-primary-container font-bold flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">upload_file</span> Substituir Certificado PEM/CRT...
+            </button>
+</div>
+</div>
+<!-- HMAC Signature & Secret Key Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm pb-space-sm">
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">key</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Chave Secreta HMAC SHA-256</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Validação de integridade do payload de liquidação</p>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1.5">Secret Token do Webhook</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 pl-space-md pr-24 bg-surface-container-low text-on-surface font-mono text-body-sm rounded-lg outline-none font-semibold" id="hmac-input" readonly="" type="password" value="whsec_client_test_7f8a92b0c411ee84d720b001a4e589c3d4f1"/>
+<div class="absolute right-2 flex items-center gap-1">
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface" id="toggle-hmac-btn" title="Revelar Chave" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1.5 text-primary hover:text-primary-container" id="copy-hmac-btn" title="Copiar Chave" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Strict Timestamp Switch -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Verificação Estrita de Timestamp</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rejeitar requisições com skew de relógio &gt; 300 segundos</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Handshake Simulation Console & Terminal Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Simulador de Ping &amp; Handshake</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Valide a conectividade com o seu listener antes de liberar tráfego real</p>
+</div>
+</div>
+<span class="w-3 h-3 rounded-full bg-secondary animate-ping" title="Console pronto"></span>
+</div>
+<button class="w-full py-3 px-space-md rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-all font-label-md text-label-md font-bold flex items-center justify-center gap-2 shadow-sm" id="btn-trigger-ping" type="button">
+<span class="material-symbols-outlined text-[20px]">sensors</span>
+            Disparar Ping de Teste TLS 1.3 (Simulação mTLS)
+          </button>
+<!-- Interactive CLI Output -->
+<div class="p-space-md rounded-lg bg-inverse-surface text-inverse-on-surface font-mono text-[12px] leading-relaxed overflow-x-auto flex flex-col gap-1 shadow-inner min-h-[160px]">
+<div class="flex items-center justify-between text-surface-dim font-bold pb-1 text-[11px]">
+<span>TERMINAL DE DIAGNÓSTICO HOST-TO-HOST</span>
+<span class="text-secondary-fixed" id="ping-status-pill">STATUS: PRONTO</span>
+</div>
+<div class="flex flex-col gap-0.5 text-surface-container-high" id="terminal-lines">
+<div class="text-surface-dim">&gt; Aguardando comando de teste de conectividade...</div>
+<div class="text-surface-dim">&gt; Target: https://api.serrabella.ind.br/sap/cpi/v1/webhook-liquidacao</div>
+</div>
+</div>
+<!-- Bottom Big Homologation CTA -->
+<div class="pt-space-xs flex flex-col gap-2">
+<button class="w-full py-3.5 px-space-lg rounded-xl bg-secondary text-on-secondary hover:bg-on-secondary-container transition-all font-headline-md text-headline-md font-bold flex items-center justify-center gap-2 shadow-md" id="btn-homologate" type="button">
+<span class="material-symbols-outlined text-[22px]">lock_open</span>
+              Homologar e Ativar Endpoint em Produção
+            </button>
+<div class="flex items-center justify-center gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+              Em conformidade com a Resolução BCB nº 1/2020 e Instrução Normativa Santander SPB
+            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Logic -->
+<script>
+    (function() {
+      // Toggle HMAC Visibility
+      const hmacInput = document.getElementById('hmac-input');
+      const toggleHmacBtn = document.getElementById('toggle-hmac-btn');
+      const copyHmacBtn = document.getElementById('copy-hmac-btn');
+
+      if (toggleHmacBtn && hmacInput) {
+        toggleHmacBtn.addEventListener('click', function() {
+          const isPass = hmacInput.getAttribute('type') === 'password';
+          hmacInput.setAttribute('type', isPass ? 'text' : 'password');
+          const icon = toggleHmacBtn.querySelector('.material-symbols-outlined');
+          if (icon) icon.textContent = isPass ? 'visibility_off' : 'visibility';
+        });
+      }
+
+      if (copyHmacBtn && hmacInput) {
+        copyHmacBtn.addEventListener('click', function() {
+          navigator.clipboard.writeText(hmacInput.value).then(function() {
+            const icon = copyHmacBtn.querySelector('.material-symbols-outlined');
+            if (icon) {
+              icon.textContent = 'done';
+              setTimeout(function() { icon.textContent = 'content_copy'; }, 2000);
+            }
+          });
+        });
+      }
+
+      // Handshake Simulation Trigger
+      const btnPing = document.getElementById('btn-trigger-ping');
+      const btnTopHandshake = document.getElementById('btn-top-handshake');
+      const terminalLines = document.getElementById('terminal-lines');
+      const pingStatusPill = document.getElementById('ping-status-pill');
+
+      function executePing() {
+        if (!terminalLines) return;
+        terminalLines.innerHTML = '';
+        if (pingStatusPill) {
+          pingStatusPill.className = 'text-primary-fixed animate-pulse font-bold';
+          pingStatusPill.textContent = 'INICIANDO HANDSHAKE...';
+        }
+
+        const steps = [
+          { text: '> CONNECT api.serrabella.ind.br:443 (TCP SYN > ACK)', delay: 200, color: 'text-surface-container-high' },
+          { text: '> TLS 1.3 Handshake: Cipher TLS_AES_256_GCM_SHA384 OK', delay: 450, color: 'text-surface-container-high' },
+          { text: '> mTLS Client Certificate Verified (CN: serrabella.ind.br, Issuer: DigiCert ICP-Brasil)', delay: 700, color: 'text-secondary-fixed' },
+          { text: '> HTTP POST /sap/cpi/v1/webhook-liquidacao [Signed Payload: 320 bytes]', delay: 950, color: 'text-surface-container-high' },
+          { text: '> Response: HTTP 200 OK (Latency: 114ms, HMAC Header Validated)', delay: 1200, color: 'text-secondary-fixed font-bold' },
+          { text: '> STATUS: ENDPOINT PRONTO PARA HOMOLOGAÇÃO IMEDIATA', delay: 1400, color: 'text-secondary-fixed font-extrabold bg-surface-container-lowest/10 p-1 rounded' }
+        ];
+
+        steps.forEach(function(s) {
+          setTimeout(function() {
+            const line = document.createElement('div');
+            line.className = s.color;
+            line.textContent = s.text;
+            terminalLines.appendChild(line);
+          }, s.delay);
+        });
+
+        setTimeout(function() {
+          if (pingStatusPill) {
+            pingStatusPill.className = 'text-secondary-fixed font-bold';
+            pingStatusPill.textContent = 'SUCESSO: 200 OK (114ms)';
+          }
+        }, 1500);
+      }
+
+      if (btnPing) btnPing.addEventListener('click', executePing);
+      if (btnTopHandshake) btnTopHandshake.addEventListener('click', executePing);
+
+      // Homologation CTA notification
+      const btnHomologate = document.getElementById('btn-homologate');
+      if (btnHomologate) {
+        btnHomologate.addEventListener('click', function() {
+          btnHomologate.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">sync</span> Validando na Câmara Santander...';
+          setTimeout(function() {
+            btnHomologate.className = 'w-full py-3.5 px-space-lg rounded-xl bg-primary text-on-primary transition-all font-headline-md text-headline-md font-bold flex items-center justify-center gap-2 shadow-md';
+            btnHomologate.innerHTML = '<span class="material-symbols-outlined text-[22px]">check_circle</span> Endpoint Ativo &amp; Homologado em Produção!';
+          }, 1200);
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

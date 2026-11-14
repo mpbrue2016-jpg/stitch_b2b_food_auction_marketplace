@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-secondary-container":"#217128","inverse-on-surface":"#eff1f3","on-secondary-fixed-variant":"#005312","surface-variant":"#e0e3e5","tertiary-container":"#9d0011","on-primary-fixed-variant":"#00429c","surface-container-low":"#f2f4f6","on-primary-container":"#a1bbff","on-background":"#191c1e","on-secondary-fixed":"#002204","on-tertiary":"#ffffff","primary-container":"#0d47a1","tertiary-fixed-dim":"#ffb3ac","error":"#ba1a1a","on-error-container":"#93000a","surface-dim":"#d8dadc","on-tertiary-container":"#ffa59d","surface":"#f7f9fb","on-surface":"#191c1e","surface-container-lowest":"#ffffff","on-primary-fixed":"#001945","on-secondary":"#ffffff","error-container":"#ffdad6","inverse-surface":"#2d3133","secondary-container":"#a0f399","on-tertiary-fixed":"#410003","on-error":"#ffffff","tertiary-fixed":"#ffdad6","on-primary":"#ffffff","on-tertiary-fixed-variant":"#930010","surface-container-highest":"#e0e3e5","secondary":"#1b6d24","primary-fixed":"#d9e2ff","outline-variant":"#c3c6d4","tertiary":"#720009","outline":"#737783","surface-container-high":"#e6e8ea","secondary-fixed":"#a3f69c","primary-fixed-dim":"#b0c6ff","surface-bright":"#f7f9fb","surface-container":"#eceef0","primary":"#003178","on-surface-variant":"#434652","inverse-primary":"#b0c6ff","background":"#f7f9fb","secondary-fixed-dim":"#88d982","surface-tint":"#2b5bb5"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-xs":"0.25rem",gutter:"1rem","space-sm":"0.5rem","space-lg":"1.25rem","margin-mobile":"1rem",margin:"1.5rem","space-xl":"2rem","gutter-mobile":"0.75rem","space-md":"0.75rem"},fontFamily:{"headline-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"]},fontSize:{"headline-lg":["24px",{lineHeight:"32px",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["20px",{lineHeight:"28px",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-md":["18px",{lineHeight:"24px",fontWeight:"700"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-xl":["32px",{lineHeight:"40px",fontWeight:"800"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"700"}],"headline-xl-mobile":["24px",{lineHeight:"32px",fontWeight:"800"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}],"numeric-timer":["20px",{lineHeight:"24px",fontWeight:"800"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center gap-space-sm bg-surface-container"><span class="material-symbols-outlined text-primary text-[22px]">account_balance</span><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight leading-none">Varejista SPB</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Cofre Fiduciário</span></div></div><div class="p-gutter"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider block mb-space-sm">Compensação SPB</span><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary text-on-primary font-label-md"><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="painel-geral-de-liquidacao" href="#"><span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>Painel Geral de Liquidação</a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="fechamento-de-cambio-ted" href="#"><span class="material-symbols-outlined text-[18px]">currency_exchange</span>Fechamento de Câmbio & TED</a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="contas-escrow-garantias" href="#"><span class="material-symbols-outlined text-[18px]">verified_user</span>Contas Escrow & Garantias</a></nav></div><div class="px-gutter pb-gutter"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider block mb-space-sm">Automação & Arquivos</span><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary text-on-primary font-label-md"><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="remessas-retornos-cnab" href="#"><span class="material-symbols-outlined text-[18px]">sync_alt</span>Remessas & Retornos CNAB</a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="webhooks-erp" href="#"><span class="material-symbols-outlined text-[18px]">hub</span>Webhooks & ERP</a><a class="flex items-center justify-between px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="fila-dead-letter-queue-dlq" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">move_to_inbox</span><span>Fila Dead Letter Queue (DLQ)</span></div><span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface px-space-xs rounded">0</span></a></nav></div><div class="px-gutter pb-gutter"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider block mb-space-sm">Conformidade & Regulatório</span><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary text-on-primary font-label-md"><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="dossies-bacen" href="#"><span class="material-symbols-outlined text-[18px]">policy</span>Dossiês BACEN</a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="certidoes-oficiais-worm" href="#"><span class="material-symbols-outlined text-[18px]">history_edu</span>Certidões Oficiais & WORM</a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="trilha-criptografica" href="#"><span class="material-symbols-outlined text-[18px]">key</span>Trilha Criptográfica</a></nav></div></div><div class="p-gutter bg-surface-container m-gutter rounded-xl"><div class="flex items-start gap-space-sm"><span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">format_image_left</span><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface font-bold">Sentinel SPB</span><span class="font-body-sm text-body-sm text-secondary font-semibold">Grade Diária Encerrada com Sucesso</span><span class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">Ciclo STR 02 homologado</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-secondary-container px-space-sm py-space-xs rounded-lg"><span class="h-2 w-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-secondary-container font-bold uppercase tracking-wider">SPB SANTANDER - AMBIENTE DE PRODUÇÃO</span></div><div class="hidden xl:flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-lg text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">schedule</span><span class="font-label-sm text-label-sm">Grade Noturna: 19:55 BRT</span></div><div class="hidden 2xl:flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-lg text-on-surface-variant"><span class="material-symbols-outlined text-secondary text-[16px]">lan</span><span class="font-label-sm text-label-sm">Operando RSFN (ISPB 90.400.888)</span></div></div><div class="flex items-center gap-space-md"><button aria-label="Notificações" class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors rounded-lg" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary"></span></button><div class="h-6 w-[1px] bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface font-bold">Carlos Eduardo Brandão</span><span class="font-label-sm text-label-sm text-on-surface-variant">Gestor Fiduciário Sênior / Controladoria</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="w-full pt-16 bg-background px-margin py-margin"><div class="flex flex-col w-full">
+<!-- Top Breadcrumb & Notification Strip -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm tracking-wide">
+<span class="hover:text-primary transition-colors cursor-pointer">Início</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Liquidação SPB & Tesouraria</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-bold">Fechamento Diário Consolidado (Grade 19:50 BRT)</span>
+</div>
+<!-- Security & BACEN Transmission Badge -->
+<div class="flex items-center gap-space-xs self-start xl:self-auto bg-surface-container-high px-space-sm py-1 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface">Homologação STR BACEN: #STR-20261025-BR-9981</span>
+<span class="h-1.5 w-1.5 rounded-full bg-secondary ml-1"></span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">19:51 BRT</span>
+</div>
+</div>
+<!-- Main Executive Header -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg relative overflow-hidden">
+<!-- Subtle Institutional watermark badge -->
+<div class="absolute -right-6 -bottom-6 w-48 h-48 bg-primary/5 rounded-full pointer-events-none flex items-center justify-center">
+<span class="material-symbols-outlined text-[120px] text-primary/10">account_balance</span>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="px-space-xs py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm uppercase tracking-wider">
+            Santander SPB / STR D+0
+          </span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span> SAFE-LOCK ATIVO
+          </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+            Data Contábil: <strong>25/10/2026</strong> • Ciclo CO251002.RET
+          </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight mt-1">
+          Painel Geral de Liquidação SPB & Balanço Noturno Fiduciário
+        </h1>
+<div class="flex items-center gap-space-sm flex-wrap mt-1">
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+            Ciclo CO251002.RET Finalizado
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary font-semibold">
+<span class="material-symbols-outlined text-[16px]">task_alt</span>
+            Grade STR Encerrada (100% Repasses)
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold">
+<span class="material-symbols-outlined text-[16px]">mark_email_read</span>
+            DLQ 100% Saneada (0 Falhas)
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">fingerprint</span>
+            Co-Assinado ICP-Brasil A3
+          </span>
+</div>
+</div>
+<!-- Action Button Group -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm shrink-0">
+<button class="flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">folder_zip</span>
+          Baixar Pacote Contábil (.ZIP)
+        </button>
+<button class="flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-secondary text-on-secondary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Cofre Noturno Travado</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4 KPIs Grid (Macro Metrics) -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Card 1: Volume Total Liquidado -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Volume Total Liquidado D+0</span>
+<div class="p-1.5 rounded-lg bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+          R$ 4.852.150,00
+        </div>
+<div class="flex items-center gap-1 mt-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">done_all</span>
+<span>100% dos 85 lotes de leilão quitados</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs bg-surface-container-low px-space-sm py-1 rounded text-on-surface-variant font-label-sm text-label-sm">
+        Split Take Rate: <strong class="text-primary">R$ 145.564,50</strong> (3.0% retido master)
+      </div>
+</div>
+<!-- Card 2: Status Escrow -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Status Contas Escrow</span>
+<div class="p-1.5 rounded-lg bg-secondary-fixed text-secondary">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-secondary font-extrabold tracking-tight">
+          R$ 0,00 <span class="font-label-md text-label-md text-on-surface-variant font-normal">em retenção</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Saldo Transitório Zerado perante BACEN</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs bg-surface-container-low px-space-sm py-1 rounded text-on-surface-variant font-label-sm text-label-sm">
+<strong class="text-secondary">85 de 85 Lotes</strong> liberados integralmente aos vendedores
+      </div>
+</div>
+<!-- Card 3: Eficiência Mensageria SPI / STR -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Eficiência Mensageria SPI / STR</span>
+<div class="p-1.5 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[18px]">speed</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight flex items-baseline gap-2">
+          100.0%
+          <span class="font-label-sm text-label-sm text-secondary font-bold bg-secondary-container px-1 rounded">28ms avg</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">network_check</span>
+<span>Sem timeouts pendentes no barramento RSFN</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs bg-surface-container-low px-space-sm py-1 rounded text-on-surface-variant font-label-sm text-label-sm flex items-center justify-between">
+<span>Redis Sentinel: <strong class="text-secondary">Sincronizado</strong></span>
+<span>RSFN: <strong class="text-on-surface">Santander OK</strong></span>
+</div>
+</div>
+<!-- Card 4: Fila DLQ Saneada -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Dead Letter Queue (DLQ)</span>
+<div class="p-1.5 rounded-lg bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-secondary font-extrabold tracking-tight flex items-center gap-2">
+          0 Pendências
+          <span class="font-label-sm text-label-sm bg-secondary text-on-secondary px-1.5 py-0.5 rounded uppercase">Saneada</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">history</span>
+<span>3 incidentes resolvidos e retransmitidos</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs bg-surface-container-low px-space-sm py-1 rounded text-on-surface-variant font-label-sm text-label-sm">
+        Total recuperado e repassado: <strong class="text-on-surface">R$ 138.450,00</strong>
+</div>
+</div>
+</section>
+<!-- Central Grid: Settlement Breakdown by Channel & Real-Time Balance -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Left 8 Columns: Settlement Table & Channel Distribution -->
+<section class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Settlement by Payment Channel -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm mb-space-md">
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">swap_horiz</span>
+              Grade de Liquidação por Canal de Liquidez D+0
+            </h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+              Discriminação de conciliação bancária Santander ISPB 90.400.888 e protocolo CIP/SPI
+            </span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-low px-space-sm py-1 rounded text-on-surface-variant self-start sm:self-auto">
+            Auditado às 19:48:33 BRT
+          </span>
+</div>
+<!-- Channel Composition Visual Meter -->
+<div class="mb-space-lg">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-1.5">
+<span class="font-bold text-on-surface">Distribuição de Volume Financeiro:</span>
+<span>R$ 4.852.150,00 (100%)</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden flex gap-0.5">
+<div class="h-full bg-primary" style="width: 72.5%;" title="Pix SPI: 72.5%"></div>
+<div class="h-full bg-surface-tint" style="width: 22.3%;" title="TED CIP/STR: 22.3%"></div>
+<div class="h-full bg-secondary" style="width: 5.2%;" title="Cartão CIP: 5.2%"></div>
+</div>
+<div class="flex items-center gap-space-md mt-2 flex-wrap font-label-sm text-label-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span>Pix SPI (72.5% • R$ 3.518.700,00)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-surface-tint"></span>
+<span>TED / STR CIP (22.3% • R$ 1.083.450,00)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span>Cartão Corporativo CIP (5.2% • R$ 250.000,00)</span>
+</div>
+</div>
+</div>
+<!-- Dense Settlement Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-2.5 px-space-sm rounded-l">Canal / Barramento</th>
+<th class="py-2.5 px-space-sm text-center">Qtd. Transações</th>
+<th class="py-2.5 px-space-sm text-right">Volume Líquido</th>
+<th class="py-2.5 px-space-sm">Status no Santander</th>
+<th class="py-2.5 px-space-sm text-center rounded-r">Conciliação STR</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high font-body-sm text-body-sm text-on-surface">
+<!-- Row 1: Pix SPI -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="p-1 rounded bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Pix Instantâneo SPI</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mensagens pacs.008 e pacs.004</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center font-bold">62 transações</td>
+<td class="py-3 px-space-sm text-right font-headline-md text-headline-md text-primary font-bold">
+                  R$ 3.518.700,00
+                </td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[12px]">check</span> Liquidado SPI
+                  </span>
+</td>
+<td class="py-3 px-space-sm text-center">
+<span class="font-label-md text-label-md text-secondary font-extrabold">100% (62/62)</span>
+</td>
+</tr>
+<!-- Row 2: TED / STR -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="p-1 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">TED / STR Corporativo CIP</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lotes arrematados de alto valor</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center font-bold">18 transações</td>
+<td class="py-3 px-space-sm text-right font-headline-md text-headline-md text-on-surface font-bold">
+                  R$ 1.083.450,00
+                </td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[12px]">check</span> Conciliado Notarial
+                  </span>
+</td>
+<td class="py-3 px-space-sm text-center">
+<span class="font-label-md text-label-md text-secondary font-extrabold">100% (18/18)</span>
+</td>
+</tr>
+<!-- Row 3: Cartão B2B -->
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="p-1 rounded bg-secondary-fixed text-secondary">
+<span class="material-symbols-outlined text-[16px]">credit_card</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Cartão Corporativo B2B</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CIP Split D+0 Antecipado</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center font-bold">5 transações</td>
+<td class="py-3 px-space-sm text-right font-headline-md text-headline-md text-on-surface font-bold">
+                  R$ 250.000,00
+                </td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[12px]">check</span> Liquidado CIP
+                  </span>
+</td>
+<td class="py-3 px-space-sm text-center">
+<span class="font-label-md text-label-md text-secondary font-extrabold">100% (5/5)</span>
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="bg-surface-container font-label-md text-label-md text-on-surface font-bold">
+<td class="py-3 px-space-sm rounded-l">Total Consolidado da Grade Diária</td>
+<td class="py-3 px-space-sm text-center">85 transações</td>
+<td class="py-3 px-space-sm text-right text-primary font-headline-md text-headline-md font-extrabold">
+                  R$ 4.852.150,00
+                </td>
+<td class="py-3 px-space-sm">
+<span class="text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span> Safe-Lock Bancário
+                  </span>
+</td>
+<td class="py-3 px-space-sm text-center rounded-r text-secondary font-headline-md text-headline-md">
+                  100%
+                </td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<!-- Detail Box: Resolved DLQ Retransmission Report -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">task_alt</span>
+<span class="font-headline-md text-headline-md text-on-surface">Saneamento Concluído da Fila DLQ (3 Incidentes Superados)</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">
+            Zero Pendências
+          </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm text-on-surface font-body-sm text-body-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Lote #ALV-TRIGO-12</span>
+<span class="text-secondary font-bold">PIX SPI OK</span>
+</div>
+<div class="font-label-md text-label-md font-bold mt-1">Moinho Alvorada S.A.</div>
+<div class="text-on-surface-variant text-body-sm mt-0.5">Erro corrigido: Chave CNPJ sem máscara.</div>
+</div>
+<div class="mt-space-sm pt-space-xs flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Valor: <strong>R$ 21.500,00</strong></span>
+<span>Às 19:45 BRT</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Lote #MG-OLEO-44</span>
+<span class="text-secondary font-bold">PIX SPI OK</span>
+</div>
+<div class="font-label-md text-label-md font-bold mt-1">Óleos Vegetais Minas-Goiás</div>
+<div class="text-on-surface-variant text-body-sm mt-0.5">Erro corrigido: Limite noturno expandido Santander.</div>
+</div>
+<div class="mt-space-sm pt-space-xs flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Valor: <strong>R$ 62.750,00</strong></span>
+<span>Às 19:40 BRT</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Lote #SC-LEITE-08</span>
+<span class="text-secondary font-bold">TED STR OK</span>
+</div>
+<div class="font-label-md text-label-md font-bold mt-1">Cooperativa Láctea Sul</div>
+<div class="text-on-surface-variant text-body-sm mt-0.5">Erro corrigido: Divergência de dígito agência 0033.</div>
+</div>
+<div class="mt-space-sm pt-space-xs flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Valor: <strong>R$ 54.200,00</strong></span>
+<span>Às 19:34 BRT</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right 4 Columns: Audit, Merkle Hash, Sentinel Guardian & Protocol -->
+<section class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Merkle Tree & WORM Compliance Certification Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Conformidade Notarial WORM</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">security</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Selagem Criptográfica Diária</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Registro imutável ancorado com Carimbo do Tempo (ACT) oficial perante o Observatório Nacional e co-signatários A3.
+          </p>
+</div>
+<div class="my-space-md p-space-sm rounded-lg bg-surface-container font-mono text-[11px] leading-relaxed break-all text-on-surface-variant">
+<div class="font-bold text-on-surface text-label-sm uppercase mb-1 font-headline-md">Hash Raiz Merkle (CO251002.RET):</div>
+<span class="text-primary font-semibold select-all">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
+</div>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<div class="flex items-center justify-between py-1 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">Carimbo de Tempo ACT:</span>
+<span class="font-bold text-on-surface">25/10/2026 19:48:33 BRT</span>
+</div>
+<div class="flex items-center justify-between py-1 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">Certidão Notarial:</span>
+<span class="font-bold text-primary">#20261025-SAN-0914</span>
+</div>
+<div class="flex items-center justify-between py-1 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">Storage Imutável:</span>
+<span class="font-bold text-secondary">S3 Object Lock (5 Anos)</span>
+</div>
+<div class="flex items-center justify-between py-1 bg-surface-container-low px-space-sm rounded">
+<span class="text-on-surface-variant">Módulo HSM:</span>
+<span class="font-bold text-on-surface">Luna PCI e-Token OK</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1 text-secondary font-bold">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+            4 de 4 Assinaturas Válidas
+          </span>
+<button class="text-primary hover:underline font-bold" type="button">Ver Certidão</button>
+</div>
+</div>
+<!-- Sentinel & Hardware Guardian Status -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center gap-space-xs mb-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">shield</span>
+<span class="font-headline-md text-headline-md text-on-surface">Guardiões do Barramento SPB</span>
+</div>
+<div class="flex flex-col gap-space-sm font-body-sm text-body-sm">
+<div class="flex items-start gap-space-sm p-space-xs rounded bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">lens</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Sentinel Daemon Noturno</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Monitorando conciliação passiva. Próxima grade: 26/10 às 07:00 BRT.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm p-space-xs rounded bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">hub</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Link Santander ISPB 90.400.888</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sessão STR em repouso noturno após confirmação MENS001.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Operational Audit Event Log (Timeline of Closed Day) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">history</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">
+          Trilha de Eventos e Encerramento da Grade Financeira Noturna
+        </h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+        Audit log criptografado sob padrão BACEN Circular 3.978
+      </span>
+</div>
+<!-- Timeline Entries -->
+<div class="relative pl-6 space-y-4 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high">
+<!-- Item 1: 19:51:20 BRT -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-secondary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between w-full bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-md text-label-md text-secondary font-bold">19:51:20 BRT</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Cofre Fiduciário Santander SPB travado em Safe-Lock Noturno</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">Operador: Sistema Autônomo Sentinel / STR BACEN</span>
+</div>
+</div>
+<!-- Item 2: 19:48:33 BRT -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between w-full bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-md text-label-md text-primary font-bold">19:48:33 BRT</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Certidão de Fechamento Notarial assinada com e-CNPJ A3 pelos 4 co-signatários</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">Protocolo: #20261025-SAN-0914</span>
+</div>
+</div>
+<!-- Item 3: 19:45:10 BRT -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-secondary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between w-full bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-md text-label-md text-secondary font-bold">19:45:10 BRT</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Payout Pix SPI do Lote #ALV-TRIGO-12 (Moinho Alvorada - R$ 21.500,00) liquidado no Santander STR</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">EndToEndId: E90400888202610251945</span>
+</div>
+</div>
+<!-- Item 4: 19:40:02 BRT -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-secondary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between w-full bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-md text-label-md text-secondary font-bold">19:40:02 BRT</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Payout Pix SPI do Lote #MG-OLEO-44 (Minas-Goiás - R$ 62.750,00) liquidado no Santander STR</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">EndToEndId: E90400888202610251940</span>
+</div>
+</div>
+<!-- Item 5: 18:50:00 BRT -->
+<div class="relative flex items-start gap-space-md">
+<div class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-on-surface-variant ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between w-full bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-md text-label-md text-on-surface-variant font-bold">18:50:00 BRT</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Arquivo de Retorno CO251002.RET Santander processado com 100% de conciliação</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 sm:mt-0">Volume D+0: R$ 4.852.150,00</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Advisory Banner & Support Controls -->
+<section class="bg-surface-container rounded-xl p-space-lg shadow-sm flex flex-col lg:flex-row items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="p-2 rounded-lg bg-primary text-on-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[24px]">nightlight</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">Grade Financeira D+0 Encerrada com Sucesso</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5 max-w-2xl">
+          Operações de arremates e lances em pregões ao vivo continuam ativas para liquidação D+1 na grade matutina de <strong>26/10/2026 às 08:30 BRT</strong>.
+        </p>
+<div class="flex items-center gap-space-md mt-space-xs font-label-sm text-label-sm text-on-surface-variant flex-wrap">
+<span>Plantão Tesouraria SPB: <strong>(11) 3550-9900</strong> ramal 44</span>
+<span>•</span>
+<span>Suporte SRE 24/7: <strong>noc-spb@varejistaonline.com.br</strong></span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full lg:w-auto shrink-0 justify-end">
+<button class="flex-1 lg:flex-initial flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-lowest hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+        Relatório Executivo (.PDF)
+      </button>
+<button class="flex-1 lg:flex-initial flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary/90 text-on-primary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+        Ver Salas de Pregão Noturno
+      </button>
+</div>
+</section>
+</div></main></div></body></html>

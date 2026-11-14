@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"on-surface-variant":"#434652","primary-fixed":"#d9e2ff","inverse-on-surface":"#eff1f3","surface-container-high":"#e6e8ea","surface-variant":"#e0e3e5","secondary-fixed-dim":"#88d982","on-surface":"#191c1e","on-tertiary-fixed":"#410003","error-container":"#ffdad6","on-primary-container":"#a1bbff","outline-variant":"#c3c6d4","surface-container-low":"#f2f4f6","surface":"#f7f9fb","tertiary-container":"#9d0011","on-tertiary-container":"#ffa59d","primary-fixed-dim":"#b0c6ff","background":"#f7f9fb","inverse-surface":"#2d3133","on-primary-fixed":"#001945","surface-container":"#eceef0","on-secondary-container":"#217128","secondary":"#1b6d24","secondary-container":"#a0f399","primary":"#003178","outline":"#737783","tertiary-fixed-dim":"#ffb3ac","surface-bright":"#f7f9fb","on-tertiary":"#ffffff","secondary-fixed":"#a3f69c","tertiary":"#720009","on-tertiary-fixed-variant":"#930010","on-error-container":"#93000a","on-secondary-fixed-variant":"#005312","surface-container-highest":"#e0e3e5","on-primary-fixed-variant":"#00429c","surface-tint":"#2b5bb5","tertiary-fixed":"#ffdad6","on-secondary-fixed":"#002204","on-background":"#191c1e","on-error":"#ffffff","surface-dim":"#d8dadc","inverse-primary":"#b0c6ff","on-secondary":"#ffffff","primary-container":"#0d47a1","error":"#ba1a1a","on-primary":"#ffffff","surface-container-lowest":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin-mobile":"1rem","gutter-mobile":"0.75rem","space-xl":"2rem","space-md":"0.75rem","gutter":"1rem","space-lg":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","margin":"1.5rem"},"fontFamily":{"body-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"]},"fontSize":{"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between py-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-md"><div class="px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary font-headline-md font-bold">B2B</div><div><div class="font-headline-md text-primary font-bold leading-tight">DLQ Sentinel</div><div class="font-label-sm text-outline uppercase tracking-wider">Operação Fiduciária</div></div></div></div><div class="px-space-md py-space-xs mx-space-md bg-surface-container-high rounded-lg flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-on-surface-variant uppercase">mTLS Ativo / v1.3</span></div><span class="font-label-sm text-outline">Port 8443</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Visão Geral</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="leiloes-e-lotes" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span>Leilões &amp; Lotes</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="esteira-cnpj" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span>Esteira CNPJ</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="gestao-financeira-e-meios" href="#"><span class="material-symbols-outlined text-[20px]">payments</span>Gestão Financeira &amp; Meios</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="remessas-e-retornos-cnab-240" href="#"><span class="material-symbols-outlined text-[20px]">swap_horiz</span>Remessas &amp; Retornos CNAB 240</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="webhooks-e-erp" href="#"><span class="material-symbols-outlined text-[20px]">sync_alt</span>Webhooks &amp; ERP</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="auditoria-e-logs" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span>Auditoria &amp; Logs</a></nav></div><div class="px-space-md flex flex-col gap-space-xs pt-space-md border-t border-surface-container-highest"><div class="bg-surface-container p-space-sm rounded-lg"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-outline">BUFFER DLQ</span><span class="font-label-sm text-error font-bold">12 ERROS</span></div><div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden"><div class="bg-error h-full w-[24%]"></div></div></div><div class="flex items-center justify-between text-outline font-label-sm px-space-xs"><span>Node SP-01 (Primário)</span><span>Latência 14ms</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-secondary text-[18px]">account_balance</span><span class="font-label-sm text-on-surface font-bold">SPB SANTANDER</span><span class="font-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">OPERACIONAL</span></div><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-primary text-[18px]">shield_with_heart</span><span class="font-label-sm text-on-surface font-bold">ICP-BRASIL A1/A3</span><span class="font-label-sm text-outline">Val: 04/2026</span></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex flex-col text-right"><span class="font-label-md text-on-surface font-bold">Carlos Eduardo Brandão</span><span class="font-label-sm text-primary font-bold">GESTOR FIDUCIÁRIO SÊNIOR</span></div><div class="flex items-center gap-space-sm pl-space-sm border-l border-surface-container-high"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span></button></div></div></header><main class="w-full pt-16 bg-surface px-margin"><div class="flex flex-col w-full pb-space-xl">
+<!-- Top Banner / Operational Resolution Announcement -->
+<div class="relative overflow-hidden rounded-xl bg-secondary-container/30 p-space-lg mb-space-lg">
+<div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-secondary-container/40 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center text-on-secondary shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-sm uppercase tracking-wider text-secondary font-bold px-space-xs py-0.5 rounded bg-surface-container-lowest">
+              INCIDENTE mTLS RESOLVIDO COM SUCESSO
+            </span>
+<span class="text-outline text-label-sm font-label-sm">•</span>
+<span class="font-label-sm text-outline font-bold">LOTE #MG-OLEO-44</span>
+<span class="text-outline text-label-sm font-label-sm">•</span>
+<span class="font-label-sm text-on-surface-variant">Distribuidora Minas-Goiás S.A.</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mt-space-xs">
+            Replay Supervisionado Concluído • Custódia Desbloqueada
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+            Handshake TLS 1.3 bidirecional restabelecido com o SAP CPI remoto. Idempotência contábil assegurada no Ledger BACEN Res. 4.656/2018.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 flex-wrap">
+<button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-lowest hover:bg-surface-container-high text-on-surface transition-colors shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span>Ver Tracing OpenTelemetry</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-lowest hover:bg-surface-container-high text-on-surface transition-colors shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Voltar à Fila DLQ</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-bold shadow-md transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">download_done</span>
+<span>Baixar Recibo WORM / Certidão (PDF/A)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- KPI Bento Matrix -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-lg">
+<!-- KPI 1: Custódia Liberada -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Custódia Escrow Desbloqueada</span>
+<span class="w-8 h-8 rounded-lg bg-secondary-container/50 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">lock_open</span>
+</span>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl font-bold text-secondary">
+          R$ 62.750,00
+        </div>
+<div class="flex items-center gap-space-xs mt-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">14 Paletes / 1.400 Cxs Óleo Refinado 900ml</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span>Cofre SPB Santander</span>
+<span class="text-secondary font-bold">LIBERADO D+0</span>
+</div>
+</div>
+<!-- KPI 2: Resposta Remota SAP CPI -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Latência SAP CPI Minas-Goiás</span>
+<span class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">speed</span>
+</span>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl font-bold text-on-surface">98</span>
+<span class="font-headline-md text-headline-md text-outline">ms</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+            HTTP 200 OK
+          </span>
+<span class="font-label-sm text-label-sm text-outline">TLS 1.3 mTLS Cifra GCM</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span>Payload Replay</span>
+<span class="text-on-surface font-bold">2.41 KB processados</span>
+</div>
+</div>
+<!-- KPI 3: Idempotência -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Chave de Idempotência</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">fingerprint</span>
+</span>
+</div>
+<div>
+<div class="font-label-md text-label-md font-bold text-primary truncate" title="IDEMP-MG-2026-44-LIQ-ESCROW">
+          IDEMP-MG-2026-44-LIQ-ESCROW
+        </div>
+<div class="flex items-center gap-space-xs mt-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Zero Duplicidade SAP S/4HANA</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span>Controle de Fila</span>
+<span class="text-on-surface-variant font-bold">DLQ ACK Consumido</span>
+</div>
+</div>
+<!-- KPI 4: Documento Contábil -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Documento Contábil SAP</span>
+<span class="w-8 h-8 rounded-lg bg-secondary-container/50 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">receipt</span>
+</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface">
+          DOC-FIN-2026-9042
+        </div>
+<div class="flex items-center gap-space-xs mt-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Conta Razão: 1.1.02.01.004</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span>Ambiente</span>
+<span class="text-secondary font-bold">SAP PROD (PRD-01)</span>
+</div>
+</div>
+</div>
+<!-- Main Grid: 2 Columns Execution & Evidence -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Left Column: Stepper & Terminal (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Stepper Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">timeline</span>
+</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+              Rastreabilidade da Execução &amp; Handshake
+            </h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            5/5 ETAPAS OK
+          </span>
+</div>
+<!-- Vertical Stepper Steps -->
+<div class="flex flex-col gap-space-md">
+<!-- Step 1 -->
+<div class="flex items-start gap-space-md relative">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<div class="w-0.5 h-12 bg-secondary/30 mt-1"></div>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">
+                  1. Autenticação &amp; Assinatura ICP-Brasil A3
+                </span>
+<span class="font-label-sm text-label-sm text-outline">18:42:10.104 BRT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Token e-CPF de Carlos Eduardo Brandão (Gestor Fiduciário Sênior) validado com sucesso via HSM Luna PCI Nível 3. Autorização criptográfica vinculada.
+              </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-space-md relative">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+</div>
+<div class="w-0.5 h-12 bg-secondary/30 mt-1"></div>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">
+                  2. Handshake mTLS com Chave Pública Renovada
+                </span>
+<span class="font-label-sm text-label-sm text-outline">18:42:10.138 BRT (+34ms)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Certificado <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold text-[11px]">minasgoias_sap_cpi_2026_renewed.crt</code> injetado no truststore da sessão. Cifra negociada: <span class="font-bold text-on-surface">TLS_AES_256_GCM_SHA384</span>.
+              </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-space-md relative">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">sync_saved_locally</span>
+</div>
+<div class="w-0.5 h-12 bg-secondary/30 mt-1"></div>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">
+                  3. Confirmação Contábil SAP CPI Minas-Goiás
+                </span>
+<span class="font-label-sm text-label-sm text-outline">18:42:10.236 BRT (+98ms)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                RFC remota <code class="bg-surface-container px-1 py-0.5 rounded text-on-surface font-bold text-[11px]">BAPI_ACC_DOCUMENT_POST</code> executada com sucesso. Retorno do lançamento contábil: <span class="text-secondary font-bold">DOC-FIN-2026-9042</span>.
+              </p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex items-start gap-space-md relative">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">draw</span>
+</div>
+<div class="w-0.5 h-12 bg-secondary/30 mt-1"></div>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">
+                  4. Gravação de Carimbo WORM no Ledger BACEN
+                </span>
+<span class="font-label-sm text-label-sm text-outline">18:42:10.262 BRT (+26ms)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Imutabilidade assegurada pela Resolução BACEN nº 4.656/2018. Hash criptográfico SHA-256 consolidado no bloco imutável #849.201.
+              </p>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="flex items-start gap-space-md">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">
+                  5. Transição de Custódia: REPRESADA → LIBERADA
+                </span>
+<span class="font-label-sm text-label-sm text-outline">18:42:10.290 BRT (+28ms)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Cofre Santander SPB atualizado. R$ 62.750,00 despachados para a esteira de liquidação Pix SPI D+0 agendada para as 19:40 BRT.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Terminal / Payload Response Console -->
+<div class="bg-inverse-surface text-inverse-on-surface rounded-xl p-space-md shadow-md flex flex-col">
+<div class="flex items-center justify-between pb-space-xs mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="w-3 h-3 rounded-full bg-secondary-fixed"></span>
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-outline-variant ml-space-xs font-mono">
+              SAP_CPI_RESPONSE_PAYLOAD.json
+            </span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-bold">200 OK</span>
+<button class="text-outline-variant hover:text-inverse-on-surface transition-colors p-1" onclick="navigator.clipboard.writeText(document.getElementById('json-payload-view').innerText);" title="Copiar JSON">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+<pre class="font-mono text-body-sm text-body-sm leading-relaxed overflow-x-auto text-inverse-on-surface/90 max-h-64 p-space-xs" id="json-payload-view"><code>{
+  <span class="text-secondary-fixed-dim">"status"</span>: <span class="text-secondary-fixed">"SUCCESS"</span>,
+  <span class="text-secondary-fixed-dim">"http_code"</span>: <span class="text-secondary-fixed">200</span>,
+  <span class="text-secondary-fixed-dim">"remote_system"</span>: <span class="text-inverse-on-surface">"SAP_CPI_PRD_DIST_MINAS_GOIAS"</span>,
+  <span class="text-secondary-fixed-dim">"mtls_session"</span>: {
+    <span class="text-secondary-fixed-dim">"protocol"</span>: <span class="text-inverse-on-surface">"TLSv1.3"</span>,
+    <span class="text-secondary-fixed-dim">"cipher_suite"</span>: <span class="text-inverse-on-surface">"TLS_AES_256_GCM_SHA384"</span>,
+    <span class="text-secondary-fixed-dim">"cert_serial"</span>: <span class="text-inverse-on-surface">"4A:7E:99:C2:01:DF:88:24"</span>,
+    <span class="text-secondary-fixed-dim">"cert_issuer"</span>: <span class="text-inverse-on-surface">"AC SERPRO Final v5 / ICP-Brasil"</span>,
+    <span class="text-secondary-fixed-dim">"handshake_ms"</span>: <span class="text-secondary-fixed">34</span>
+  },
+  <span class="text-secondary-fixed-dim">"idempotency_key"</span>: <span class="text-inverse-on-surface">"IDEMP-MG-2026-44-LIQ-ESCROW"</span>,
+  <span class="text-secondary-fixed-dim">"accounting_entry"</span>: {
+    <span class="text-secondary-fixed-dim">"document_number"</span>: <span class="text-secondary-fixed">"DOC-FIN-2026-9042"</span>,
+    <span class="text-secondary-fixed-dim">"fiscal_year"</span>: <span class="text-secondary-fixed">"2026"</span>,
+    <span class="text-secondary-fixed-dim">"ledger_account"</span>: <span class="text-inverse-on-surface">"1.1.02.01.004"</span>,
+    <span class="text-secondary-fixed-dim">"clearing_status"</span>: <span class="text-secondary-fixed">"CLEARED_AUTOMATICALLY"</span>,
+    <span class="text-secondary-fixed-dim">"batch_id"</span>: <span class="text-inverse-on-surface">"MG-OLEO-44"</span>,
+    <span class="text-secondary-fixed-dim">"sku"</span>: <span class="text-inverse-on-surface">"OLEO_SOJA_REFINADO_900ML_CX20"</span>,
+    <span class="text-secondary-fixed-dim">"gross_amount"</span>: <span class="text-secondary-fixed">62750.00</span>,
+    <span class="text-secondary-fixed-dim">"currency"</span>: <span class="text-inverse-on-surface">"BRL"</span>
+  },
+  <span class="text-secondary-fixed-dim">"worm_audit_hash"</span>: <span class="text-inverse-on-surface">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span>,
+  <span class="text-secondary-fixed-dim">"timestamp_utc"</span>: <span class="text-inverse-on-surface">"2026-10-24T21:42:10.236Z"</span>
+}</code></pre>
+</div>
+</div>
+<!-- Right Column: Dossiê WORM, DLQ Residual & Downstream Events (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Card: Dossiê Fiduciário & Certificação WORM -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">
+              Dossiê Fiduciário &amp; WORM
+            </h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">SOX COMPLIANT</span>
+</div>
+<div class="flex flex-col gap-space-sm bg-surface-container-low p-space-md rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase">UUID da Transação</span>
+<div class="font-mono text-body-sm text-body-sm text-on-surface font-bold break-all">
+              c92f1b4a-3e81-4b72-91cd-82ef1027c491
+            </div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase">Hash SHA-256 do Recibo Forense</span>
+<div class="font-mono text-body-sm text-body-sm text-on-surface-variant break-all">
+              e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+            </div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase">Validade da Nova Chave</span>
+<div class="font-label-md text-label-md text-secondary font-bold">24/10/2027 (Ativa)</div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase">Assinante Autorizado</span>
+<div class="font-label-md text-label-md text-on-surface font-bold">C. E. Brandão</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md flex items-center gap-space-xs text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">shield</span>
+<span>Armazenamento WORM (Write Once, Read Many) imutável por 5 anos.</span>
+</div>
+</div>
+<!-- Card: Residual DLQ Alert & Next Action -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+<span class="font-label-md text-label-md font-bold text-on-surface">
+              Status Residual da DLQ
+            </span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+            1 INCIDENTE RESTANTE
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Após a liberação de Minas-Goiás, resta apenas 1 incidente retido na fila DLQ de liquidações:
+        </p>
+<div class="mt-space-md p-space-md rounded-lg bg-surface-container flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">
+              INC-2026-9038 • Moinho Alvorada S.A.
+            </span>
+<span class="font-label-sm text-label-sm text-error font-bold">R$ 21.500,00</span>
+</div>
+<div class="flex items-center gap-space-xs text-outline font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">dns</span>
+<span>TOTVS Protheus / Socket Timeout (Porta 8443)</span>
+</div>
+<div class="mt-space-xs pt-space-xs flex justify-end">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md font-bold text-primary hover:text-primary-container" href="#">
+              Tratar Incidente Moinho Alvorada (TOTVS)
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Card: Gatilhos & Eventos Downstream -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center gap-space-sm mb-space-md pb-space-xs">
+<span class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">
+            Gatilhos &amp; Eventos Downstream
+          </h3>
+</div>
+<div class="flex flex-col gap-space-sm font-body-sm text-body-sm">
+<div class="flex items-start gap-space-sm p-space-xs rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">account_balance_wallet</span>
+<div class="flex-1">
+<span class="font-label-md text-label-md font-bold text-on-surface block">Repasse Pix SPI D+0 Agendado</span>
+<span class="text-on-surface-variant">Lote programado para envio às 19:40 BRT via Santander SPB.</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">19:40 BRT</span>
+</div>
+<div class="flex items-start gap-space-sm p-space-xs rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">task_alt</span>
+<div class="flex-1">
+<span class="font-label-md text-label-md font-bold text-on-surface block">PagerDuty Alerta #FIN-892</span>
+<span class="text-on-surface-variant">Auto-resolvido via Webhook SRE. Nenhuma intervenção de plantão pendente.</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">AUTO</span>
+</div>
+<div class="flex items-start gap-space-sm p-space-xs rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">forum</span>
+<div class="flex-1">
+<span class="font-label-md text-label-md font-bold text-on-surface block">Canal Slack #eng-finops-alerts</span>
+<span class="text-on-surface-variant">Payload e certidão WORM transmitidos com sucesso.</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">ENVIADO</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Governance Footer Note -->
+<div class="bg-surface-container rounded-xl p-space-md flex flex-col md:flex-row items-center justify-between gap-space-md text-outline">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">policy</span>
+<span class="font-label-sm text-label-sm">
+        Em conformidade com a <strong class="text-on-surface">Resolução BACEN nº 4.656/2018</strong>, RFC 7396, mTLS ICP-Brasil A3 e auditoria WORM SOX/LGPD.
+      </span>
+</div>
+<div class="flex items-center gap-space-md text-label-sm font-label-sm">
+<span>Operador: Carlos Eduardo Brandão (ICP-A3)</span>
+<span>Sessão: TLS-SEC-84920</span>
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+        Sincronizado
+      </span>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-bright":"#f7f9fb","secondary-fixed-dim":"#88d982","secondary-fixed":"#a3f69c","inverse-primary":"#b0c6ff","on-surface":"#191c1e","on-error-container":"#93000a","tertiary":"#720009","on-secondary-fixed":"#002204","on-tertiary-fixed":"#410003","on-background":"#191c1e","on-tertiary-fixed-variant":"#930010","surface-container":"#eceef0","on-primary-fixed":"#001945","on-error":"#ffffff","on-tertiary":"#ffffff","on-surface-variant":"#434652","on-primary":"#ffffff","primary-fixed":"#d9e2ff","secondary-container":"#a0f399","surface-dim":"#d8dadc","tertiary-container":"#9d0011","error":"#ba1a1a","primary-container":"#0d47a1","background":"#f7f9fb","tertiary-fixed":"#ffdad6","on-primary-fixed-variant":"#00429c","on-secondary-container":"#217128","on-tertiary-container":"#ffa59d","outline-variant":"#c3c6d4","on-secondary-fixed-variant":"#005312","tertiary-fixed-dim":"#ffb3ac","primary-fixed-dim":"#b0c6ff","surface":"#f7f9fb","primary":"#003178","surface-container-highest":"#e0e3e5","surface-container-high":"#e6e8ea","error-container":"#ffdad6","inverse-on-surface":"#eff1f3","on-primary-container":"#a1bbff","secondary":"#1b6d24","surface-container-low":"#f2f4f6","surface-container-lowest":"#ffffff","outline":"#737783","surface-tint":"#2b5bb5","on-secondary":"#ffffff","inverse-surface":"#2d3133","surface-variant":"#e0e3e5"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xl":"2rem","gutter-mobile":"0.75rem","space-xs":"0.25rem","space-md":"0.75rem","margin-mobile":"1rem","margin":"1.5rem","space-lg":"1.25rem","gutter":"1rem","space-sm":"0.5rem"},"fontFamily":{"headline-lg-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"]},"fontSize":{"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-md flex items-center gap-space-sm bg-surface-container-lowest"><div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary-container text-on-primary"><span class="material-symbols-outlined text-lg">admin_panel_settings</span></div><div class="flex flex-col"><span class="font-label-lg text-label-lg text-primary leading-none uppercase tracking-wide">Varejo Master</span><span class="font-label-sm text-label-sm text-on-surface-variant">Governança &amp; Auditoria</span></div></div><div class="px-space-md py-space-xs bg-surface-container-low"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Auditoria WORM</span><span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span></div></div><nav class="flex-1 px-space-sm py-space-sm space-y-space-xs overflow-y-auto" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg"><div class="px-space-sm pt-space-xs pb-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Operacional &amp; Controles</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="visao-geral-kpis-master" href="#"><span class="material-symbols-outlined text-lg">dashboard</span><span class="font-body-md text-body-md">Visão Geral &amp; KPIs Master</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="usuarios-permissoes" href="#"><span class="material-symbols-outlined text-lg">manage_accounts</span><span class="font-body-md text-body-md">Usuários &amp; Permissões</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="empresas-cnpjs-aprovacoes" href="#"><span class="material-symbols-outlined text-lg">verified_user</span><span class="font-body-md text-body-md">Empresas &amp; CNPJs (Aprovações)</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="produtos-categorias" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span><span class="font-body-md text-body-md">Produtos &amp; Categorias</span></a><div class="px-space-sm pt-space-sm pb-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Pregões &amp; Auditoria</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="leiloes-lotes-ativos" href="#"><span class="material-symbols-outlined text-lg">gavel</span><span class="font-body-md text-body-md">Leilões &amp; Lotes Ativos</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="lances-pregoes-ao-vivo" href="#"><span class="material-symbols-outlined text-lg">emergency_heat</span><span class="font-body-md text-body-md">Lances &amp; Pregões ao Vivo</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="vendas-pedidos-comissoes" href="#"><span class="material-symbols-outlined text-lg">receipt_long</span><span class="font-body-md text-body-md">Vendas, Pedidos &amp; Comissões</span></a><div class="px-space-sm pt-space-sm pb-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Regulatório &amp; Financeiro</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="modulo-spb-financeiro-santander" href="#"><span class="material-symbols-outlined text-lg">account_balance</span><span class="font-body-md text-body-md">Módulo SPB Santander</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="moderacao-ouvidoria" href="#"><span class="material-symbols-outlined text-lg">support_agent</span><span class="font-body-md text-body-md">Moderação &amp; Ouvidoria</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="bloqueios-blacklist" href="#"><span class="material-symbols-outlined text-lg">gpp_bad</span><span class="font-body-md text-body-md">Bloqueios &amp; Blacklist</span></a><div class="px-space-sm pt-space-sm pb-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Configuração do Sistema</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="banners-midia" href="#"><span class="material-symbols-outlined text-lg">campaign</span><span class="font-body-md text-body-md">Banners &amp; Mídia</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="configuracoes-globais" href="#"><span class="material-symbols-outlined text-lg">settings</span><span class="font-body-md text-body-md">Configurações Globais</span></a></nav><div class="p-space-sm bg-surface-container-low text-on-surface-variant"><div class="flex items-center justify-between text-xs"><span class="font-label-sm text-label-sm text-outline">SISTEMA SPB V4.9</span><span class="font-label-sm text-label-sm text-secondary font-bold">PRODUÇÃO</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><span class="font-headline-md text-headline-md text-primary tracking-tight">PORTAL B2B</span></div><div class="h-6 w-px bg-outline-variant"></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-lg pointer-events-none">search</span><input class="w-80 h-9 pl-9 pr-space-sm bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" placeholder="Buscar CNPJ, SKU, Lote, Hash WORM ou ID de Pregão..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-secondary-container rounded-lg"><span class="material-symbols-outlined text-sm text-on-secondary-container">cloud_done</span><span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wide">BACEN / RFSN: ONLINE</span></div><div class="h-6 w-px bg-outline-variant hidden sm:block"></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface">Dr. Eduardo Sampaio</span><span class="font-label-sm text-label-sm text-tertiary-container font-bold uppercase tracking-wider">Super Admin &amp; Auditor</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold text-xs shadow-sm">ES</div></div></div></header><main class="relative pt-16 min-h-screen bg-surface w-full px-space-lg py-space-lg"><div class="flex flex-col w-full space-y-space-lg">
+<!-- CABEÇALHO DE GOVERNANÇA E CONTROLE -->
+<section class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col space-y-space-xs">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span>Painel Master</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Governança de Mercado</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-bold">Auditoria de Lances &amp; Prevenção a Fraudes</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm pt-1">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Compliance &amp; Detecção de Cartelização B2B</h1>
+<div class="flex items-center gap-1.5 px-space-sm py-0.5 bg-secondary-container text-on-secondary-container rounded font-label-sm text-label-sm uppercase tracking-wide">
+<span class="material-symbols-outlined text-sm">security</span>
+          Radar Heurístico IA Ativo
+        </div>
+<div class="flex items-center gap-1.5 px-space-sm py-0.5 bg-primary-fixed text-on-primary-fixed-variant rounded font-label-sm text-label-sm uppercase tracking-wide">
+<span class="material-symbols-outlined text-sm">balance</span>
+          Monitoramento CADE / BACEN
+        </div>
+<div class="flex items-center gap-1.5 px-space-sm py-0.5 bg-surface-container-high text-on-surface-variant rounded font-label-sm text-label-sm font-mono tracking-wide">
+<span class="material-symbols-outlined text-sm">database</span>
+          LEDGER WORM: BLK #4.891.204
+        </div>
+</div>
+</div>
+<!-- BOTÕES SUPERIORES DE AÇÃO RÁPIDA -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-error text-on-error rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-95 transition-all shadow-sm" id="btnLockEmergencial">
+<span class="material-symbols-outlined text-lg">lock_reset</span>
+<span>Congelar Pregão Suspeito (Lock)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-surface-container-low text-on-surface hover:bg-surface-container rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">download_for_offline</span>
+<span>Exportar Relatório CADE/BACEN (.PDF)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-sm py-2 bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">tune</span>
+<span>Sensibilidade</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-sm py-2 bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">history_toggle_off</span>
+<span>Punições</span>
+</button>
+</div>
+</section>
+<!-- 4 CARDS SUPERIORES: KPIS DE COMPLIANCE & INTEGRIDADE -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Lances Auditados (24h)</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">fact_check</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-primary tracking-tight font-extrabold">14.890</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary pt-0.5">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="font-bold">99.85%</span> de conformidade algorítmica
+        </div>
+</div>
+<div class="pt-2 bg-surface-container-low px-space-xs py-1 rounded text-outline font-label-sm text-label-sm flex justify-between items-center">
+<span>Latência média de análise:</span>
+<span class="font-mono font-bold text-on-surface">1.8 ms</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Anomalias &amp; Suspeitas Ativas</span>
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-lg">radar</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-tertiary tracking-tight font-extrabold flex items-center gap-2">
+<span>03</span>
+<span class="font-label-sm text-label-sm uppercase px-1.5 py-0.5 rounded bg-error-container text-on-error-container">Quarentena</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant pt-0.5">
+          2 Shilling Bidding • 1 Bid-Rigging Cartel
+        </div>
+</div>
+<div class="pt-2 bg-surface-container-low px-space-xs py-1 rounded text-outline font-label-sm text-label-sm flex justify-between items-center">
+<span>Risco Sistêmico:</span>
+<span class="font-bold text-error">ALTO (Isolamento Ativo)</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Empresas Bloqueadas / Cauções</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-lg">gpp_bad</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-extrabold">05 <span class="font-body-sm text-body-sm text-outline font-normal">CNPJs suspensos</span></div>
+<div class="font-body-sm text-body-sm text-on-surface-variant pt-0.5">
+          Retenção cautelar no Santander Escrow
+        </div>
+</div>
+<div class="pt-2 bg-surface-container-low px-space-xs py-1 rounded text-outline font-label-sm text-label-sm flex justify-between items-center">
+<span>Total retido em custódia:</span>
+<span class="font-mono font-bold text-secondary">R$ 1.850.000,00</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Precisão Heurística IA</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-lg">psychology</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-secondary tracking-tight font-extrabold">99.4%</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant pt-0.5">
+          Zero falso-positivo crítico em 90 dias
+        </div>
+</div>
+<div class="pt-2 bg-surface-container-low px-space-xs py-1 rounded text-outline font-label-sm text-label-sm flex justify-between items-center">
+<span>Auditoria Pericial:</span>
+<span class="font-bold text-primary">Validado EY &amp; CertiSign</span>
+</div>
+</div>
+</section>
+<!-- PAINEL PRINCIPAL: DUAS COLUNAS ESTRATÉGICAS -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- COLUNA ESQUERDA: DOSSIÊ DE INCIDENTE EM INVESTIGAÇÃO (7 COLUNAS) -->
+<div class="lg:col-span-7 flex flex-col space-y-space-md">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<!-- Topo do Card de Incidente -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-sm bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-2xl text-error">warning</span>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface">Protocolo #FRAUD-2026-0814</span>
+<span class="px-2 py-0.5 rounded bg-error text-on-error font-label-sm text-label-sm uppercase font-bold tracking-wider">Risco Crítico</span>
+</div>
+<span class="font-body-sm text-body-sm text-tertiary font-semibold">Padrão Colusivo / Bid-Rigging de Preço Predatório</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-outline">SCORE HEURÍSTICO</span>
+<span class="font-headline-lg text-headline-lg font-extrabold text-error">96<span class="text-sm font-normal text-outline">/100</span></span>
+</div>
+</div>
+<!-- Alvo do Pregão -->
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm p-space-sm bg-surface-container-lowest rounded-lg">
+<div class="flex items-center gap-space-sm">
+<img class="w-16 h-16 rounded object-cover" data-alt="Fardos de café tradicional 500g a vácuo empilhados em palete de madeira industrial para distribuição atacadista, iluminação técnica neutra com paleta azul e cinza." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVWqlE9_OCOEx8e03OgvwGZaeaH_4c5-c60cdIl7ILGPUb4Gw_enASBhcVzwtgNk3RaoWFerW0i_6esGbRH5KKn7HN7vzV_dz4qWypapWxgUfCFoeyMlqnt3AEEMJy0NRFos95B90VJUeMlnX3erPd0UdCdOBH5G6DqhnDFWb4fW6IrBZNub68UZw5U1DDgd6vqwnu4S9FAWJ7L55I4qKOWgGOVTvyI4Z_I035qNcl"/>
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Pregão Alvo: Lote #LOTE-418</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Café Tradicional Alvorada 500g a Vácuo</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Volume: 1.200 Fardos (12.000 un) • Shelf Life: 280 dias • Base Inicial: R$ 65.000,00</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-outline block">TEMPO RESTANTE</span>
+<span class="font-numeric-timer text-numeric-timer text-error font-bold">04:18.22</span>
+</div>
+</div>
+<!-- Comparativo dos Atores Envolvidos (Colusão) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm pt-space-xs">
+<!-- Ator A -->
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-primary font-bold">EMPRESA OFERTANTE 'A'</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Primeiro Lance</span>
+</div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">Distribuidora Minas-Goiás Ltda</div>
+<div class="font-mono text-xs text-on-surface-variant space-y-0.5">
+<div>CNPJ: 09.332.881/0001-55</div>
+<div>IP Origem: 189.40.91.201 (Belo Horizonte - MG)</div>
+<div>ASN: AS28573 (Claro S.A.)</div>
+<div class="text-primary font-semibold">Fingerprint: Mac OS X Safari 17.2</div>
+</div>
+</div>
+<!-- Ator B -->
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-tertiary-fixed text-tertiary font-bold">EMPRESA CO-PARTÍCIPE 'B'</span>
+<span class="font-label-sm text-label-sm text-error font-bold">Lance Barreira (Spike)</span>
+</div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">Café &amp; Grãos Triângulo Mineiro Ltda</div>
+<div class="font-mono text-xs text-on-surface-variant space-y-0.5">
+<div>CNPJ: 22.910.844/0003-88</div>
+<div>IP Origem: 189.40.91.204 <span class="text-error font-bold">(Mesmo Bloco /29)</span></div>
+<div>ASN: AS28573 (Claro S.A.)</div>
+<div class="text-error font-semibold">Canvas Hash Idêntico: 0x9B41E0F2</div>
+</div>
+</div>
+</div>
+<!-- Linha do Tempo e Escalonamento dos Lances -->
+<div class="space-y-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Cronologia de Manipulação da Fila de Arremate</span>
+<div class="space-y-2 p-space-sm bg-surface rounded-lg">
+<div class="flex items-center justify-between text-body-sm text-on-surface py-1">
+<div class="flex items-center gap-space-sm">
+<span class="font-mono text-xs text-outline">14:02:10.114</span>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-semibold">Distribuidora Minas-Goiás</span>
+<span class="font-body-sm text-outline">ofertou incremento padrão</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono">
+<span class="text-secondary font-bold">+ R$ 3.000,00</span>
+<span class="font-bold">R$ 68.000,00</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface py-1 bg-error-container/30 px-space-xs rounded">
+<div class="flex items-center gap-space-sm">
+<span class="font-mono text-xs text-error font-bold">14:02:18.420</span>
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span class="font-semibold text-tertiary">Café &amp; Grãos Triângulo</span>
+<span class="font-body-sm text-error">lance artificial desproporcional (+24%)</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono">
+<span class="text-error font-bold">+ R$ 16.500,00</span>
+<span class="font-bold text-error">R$ 84.500,00</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface py-1">
+<div class="flex items-center gap-space-sm">
+<span class="font-mono text-xs text-outline">14:03:00.002</span>
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+<span class="font-semibold">Tentativa de Revogação Automatizada</span>
+<span class="font-body-sm text-outline">via script para deixar Empresa A arrematando</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 bg-error text-on-error rounded font-label-sm text-label-sm uppercase">Bloqueado pela IA</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Parecer do Motor de Regras e Compliance CADE -->
+<div class="p-space-md bg-tertiary-fixed/40 rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-xl mt-0.5">policy</span>
+<div class="space-y-1">
+<span class="font-label-md text-label-md text-on-tertiary-fixed font-bold uppercase tracking-wide">Parecer do Motor Heurístico WORM &amp; Antifraude:</span>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed">
+              Indício incontestável de conluio ativo (Art. 36 da Lei nº 12.529/2011 do CADE). Empresa B operou intencionalmente com lance âncora para desestimular outros 14 compradores B2B conectados, com mesma origem telemática da Empresa A.
+            </p>
+</div>
+</div>
+<!-- Ações Decisórias Imediatas -->
+<div class="pt-space-xs space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Ações Punitivas &amp; Mitigatórias Imediatas</span>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<button class="flex items-center justify-center gap-space-xs px-space-md py-2.5 bg-error text-on-error rounded-lg font-label-md text-label-md hover:bg-tertiary active:scale-95 transition-all shadow-sm" id="btnBanir">
+<span class="material-symbols-outlined text-lg">gpp_bad</span>
+<span>Banir CNPJs &amp; Reter Caução (R$ 4.225,00)</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs px-space-md py-2.5 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-container active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">undo</span>
+<span>Desqualificar Lance &amp; Restaurar Fila</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs px-space-md py-2.5 bg-surface-container-low text-on-surface hover:bg-surface-container rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">mail</span>
+<span>Notificar Jurídico &amp; Compliance</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs px-space-md py-2.5 bg-surface-container-low text-on-surface hover:bg-surface-container rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">gavel</span>
+<span>Abrir Dossiê CADE / BACEN</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUNA DIREITA: FEED DE ANÁLISE HEURÍSTICA & RADAR DE RISCO (5 COLUNAS) -->
+<div class="lg:col-span-5 flex flex-col space-y-space-md">
+<!-- FEED DE OUTROS INCIDENTES EM MONITORAMENTO -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">stream</span>
+<span class="font-headline-md text-headline-md text-on-surface">Radar Heurístico Ativo</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            FEED EM TEMPO REAL
+          </span>
+</div>
+<!-- Filtros Rápidos -->
+<div class="flex flex-wrap items-center gap-1.5">
+<button class="px-space-sm py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold">Todos (3)</button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-semibold">Shilling (2)</button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-semibold">Bid-Rigging (1)</button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm font-semibold">Triados (42)</button>
+</div>
+<!-- Incidentes Secundários -->
+<div class="space-y-space-sm">
+<!-- Incidente 1 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-1 hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-mono font-bold text-primary">#FRAUD-2026-0812</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-tertiary-container rounded font-label-sm text-label-sm font-bold">Score 88</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface font-bold">Vendedor ofertando em conta oculta de sócio</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Lote #392: Arroz Tipo 1 Especial 5kg (40 Toneladas)</div>
+<div class="flex items-center justify-between pt-1 font-label-sm text-label-sm">
+<span class="text-outline">Status: Em Análise Fiscal</span>
+<a class="text-primary font-bold hover:underline" href="#">Ver Dossiê →</a>
+</div>
+</div>
+<!-- Incidente 2 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-1 hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-mono font-bold text-primary">#FRAUD-2026-0809</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-error rounded font-label-sm text-label-sm font-bold">Score 92</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface font-bold">Pico de Lances via Script/Bot não homologado (&gt;20 req/s)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Lote #405: Óleo de Soja Refinado 900ml (1.400 Cxs)</div>
+<div class="flex items-center justify-between pt-1 font-label-sm text-label-sm">
+<span class="text-error font-bold">Status: IP Bloqueado no WAF</span>
+<a class="text-primary font-bold hover:underline" href="#">Auditar Logs →</a>
+</div>
+</div>
+</div>
+</div>
+<!-- DISTRIBUIÇÃO DE RISCOS POR CATEGORIA & HSM -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface">Distribuição de Alertas por Categoria</span>
+<span class="font-label-sm text-label-sm text-outline">ÚLTIMOS 30 DIAS</span>
+</div>
+<!-- SVG Donut Chart Inline -->
+<div class="flex items-center justify-between gap-space-md">
+<div class="relative w-36 h-36 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<!-- Mercearia Seca 45% (offset 0) -->
+<circle class="text-primary" cx="18" cy="18" fill="none" r="14" stroke="currentColor" stroke-dasharray="45 55" stroke-dashoffset="0" stroke-width="4.5"></circle>
+<!-- Laticínios 25% (offset -45) -->
+<circle class="text-secondary" cx="18" cy="18" fill="none" r="14" stroke="currentColor" stroke-dasharray="25 75" stroke-dashoffset="-45" stroke-width="4.5"></circle>
+<!-- Cafés 20% (offset -70) -->
+<circle class="text-tertiary" cx="18" cy="18" fill="none" r="14" stroke="currentColor" stroke-dasharray="20 80" stroke-dashoffset="-70" stroke-width="4.5"></circle>
+<!-- Outros 10% (offset -90) -->
+<circle class="text-outline" cx="18" cy="18" fill="none" r="14" stroke="currentColor" stroke-dasharray="10 90" stroke-dashoffset="-90" stroke-width="4.5"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center">
+<span class="font-label-sm text-label-sm text-outline">TOTAL</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">128</span>
+</div>
+</div>
+<!-- Legenda de Categorias -->
+<div class="flex-1 space-y-1.5 font-label-sm text-label-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="text-on-surface">Mercearia Seca</span>
+</div>
+<span class="font-mono font-bold text-primary">45%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span class="text-on-surface">Laticínios &amp; Frios</span>
+</div>
+<span class="font-mono font-bold text-secondary">25%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-tertiary"></span>
+<span class="text-on-surface">Cafés &amp; Matinais</span>
+</div>
+<span class="font-mono font-bold text-tertiary">20%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded-sm bg-outline"></span>
+<span class="text-on-surface">Bebidas &amp; Outros</span>
+</div>
+<span class="font-mono font-bold text-outline">10%</span>
+</div>
+</div>
+</div>
+<!-- Módulo HSM e Criptografia Jurídica -->
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-1">
+<div class="flex items-center justify-between text-xs">
+<span class="font-label-sm text-label-sm text-on-surface font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">enhanced_encryption</span>
+              Certificação Forense ICP-Brasil A3
+            </span>
+<span class="text-secondary font-mono font-bold">HSM ATIVO</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+            Todo laudo e hash pericial emitido nesta tela possui validade jurídica probatória irrefutável perante varas de concorrência e o CADE.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- DIRETÓRIO GERAL DE AUDITORIA DE LANCES & REGISTRO DE INFRAÇÕES (TABELA COMPLETA) -->
+<section class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary tracking-tight">Registro de Lances &amp; Ledger Forense em Tempo Real</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rastreamento granular com timestamp UTC, device fingerprinting e telemetria de rede</span>
+</div>
+<!-- Barra de Filtros e Busca -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-space-xs text-outline text-sm pointer-events-none">search</span>
+<input class="w-64 h-8 pl-7 pr-2 bg-surface-container-low rounded font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none" id="filtroTabela" placeholder="Buscar por ID, CNPJ, Razão Social ou IP..." type="text"/>
+</div>
+<select class="h-8 px-2 bg-surface-container-low rounded font-body-sm text-body-sm text-on-surface focus:outline-none">
+<option>Todos os Status</option>
+<option>Aprovados</option>
+<option>Trava Cautelar</option>
+<option>Exigência de Caução</option>
+<option>Bloqueados</option>
+</select>
+<button class="h-8 px-3 bg-surface-container-low text-on-surface hover:bg-surface-container rounded font-label-sm text-label-sm transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span>Mais Filtros</span>
+</button>
+</div>
+</div>
+<!-- Tabela de Alta Densidade B2B -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<th class="py-2.5 px-space-sm">ID Lance / Hora</th>
+<th class="py-2.5 px-space-sm">Lote &amp; Produto</th>
+<th class="py-2.5 px-space-sm">Empresa / CNPJ</th>
+<th class="py-2.5 px-space-sm">Telemetria &amp; IP</th>
+<th class="py-2.5 px-space-sm">Valor &amp; Delta</th>
+<th class="py-2.5 px-space-sm text-center">Score Risco</th>
+<th class="py-2.5 px-space-sm">Ação Automática</th>
+<th class="py-2.5 px-space-sm text-right">Dossiê</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-surface-container">
+<!-- Linha 1: Suspeito Crítico -->
+<tr class="bg-error-container/20 hover:bg-error-container/30 transition-colors">
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-error font-bold block">#BID-981240</span>
+<span class="text-outline">14:02:18.420</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Lote #LOTE-418</span>
+<span class="text-xs text-outline">Café Tradicional Alvorada</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Café &amp; Grãos Triângulo Mineiro</span>
+<span class="font-mono text-xs text-outline">22.910.844/0003-88</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-on-surface block">189.40.91.204</span>
+<span class="text-error font-semibold">Fingerprint match com #BID-981239</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono">
+<span class="text-error font-bold block">R$ 84.500,00</span>
+<span class="text-xs text-error font-semibold">+24.2% (Desproporcional)</span>
+</td>
+<td class="py-2.5 px-space-sm text-center">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-error text-on-error">96</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm uppercase font-bold">Trava Cautelar</span>
+</td>
+<td class="py-2.5 px-space-sm text-right">
+<button class="p-1 text-primary hover:bg-surface-container rounded transition-colors" title="Abrir Dossiê">
+<span class="material-symbols-outlined text-lg">description</span>
+</button>
+</td>
+</tr>
+<!-- Linha 2: Conforme -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-primary font-bold block">#BID-981239</span>
+<span class="text-outline">14:02:10.114</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Lote #LOTE-418</span>
+<span class="text-xs text-outline">Café Tradicional Alvorada</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Distribuidora Minas-Goiás Ltda</span>
+<span class="font-mono text-xs text-outline">09.332.881/0001-55</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-on-surface block">189.40.91.201</span>
+<span class="text-outline">Claro S.A. Belo Horizonte</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono">
+<span class="text-on-surface font-bold block">R$ 68.000,00</span>
+<span class="text-xs text-secondary font-semibold">+4.6% (Padrão)</span>
+</td>
+<td class="py-2.5 px-space-sm text-center">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-surface-container-high text-tertiary">64</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-semibold">Sob Quarentena</span>
+</td>
+<td class="py-2.5 px-space-sm text-right">
+<button class="p-1 text-primary hover:bg-surface-container rounded transition-colors" title="Abrir Dossiê">
+<span class="material-symbols-outlined text-lg">description</span>
+</button>
+</td>
+</tr>
+<!-- Linha 3: Conforme Limpo -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-on-surface font-bold block">#BID-981238</span>
+<span class="text-outline">14:01:45.980</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Lote #LOTE-399</span>
+<span class="text-xs text-outline">Leite UHT Integral 1L (Cax. c/ 12)</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Supermercados Paulistano S.A.</span>
+<span class="font-mono text-xs text-outline">58.120.443/0001-12</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-on-surface block">201.86.12.90</span>
+<span class="text-outline">Vivo Fibra Corporativa SP</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono">
+<span class="text-on-surface font-bold block">R$ 112.400,00</span>
+<span class="text-xs text-secondary font-semibold">+1.5% (Margem Esperada)</span>
+</td>
+<td class="py-2.5 px-space-sm text-center">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-secondary-container text-on-secondary-container">04</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase font-semibold">Aprovado WORM</span>
+</td>
+<td class="py-2.5 px-space-sm text-right">
+<button class="p-1 text-on-surface-variant hover:bg-surface-container rounded transition-colors" title="Trilha de Auditoria">
+<span class="material-symbols-outlined text-lg">verified</span>
+</button>
+</td>
+</tr>
+<!-- Linha 4: Exigência de Caução Extra -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-on-surface font-bold block">#BID-981237</span>
+<span class="text-outline">14:00:12.630</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Lote #LOTE-401</span>
+<span class="text-xs text-outline">Açúcar Cristal 5kg (Fardo c/ 6)</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Atacadão do Sul Alimentos EIRELI</span>
+<span class="font-mono text-xs text-outline">14.992.100/0002-40</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-on-surface block">177.18.99.12</span>
+<span class="text-outline">Curitiba PR • Proxy Detectado</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono">
+<span class="text-on-surface font-bold block">R$ 54.000,00</span>
+<span class="text-xs text-outline">+2.0%</span>
+</td>
+<td class="py-2.5 px-space-sm text-center">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-surface-container-highest text-on-surface">45</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm uppercase font-semibold">Caução Santander Solicitada</span>
+</td>
+<td class="py-2.5 px-space-sm text-right">
+<button class="p-1 text-primary hover:bg-surface-container rounded transition-colors" title="Abrir Dossiê">
+<span class="material-symbols-outlined text-lg">description</span>
+</button>
+</td>
+</tr>
+<!-- Linha 5: Bot Bloqueado -->
+<tr class="bg-error-container/10 hover:bg-error-container/20 transition-colors">
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-error font-bold block">#BID-981236</span>
+<span class="text-outline">13:58:33.001</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Lote #LOTE-405</span>
+<span class="text-xs text-outline">Óleo de Soja Refinado 900ml</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="font-semibold block text-on-surface">Global Logística &amp; Distribuição</span>
+<span class="font-mono text-xs text-outline">33.400.129/0001-99</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono text-xs">
+<span class="text-on-surface block">45.231.8.11</span>
+<span class="text-error font-semibold">WAF: High-Frequency Bot Pattern</span>
+</td>
+<td class="py-2.5 px-space-sm font-mono">
+<span class="text-error font-bold block">R$ 96.000,00</span>
+<span class="text-xs text-error font-semibold">Rejeição por Script</span>
+</td>
+<td class="py-2.5 px-space-sm text-center">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-error text-on-error">92</span>
+</td>
+<td class="py-2.5 px-space-sm">
+<span class="px-2 py-0.5 rounded bg-error text-on-error font-label-sm text-label-sm uppercase font-bold">Banimento Imediato</span>
+</td>
+<td class="py-2.5 px-space-sm text-right">
+<button class="p-1 text-primary hover:bg-surface-container rounded transition-colors" title="Abrir Dossiê">
+<span class="material-symbols-outlined text-lg">description</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Paginação e Contador Forense -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span>Exibindo <strong>5</strong> de <strong>14.890</strong> lances registrados no ciclo diário • <strong>99.85%</strong> de conformidade auditada</span>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm">3</button>
+<span class="px-1 text-outline">...</span>
+<button class="px-2.5 py-1 rounded bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm">298</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-label-sm">Próximo</button>
+</div>
+</div>
+</section>
+<!-- RODAPÉ REGULATÓRIO & COMPLIANCE INSTITUCIONAL -->
+<section class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl">account_balance</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold block">Acordo de Cooperação Técnica com CADE &amp; Sistema Financeiro Santander SPB</span>
+<span>Conformidade com a Resolução BACEN nº 4.656 e Diretrizes de Combate a Cartéis em Pregões Eletrônicos (OCDE/CADE).</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md font-mono text-xs">
+<div class="text-right">
+<span class="text-outline block">HASH DE AUDITORIA DIÁRIA:</span>
+<span class="text-primary font-bold">0x8F92A...EE3B94</span>
+</div>
+<div class="h-8 w-px bg-surface-container-high hidden md:block"></div>
+<div class="flex items-center gap-1 text-secondary font-bold">
+<span class="material-symbols-outlined text-base">verified_user</span>
+<span>INTEGRIDADE 100%</span>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Micro-interatividade de Governança
+  document.getElementById('btnLockEmergencial')?.addEventListener('click', () => {
+    const confirmLock = confirm('ATENÇÃO: Deseja acionar o LOCK EMERGENCIAL no pregão #LOTE-418? Todas as ordens serão suspensas cautelarmente e o auditor do CADE será notificado.');
+    if (confirmLock) {
+      alert('Pregão #LOTE-418 congelado com sucesso. Custódias Santander SPB travadas via HSM.');
+    }
+  });
+
+  document.getElementById('btnBanir')?.addEventListener('click', () => {
+    const confirmBan = confirm('CONFIRMAÇÃO DE PUNIÇÃO: Banir CNPJs 09.332.881/0001-55 e 22.910.844/0003-88, executando a caução de garantia de R$ 4.225,00?');
+    if (confirmBan) {
+      alert('Penalidade executada! Notificação emitida ao compliance das empresas e denúncia protocolada no sistema CADE.');
+    }
+  });
+
+  // Filtro interativo simples na tabela
+  document.getElementById('filtroTabela')?.addEventListener('input', function(e) {
+    const term = e.target.value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(term) ? '' : 'none';
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] py-space-md px-space-lg"><div class="w-full flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant"><div class="flex flex-wrap items-center gap-space-md text-xs"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-sm text-primary">verified</span><span class="font-label-sm text-label-sm text-on-surface">Protocolo Criptográfico WORM Ativo</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-sm text-secondary">lock</span><span class="font-label-sm text-label-sm text-on-surface">Conexão Santander SPB: TLS 1.3 Homologado</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-sm text-tertiary">policy</span><span class="font-label-sm text-label-sm text-on-surface">Ambiente Regulado BACEN &amp; Receita Federal</span></div></div><div class="font-body-sm text-body-sm text-outline">© 2024 Varejista Online S.A. • Infraestrutura Crítica Financeira</div></div></footer></div></body></html>

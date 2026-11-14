@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-primary-fixed":"#001945","surface-tint":"#2b5bb5","secondary":"#1b6d24","background":"#f7f9fb","error":"#ba1a1a","on-secondary-container":"#217128","on-tertiary-container":"#ffa59d","surface-container-highest":"#e0e3e5","inverse-on-surface":"#eff1f3","secondary-fixed-dim":"#88d982","on-surface":"#191c1e","tertiary-fixed-dim":"#ffb3ac","inverse-surface":"#2d3133","surface-dim":"#d8dadc","surface-container-high":"#e6e8ea","primary-container":"#0d47a1","inverse-primary":"#b0c6ff","on-tertiary":"#ffffff","surface-bright":"#f7f9fb","primary-fixed-dim":"#b0c6ff","secondary-container":"#a0f399","surface-container":"#eceef0","on-primary-container":"#a1bbff","on-primary":"#ffffff","primary":"#003178","on-secondary":"#ffffff","tertiary-container":"#9d0011","outline-variant":"#c3c6d4","surface-container-low":"#f2f4f6","error-container":"#ffdad6","on-surface-variant":"#434652","on-tertiary-fixed":"#410003","on-error-container":"#93000a","primary-fixed":"#d9e2ff","tertiary":"#720009","surface-container-lowest":"#ffffff","surface":"#f7f9fb","on-background":"#191c1e","on-secondary-fixed-variant":"#005312","on-tertiary-fixed-variant":"#930010","on-secondary-fixed":"#002204","secondary-fixed":"#a3f69c","on-primary-fixed-variant":"#00429c","outline":"#737783","tertiary-fixed":"#ffdad6","on-error":"#ffffff","surface-variant":"#e0e3e5"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"0.75rem","space-lg":"1.25rem","space-sm":"0.5rem","space-xs":"0.25rem","margin-mobile":"1rem","gutter":"1rem","space-xl":"2rem","gutter-mobile":"0.75rem","margin":"1.5rem"},"fontFamily":{"label-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"]},"fontSize":{"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50"><div class="w-full h-full px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-[240px]"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">V</div><div class="flex flex-col"><span class="font-headline-md text-headline-md leading-none text-primary uppercase tracking-tight">Varejista</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">B2B Wholesale Exchange</span></div></div><div class="hidden lg:flex items-center gap-space-xs ml-space-md px-space-sm py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span>Pregão Ativo</span></div></div><div class="flex items-center gap-space-lg"><div class="hidden md:flex items-center gap-space-md px-space-md py-1.5 rounded-xl bg-surface-container-low"><div class="flex items-center gap-space-xs text-primary font-label-md text-label-md"><span class="material-symbols-outlined text-[18px]">account_balance</span><span>Escrow Santander</span></div><div class="h-4 w-px bg-outline-variant"></div><div class="flex flex-col text-right"><span class="font-label-sm text-label-sm text-on-surface-variant">Saldo Fiduciário</span><span class="font-label-lg text-label-lg text-secondary">R$ 4.890.340,00</span></div></div><div class="flex items-center gap-space-sm"><button aria-label="Alertas Críticos" class="relative p-2 rounded-xl bg-surface-container-low hover:bg-surface-container hover:text-on-surface text-on-surface-variant transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-error text-on-error font-label-sm text-label-sm flex items-center justify-center font-bold">5</span></button><button aria-label="Auditoria e Segurança" class="p-2 rounded-xl bg-surface-container-low hover:bg-surface-container hover:text-on-surface text-on-surface-variant transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">verified_user</span></button></div><div class="h-8 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-lg text-label-lg text-on-surface leading-tight">Admin Master</span><span class="font-label-sm text-label-sm text-primary">Risk &amp; Operations</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between overflow-y-auto"><div class="py-space-md"><div class="px-space-md mb-space-sm"><p class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-outline">Operacional</p><nav class="flex flex-col gap-1 mt-1" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-xl shadow-sm"><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Visão Geral</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="controle-de-validade-fefo" href="#"><span class="material-symbols-outlined text-[20px]">hourglass_bottom</span><span>Controle de Validade &amp; FEFO</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="tipos-de-leilao-pregoes" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span><span>Tipos de Leilão &amp; Pregões</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="oportunidades-validade-proxima" href="#"><span class="material-symbols-outlined text-[20px]">local_fire_department</span><span>Oportunidades - Validade</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="giro-rapido-ponta-de-estoque" href="#"><span class="material-symbols-outlined text-[20px]">bolt</span><span>Giro Rápido &amp; Estoque</span></a></nav></div><div class="px-space-md mb-space-sm"><p class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-outline">Catálogo &amp; Categorias</p><nav class="flex flex-col gap-1 mt-1" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-xl shadow-sm"><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="arvore-de-categorias-b2b" href="#"><span class="material-symbols-outlined text-[20px]">account_tree</span><span>Árvore de Categorias B2B</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="produtos-lotes" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span>Produtos &amp; Lotes</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="homologacao-gs1" href="#"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Homologação GS1</span></a></nav></div><div class="px-space-md mb-space-sm"><p class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-outline">Logística &amp; WMS</p><nav class="flex flex-col gap-1 mt-1" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-xl shadow-sm"><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="armazens-wms" href="#"><span class="material-symbols-outlined text-[20px]">warehouse</span><span>Armazéns &amp; WMS</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="bloqueio-sanitario-automatico" href="#"><span class="material-symbols-outlined text-[20px]">security</span><span>Bloqueio Sanitário Auto</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="arbitragem-escrow" href="#"><span class="material-symbols-outlined text-[20px]">balance</span><span>Arbitragem &amp; Escrow</span></a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="auditoria-worm" href="#"><span class="material-symbols-outlined text-[20px]">lock_clock</span><span>Auditoria WORM</span></a></nav></div></div><div class="p-space-md bg-surface-container-low mx-space-md mb-space-md rounded-xl"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-outline uppercase">Compliance Sanitário</span><span class="font-label-sm text-label-sm text-secondary font-bold">99.8%</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5"><div class="bg-secondary h-1.5 rounded-full w-[99.8%]"></div></div><p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Sincronização MAPA / ANVISA ativa</p></div></aside><div class="pl-72"><main class="w-full pt-16 px-margin pb-space-xl bg-surface min-h-screen"><div class="flex flex-col w-full relative">
+<!-- BACKGROUND DECORATION & AMBIENCE -->
+<div class="absolute -top-12 -right-12 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 -left-20 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+<!-- CONTEXTO DE FUNDO: TELA DE GESTÃO DA ÁRVORE DE CATEGORIAS B2B -->
+<div class="w-full space-y-space-lg select-none pointer-events-none opacity-40 filter blur-[1px]">
+<!-- Top Action Bar da Página de Fundo -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<span>Catálogo &amp; Categorias</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Taxonomia &amp; Compliance</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">Árvore de Categorias B2B</h1>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="px-space-md py-2 rounded-xl bg-surface-container-low text-on-surface-variant font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span>14 Masters • 86 Subcategorias Ativas</span>
+</div>
+<button class="px-space-lg py-2.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Nova Categoria</span>
+</button>
+</div>
+</div>
+<!-- Tabela Estrutural de Fundo (Simulada para visualização profunda) -->
+<div class="w-full rounded-xl bg-surface-container-lowest p-space-md shadow-sm space-y-space-sm">
+<div class="grid grid-cols-12 gap-space-sm px-space-md py-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<div class="col-span-4">Categoria / Subfamília</div>
+<div class="col-span-2">Código SKU</div>
+<div class="col-span-2">Classificação Fiscal</div>
+<div class="col-span-2">Compliance Sanitário</div>
+<div class="col-span-2 text-right">Ações</div>
+</div>
+<!-- Linhas Exemplo de Fundo -->
+<div class="grid grid-cols-12 gap-space-sm items-center px-space-md py-3 rounded-lg bg-surface-container-low font-body-md text-body-md">
+<div class="col-span-4 flex items-center gap-space-sm font-label-lg text-label-lg text-primary">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+<span>01. Laticínios &amp; Derivados Refrigerados</span>
+</div>
+<div class="col-span-2 font-mono text-outline">CAT-LAT-001</div>
+<div class="col-span-2"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">NCM 0401/0406</span></div>
+<div class="col-span-2 flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> MAPA / SIF Exigido
+        </div>
+<div class="col-span-2 text-right text-outline"><span class="material-symbols-outlined">more_horiz</span></div>
+</div>
+<div class="grid grid-cols-12 gap-space-sm items-center px-space-md py-3 rounded-lg bg-surface-container-lowest font-body-md text-body-md">
+<div class="col-span-4 flex items-center gap-space-sm pl-6 text-on-surface">
+<span class="material-symbols-outlined text-[18px] text-outline">subdirectory_arrow_right</span>
+<span>Queijos Maturados &amp; Especiais</span>
+</div>
+<div class="col-span-2 font-mono text-outline">SUB-LAT-014</div>
+<div class="col-span-2"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">CEST 17.021.00</span></div>
+<div class="col-span-2 text-on-surface-variant font-label-sm text-label-sm">Shelf Life Min: 45d</div>
+<div class="col-span-2 text-right text-outline"><span class="material-symbols-outlined">more_horiz</span></div>
+</div>
+<div class="grid grid-cols-12 gap-space-sm items-center px-space-md py-3 rounded-lg bg-surface-container-low font-body-md text-body-md">
+<div class="col-span-4 flex items-center gap-space-sm font-label-lg text-label-lg text-primary">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+<span>02. Bebidas Não Alcoólicas &amp; Sucos</span>
+</div>
+<div class="col-span-2 font-mono text-outline">CAT-BEB-002</div>
+<div class="col-span-2"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">NCM 2202.99</span></div>
+<div class="col-span-2 flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> ANVISA RDC
+        </div>
+<div class="col-span-2 text-right text-outline"><span class="material-symbols-outlined">more_horiz</span></div>
+</div>
+</div>
+</div>
+<!-- MODAL OVERLAY & CONTAINER (ALTA FIDELIDADE) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-space-md bg-inverse-surface/60 backdrop-blur-sm overflow-y-auto">
+<div class="relative w-full max-w-5xl my-auto rounded-xl bg-surface-container-lowest shadow-[0_20px_50px_rgba(0,25,69,0.22)] overflow-hidden flex flex-col max-h-[942px]">
+<!-- 1. CABEÇALHO DO MODAL -->
+<div class="flex items-center justify-between px-space-lg py-4 bg-surface-container-low">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[22px]">account_tree</span>
+</div>
+<div>
+<div class="flex items-center gap-space-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Cadastrar Nova Categoria Master / Subcategoria B2B</h2>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+                Regulatório &amp; Compliance Fiscal v3.4
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Parametrização unificada de tributação interestadual, barreiras sanitárias e robôs de deságio para giro.</p>
+</div>
+</div>
+<button aria-label="Fechar Modal" class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- 2. ABAS DO FORMULÁRIO -->
+<div class="flex items-center gap-space-xs px-space-lg bg-surface-container-lowest">
+<button class="group relative py-3 px-space-md flex items-center gap-2 font-label-lg text-label-lg text-primary transition-all" id="tab-btn-1" onclick="switchCategoryTab(1)">
+<span class="material-symbols-outlined text-[18px]">dns</span>
+<span>1. Identificação &amp; Hierarquia</span>
+<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></span>
+</button>
+<button class="group relative py-3 px-space-md flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-btn-2" onclick="switchCategoryTab(2)">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span>2. Parâmetros Fiscais (NCM, CEST, ICMS/ST)</span>
+<span class="hidden absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></span>
+</button>
+<button class="group relative py-3 px-space-md flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-btn-3" onclick="switchCategoryTab(3)">
+<span class="material-symbols-outlined text-[18px]">health_and_safety</span>
+<span>3. Diretrizes Sanitárias &amp; Shelf Life (ANVISA/MAPA)</span>
+<span class="hidden absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></span>
+</button>
+<button class="group relative py-3 px-space-md flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-btn-4" onclick="switchCategoryTab(4)">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span>4. Regras de Leilão &amp; Margens Sugeridas</span>
+<span class="hidden absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></span>
+</button>
+</div>
+<!-- 3. CORPO DO MODAL (CONTEÚDO DAS SEÇÕES COM SCROLL INTERNO) -->
+<div class="flex-1 overflow-y-auto p-space-lg space-y-space-lg bg-surface-container-lowest">
+<!-- SEÇÃO 1: HIERARQUIA & IDENTIFICAÇÃO -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-md bg-primary-fixed text-primary font-label-sm text-label-sm flex items-center justify-center font-bold">1</span>
+<h3 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Identificação do Nível &amp; Nomenclatura B2B</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px]">bolt</span> Propagação Automática WMS
+            </span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-space-md">
+<!-- Toggle Nível Hierárquico -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md items-center">
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1.5">Estrutura na Árvore Mercadológica</label>
+<div class="inline-flex p-1 rounded-xl bg-surface-container-highest w-full max-w-sm">
+<button class="flex-1 py-1.5 px-space-sm rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">folder</span>
+<span>Categoria Master</span>
+</button>
+<button class="flex-1 py-1.5 px-space-sm rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">subdirectory_arrow_right</span>
+<span>Subcategoria Vinculada</span>
+</button>
+</div>
+</div>
+<!-- Dropdown Categoria Pai (Condicional visual) -->
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1.5">Categoria Superior (Pai)</label>
+<div class="relative">
+<select class="w-full h-10 px-space-md rounded-xl bg-surface-container-lowest font-body-md text-body-md text-on-surface appearance-none focus:outline-none focus:ring-2 focus:ring-primary shadow-sm pr-10">
+<option value="alimentos_graos">Alimentos &gt; Grãos, Cereais e Cestas Básicas</option>
+<option value="matinais">Alimentos &gt; Matinais &amp; Sobremesas</option>
+<option value="oleos">Alimentos &gt; Óleos Vegetais &amp; Azeites</option>
+<option value="bebidas">Bebidas &gt; Destilados e Fermentados</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 pointer-events-none text-outline text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Dados Nominais e Código SKU Família -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<div class="md:col-span-7">
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1.5">Nome Oficial da Categoria Master</label>
+<div class="relative">
+<input class="w-full h-10 px-space-md rounded-xl bg-surface-container-lowest font-label-lg text-label-lg text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm pl-10" type="text" value="Massas, Grãos Nobres &amp; Farináceos"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-primary text-[20px]">shopping_basket</span>
+</div>
+</div>
+<div class="md:col-span-3">
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1.5">Código SKU / Família WMS</label>
+<input class="w-full h-10 px-space-md rounded-xl bg-surface-container-lowest font-mono font-bold text-label-md text-primary focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" type="text" value="CAT-ALIM-008"/>
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1.5">Identidade</label>
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm cursor-pointer hover:opacity-90" title="Ícone SVG e Cor Vinculada">
+<span class="material-symbols-outlined text-[20px]">grain</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-mono">#0D47A1</span>
+<span class="font-body-sm text-body-sm text-outline">Azul Real</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SEÇÃO 2: CLASSIFICAÇÃO FISCAL E TRIBUTÁRIA COMPLETA -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-md bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm flex items-center justify-center font-bold">2</span>
+<h3 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Classificação Fiscal Mapeada (Escrituração NF-e)</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-mono">SEFAZ Nacional Integrado</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-space-md">
+<div>
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1.5">NCMs Padrão Vinculados (Permite múltiplos itens homologados)</label>
+<div class="flex flex-wrap items-center gap-space-xs p-2.5 rounded-xl bg-surface-container-lowest shadow-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="font-mono text-primary">1902.19.00</span> • Massas Alimentícias Secas
+                  <button class="text-outline hover:text-error ml-1" type="button"><span class="material-symbols-outlined text-[14px]">cancel</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="font-mono text-primary">1006.30.21</span> • Arroz Polido Subgrupo 1
+                  <button class="text-outline hover:text-error ml-1" type="button"><span class="material-symbols-outlined text-[14px]">cancel</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="font-mono text-primary">1101.00.10</span> • Farinha de Trigo Especial
+                  <button class="text-outline hover:text-error ml-1" type="button"><span class="material-symbols-outlined text-[14px]">cancel</span></button>
+</span>
+<button class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-primary-fixed text-primary font-label-sm text-label-sm font-bold hover:bg-primary-fixed-dim transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> + Adicionar NCM
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-1">Código CEST Obrigatório</span>
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary font-mono tracking-tight">17.049.00</span>
+<span class="material-symbols-outlined text-secondary text-[22px]">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Produtos à base de cereais, farinhas e amidos.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-1">ICMS Médio &amp; Benefício</span>
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">12.0%</span>
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">Cesta Básica</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Isenção parcial com diferimento para atacado.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-1">Substituição Tributária (ST)</span>
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-primary font-bold">ST Parametrizada</span>
+<span class="material-symbols-outlined text-primary text-[20px]">sync_saved_locally</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">MVA Original 41.2% aplicada em remessas interestaduais.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- SEÇÃO 3: DIRETRIZES SANITÁRIAS, FEFO & ANVISA/MAPA -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-md bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+<h3 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Parâmetros Sanitários, Shelf Life &amp; Rastreabilidade</h3>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">warning</span> Regra de Bloqueio Físico WMS
+            </span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-space-md">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-1">Perecibilidade</span>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md font-bold">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Médio Risco</span>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-outline mt-3">Armazenagem seca / 25°C</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-1">Shelf Life Mínimo (Doca CD)</span>
+<div class="font-headline-md text-headline-md text-on-surface font-mono font-bold">120 <span class="text-label-md font-sans font-normal text-outline">dias</span></div>
+</div>
+<span class="font-body-sm text-body-sm text-secondary font-semibold mt-3">Rejeição auto em doca se &lt; 120d</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-1">Alerta Preventivo FEFO</span>
+<div class="font-headline-md text-headline-md text-primary font-mono font-bold">60 <span class="text-label-md font-sans font-normal text-outline">dias</span></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-3">Notificação push p/ gestores</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-1">Pregão Relâmpago Auto</span>
+<div class="font-headline-md text-headline-md text-tertiary font-mono font-bold">&lt; 30 <span class="text-label-md font-sans font-normal text-outline">dias</span></div>
+</div>
+<span class="font-body-sm text-body-sm text-tertiary font-semibold mt-3">Envio compulsório a leilão</span>
+</div>
+</div>
+<!-- Toggle Rastreabilidade GS1 / SSCC -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">qr_code_2</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold">Exigência Mandatória de Rastreabilidade GS1-128 e SSCC na Doca</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Obrigatório leitura de lote, data de fabricação e validade criptografada no código de barras bidimensional dos paletes.</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Obrigatório</span>
+<div class="w-12 h-6 bg-secondary rounded-full p-1 cursor-pointer flex items-center justify-end transition-colors shadow-inner">
+<div class="w-4 h-4 bg-surface-container-lowest rounded-full shadow-md"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SEÇÃO 4: REGRAS COMERCIAIS & DESÁGIO AUTOMÁTICO PARA GIRO RÁPIDO -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-md bg-surface-container-highest text-on-surface font-label-sm text-label-sm flex items-center justify-center font-bold">4</span>
+<h3 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Políticas de Liquidação Comercial &amp; Leilão Expresso</h3>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Algoritmo de Clearing Ativo</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md p-space-md rounded-xl bg-surface-container-low">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1">Margem Sugerida em Pregão</label>
+<div class="flex items-center justify-between mt-2">
+<span class="font-headline-md text-headline-md text-secondary font-bold">18% a 32%</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">show_chart</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Intervalo padrão de markup sobre o custo de reposição para compradores B2B.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1">Deságio Ponta de Estoque</label>
+<div class="flex items-center justify-between mt-2">
+<span class="font-headline-md text-headline-md text-tertiary font-bold">-25% Off</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">price_change</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Corte sugerido em lotes com giro inferior a 15 dias no centro de distribuição.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<label class="block font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1">Prazo Máximo do Pregão</label>
+<div class="flex items-center justify-between mt-2">
+<span class="font-headline-md text-headline-md text-primary font-bold font-numeric-timer">48:00:00</span>
+<span class="material-symbols-outlined text-primary text-[20px]">timer</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Modalidade Leilão Expresso: encerramento e liquidação automática em Escrow.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. RODAPÉ DO MODAL (AUDITORIA WORM & AÇÕES) -->
+<div class="px-space-lg py-4 bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm max-w-xl">
+<span class="material-symbols-outlined text-outline text-[20px] flex-shrink-0">lock_clock</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<strong class="font-semibold text-on-surface">Auditoria de Segurança WORM:</strong> As alterações tributárias e fiscais refletirão imediatamente na escrituração das NF-e emitidas. Hash de integridade imutável gerado na homologação.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm w-full md:w-auto justify-end">
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors" type="button">
+            Cancelar / Descartar
+          </button>
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container text-primary font-label-lg text-label-lg transition-colors shadow-sm" type="button">
+            Salvar Rascunho
+          </button>
+<button class="px-space-lg py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md transition-all flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+<span>Salvar &amp; Homologar Categoria Master (Enter)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchCategoryTab(tabIndex) {
+    for (let i = 1; i <= 4; i++) {
+      const btn = document.getElementById(`tab-btn-${i}`);
+      if (!btn) continue;
+      const indicator = btn.querySelector('span.absolute');
+      if (i === tabIndex) {
+        btn.classList.add('text-primary');
+        btn.classList.remove('text-on-surface-variant');
+        if (indicator) indicator.classList.remove('hidden');
+      } else {
+        btn.classList.remove('text-primary');
+        btn.classList.add('text-on-surface-variant');
+        if (indicator) indicator.classList.add('hidden');
+      }
+    }
+  }
+</script></main></div></body></html>

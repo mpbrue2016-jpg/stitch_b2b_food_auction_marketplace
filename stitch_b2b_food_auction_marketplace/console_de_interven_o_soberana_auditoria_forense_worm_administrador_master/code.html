@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-tertiary-fixed":"#410003","tertiary":"#720009","primary-fixed-dim":"#b0c6ff","tertiary-container":"#9d0011","secondary-container":"#a0f399","on-surface":"#191c1e","on-background":"#191c1e","primary-fixed":"#d9e2ff","surface-container-low":"#f2f4f6","on-error-container":"#93000a","on-secondary-fixed":"#002204","error":"#ba1a1a","tertiary-fixed":"#ffdad6","on-secondary-fixed-variant":"#005312","surface-bright":"#f7f9fb","inverse-surface":"#2d3133","background":"#f7f9fb","surface-tint":"#2b5bb5","secondary-fixed-dim":"#88d982","on-primary":"#ffffff","secondary":"#1b6d24","on-secondary-container":"#217128","secondary-fixed":"#a3f69c","surface-container-high":"#e6e8ea","on-error":"#ffffff","on-primary-container":"#a1bbff","primary-container":"#0d47a1","outline-variant":"#c3c6d4","inverse-on-surface":"#eff1f3","inverse-primary":"#b0c6ff","surface":"#f7f9fb","primary":"#003178","on-primary-fixed":"#001945","on-tertiary-fixed-variant":"#930010","outline":"#737783","surface-container-highest":"#e0e3e5","on-secondary":"#ffffff","on-tertiary":"#ffffff","surface-container":"#eceef0","surface-variant":"#e0e3e5","surface-container-lowest":"#ffffff","on-tertiary-container":"#ffa59d","on-surface-variant":"#434652","error-container":"#ffdad6","tertiary-fixed-dim":"#ffb3ac","on-primary-fixed-variant":"#00429c","surface-dim":"#d8dadc"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xs":"0.25rem","space-xl":"2rem","space-md":"0.75rem","gutter":"1rem","space-lg":"1.25rem","margin":"1.5rem","margin-mobile":"1rem","gutter-mobile":"0.75rem","space-sm":"0.5rem"},"fontFamily":{"label-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 flex items-center px-margin bg-surface-container-lowest gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">B</div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">AGRO-B2B MASTER</span><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Controle Soberano Nível 0</span></div></div><div class="overflow-y-auto px-space-md py-space-md space-y-space-md"><div class="space-y-space-xs"><div class="px-space-md py-space-xs font-label-sm text-label-sm uppercase text-outline">Operação Global</div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-lg rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="cockpit-master" href="#"><span class="material-symbols-outlined text-outline">space_dashboard</span><span>Cockpit Master</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="controle-de-empresas-cnpjs" href="#"><span class="material-symbols-outlined text-outline">domain</span><span>Controle de Empresas &amp; CNPJs</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="gestao-de-lotes-pregoes" href="#"><span class="material-symbols-outlined text-outline">gavel</span><span>Gestão de Lotes &amp; Pregões</span></a></nav></div><div class="space-y-space-xs"><div class="px-space-md py-space-xs font-label-sm text-label-sm uppercase text-outline">Governança &amp; Compliance</div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-lg rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="moderacao-bloqueios" href="#"><span class="material-symbols-outlined text-outline">shield_person</span><span>Moderação &amp; Bloqueios</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="centro-financeiro-split" href="#"><span class="material-symbols-outlined text-outline">payments</span><span>Centro Financeiro &amp; Split</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="auditoria-worm-logs" href="#"><span class="material-symbols-outlined text-outline">verified</span><span>Auditoria WORM &amp; Logs</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="console-de-intervencao-soberana" href="#"><span class="material-symbols-outlined text-tertiary">security</span><span>Intervenção Soberana</span></a></nav></div><div class="space-y-space-xs"><div class="px-space-md py-space-xs font-label-sm text-label-sm uppercase text-outline">Infraestrutura</div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-lg rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="parametros-globais" href="#"><span class="material-symbols-outlined text-outline">tune</span><span>Parâmetros Globais</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant font-body-md text-body-md rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="hsm-chaves" href="#"><span class="material-symbols-outlined text-outline">vpn_key</span><span>HSM &amp; Chaves</span></a></nav></div></div></div><div class="p-space-md bg-surface-container-highest m-space-md rounded-xl space-y-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant">Soberania Root</span><span class="inline-flex items-center px-space-xs py-0.5 rounded-lg font-label-sm text-label-sm bg-tertiary text-on-tertiary">Ativa</span></div><div class="font-body-sm text-body-sm text-outline">Assinatura HSM Quorum 2/3</div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin"><div class="flex items-center gap-space-md"><span class="material-symbols-outlined text-outline">terminal</span><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs bg-surface-container-high px-space-sm py-1 rounded-lg"><span class="material-symbols-outlined text-secondary text-body-md">verified_user</span><span class="font-label-sm text-label-sm text-on-surface-variant">ICP-Brasil A4</span></div><div class="flex items-center gap-space-xs bg-surface-container-high px-space-sm py-1 rounded-lg"><span class="material-symbols-outlined text-secondary text-body-md">account_balance</span><span class="font-label-sm text-label-sm text-on-surface-variant">BACEN Escrow OK</span></div><div class="flex items-center gap-space-xs bg-secondary-fixed px-space-sm py-1 rounded-lg"><span class="material-symbols-outlined text-on-secondary-fixed-variant text-body-md">bolt</span><span class="font-label-sm text-label-sm text-on-secondary-fixed-variant font-bold">SLA 99.99%</span></div></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm text-right"><div class="flex flex-col"><span class="font-label-lg text-label-lg text-on-surface leading-tight">SuperAdmin Master</span><span class="font-label-sm text-label-sm text-tertiary font-bold">Nível 0 Soberano</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- BANNER CRÍTICO SOBERANO NÍVEL 0 -->
+<div class="relative overflow-hidden bg-tertiary text-on-tertiary px-margin py-space-sm shadow-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm relative z-10">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-tertiary-fixed text-headline-md animate-pulse" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<div class="flex flex-wrap items-center gap-x-space-sm gap-y-0.5">
+<span class="font-headline-md text-headline-md text-tertiary-fixed tracking-tight">SESSÃO SOBERANA DE INTERVENÇÃO MANUAL</span>
+<span class="text-tertiary-fixed/60 font-body-sm text-body-sm">•</span>
+<span class="inline-flex items-center gap-1 bg-on-tertiary-fixed px-space-xs py-0.5 rounded text-tertiary-fixed font-label-sm text-label-sm uppercase tracking-wider">
+            Chave Master Ativa
+          </span>
+<span class="text-tertiary-fixed/60 font-body-sm text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-tertiary-fixed">IP 189.40.112.5 (NOC-SP1)</span>
+<span class="text-tertiary-fixed/60 font-body-sm text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-tertiary-fixed flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm text-secondary-fixed">lock</span> HSM-Luna PCIe Quorum 2/3
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="font-label-sm text-label-sm text-tertiary-fixed/80">SESSÃO EXPIRA EM: <strong class="text-on-tertiary font-numeric-timer text-numeric-timer tracking-widest" id="session-countdown">14:52</strong></span>
+<button class="bg-tertiary-container hover:bg-tertiary-fixed-dim text-on-tertiary hover:text-on-tertiary-fixed transition-colors px-space-sm py-1 rounded font-label-sm text-label-sm flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-body-sm">key_vertical</span>
+          Revogar Sessão Root
+        </button>
+</div>
+</div>
+</div>
+<!-- HEADER DE DISJUNTOR & KPIs AUDITÁVEIS -->
+<div class="p-margin space-y-space-md">
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- DISJUNTOR MASTER RÁPIDO -->
+<div class="xl:col-span-5 bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Disjuntor Global Ativo</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Trava Geral de Pagamentos &amp; Pregões (Kill-Switch)</h2>
+<p class="font-body-sm text-body-sm text-outline">Interrompe instantaneamente o Barramento SPI/PIX e pausa o motor de lances em 100% dos pregões ativos.</p>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-space-sm py-1 rounded-lg text-right shrink-0">
+<span class="block font-label-sm text-label-sm uppercase font-bold">Status do Motor</span>
+<span class="font-label-md text-label-md text-on-secondary-fixed-variant">OPERANDO NORMAL</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-outline text-body-lg">shield</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Proteção contra descolamento sistêmico</span>
+</div>
+<button class="bg-surface-container-high hover:bg-tertiary-container hover:text-on-tertiary text-tertiary font-label-md text-label-md px-space-md py-1.5 rounded transition-all flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-body-md">power_settings_new</span>
+<span>Armar Interrupção Geral</span>
+</button>
+</div>
+</div>
+<!-- METRICAS DE INTERVENÇÃO FORENSE DO CICLO -->
+<div class="xl:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Intervenções Hoje</span>
+<span class="material-symbols-outlined text-primary text-headline-md">touch_app</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-xl text-headline-xl text-on-surface tracking-tight">04</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary mt-0.5">
+<span class="material-symbols-outlined text-body-sm">check_circle</span>
+<span>100% chaves FIDO2 válidas</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs font-label-sm text-label-sm text-outline">Limite diário soberano: 25 ops</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Volume Movimentado</span>
+<span class="material-symbols-outlined text-secondary text-headline-md">account_balance_wallet</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-xl text-headline-xl text-on-surface tracking-tight">R$ 92.200<span class="text-headline-md text-outline">,00</span></div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-outline-variant mt-0.5 text-on-surface-variant">
+<span>Custódia BACEN Escrow</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs font-label-sm text-label-sm text-secondary font-bold">Split Automático OK (0 Glosas)</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Compliance BACEN / WORM</span>
+<span class="material-symbols-outlined text-tertiary text-headline-md">verified_user</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-xl text-headline-xl text-secondary tracking-tight">0 <span class="text-headline-md text-on-surface">Pendências</span></div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary mt-0.5">
+<span class="material-symbols-outlined text-body-sm">lock</span>
+<span>S3 Object Lock em Compliance</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs font-label-sm text-label-sm text-outline">Auditoria Externa: KPMG H1/2026</div>
+</div>
+</div>
+</div>
+<!-- PAINEL CENTRAL DE TRABALHO: DUAS COLUNAS PRINCIPAIS -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- COLUNA ESQUERDA: FORMULÁRIO DE EXECUÇÃO SOBERANA -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl shadow-sm p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
+<span class="material-symbols-outlined">tune</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Execução de Intervenção Soberana</h3>
+<p class="font-body-sm text-body-sm text-outline">Operação Nível 0 com bypass autorizado e gravação imutável WORM</p>
+</div>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-space-sm py-1 rounded uppercase tracking-wider font-bold">
+            Auditável BACEN
+          </span>
+</div>
+<!-- 1. SELEÇÃO DE TIPO DE AÇÃO -->
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface">Tipo de Ação de Intervenção (Selecione o Protocolo)</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
+<button class="flex items-start gap-space-sm p-space-sm rounded-lg bg-primary text-on-primary text-left shadow-sm" type="button">
+<span class="material-symbols-outlined text-headline-md mt-0.5">outbox</span>
+<div class="min-w-0">
+<div class="font-label-md text-label-md">1. Liberar Custódia Fiduciária</div>
+<div class="font-body-sm text-body-sm text-primary-fixed opacity-90 truncate">Forçar Payout D+0 sem doca</div>
+</div>
+</button>
+<button class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-left transition-colors" type="button">
+<span class="material-symbols-outlined text-headline-md text-outline mt-0.5">currency_exchange</span>
+<div class="min-w-0">
+<div class="font-label-md text-label-md">2. Estorno Compulsório</div>
+<div class="font-body-sm text-body-sm text-outline truncate">Reversão imediata Pix SPI</div>
+</div>
+</button>
+<button class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-left transition-colors" type="button">
+<span class="material-symbols-outlined text-headline-md text-outline mt-0.5">restart_alt</span>
+<div class="min-w-0">
+<div class="font-label-md text-label-md">3. Anular Lance / Reabrir</div>
+<div class="font-body-sm text-body-sm text-outline truncate">Conluio ou erro material</div>
+</div>
+</button>
+<button class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-left transition-colors" type="button">
+<span class="material-symbols-outlined text-headline-md text-outline mt-0.5">credit_score</span>
+<div class="min-w-0">
+<div class="font-label-md text-label-md">4. Ajuste Forçado KYB</div>
+<div class="font-body-sm text-body-sm text-outline truncate">Alteração manual de limite</div>
+</div>
+</button>
+<button class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-left transition-colors" type="button">
+<span class="material-symbols-outlined text-headline-md text-outline mt-0.5">block</span>
+<div class="min-w-0">
+<div class="font-label-md text-label-md">5. Suspensão Cautelar CNPJ</div>
+<div class="font-body-sm text-body-sm text-outline truncate">Cancelamento de lances ativos</div>
+</div>
+</button>
+<button class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-left transition-colors" type="button">
+<span class="material-symbols-outlined text-headline-md text-outline mt-0.5">percent</span>
+<div class="min-w-0">
+<div class="font-label-md text-label-md">6. Alterar Take Rate Manual</div>
+<div class="font-body-sm text-body-sm text-outline truncate">Taxa de comissão por lote</div>
+</div>
+</button>
+</div>
+</div>
+<!-- 2. IDENTIFICAÇÃO DO ALVO (PREENCHIMENTO PRÉ-CARREGADO) -->
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-outline font-bold">Identificação do Alvo (SPI #TX-9021-BACEN)</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary bg-secondary-fixed px-space-xs py-0.5 rounded">
+<span class="material-symbols-outlined text-body-sm">check</span> Conta Escrow Identificada
+            </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="block font-label-sm text-label-sm text-outline">Pagador (Comprador)</span>
+<span class="font-label-lg text-label-lg text-on-surface truncate block">Supermercado Matriz do Vale Ltda</span>
+<span class="font-body-sm text-body-sm text-outline">CNPJ: 14.892.401/0001-92 • Rating A+</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="block font-label-sm text-label-sm text-outline">Favorecido (Vendedor)</span>
+<span class="font-label-lg text-label-lg text-on-surface truncate block">Indústria Três Corações Alimentos S.A.</span>
+<span class="font-body-sm text-body-sm text-outline">CNPJ: 61.099.802/0003-11 • Conta Liquidante BB</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest p-space-sm rounded">
+<div>
+<span class="block font-label-sm text-label-sm text-outline">Lote Agro B2B Vinculado</span>
+<span class="font-label-md text-label-md text-primary">#418 - Café Tradicional 500g (3.800 Unidades / 19 Paletes)</span>
+</div>
+<div class="text-right">
+<span class="block font-label-sm text-label-sm text-outline">Valor Retido em Custódia</span>
+<span class="font-headline-md text-headline-md text-on-surface font-numeric-timer">R$ 38.000,00</span>
+</div>
+</div>
+</div>
+<!-- 3. PARÂMETROS DA AÇÃO & SPLIT A EXECUTAR -->
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface">Divisão Programada de Liquidação (Split Compulsório D+0)</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="bg-surface-container p-space-sm rounded-lg">
+<span class="block font-label-sm text-label-sm text-outline">Crédito Favorecido (95.5%)</span>
+<span class="font-label-lg text-label-lg text-secondary font-numeric-timer">R$ 36.290,00</span>
+<span class="block font-body-sm text-body-sm text-outline">Três Corações S.A.</span>
+</div>
+<div class="bg-surface-container p-space-sm rounded-lg">
+<span class="block font-label-sm text-label-sm text-outline">Taxa Plataforma (4.50%)</span>
+<span class="font-label-lg text-label-lg text-primary font-numeric-timer">R$ 1.710,00</span>
+<span class="block font-body-sm text-body-sm text-outline">Conta Master Fee B2B</span>
+</div>
+<div class="bg-secondary-fixed/40 p-space-sm rounded-lg">
+<span class="block font-label-sm text-label-sm text-on-secondary-fixed font-bold">Risco IA (Predictive Forensics)</span>
+<span class="font-label-lg text-label-lg text-secondary font-bold">0.02% (Mínimo)</span>
+<span class="block font-body-sm text-body-sm text-on-secondary-fixed">88 transações sem litígio</span>
+</div>
+</div>
+</div>
+<!-- 4. MOTIVO / JUSTIFICATIVA MANDATÓRIA DE AUDITORIA -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1">
+<span>Justificativa Mandatória de Auditoria WORM</span>
+<span class="text-tertiary font-bold">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-outline">Mínimo 80 caracteres</span>
+</div>
+<textarea class="w-full bg-surface-container-low text-on-surface p-space-sm rounded-lg font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary shadow-inner resize-none" rows="3">Termo de concordância prévia assinado em cartório digital pelo comprador (Carlos Eduardo Prado). Mercadoria recebida antecipadamente na Doca Auxiliar em conformidade plena. Protocolo ARB-2026-9021 registrado no barramento.</textarea>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm text-secondary">verified</span>
+              Documento comprobatório hash SHA-256 anexado (cartorio_cert_9021.pdf)
+            </span>
+<span>224 caracteres</span>
+</div>
+</div>
+<!-- 5. AUTENTICAÇÃO HSM & FIDO2 CHAVE MASTER -->
+<div class="bg-surface-container-highest p-space-md rounded-xl space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary">fingerprint</span>
+<span class="font-label-md text-label-md text-on-surface">Assinatura Digital Nível 0 (FIDO2 / Hardware Luna HSM)</span>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-body-sm">usb</span> YubiKey 5C NFC Pronta
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-space-sm items-center">
+<div class="sm:col-span-7">
+<div class="relative">
+<input class="w-full bg-surface-container-lowest font-numeric-timer text-body-md px-space-sm py-2 rounded text-outline-variant select-none tracking-widest" readonly="" type="password" value="MASTER-HSM-LUNA-SEC-KEY-99482910"/>
+<span class="absolute right-2 top-2 text-label-sm text-secondary uppercase font-bold bg-secondary-fixed px-1 rounded">Válido</span>
+</div>
+</div>
+<div class="sm:col-span-5">
+<button class="w-full bg-surface-container-high hover:bg-surface-container text-on-surface font-label-md text-label-md py-2 px-space-sm rounded transition-all flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-body-md text-primary">touch_app</span>
+<span>Tocar Token Físico</span>
+</button>
+</div>
+</div>
+<!-- BOTÕES DE AÇÃO IRREVOGÁVEL -->
+<div class="pt-space-xs flex flex-col sm:flex-row items-center gap-space-sm">
+<button class="w-full sm:flex-1 bg-tertiary hover:bg-tertiary-container text-on-tertiary font-label-lg text-label-lg py-space-sm px-space-md rounded-lg shadow-sm transition-all flex items-center justify-center gap-space-xs" onclick="alert('INTERVENÇÃO EXECUTADA: Ordem SPI #TX-9021 enviada com sucesso para câmara fiduciária. Log imutável WORM gravado!')" type="button">
+<span class="material-symbols-outlined text-body-lg">verified_user</span>
+<span>Confirmar &amp; Executar Bypass Irrevogável</span>
+</button>
+<button class="w-full sm:w-auto bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md py-space-sm px-space-md rounded-lg transition-colors" type="button">
+              Descartar
+            </button>
+</div>
+</div>
+</div>
+<!-- COLUNA DIREITA: CASOS PENDENTES & AUDITORIA WORM EM TEMPO REAL -->
+<div class="lg:col-span-5 space-y-space-md">
+<!-- ABA 1: FILA DE DECISÕES SOBERANAS PENDENTES -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md space-y-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-headline-md">pending_actions</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Casos Pendentes de Decisão</h3>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm font-bold px-space-xs py-0.5 rounded-full">3 Críticos</span>
+</div>
+<!-- ITEM 1: DISPUTA DE LOTE COM CONCILIAÇÃO -->
+<div class="bg-surface-container-low p-space-sm rounded-lg space-y-space-xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">#INT-2026-088</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold bg-tertiary-fixed px-1.5 py-0.5 rounded">Litígio Comercial</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface">Disputa Lote #399 (Biscoito Cream Cracker)</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Comprador alega avaria em 2 paletes (<strong class="text-on-surface">R$ 4.250,00</strong> retidos). Proposta de split 50/50 em conciliação expedita.
+            </p>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="bg-secondary text-on-secondary px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-on-secondary-fixed transition-colors" type="button">Homologar 50/50</button>
+<button class="bg-surface-container-high text-on-surface px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-surface-container-highest" type="button">Abrir Perícia</button>
+<button class="text-tertiary px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-tertiary-fixed" type="button">Rejeitar</button>
+</div>
+</div>
+<!-- ITEM 2: ELEVAÇÃO EMERGENCIAL KYB -->
+<div class="bg-surface-container-low p-space-sm rounded-lg space-y-space-xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">#INT-2026-089</span>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed bg-secondary-fixed px-1.5 py-0.5 rounded font-bold">Upgrade Crédito</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface">Elevação Emergencial de Limite KYB</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<strong class="text-on-surface">Rede São Paulo Express</strong> solicita elevação de <strong class="text-on-surface">R$ 80k para R$ 250k</strong> para pregão ao vivo de Carnes Nobres.
+            </p>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="bg-primary text-on-primary px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-primary-container transition-colors" type="button">Aprovar R$ 250k</button>
+<button class="bg-surface-container-high text-on-surface px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-surface-container-highest" type="button">Limitar em R$ 150k</button>
+<button class="bg-surface-container-high text-on-surface px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-surface-container-highest" type="button">Exigir Caução</button>
+</div>
+</div>
+<!-- ITEM 3: SUSPEITA DE BOT NO PREGÃO AO VIVO -->
+<div class="bg-surface-container-low p-space-sm rounded-lg space-y-space-xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary font-bold">#INT-2026-090</span>
+<span class="font-label-sm text-label-sm text-on-tertiary bg-tertiary px-1.5 py-0.5 rounded font-bold">Suspeita de Fraude</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface">Script / Bot no Pregão #LOTE-772 (Óleo Soja)</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Detecção anti-fraude: 14 lances milimétricos em 2.1s vindos de IP ASN não catalogado.
+            </p>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="bg-tertiary text-on-tertiary px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-tertiary-container transition-colors" type="button">Congelar Pregão</button>
+<button class="bg-surface-container-high text-tertiary px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-tertiary-fixed" type="button">Banir IP &amp; Script</button>
+<button class="text-outline px-space-xs py-1 rounded font-label-sm text-label-sm hover:bg-surface-container-highest" type="button">Excluir Lances</button>
+</div>
+</div>
+</div>
+<!-- ABA 2: LOG FORENSE IMUTÁVEL (WORM LIVE STREAM) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md space-y-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md">receipt_long</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Trilha WORM em Tempo Real</h3>
+<span class="font-label-sm text-label-sm text-outline">Write Once, Read Many • AWS S3 Compliant</span>
+</div>
+</div>
+<button class="text-primary hover:text-on-primary-fixed-variant font-label-sm text-label-sm flex items-center gap-1 font-bold" type="button">
+<span class="material-symbols-outlined text-body-sm">download</span>
+<span>Dossiê .JSON/.PDF</span>
+</button>
+</div>
+<div class="space-y-space-xs text-body-sm font-body-sm">
+<!-- LOG ENTRY 1 -->
+<div class="p-space-xs bg-surface-container-low rounded font-mono text-[11px] space-y-0.5">
+<div class="flex items-center justify-between text-outline">
+<span class="font-bold text-on-surface">14:38:12.802 [NTP.br]</span>
+<span class="text-secondary font-bold">SHA-256 OK</span>
+</div>
+<div class="text-on-surface truncate">OP_PAYOUT_OVERRIDE :: TX-8902 :: R$ 22.400,00 -&gt; Ind. Laticínios Bela Vista</div>
+<div class="text-outline-variant text-[10px] truncate">Assinado: SuperAdmin_SP01 | Hash: 0x7c9f8a...e12a4b9 | BACEN Ref: 8092-2026</div>
+</div>
+<!-- LOG ENTRY 2 -->
+<div class="p-space-xs bg-surface-container-low rounded font-mono text-[11px] space-y-0.5">
+<div class="flex items-center justify-between text-outline">
+<span class="font-bold text-on-surface">13:19:04.119 [NTP.br]</span>
+<span class="text-secondary font-bold">SHA-256 OK</span>
+</div>
+<div class="text-on-surface truncate">OP_LIMIT_BOOST :: CNPJ 09.281.442/0001-09 :: Limite R$ 120k -&gt; R$ 300k</div>
+<div class="text-outline-variant text-[10px] truncate">Assinado: SuperAdmin_SP01 | Hash: 0x3d002f...c98a211 | Quorum 2/3 HSM</div>
+</div>
+<!-- LOG ENTRY 3 -->
+<div class="p-space-xs bg-surface-container-low rounded font-mono text-[11px] space-y-0.5">
+<div class="flex items-center justify-between text-outline">
+<span class="font-bold text-on-surface">11:02:44.981 [NTP.br]</span>
+<span class="text-secondary font-bold">SHA-256 OK</span>
+</div>
+<div class="text-on-surface truncate">OP_BID_CANCELLATION :: Pregão #LOTE-761 :: Erro digitação R$ 150.000,00</div>
+<div class="text-outline-variant text-[10px] truncate">Assinado: SuperAdmin_SP01 | Hash: 0x9812cc...fa44301 | Termo Notarial 481</div>
+</div>
+<!-- LOG ENTRY 4 -->
+<div class="p-space-xs bg-surface-container-low rounded font-mono text-[11px] space-y-0.5">
+<div class="flex items-center justify-between text-outline">
+<span class="font-bold text-on-surface">09:41:20.004 [NTP.br]</span>
+<span class="text-secondary font-bold">SHA-256 OK</span>
+</div>
+<div class="text-on-surface truncate">OP_CNPJ_CAUTION_SUSPEND :: CNPJ 44.102.391/0001-80 :: Duplicatas Sem Lastro</div>
+<div class="text-outline-variant text-[10px] truncate">Assinado: SuperAdmin_SP01 | Hash: 0x11a00c...88791be | Compliance Risk Flag</div>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between text-label-sm font-label-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="inline-flex w-2 h-2 rounded-full bg-secondary"></span>
+              Streaming de Auditoria WORM Ativo (Porta 8443 TLS 1.3)
+            </span>
+<span class="font-mono">Bloco #1.942.081</span>
+</div>
+</div>
+<!-- CARD DE CONTROLE DE IDENTIDADE MASTER COM LOGO OFICIAL -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex items-center gap-space-md shadow-sm">
+<div class="w-24 h-12 bg-surface-container-lowest rounded-lg p-1 shrink-0 flex items-center justify-center overflow-hidden">
+<img alt="Logo Oficial AGRO-B2B" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU_eoIu-WZzW-_mmCQEEEz3yPCiGO-L3unkwTX58lh5W3QwXcNL-4ji9YjwivflmvEuciiCcGBMF4HW6wAs3Bl8Ax4uXdfy7ek0b6XM6bsFWevVUI1_9kBuNVU4qNMQqTMidmXOE8gQJf50q-HKBFpkjZ9ILy7jlbdrjMNwDfThuuOCg21X7jdUn0RS3GssSp_U2cufBPe5aNOE6fNiLJEfCHGqsQGohIMhuI1eUI6g9YtaHOdfVL7cA"/>
+</div>
+<div class="min-w-0">
+<div class="font-label-sm text-label-sm text-outline uppercase">Chave de Auditoria Ativa</div>
+<div class="font-label-md text-label-md text-on-surface truncate">HSM-LUNA-PCIe-SN-9941-BR-ROOT</div>
+<div class="font-body-sm text-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm">verified</span>
+              Certificado Raiz ICP-Brasil A4 Válido até Dez/2028
+            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- RODAPÉ INSTITUCIONAL DE GOVERNANÇA & CONFORMIDADE FORENSE -->
+<div class="pt-space-sm pb-space-lg text-outline">
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex flex-wrap items-center justify-between gap-space-sm text-label-sm font-label-sm">
+<div class="flex flex-wrap items-center gap-space-md">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm text-secondary">verified</span>
+              Resolução BCB nº 1/2020 (Regulamento Pix SPI)
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm text-secondary">verified</span>
+              Lei Geral de Proteção de Dados (LGPD Art. 16)
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm text-secondary">shield</span>
+              AWS S3 Object Lock em Compliance Mode (WORM)
+            </span>
+</div>
+<div class="font-mono text-body-sm text-on-surface-variant">
+            Hash do Bloco Master: <strong class="text-on-surface">0x9f88ca41b77821...d091e7c44</strong>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+          Aviso Legal de Responsabilidade: Qualquer intervenção realizada via Console Nível 0 é registrada em mídia imutável não regravável, enviada de forma concorrente aos órgãos reguladores e sujeita a responsabilização civil e criminal sob termos do Acordo Operacional Fiduciário.
+        </p>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Contagem regressiva suave para expiração da sessão de intervenção Nível 0
+  let minutes = 14;
+  let seconds = 52;
+  const countdownEl = document.getElementById('session-countdown');
+
+  if (countdownEl) {
+    setInterval(() => {
+      if (seconds > 0) {
+        seconds--;
+      } else {
+        if (minutes > 0) {
+          minutes--;
+          seconds = 59;
+        } else {
+          seconds = 0;
+        }
+      }
+      const formattedMin = String(minutes).padStart(2, '0');
+      const formattedSec = String(seconds).padStart(2, '0');
+      countdownEl.textContent = `${formattedMin}:${formattedSec}`;
+    }, 1000);
+  }
+</script></main></div></body></html>

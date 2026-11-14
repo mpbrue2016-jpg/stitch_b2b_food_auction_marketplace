@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-surface":"#2d3133","on-primary-container":"#a1bbff","tertiary":"#720009","surface-container":"#eceef0","primary":"#003178","surface-container-high":"#e6e8ea","surface-bright":"#f7f9fb","surface-variant":"#e0e3e5","on-primary-fixed-variant":"#00429c","tertiary-fixed-dim":"#ffb3ac","secondary-container":"#a0f399","surface-dim":"#d8dadc","background":"#f7f9fb","outline-variant":"#c3c6d4","on-tertiary":"#ffffff","on-secondary-container":"#217128","on-secondary-fixed":"#002204","on-surface-variant":"#434652","tertiary-fixed":"#ffdad6","primary-fixed":"#d9e2ff","surface-container-low":"#f2f4f6","inverse-on-surface":"#eff1f3","secondary-fixed":"#a3f69c","on-error-container":"#93000a","primary-container":"#0d47a1","secondary":"#1b6d24","on-primary-fixed":"#001945","on-tertiary-fixed-variant":"#930010","on-background":"#191c1e","error":"#ba1a1a","surface":"#f7f9fb","on-secondary-fixed-variant":"#005312","on-secondary":"#ffffff","surface-container-lowest":"#ffffff","surface-tint":"#2b5bb5","on-primary":"#ffffff","on-tertiary-fixed":"#410003","on-tertiary-container":"#ffa59d","primary-fixed-dim":"#b0c6ff","surface-container-highest":"#e0e3e5","error-container":"#ffdad6","on-surface":"#191c1e","on-error":"#ffffff","secondary-fixed-dim":"#88d982","inverse-primary":"#b0c6ff","outline":"#737783","tertiary-container":"#9d0011"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin-mobile":"1rem","gutter-mobile":"0.75rem","space-xl":"2rem","space-md":"0.75rem","gutter":"1rem","space-xs":"0.25rem","margin":"1.5rem","space-lg":"1.25rem","space-sm":"0.5rem"},"fontFamily":{"headline-xl-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"]},"fontSize":{"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}]}}}};</script><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-surface-container-low px-margin py-space-xs"><div class="w-full flex items-center justify-between font-label-sm text-label-sm"><div class="flex items-center gap-space-lg"><span class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-sm">verified_user</span> RFB / SINTEGRA 100% Homologado</span><span class="flex items-center gap-space-xs text-primary"><span class="material-symbols-outlined text-sm">lock</span> ICP-Brasil Criptoativo</span><span class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-sm">account_balance</span> Custódia Escrow BACEN Ativa</span></div><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-sm text-secondary">radio_button_checked</span> Esteira Transacional Operando Normal</span><span class="text-outline-variant">|</span><span class="text-on-surface-variant">Central Corporativa: 0800 900 8200</span></div></div></div><div class="h-20 w-full px-margin flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md font-bold">VO</div><div><span class="font-headline-md text-headline-md text-primary tracking-tight font-extrabold block">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest block">Rede B2B de Alta Rotação</span></div></div><nav class="hidden xl:flex items-center gap-space-xs bg-surface-container-low p-space-xs rounded-xl" data-active-classes="bg-primary-container text-on-primary-container font-label-md rounded-lg"><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary-container text-on-primary-container font-label-md rounded-lg" data-path="portal-comprador" href="#">Comprador Varejista</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="portal-vendedor" href="#">Vendedor Geral</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="portal-industria" href="#">Indústria / Fabricante</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="portal-distribuidora" href="#">Representante &amp; Distribuidora</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="portal-transportador" href="#">Transportador 3PL</a></nav></div><div class="flex items-center gap-space-md"><a class="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface px-space-md py-space-xs rounded-lg transition-colors" data-path="central-ajuda" href="#"><span class="material-symbols-outlined text-lg">help_center</span>Central de Ajuda</a><div class="flex items-center gap-space-sm pl-space-md"><div class="text-right hidden md:block"><span class="font-label-md text-label-md text-on-surface block font-bold leading-tight">Distribuidora Nova Aliança S/A</span><span class="font-label-sm text-label-sm text-secondary block font-semibold">CNPJ Verificado • Grau AAA</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxHJffDvYQCs_dtNuFVGdow5V0Ht9Zq7n3YYvRa69UW1LBbX1kJvtgurpkkjYiAtP0kp7_tuS43WUWHv31P1hMllxscUZG96Hh_w8pDCfYCYf2RSUYKVPAkXV7jbMNJ8JFiV2ylw-PvVPZD3h0McciMgZAQHqufov38h9dQz4hdIxyesOVySIVkdV3TZ-vo9QfNb5Oc3eV0HdnuaJ0T0dx46zMZAKpgXvIg63bd68J"/></div></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Progress & Credential Indicator Bar -->
+<section class="w-full bg-surface-container-low px-margin py-space-sm border-b border-surface-variant/40">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm">B2B</span>
+<span class="font-label-md text-label-md text-on-surface font-bold tracking-tight">PORTAL DE CREDENCIAMENTO HOMOLOGADO</span>
+<span class="text-outline-variant hidden sm:inline">•</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-sm">verified</span>
+          Protocolo Criptografado ICP-Brasil Nível 3
+        </span>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm w-full md:w-auto justify-between md:justify-end">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          Validador RFB / Sintegra Online
+        </span>
+<span class="text-outline-variant">|</span>
+<span class="text-primary font-bold">Tempo médio: 4 minutos</span>
+</div>
+</div>
+</section>
+<!-- Hero Banner: Diretoria de Liquidação & Benefícios -->
+<section class="w-full bg-surface-container-lowest px-margin py-space-xl">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Visual & Brand Branding -->
+<div class="lg:col-span-8 space-y-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-headline-xl font-black shadow-md">
+              VO
+            </div>
+<div>
+<div class="font-headline-xl text-headline-xl text-primary font-extrabold tracking-tight leading-none">
+                VAREJISTA ONLINE
+              </div>
+<p class="font-label-md text-label-md text-secondary font-bold tracking-wider uppercase mt-1">
+                Central Corporativa de Abastecimento Direto da Indústria
+              </p>
+</div>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold leading-tight">
+            Credenciamento de Comprador Varejista &amp; Supermercadista
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
+            Tenha acesso instantâneo a leilões industriais de queima de estoque FEFO, pontas de linha de grandes indústrias alimentícias, compras em paletes fechados com NF-e emitida em sua Razão Social e custódia financeira em conta Escrow auditada.
+          </p>
+<!-- Badges de Vantagens Operacionais -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl">precision_manufacturing</span>
+<div class="min-w-0">
+<span class="block font-label-md text-label-md text-on-surface font-bold truncate">Direto da Indústria</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Zero intermediários</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-2xl">account_balance</span>
+<div class="min-w-0">
+<span class="block font-label-md text-label-md text-on-surface font-bold truncate">Escrow BACEN</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Liquidação pós-entrega</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl">local_shipping</span>
+<div class="min-w-0">
+<span class="block font-label-md text-label-md text-on-surface font-bold truncate">Cargas Homologadas</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Rastreio 3PL dedicado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust Image Card -->
+<div class="lg:col-span-4 relative">
+<div class="relative bg-surface-container rounded-xl overflow-hidden shadow-lg p-space-sm">
+<img class="w-full h-48 object-cover rounded-lg" data-alt="Modern distribution warehouse with neat rows of organized food and beverage pallets, professional logistics operators in safety gear checking logistics tablets with natural skylight and clean industrial design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9wsAdb38P-5ZsoenOwjL3qSnsaZM5FRV43kMOATYFwuXaDa4m3cfmT3xbpcLYj35LGLeApiqlifbQZc6iWCN3LtQouQTZSpdAqrkxx6A1mb8jblR7RZ2BDx8BaJmzhrdrOk03FxA2-2OFkQQTzCeXbKb17A9b55FwYbEITq36L5wU9ur13uwNwYPlClyMUCZ0XNjVQvrnTIMEtpvhwujMWujetsBR_oc55WROfwXW"/>
+<div class="p-space-sm space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Auditoria Fiscal Ativa
+                </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">NFe 4.0 &amp; Sped</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Lotes Verificados &amp; Shelf Life com Laudo Técnico</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Todas as ofertas dispõem de lote rastreado, shelf-life auditado e garantia expressa do fabricante.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Form Stepper Navigation Header -->
+<section class="w-full bg-surface-container py-space-md px-margin sticky top-20 z-40 shadow-sm">
+<div class="max-w-7xl mx-auto flex items-center justify-between overflow-x-auto gap-space-md">
+<div class="flex items-center gap-space-sm whitespace-nowrap">
+<span class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-md text-label-md font-bold">1</span>
+<span class="font-label-md text-label-md text-primary font-bold">Dados Cadastrais</span>
+</div>
+<span class="text-outline-variant">›</span>
+<div class="flex items-center gap-space-sm whitespace-nowrap">
+<span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-md text-label-md font-bold">2</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Logística &amp; Doca</span>
+</div>
+<span class="text-outline-variant">›</span>
+<div class="flex items-center gap-space-sm whitespace-nowrap">
+<span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-md text-label-md font-bold">3</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Perfil de Compras</span>
+</div>
+<span class="text-outline-variant">›</span>
+<div class="flex items-center gap-space-sm whitespace-nowrap">
+<span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-md text-label-md font-bold">4</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Escrow &amp; Limite</span>
+</div>
+<span class="text-outline-variant">›</span>
+<div class="flex items-center gap-space-sm whitespace-nowrap">
+<span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-md text-label-md font-bold">5</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Comprador</span>
+</div>
+<span class="text-outline-variant">›</span>
+<div class="flex items-center gap-space-sm whitespace-nowrap">
+<span class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-label-md text-label-md font-bold">6</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Conclusão</span>
+</div>
+</div>
+</section>
+<!-- Master Interactive Form Container -->
+<section class="w-full px-margin py-space-xl">
+<div class="max-w-7xl mx-auto">
+<form class="space-y-space-xl" id="buyerRegistrationForm" onsubmit="event.preventDefault(); handleRegistrationSubmit();">
+<!-- SEÇÃO 1: DADOS CADASTRAIS DA EMPRESA -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-container/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">domain</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">1. Dados Cadastrais da Empresa</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Identificação fiscal para emissão de Notas Fiscais e homologação de compra em lote.</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed px-space-sm py-1 rounded-full font-bold">Obrigatório</span>
+</div>
+<!-- CNPJ + Auto Fetch Action -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md bg-surface-container-low p-space-md rounded-lg items-end">
+<div class="md:col-span-8 space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold" for="cnpjInput">
+                CNPJ da Matriz ou Filial Compradora *
+              </label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">badge</span>
+</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="cnpjInput" name="cnpj" placeholder="00.000.000/0001-00" required="" type="text" value="14.892.411/0001-38"/>
+</div>
+</div>
+<div class="md:col-span-4">
+<button class="w-full py-2.5 px-space-md bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-space-xs shadow-sm transition-all" id="btnCnpjLookup" onclick="simulateCnpjLookup()" type="button">
+<span class="material-symbols-outlined text-base">cloud_sync</span>
+<span>Consultar Receita / Sintegra</span>
+</button>
+</div>
+<div class="col-span-12 flex items-center gap-space-xs text-secondary font-label-sm text-label-sm pt-1" id="cnpjSuccessBadge">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>CNPJ Regularizado na RFB • Situação Cadastral: ATIVA • Sede: São Paulo/SP</span>
+</div>
+</div>
+<!-- Razão Social e Nome Fantasia -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Razão Social *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="razao_social" required="" type="text" value="SUPERMERCADOS ALIANÇA PAULISTA LTDA"/>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Nome Fantasia Comercial *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="nome_fantasia" required="" type="text" value="REDE SUPER ALIANÇA"/>
+</div>
+</div>
+<!-- IE, CNAE e Regime Tributário -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Inscrição Estadual (IE) *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="inscricao_estadual" placeholder="IE Ativa para Circulação de Mercadorias" required="" type="text" value="109.842.110.119"/>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">CNAE Principal *</label>
+<select class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="cnae_principal" required="">
+<option selected="" value="4711-3/02">4711-3/02 - Comércio varejista de mercadorias em geral (Supermercados)</option>
+<option value="4711-3/01">4711-3/01 - Comércio varejista de mercadorias (Hipermercados)</option>
+<option value="4712-1/00">4712-1/00 - Comércio varejista de mercadorias em geral (Minimercados e Mercearias)</option>
+<option value="4691-5/00">4691-5/00 - Comércio atacadista de mercadorias em geral (Alimentos predominantes)</option>
+<option value="5611-2/01">5611-2/01 - Restaurantes e similares (Food Service Corporativo)</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Regime Tributário *</label>
+<select class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="regime_tributario" required="">
+<option selected="" value="lucro_real">Lucro Real (Aproveitamento integral ICMS/PIS/COFINS)</option>
+<option value="lucro_presumido">Lucro Presumido</option>
+<option value="simples_nacional">Simples Nacional (ME / EPP)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- SEÇÃO 2: ENDEREÇO & LOGÍSTICA DE ENTREGA -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-secondary-container/20 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">forklift</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">2. Endereço do Centro de Distribuição &amp; Logística de Desova</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Parâmetros essenciais para cálculo automático de frete CIF/FOB e dimensionamento de veículos.</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">local_shipping</span> Entrega Direta
+            </span>
+</div>
+<!-- Linha de Endereço -->
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-space-md">
+<div class="sm:col-span-3 space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">CEP da Doca de Entrega *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="cep" placeholder="00000-000" required="" type="text" value="06460-000"/>
+</div>
+<div class="sm:col-span-6 space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Logradouro / Avenida / Rodovia *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="logradouro" required="" type="text" value="Avenida Tamboré, 1420 - Bloco Logístico 04"/>
+</div>
+<div class="sm:col-span-3 space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Bairro *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="bairro" required="" type="text" value="Tamboré Industrial"/>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-space-md">
+<div class="sm:col-span-6 space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Cidade *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="cidade" required="" type="text" value="Barueri"/>
+</div>
+<div class="sm:col-span-2 space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Estado (UF) *</label>
+<select class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="uf" required="">
+<option selected="" value="SP">SP</option>
+<option value="MG">MG</option>
+<option value="RJ">RJ</option>
+<option value="PR">PR</option>
+<option value="SC">SC</option>
+<option value="RS">RS</option>
+<option value="GO">GO</option>
+<option value="BA">BA</option>
+</select>
+</div>
+<div class="sm:col-span-4 space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Raio Máximo de Abastecimento Preferencial</label>
+<select class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="raio_km">
+<option value="100">Até 100 km (Mais rápido / Menor frete)</option>
+<option selected="" value="300">Até 300 km (Equilíbrio de rota industrial)</option>
+<option value="600">Até 600 km (Regional Sudeste / Sul)</option>
+<option value="brasil">Todo o Território Nacional (Lotes fechados)</option>
+</select>
+</div>
+</div>
+<!-- Parâmetros de Doca e Desova Física -->
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-space-sm">
+<div class="font-label-md text-label-md text-on-surface font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-base">pin_drop</span>
+<span>Especificações Técnicas de Descarga no Varejo / CD</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-bold">Altura Máxima do Caminhão</label>
+<select class="w-full px-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="altura_caminhao">
+<option selected="" value="livre">Sem restrição (Carreta / Bitrem até 4,40m)</option>
+<option value="truck">Truck Baú Convencional (Até 3,90m)</option>
+<option value="toco">Veículo 3/4 ou Toco (Até 3,20m)</option>
+<option value="vuc">Apenas VUC / Urbano Restrito</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-bold">Infraestrutura de Doca</label>
+<select class="w-full px-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="tipo_doca">
+<option selected="" value="rampa_eletrica">Doca com Rampa Niveladora Hidráulica</option>
+<option value="doca_estatica">Doca Seca Estática (Paleteira Manual)</option>
+<option value="descarregamento_chao">Descarregamento ao Nível do Chão (Munck/Empilhadeira)</option>
+<option value="manual">Manual / Operários Próprios</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-bold">Janela Permitida para Recebimento</label>
+<select class="w-full px-3 py-2 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="janela_horario">
+<option selected="" value="24h">24 Horas (Ininterrupto c/ agendamento)</option>
+<option value="comercial">Horário Comercial (08h00 às 18h00)</option>
+<option value="madrugada">Noturno / Madrugada (22h00 às 06h00)</option>
+<option value="manha">Matutino Restrito (06h00 às 12h00)</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- SEÇÃO 3: PERFIL DE COMPRAS & CATEGORIAS DE INTERESSE -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-tertiary-container/10 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">shopping_cart_checkout</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">3. Categorias de Alta Rotação &amp; Capacidade de Compra</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Personalizamos o catálogo de leilões ao vivo de acordo com sua demanda prioritária.</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Radar de Ofertas</span>
+</div>
+<div class="space-y-space-sm">
+<label class="block font-label-md text-label-md text-on-surface font-bold">
+              Selecione as categorias que deseja arrematar com desconto de fábrica:
+            </label>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-sm">
+<!-- Item 1 -->
+<label class="flex items-start gap-space-sm p-space-sm bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-all">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary" name="cat_mercearia" type="checkbox"/>
+<div>
+<span class="block font-label-md text-label-md text-on-surface font-bold">Mercearia Básica &amp; Grãos</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Arroz, Feijão, Óleos, Açúcar, Farináceos e Enlatados</span>
+</div>
+</label>
+<!-- Item 2 -->
+<label class="flex items-start gap-space-sm p-space-sm bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-all">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary" name="cat_laticinios" type="checkbox"/>
+<div>
+<span class="block font-label-md text-label-md text-on-surface font-bold">Laticínios &amp; Embutidos</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Leite UHT, Queijos industriais, Manteigas e Frios em barra</span>
+</div>
+</label>
+<!-- Item 3 -->
+<label class="flex items-start gap-space-sm p-space-sm bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-all">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary" name="cat_bebidas" type="checkbox"/>
+<div>
+<span class="block font-label-md text-label-md text-on-surface font-bold">Bebidas Alcoólicas e Não-Alcoólicas</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Cervejas, Refrigerantes, Sucos concentrados e Águas minerais</span>
+</div>
+</label>
+<!-- Item 4 -->
+<label class="flex items-start gap-space-sm p-space-sm bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-all">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary" name="cat_limpeza" type="checkbox"/>
+<div>
+<span class="block font-label-md text-label-md text-on-surface font-bold">Higiene Pessoal &amp; Limpeza Doméstica</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Sabão líquido, Desinfetantes, Fraldas e Cuidados bucais</span>
+</div>
+</label>
+<!-- Item 5: FEFO -->
+<label class="flex items-start gap-space-sm p-space-sm bg-tertiary-fixed/40 rounded-lg cursor-pointer hover:bg-tertiary-fixed/60 transition-all border border-tertiary-fixed">
+<input checked="" class="mt-1 w-4 h-4 text-tertiary rounded focus:ring-tertiary" name="cat_fefo" type="checkbox"/>
+<div>
+<span class="block font-label-md text-label-md text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                    Giro Rápido &amp; Queima FEFO (Até 60% OFF)
+                  </span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Lotes de 30 a 90 dias de validade para venda veloz</span>
+</div>
+</label>
+<!-- Item 6 -->
+<label class="flex items-start gap-space-sm p-space-sm bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-all">
+<input class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary" name="cat_confeitaria" type="checkbox"/>
+<div>
+<span class="block font-label-md text-label-md text-on-surface font-bold">Biscoitos, Doces &amp; Confeitaria</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Chocolates, Wafers, Balas e Massas prontas</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Volume Médio de Compra -->
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-space-xs">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<label class="block font-label-md text-label-md text-on-surface font-bold">
+                Estimativa de Compra Mensal na Plataforma (R$) *
+              </label>
+<span class="font-numeric-timer text-numeric-timer text-primary font-extrabold" id="volumeLabel">
+                R$ 250.000 / mês
+              </span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="volumeRange" max="2000000" min="30000" oninput="updateVolumeDisplay(this.value)" step="10000" type="range" value="250000"/>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant pt-1">
+<span>R$ 30 mil (Varejo de Bairro)</span>
+<span>R$ 500 mil (Rede Regional)</span>
+<span>Acima de R$ 2 Milhões (Atacadista / Master)</span>
+</div>
+</div>
+</div>
+<!-- SEÇÃO 4: DADOS FINANCEIROS & CRÉDITO ESCROW -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed/50 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">account_balance_wallet</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">4. Dados Financeiros &amp; Conta Escrow</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Conexão bancária para liquidação fiduciária, emissão de boletos via DDA e Pix Direto BACEN SPI.</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-secondary-container text-on-secondary-container px-space-sm py-1 rounded-full font-bold">Anti-Fraude</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Banco Principal PJ *</label>
+<select class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="banco" required="">
+<option value="001">001 - Banco do Brasil</option>
+<option value="237">237 - Banco Bradesco</option>
+<option selected="" value="341">341 - Itaú Unibanco</option>
+<option value="033">033 - Banco Santander</option>
+<option value="104">104 - Caixa Econômica Federal</option>
+<option value="260">260 - Nu Pagamentos / PJ</option>
+<option value="077">077 - Banco Inter</option>
+<option value="outros">Outro Banco Homologado</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Agência *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="agencia" placeholder="0000" required="" type="text" value="0922"/>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Conta Corrente PJ c/ Dígito *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="conta" placeholder="00000-0" required="" type="text" value="48190-2"/>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Chave Pix Institucional PJ</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="chave_pix" placeholder="CNPJ, E-mail ou Telefone" type="text" value="14892411000138"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">E-mail do Contas a Pagar / DDA Fiscal *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="email_financeiro" placeholder="financeiro@suaempresa.com.br" required="" type="email" value="financeiro@redealiancasuper.com.br"/>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Destino automático dos XMLs de NF-e e boletos com registro imediato CIP.</span>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Limite de Crédito Inicial Solicitado (Escrow B2B)</label>
+<select class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="limite_credito">
+<option value="50000">R$ 50.000,00 (Prazo 14/21 dias direto)</option>
+<option selected="" value="150000">R$ 150.000,00 (Prazo 28/35 dias padrão indústria)</option>
+<option value="300000">R$ 300.000,00 (Sujeito a balanço patrimonial)</option>
+<option value="500000">Acima de R$ 500.000,00 (Análise mesa de crédito Serasa AAA)</option>
+<option value="a_vista">Apenas Compras à Vista (Pix Instantâneo c/ 3% desconto extra)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- SEÇÃO 5: RESPONSÁVEL LEGAL & COMPRADOR -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">person_pin</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">5. Responsável Legal &amp; Gestor de Suprimentos / Comprador</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dados da pessoa habilitada a dar lances, fechar negócios e assinar digitalmente o arremate.</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Autenticação 2FA</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Nome Completo do Responsável *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="nome_responsavel" required="" type="text" value="Carlos Eduardo Silveira Mendes"/>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">CPF do Comprador / Sócio *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="cpf_responsavel" placeholder="000.000.000-00" required="" type="text" value="219.043.888-44"/>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">Cargo / Função *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="cargo" required="" type="text" value="Diretor de Suprimentos &amp; Compras"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">WhatsApp Comercial do Comprador *</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined text-lg">chat</span>
+</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="whatsapp" placeholder="(00) 00000-0000" required="" type="text" value="(11) 98451-9022"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-bold">E-mail Corporativo do Comprador *</label>
+<input class="w-full px-4 py-2.5 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" name="email_comprador" placeholder="nome@empresa.com.br" required="" type="email" value="carlos.mendes@redealiancasuper.com.br"/>
+</div>
+</div>
+<!-- Alertas WhatsApp Opt-in -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-start gap-space-sm">
+<input checked="" class="mt-1 w-4 h-4 text-secondary rounded focus:ring-secondary" id="whatsappAlerts" name="alertas_whatsapp" type="checkbox"/>
+<label class="cursor-pointer" for="whatsappAlerts">
+<span class="block font-label-md text-label-md text-on-surface font-bold">Receber Alertas de Pregão &amp; Lotes Raros em Tempo Real via WhatsApp</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Notificação imediata quando uma indústria cadastrada abrir liquidação de lotes dentro do seu raio logístico de interesse.</span>
+</label>
+</div>
+</div>
+<!-- SEÇÃO 6: TERMOS DE COMPLIANCE & ARREMATE -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg space-y-space-md">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">gavel</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">6. Termos Gerais de Arremate &amp; Custódia Fiduciária</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Garantia jurídica e proteção bilateral para compras corporativas.</p>
+</div>
+</div>
+<div class="h-32 overflow-y-auto bg-surface-container-low p-space-md rounded-lg font-body-sm text-body-sm text-on-surface-variant space-y-2 border border-surface-variant/30">
+<p><strong>1. Da Validade dos Lances e Propostas:</strong> Todo lance confirmado na plataforma Varejista Online possui eficácia de compromisso irrevogável e irretratável de compra B2B, gerando espelho contratual e reserva física do estoque fabril.</p>
+<p><strong>2. Da Liquidação em Conta Escrow:</strong> O valor do lote transacionado permanecerá em custódia fiduciária regulada pelo BACEN até que o Comprador confirme a conferência quantitativa e qualitativa na doca física de destino (prazo limite de 24h úteis pós-descarregamento com canhoto fiscal digital).</p>
+<p><strong>3. Da Conformidade com a Política FEFO:</strong> Os produtos arrematados sob a modalidade Giro Rápido possuem shelf life detalhado no edital do lote, cabendo ao comprador atestar a aderência às suas políticas de gôndola.</p>
+<p><strong>4. Da Nota Fiscal e Sped:</strong> Todas as mercadorias são obrigatoriamente acompanhadas de DANFE eletrônica emitida diretamente pela indústria fabricante em nome do CNPJ credenciado neste ato.</p>
+</div>
+<div class="space-y-space-xs">
+<label class="flex items-start gap-space-sm cursor-pointer">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary" id="termoArremate" required="" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface">
+                Declaro que as informações cadastrais prestadas são verídicas perante o Fisco e aceito integralmente os <a class="text-primary underline font-bold" href="#">Termos Gerais de Arremate B2B</a> e as <a class="text-primary underline font-bold" href="#">Diretrizes de Liquidação Escrow</a>.
+              </span>
+</label>
+<label class="flex items-start gap-space-sm cursor-pointer">
+<input checked="" class="mt-1 w-4 h-4 text-primary rounded focus:ring-primary" id="termoLGPD" required="" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface">
+                Autorizo a verificação de crédito automatizada junto a birôs homologados (Serasa Experian / Boa Vista) e a consulta contínua no Sintegra para fins de faturamento.
+              </span>
+</label>
+</div>
+</div>
+<!-- SUBMIT BLOCK COM SELOS E BOTÃO PRINCIPAL -->
+<div class="bg-surface-container p-space-lg rounded-xl shadow-md space-y-space-lg">
+<div class="flex flex-col lg:flex-row items-center justify-between gap-space-lg">
+<!-- Selos de Segurança Institucional -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md w-full lg:w-auto">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-2xl">verified_user</span>
+<div>
+<span class="font-bold block text-on-surface">RFB / SINTEGRA</span>
+<span>Validação Automática</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-2xl">lock</span>
+<div>
+<span class="font-bold block text-on-surface">SSL 256-Bit</span>
+<span>Criptografia Bancária</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-2xl">account_balance</span>
+<div>
+<span class="font-bold block text-on-surface">Custódia Escrow</span>
+<span>Bacen Resolução 4.656</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-2xl">receipt_long</span>
+<div>
+<span class="font-bold block text-on-surface">NF-e Garantida</span>
+<span>100% de Procedência</span>
+</div>
+</div>
+</div>
+<!-- Botão de Conclusão -->
+<div class="w-full lg:w-auto flex flex-col items-center sm:items-end">
+<button class="w-full sm:w-auto px-space-xl py-4 bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-headline-md text-headline-md font-bold rounded-xl shadow-lg flex items-center justify-center gap-space-sm transition-all transform active:scale-95" id="submitBtn" type="submit">
+<span class="material-symbols-outlined text-2xl">how_to_reg</span>
+<span>Concluir Cadastro de Comprador Varejista</span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-2">
+                Aprovação instantânea de limite para compras à vista • Análise a prazo em até 2h
+              </span>
+</div>
+</div>
+</div>
+</form>
+</div>
+</section>
+<!-- Interactive Modal / Notification Trigger Simulation -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/60 backdrop-blur-sm p-4" id="successModal">
+<div class="bg-surface-container-lowest max-w-lg w-full rounded-2xl shadow-2xl p-space-xl space-y-space-md text-center transform transition-all">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container mx-auto flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-4xl">check</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline-lg text-headline-lg text-primary font-black">Cadastro Aprovado!</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          A empresa <strong id="modalEmpresaNome">REDE SUPER ALIANÇA</strong> foi homologada com sucesso no ambiente transacional da <strong>Varejista Online</strong>.
+        </p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg text-left space-y-2 font-body-sm text-body-sm">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Protocolo de Registro:</span>
+<span class="font-bold font-numeric-timer text-on-surface">VO-2025-BR-9981</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Limite Pré-Aprovado Escrow:</span>
+<span class="font-bold text-secondary font-numeric-timer">R$ 150.000,00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Sintegra / SEFAZ:</span>
+<span class="font-bold text-secondary">IE Regularizada</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Notificações WhatsApp:</span>
+<span class="font-bold text-primary">Ativadas (Alertas de Pregão)</span>
+</div>
+</div>
+<div class="pt-space-xs flex flex-col sm:flex-row gap-space-sm justify-center">
+<button class="w-full sm:w-auto px-space-lg py-2.5 bg-primary text-on-primary font-label-md text-label-md rounded-lg font-bold shadow-md hover:bg-on-primary-fixed-variant transition-colors" onclick="closeModal()" type="button">
+          Acessar Sala de Pregões Ao Vivo
+        </button>
+</div>
+</div>
+</div>
+<!-- Inline Script for UI Micro-Interactions -->
+<script>
+    function updateVolumeDisplay(val) {
+      const formatted = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(val);
+      document.getElementById('volumeLabel').innerText = formatted + ' / mês';
+    }
+
+    function simulateCnpjLookup() {
+      const btn = document.getElementById('btnCnpjLookup');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span> Consultando SEFAZ...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined text-base text-secondary-container">check</span> Validado RFB';
+        btn.classList.add('bg-secondary');
+        const badge = document.getElementById('cnpjSuccessBadge');
+        if (badge) {
+          badge.innerHTML = '<span class="material-symbols-outlined text-sm text-secondary">verified</span> <span class="text-secondary font-bold">100% Homologado no SINTEGRA SP • CNAE 4711-3/02 Apto p/ Abastecimento Alimentício</span>';
+        }
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          btn.classList.remove('bg-secondary');
+        }, 3500);
+      }, 1200);
+    }
+
+    function handleRegistrationSubmit() {
+      const modal = document.getElementById('successModal');
+      const nomeInput = document.querySelector('input[name="nome_fantasia"]');
+      if (nomeInput && nomeInput.value) {
+        document.getElementById('modalEmpresaNome').innerText = nomeInput.value;
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('successModal');
+      modal.classList.add('hidden');
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-space-xl"><div class="w-full px-margin py-space-xl grid grid-cols-1 md:grid-cols-4 gap-space-lg text-on-surface-variant"><div class="space-y-space-sm"><div class="font-headline-md text-headline-md text-primary font-extrabold">VAREJISTA ONLINE</div><p class="font-body-sm text-body-sm">Infraestrutura financeira e transacional de atacado e liquidação industrial homologada por órgãos reguladores nacionais.</p><div class="flex items-center gap-space-sm text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-base">verified</span> Infraestrutura Certificada Bacen &amp; RFB</div></div><div><div class="font-label-lg text-label-lg text-on-surface font-bold mb-space-sm">Perfis Institucionais</div><ul class="space-y-space-xs font-body-sm text-body-sm"><li><a class="hover:text-primary transition-colors" data-path="portal-comprador" href="#">Módulo Comprador Varejista</a></li><li><a class="hover:text-primary transition-colors" data-path="portal-vendedor" href="#">Módulo Vendedor Geral</a></li><li><a class="hover:text-primary transition-colors" data-path="portal-industria" href="#">Console Indústria &amp; Fabricante</a></li><li><a class="hover:text-primary transition-colors" data-path="portal-distribuidora" href="#">Módulo Distribuidora &amp; Representação</a></li><li><a class="hover:text-primary transition-colors" data-path="portal-transportador" href="#">Gestão Logística Transportador 3PL</a></li></ul></div><div><div class="font-label-lg text-label-lg text-on-surface font-bold mb-space-sm">Compliance &amp; Segurança</div><ul class="space-y-space-xs font-body-sm text-body-sm"><li><span class="hover:text-primary cursor-pointer">Auditoria Sintegra / Sped Fiscal</span></li><li><span class="hover:text-primary cursor-pointer">Câmara de Liquidação Escrow BACEN</span></li><li><span class="hover:text-primary cursor-pointer">Protocolo Criptográfico ICP-Brasil</span></li><li><span class="hover:text-primary cursor-pointer">Termos Gerais de Arremate e Contratos</span></li></ul></div><div><div class="font-label-lg text-label-lg text-on-surface font-bold mb-space-sm">Central de Suporte B2B</div><ul class="space-y-space-xs font-body-sm text-body-sm"><li><a class="hover:text-primary transition-colors" data-path="status-esteira" href="#">Status da Esteira Operacional</a></li><li><a class="hover:text-primary transition-colors" data-path="central-ajuda" href="#">Base de Conhecimento e Chamados</a></li><li><span>Mesa de Operações: 0800 900 8200</span></li><li><span>Plantão 24/7 p/ Cargas em Trânsito</span></li></ul></div></div><div class="w-full px-margin py-space-md bg-surface-container flex flex-col md:flex-row items-center justify-between font-label-sm text-label-sm text-on-surface-variant"><p>© 2025 Varejista Online S.A. Plataforma Corporativa B2B. Todos os direitos reservados.</p><div class="flex items-center gap-space-md mt-space-xs md:mt-0"><span>Segurança Bancária SSL 256-bit</span><span>•</span><span>Conformidade LGPD &amp; Marco Civil</span></div></div></footer></body></html>

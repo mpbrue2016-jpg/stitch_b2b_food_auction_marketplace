@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error": "#ffffff", "tertiary-container": "#9d0011", "surface-dim": "#d8dadc", "outline-variant": "#c3c6d4", "on-primary-container": "#a1bbff", "tertiary-fixed": "#ffdad6", "secondary-fixed": "#a3f69c", "on-secondary": "#ffffff", "tertiary": "#720009", "on-tertiary-fixed-variant": "#930010", "on-tertiary-fixed": "#410003", "on-primary-fixed": "#001945", "primary": "#003178", "on-primary-fixed-variant": "#00429c", "on-secondary-container": "#217128", "on-secondary-fixed": "#002204", "surface-bright": "#f7f9fb", "primary-container": "#0d47a1", "tertiary-fixed-dim": "#ffb3ac", "error-container": "#ffdad6", "primary-fixed-dim": "#b0c6ff", "on-background": "#191c1e", "surface-container-lowest": "#ffffff", "inverse-on-surface": "#eff1f3", "primary-fixed": "#d9e2ff", "on-surface": "#191c1e", "secondary": "#1b6d24", "surface-tint": "#2b5bb5", "error": "#ba1a1a", "surface-container-highest": "#e0e3e5", "on-surface-variant": "#434652", "surface-container-high": "#e6e8ea", "secondary-container": "#a0f399", "inverse-surface": "#2d3133", "surface-container": "#eceef0", "secondary-fixed-dim": "#88d982", "background": "#f7f9fb", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#005312", "on-error-container": "#93000a", "surface": "#f7f9fb", "outline": "#737783", "on-tertiary-container": "#ffa59d", "surface-variant": "#e0e3e5", "surface-container-low": "#f2f4f6", "inverse-primary": "#b0c6ff", "on-tertiary": "#ffffff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "margin": "1.5rem", "space-xs": "0.25rem", "space-xl": "2rem", "space-md": "0.75rem", "margin-mobile": "1rem", "space-lg": "1.25rem", "gutter-mobile": "0.75rem" }, "fontFamily": { "headline-xl-mobile": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "numeric-timer": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ] }, "fontSize": { "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "fontWeight": "800" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "fontWeight": "800" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "fontWeight": "700" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "700" } ], "headline-md": [ "18px", { "lineHeight": "24px", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "numeric-timer": [ "20px", { "lineHeight": "24px", "fontWeight": "800" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ] } } } }</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 h-16 bg-surface/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-full px-margin flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[22px]">account_balance</span></div><div><span class="font-headline-md text-headline-md tracking-tight text-primary block leading-none">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mt-space-xs">Tesouraria Fiduciária &amp; SPB</span></div></div><div class="h-6 w-[1px] bg-surface-container-highest hidden md:block"></div><div class="hidden md:flex items-center gap-space-sm px-space-md py-space-xs rounded bg-surface-container"><span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-md text-label-md text-on-surface">RSFN/BACEN: Conectado</span><span class="font-label-sm text-label-sm text-outline">(Latência: 12ms)</span></div></div><div class="flex items-center gap-space-lg"><div class="hidden lg:flex items-center gap-space-md px-space-md py-space-xs rounded bg-surface-container-low"><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">schedule</span><span class="font-label-md text-label-md uppercase tracking-wider text-outline">Janela SPB:</span></div><span class="font-numeric-timer text-numeric-timer text-primary">17:28:44</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">EXPEDIENTE ATIVO</span></div><div class="flex items-center gap-space-md"><div class="text-right hidden sm:block"><span class="font-label-lg text-label-lg text-on-surface block leading-tight">Dr. Arnaldo Silveira</span><span class="font-label-sm text-label-sm text-outline block">Auditor Fiscal &amp; Gestor Fiduciário Sênior</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-72 bg-surface-container-low z-40 overflow-y-auto"><div class="p-margin"><div class="mb-space-xl"><span class="px-space-sm font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-space-sm">Módulos SPB / Tesouraria</span><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="painel-geral-de-liquidacao" href="#"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-lg text-label-lg">Painel Geral de Liquidação</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="fechamento-de-cambio-e-ted" href="#"><span class="material-symbols-outlined text-[20px]">currency_exchange</span><span class="font-label-lg text-label-lg">Fechamento Câmbio &amp; TED</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="contas-escrow-e-garantias" href="#"><span class="material-symbols-outlined text-[20px]">assured_workload</span><span class="font-label-lg text-label-lg">Contas Escrow &amp; Garantias</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="remessas-e-retornos-cnab" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-lg text-label-lg">Remessas &amp; Retornos CNAB</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="webhooks-e-erp" href="#"><span class="material-symbols-outlined text-[20px]">sync_alt</span><span class="font-label-lg text-label-lg">Webhooks &amp; ERP</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="fila-dead-letter-queue" href="#"><span class="material-symbols-outlined text-[20px]">mark_email_unread</span><span class="font-label-lg text-label-lg">Fila Dead Letter Queue</span></a></nav></div><div class="mb-space-xl"><span class="px-space-sm font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-space-sm">Compliance &amp; Auditoria</span><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="dossies-bacen" href="#"><span class="material-symbols-outlined text-[20px]">folder_supervised</span><span class="font-label-lg text-label-lg">Dossiês BACEN</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="certidoes-oficiais-e-worm" href="#"><span class="material-symbols-outlined text-[20px]">verified</span><span class="font-label-lg text-label-lg">Certidões Oficiais &amp; WORM</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="sala-virtual-de-inspecao-bacen" href="#"><span class="material-symbols-outlined text-[20px]">meeting_room</span><span class="font-label-lg text-label-lg">Sala Virtual de Inspeção BACEN</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="trilha-criptografica-e-merkle-tree" href="#"><span class="material-symbols-outlined text-[20px]">hub</span><span class="font-label-lg text-label-lg">Trilha Criptográfica &amp; Merkle</span></a></nav></div><div class="p-space-md rounded-lg bg-surface-container border border-outline-variant/30"><div class="flex items-center gap-space-xs text-primary mb-space-xs"><span class="material-symbols-outlined text-[16px]">security</span><span class="font-label-sm text-label-sm uppercase font-bold">Segurança BACEN</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">Sessão autenticada sob protocolo mTLS com módulo HSM nível 3 ativo.</p></div></div></aside><div class="pl-72"><main class="relative pt-16 w-full px-space-xl bg-surface min-h-screen"><div class="flex flex-col w-full pb-space-xl">
+<!-- 1. Breadcrumb de Navegação -->
+<nav aria-label="Trilha de Auditoria" class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md py-space-sm mb-space-sm overflow-x-auto whitespace-nowrap">
+<span class="hover:text-primary transition-colors cursor-pointer">Início</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Liquidação SPB &amp; Tesouraria</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Compliance &amp; Auditoria</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Sala Virtual BACEN</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="text-primary font-bold">Termo de Fiscalização Homologado</span>
+</nav>
+<!-- 2. Banner de Status de Alta Autoridade Regulatória -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest shadow-md p-space-lg mb-space-lg">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-secondary-container/25 blur-3xl pointer-events-none"></div>
+<div class="absolute left-1/3 -bottom-20 w-64 h-64 rounded-full bg-primary-fixed/20 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-4xl">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="inline-flex items-center gap-space-xs px-space-md py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm uppercase tracking-wider font-extrabold shadow-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+            Despacho Fiscal Homologado e Transmitido ao SISBACEN em Tempo Real
+          </span>
+<span class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+            Assinatura mTLS Ativa
+          </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight mt-space-xs">
+          Termo de Fiscalização &amp; Parecer Conclusivo SISBACEN
+        </h1>
+<div class="flex flex-wrap items-center gap-x-space-lg gap-y-space-xs text-on-surface-variant font-body-sm text-body-sm pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="text-outline uppercase font-label-sm">Protocolo Geral:</span>
+<span class="font-bold text-on-surface">SISBACEN-AUD-2026-9812</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-outline uppercase font-label-sm">Registro CVM/BACEN:</span>
+<span class="font-bold text-on-surface">#HOM-9821-2026-SPB</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-outline uppercase font-label-sm">Carimbo de Tempo ACT:</span>
+<span class="font-bold text-primary">25/10/2026 às 19:58:14 BRT</span>
+</div>
+</div>
+</div>
+<!-- Ações de Alto Impacto -->
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-sm hover:bg-primary-container transition-all active:scale-[0.98]" id="btnDownloadPdf">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+          Baixar Laudo Oficial (.PDF ICP-Brasil)
+        </button>
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-all" id="btnExportJson">
+<span class="material-symbols-outlined text-[18px]">data_object</span>
+          Exportar Metadados JSON-LD
+        </button>
+<button class="flex items-center gap-space-xs px-space-sm py-2.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface transition-all" onclick="window.print()" title="Imprimir Certidão Oficial">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 3. Cards de Indicadores de Homologação Regulatória -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Conclusão Pericial -->
+<div class="relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between overflow-hidden">
+<div class="flex items-start justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Conclusão Pericial</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-secondary block leading-snug">
+          APROVADO SEM RESSALVAS
+        </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          100% de conformidade operacional, liquidação e segregação das contas escrow Santander.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+        Homologação plena e irrevogável
+      </div>
+</div>
+<!-- Volume Auditado e Validado -->
+<div class="relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between overflow-hidden">
+<div class="flex items-start justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Volume Auditado &amp; Validado</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+</div>
+<div>
+<span class="font-numeric-timer text-numeric-timer text-primary block leading-none">
+          R$ 4.852.150,00
+        </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
+          85 lotes de atacado leiloados, partidas dobradas equilibradas e zero passivo a descoberto.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">balance</span>
+        Conciliação D+0 homologada
+      </div>
+</div>
+<!-- Saneamento da Fila DLQ -->
+<div class="relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between overflow-hidden">
+<div class="flex items-start justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Saneamento Fila DLQ</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+</div>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-on-surface block leading-snug">
+          100% Homologado
+        </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          3 mensagens da DLQ reprocessadas com sucesso via canal SPB e quitação formalizada.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">mark_chat_read</span>
+        Zero inconsistência em aberto
+      </div>
+</div>
+<!-- Imutabilidade WORM S3 & Ledger -->
+<div class="relative p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between overflow-hidden">
+<div class="flex items-start justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Imutabilidade WORM S3</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">security_update_good</span>
+</div>
+</div>
+<div>
+<span class="font-headline-md text-headline-md text-on-surface block leading-snug">
+          Garantido até 2031
+        </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Root hash ancorado, Object Lock em Compliance Mode com retenção mandatória de 5 anos.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">lock_clock</span>
+        Legal Hold Ativo no Nó RSFN
+      </div>
+</div>
+</div>
+<!-- 4. Seção Principal - O Documento Oficial de Despacho (Folha Timbrada Oficial da República / BACEN) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Folha Timbrada Oficial (8 Colunas) -->
+<article class="xl:col-span-8 bg-surface-container-lowest rounded-xl shadow-md p-8 md:p-12 relative flex flex-col justify-between overflow-hidden">
+<!-- Marca d'água de segurança sutil -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none">
+<span class="font-headline-xl text-[140px] font-black text-on-surface leading-none text-center">
+          BACEN<br/>SISBACEN
+        </span>
+</div>
+<div>
+<!-- Cabeçalho Oficial Federativo -->
+<header class="text-center pb-space-lg mb-space-lg bg-surface-container-low/40 p-space-md rounded-lg">
+<div class="flex items-center justify-center gap-space-md mb-space-xs">
+<!-- Brasão da República Federativa do Brasil Estilizado -->
+<svg aria-label="Brasão Nacional Simbólico" class="w-14 h-14 text-primary" fill="currentColor" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="46" stroke="currentColor" stroke-width="4"></circle>
+<polygon fill="currentColor" opacity="0.85" points="50,14 62,38 88,40 68,58 74,84 50,70 26,84 32,58 12,40 38,38"></polygon>
+<circle cx="50" cy="50" fill="#003178" r="16"></circle>
+<circle cx="50" cy="50" fill="#ffffff" opacity="0.2" r="12"></circle>
+</svg>
+<div class="text-left">
+<span class="font-label-sm text-label-sm tracking-widest uppercase text-outline block">República Federativa do Brasil</span>
+<span class="font-headline-md text-headline-md text-primary font-bold block leading-tight">BANCO CENTRAL DO BRASIL</span>
+<span class="font-label-md text-label-md text-on-surface-variant block">Diretoria de Política Monetária e Fiscalização de Operações Fiduciárias (DEBAN)</span>
+</div>
+</div>
+<div class="inline-block mt-space-xs px-space-md py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold tracking-wider uppercase">
+            Coordenação Geral de Monitoramento do Sistema de Pagamentos Brasileiro (CG-SPB)
+          </div>
+</header>
+<!-- Identificação Formal do Processo -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-space-md p-space-md rounded-lg bg-surface-container-low mb-space-lg text-on-surface">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block">Entidade Inspecionada:</span>
+<span class="font-label-lg text-label-lg font-bold block">VAREJISTA ONLINE INTERMEDIAÇÃO E LIQUIDAÇÃO S.A.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">CNPJ: 14.892.304/0001-92 • ISPB Fiduciário: 90.400.888</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block">Auditor Fiscal Responsável:</span>
+<span class="font-label-lg text-label-lg font-bold block">Dr. Fernando de Albuquerque Vianna</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">DEBAN / Matrícula Funcional BACEN #849.201 • Auditoria Externa Nível IV</span>
+</div>
+</section>
+<!-- Corpo do Despacho Fiscal Conclusivo -->
+<section class="space-y-space-md text-on-surface font-body-md text-body-md leading-relaxed text-justify">
+<p class="font-bold text-primary font-headline-md text-headline-md">
+            DESPACHO CONVERSIVO Nº DEBAN/SPB-2026/0991
+          </p>
+<p>
+<strong>1. DO OBJETO E FUNDAMENTAÇÃO LEGAL:</strong> Conclui-se, por meio do presente instrumento, a inspeção fiscal e contábil em tempo real instaurada sobre o ciclo financeiro do pregão eletrônico <strong>LOTE-SPB-2026-9812</strong>, executada sob a égide dos artigos 9º e 10 da Lei nº 10.214/2001, regulamentada em conformidade estrita com o <em>Art. 24 da Circular BCB nº 3.978/2020</em> e <em>Art. 14 da Resolução BACEN nº 4.656/2018</em>.
+          </p>
+<p>
+<strong>2. DA SEGREGAÇÃO PATRIMONIAL E CONTAS ESCROW:</strong> A equipe de fiscalização do Banco Central certificou, mediante verificação direta nos extratos em tempo real da <strong>Conta de Liquidação do Banco Santander (Brasil) S.A. (ISPB 90.400.888)</strong>, que os montantes oriundos dos 85 lotes de atacado de alimentos e bens industriais arrematados encontram-se integralmente depositados sob regime de afetação e patrimônio segregado fiduciário, totalizando <strong>R$ 4.852.150,00 (quatro milhões, oitocentos e cinquenta e dois mil, cento e cinquenta reais)</strong>, com absoluta incomunicabilidade em face do patrimônio geral da intermediadora.
+          </p>
+<p>
+<strong>3. DO SANEAMENTO DE INCONSISTÊNCIAS E RETORNOS CNAB:</strong> Foi comprovada a regularização e expurgo integral das ocorrências da Fila DLQ (Dead Letter Queue), registradas nas mensagens <em>CNAB-240 CO251002.RET</em>, com as correspondentes compensações financeiras homologadas no STR (Sistema de Transferência de Reservas), sem verificação de qualquer prejuízo ou risco de crédito aos contrapartes e arrematantes.
+          </p>
+<p>
+<strong>4. DO DISPOSITIVO E PARECER CONCLUSIVO:</strong> Ante o exposto e verificado o fiel cumprimento de todas as salvaguardas normativas, esta Auditoria Fiscal do Banco Central do Brasil emite parecer <strong>APROVADO SEM RESSALVAS</strong>, concedendo quitação regulatória plena para o presente ciclo operacional e autorizando a baixa fiduciária das garantias e o fechamento do exercício contábil.
+          </p>
+</section>
+<!-- Bloco de Assinaturas Formais -->
+<div class="mt-space-xl pt-space-lg bg-surface-container-low/50 p-space-md rounded-xl grid grid-cols-1 md:grid-cols-2 gap-space-lg items-end">
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs text-secondary font-label-md text-label-md font-bold mb-1">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+              Assinado Digitalmente via ICP-Brasil
+            </div>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">Dr. Fernando Albuquerque</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Auditor Fiscal do Banco Central do Brasil</p>
+<p class="font-label-sm text-label-sm text-outline">DEBAN / Matrícula Funcional #849.201</p>
+</div>
+<div class="space-y-1 text-left md:text-right">
+<div class="flex md:justify-end items-center gap-space-xs text-primary font-label-md text-label-md font-bold mb-1">
+<span class="material-symbols-outlined text-[18px]">key</span>
+              Chave de Co-Validação HSM Nível 3
+            </div>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">Banco Santander (Brasil) S.A.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Agente Liquidante Fiduciário Autorizado RSFN</p>
+<p class="font-label-sm text-label-sm text-outline">ISPB 90.400.888 • Luna HSM HSM-SANT-9801</p>
+</div>
+</div>
+</div>
+<!-- Rodapé do Documento Timbrado -->
+<footer class="mt-space-xl pt-space-md flex flex-wrap items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span>Emissão Oficial SISBACEN • Brasília - DF</span>
+<span>Página 1 de 1 • Cópia de Autenticidade Registrada sob o Rito R-18</span>
+</footer>
+</article>
+<!-- 5. Coluna Lateral: Autenticação Criptográfica & Carimbo Notarial (4 Colunas) -->
+<aside class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Card Criptográfico -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">fingerprint</span>
+<span class="font-headline-md text-headline-md text-on-surface">Chancela Notarial</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+            VÁLIDO
+          </span>
+</div>
+<!-- QR Code do ITI & Validação -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col items-center text-center">
+<!-- QR Code estilizado via SVG -->
+<div class="p-3 bg-surface-container-lowest rounded-lg shadow-sm mb-space-sm">
+<svg class="w-36 h-36" fill="currentColor" viewbox="0 0 100 100">
+<!-- Canto Superior Esquerdo -->
+<rect fill="#003178" height="30" width="30" x="0" y="0"></rect>
+<rect fill="#ffffff" height="18" width="18" x="6" y="6"></rect>
+<rect fill="#003178" height="10" width="10" x="10" y="10"></rect>
+<!-- Canto Superior Direito -->
+<rect fill="#003178" height="30" width="30" x="70" y="0"></rect>
+<rect fill="#ffffff" height="18" width="18" x="76" y="6"></rect>
+<rect fill="#003178" height="10" width="10" x="80" y="10"></rect>
+<!-- Canto Inferior Esquerdo -->
+<rect fill="#003178" height="30" width="30" x="0" y="70"></rect>
+<rect fill="#ffffff" height="18" width="18" x="6" y="76"></rect>
+<rect fill="#003178" height="10" width="10" x="10" y="80"></rect>
+<!-- Matriz Central e Bits Notariais -->
+<rect fill="#1b6d24" height="8" width="8" x="40" y="8"></rect>
+<rect fill="#003178" height="6" width="12" x="52" y="16"></rect>
+<rect fill="#0d47a1" height="28" width="28" x="36" y="36"></rect>
+<rect fill="#ffffff" height="16" width="16" x="42" y="42"></rect>
+<rect fill="#003178" height="4" width="4" x="48" y="48"></rect>
+<rect fill="#003178" height="6" width="14" x="12" y="40"></rect>
+<rect fill="#003178" height="8" width="16" x="76" y="40"></rect>
+<rect fill="#1b6d24" height="18" width="10" x="40" y="74"></rect>
+<rect fill="#003178" height="12" width="8" x="60" y="70"></rect>
+<rect fill="#003178" height="10" width="16" x="76" y="82"></rect>
+</svg>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">Verificador ITI / Validador BACEN</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Escaneie para conferir a chave pública e a cadeia de certificação digital A3 ICP-Brasil.
+          </p>
+</div>
+<!-- Hashes e Metadados de Autenticidade -->
+<div class="space-y-space-sm font-mono text-body-sm">
+<div class="p-space-sm rounded bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">Hash SHA-256 do Despacho:</span>
+<span class="text-on-surface break-all font-bold text-[11px] select-all">
+              e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+            </span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">Raiz Merkle do Bloco Fiduciário:</span>
+<span class="text-on-surface break-all font-bold text-[11px] select-all">
+              8f434346648f6b96df89dda901c5176b10a6d83961dd3c1ac88b59b2dc327aa4
+            </span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">ID do Objeto WORM S3 (Imutável):</span>
+<span class="text-secondary break-all font-bold text-[11px] select-all">
+              urn:bacen:worm:2026:doc-9812-locked-compliance-v1
+            </span>
+</div>
+</div>
+<!-- Parâmetros de Carimbo de Tempo (NTP Stratum 1) -->
+<div class="p-space-sm rounded bg-surface-container-high/60 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">timer</span>
+<span>Carimbo: ACT Observatório Nac.</span>
+</div>
+<span class="font-mono font-bold text-on-surface">UTC-03:00 (NTP.br)</span>
+</div>
+</div>
+<!-- Card Mini-Status do Processo -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Certificação Institucional</span>
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface block leading-tight">BACEN / CVM Homologado</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Conforme Instrução CVM 607 e Circular BCB 3.978</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- 6. Seção de Desdobramentos e Próximos Passos Regulatórios -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg mb-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-md mb-space-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Desdobramentos &amp; Gatilhos Regulatórios em Execução Automática</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Eventos assíncronos disparados em tempo real na rede do Sistema de Pagamentos Brasileiro.</p>
+</div>
+<span class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold self-start md:self-auto">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+        4 de 4 Processos Sincronizados
+      </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Gatilho 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Mensageria RSFN</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface block">Envio SISBACEN / DEBAN</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Cópia do laudo pericial despachada via protocolo mTLS nível bancário.
+          </p>
+</div>
+<div class="mt-space-md pt-space-xs font-mono font-bold text-primary font-label-sm text-label-sm">
+          Protocolo: #BACEN-2026-X992
+        </div>
+</div>
+<!-- Gatilho 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">CVM &amp; Receita Federal</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface block">Recibo Fiduciário Notificado</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Declarações de conformidade SPB integradas aos sistemas de fiscalização da União.
+          </p>
+</div>
+<div class="mt-space-md pt-space-xs font-mono font-bold text-secondary font-label-sm text-label-sm">
+          Status: Sincronizado (D+0)
+        </div>
+</div>
+<!-- Gatilho 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Repositório WORM S3</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface block">Gravação Pericial Selada</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Logs criptográficos, logs do chat e trilha Merkle gravados em disco não-regravável.
+          </p>
+</div>
+<div class="mt-space-md pt-space-xs font-mono font-bold text-primary font-label-sm text-label-sm">
+          Retenção: Ativa até 2031 (5 anos)
+        </div>
+</div>
+<!-- Gatilho 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Janela SPB</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface block">Grade Matutina 26/10</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Liberação autorizada para abertura dos canais de liquidação em tempo integral.
+          </p>
+</div>
+<div class="mt-space-md pt-space-xs font-mono font-bold text-secondary font-label-sm text-label-sm">
+          Abertura: 07:00:00 BRT
+        </div>
+</div>
+</div>
+</div>
+<!-- 7. Barra de Rodapé com Navegação Executiva e Selos Oficiais -->
+<footer class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col lg:flex-row items-center justify-between gap-space-lg">
+<!-- Links Rápidos de Navegação -->
+<div class="flex flex-wrap items-center gap-space-sm w-full lg:w-auto">
+<a class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        Voltar à Sala Virtual
+      </a>
+<a class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">folder_supervised</span>
+        Central de Dossiês BACEN
+      </a>
+<a class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+        Painel Geral de Liquidação SPB
+      </a>
+</div>
+<!-- Selos de Segurança & Conformidade -->
+<div class="flex flex-wrap items-center gap-space-md text-outline">
+<div class="flex items-center gap-space-xs" title="Rede do Sistema Financeiro Nacional">
+<span class="material-symbols-outlined text-[20px] text-primary">lan</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">BACEN RSFN</span>
+</div>
+<div class="h-4 w-px bg-surface-container-highest"></div>
+<div class="flex items-center gap-space-xs" title="Infraestrutura de Chaves Públicas Brasileira">
+<span class="material-symbols-outlined text-[20px] text-secondary">verified</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">ICP-Brasil A3</span>
+</div>
+<div class="h-4 w-px bg-surface-container-highest"></div>
+<div class="flex items-center gap-space-xs" title="Segurança da Informação Homologada">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">lock</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">ISO/IEC 27001</span>
+</div>
+<div class="h-4 w-px bg-surface-container-highest"></div>
+<div class="flex items-center gap-space-xs" title="Sincronização de Tempo com o Observatório Nacional">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">schedule</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">NTP Stratum 1</span>
+</div>
+</div>
+</footer>
+</div>
+<script>
+  // Micro-interatividade para download e exportação
+  document.getElementById('btnDownloadPdf')?.addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Gerando PDF Assinado...';
+    this.disabled = true;
+    setTimeout(() => {
+      this.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span> Laudo Baixado com Sucesso!';
+      setTimeout(() => {
+        this.innerHTML = originalText;
+        this.disabled = false;
+      }, 2500);
+    }, 1200);
+  });
+
+  document.getElementById('btnExportJson')?.addEventListener('click', function() {
+    const metadata = {
+      "@context": "https://www.bcb.gov.br/schemas/spb-audit-v1.jsonld",
+      "protocol": "SISBACEN-AUD-2026-9812",
+      "registry": "#HOM-9821-2026-SPB",
+      "auditor": "Dr. Fernando de Albuquerque Vianna",
+      "matricula": "849.201",
+      "organization": "Varejista Online Intermediação e Liquidação S.A.",
+      "ispb": "90400888",
+      "settlementVolumeBRL": 4852150.00,
+      "conclusion": "APPROVED_WITHOUT_RESERVATIONS",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "merkleRoot": "8f434346648f6b96df89dda901c5176b10a6d83961dd3c1ac88b59b2dc327aa4",
+      "timestamp": "2026-10-25T19:58:14-03:00"
+    };
+
+    const blob = new Blob([JSON.stringify(metadata, null, 2)], { type: 'application/ld+json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'SISBACEN-AUD-2026-9812-METADATA.jsonld';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script></main></div></body></html>

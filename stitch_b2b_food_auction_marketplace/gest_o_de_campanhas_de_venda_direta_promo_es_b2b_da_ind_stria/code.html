@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-background": "#191c1e",
+          "surface-tint": "#2b5bb5",
+          "secondary-container": "#a0f399",
+          "on-secondary-fixed-variant": "#005312",
+          "inverse-surface": "#2d3133",
+          "on-tertiary-fixed": "#410003",
+          "primary": "#003178",
+          "primary-container": "#0d47a1",
+          "on-secondary-fixed": "#002204",
+          "on-tertiary": "#ffffff",
+          "secondary-fixed-dim": "#88d982",
+          "error-container": "#ffdad6",
+          "primary-fixed": "#d9e2ff",
+          "on-error": "#ffffff",
+          "surface-container": "#eceef0",
+          "outline": "#737783",
+          "outline-variant": "#c3c6d4",
+          "secondary": "#1b6d24",
+          "surface-container-low": "#f2f4f6",
+          "on-tertiary-container": "#ffa59d",
+          "surface-container-highest": "#e0e3e5",
+          "tertiary-fixed": "#ffdad6",
+          "on-primary-fixed": "#001945",
+          "on-tertiary-fixed-variant": "#930010",
+          "surface": "#f7f9fb",
+          "on-primary": "#ffffff",
+          "background": "#f7f9fb",
+          "surface-container-high": "#e6e8ea",
+          "error": "#ba1a1a",
+          "on-primary-fixed-variant": "#00429c",
+          "tertiary-fixed-dim": "#ffb3ac",
+          "on-error-container": "#93000a",
+          "on-surface-variant": "#434652",
+          "primary-fixed-dim": "#b0c6ff",
+          "surface-bright": "#f7f9fb",
+          "surface-dim": "#d8dadc",
+          "surface-container-lowest": "#ffffff",
+          "on-secondary": "#ffffff",
+          "inverse-primary": "#b0c6ff",
+          "tertiary": "#720009",
+          "on-secondary-container": "#217128",
+          "on-primary-container": "#a1bbff",
+          "surface-variant": "#e0e3e5",
+          "inverse-on-surface": "#eff1f3",
+          "secondary-fixed": "#a3f69c",
+          "tertiary-container": "#9d0011",
+          "on-surface": "#191c1e"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-md": "0.75rem",
+          "space-xs": "0.25rem",
+          "gutter": "1rem",
+          "space-lg": "1.25rem",
+          "space-sm": "0.5rem",
+          "gutter-mobile": "0.75rem",
+          "margin-mobile": "1rem",
+          "space-xl": "2rem",
+          "margin": "1.5rem"
+        },
+        "fontFamily": {
+          "numeric-timer": [
+            "Plus Jakarta Sans"
+          ],
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "label-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-md": [
+            "Plus Jakarta Sans"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "numeric-timer": [
+            "20px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "800"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-xl": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "fontWeight": "800"
+            }
+          ],
+          "headline-xl-mobile": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "800"
+            }
+          ],
+          "headline-md": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "700"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "700"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="h-16 px-margin flex items-center justify-between bg-surface-container-lowest shrink-0"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-headline-md">factory</span><div class="flex flex-col"><span class="font-headline-md text-headline-md font-bold tracking-tight text-primary leading-tight">PORTAL B2B</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Indústria &amp; Fabricante</span></div></div></div><nav class="flex-1 px-space-sm py-space-md space-y-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">VISÃO GERAL</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="painel-geral-e-indicadores" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">dashboard</span><span>Painel Geral &amp; Indicadores</span></a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">GESTÃO INDUSTRIAL</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="minhas-marcas-e-linhas" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">corporate_fare</span><span>Minhas Marcas &amp; Linhas</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="catalogo-e-dun-ean" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">qr_code_2</span><span>Catálogo &amp; DUN/EAN</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="lotes-e-shelf-life" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">hourglass_bottom</span><span>Lotes &amp; Shelf Life</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="estoque-fisico-e-cds" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">warehouse</span><span>Estoque Físico &amp; CDs</span></a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">CANAL DESOVA &amp; LEILÕES</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="criar-novo-leilao-b2b" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">add_circle</span><span>Criar Novo Leilão B2B</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="pregoes-ao-vivo" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">gavel</span><span>Pregões Ao Vivo</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="promocoes-e-venda-direta" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">sell</span><span>Promoções &amp; Venda Direta</span></a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">MOTIVOS DE LIQUIDAÇÃO</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="excesso-de-producao" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">inventory</span><span>Excesso de Produção</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="vencimento-curto" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">event_upcoming</span><span>Vencimento Curto</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="embalagem-e-reformulacao" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">published_with_changes</span><span>Embalagem &amp; Reformulação</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="descontinuados-e-fim-linha" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">cancel_presentation</span><span>Descontinuados / Fim Linha</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="estoque-parado-e-giro-lento" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">trending_down</span><span>Estoque Parado &amp; Giro Lento</span></a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">COMERCIAL &amp; FINANCEIRO</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="pedidos-e-arremates" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">shopping_cart_checkout</span><span>Pedidos &amp; Arremates</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="repasses-escrow-e-d-plus-0" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">verified_user</span><span>Repasses Escrow &amp; D+0</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="relatorios-financeiros" href="#"><span class="material-symbols-outlined text-body-lg text-on-surface-variant">analytics</span><span>Relatórios Financeiros</span></a></div></nav><div class="p-space-md bg-surface-container shrink-0"><div class="flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm uppercase font-bold text-outline">Disponibilidade SLA</span><span class="font-label-sm text-label-sm font-bold text-secondary">99.98% Ativo</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-primary text-body-lg">domain</span><span class="font-label-lg text-label-lg font-bold text-on-surface">Moinho Santa Rita Agroindustrial S/A</span><span class="material-symbols-outlined text-outline text-body-md">expand_more</span></div><div class="flex items-center gap-space-xs"><div class="flex items-center gap-space-xs bg-surface-container-high text-on-surface px-space-sm py-space-xs rounded"><span class="material-symbols-outlined text-body-sm text-primary">verified</span><span class="font-label-sm text-label-sm font-bold tracking-wide">SIF/MAPA 2041</span></div><div class="flex items-center gap-space-xs bg-secondary-container text-on-secondary-container px-space-sm py-space-xs rounded"><span class="material-symbols-outlined text-body-sm text-secondary">lock</span><span class="font-label-sm text-label-sm font-bold tracking-wide">Escrow Ativo</span></div></div></div><div class="flex items-center gap-space-lg"><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-headline-md">notifications</span><span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span></button><button class="p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-headline-md">tune</span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="text-right hidden sm:block"><div class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Diretoria Comercial</div><div class="font-body-sm text-body-sm text-outline leading-tight">Unidade Industrial PR</div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="w-full pt-16 px-space-xl bg-surface min-h-screen"><div class="flex flex-col w-full pb-space-xl">
+<!-- BREADCRUMB & HEADER -->
+<div class="flex flex-col gap-space-sm pt-space-md mb-space-lg">
+<nav class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="hover:text-primary cursor-pointer transition-colors">Portal da Indústria</span>
+<span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Canal Desova &amp; Leilões</span>
+<span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span>
+<span class="text-primary font-bold">Promoções &amp; Venda Direta</span>
+</nav>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col max-w-4xl">
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">
+          Gestão de Campanhas de Venda Direta &amp; Tabela Dinâmica B2B
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+          Configure vendas diretas de lotes fabris com descontos progressivos por volume (Truck / Carreta fechada), liquidação imediata sem pregão e reserva fiduciária com garantia de pagamento D+0.
+        </p>
+<!-- BADGES ROW -->
+<div class="flex flex-wrap items-center gap-space-xs mt-space-sm">
+<span class="inline-flex items-center gap-1 bg-surface-container-high text-on-surface px-space-sm py-0.5 rounded font-label-sm text-label-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-body-sm text-primary">layers</span>
+            Desconto por Camada / Lastro Ativo
+          </span>
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container px-space-sm py-0.5 rounded font-label-sm text-label-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-body-sm text-secondary">verified_user</span>
+            Custódia Escrow Garantida
+          </span>
+<span class="inline-flex items-center gap-1 bg-primary-fixed text-on-primary-fixed px-space-sm py-0.5 rounded font-label-sm text-label-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-body-sm text-primary">sync_alt</span>
+            Sincronismo ERP TOTVS/SAP
+          </span>
+</div>
+</div>
+<!-- ACTION BUTTONS -->
+<div class="flex flex-wrap items-center gap-space-xs shrink-0">
+<button class="inline-flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-md py-space-sm rounded-lg font-label-lg text-label-lg transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-lg text-primary">calculate</span>
+<span>Simulador de Margem</span>
+</button>
+<button class="inline-flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-md py-space-sm rounded-lg font-label-lg text-label-lg transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-lg text-secondary">table_view</span>
+<span>Exportar Tabela (.XLSX)</span>
+</button>
+<button class="inline-flex items-center gap-space-xs bg-primary text-on-primary hover:bg-primary-container px-space-lg py-space-sm rounded-lg font-label-lg text-label-lg shadow-md transition-all" type="button">
+<span class="material-symbols-outlined text-body-lg">add_circle</span>
+<span class="font-bold">+ Criar Nova Campanha</span>
+</button>
+</div>
+</div>
+</div>
+<!-- METRICS & KPIS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Volume em Venda Direta Ativa</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-body-lg">inventory_2</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg font-extrabold text-on-surface">R$ 3.480.000,00</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant mt-1">
+<span class="inline-flex items-center text-secondary font-bold">
+<span class="material-symbols-outlined text-body-sm">check_circle</span> 24 lotes
+          </span>
+<span>• 520 toneladas em doca</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Pedidos Fechados no Mês</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-body-lg">shopping_cart_checkout</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg font-extrabold text-on-surface">42 Pedidos</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary font-semibold mt-1">
+<span>R$ 2.890.000,00 • 100% D+0 liquidado</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Desconto Médio Aplicado</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-body-lg">percent</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg font-extrabold text-on-surface">18.5% OFF</div>
+<div class="font-body-sm text-body-sm text-outline mt-1">
+          Recuperação de 94.2% custo industrial base
+        </div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Compradores Habilitados</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-body-lg">hub</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg font-extrabold text-on-surface">318 Redes / Atacados</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary font-bold mt-1">
+<span class="material-symbols-outlined text-body-sm">bolt</span>
+<span>Limite de crédito ativo e validado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CONFIGURADOR DE DESCONTO PROGRESSIVO POR ESCALA LOGÍSTICA -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg mb-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="p-2 bg-primary-fixed text-primary rounded-lg">
+<span class="material-symbols-outlined text-headline-md">local_shipping</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">
+            Configurador de Desconto Progressivo por Escala Logística
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Matriz automatizada de precificação baseada no tipo de frete contratado pelo comprador (FOB Doca Industrial).
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-secondary-container/40 text-on-secondary-container px-space-md py-space-xs rounded-lg">
+<span class="material-symbols-outlined text-body-md text-secondary">trending_up</span>
+<span class="font-label-sm text-label-sm font-bold">Margem fabril preservada com liberação rápida de espaço em doca</span>
+</div>
+</div>
+<!-- TIER CARDS GRID -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mt-space-sm">
+<!-- Tier 1 -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-outline">Tier 1: Palete Avulso</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm font-bold">1 a 4 PBR</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface">8% OFF</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Preço unitário base: <span class="font-bold text-on-surface">R$ 68,00 / un</span></p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Pequeno Atacarejo</span>
+<span class="text-primary font-bold">Gatilho Automático</span>
+</div>
+</div>
+<!-- Tier 2 -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-outline">Tier 2: Meio Truck</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm font-bold">5 a 12 PBR</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface">14% OFF</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Preço unitário: <span class="font-bold text-on-surface">R$ 63,50 / un</span></p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Distribuidores Regionais</span>
+<span class="text-primary font-bold">Gatilho Automático</span>
+</div>
+</div>
+<!-- Tier 3 -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-outline">Tier 3: Truck Completo</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">13 a 28 PBR</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-primary">20% OFF</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Preço unitário: <span class="font-bold text-primary">R$ 59,00 / un</span></p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Grandes Redes Varejo</span>
+<span class="text-secondary font-bold">Alta Demanda</span>
+</div>
+</div>
+<!-- Tier 4 -->
+<div class="bg-primary text-on-primary p-space-md rounded-xl flex flex-col justify-between shadow-md">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary-fixed">Tier 4: Carreta / Bitrem</span>
+<span class="bg-primary-container px-space-xs py-0.5 rounded text-on-primary font-label-sm text-label-sm font-bold">&gt; 28 PBR (24t+)</span>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-white">26% OFF</div>
+<p class="font-body-sm text-body-sm text-primary-fixed mt-1">Direto de Fábrica: <span class="font-bold text-white">R$ 54,60 / un</span></p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-primary-fixed font-label-sm text-label-sm">
+<span>Desova Instantânea</span>
+<span class="text-secondary-fixed font-bold">Faturamento D+0</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SEÇÃO DE LOTES EM OFERTA DIRETA & CAMPANHAS ATIVAS -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-lg">
+<!-- FILTROS & HEADER TABELA -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-md">
+<div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Lotes Industriais em Oferta Direta</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">24 lotes disponíveis para compra fracionada ou lote fechado com liquidação imediata</p>
+</div>
+<!-- ABAS / FILTROS RÁPIDOS -->
+<div class="flex flex-wrap items-center gap-space-xs bg-surface-container p-1 rounded-lg">
+<button class="px-space-sm py-1 rounded bg-surface-container-lowest text-primary font-bold text-label-md font-label-md shadow-sm" type="button">
+          Todas as Campanhas (24)
+        </button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md" type="button">
+          Excesso de Moagem (8)
+        </button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md" type="button">
+          Vencimento 60-90d (6)
+        </button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md" type="button">
+          Troca Embalagem (5)
+        </button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-md text-label-md" type="button">
+          Descontinuados (5)
+        </button>
+</div>
+</div>
+<!-- TABELA DENSA DE PRODUTOS/LOTES -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-low text-on-surface-variant uppercase font-label-sm text-label-sm">
+<tr>
+<th class="p-space-sm">SKU / Lote Fabril</th>
+<th class="p-space-sm">Motivo Liquidação</th>
+<th class="p-space-sm">Volume Disponível</th>
+<th class="p-space-sm">Preço Tabela vs Direto</th>
+<th class="p-space-sm">Pedido Mínimo</th>
+<th class="p-space-sm">Validade / Shelf Life</th>
+<th class="p-space-sm">Status</th>
+<th class="p-space-sm text-right">Ações Rápidas</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<!-- Item 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="p-space-sm">
+<div class="flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded object-cover shrink-0 bg-surface-container" data-alt="Industrial 25kg paper sacks of refined wheat flour stacked neatly in a modern clean warehouse with high contrast industrial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkaeCK7pdX2KAY56qdQDtdvRFNa0qb24u5B8CGdZvfXOtSbFxLIJVpYAktaFUmWZowEtH6worXryJy-lrZ6R_CTia9M7a-qOXh-2q8Bl8FPAaIZwm119kagfRcSUpPFXJSQzGgLAbQEWI76a-zJNURlR6P7K0CztGLGtM8h8ajz2HsU-KgaFiWL1BUpW_7kxTfcPXNtLP8WdT9DicDYhAwA3wKcGC6kgoFcuCRISRL"/>
+<div class="min-w-0">
+<div class="font-label-lg text-label-lg font-bold text-on-surface truncate">Farinha de Trigo Especial Panificação Tipo 1 - 25kg</div>
+<div class="font-body-sm text-body-sm text-outline">EAN: 7891234567812 • DUN: 17891234567819</div>
+<span class="inline-block font-label-sm text-label-sm text-primary font-bold">Moinho Santa Rita Linha Profissional</span>
+</div>
+</div>
+</td>
+<td class="p-space-sm">
+<span class="inline-flex items-center gap-1 bg-surface-container-high px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Excesso de Moagem
+              </span>
+</td>
+<td class="p-space-sm">
+<div class="font-bold text-on-surface">20 Paletes PBR</div>
+<div class="text-outline font-label-sm text-label-sm">800 Sacos (20 Toneladas)</div>
+</td>
+<td class="p-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="line-through text-outline font-body-sm text-body-sm">R$ 82,00</span>
+<span class="font-bold text-secondary text-label-lg font-label-lg">R$ 64,00</span>
+</div>
+<span class="inline-flex items-center text-secondary font-label-sm text-label-sm font-bold">
+                -22% Economia
+              </span>
+</td>
+<td class="p-space-sm">
+<div class="font-bold text-on-surface">Mínimo 2 Paletes</div>
+<div class="font-label-sm text-label-sm text-outline">FOB CD Araraquara/SP</div>
+</td>
+<td class="p-space-sm">
+<div class="w-32">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="font-bold text-on-surface">184 dias</span>
+<span class="text-outline">15/10/2026</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4 rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="p-space-sm">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span> Ativa no Portal
+              </span>
+</td>
+<td class="p-space-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-primary" title="Editar Preços" type="button">
+<span class="material-symbols-outlined text-body-md">edit</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-error" title="Pausar Oferta" type="button">
+<span class="material-symbols-outlined text-body-md">pause</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-primary" title="Converter em Leilão Relâmpago" type="button">
+<span class="material-symbols-outlined text-body-md">gavel</span>
+</button>
+<button class="p-1 bg-secondary text-on-secondary rounded hover:bg-on-secondary-container transition-colors" title="Gerar Link WhatsApp B2B" type="button">
+<span class="material-symbols-outlined text-body-md">share</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="p-space-sm">
+<div class="flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded object-cover shrink-0 bg-surface-container" data-alt="Industrial baking cake chocolate pre-mix retail cartons in corrugated shipping master cases on wooden pallet warehouse setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCek8BIASo2TCkTbNVRUh3OUTaVYVHL1-af6RcyfOzRP20Dwqofakc9gQSJ0b_0L3XSbq3dlG-cYy8J8rviMu-csGgMseQOOeJ58qBHNpBV2D5xjihc8s52rL8BisxfDOOptJ0mGLInSFNFFeBOVBXgIFRsM0jBbiq8rspqR4NQWvz2HP5DDDrXpaHNx4kzljCUJYYjMM4MZO-K_X8DRbDqqvKewtpX36oIDOC18QbS"/>
+<div class="min-w-0">
+<div class="font-label-lg text-label-lg font-bold text-on-surface truncate">Mistura Pronta para Bolo Chocolate Cremoso 5kg (Cx c/ 4)</div>
+<div class="font-body-sm text-body-sm text-outline">EAN: 7891234567990 • DUN: 17891234567997</div>
+<span class="inline-block font-label-sm text-label-sm text-primary font-bold">Linha Confeitaria Chef Pan</span>
+</div>
+</div>
+</td>
+<td class="p-space-sm">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Vencimento Curto (72d)
+              </span>
+</td>
+<td class="p-space-sm">
+<div class="font-bold text-on-surface">12 Paletes PBR</div>
+<div class="text-outline font-label-sm text-label-sm">480 Caixas Master</div>
+</td>
+<td class="p-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="line-through text-outline font-body-sm text-body-sm">R$ 96,00</span>
+<span class="font-bold text-secondary text-label-lg font-label-lg">R$ 58,00</span>
+</div>
+<span class="inline-flex items-center text-secondary font-label-sm text-label-sm font-bold">
+                -39.5% Queima
+              </span>
+</td>
+<td class="p-space-sm">
+<div class="font-bold text-on-surface">Mínimo 1 Palete</div>
+<div class="font-label-sm text-label-sm text-outline">FOB CD Cambé/PR</div>
+</td>
+<td class="p-space-sm">
+<div class="w-32">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="font-bold text-error">72 dias</span>
+<span class="text-outline">24/06/2026</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-error w-1/4 rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="p-space-sm">
+<span class="inline-flex items-center gap-1 bg-tertiary-fixed text-on-tertiary-fixed px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-body-sm">warning</span> Esgotando (Últimos 3)
+              </span>
+</td>
+<td class="p-space-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-primary" title="Editar Preços" type="button">
+<span class="material-symbols-outlined text-body-md">edit</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-error" title="Pausar Oferta" type="button">
+<span class="material-symbols-outlined text-body-md">pause</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-primary" title="Converter em Leilão Relâmpago" type="button">
+<span class="material-symbols-outlined text-body-md">gavel</span>
+</button>
+<button class="p-1 bg-secondary text-on-secondary rounded hover:bg-on-secondary-container transition-colors" title="Gerar Link WhatsApp B2B" type="button">
+<span class="material-symbols-outlined text-body-md">share</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Item 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="p-space-sm">
+<div class="flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded object-cover shrink-0 bg-surface-container" data-alt="Durum wheat semolina sacks packaged on pallets in a high-tech grain silo facility clean bright ambient light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWcFNSd4PcpCrdLXu0yh9naTHwPNDqUdcGtzZPzTXPcll6GZlQbhmY2U6luxPoi17Kwfc0Er9e-tFeWkwOV2iYgdv2EgUYQxGg4Be7uWjIJxYqHreyHEitfWvHaCK1JQb1VJd-joB-XNY3BXq7TEuuvmiHbYeu0oC_7YV_-vHSkRz068XywjxQa5Gbo7_M5qykFWmq-wiflIZj7UDricYKnevIuFYNgznQYEI6i5Sm"/>
+<div class="min-w-0">
+<div class="font-label-lg text-label-lg font-bold text-on-surface truncate">Sêmola de Trigo Durum Granulação Grossa - Sacaria 50kg</div>
+<div class="font-body-sm text-body-sm text-outline">EAN: 7891234568112 • DUN: 17891234568119</div>
+<span class="inline-block font-label-sm text-label-sm text-primary font-bold">Moinho Santa Rita Premium</span>
+</div>
+</div>
+</td>
+<td class="p-space-sm">
+<span class="inline-flex items-center gap-1 bg-primary-fixed text-on-primary-fixed px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Troca de Rotulagem
+              </span>
+</td>
+<td class="p-space-sm">
+<div class="font-bold text-on-surface">32 Paletes PBR</div>
+<div class="text-outline font-label-sm text-label-sm">640 Sacos (32 Toneladas)</div>
+</td>
+<td class="p-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="line-through text-outline font-body-sm text-body-sm">R$ 175,00</span>
+<span class="font-bold text-secondary text-label-lg font-label-lg">R$ 142,00</span>
+</div>
+<span class="inline-flex items-center text-secondary font-label-sm text-label-sm font-bold">
+                -18.8% Troca Selo
+              </span>
+</td>
+<td class="p-space-sm">
+<div class="font-bold text-on-surface">Mínimo 4 Paletes</div>
+<div class="font-label-sm text-label-sm text-outline">FOB CD Ponta Grossa/PR</div>
+</td>
+<td class="p-space-sm">
+<div class="w-32">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="font-bold text-on-surface">210 dias</span>
+<span class="text-outline">10/11/2026</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-5/6 rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="p-space-sm">
+<span class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span> Ativa no Portal
+              </span>
+</td>
+<td class="p-space-sm text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-primary" title="Editar Preços" type="button">
+<span class="material-symbols-outlined text-body-md">edit</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-error" title="Pausar Oferta" type="button">
+<span class="material-symbols-outlined text-body-md">pause</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant hover:text-primary" title="Converter em Leilão Relâmpago" type="button">
+<span class="material-symbols-outlined text-body-md">gavel</span>
+</button>
+<button class="p-1 bg-secondary text-on-secondary rounded hover:bg-on-secondary-container transition-colors" title="Gerar Link WhatsApp B2B" type="button">
+<span class="material-symbols-outlined text-body-md">share</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- PAGINAÇÃO E SUMÁRIO DA TABELA -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-md border-t border-surface-container-high mt-space-sm">
+<span class="font-body-sm text-body-sm text-outline">
+        Mostrando 3 de 24 lotes configurados em venda direta
+      </span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded bg-surface-container text-outline hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-body-md">chevron_left</span>
+</button>
+<span class="px-2 py-0.5 bg-primary text-on-primary rounded font-label-sm text-label-sm font-bold">1</span>
+<button class="px-2 py-0.5 rounded text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm" type="button">2</button>
+<button class="px-2 py-0.5 rounded text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm" type="button">3</button>
+<button class="p-1 rounded bg-surface-container text-outline hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-body-md">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- COCKPIT DE PEDIDOS DIRETOS RECEBIDOS -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-md border-b border-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md">receipt_long</span>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">
+            Cockpit de Pedidos Diretos Recebidos
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Aguardando aprovação de crédito, liquidação SPB ou faturamento para expedição</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 bg-surface-container-high text-on-surface px-space-sm py-1 rounded-full font-label-sm text-label-sm font-bold">
+        3 Pedidos Requerem Ação Imediata
+      </span>
+</div>
+<!-- CARDS DE PEDIDOS -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md mt-space-md">
+<!-- Pedido 1 -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between hover:shadow-sm transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">#VD-2026-891</span>
+<span class="bg-secondary-container text-on-secondary-container px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">
+              D+0 Liquidado
+            </span>
+</div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Atacadão Central S/A</div>
+<div class="font-body-sm text-body-sm text-outline mt-0.5">CNPJ: 45.123.890/0001-44 • Limite Aprovado</div>
+<div class="mt-space-sm pt-space-xs border-t border-surface-container-high">
+<div class="font-body-sm text-body-sm text-on-surface">14 Paletes Farinha Panificação (14t)</div>
+<div class="font-headline-sm font-extrabold text-secondary mt-1">R$ 51.200,00</div>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold mb-space-xs">
+<span class="material-symbols-outlined text-body-sm">check_circle</span>
+            Pagamento Pix Escrow Confirmado
+          </div>
+<button class="w-full bg-secondary hover:bg-on-secondary-container text-on-secondary py-2 rounded-lg font-label-md text-label-md font-bold transition-colors flex items-center justify-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-md">lock_open</span>
+            Liberar Ordem de Coleta / Doca
+          </button>
+</div>
+</div>
+<!-- Pedido 2 -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between hover:shadow-sm transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">#VD-2026-892</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">
+              SPB Pendente
+            </span>
+</div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Supermercados Roldão S/A</div>
+<div class="font-body-sm text-body-sm text-outline mt-0.5">CNPJ: 58.987.123/0002-18 • Cadastro Validado</div>
+<div class="mt-space-sm pt-space-xs border-t border-surface-container-high">
+<div class="font-body-sm text-body-sm text-on-surface">8 Paletes Mistura Bolo Chocolate (480 cxs)</div>
+<div class="font-headline-sm font-extrabold text-on-surface mt-1">R$ 33.600,00</div>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-center gap-1 text-outline font-label-sm text-label-sm mb-space-xs">
+<span class="material-symbols-outlined text-body-sm text-error">timer</span>
+            Aguardando TED SPB (Prazo restante: 1h 42m)
+          </div>
+<div class="flex gap-space-xs">
+<button class="flex-1 bg-surface-container-high hover:bg-surface-container-highest text-on-surface py-2 rounded-lg font-label-md text-label-md font-bold transition-colors" type="button">
+              Notificar Comprador
+            </button>
+<button class="p-2 bg-surface-container-high hover:bg-error-container text-error rounded-lg" type="button">
+<span class="material-symbols-outlined text-body-md">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pedido 3 -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between hover:shadow-sm transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">#VD-2026-893</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold">
+              Carreta Fechada
+            </span>
+</div>
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Rede Nordeste Atacarejo Ltda</div>
+<div class="font-body-sm text-body-sm text-outline mt-0.5">CNPJ: 12.345.678/0004-90 • Frete FOB Agendado</div>
+<div class="mt-space-sm pt-space-xs border-t border-surface-container-high">
+<div class="font-body-sm text-body-sm text-on-surface">28 Paletes Sêmola Durum PanMais (28t)</div>
+<div class="font-headline-sm font-extrabold text-secondary mt-1">R$ 112.000,00</div>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-center gap-1 text-primary font-label-sm text-label-sm font-bold mb-space-xs">
+<span class="material-symbols-outlined text-body-sm">forklift</span>
+            Carga Alocada Doca 02 • Caminhão na Portaria
+          </div>
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary py-2 rounded-lg font-label-md text-label-md font-bold transition-colors flex items-center justify-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-md">description</span>
+            Transmitir SEFAZ &amp; Emitir NF-e
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- RODAPÉ TÉCNICO DE COMPLIANCE COMERCIAL -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-md">gavel</span>
+<span>
+        Conformidade estrita com a <strong>Portaria MAPA / SIF nº 2041</strong> e <strong>Resolução CADE nº 09/2021</strong> sobre práticas comerciais transparentes. Liquidação fiduciária regulada pelo <strong>Banco Central do Brasil</strong>.
+      </span>
+</div>
+<div class="flex items-center gap-space-md shrink-0 font-label-sm text-label-sm font-bold text-outline uppercase tracking-wider">
+<span>Audit Trail Ativo</span>
+<span>•</span>
+<span>Chave Criptográfica HMAC-256</span>
+</div>
+</div>
+</div></main></div></body></html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-lowest":"#ffffff","on-secondary":"#ffffff","error":"#ba1a1a","primary-fixed":"#d9e2ff","on-error-container":"#93000a","tertiary-container":"#9d0011","on-error":"#ffffff","secondary-fixed":"#a3f69c","on-primary-fixed":"#001945","secondary":"#1b6d24","background":"#f7f9fb","on-tertiary-fixed":"#410003","outline":"#737783","surface-container":"#eceef0","primary-container":"#0d47a1","surface-container-high":"#e6e8ea","tertiary-fixed":"#ffdad6","on-secondary-container":"#217128","on-tertiary":"#ffffff","tertiary":"#720009","surface":"#f7f9fb","on-secondary-fixed":"#002204","surface-bright":"#f7f9fb","inverse-surface":"#2d3133","error-container":"#ffdad6","on-tertiary-fixed-variant":"#930010","secondary-fixed-dim":"#88d982","surface-dim":"#d8dadc","primary-fixed-dim":"#b0c6ff","secondary-container":"#a0f399","on-primary-fixed-variant":"#00429c","tertiary-fixed-dim":"#ffb3ac","surface-container-highest":"#e0e3e5","inverse-primary":"#b0c6ff","on-surface-variant":"#434652","primary":"#003178","surface-tint":"#2b5bb5","on-tertiary-container":"#ffa59d","surface-container-low":"#f2f4f6","on-primary-container":"#a1bbff","outline-variant":"#c3c6d4","on-secondary-fixed-variant":"#005312","on-surface":"#191c1e","on-background":"#191c1e","surface-variant":"#e0e3e5","inverse-on-surface":"#eff1f3","on-primary":"#ffffff"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"margin-mobile":"1rem","space-md":"0.75rem","gutter":"1rem","space-sm":"0.5rem","space-xl":"2rem","space-xs":"0.25rem","space-lg":"1.25rem","margin":"1.5rem","gutter-mobile":"0.75rem"},fontFamily:{"headline-lg-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"]},fontSize:{"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 bottom-10 w-72 bg-surface-container-low z-40 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="p-space-lg"><div class="flex items-center gap-space-sm pb-space-lg"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[20px]">hub</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary leading-none">Varejista WMS</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">B2B Wholesale Hub</span></div></div><nav class="flex flex-col gap-space-lg" data-active-classes="bg-primary text-on-primary font-label-md rounded-lg"><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Operacional</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Visão Geral</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="scanner-optico-barcode-wms" href="#"><span class="material-symbols-outlined text-[18px]">barcode_scanner</span><span>Scanner Óptico / Barcode</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="mapa-3d-galpao-ativo" href="#"><span class="material-symbols-outlined text-[18px]">view_in_ar</span><span>Mapa 3D Galpão Ativo</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="putaway-movimentacao" href="#"><span class="material-symbols-outlined text-[18px]">move_to_inbox</span><span>Putaway &amp; Movimentação</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Catálogo &amp; Estoque</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="produtos-lotes" href="#"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span>Produtos &amp; Lotes</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="homologacao-gs1" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span>Homologação GS1</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="armazens-cds" href="#"><span class="material-symbols-outlined text-[18px]">warehouse</span><span>Armazéns &amp; CDs</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="etiquetas-gs1-128-zpl" href="#"><span class="material-symbols-outlined text-[18px]">label</span><span>Etiquetas GS1-128 &amp; ZPL</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Operação Comercial</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="criar-pregao-leilao" href="#"><span class="material-symbols-outlined text-[18px]">gavel</span><span>Criar Pregão / Leilão</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="central-lances-ao-vivo" href="#"><span class="material-symbols-outlined text-[18px]">sensors</span><span>Central de Lances ao Vivo</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Logística &amp; Controladoria</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="expedicao-docas" href="#"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span>Expedição &amp; Docas</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="gestao-financeira-escrow" href="#"><span class="material-symbols-outlined text-[18px]">account_balance_wallet</span><span>Gestão Financeira Escrow</span></a></div></nav></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-30 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-xl"><span class="material-symbols-outlined text-primary text-[20px]">location_city</span><div class="flex flex-col"><span class="font-label-sm text-label-sm uppercase text-outline leading-tight">Centro de Distribuição</span><span class="font-label-md text-label-md font-bold text-on-surface leading-tight">CD Campinas / SP (CD-01)</span></div><span class="material-symbols-outlined text-on-surface-variant text-[18px] ml-space-xs">expand_more</span></div><div class="hidden xl:flex items-center gap-space-sm bg-secondary-fixed/30 px-space-md py-space-xs rounded-xl"><span class="material-symbols-outlined text-secondary text-[20px]">shield</span><div class="flex flex-col"><span class="font-label-sm text-label-sm uppercase text-secondary font-bold leading-tight">Escrow Fiduciário Ativo</span><span class="font-label-md text-label-md font-bold text-on-surface leading-tight">R$ 4.892.450,00</span></div></div></div><div class="flex items-center gap-space-lg"><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[24px]">notifications</span><span class="absolute top-0 right-0 w-4 h-4 bg-tertiary text-on-tertiary rounded-full font-label-sm text-label-sm flex items-center justify-center leading-none">3</span></button><div class="flex items-center gap-space-md pl-space-md"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Carlos Mendonça</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Operador Logístico WMS Senior</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="w-full pt-16 pb-12 px-space-xl bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Navigation & Spatial Header -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="hover:text-primary cursor-pointer transition-colors">Portal Distribuidor</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">WMS &amp; Operação</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Mapa 3D Galpão 02 (Digital Twin WMS)</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-md">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          Digital Twin 3D • Galpão 02 - Matriz de Endereçamento &amp; Telemetria
+        </h1>
+<div class="flex items-center gap-space-xs bg-secondary/10 px-space-sm py-space-xs rounded-full">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-bold text-secondary uppercase tracking-wider">
+            Telemetria IoT em Tempo Real • 8 Sensores Ativos • Latência 8ms
+          </span>
+</div>
+</div>
+</div>
+<!-- View Mode Switches & Actions -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-high p-space-xs rounded-xl shadow-inner">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm transition-all" id="btn-iso-view" type="button">
+<span class="material-symbols-outlined text-[18px]">view_in_ar</span>
+<span>Vista Isométrica 3D</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md rounded-lg transition-all" id="btn-2d-view" type="button">
+<span class="material-symbols-outlined text-[18px]">floor</span>
+<span>Planta Baixa (2D)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md rounded-lg transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">view_column</span>
+<span>Corte Frontal Ruas</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md rounded-lg transition-all" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary">heat_pump</span>
+<span>Heatmap de Giro FEFO</span>
+</button>
+</div>
+<button class="flex items-center gap-space-xs bg-primary-container text-on-primary px-space-md py-space-sm rounded-xl font-label-md text-label-md shadow-sm hover:brightness-110 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">sensors_krx</span>
+<span>+ Conectar Beacon/Sensor</span>
+</button>
+</div>
+</div>
+<!-- Cockpit de Indicadores Rápidos -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-space-md mb-space-lg">
+<!-- Taxa de Ocupação Global -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Taxa Ocupação Global</span>
+<span class="material-symbols-outlined text-primary text-[20px]">warehouse</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-xs">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">78.4%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3.292 / 4.200</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 78.4%;"></div>
+</div>
+</div>
+<!-- Paletes em Movimentação -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Paletes em Trânsito</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">swap_driving_apps_wheel</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">6 <span class="font-label-md text-label-md text-on-surface-variant font-normal">PBR</span></span>
+<span class="bg-secondary/10 text-secondary font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold">3 Trilaterais</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Fluxo regular sem estrangulamento</span>
+</div>
+</div>
+<!-- Posições Livres no Pulmão -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Posições Livres Pulmão</span>
+<span class="material-symbols-outlined text-outline text-[20px]">check_box_outline_blank</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">908</span>
+<span class="text-secondary font-label-sm text-label-sm font-bold">21.6% Vagas</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span>Prédios 10 a 16 com maior folga</span>
+</div>
+</div>
+<!-- Temperatura & Umidade IoT -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Clima Galpão 02 (IoT)</span>
+<span class="material-symbols-outlined text-primary text-[20px]">device_thermostat</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">20.1°C</span>
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">UR 54%</span>
+</div>
+<div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Ambiente ideal p/ óleos e grãos</span>
+</div>
+</div>
+<!-- Alerta FEFO Crítico -->
+<div class="bg-tertiary-fixed/30 p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute right-0 top-0 w-16 h-16 bg-tertiary/10 rounded-bl-full pointer-events-none"></div>
+<div class="flex items-center justify-between text-on-tertiary-fixed-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Alerta FEFO Crítico</span>
+<span class="material-symbols-outlined text-tertiary text-[20px] animate-bounce">warning</span>
+</div>
+<div class="flex items-baseline justify-between mb-space-xs">
+<span class="font-headline-xl text-headline-xl text-tertiary font-bold">1 Lote</span>
+<span class="bg-tertiary text-on-tertiary font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold">&lt; 20 dias</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span>Rua 04 • Prédio 08 • N02</span>
+</div>
+</div>
+</div>
+<!-- Main Viewport Section (Isometric 3D Digital Twin + Floating Drawer) -->
+<div class="relative w-full grid grid-cols-1 xl:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- 3D Canvas Container (8 or 9 cols on desktop) -->
+<div class="xl:col-span-8 2xl:col-span-9 bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col relative overflow-hidden min-h-[660px]">
+<!-- Top Overlay Controls: Legend and Mini-controls -->
+<div class="flex flex-wrap items-center justify-between gap-space-md z-10 mb-space-sm bg-surface-container-low/80 backdrop-blur-md p-space-sm rounded-lg shadow-sm">
+<div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded bg-secondary"></span>
+<span class="text-on-surface">FEFO &gt; 180d</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded bg-primary"></span>
+<span class="text-on-surface">Lote Ativo Café Aliança</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded bg-amber-500"></span>
+<span class="text-on-surface">Giro Médio (60-90d)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded bg-tertiary animate-pulse"></span>
+<span class="text-tertiary font-bold">FEFO Crítico (&lt;20d)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded border border-dashed border-outline bg-surface-container"></span>
+<span class="text-on-surface-variant">Posição Vaga</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="p-1 hover:bg-surface-container-high rounded text-on-surface-variant hover:text-on-surface transition-colors" title="Zoom In" type="button">
+<span class="material-symbols-outlined text-[20px]">zoom_in</span>
+</button>
+<button class="p-1 hover:bg-surface-container-high rounded text-on-surface-variant hover:text-on-surface transition-colors" title="Zoom Out" type="button">
+<span class="material-symbols-outlined text-[20px]">zoom_out</span>
+</button>
+<button class="p-1 hover:bg-surface-container-high rounded text-on-surface-variant hover:text-on-surface transition-colors" title="Rotacionar Vista" type="button">
+<span class="material-symbols-outlined text-[20px]">rotate_right</span>
+</button>
+<div class="h-4 w-px bg-outline-variant mx-1"></div>
+<button class="flex items-center gap-1 text-primary hover:bg-primary-fixed/20 px-space-xs py-0.5 rounded font-label-sm text-label-sm font-bold" type="button">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+<span>CFTV</span>
+</button>
+</div>
+</div>
+<!-- Isometric 3D SVG Warehouse Floor -->
+<div class="relative flex-1 w-full h-full min-h-[580px] bg-gradient-to-b from-surface-container-low/60 to-surface-container/40 rounded-lg overflow-hidden flex items-center justify-center p-space-sm select-none" id="warehouse-viewport">
+<!-- Interactive Isometric SVG Graphic -->
+<svg class="w-full h-full object-contain filter drop-shadow-md" viewbox="0 0 1100 640">
+<defs>
+<!-- Rack Metal Gradients -->
+<lineargradient id="rackBlue" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#0d47a1"></stop>
+<stop offset="100%" stop-color="#002171"></stop>
+</lineargradient>
+<lineargradient id="rackOrange" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ff9800"></stop>
+<stop offset="100%" stop-color="#e65100"></stop>
+</lineargradient>
+<!-- Pallet Colors -->
+<lineargradient id="palletWood" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#d7ccc8"></stop>
+<stop offset="100%" stop-color="#a1887f"></stop>
+</lineargradient>
+<filter height="140%" id="glowRoute" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="glow" stddeviation="3"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="glow" operator="over"></fecomposite>
+</filter>
+</defs>
+<!-- Warehouse Concrete Floor Base Polygon (Isometric diamond grid) -->
+<polygon fill="#f1f3f5" points="550,40 1060,280 550,580 40,340" stroke="#cbd5e1" stroke-width="2"></polygon>
+<!-- Floor Demarcations: Main Corridor Lines -->
+<!-- Cross-corridor (North to South axis) -->
+<polyline points="295,190 805,430" stroke="#fbc02d" stroke-dasharray="8 6" stroke-width="2.5"></polyline>
+<!-- Central Aisle (West to East axis) -->
+<polyline points="550,90 550,530" stroke="#fbc02d" stroke-dasharray="10 8" stroke-width="3"></polyline>
+<!-- DOCA 02 STAGING AREA (Left Corner) -->
+<g class="cursor-pointer group" id="staging-doca-02">
+<polygon fill="#e2e8f0" points="120,260 260,200 360,250 220,310" stroke="#94a3b8" stroke-dasharray="4 4" stroke-width="1.5"></polygon>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" text-anchor="middle" x="225" y="245">DOCA 02 • STAGING ENTRADA</text>
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="9" text-anchor="middle" x="225" y="260">Carreta Aliança S/A (Descarregada)</text>
+<!-- Paletes no Chão Doca 02 -->
+<polygon fill="#b0bec5" points="170,240 190,230 210,240 190,250" stroke="#78909c"></polygon>
+<polygon fill="#78909c" points="170,240 190,250 190,260 170,250"></polygon>
+<polygon fill="#546e7a" points="210,240 190,250 190,260 210,250"></polygon>
+<polygon fill="#1b6d24" points="215,220 235,210 255,220 235,230" stroke="#004d40"></polygon>
+<polygon fill="#004d40" points="215,220 235,230 235,240 215,230"></polygon>
+<polygon fill="#00332c" points="255,220 235,230 235,240 255,230"></polygon>
+</g>
+<!-- RUA 01 (Upper Left Rack Block) -->
+<g class="cursor-pointer" id="rack-rua-01">
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" x="350" y="115">RUA 01</text>
+<!-- 5 Rack levels isometric block -->
+<polygon fill="#1b6d24" points="340,125 410,95 440,110 370,140"></polygon>
+<polygon fill="#14521b" points="340,125 370,140 370,185 340,170"></polygon>
+<polygon fill="#0c3811" points="440,110 370,140 370,185 440,155"></polygon>
+<!-- Inner level lines -->
+<line stroke="#f8fafc" stroke-width="1" x1="340" x2="370" y1="140" y2="155"></line>
+<line stroke="#f8fafc" stroke-width="1" x1="370" x2="440" y1="155" y2="125"></line>
+<line stroke="#f8fafc" stroke-width="1" x1="340" x2="370" y1="155" y2="170"></line>
+<line stroke="#f8fafc" stroke-width="1" x1="370" x2="440" y1="170" y2="140"></line>
+</g>
+<!-- RUA 02 (Middle Left Rack Block) with EMP-02 Working -->
+<g class="cursor-pointer" id="rack-rua-02">
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" x="420" y="160">RUA 02</text>
+<polygon fill="#ff9800" points="410,170 480,140 510,155 440,185"></polygon>
+<polygon fill="#e65100" points="410,170 440,185 440,230 410,215"></polygon>
+<polygon fill="#b23c00" points="510,155 440,185 440,230 510,200"></polygon>
+<!-- EMP-02 Marker -->
+<circle cx="495" cy="225" fill="#0d47a1" r="10" stroke="#ffffff" stroke-width="2"></circle>
+<text fill="#ffffff" font-family="Plus Jakarta Sans" font-size="7" font-weight="bold" text-anchor="middle" x="495" y="228">E02</text>
+</g>
+<!-- RUA 03 (Lower Left Rack Block) -->
+<g class="cursor-pointer" id="rack-rua-03">
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" x="490" y="200">RUA 03</text>
+<polygon fill="#1b6d24" points="480,210 550,180 580,195 510,225"></polygon>
+<polygon fill="#14521b" points="480,210 510,225 510,270 480,255"></polygon>
+<polygon fill="#0c3811" points="580,195 510,225 510,270 580,240"></polygon>
+</g>
+<!-- RUA 04 (HIGHLIGHTED / CRITICAL FOCUS AREA) -->
+<g class="cursor-pointer group" id="rack-rua-04">
+<text fill="#003178" font-family="Plus Jakarta Sans" font-size="13" font-weight="800" x="630" y="255">RUA 04 ★</text>
+<!-- Predio 08 with FEFO Alert (Red) -->
+<polygon fill="#ba1a1a" points="590,270 650,245 680,260 620,285"></polygon>
+<polygon fill="#93000a" points="590,270 620,285 620,335 590,320"></polygon>
+<polygon fill="#680005" points="680,260 620,285 620,335 680,310"></polygon>
+<!-- Pulsing Warning Ping over Predio 08 -->
+<circle class="animate-ping" cx="635" cy="285" fill="#ffdad6" r="7" stroke="#ba1a1a" stroke-width="2"></circle>
+<circle cx="635" cy="285" fill="#ba1a1a" r="5"></circle>
+<!-- Predio 12 (Target Destination for Active Coffee Lot - Selected Posição G02-R04-P12-N03) -->
+<polygon fill="#0d47a1" points="660,300 730,270 760,285 690,315" stroke="#3b82f6" stroke-width="1.5"></polygon>
+<polygon fill="#002171" points="660,300 690,315 690,365 660,350" stroke="#3b82f6" stroke-width="1"></polygon>
+<polygon fill="#001445" points="760,285 690,315 690,365 760,335" stroke="#3b82f6" stroke-width="1"></polygon>
+<!-- Targeted Cell Level Highlight (Nivel 03) -->
+<polygon fill="#a1bbff" opacity="0.85" points="675,320 705,307 735,320 705,333"></polygon>
+<!-- Pin Marker on Selected Position -->
+<g transform="translate(705, 290)">
+<polygon fill="#003178" points="0,0 -8,-16 8,-16"></polygon>
+<circle cx="0" cy="-16" fill="#003178" r="10" stroke="#ffffff" stroke-width="2"></circle>
+<text fill="#ffffff" font-family="Plus Jakarta Sans" font-size="8" font-weight="800" text-anchor="middle" x="0" y="-13">P12</text>
+</g>
+</g>
+<!-- RUA 05 & RUA 06 (Right/East Warehouse Section) -->
+<g class="cursor-pointer" id="rack-rua-05">
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" x="760" y="315">RUA 05</text>
+<polygon fill="#1b6d24" points="740,325 805,298 835,312 770,340"></polygon>
+<polygon fill="#14521b" points="740,325 770,340 770,385 740,370"></polygon>
+<polygon fill="#0c3811" points="835,312 770,340 770,385 835,355"></polygon>
+</g>
+<g class="cursor-pointer" id="rack-rua-06">
+<text fill="#64748b" font-family="Plus Jakarta Sans" font-size="11" font-weight="800" x="835" y="360">RUA 06</text>
+<polygon fill="#e2e8f0" points="815,370 880,342 910,356 845,385" stroke="#cbd5e1" stroke-dasharray="4 2"></polygon>
+<polygon fill="#cbd5e1" points="815,370 845,385 845,430 815,415"></polygon>
+<polygon fill="#94a3b8" points="910,356 845,385 845,430 910,400"></polygon>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9" font-weight="bold" text-anchor="middle" x="860" y="390">Vagas Livres</text>
+</g>
+<!-- AGV & Forklift Route: Doca 02 -> Rua 04 / P12 (Active Route) -->
+<path class="animate-pulse" d="M 235 240 L 400 315 L 560 385 L 670 335 L 705 315" fill="none" filter="url(#glowRoute)" stroke="#0d47a1" stroke-dasharray="6 4" stroke-width="3"></path>
+<!-- Dynamic Vehicle Marker EMP-05 (Trilateral Roberto Souza) on the way to P12 -->
+<g class="cursor-pointer" transform="translate(560, 385)">
+<!-- Shadow -->
+<ellipse cx="0" cy="8" fill="#000000" opacity="0.25" rx="18" ry="7"></ellipse>
+<!-- Vehicle Box Isometric Mockup -->
+<polygon fill="#003178" points="-12,-8 4,-16 16,-8 0,0" stroke="#ffffff" stroke-width="1.5"></polygon>
+<polygon fill="#002171" points="-12,-8 0,0 0,10 -12,2"></polygon>
+<polygon fill="#001445" points="16,-8 0,0 0,10 16,2"></polygon>
+<!-- Operator Badge / Status -->
+<rect fill="#003178" height="18" rx="4" stroke="#ffffff" stroke-width="1" width="70" x="-35" y="-38"></rect>
+<text fill="#ffffff" font-family="Plus Jakarta Sans" font-size="8.5" font-weight="bold" text-anchor="middle" x="0" y="-26">EMP-05 (92%)</text>
+<circle cx="28" cy="-29" fill="#22c55e" r="3"></circle>
+</g>
+<!-- Transpaleteira TP-01 in Cross-Docking direction Doca 08 -->
+<g class="cursor-pointer" transform="translate(360, 430)">
+<ellipse cx="0" cy="5" fill="#000000" opacity="0.2" rx="12" ry="5"></ellipse>
+<polygon fill="#ff9800" points="-8,-5 2,-10 10,-5 0,0" stroke="#ffffff" stroke-width="1"></polygon>
+<polygon fill="#e65100" points="-8,-5 0,0 0,6 -8,1"></polygon>
+<polygon fill="#b23c00" points="10,-5 0,0 0,6 10,1"></polygon>
+<rect fill="#ffffff" height="14" rx="3" stroke="#cbd5e1" stroke-width="1" width="48" x="-24" y="-24"></rect>
+<text fill="#1e293b" font-family="Plus Jakarta Sans" font-size="7.5" font-weight="bold" text-anchor="middle" x="0" y="-14">TP-01 Auto</text>
+</g>
+<!-- Doca 08 Cross-Docking Area Indicator -->
+<g transform="translate(260, 480)">
+<polygon fill="#e2e8f0" points="0,0 90,-40 160,-5 70,35" stroke="#94a3b8" stroke-dasharray="3 3"></polygon>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="9.5" font-weight="700" text-anchor="middle" x="80" y="5">DOCA 08 (CROSS-DOCKING)</text>
+</g>
+<!-- IoT Sensor Beacons In Air (Floating Dots with coordinates) -->
+<g transform="translate(420, 100)">
+<circle cx="0" cy="0" fill="#003178" r="4"></circle>
+<circle class="animate-ping" cx="0" cy="0" fill="#003178" opacity="0.15" r="10"></circle>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="7" font-weight="bold" x="8" y="3">IOT-TH-01 (19.8°C)</text>
+</g>
+<g transform="translate(680, 230)">
+<circle cx="0" cy="0" fill="#003178" r="4"></circle>
+<circle class="animate-ping" cx="0" cy="0" fill="#003178" opacity="0.15" r="10"></circle>
+<text fill="#475569" font-family="Plus Jakarta Sans" font-size="7" font-weight="bold" x="8" y="3">IOT-TH-04 (20.3°C)</text>
+</g>
+</svg>
+<!-- Mini-Radar / Minimap Floating Top-Right Inside 3D Viewport -->
+<div class="absolute top-space-md right-space-md w-36 h-28 bg-surface-container-lowest/90 backdrop-blur-md rounded-lg shadow-md p-space-xs flex flex-col justify-between pointer-events-auto">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm font-bold border-b border-surface-container pb-0.5">
+<span>RADAR CD-02</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="relative w-full h-16 bg-surface-container rounded overflow-hidden flex items-center justify-center">
+<!-- Schematic representation -->
+<div class="w-24 h-12 border border-outline/30 rounded flex flex-col justify-around p-0.5">
+<div class="flex justify-between">
+<span class="w-2 h-2 bg-secondary rounded-xs"></span>
+<span class="w-2 h-2 bg-primary rounded-xs"></span>
+<span class="w-2 h-2 bg-outline rounded-xs"></span>
+</div>
+<div class="flex justify-between items-center">
+<span class="w-1.5 h-1.5 bg-tertiary rounded-full animate-ping"></span>
+<span class="w-2.5 h-2.5 bg-primary rounded-full border border-white"></span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-[9px]">
+<span>Azimute 42° N</span>
+<span class="text-primary font-bold">FOV 110°</span>
+</div>
+</div>
+<!-- Floating Live Telemetry Stamp in Canvas -->
+<div class="absolute bottom-space-md left-space-md bg-surface-container-lowest/85 backdrop-blur-md px-space-md py-space-xs rounded-lg shadow-sm flex items-center gap-space-md font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">wifi_tethering</span>
+<span>UWB RTLS Zebra: <strong>Alta Precisão (&lt;10cm)</strong></span>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs text-on-surface-variant">
+<span>Coordenadas de Câmera: <strong>X: 44.1 | Y: 12.8 | Z: 5.4m</strong></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Lateral Drawer: Selected Cell Detail (G02-R04-P12-N03) -->
+<div class="xl:col-span-4 2xl:col-span-3 flex flex-col gap-space-md">
+<!-- Card Detalhe da Posição Selecionada -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col justify-between h-full">
+<div class="flex flex-col gap-space-md">
+<!-- Coordinate Header & Status -->
+<div class="flex items-start justify-between pb-space-sm border-b border-surface-container">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Endereço Técnico WMS</span>
+<span class="bg-primary/10 text-primary font-label-sm text-label-sm px-space-xs rounded font-bold">Ativo</span>
+</div>
+<span class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">G02-R04-P12-N03</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Galpão 02 • Rua 04 • Prédio 12 • Nível 03</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-outline">Check-Digit</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface bg-surface-container px-space-sm py-0.5 rounded">84</span>
+</div>
+</div>
+<!-- Status da Célula Badge -->
+<div class="bg-primary-fixed/20 p-space-sm rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px] animate-spin">sync</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-primary uppercase">Reservado para Putaway em Andamento</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ordem de Serviço #PUT-2026-4491-01</span>
+</div>
+</div>
+<!-- Product Technical Block -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm font-bold text-outline uppercase tracking-wider">Produto Alocado / Lote</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface leading-tight">
+              Café Torrado &amp; Moído Aliança Tradicional 500g
+            </span>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mt-space-xs">
+<span>DUN-14: <strong>17898912340019</strong></span>
+<span>Lote: <strong>#2026-8819</strong></span>
+</div>
+</div>
+<!-- Specs Matrix (Pallet & Volume) -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-outline font-bold">Volume no Palete</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">48 Caixas</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">960 un • 618 kg bruto</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-outline font-bold">Validade FEFO</span>
+<span class="font-headline-md text-headline-md font-bold text-secondary">14/11/2026</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">210 dias úteis (Saudável)</span>
+</div>
+</div>
+<!-- SSCC Pallet Identification -->
+<div class="flex items-center justify-between bg-surface-container-low px-space-md py-space-sm rounded-lg text-on-surface font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">barcode</span>
+<span>SSCC:</span>
+</div>
+<span class="font-mono font-bold tracking-wider">3 789891234 00000042 9</span>
+</div>
+<!-- Operator In-Flight Tracking -->
+<div class="flex items-center gap-space-md p-space-sm rounded-lg bg-surface-container">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]">forklift</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Roberto Souza</span>
+<span class="bg-secondary/20 text-secondary font-label-sm text-label-sm px-space-xs rounded font-bold">Em rota (45s)</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Operando Trilateral EMP-05 (Zebra Scanner Ativo)</span>
+</div>
+</div>
+</div>
+<!-- Cell Contextual Direct Actions -->
+<div class="flex flex-col gap-space-xs pt-space-md border-t border-surface-container">
+<button class="w-full flex items-center justify-center gap-space-xs bg-primary text-on-primary py-space-sm rounded-lg font-label-md text-label-md hover:brightness-110 shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">videocam</span>
+<span>Ver Câmera CFTV da Rua 04</span>
+</button>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="flex items-center justify-center gap-space-xs bg-surface-container text-on-surface py-space-sm rounded-lg font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-tertiary">block</span>
+<span>Bloquear Manutenção</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs bg-surface-container text-on-surface py-space-sm rounded-lg font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">alt_route</span>
+<span>Reatribuir Rota</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Table: Monitoramento de Tráfego de Empilhadeiras & Equipamentos WMS -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col mb-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">local_shipping</span>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">
+            Telemetria de Frotas &amp; Tráfego WMS Ativo
+          </h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rastreamento contínuo por RTLS Beacon Ultra-Wideband (UWB)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          4 Veículos Transmitindo
+        </span>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">Equipamento</th>
+<th class="py-space-sm px-space-md">Operador</th>
+<th class="py-space-sm px-space-md">Status Operacional</th>
+<th class="py-space-sm px-space-md">Localização em Tempo Real</th>
+<th class="py-space-sm px-space-md">Bateria / Nível</th>
+<th class="py-space-sm px-space-md">Carga em Transporte</th>
+<th class="py-space-sm px-space-md text-right rounded-r-lg">Ação de Controle</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- EMP-05 (Trilateral Roberto Souza) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-bold text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">forklift</span>
+<span>EMP-05 (Trilateral)</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface">Roberto Souza</td>
+<td class="py-space-md px-space-md">
+<span class="bg-primary/10 text-primary font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold">
+                Em Trânsito (OS #PUT-4491)
+              </span>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant font-label-sm text-label-sm">
+<strong class="text-on-surface">Rua 04</strong> (Sentido Prédio 12)
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">battery_full</span>
+<span class="font-bold text-on-surface">92%</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-on-surface">
+              Palete #018 (Café Aliança)
+            </td>
+<td class="py-space-md px-space-md text-right">
+<button class="text-primary hover:text-on-primary hover:bg-primary font-label-sm text-label-sm px-space-sm py-1 rounded transition-colors font-bold" type="button">
+                Rastrear Câmera
+              </button>
+</td>
+</tr>
+<!-- EMP-02 (Trilateral Marcos Vieira) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-bold text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">forklift</span>
+<span>EMP-02 (Trilateral)</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface">Marcos Vieira</td>
+<td class="py-space-md px-space-md">
+<span class="bg-secondary/10 text-secondary font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold">
+                Em Operação
+              </span>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant font-label-sm text-label-sm">
+<strong class="text-on-surface">Rua 02</strong> (Prédio 06)
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">battery_6_bar</span>
+<span class="font-bold text-on-surface">78%</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant">
+              Palete #017 (Concluído)
+            </td>
+<td class="py-space-md px-space-md text-right">
+<button class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm px-space-sm py-1 rounded transition-colors font-bold" type="button">
+                Enviar Nova OS
+              </button>
+</td>
+</tr>
+<!-- EMP-08 (Trilateral Tiago Lima) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-bold text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">forklift</span>
+<span>EMP-08 (Trilateral)</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface">Tiago Lima</td>
+<td class="py-space-md px-space-md">
+<span class="bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold">
+                Convocada p/ Doca 02
+              </span>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant font-label-sm text-label-sm">
+<strong class="text-on-surface">Corredor Central</strong>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">battery_full</span>
+<span class="font-bold text-on-surface">84%</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-outline italic">
+              Vazio (Sem Garfo Ocupado)
+            </td>
+<td class="py-space-md px-space-md text-right">
+<button class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-sm text-label-sm px-space-sm py-1 rounded transition-colors font-bold" type="button">
+                Direcionar
+              </button>
+</td>
+</tr>
+<!-- TP-01 (Transpaleteira Autônoma) -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-bold text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-amber-600 text-[18px]">smart_toy</span>
+<span>TP-01 (Transpaleteira)</span>
+</td>
+<td class="py-space-md px-space-md font-label-md text-label-md text-on-surface">Auto / Sensor LiDAR</td>
+<td class="py-space-md px-space-md">
+<span class="bg-secondary/10 text-secondary font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold">
+                Cross-Docking Ativo
+              </span>
+</td>
+<td class="py-space-md px-space-md text-on-surface-variant font-label-sm text-label-sm">
+<strong class="text-on-surface">Doca 08</strong> (Descarga)
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">battery_charging_full</span>
+<span class="font-bold text-on-surface">95%</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-on-surface">
+              Palete #020 (Em Progresso)
+            </td>
+<td class="py-space-md px-space-md text-right">
+<button class="text-tertiary hover:bg-tertiary-fixed/30 font-label-sm text-label-sm px-space-sm py-1 rounded transition-colors font-bold" type="button">
+                Pausar Auto
+              </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Operational Footer & System Hotkeys -->
+<div class="w-full bg-surface-container-low p-space-md rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm">
+<span class="font-bold uppercase tracking-wider text-outline">Atalhos do Operador:</span>
+<div class="flex items-center gap-space-xs">
+<kbd class="px-1.5 py-0.5 bg-surface-container-highest text-on-surface rounded font-mono shadow-xs">1</kbd>
+<span>Vista 3D</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<kbd class="px-1.5 py-0.5 bg-surface-container-highest text-on-surface rounded font-mono shadow-xs">2</kbd>
+<span>Planta Baixa</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<kbd class="px-1.5 py-0.5 bg-surface-container-highest text-on-surface rounded font-mono shadow-xs">3</kbd>
+<span>Heatmap FEFO</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<kbd class="px-2 py-0.5 bg-surface-container-highest text-on-surface rounded font-mono shadow-xs">Espaço</kbd>
+<span>Centralizar na EMP-05</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Gateway RTLS Zebra UWB: <strong>Online (24 Beacons)</strong></span>
+</div>
+<div class="h-3 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary">database</span>
+<span>SAP S/4HANA Sync: <strong>0.2s</strong></span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interactions for view buttons toggling visual classes
+  const btnIso = document.getElementById('btn-iso-view');
+  const btn2D = document.getElementById('btn-2d-view');
+  const svgViewport = document.getElementById('warehouse-viewport');
+
+  if (btnIso && btn2D) {
+    btn2D.addEventListener('click', () => {
+      btn2D.className = 'flex items-center gap-space-xs px-space-md py-space-xs bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm transition-all';
+      btnIso.className = 'flex items-center gap-space-xs px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md rounded-lg transition-all';
+      svgViewport.style.transform = 'perspective(900px) rotateX(15deg) scale(0.96)';
+      svgViewport.style.transition = 'all 0.4s ease';
+    });
+
+    btnIso.addEventListener('click', () => {
+      btnIso.className = 'flex items-center gap-space-xs px-space-md py-space-xs bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm transition-all';
+      btn2D.className = 'flex items-center gap-space-xs px-space-md py-space-xs text-on-surface-variant hover:text-on-surface font-label-md text-label-md rounded-lg transition-all';
+      svgViewport.style.transform = 'none';
+      svgViewport.style.transition = 'all 0.4s ease';
+    });
+  }
+
+  // Quick keyboard hotkey binding demo
+  window.addEventListener('keydown', (e) => {
+    if (e.key === '1' && btnIso) btnIso.click();
+    if (e.key === '2' && btn2D) btn2D.click();
+  });
+</script></main></div><footer class="fixed bottom-0 left-0 right-0 h-10 bg-inverse-surface text-inverse-on-surface z-50 px-space-lg flex items-center justify-between font-label-sm text-label-sm"><div class="flex items-center gap-space-lg"><span>STATUS DO SISTEMA INDUSTRIAL</span><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span><span class="font-bold">RF Zebra ZT411 Industrial:</span><span>CONECTADA (IP 192.168.10.42)</span></div><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span><span class="font-bold">SAP S/4HANA Cloud:</span><span>ONLINE (Sync Latency 14ms)</span></div></div><div class="flex items-center gap-space-md text-surface-variant"><span class="material-symbols-outlined text-[16px]">sync</span><span>Transmissão em Tempo Real</span></div></footer></body></html>

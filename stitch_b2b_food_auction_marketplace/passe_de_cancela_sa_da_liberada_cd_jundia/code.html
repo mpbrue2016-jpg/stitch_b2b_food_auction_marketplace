@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary": "#003178", "on-tertiary-container": "#ffa59d", "surface-container-low": "#f2f4f6", "on-secondary": "#ffffff", "inverse-surface": "#2d3133", "primary-container": "#0d47a1", "on-surface-variant": "#434652", "on-primary-fixed-variant": "#00429c", "tertiary-container": "#9d0011", "on-error-container": "#93000a", "outline-variant": "#c3c6d4", "on-primary-container": "#a1bbff", "inverse-primary": "#b0c6ff", "primary-fixed": "#d9e2ff", "primary-fixed-dim": "#b0c6ff", "error": "#ba1a1a", "on-secondary-fixed": "#002204", "error-container": "#ffdad6", "on-tertiary": "#ffffff", "inverse-on-surface": "#eff1f3", "on-background": "#191c1e", "surface-container-lowest": "#ffffff", "tertiary-fixed-dim": "#ffb3ac", "surface-container-high": "#e6e8ea", "on-primary-fixed": "#001945", "secondary-fixed-dim": "#88d982", "surface-tint": "#2b5bb5", "outline": "#737783", "on-surface": "#191c1e", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#005312", "surface-container": "#eceef0", "on-tertiary-fixed-variant": "#930010", "surface-dim": "#d8dadc", "surface": "#f7f9fb", "on-error": "#ffffff", "on-tertiary-fixed": "#410003", "surface-bright": "#f7f9fb", "on-secondary-container": "#217128", "secondary-fixed": "#a3f69c", "tertiary": "#720009", "secondary-container": "#a0f399", "secondary": "#1b6d24", "surface-variant": "#e0e3e5", "background": "#f7f9fb", "surface-container-highest": "#e0e3e5", "tertiary-fixed": "#ffdad6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "gutter-mobile": "0.75rem", "margin": "1.5rem", "space-xl": "2rem", "gutter": "1rem", "space-lg": "1.25rem", "space-md": "0.75rem", "space-sm": "0.5rem", "margin-mobile": "1rem" }, "fontFamily": { "body-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"] }, "fontSize": { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0 flex-1"><button aria-label="Voltar" class="w-11 h-11 flex items-center justify-center rounded-lg text-on-surface hover:bg-surface-container active:bg-surface-container-high transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><div class="flex flex-col min-w-0 pr-space-xs"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span><span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">Cancela Validada</span></div><h1 class="font-headline-md text-headline-md text-on-surface truncate tracking-tight">Passe De Cancela / Saída Liberada</h1></div></div><div class="flex items-center gap-space-xs shrink-0"><div class="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container"><span class="material-symbols-outlined text-[20px]">shield</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="flex flex-col relative w-full pt-16 bg-surface pb-safe flex-1"><div class="flex flex-col w-full">
+<!-- Top Notification / Status Banner -->
+<div class="px-gutter-mobile pt-space-md">
+<div class="bg-secondary-container rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col gap-space-xs">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-secondary/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-on-secondary shadow-sm">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">meeting_room</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-secondary-container font-extrabold">Portaria Norte • Doca 04B</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">18 Out 2026, 10:24</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-bold tracking-wider animate-pulse">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+          LIBERADO
+        </span>
+</div>
+<div class="pt-space-xs flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold tracking-tight leading-snug">
+          Saída Liberada pela Portaria Norte
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">sensors</span>
+          Leitura biométrica e antena RFID/OCR validadas na cancela.
+        </p>
+</div>
+<div class="mt-space-xs bg-surface-container-lowest/80 backdrop-blur-sm rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Código do Passe</span>
+<span class="font-label-md text-label-md font-mono font-bold text-primary">PASSE-2026-FOB-0399-OK</span>
+</div>
+<button class="h-8 px-2.5 rounded-lg bg-surface-container flex items-center gap-1 text-on-surface active:bg-surface-container-high transition-colors" id="copyPasseBtn" title="Copiar código">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span class="font-label-sm text-label-sm font-semibold">Copiar</span>
+</button>
+</div>
+</div>
+</div>
+<!-- QR Code Gate Pass (Bento Focus) -->
+<div class="px-gutter-mobile pt-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col items-center text-center">
+<div class="flex items-center justify-between w-full mb-space-xs">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">qr_code_scanner</span>
+<span class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wide">Credencial Óptica</span>
+</div>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+<span class="font-mono" id="countdownTimer">29:48</span>
+</div>
+</div>
+<!-- QR Code Visual Asset -->
+<div class="relative p-3 bg-surface-container-low rounded-xl my-space-xs flex flex-col items-center justify-center">
+<!-- SVG QR Presentation -->
+<svg class="w-44 h-44 text-primary" fill="currentColor" viewbox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+<!-- Position Detection Patterns (Corners) -->
+<rect fill="currentColor" height="40" rx="4" width="40" x="10" y="10"></rect>
+<rect fill="#ffffff" height="28" rx="2" width="28" x="16" y="16"></rect>
+<rect fill="currentColor" height="16" rx="1" width="16" x="22" y="22"></rect>
+<rect fill="currentColor" height="40" rx="4" width="40" x="110" y="10"></rect>
+<rect fill="#ffffff" height="28" rx="2" width="28" x="116" y="16"></rect>
+<rect fill="currentColor" height="16" rx="1" width="16" x="122" y="22"></rect>
+<rect fill="currentColor" height="40" rx="4" width="40" x="10" y="110"></rect>
+<rect fill="#ffffff" height="28" rx="2" width="28" x="16" y="116"></rect>
+<rect fill="currentColor" height="16" rx="1" width="16" x="22" y="122"></rect>
+<!-- High-density Data Payload Simulation -->
+<rect fill="currentColor" height="14" width="6" x="58" y="12"></rect>
+<rect fill="currentColor" height="6" width="14" x="68" y="12"></rect>
+<rect fill="currentColor" height="14" width="6" x="86" y="12"></rect>
+<rect fill="currentColor" height="18" width="6" x="96" y="18"></rect>
+<rect fill="currentColor" height="6" width="18" x="58" y="32"></rect>
+<rect fill="currentColor" height="18" width="8" x="82" y="26"></rect>
+<rect fill="currentColor" height="12" width="6" x="58" y="44"></rect>
+<rect fill="currentColor" height="6" width="24" x="70" y="44"></rect>
+<!-- Central Alignment & Matrix -->
+<rect fill="currentColor" height="6" width="8" x="12" y="58"></rect>
+<rect fill="currentColor" height="6" width="14" x="26" y="58"></rect>
+<rect fill="currentColor" height="6" width="18" x="44" y="58"></rect>
+<rect fill="currentColor" height="14" width="8" x="68" y="58"></rect>
+<rect fill="currentColor" height="6" width="14" x="82" y="58"></rect>
+<rect fill="currentColor" height="6" width="18" x="102" y="58"></rect>
+<rect fill="currentColor" height="6" width="22" x="126" y="58"></rect>
+<rect fill="currentColor" height="6" width="18" x="12" y="70"></rect>
+<rect fill="currentColor" height="18" width="6" x="36" y="70"></rect>
+<rect fill="currentColor" height="6" width="14" x="48" y="70"></rect>
+<rect fill="currentColor" height="6" width="20" x="68" y="78"></rect>
+<rect fill="currentColor" height="18" width="8" x="94" y="70"></rect>
+<rect fill="currentColor" height="6" width="18" x="110" y="70"></rect>
+<rect fill="currentColor" height="14" width="14" x="134" y="70"></rect>
+<rect fill="currentColor" height="14" width="6" x="12" y="84"></rect>
+<rect fill="currentColor" height="6" width="18" x="24" y="84"></rect>
+<rect fill="currentColor" height="18" width="8" x="48" y="84"></rect>
+<rect fill="currentColor" height="6" width="12" x="62" y="90"></rect>
+<rect fill="currentColor" height="14" width="8" x="80" y="90"></rect>
+<rect fill="currentColor" height="6" width="20" x="94" y="94"></rect>
+<rect fill="currentColor" height="8" width="12" x="120" y="90"></rect>
+<rect fill="currentColor" height="6" width="18" x="58" y="108"></rect>
+<rect fill="currentColor" height="18" width="8" x="82" y="110"></rect>
+<rect fill="currentColor" height="6" width="14" x="96" y="108"></rect>
+<rect fill="currentColor" height="24" width="6" x="116" y="108"></rect>
+<rect fill="currentColor" height="6" width="20" x="128" y="108"></rect>
+<rect fill="currentColor" height="18" width="8" x="58" y="120"></rect>
+<rect fill="currentColor" height="6" width="18" x="72" y="126"></rect>
+<rect fill="currentColor" height="14" width="12" x="96" y="120"></rect>
+<rect fill="currentColor" height="18" width="14" x="134" y="120"></rect>
+<rect fill="currentColor" height="6" width="24" x="58" y="144"></rect>
+<rect fill="currentColor" height="12" width="18" x="88" y="138"></rect>
+<rect fill="currentColor" height="6" width="36" x="112" y="140"></rect>
+<!-- Micro Center Logo Shield -->
+<circle cx="80" cy="80" fill="#ffffff" r="14"></circle>
+<path d="M80 71L72 75V80C72 85 75.5 89.5 80 91C84.5 89.5 88 85 88 80V75L80 71Z" fill="#003178"></path>
+<path d="M77 80.5L79 82.5L83.5 77.5" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+<!-- Simulated Barcode Fallback -->
+<div class="mt-2.5 px-3 py-1 bg-surface-container-lowest rounded flex items-center justify-center gap-1 w-full max-w-[210px]">
+<span class="font-label-sm text-label-sm font-mono text-on-surface-variant font-bold tracking-widest">TOKEN GUARI-9921</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface font-semibold max-w-xs mt-1">
+        Aproxime da leitora óptica da <strong class="text-primary font-bold">Cancela 02 (Saída Norte)</strong> ou apresente na guarita.
+      </p>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">
+        Válido por 30 minutos (Expira às 10:54)
+      </span>
+</div>
+</div>
+<!-- Bacen Escrow Financial Release Card -->
+<div class="px-gutter-mobile pt-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">Custódia Escrow Desbloqueada</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-mono">Bacen Res. 4.656</span>
+</div>
+<!-- Financial Distribution Breakdown -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-1.5 mt-0.5">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Indústria (M. Dias Branco):</span>
+<span class="font-label-md text-label-md font-bold text-secondary">R$ 30.000,00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Taxa Operacional Varejista:</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">R$ 1.500,00</span>
+</div>
+<div class="h-px bg-surface-variant my-0.5"></div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md font-bold text-on-surface">Total Liquidado na Conta Escrow:</span>
+<span class="font-headline-md text-headline-md font-extrabold text-primary">R$ 31.500,00</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 pt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">account_balance</span>
+<span class="truncate font-mono">Autenticação: BACEN-ESC-9921-OK-31500</span>
+</div>
+</div>
+</div>
+<!-- Cargo Tracking & Fiscal Dossier -->
+<div class="px-gutter-mobile pt-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+<span class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wide">Dossiê de Carga & Fiscal</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Lacre Intacto</span>
+</div>
+<!-- Lot Mini Specs Card -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex gap-space-sm items-center">
+<img class="w-16 h-16 rounded-lg object-cover shrink-0 bg-surface-container" data-alt="Close-up professional studio product shot of chocolate filled sandwich biscuits cookies packaging by M. Dias Branco inside wholesale corrugated display boxes in a modern temperature controlled logistics fulfillment center, bright commercial lighting, crisp deep colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPDIIxOp_kJDoebZZ5lMTxPSTzXYmIr1cMcGlY_mYWmFN8r5yPO3iiD6pnl6zM92QUPvsBHcFCEjoAWkWITgLof3lYpqLrATDu33IjyfpyTT1BmJ3V-KPN2og8GONiWGmBSgJ5twgushdo9BbqaHgMxiZs_qgU6TcUqxH6xINDVhENZWvMWrvwsxTrlaa8VZbm0Tb6MOI5cbLTgihGN1nSGCRQz0pXf-inH_cfh71z"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary font-bold">LOTE #399</span>
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Biscoito Recheado Chocolate 130g</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">M. Dias Branco Alimentos S/A</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Validade: 28/08/2026 (314 dias)</span>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="bg-surface-container-low p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Volume Físico</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">600 Cxs • 2 Paletes PBR</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pesagem Balança</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">2.164 kg (Aferido)</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Nota Fiscal Eletrônica</span>
+<span class="font-label-md text-label-md font-mono font-bold text-primary">NF-e 004.892.110</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lacre Sanitário SIF</span>
+<span class="font-label-md text-label-md font-mono font-bold text-on-surface">LACRE-SP-884920</span>
+</div>
+</div>
+<!-- Sefaz Protocol Banner -->
+<div class="bg-surface-container p-2 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-[18px] text-secondary">task_alt</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">MDF-e SEFAZ Autorizado</span>
+<span class="font-label-sm text-label-sm font-mono font-semibold text-on-surface truncate">SP-MDFE-3524-1007-8921</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold shrink-0">100% OK</span>
+</div>
+</div>
+</div>
+<!-- Driver & Vehicle Details -->
+<div class="px-gutter-mobile pt-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+<span class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wide">Condutor & Veículo Aprovados</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">shield_person</span>
+</div>
+<div class="flex items-start gap-space-sm pt-1">
+<img class="w-12 h-12 rounded-full object-cover shrink-0 bg-surface-container" data-alt="Portrait photograph of professional certified truck driver wearing reflective safety vest and navy blue cap smiling confidently in daylight at an industrial logistics park distribution dock." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk3x_a8VjLiQiAtYk3yr5gvexqLr23uf6mw_8Iz8kVHq5NQ05q-EgU6IHtEIEzatEY6X_wYbRwKLaOzqXYxrQlndy_kiwgp0WE3HUy_rZTBoYhlLZWmkLsv64r_e_gChipi-IyKwE1TIIzj1IymUOu0CCZOh9tnjnkX03vxKaThE-Wkt7DVwHzlLGgNI1jFoNk4lh7mURqw6BNf8YJr-XyxS89QqY2I6hP407t6sXd"/>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Carlos Eduardo de Oliveira Santos</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">CPF 312.***.***-44 • CNH Cat. C</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="inline-flex px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold font-mono">
+              PLACA BRA2E19
+            </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Sider Térmico • Alvorada</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2.5 mt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">draw</span>
+<span class="font-body-sm text-body-sm text-on-surface">Assinatura digital via OTP #7492</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">10:18:42</span>
+</div>
+</div>
+</div>
+<!-- Operational Action CTAs -->
+<div class="px-gutter-mobile py-space-xl flex flex-col gap-space-sm">
+<button class="w-full h-13 py-3 px-4 rounded-xl bg-primary text-on-primary flex items-center justify-center gap-2 shadow-md active:bg-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span class="font-label-lg text-label-lg font-bold">Baixar Passe & Romaneio em PDF</span>
+</button>
+<button class="w-full h-12 py-2.5 px-4 rounded-xl bg-secondary text-on-secondary flex items-center justify-center gap-2 shadow-sm active:bg-on-secondary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span class="font-label-lg text-label-lg font-bold">Compartilhar no WhatsApp da Transportadora</span>
+</button>
+<div class="flex items-center justify-between gap-space-sm pt-space-xs">
+<button class="flex-1 h-11 py-2 px-3 rounded-lg bg-surface-container text-on-surface flex items-center justify-center gap-1.5 active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-tertiary">support_agent</span>
+<span class="font-label-md text-label-md font-semibold">Chamar Portaria</span>
+</button>
+<button class="h-11 px-3 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center gap-1 active:bg-surface-container-high transition-colors" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+<span class="font-label-md text-label-md font-semibold">Início</span>
+</button>
+</div>
+<!-- Small Footer Audit Stamp -->
+<div class="text-center pt-space-sm pb-space-md flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Varejista Online Logistics Network</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono text-[10px]">HASH: 0x98f4c2...3a10 • CD Jundiaí/SP</span>
+</div>
+</div>
+</div>
+<script>
+  // Simple interactive micro-utilities for gate pass
+  (function() {
+    // Copy Pass ID Toast feedback
+    const copyBtn = document.getElementById('copyPasseBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        const textToCopy = 'PASSE-2026-FOB-0399-OK';
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalContent = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<span class="material-symbols-outlined text-[16px] text-secondary">check</span><span class="font-label-sm text-label-sm font-semibold text-secondary">Copiado!</span>';
+          setTimeout(() => {
+            copyBtn.innerHTML = originalContent;
+          }, 2000);
+        }).catch(() => {
+          // Fallback if permission rejected
+          alert('Código do Passe: ' + textToCopy);
+        });
+      });
+    }
+
+    // Dynamic timer countdown for 30-min gate validity
+    let durationSeconds = 29 * 60 + 48;
+    const timerElem = document.getElementById('countdownTimer');
+    
+    if (timerElem) {
+      setInterval(() => {
+        if (durationSeconds > 0) {
+          durationSeconds--;
+          const minutes = Math.floor(durationSeconds / 60);
+          const seconds = durationSeconds % 60;
+          timerElem.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        } else {
+          timerElem.textContent = 'Expirado';
+        }
+      }, 1000);
+    }
+  })();
+</script></main></body></html>

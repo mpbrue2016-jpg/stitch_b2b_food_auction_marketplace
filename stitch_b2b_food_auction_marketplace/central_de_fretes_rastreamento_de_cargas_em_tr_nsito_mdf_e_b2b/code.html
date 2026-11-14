@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-tertiary":"#ffffff","on-background":"#191c1e","outline":"#737783","surface-container-high":"#e6e8ea","tertiary":"#720009","on-tertiary-fixed-variant":"#930010","on-surface-variant":"#434652","secondary-fixed":"#a3f69c","on-secondary-fixed":"#002204","on-error-container":"#93000a","surface":"#f7f9fb","on-primary-fixed-variant":"#00429c","on-primary-fixed":"#001945","surface-container-low":"#f2f4f6","surface-bright":"#f7f9fb","surface-dim":"#d8dadc","primary-fixed-dim":"#b0c6ff","on-primary-container":"#a1bbff","on-secondary-fixed-variant":"#005312","on-tertiary-container":"#ffa59d","on-surface":"#191c1e","on-error":"#ffffff","tertiary-container":"#9d0011","tertiary-fixed":"#ffdad6","on-secondary-container":"#217128","inverse-primary":"#b0c6ff","tertiary-fixed-dim":"#ffb3ac","surface-container":"#eceef0","surface-container-lowest":"#ffffff","primary-fixed":"#d9e2ff","inverse-on-surface":"#eff1f3","secondary-container":"#a0f399","outline-variant":"#c3c6d4","background":"#f7f9fb","on-secondary":"#ffffff","primary-container":"#0d47a1","surface-container-highest":"#e0e3e5","error-container":"#ffdad6","on-tertiary-fixed":"#410003","secondary":"#1b6d24","on-primary":"#ffffff","primary":"#003178","secondary-fixed-dim":"#88d982","inverse-surface":"#2d3133","surface-tint":"#2b5bb5","error":"#ba1a1a","surface-variant":"#e0e3e5"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter-mobile":"0.75rem","margin":"1.5rem","margin-mobile":"1rem","space-sm":"0.5rem","gutter":"1rem","space-lg":"1.25rem","space-xs":"0.25rem","space-xl":"2rem","space-md":"0.75rem"},"fontFamily":{"label-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><header class="fixed top-0 left-0 right-0 h-16 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-16 px-space-xl flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">VO</div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight leading-none">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">B2B Marketplace &amp; Leilões</span></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-full text-secondary"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm font-bold text-on-surface uppercase">Pregão Conectado</span></div><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container-high rounded-full"><span class="material-symbols-outlined text-sm text-primary">verified_user</span><span class="font-label-sm text-label-sm text-on-surface-variant">Custódia BACEN Escrow Ativa</span></div></div><div class="flex-1 max-w-xl mx-space-md hidden md:block"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span><input class="w-full h-10 pl-10 pr-24 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar pedidos, NF-e, lote, SKU, motorista ou placa..." type="text"/><div class="absolute right-2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">ALT + K</div></div></div><div class="flex items-center gap-space-md"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm flex items-center justify-center">4</span></button><div class="h-8 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm text-right"><div class="hidden sm:flex flex-col"><span class="font-label-md text-label-md text-on-surface">Atacadão Distribuidora SA</span><span class="font-label-sm text-label-sm text-on-surface-variant">Logística &amp; Fretes Integrados</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-72 bg-surface-container-low z-40 overflow-y-auto"><div class="p-space-lg flex flex-col gap-space-lg"><nav class="flex flex-col gap-space-lg" data-active-classes="bg-primary-container text-on-primary-container font-headline-md"><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Operações &amp; Pregão</span><div class="flex flex-col gap-0.5"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="inicio" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Início</a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="leiloes-ao-vivo" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-lg">gavel</span>Leilões ao Vivo</div><span class="px-1.5 py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm">AO VIVO</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="oportunidades-e-alertas" href="#"><span class="material-symbols-outlined text-lg">bolt</span>Oportunidades &amp; Alertas</a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="validade-proxima-fefo" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-lg">hourglass_top</span>Validade Próxima (FEFO)</div><span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm">18</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="giro-rapido" href="#"><span class="material-symbols-outlined text-lg">trending_up</span>Giro Rápido</a></div></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Gestão Comercial &amp; Pedidos</span><div class="flex flex-col gap-0.5"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="pedidos-e-faturamento" href="#"><span class="material-symbols-outlined text-lg">receipt_long</span>Pedidos &amp; Faturamento</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="separacao-e-expedicao-wms" href="#"><span class="material-symbols-outlined text-lg">conveyor_belt</span>Separação &amp; Expedição WMS</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="clientes-varejistas" href="#"><span class="material-symbols-outlined text-lg">storefront</span>Clientes Varejistas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="gestao-de-lotes-e-estoque" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span>Gestão de Lotes &amp; Estoque</a></div></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Logística &amp; Transportes</span><div class="flex flex-col gap-0.5"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg transition-colors bg-primary-container text-on-primary-container font-headline-md" data-path="gestao-de-fretes-e-rastreamento-de-cargas" href="#"><span class="material-symbols-outlined text-lg">local_shipping</span>Gestão de Fretes &amp; Cargas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="agendamento-de-docas" href="#"><span class="material-symbols-outlined text-lg">warehouse</span>Agendamento de Docas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="frotas-e-motoristas" href="#"><span class="material-symbols-outlined text-lg">badge</span>Frotas &amp; Motoristas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="roteirizacao-e-mdf-e" href="#"><span class="material-symbols-outlined text-lg">alt_route</span>Roteirização &amp; MDF-e</a></div></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Financeiro &amp; Governança</span><div class="flex flex-col gap-0.5"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="extrato-escrow-e-repasses" href="#"><span class="material-symbols-outlined text-lg">account_balance_wallet</span>Extrato Escrow &amp; Repasses D+0</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="relatorios-e-sped-fiscal" href="#"><span class="material-symbols-outlined text-lg">description</span>Relatórios &amp; SPED Fiscal</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="regras-de-comissao-e-take-rate" href="#"><span class="material-symbols-outlined text-lg">percent</span>Comissões &amp; Take Rate</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="auditoria-worm" href="#"><span class="material-symbols-outlined text-lg">security</span>Auditoria WORM</a></div></div></nav></div></aside><div class="pl-72"><main class="relative pt-16 bg-surface min-h-screen"><div class="w-full px-space-xl py-space-lg"><div class="flex flex-col w-full">
+<!-- Top Breadcrumb & Executive Header Bar -->
+<header class="flex flex-col gap-space-sm mb-space-lg">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<span class="hover:text-primary transition-colors cursor-pointer">Início</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Logística &amp; Transportes</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-bold">Gestão de Fretes e Rastreamento de Cargas</span>
+</nav>
+<!-- Title, Badges & Actions Strip -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md mt-space-xs">
+<div class="flex flex-col gap-space-xs max-w-4xl">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+          Central de Gestão de Fretes, Rastreamento &amp; Monitoramento de Cargas B2B
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Torre de controle logístico multimodal (FOB Retirada em CD, CIF Entrega Própria e Transportadoras Parceiras Homologadas), telemetria em tempo real, monitoramento de lacres SEFAZ e encerramento automatizado de MDF-e.
+        </p>
+<!-- Live Badges Row -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span>Torre de Controle Ativa (SLA 99.4%)</span>
+</div>
+<div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-sm text-primary">satellite_alt</span>
+<span>Telemetria GPS &amp; Isca Ativa (35 Rastreadores)</span>
+</div>
+<div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-sm text-primary">gavel</span>
+<span>MDF-e Síncrono SEFAZ SP/MG/GO</span>
+</div>
+<div class="flex items-center gap-space-xs px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">sync</span>
+<span>Atualizado há 14s</span>
+</div>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex flex-wrap items-center gap-space-sm xl:self-start">
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+          Exportar Romaneios (.XLSX)
+        </button>
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-variant text-primary font-label-md text-label-md shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-base">print</span>
+          Emitir DAMDFE em Lote
+        </button>
+<button class="flex items-center gap-space-xs px-space-lg py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md shadow-md transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+          + Nova Carga / Rota de Entrega
+        </button>
+</div>
+</div>
+</header>
+<!-- 2. Cockpit de Indicadores Operacionais & Logísticos (KPI Cards) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-md mb-space-lg">
+<!-- KPI 1 -->
+<div class="flex flex-col p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Cargas em Trânsito</span>
+<span class="material-symbols-outlined text-primary p-1 rounded-lg bg-primary-fixed">local_shipping</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-primary font-extrabold leading-none">35</span>
+<span class="font-label-md text-label-md text-on-surface-variant">veículos na rota</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-space-xs mt-auto">
+<span class="font-semibold text-secondary">R$ 2.890.000,00</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-low">248.600 kg</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="flex flex-col p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Pontualidade SLA (OTD)</span>
+<span class="material-symbols-outlined text-secondary p-1 rounded-lg bg-secondary-fixed">timer</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-secondary font-extrabold leading-none">97,8%</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">▲ +0.4%</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-space-xs mt-auto">
+<span>Tempo médio trânsito</span>
+<span class="font-bold text-on-surface">3h 42min</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="flex flex-col p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Coletas FOB Hoje</span>
+<span class="material-symbols-outlined text-primary-container p-1 rounded-lg bg-surface-container">warehouse</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold leading-none">19</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">agendadas</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-space-xs mt-auto">
+<span class="text-secondary font-bold">12 carregadas</span>
+<span>4 doca • 3 pátio</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="flex flex-col p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Entregas CIF Realizadas</span>
+<span class="material-symbols-outlined text-secondary p-1 rounded-lg bg-secondary-fixed">check_circle</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold leading-none">14</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">100% Baixadas</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant pt-space-xs mt-auto truncate">
+<span class="material-symbols-outlined text-xs text-secondary">verified</span>
+<span>Canhotos e conferência OK</span>
+</div>
+</div>
+<!-- KPI 5 -->
+<div class="flex flex-col p-space-md bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Alertas &amp; Desvios</span>
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant p-1 rounded-lg bg-tertiary-fixed">fmd_bad</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-secondary font-extrabold leading-none">0</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">críticos ativos</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant pt-space-xs mt-auto">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="truncate">1 parada 15m resolvida (Anhanguera)</span>
+</div>
+</div>
+</section>
+<!-- 3. Dynamic Filter Tabs & Command Bar -->
+<section class="flex flex-col gap-space-sm p-space-md bg-surface-container-lowest rounded-xl shadow-sm mb-space-lg">
+<!-- Horizontal Operational Tabs -->
+<div class="flex items-center justify-between overflow-x-auto pb-1 gap-space-xs">
+<div class="flex items-center gap-space-xs min-w-max">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md shadow-sm" type="button">
+<span>Todas as Cargas</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-lowest/20 font-bold text-xs">35</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Em Trânsito Rodoviário</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-xs font-bold">18</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+<span>Carregando em Doca</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-xs font-bold">7</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-surface-dim"></span>
+<span>Aguardando Pátio</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-xs font-bold">4</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+<span>Entregas Concluídas Hoje</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-xs font-bold">14</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-tertiary font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>Ocorrências &amp; Avarias</span>
+<span class="px-1.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-bold text-xs">1</span>
+</button>
+</div>
+<div class="hidden lg:flex items-center gap-space-xs pl-space-md text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-base text-secondary">wifi_tethering</span>
+<span class="font-bold text-on-surface">GPS Gateway:</span> Online (Latência 120ms)
+      </div>
+</div>
+<!-- Filter Control Bars -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-sm pt-space-xs">
+<!-- Search Input -->
+<div class="md:col-span-5 relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg">search</span>
+<input class="w-full h-10 pl-10 pr-20 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="Buscar por Carga, Nº MDF-e, Placa, Motorista, Pedido ou CNPJ Destinatário..." type="text" value="CARGA-2026-881"/>
+<span class="absolute right-2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">CTRL + F</span>
+</div>
+<!-- Select Modalidade -->
+<div class="md:col-span-2">
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer">
+<option value="todas">Modalidade: Todas</option>
+<option selected="" value="fob">FOB - Coleta Comprador</option>
+<option value="cif_industria">CIF - Frota Própria</option>
+<option value="cif_3pl">CIF - Transp. 3PL Homologada</option>
+</select>
+</div>
+<!-- Select Origem CD -->
+<div class="md:col-span-2">
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer">
+<option value="todos">Origem: Todos os CDs</option>
+<option selected="" value="vinhedo">CD Vinhedo / SP</option>
+<option value="campinas">CD Campinas / SP</option>
+<option value="jundiai">CD Jundiaí / SP</option>
+<option value="uberlandia">CD Uberlândia / MG</option>
+</select>
+</div>
+<!-- Select Status Lacre -->
+<div class="md:col-span-2">
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm cursor-pointer">
+<option value="todos">Status Lacre: Todos</option>
+<option selected="" value="intacto">Lacre Intacto / SEFAZ OK</option>
+<option value="pendente">Aguardando Lacração</option>
+<option value="alerta">Divergência / Rompido</option>
+</select>
+</div>
+<!-- Reset / Filter Settings -->
+<div class="md:col-span-1 flex items-center justify-end">
+<button class="w-full h-10 flex items-center justify-center rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors shadow-sm" title="Limpar Filtros" type="button">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4 & 5. Main Split View: Tactical Table (8 Cols) + Control Tower Vehicle Dossier (4 Cols) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Table Column (8 Cols on XL) -->
+<section class="xl:col-span-8 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Table Control Header -->
+<div class="p-space-md flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">view_kanban</span>
+<span class="font-headline-md text-headline-md text-on-surface">Painel Operacional de Cargas Monitoradas</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">Exibindo 4 de 35</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span>Rastreamento Satelital em Tempo Real</span>
+</div>
+</div>
+<!-- Density Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-3 px-space-md w-8 text-center">
+<input class="rounded text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</th>
+<th class="py-3 px-space-sm">Carga / Pedido / MDF-e</th>
+<th class="py-3 px-space-sm">Modalidade &amp; Veículo</th>
+<th class="py-3 px-space-sm">Origem ➔ Destino</th>
+<th class="py-3 px-space-sm">Telemetria &amp; Rota</th>
+<th class="py-3 px-space-sm">Previsão (ETA)</th>
+<th class="py-3 px-space-md text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="text-on-surface">
+<!-- Row 1: Selected / Highlighted Row (#CARGA-2026-881) -->
+<tr class="bg-primary-fixed/30 hover:bg-primary-fixed/40 transition-colors cursor-pointer">
+<td class="py-3 px-space-md text-center">
+<input checked="" class="rounded text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-body-md font-bold text-primary">#CARGA-2026-881</span>
+<span class="px-1.5 py-0.2 rounded bg-primary-container text-on-primary font-label-sm text-label-sm">AO VIVO</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Ped: <strong class="text-on-surface">#PED-9481</strong> (Lote #418 Café 3 Corações)</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm font-mono">MDF-e 001.000.128 • S1 SEFAZ</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs mb-0.5">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">FOB Retirada</span>
+<span class="font-mono font-bold text-on-surface bg-surface-container px-1 rounded">BRA2E19</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<img class="w-5 h-5 rounded-full object-cover shadow-sm" data-alt="Close up professional portrait of a Brazilian truck driver with short hair wearing a navy blue cap and uniform shirt smiling with confidence in logistics depot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWFx3l6D8rrm5XBdpSEytKftGprgeBrLio6kSrnDzVue5U1ErdPCPfkRxLAKCtWX2x9zLCIIITbBQxVy-3Ovqu67ml3nIFoE1yaEJwK7_PbfuMKsl57Z1hisuwTRJkRvT3hz23lOATi3q1-T7-ab-nAzHCagce-P39FBDh5k2gSpXMarL_rCyJChoJrKxaNNAxpMTNGR4FpjV_GPxo2xrIgvymLfU24rfII9FJzNwC"/>
+<span class="font-label-sm text-label-sm text-on-surface truncate">Carlos Mendes</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Scania R450 • Baú Térmico</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-bold text-on-surface">CD Vinhedo / SP</span>
+<span class="text-on-surface-variant">(Doca 03A)</span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-bold text-on-surface truncate">Superm. Alvorada</span>
+<span class="text-on-surface-variant">(Campinas)</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">42 km total • 45 min est.</span>
+</div>
+</td>
+<td class="py-3 px-space-sm min-w-[170px]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs animate-spin">autorenew</span>
+                        82% percorrido
+                      </span>
+<span class="font-bold text-on-surface">78 km/h</span>
+</div>
+<!-- Micro Progress Bar -->
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all" style="width: 82%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Km 88 Anhanguera (Sentido Int.)</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Lacre: #LC-8842-SP Intacto</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface font-numeric-timer">11:15</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs">schedule</span>
+                      Faltam 12 min
+                    </span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mt-0.5 w-max">Pontual</span>
+</div>
+</td>
+<td class="py-3 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors shadow-sm" title="Painel em Foco" type="button">
+<span class="material-symbols-outlined text-base">pin_drop</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" title="Ver DAMDFE" type="button">
+<span class="material-symbols-outlined text-base">receipt</span>
+</button>
+<button class="p-1.5 rounded-lg bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed transition-colors" title="WhatsApp Motorista" type="button">
+<span class="material-symbols-outlined text-base">chat</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Carga #CARGA-2026-880 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md text-center">
+<input class="rounded text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#CARGA-2026-880</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Ped: #PED-9480 (Arroz Camil 800 fardos)</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm font-mono">MDF-e 001.000.127 • S1</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs mb-0.5">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">CIF 3PL Braspress</span>
+<span class="font-mono font-bold text-on-surface bg-surface-container px-1 rounded">QMT-4019</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Marcos Silveira</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Volvo FH 540 • Carreta Sider</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-on-surface">CD Vinhedo / SP</span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface font-semibold">Atacadão Central SP</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">78 km total • Rota Marginal Tietê</span>
+</div>
+</td>
+<td class="py-3 px-space-sm min-w-[170px]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-primary font-bold">64% concluído</span>
+<span class="font-bold text-on-surface">62 km/h</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 64%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rodovia dos Bandeirantes Km 34</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Lacre: #LC-8840-SP Intacto</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface font-numeric-timer">12:30</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Faltam 1h 15min</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mt-0.5 w-max">No Prazo</span>
+</div>
+</td>
+<td class="py-3 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">pin_drop</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">receipt</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">chat</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Carga #CARGA-2026-879 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md text-center">
+<input class="rounded text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#CARGA-2026-879</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Ped: #PED-9479 (Queijo Serra Bella Refrig.)</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm font-mono">MDF-e 001.000.126 • S1</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs mb-0.5">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">FOB Retirada</span>
+<span class="font-mono font-bold text-on-surface bg-surface-container px-1 rounded">FXK-9120</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Roberto Antunes</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Mercedes Actros • Frigorífico</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-on-surface font-bold">CD Vinhedo / Doca 03A</span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-surface-dim"></span>
+<span class="text-on-surface">Hiper Center Santos / SP</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">145 km total • Baixada Santista</span>
+</div>
+</td>
+<td class="py-3 px-space-sm min-w-[170px]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-primary font-bold">Carregando Doca (95%)</span>
+<span class="font-bold text-on-surface">0 km/h</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 95%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Conferência Cega WMS em finalização</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Temp. Baú: +4.2°C (OK)</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface font-numeric-timer">15:45</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Saída est.: 11:30</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm mt-0.5 w-max">Aguardando Lacre</span>
+</div>
+</td>
+<td class="py-3 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">pin_drop</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">receipt</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">chat</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Carga #CARGA-2026-878 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md text-center">
+<input class="rounded text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">#CARGA-2026-878</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Ped: #PED-9475 (Óleo de Soja 1.400 caixas)</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm font-mono">MDF-e 001.000.125 • S1</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs mb-0.5">
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm font-bold">CIF Frota Própria</span>
+<span class="font-mono font-bold text-on-surface bg-surface-container px-1 rounded">GHY-7741</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface">Danilo Barbosa</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Scania G410 • Bitrem Graneleiro</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-on-surface">CD Vinhedo / SP</span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface font-semibold">Centro Atac. Goiânia / GO</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">890 km total • Interestadual</span>
+</div>
+</td>
+<td class="py-3 px-space-sm min-w-[170px]">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-primary font-bold">38% percorrido</span>
+<span class="font-bold text-on-surface">81 km/h</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 38%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">BR-050 Km 182 (Triângulo Mineiro)</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Lacre: #LC-8831-SP Intacto</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface font-numeric-timer">Amanhã 08:00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pernoite regulamentado</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm mt-0.5 w-max">Pontual</span>
+</div>
+</td>
+<td class="py-3 px-space-md text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">pin_drop</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">receipt</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-base">chat</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination & Batch Commands -->
+<div class="p-space-md bg-surface-container-low flex flex-wrap items-center justify-between gap-space-md font-label-sm text-label-sm">
+<div class="flex items-center gap-space-sm text-on-surface-variant">
+<span>Selecionados: <strong class="text-on-surface">1 carga</strong></span>
+<span>•</span>
+<button class="text-primary hover:underline font-bold" type="button">Imprimir Romaneio Selecionado</button>
+<span>•</span>
+<button class="text-primary hover:underline font-bold" type="button">Reenviar SMS com Tracking</button>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-on-surface-variant">Página 1 de 4</span>
+<button class="p-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-50" disabled="" type="button">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface" type="button">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Delivery Performance & Incidents Heatstrip -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">speed</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Velocidade Média Frotas</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">74.2 km/h</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">100% dentro do limite das vias</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Monitoramento de Lacres</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">35/35 Lacres OK</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Zero violação SEFAZ detectada</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high text-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">local_gas_station</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Eficiência Térmica &amp; Iscas</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">100% Sensores Ativos</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Baterias médias em 91%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Dossiê Lateral de Telemetria e Torre de Controle (Painel Carga #CARGA-2026-881) (4 Cols on XL) -->
+<aside class="xl:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-lg flex flex-col gap-space-md">
+<!-- Header do Dossiê -->
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">satellite_alt</span>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Veículo em Foco</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">#CARGA-2026-881</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            Em Movimento
+          </span>
+</div>
+<!-- Schematic Satellite Map Container -->
+<div class="relative w-full h-48 rounded-xl overflow-hidden shadow-inner bg-surface-dim">
+<!-- Static Map Simulation Component with data-location -->
+<div class="w-full h-full bg-cover bg-center" data-alt="Satellite topographic highway map view of Rodovia Anhanguera near Campinas Sao Paulo with clean modern logistics route overlays blue telemetry route trail and clean cartography" data-location="Rodovia Anhanguera Km 88, Campinas, SP" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDpL_rv0t60Puc3S0nshHEYkqGK5rZhzaMbaH9ckj3NwbyCrTIXM3FMyt6q1X4bcPdrDbRjrLejNQLkP8SHZUS4COamCkEzgj4GWEOX8umA9ZtXg2h5p8SR-X0sVJdrIxz8N_fUlAH6AyN4UtGRvh0EB1O5gGNofqUEsUi5gnweaW-XRYi-757DOH6mAw2ubvDeboA_TV_X7I14OCDhBKrozrBTajYa6fkRw0UV4Uwd')"></div>
+<!-- Tactical HUD Elements on Map -->
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex flex-col justify-between p-space-sm pointer-events-none">
+<div class="flex justify-between items-start">
+<span class="px-2 py-0.5 rounded bg-inverse-surface/90 text-inverse-on-surface font-label-sm text-label-sm backdrop-blur-md">
+                GPS: -22.9514, -47.0628
+              </span>
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold shadow">
+                Velocidade: 78 km/h
+              </span>
+</div>
+<div class="flex items-center justify-between text-inverse-on-surface">
+<div class="flex items-center gap-1 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-secondary">alt_route</span>
+<span>Rod. Anhanguera Km 88</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold">ETA: 11:15 (12 min)</span>
+</div>
+</div>
+</div>
+<!-- Telemetry Sensor Matrix -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">
+            Telemetria de Carga &amp; Sensores do Baú
+          </span>
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-lg">thermostat</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Temperatura Baú</span>
+<span class="font-headline-md text-body-md font-bold text-on-surface">18.4°C (Ideal)</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-lg">lock</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Porta Traseira</span>
+<span class="font-headline-md text-body-md font-bold text-secondary">Bloqueada</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-lg">qr_code_2</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lacre SEFAZ</span>
+<span class="font-headline-md text-body-md font-bold text-on-surface">#LC-8842-SP</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-lg">battery_charging_full</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Isca Autônoma</span>
+<span class="font-headline-md text-body-md font-bold text-secondary">94% • 5G Forte</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Driver & Equipment Info -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="Close up professional portrait of a Brazilian truck driver with short hair wearing a navy blue cap and uniform shirt smiling with confidence in logistics depot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6o13EyzzKeVU4W0V_drscnTO9eTdU8xImxGghXf4MEHmuzabsJxFimIIamGYLMji5QnDPiiZ-Ypvbte5RsT_DgNN0ky-3h1CJppm0sleNhxfA2QUsoWBNDVd_xx5r-iFeKbDDKrByHuVQP5gyFCaVdXDoKtLhawiB1Y9F4-nh06I9BQCYWAf7BcaWEijQrpXqq5GCUoxCOj0cox-FiZ2IpiCA6CU2R1JhxEA5xwZB"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Carlos Mendes</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CPF ***.819.308-** • CNH E</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Avaliação: 4.96 ★ (142 fretes)</span>
+</div>
+</div>
+<button class="p-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim transition-colors" title="Chamar no WhatsApp" type="button">
+<span class="material-symbols-outlined text-lg">phone_in_talk</span>
+</button>
+</div>
+<!-- Regulatory & Fiscal Dossier Checklist -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">
+            Documentação Fiscal &amp; Regulamentar Vinculada
+          </span>
+<div class="flex flex-col gap-1 font-body-sm text-body-sm">
+<!-- NF-e -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">task_alt</span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-label-sm text-label-sm">NF-e Nº 000.003.991</span>
+<span class="text-on-surface-variant font-mono text-[10px]">Chave: 3526 1063 9041 2800 0118...</span>
+</div>
+</div>
+<span class="text-secondary font-bold font-label-sm text-label-sm">Autorizada</span>
+</div>
+<!-- MDF-e -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">task_alt</span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-label-sm text-label-sm">MDF-e Nº 001.000.128</span>
+<span class="text-on-surface-variant font-mono text-[10px]">Evento 100101 • Autorizado SEFAZ-SP</span>
+</div>
+</div>
+<span class="text-secondary font-bold font-label-sm text-label-sm">Síncrono</span>
+</div>
+<!-- CIOT -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">task_alt</span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-label-sm text-label-sm">CIOT ANTT #90128419</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Pagamento Frete Regulado PEF</span>
+</div>
+</div>
+<span class="text-secondary font-bold font-label-sm text-label-sm">Quitado</span>
+</div>
+<!-- Seguro de Carga -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">task_alt</span>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface font-label-sm text-label-sm">Seguro RCTR-C / RC-DC</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Porto Seguro • Apólice #889-102</span>
+</div>
+</div>
+<span class="text-secondary font-bold font-label-sm text-label-sm">Ativo</span>
+</div>
+</div>
+</div>
+<!-- Control Tower Fast Action Commands -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-2.5 px-space-md rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-space-xs shadow-md transition-all active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-base">meeting_room</span>
+            Liberar Entrada na Portaria de Destino
+          </button>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="py-2 px-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-sm text-primary">share</span>
+              Link Rastreio Web
+            </button>
+<button class="py-2 px-2 rounded-lg bg-tertiary-fixed hover:bg-tertiary-fixed-dim text-on-tertiary-fixed font-label-sm text-label-sm flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">shield</span>
+              Acionar Escolta
+            </button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- 6. Rodapé de Conformidade Regulatória & Protocolos Fiscais -->
+<footer class="p-space-lg bg-surface-container-lowest rounded-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex flex-wrap items-center gap-space-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-secondary">verified</span>
+<span>ANTT Res. 5.867 (Piso Mínimo Frete)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-secondary">verified</span>
+<span>MDF-e v3.00a SEFAZ Nacional</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-secondary">verified</span>
+<span>Integração CIOT Eletrônico D+0</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-secondary">verified</span>
+<span>RCTR-C / RC-DC Averbação Automática</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md font-mono text-[11px] text-right">
+<span>SHA-256: 7d49e1a8...99c2</span>
+<span class="text-on-surface">Carimbo NTP.br: 2026-05-18 11:03:44 BRT</span>
+</div>
+</footer>
+</div>
+<script>
+  // Simple micro-interaction for visual row select toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      row.addEventListener('click', (e) => {
+        // Prevent toggle if clicking button directly
+        if (e.target.closest('button')) return;
+        
+        rows.forEach(r => {
+          r.classList.remove('bg-primary-fixed/30', 'bg-primary-fixed/40');
+          const cb = r.querySelector('input[type="checkbox"]');
+          if (cb && !e.target.closest('input[type="checkbox"]')) cb.checked = false;
+        });
+
+        row.classList.add('bg-primary-fixed/30');
+        const activeCb = row.querySelector('input[type="checkbox"]');
+        if (activeCb) activeCb.checked = true;
+      });
+    });
+  });
+</script></div></main></div></body></html>

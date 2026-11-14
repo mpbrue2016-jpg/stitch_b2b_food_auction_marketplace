@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline-variant": "#c3c6d4", "on-secondary": "#ffffff", "surface-container-highest": "#e0e3e5", "primary-fixed-dim": "#b0c6ff", "on-tertiary-fixed-variant": "#930010", "tertiary-container": "#9d0011", "on-tertiary": "#ffffff", "primary": "#003178", "surface-container": "#eceef0", "secondary-fixed-dim": "#88d982", "outline": "#737783", "on-secondary-fixed-variant": "#005312", "on-secondary-container": "#217128", "secondary": "#1b6d24", "surface-bright": "#f7f9fb", "tertiary-fixed": "#ffdad6", "tertiary-fixed-dim": "#ffb3ac", "surface": "#f7f9fb", "tertiary": "#720009", "surface-container-high": "#e6e8ea", "on-surface": "#191c1e", "surface-container-lowest": "#ffffff", "background": "#f7f9fb", "on-primary-container": "#a1bbff", "on-tertiary-container": "#ffa59d", "inverse-on-surface": "#eff1f3", "on-error-container": "#93000a", "secondary-fixed": "#a3f69c", "error": "#ba1a1a", "on-tertiary-fixed": "#410003", "error-container": "#ffdad6", "on-secondary-fixed": "#002204", "on-surface-variant": "#434652", "inverse-primary": "#b0c6ff", "primary-container": "#0d47a1", "on-primary-fixed": "#001945", "on-primary-fixed-variant": "#00429c", "surface-tint": "#2b5bb5", "surface-dim": "#d8dadc", "on-background": "#191c1e", "surface-container-low": "#f2f4f6", "on-primary": "#ffffff", "secondary-container": "#a0f399", "inverse-surface": "#2d3133", "on-error": "#ffffff", "surface-variant": "#e0e3e5", "primary-fixed": "#d9e2ff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "space-lg": "1.25rem", "space-xs": "0.25rem", "margin": "1.5rem", "gutter-mobile": "0.75rem", "space-xl": "2rem", "margin-mobile": "1rem", "space-md": "0.75rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><span class="material-symbols-outlined text-primary text-headline-xl">storefront</span><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight font-bold text-primary">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">B2B Marketplace &amp; Compliance</span></div></div><div class="flex-1 overflow-y-auto px-space-md py-space-md"><div class="space-y-space-md"><div class="px-space-sm pt-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Operacional</span></div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="visao-geral" href="#">Visão Geral</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="controle-de-validade-fefo" href="#">Controle Validade &amp; FEFO</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="tipos-de-leilao-pregoes" href="#">Tipos de Leilão &amp; Pregões</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="oportunidades-validade-giro-rapido-ponta-de-estoque" href="#">Oportunidades &amp; Ponta Estoque</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="central-de-notificacoes-alertas-multicanal" href="#">Central de Notificações &amp; Alertas</a></nav><div class="px-space-sm pt-space-sm"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Catálogo &amp; Categorias</span></div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="arvore-de-categorias-b2b" href="#">Árvore de Categorias B2B</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="produtos-lotes" href="#">Produtos &amp; Lotes</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="homologacao-gs1" href="#">Homologação GS1</a></nav><div class="px-space-sm pt-space-sm"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Logística &amp; Governança</span></div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="armazens-wms" href="#">Armazéns &amp; WMS</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="bloqueio-sanitario-auto" href="#">Bloqueio Sanitário Auto</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="arbitragem-escrow" href="#">Arbitragem &amp; Escrow</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="auditoria-worm" href="#">Auditoria WORM</a><a class="block px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="certificado-oficial-de-destruicao-termica-cdf-baixa-fiscal-sanitaria" href="#">Destruição Térmica (CDF)</a></nav></div></div><div class="p-space-md bg-surface-container-low"><div class="flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm text-outline font-bold uppercase">ANVISA / MAPA Ativo</span><span class="material-symbols-outlined text-secondary text-headline-md">check_circle</span></div><div class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Sincronização Fiscal: 100% Ok</div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded"><span class="material-symbols-outlined text-secondary text-headline-md">lock</span><span class="font-label-sm text-label-sm font-bold text-on-surface">WORM Conexão Segura</span></div><div class="hidden xl:flex items-center gap-space-sm bg-surface-container px-space-md py-space-xs rounded"><span class="material-symbols-outlined text-primary text-headline-md">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline uppercase font-bold">Custódia Santander Escrow</span><span class="font-label-md text-label-md font-bold text-secondary">R$ 4.890.350,00</span></div></div></div><div class="flex items-center gap-space-md"><button class="relative p-space-xs rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Notificações e Alertas Sanitários" type="button"><span class="material-symbols-outlined text-headline-md">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container"></span></button><div class="h-8 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-bold text-on-surface">Dr. Roberto C. Vasconcelos</span><span class="font-label-sm text-label-sm text-outline">Gestor de Compliance Sanitário</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 w-full min-h-screen px-space-xl py-space-lg bg-background"><div class="flex flex-col w-full">
+<!-- Module Top Header & Subsystem Overview -->
+<header class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg mb-space-xl">
+<div class="flex flex-col gap-space-xs max-w-4xl">
+<!-- Breadcrumb with subtle semantic chips -->
+<nav class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-space-xs">
+<span class="hover:text-primary transition-colors cursor-pointer">Governança &amp; Comunicação</span>
+<span class="material-symbols-outlined text-outline text-label-md">chevron_right</span>
+<span class="text-primary font-bold">Central de Notificações &amp; Alertas Multicanal</span>
+</nav>
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-2 bg-primary rounded-full"></div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+          Central de Notificações &amp; Régua de Comunicação Multicanal B2B
+        </h1>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Gestão inteligente de disparos automáticos via WhatsApp API Oficial, Push Notification Mobile e E-mail Transacional com verificação de entrega e auditoria de leitura.
+      </p>
+<!-- System Status Badges Pill Bar -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-full shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">WhatsApp Cloud API: <span class="text-secondary font-bold">Online (18ms)</span></span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-full shadow-sm">
+<span class="material-symbols-outlined text-secondary text-label-md">notifications_active</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">FCM Push Gateway: <span class="text-secondary font-bold">99.98% SLA</span></span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-full shadow-sm">
+<span class="material-symbols-outlined text-primary text-label-md">verified_user</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">E-mail SES/SendGrid: <span class="text-primary font-bold">DKIM/SPF 100% OK</span></span>
+</div>
+<div class="flex items-center gap-space-xs bg-secondary-container/40 text-on-secondary-container px-space-sm py-space-xs rounded-full">
+<span class="material-symbols-outlined text-label-md">shield</span>
+<span class="font-label-sm text-label-sm font-bold">WORM Imutável Ativo</span>
+</div>
+</div>
+</div>
+<!-- Quick Action Toolbelt -->
+<div class="flex flex-wrap items-center gap-space-sm self-start xl:self-end">
+<button class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-md text-label-md px-space-md py-space-sm rounded-lg shadow-sm transition-all" onclick="alert('Iniciando simulação de payload multicanal (Push/WhatsApp/SES)...')" type="button">
+<span class="material-symbols-outlined text-headline-md text-primary">play_circle</span>
+<span>Simular Disparo de Teste</span>
+</button>
+<button class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-md text-label-md px-space-md py-space-sm rounded-lg shadow-sm transition-all" onclick="alert('Exportando log de auditoria fiscal e comunicações sanitárias (.XLSX)...')" type="button">
+<span class="material-symbols-outlined text-headline-md text-secondary">file_download</span>
+<span>Exportar Relatório (.XLSX)</span>
+</button>
+<button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg px-space-lg py-space-sm rounded-lg shadow-md transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-headline-md">add_circle</span>
+<span>Nova Regra / Template</span>
+</button>
+</div>
+</header>
+<!-- Cockpit de Indicadores de Entrega e Engajamento (4 Metrics Cards Bento-style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1: Volume Total -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500"></div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Volume de Disparos Hoje</span>
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-headline-md">send</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold tabular-nums">48.920</span>
+<span class="font-label-sm text-label-sm text-outline">msgs</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-body-sm">trending_up</span>
+<span>+14.2%</span>
+<span class="text-outline font-normal">vs. média móvel 7d</span>
+</div>
+</div>
+<!-- Sparkline Inline SVG Decorator -->
+<div class="mt-space-md pt-space-xs border-t-0">
+<svg class="w-full h-7 text-primary/40" fill="none" viewbox="0 0 100 24">
+<path d="M0 20 L15 17 L30 22 L45 12 L60 14 L75 6 L90 10 L100 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M0 20 L15 17 L30 22 L45 12 L60 14 L75 6 L90 10 L100 3 L100 24 L0 24 Z" fill="currentColor" fill-opacity="0.08"></path>
+</svg>
+</div>
+</div>
+<!-- Card 2: WhatsApp Open Rate -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Abertura WhatsApp Business</span>
+<div class="w-9 h-9 rounded-lg bg-secondary-container/40 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-headline-md">chat</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-secondary font-bold tabular-nums">94.6%</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">HSM Meta</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-body-sm">schedule</span>
+<span>Leitura média: <strong class="text-on-surface font-bold">42 segundos</strong></span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between font-label-sm text-label-sm text-outline pt-space-xs">
+<span>Fila: <span class="text-on-surface font-bold">0 retidas</span></span>
+<span class="text-secondary font-bold flex items-center gap-0.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span> 0.02% bounce</span>
+</div>
+</div>
+<!-- Card 3: Mobile Push Delivery -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Entrega Push Mobile (FCM/APNS)</span>
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-headline-md">devices</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-primary font-bold tabular-nums">98.2%</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">SLA Ativo</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-body-sm">touch_app</span>
+<span>Conversão de clique p/ lance: <strong class="text-on-surface font-bold">61.4%</strong></span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between font-label-sm text-label-sm text-outline pt-space-xs">
+<span>Latência de entrega: <strong class="text-on-surface">340ms</strong></span>
+<span class="text-primary font-bold">Anti-Sniper Ok</span>
+</div>
+</div>
+<!-- Card 4: FEFO Alertas Sanitários -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Alertas FEFO &amp; Validade</span>
+<div class="w-9 h-9 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-headline-md">hourglass_top</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-tertiary font-bold tabular-nums">100%</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">Confirmados</span>
+</div>
+<div class="flex items-center gap-space-xs mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary text-body-sm">verified</span>
+<span>Leitura Doca &amp; Compras: <strong class="text-on-surface font-bold">&lt; 3 min</strong></span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between font-label-sm text-label-sm text-outline pt-space-xs">
+<span class="text-tertiary font-bold uppercase">Zero Desperdício</span>
+<span class="text-outline">Rastreado ANVISA</span>
+</div>
+</div>
+</section>
+<!-- Interactive Navigation Subtabs -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-sm mb-space-lg">
+<button class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-sm whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-headline-md">receipt_long</span>
+<span>Fila de Mensagens &amp; Histórico em Tempo Real</span>
+<span class="bg-white/20 text-on-primary text-label-sm font-bold px-space-xs py-0.5 rounded-full ml-1 tabular-nums">48.9k</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-headline-md text-primary">alt_route</span>
+<span>Régua de Gatilhos &amp; Automações</span>
+<span class="bg-surface-container-high text-on-surface text-label-sm font-bold px-space-xs py-0.5 rounded-full ml-1">5 Ativos</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-headline-md text-secondary">approval</span>
+<span>Templates Aprovados WhatsApp (Meta HSM)</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-bold text-label-sm px-space-xs py-0.5 rounded-full ml-1">18 Válidos</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-headline-md text-outline">tune</span>
+<span>Configurações de Canais &amp; Credenciais API</span>
+</button>
+</div>
+<!-- Main Asymmetric Workspace Layout: 7 Cols (Automation Matrix + Logs) vs 5 Cols (Interactive WhatsApp Preview + Sandbox) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- LEFT COLUMN: Matriz de Regras e Gatilhos Automáticos Ativos (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Section Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-lg">bolt</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+            Matriz de Regras e Gatilhos Automáticos Ativos
+          </h2>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-secondary uppercase bg-secondary-fixed px-space-sm py-space-xs rounded">
+          SLA Dinâmico 2026
+        </span>
+</div>
+<!-- Trigger 1: Validade Crítica FEFO -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm transition-all hover:shadow-md relative overflow-hidden">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="p-space-xs bg-tertiary-fixed text-on-tertiary-fixed rounded-lg">
+<span class="material-symbols-outlined text-headline-lg">hourglass_bottom</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-tertiary font-bold uppercase tracking-wider">Regra #GAT-01</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-bold px-space-xs py-0.5 rounded">Alta Prioridade</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold mt-0.5">
+                Validade Crítica FEFO (&lt; 30 dias de Shelf-Life)
+              </h3>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-start">
+<span class="font-label-sm text-label-sm text-secondary font-bold bg-secondary-container/40 px-space-sm py-1 rounded">
+              78.4% Conversão
+            </span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+          Disparo relâmpago unificado com promoção segmentada via <strong>WhatsApp Business HSM</strong> e <strong>Push Mobile Georreferenciado</strong> para compradores varejistas ativos em raio logístico de até 150km do Centro de Distribuição.
+        </p>
+<!-- Route Badges & Latency Info -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-md">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Canais:</span>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-secondary text-label-md">chat</span> WhatsApp HSM
+            </div>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-primary text-label-md">notifications_active</span> Push Pushy/FCM
+            </div>
+</div>
+<div class="font-label-sm text-label-sm text-outline">
+            Latência máx: <strong class="text-on-surface font-bold">&lt; 1.200ms</strong>
+</div>
+</div>
+</div>
+<!-- Trigger 2: Novo Lance Superado (Anti-Sniper) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm transition-all hover:shadow-md">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="p-space-xs bg-primary-fixed text-on-primary-fixed rounded-lg">
+<span class="material-symbols-outlined text-headline-lg">gavel</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Regra #GAT-02</span>
+<span class="bg-primary-fixed text-on-primary-fixed text-label-sm font-bold px-space-xs py-0.5 rounded">Reta Final Leilão</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold mt-0.5">
+                Novo Lance Superado (Mecanismo Anti-Sniper)
+              </h3>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold bg-primary-fixed/50 px-space-sm py-1 rounded">
+            &lt; 800ms SLA
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+          Notificação ultra rápida de lance coberto para o comprador anterior nos últimos 5 minutos de pregão. Permite arremate por 1 clique direto no push notification sem necessidade de recarregar navegador.
+        </p>
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-md">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Canais:</span>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-primary text-label-md">notifications_active</span> Push Instantâneo
+            </div>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-outline text-label-md">sms</span> SMS Fallback
+            </div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span> 99.9% entregues a tempo
+          </span>
+</div>
+</div>
+<!-- Trigger 3: Arremate Concluído & Chave Pix Escrow Gerada -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm transition-all hover:shadow-md">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="p-space-xs bg-secondary-fixed text-on-secondary-fixed rounded-lg">
+<span class="material-symbols-outlined text-headline-lg">qr_code_2</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider">Regra #GAT-03</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-label-sm font-bold px-space-xs py-0.5 rounded">Custódia Santander</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold mt-0.5">
+                Arremate Concluído &amp; Chave Pix Escrow Gerada
+              </h3>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold bg-secondary-container/40 px-space-sm py-1 rounded">
+            99.4% Liquidação D0
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+          Emissão automatizada via WhatsApp Business do QR Code dinâmico Pix Copia-e-Cola + PDF fiscal do espelho de arremate e chave de segurança da conta escrow vinculada ao Santander.
+        </p>
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-md">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Canais:</span>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-secondary text-label-md">chat</span> WhatsApp API
+            </div>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-primary text-label-md">mail</span> E-mail Transacional
+            </div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Conciliação automática via Webhook</span>
+</div>
+</div>
+<!-- Trigger 4: Bloqueio Sanitário Automático (ANVISA D<=0) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm transition-all hover:shadow-md">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="p-space-xs bg-tertiary text-on-tertiary rounded-lg">
+<span class="material-symbols-outlined text-headline-lg">lock_reset</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-tertiary font-bold uppercase tracking-wider">Regra #GAT-04</span>
+<span class="bg-tertiary text-on-tertiary text-label-sm font-bold px-space-xs py-0.5 rounded">Risco Sanitário Crítico</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold mt-0.5">
+                Bloqueio Sanitário Automático (ANVISA D≤0 ou Alerta MAPA)
+              </h3>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold bg-tertiary-fixed px-space-sm py-1 rounded">
+            Carimbo WORM
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+          Interdição sistêmica imediata de lote vencido ou com não-conformidade. Comunicação tríplice e irrevogável para Responsável Técnico (CRQ), Gerente de CD e Fiscalização Externa com Hash criptográfico WORM anexado.
+        </p>
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-md">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Canais:</span>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-secondary text-label-md">chat</span> WhatsApp RT
+            </div>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-primary text-label-md">mail</span> E-mail Certificado
+            </div>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-tertiary text-label-md">crisis_alert</span> SMS Alerta CD
+            </div>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">Notificação Compulsória</span>
+</div>
+</div>
+<!-- Trigger 5: Passe de Saída da Cancela Liberado -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm transition-all hover:shadow-md">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="p-space-xs bg-surface-container-high text-on-surface rounded-lg">
+<span class="material-symbols-outlined text-headline-lg">local_shipping</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-outline font-bold uppercase tracking-wider">Regra #GAT-05</span>
+<span class="bg-surface-container text-on-surface text-label-sm font-bold px-space-xs py-0.5 rounded">Logística &amp; Doca</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold mt-0.5">
+                Passe de Saída de Cancela e Coleta Liberado
+              </h3>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold bg-surface-container px-space-sm py-1 rounded">
+            Portaria Express
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+          Disparo de Push e WhatsApp para o motorista transportador com QR Code criptografado para liberação direta na cancela do armazém WMS após validação do MDFe e NFe autorizada.
+        </p>
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-md">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Canais:</span>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-primary text-label-md">notifications_active</span> Push Motorista
+            </div>
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-secondary text-label-md">chat</span> WhatsApp Oficial
+            </div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Check-in automatizado</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Interactive Smartphone WhatsApp HSM Preview & Simulator (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Preview Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-headline-lg">phone_iphone</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+            Preview WhatsApp Oficial Meta
+          </h2>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Template Aprovado</span>
+</div>
+</div>
+<!-- Smartphone Frame Container -->
+<div class="bg-surface-container-lowest p-space-md rounded-2xl shadow-lg flex flex-col items-center">
+<!-- Phone Device Frame -->
+<div class="w-full max-w-[340px] bg-surface-container-highest rounded-[2.5rem] p-3 shadow-xl">
+<!-- Screen Outer Glass -->
+<div class="bg-[#e5ddd5] rounded-[2rem] overflow-hidden flex flex-col h-[580px] shadow-inner relative">
+<!-- WhatsApp Top Bar -->
+<div class="bg-[#075E54] text-white px-space-md py-space-sm flex items-center justify-between shadow-sm z-10">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-lg">arrow_back</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary font-bold shadow-sm">
+<span class="material-symbols-outlined text-headline-md">storefront</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-0.5">
+<span class="font-label-md text-label-md font-bold text-white tracking-tight leading-none">Varejista Online</span>
+<span class="material-symbols-outlined text-secondary-fixed text-[14px]">verified</span>
+</div>
+<span class="text-[10px] text-white/80 font-medium">Conta Comercial Oficial</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-white/90">
+<span class="material-symbols-outlined text-body-md">videocam</span>
+<span class="material-symbols-outlined text-body-md">call</span>
+<span class="material-symbols-outlined text-body-md">more_vert</span>
+</div>
+</div>
+<!-- WhatsApp Chat Background Area with Watermark pattern -->
+<div class="flex-1 p-space-sm overflow-y-auto space-y-space-md flex flex-col justify-end">
+<!-- Security Notice Banner -->
+<div class="bg-[#fef8e3] text-on-surface-variant text-[10px] text-center p-space-xs rounded-lg shadow-sm mx-space-sm">
+<span class="material-symbols-outlined text-[12px] inline align-text-bottom">lock</span> Mensagens protegidas por criptografia de ponta a ponta e auditoria WORM da plataforma.
+              </div>
+<!-- Message Bubble -->
+<div class="bg-white rounded-lg p-space-sm shadow-sm max-w-[92%] self-start relative">
+<!-- Product/Alert Header Image in WhatsApp -->
+<div class="relative w-full h-28 rounded-lg overflow-hidden mb-space-xs bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="High quality commercial warehouse stock of cooking oil bottles and food supplies organized neatly on pallets with soft industrial lighting and clean logistics floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ3otxJFNrkGmeY9cVDSzFDj8Z3q5dwYLeZm2YGeM4ejCPa0QpKoqPKCdH_cKyRiwxD1z_CTzOjw4FqSRhPWKIQJoiaW-ReklWRQV2Os6MEiDJZIt1_6w5boOE8SGj5C3oj7Q_ix7KLpZm0iguEuW6Oyn_b8Cj3e4NbgG9KrLcc769Bn5WJi5XVdAFl9G7dl_iIN5Ko9XlmWrv9LOotjLkeEwy75gThBrHNJSgxGrE"/>
+<div class="absolute top-1 right-1 bg-tertiary text-on-tertiary text-[9px] font-bold px-1.5 py-0.5 rounded uppercase">
+                    FEFO • 18 Dias Restantes
+                  </div>
+</div>
+<div class="font-label-md text-label-md font-bold text-primary mb-0.5">
+                  OPORTUNIDADE RELÂMPAGO #SBE-2026
+                </div>
+<p class="text-[11px] text-[#303030] leading-tight mb-space-xs">
+                  Olá, <strong>Supermercado Alvorada</strong>! Lote prioritário disponível para sua região com desconto de ponta de estoque.
+                </p>
+<div class="bg-[#f0f2f5] p-space-xs rounded text-[11px] space-y-0.5 mb-space-xs text-on-surface-variant font-medium">
+<div class="flex justify-between">
+<span>SKU:</span> <strong class="text-on-surface">Óleo Soja 900ml (Cx 20un)</strong>
+</div>
+<div class="flex justify-between">
+<span>Volume:</span> <strong class="text-on-surface">14 Paletes (1.400 Cxs)</strong>
+</div>
+<div class="flex justify-between">
+<span>Validade:</span> <strong class="text-tertiary">28/04/2026</strong>
+</div>
+<div class="flex justify-between text-secondary font-bold border-t border-outline-variant/30 pt-0.5">
+<span>Preço Unit:</span> <span>R$ 4,12 (Margem +38%)</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[10px] text-outline pt-0.5">
+<span class="italic text-[9px]">Custódia Santander Garantida</span>
+<div class="flex items-center gap-0.5 text-primary">
+<span>14:32</span>
+<span class="material-symbols-outlined text-[13px] text-[#4fc3f7]">done_all</span>
+</div>
+</div>
+<!-- Interactive WhatsApp Buttons -->
+<div class="mt-space-xs pt-space-xs space-y-1">
+<button class="w-full bg-[#f8f9fa] hover:bg-[#eceef0] text-[#00a884] font-bold text-[11px] py-1.5 rounded flex items-center justify-center gap-1 shadow-sm transition-colors" onclick="alert('Simulando clique de comprador: Redirecionando para pregão...')" type="button">
+<span class="material-symbols-outlined text-[14px]">gavel</span>
+<span>Arrematar Imediatamente</span>
+</button>
+<button class="w-full bg-[#f8f9fa] hover:bg-[#eceef0] text-[#00a884] font-bold text-[11px] py-1.5 rounded flex items-center justify-center gap-1 shadow-sm transition-colors" onclick="alert('Chave PIX Santander gerada com sucesso!')" type="button">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+<span>Copiar Chave Pix Escrow</span>
+</button>
+<button class="w-full bg-[#f8f9fa] hover:bg-[#eceef0] text-[#667781] font-semibold text-[11px] py-1.5 rounded flex items-center justify-center gap-1 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">help</span>
+<span>Falar com Concierge B2B</span>
+</button>
+</div>
+</div>
+</div>
+<!-- WhatsApp Fake Input bar -->
+<div class="bg-[#f0f2f5] p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">mood</span>
+<div class="flex-1 bg-white rounded-full px-3 py-1 text-[11px] text-outline shadow-sm">
+                Resposta rápida permitida...
+              </div>
+<span class="material-symbols-outlined text-outline text-body-md">mic</span>
+</div>
+</div>
+</div>
+<!-- Meta Business API Compliance Box below phone -->
+<div class="mt-space-md w-full bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between text-outline">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-headline-md">verified</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">HSM WhatsApp: Aprovado</span>
+<span class="text-[10px]">Categoria: Marketing Transacional de Alto Impacto</span>
+</div>
+</div>
+<button class="text-primary font-label-sm text-label-sm font-bold hover:underline" type="button">
+            Editar Payload
+          </button>
+</div>
+</div>
+<!-- Quick Dispatch Diagnostics -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Diagnóstico de Conectividade em Tempo Real</span>
+<div class="space-y-space-xs font-body-sm text-body-sm">
+<div class="flex justify-between items-center py-1">
+<span class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-body-md">check_circle</span>
+              Meta Graph API v19.0 (Webhook)
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">200 OK (18ms)</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-body-md">check_circle</span>
+              Firebase Cloud Messaging (FCM Push)
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">Conectado (32ms)</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-body-md">check_circle</span>
+              Amazon SES Transacional • TLS 1.3
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">Verificado (41ms)</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-body-md">check_circle</span>
+              Escrow Santander Pix Webhook
+            </span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">Escuta Ativa (D0)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feed / Log Operacional de Disparos Recentes (Audit Trail Table) -->
+<section class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm mb-space-xl">
+<!-- Table Toolbar & Filters -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-headline-md">dynamic_feed</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface">
+            Log Operacional de Disparos e Notificações em Tempo Real
+          </h2>
+<span class="font-label-sm text-label-sm text-outline">Transações registradas com carimbo de tempo seguro e hash WORM</span>
+</div>
+</div>
+<!-- Search & Channel Selector -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="relative">
+<input class="bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm font-body-sm pl-8 pr-4 py-1.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary w-64 shadow-inner" placeholder="Filtrar por lote, CNPJ ou comprador..." type="text"/>
+<span class="material-symbols-outlined absolute left-2 top-2 text-outline text-body-md">search</span>
+</div>
+<select class="bg-surface-container-low text-on-surface text-body-sm font-label-md py-1.5 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+<option>Todos os Canais</option>
+<option>WhatsApp Business Oficial</option>
+<option>Push Notification Mobile</option>
+<option>E-mail Transacional</option>
+<option>SMS Contingência</option>
+</select>
+<button class="p-1.5 rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface transition-colors" title="Atualizar Fila" type="button">
+<span class="material-symbols-outlined text-headline-md">refresh</span>
+</button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">Destinatário &amp; Empresa</th>
+<th class="py-space-sm px-space-md">Evento / Gatilho</th>
+<th class="py-space-sm px-space-md">Canais Utilizados</th>
+<th class="py-space-sm px-space-md">Horário &amp; Auditoria</th>
+<th class="py-space-sm px-space-md">Status de Entrega</th>
+<th class="py-space-sm px-space-md text-right rounded-r-lg">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-body-md text-body-md">
+<!-- Row 1: Pix Escrow -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-bold text-label-md">
+                  SA
+                </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Supermercado Alvorada Ltda</span>
+<span class="font-body-sm text-body-sm text-outline">CNPJ: 14.890.312/0001-44</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Lote #SBE-2026-09 (Pix Escrow)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Arremate Concluído • R$ 48.900,00</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-7 h-7 rounded bg-secondary-container/40 text-on-secondary-container flex items-center justify-center" title="WhatsApp Business">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</span>
+<span class="w-7 h-7 rounded bg-primary-fixed text-on-primary-fixed flex items-center justify-center" title="E-mail Transacional">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">14:32:08</span>
+<span class="font-label-sm text-label-sm text-outline">Hash: 8f9a...c32d</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm font-bold text-secondary bg-secondary-container/30 px-space-sm py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">done_all</span>
+                Lido • Chave Pix Copiada
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button 48900.00,\n="" \"8f9a91c8430e\"\n}')"="" \"santander_escrow\",\n="" \"sbe-2026-09\",\n="" amount:="" class="p-1 rounded text-primary hover:bg-surface-container" escrow_pix_issued\",\n="" gateway:="" lot_id:="" onclick="alert('Payload JSON:\n{\n  event: \" title="Visualizar Payload JSON" type="button" worm_hash:="">
+<span class="material-symbols-outlined text-headline-md">data_object</span>
+</button>
+<button class="p-1 rounded text-outline hover:bg-surface-container" title="Reenviar Notificação" type="button">
+<span class="material-symbols-outlined text-headline-md">forward</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Sanitária Quarentena ANVISA -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-tertiary-fixed/10">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-label-md">
+                  CR
+                </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Dra. Marina S. (RT / CRQ IV)</span>
+<span class="font-body-sm text-body-sm text-outline">Centro de Distribuição Cajamar SP</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-tertiary font-bold">Lote #IOG-2026 (Quarentena Sanitária)</span>
+<span class="font-body-sm text-body-sm text-tertiary font-bold">Bloqueio Automático ANVISA D≤0</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-7 h-7 rounded bg-secondary-container/40 text-on-secondary-container flex items-center justify-center" title="WhatsApp Oficial">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</span>
+<span class="w-7 h-7 rounded bg-primary-fixed text-on-primary-fixed flex items-center justify-center" title="E-mail SES">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+</span>
+<span class="w-7 h-7 rounded bg-tertiary text-on-tertiary flex items-center justify-center" title="SMS Compulsório">
+<span class="material-symbols-outlined text-[16px]">crisis_alert</span>
+</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">14:28:15</span>
+<span class="font-label-sm text-label-sm text-outline">WORM Cert: #ANV-882</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm font-bold text-tertiary bg-tertiary-fixed px-space-sm py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                Entrega Compulsória Confirmada
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button class="p-1 rounded text-tertiary hover:bg-surface-container" title="Visualizar Certificado WORM" type="button">
+<span class="material-symbols-outlined text-headline-md">verified_user</span>
+</button>
+<button class="p-1 rounded text-outline hover:bg-surface-container" title="Log de Auditoria" type="button">
+<span class="material-symbols-outlined text-headline-md">receipt</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Lance Coberto Anti-Sniper -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-label-md">
+                  DA
+                </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Distribuidora Andorinha S/A</span>
+<span class="font-body-sm text-body-sm text-outline">CNPJ: 08.411.902/0002-19</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Pregão #LEI-7719 (Anti-Sniper)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lance Superado • R$ 134.000,00</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-7 h-7 rounded bg-primary-container text-on-primary flex items-center justify-center" title="Push Mobile Instantâneo">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span>
+</span>
+<span class="w-7 h-7 rounded bg-surface-container-highest text-on-surface flex items-center justify-center" title="SMS Fallback">
+<span class="material-symbols-outlined text-[16px]">sms</span>
+</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">14:15:02</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Latência: 312ms</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm font-bold text-secondary bg-secondary-container/30 px-space-sm py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">touch_app</span>
+                Push Clicado (Novo Lance Feito)
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button class="p-1 rounded text-primary hover:bg-surface-container" title="Visualizar Payload JSON" type="button">
+<span class="material-symbols-outlined text-headline-md">data_object</span>
+</button>
+<button class="p-1 rounded text-outline hover:bg-surface-container" title="Histórico do Pregão" type="button">
+<span class="material-symbols-outlined text-headline-md">history</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Portaria & Cancela QR Code -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container text-on-surface flex items-center justify-center font-bold text-label-md">
+                  TR
+                </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Carlos M. (TransLog Express)</span>
+<span class="font-body-sm text-body-sm text-outline">Placa: RQX-9A44 • Doca 04</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Passe Cancela CD Cajamar</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Liberação MDFe / CTe Ok</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-7 h-7 rounded bg-primary-container text-on-primary flex items-center justify-center" title="Push Motorista App">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span>
+</span>
+<span class="w-7 h-7 rounded bg-secondary-container/40 text-on-secondary-container flex items-center justify-center" title="WhatsApp QR">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">14:02:44</span>
+<span class="font-label-sm text-label-sm text-outline">Passe #CAN-2026</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm font-bold text-on-surface bg-surface-container-high px-space-sm py-1 rounded">
+<span class="material-symbols-outlined text-[14px]">sensor_occupied</span>
+                Cancela Liberada (Automático)
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-space-xs">
+<button class="p-1 rounded text-primary hover:bg-surface-container" title="Visualizar QR de Acesso" type="button">
+<span class="material-symbols-outlined text-headline-md">qr_code</span>
+</button>
+<button class="p-1 rounded text-outline hover:bg-surface-container" title="Detalhes CTe" type="button">
+<span class="material-symbols-outlined text-headline-md">description</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Aggregate Counters -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md mt-space-lg pt-space-md bg-surface-container-low p-space-sm rounded-lg">
+<div class="font-label-sm text-label-sm text-outline">
+        Exibindo <span class="font-bold text-on-surface">1 - 4</span> de <span class="font-bold text-on-surface">48.920</span> disparos nas últimas 24h
+      </div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1 rounded bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container shadow-sm transition-colors" type="button">
+          Anterior
+        </button>
+<span class="px-space-sm py-1 font-label-sm text-label-sm font-bold text-on-surface">Página 1 de 1.223</span>
+<button class="px-space-md py-1 rounded bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container shadow-sm transition-colors" type="button">
+          Próxima
+        </button>
+</div>
+</div>
+</section>
+<!-- Technical Governance & Legal Opt-in Footer (Rodapé de Governança Técnica) -->
+<footer class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm mb-space-lg">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg items-center">
+<!-- Stamp 1: LGPD & Opt-in WORM -->
+<div class="flex items-start gap-space-sm">
+<div class="p-space-xs bg-secondary-fixed text-on-secondary-fixed rounded-lg">
+<span class="material-symbols-outlined text-headline-lg">verified_user</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">
+            LGPD • Opt-In WORM Auditado
+          </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mt-0.5">
+            Consentimento de comunicação transacional B2B registrado em ledger imutável conforme Art. 7º e 11 da LGPD.
+          </p>
+</div>
+</div>
+<!-- Stamp 2: mTLS & Zero Trust Encryption -->
+<div class="flex items-start gap-space-sm">
+<div class="p-space-xs bg-primary-fixed text-on-primary-fixed rounded-lg">
+<span class="material-symbols-outlined text-headline-lg">enhanced_encryption</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">
+            Criptografia Ponta a Ponta mTLS
+          </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mt-0.5">
+            Túneis de alta segurança com certificados SHA-256 e autenticação mútua junto a gateways bancários e WhatsApp Meta.
+          </p>
+</div>
+</div>
+<!-- Stamp 3: Meta Official SLA 2026 -->
+<div class="flex items-start gap-space-sm">
+<div class="p-space-xs bg-surface-container-high text-primary rounded-lg">
+<span class="material-symbols-outlined text-headline-lg">partner_exchange</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">
+            Meta Business Partner SLA 2026
+          </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight mt-0.5">
+            Nível máximo de reputação (Tier 3 - Ilimitado) com suporte direto e roteamento prioritário para varejo nacional.
+          </p>
+</div>
+</div>
+</div>
+</footer>
+</div></main></div></body></html>

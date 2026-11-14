@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"outline":"#737783","on-tertiary-fixed-variant":"#930010","outline-variant":"#c3c6d4","inverse-surface":"#2d3133","inverse-primary":"#b0c6ff","surface-container-high":"#e6e8ea","on-primary-fixed":"#001945","primary-container":"#0d47a1","on-secondary":"#ffffff","error":"#ba1a1a","surface-bright":"#f7f9fb","secondary-container":"#a0f399","tertiary-container":"#9d0011","surface-container-lowest":"#ffffff","on-primary-container":"#a1bbff","secondary":"#1b6d24","tertiary-fixed-dim":"#ffb3ac","on-error-container":"#93000a","on-secondary-container":"#217128","on-error":"#ffffff","on-tertiary-container":"#ffa59d","primary-fixed":"#d9e2ff","on-secondary-fixed":"#002204","surface-dim":"#d8dadc","secondary-fixed-dim":"#88d982","on-primary-fixed-variant":"#00429c","on-secondary-fixed-variant":"#005312","background":"#f7f9fb","inverse-on-surface":"#eff1f3","surface-variant":"#e0e3e5","on-surface":"#191c1e","surface-tint":"#2b5bb5","primary-fixed-dim":"#b0c6ff","surface-container":"#eceef0","on-primary":"#ffffff","surface":"#f7f9fb","surface-container-low":"#f2f4f6","on-background":"#191c1e","primary":"#003178","secondary-fixed":"#a3f69c","surface-container-highest":"#e0e3e5","error-container":"#ffdad6","tertiary":"#720009","on-tertiary-fixed":"#410003","on-tertiary":"#ffffff","tertiary-fixed":"#ffdad6","on-surface-variant":"#434652"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-md":"0.75rem","gutter":"1rem","gutter-mobile":"0.75rem","space-lg":"1.25rem","margin":"1.5rem","margin-mobile":"1rem","space-xs":"0.25rem","space-xl":"2rem","space-sm":"0.5rem"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"]},fontSize:{"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md font-bold">V</div><div class="flex flex-col"><span class="font-label-lg text-primary tracking-tight font-bold">VAREJISTA ONLINE</span><span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Super Admin B2B</span></div></div><span class="px-space-xs py-0.5 rounded-lg bg-primary-container text-on-primary-container font-label-sm font-bold">PROD-BR</span></div><nav class="flex-1 overflow-y-auto px-gutter py-space-md space-y-space-md" data-active-classes="bg-primary-container text-on-primary-container font-label-lg font-bold rounded-lg shadow-sm"><div class="space-y-space-xs"><div class="px-space-sm py-1 font-label-sm text-on-surface-variant uppercase tracking-wider">Visão Geral</div><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="dashboard-master" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Dashboard Master</a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="kpis-em-tempo-real" href="#"><span class="material-symbols-outlined text-lg">monitoring</span>KPIs em Tempo Real</a></div><div class="space-y-space-xs"><div class="px-space-sm py-1 font-label-sm text-on-surface-variant uppercase tracking-wider">Governança &amp; Cadastros</div><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="aprovacao-empresas" href="#"><span class="material-symbols-outlined text-lg">verified_user</span>Aprovação Empresas</a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="gestao-de-usuarios" href="#"><span class="material-symbols-outlined text-lg">manage_accounts</span>Gestão de Usuários</a></div><div class="space-y-space-xs"><div class="px-space-sm py-1 font-label-sm text-on-surface-variant uppercase tracking-wider">Leilões &amp; Operações</div><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="salas-de-pregao" href="#"><span class="material-symbols-outlined text-lg">gavel</span>Salas de Pregão</a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="lotes-e-sku" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span>Lotes &amp; SKU</a></div><div class="space-y-space-xs"><div class="px-space-sm py-1 font-label-sm text-on-surface-variant uppercase tracking-wider">Financeiro &amp; Liquidação</div><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="fluxo-de-pagamentos" href="#"><span class="material-symbols-outlined text-lg">payments</span>Fluxo de Pagamentos</a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="custodia-escrow-bacen" href="#"><span class="material-symbols-outlined text-lg">account_balance</span>Custódia Escrow BACEN</a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="take-rate-e-comissoes" href="#"><span class="material-symbols-outlined text-lg">percent</span>Take Rate &amp; Comissões</a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="repasses-e-conciliacao-bancaria" href="#"><span class="material-symbols-outlined text-lg">receipt_long</span>Repasses &amp; Conciliação</a></div><div class="space-y-space-xs"><div class="px-space-sm py-1 font-label-sm text-on-surface-variant uppercase tracking-wider">Fiscal &amp; Compliance</div><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="logistica-e-sefaz" href="#"><span class="material-symbols-outlined text-lg">local_shipping</span>Logística &amp; SEFAZ</a><a class="flex items-center gap-space-md px-space-sm py-2 rounded-lg font-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="compliance-e-seguranca" href="#"><span class="material-symbols-outlined text-lg">security</span>Compliance &amp; Segurança</a></div></nav><div class="p-gutter bg-surface-container border-t-0"><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="flex flex-col min-w-0"><span class="font-label-md text-on-surface truncate">Super Admin Root</span><span class="font-label-sm text-on-surface-variant truncate">sec-ops@varejista.com.br</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-gutter"><div class="flex-1 max-w-xl"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-outline text-lg">search</span><input class="w-full h-10 pl-10 pr-4 rounded-lg bg-surface-container-low font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Consultar CNPJ, ID Lote, Transação Pix, TED..." type="text"/></div></div><div class="flex items-center gap-space-lg"><div class="hidden xl:flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-on-surface-variant">BACEN SPI / Pix: <strong class="text-secondary font-bold">42ms</strong></span></div><div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-on-surface-variant">CIP TED: <strong class="text-secondary font-bold">Homologada</strong></span></div><div class="flex items-center gap-space-xs px-2.5 py-1 rounded-full bg-surface-container"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-on-surface-variant">Gateway: <strong class="text-secondary font-bold">Ativo</strong></span></div></div><div class="flex items-center gap-space-sm"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button><button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-xl">settings</span></button><div class="flex items-center gap-space-xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><span class="material-symbols-outlined text-outline text-base">expand_more</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Bar / Breadcrumb & Header Zone -->
+<div class="px-space-xl pt-space-lg pb-space-md bg-surface-container-lowest">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div>
+<nav class="flex items-center gap-space-xs font-label-sm text-on-surface-variant uppercase tracking-wider mb-1">
+<span>PAINEL MASTER</span>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+<span>FINANCEIRO &amp; ESCROW</span>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+<span class="text-primary font-bold">FLUXO DE PAGAMENTOS &amp; LIQUIDAÇÃO</span>
+</nav>
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-xl text-on-surface tracking-tight">Gestão Financeira &amp; Meios de Pagamento B2B</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            CIP/SPI ONLINE D+0
+          </span>
+</div>
+<p class="font-body-md text-on-surface-variant mt-1">
+          Controle e conciliação em tempo real de transações via Pix BACEN, Cartão Corporativo PJ e TED/STR em custódia fiduciária.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm self-start xl:self-auto">
+<button class="inline-flex items-center gap-2 px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">download</span>
+          Exportar (OFX / Excel)
+        </button>
+<button class="inline-flex items-center gap-2 px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">calculate</span>
+          Simular Cobrança
+        </button>
+<button class="inline-flex items-center gap-2 px-space-md py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">tune</span>
+          Configurar Gateways
+        </button>
+</div>
+</div>
+<!-- Real-time Gateway Health Strip -->
+<div class="mt-space-md pt-space-sm grid grid-cols-2 lg:grid-cols-4 gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-2.5 px-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface-variant">SPI Pix BACEN</span>
+<span class="font-label-md text-on-surface font-bold">Online (24ms latency)</span>
+</div>
+</div>
+<div class="flex items-center gap-2.5 px-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface-variant">Gateway Cartão B2B</span>
+<span class="font-label-md text-on-surface font-bold">Ativo • Split 100% Nativo</span>
+</div>
+</div>
+<div class="flex items-center gap-2.5 px-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface-variant">CIP TED / STR</span>
+<span class="font-label-md text-on-surface font-bold">Grade Integrada (D+0)</span>
+</div>
+</div>
+<div class="flex items-center gap-2.5 px-space-sm">
+<span class="material-symbols-outlined text-primary text-base">verified</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-on-surface-variant">Resolução BACEN 4.656</span>
+<span class="font-label-md text-primary font-bold">Compliance Homologado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Feedback Banner: Formal Off-Grid Conciliation -->
+<div class="px-space-xl pt-space-md">
+<div class="rounded-xl bg-surface-container-lowest p-space-md shadow-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pl-space-xs">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl font-bold">fact_check</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-md text-secondary font-bold uppercase tracking-wider">TED Fora da Grade CIP Conciliada com Sucesso</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm font-bold">Lote #IND-2026-88</span>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm font-bold">R$ 145.000,00</span>
+</div>
+<p class="font-body-md text-on-surface-variant mt-0.5">
+              Termo Formal <strong class="text-on-surface font-semibold">TERMO-EXC-2026-088-CIP</strong> emitido e autenticado digitalmente via ICP-Brasil. Saldo de R$ 135.575,00 retido sob custódia escrow no Santander S.A.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container text-primary font-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-base">picture_as_pdf</span>
+            Ver Termo PDF
+          </button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface font-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-base">receipt_long</span>
+            Extrato CNAB 240
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- KPI Executive Metrics (4 Cards) -->
+<div class="px-space-xl pt-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Total Liquidated -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm uppercase tracking-wider">Volume Liquidado (Mês)</span>
+<span class="material-symbols-outlined text-primary text-xl">account_balance_wallet</span>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-on-surface tracking-tight">R$ 18.420.500,00</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center font-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">arrow_upward</span> +18.4%
+            </span>
+<span class="font-body-sm text-on-surface-variant">vs. mês anterior • 1.428 ops</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs">
+<div class="flex justify-between font-label-sm text-on-surface-variant mb-1">
+<span>Meta Mês: R$ 20.000.000,00</span>
+<span class="text-on-surface font-bold">92.1%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 92.1%;"></div>
+</div>
+</div>
+</div>
+<!-- Pix BACEN -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm uppercase tracking-wider">Pix BACEN (Instantâneo)</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm font-bold">61% do Volume</span>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-secondary tracking-tight">R$ 11.240.800,00</div>
+<div class="font-body-sm text-on-surface-variant mt-1">
+            912 arremates liquidados • Custo SPI R$ 1,50
+          </div>
+</div>
+<div class="mt-space-md pt-space-xs bg-surface-container-low p-space-xs rounded-lg flex items-center justify-between">
+<span class="font-label-sm text-on-surface-variant">Tempo Médio SPI:</span>
+<span class="font-label-md text-secondary font-bold">3.2 segundos (D+0)</span>
+</div>
+</div>
+<!-- Corporate Card B2B -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm uppercase tracking-wider">Cartão B2B / Corp</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm font-bold">26% do Volume</span>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-primary tracking-tight">R$ 4.820.400,00</div>
+<div class="font-body-sm text-on-surface-variant mt-1">
+            342 transações • Parcelamento até 6x PJ
+          </div>
+</div>
+<div class="mt-space-md pt-space-xs bg-surface-container-low p-space-xs rounded-lg flex items-center justify-between">
+<span class="font-label-sm text-on-surface-variant">MDR Médio: <strong>2.45%</strong></span>
+<span class="font-label-sm text-secondary font-bold">0.0% Chargeback</span>
+</div>
+</div>
+<!-- TED / STR CIP -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm uppercase tracking-wider">TED / STR CIP</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm font-bold">13% do Volume</span>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-on-surface tracking-tight">R$ 2.504.300,00</div>
+<div class="font-body-sm text-on-surface-variant mt-1">
+            175 operações industriais homologadas
+          </div>
+</div>
+<div class="mt-space-md pt-space-xs bg-surface-container-low p-space-xs rounded-lg flex items-center justify-between">
+<span class="font-label-sm text-on-surface-variant">Conciliação CNAB 240:</span>
+<span class="font-label-md text-on-surface font-bold">1 Exceção Pós-Grade</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Layout (12 Columns: 8 Cols Ledger Table + 4 Cols Governance Sidebar) -->
+<div class="px-space-xl py-space-md">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Column: Operations Ledger & Filter Tabs (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- Filter Tabs & Quick Search -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between gap-space-md overflow-x-auto pb-space-sm border-b-0">
+<div class="flex items-center gap-space-xs shrink-0">
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md shadow-sm">Todas (1.428)</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors">Pix Instantâneo (912)</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors">Cartão PJ (342)</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors">TED / STR (175)</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors">Escrow (R$ 4.89M)</button>
+<button class="px-3 py-1.5 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-label-md transition-colors flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Auditoria (4)
+              </button>
+</div>
+<div class="flex items-center gap-space-xs shrink-0">
+<select class="h-9 px-3 rounded-lg bg-surface-container-low font-label-sm text-on-surface focus:outline-none">
+<option>Hoje (D+0)</option>
+<option>Últimos 7 dias</option>
+<option selected="">Este Mês (Competência)</option>
+<option>Personalizado</option>
+</select>
+</div>
+</div>
+<!-- Quick Filters Bar -->
+<div class="mt-space-md flex flex-col md:flex-row items-center gap-space-sm">
+<div class="relative w-full flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-lg">filter_alt</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg bg-surface-container-low font-body-sm text-on-surface placeholder:text-outline focus:outline-none" placeholder="Filtrar por End-to-End Id, Chave Pix, NSU, CNPJ Pagador ou Lote..." type="text"/>
+</div>
+<div class="flex items-center gap-space-xs shrink-0 w-full md:w-auto">
+<button class="w-full md:w-auto h-10 px-4 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-lg">refresh</span>
+                Atualizar Grade
+              </button>
+</div>
+</div>
+</div>
+<!-- Operations Ledger / Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-space-md flex items-center justify-between bg-surface-container-lowest">
+<div>
+<h2 class="font-headline-md text-on-surface">Livro-Razão &amp; Liquidações Recentes</h2>
+<span class="font-body-sm text-on-surface-variant">Atualização contínua via Webhook BACEN SPI e Conciliação CNAB Santander</span>
+</div>
+<span class="font-label-sm text-on-surface-variant px-2.5 py-1 rounded-full bg-surface-container">
+              Tempo Real • Push Ativo
+            </span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm">
+<thead class="bg-surface-container text-on-surface-variant font-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-3 px-space-md">Lote / Especificação B2B</th>
+<th class="py-3 px-space-md">Partes (Pagador / Cedente)</th>
+<th class="py-3 px-space-md">Meio / Gateway</th>
+<th class="py-3 px-space-md text-right">Valor Bruto</th>
+<th class="py-3 px-space-md">Split Automático</th>
+<th class="py-3 px-space-md text-center">Status / Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<!-- Row 1: Pix Instantâneo -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md align-top">
+<div class="font-label-md text-primary font-bold">Lote #SBE-2026-09</div>
+<div class="font-body-sm text-on-surface">Biscoito Cream Cracker 400g</div>
+<div class="font-label-sm text-on-surface-variant">1.400 Cxs • Val. 18/11/2026</div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="font-label-sm text-on-surface font-semibold">Superm. Estrela do Vale</div>
+<div class="font-label-sm text-outline">CNPJ 19.382.110/0001-44</div>
+<div class="font-label-sm text-on-surface-variant mt-1">Cedente: <span class="font-medium">Laticínios Serra Bella</span></div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">bolt</span> Pix BACEN
+                    </div>
+<div class="font-label-sm text-on-surface-variant mt-1 font-mono">E2E-9938210-BR</div>
+</td>
+<td class="py-3 px-space-md align-top text-right">
+<div class="font-label-lg text-on-surface font-bold">R$ 38.000,00</div>
+<div class="font-label-sm text-secondary">Liq. D+0 (1.8s)</div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="flex flex-col gap-0.5">
+<div class="flex justify-between font-label-sm">
+<span class="text-on-surface-variant">Take Rate (6.5%):</span>
+<span class="text-primary font-bold">R$ 2.470,00</span>
+</div>
+<div class="flex justify-between font-label-sm">
+<span class="text-on-surface-variant">Escrow (93.5%):</span>
+<span class="text-on-surface font-semibold">R$ 35.530,00</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md align-top text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">check_circle</span> Conciliado SPI
+                    </span>
+</td>
+</tr>
+<!-- Row 2: TED Fora de Grade (Destaque Exceção Homologada) -->
+<tr class="bg-surface-container-high/40 hover:bg-surface-container-high transition-colors">
+<td class="py-3 px-space-md align-top">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-primary font-bold">Lote #IND-2026-88</span>
+<span class="material-symbols-outlined text-sm text-secondary" title="Termo Digital ICP-Brasil Ativo">verified</span>
+</div>
+<div class="font-body-sm text-on-surface font-semibold">Óleo de Soja Refinado 900ml</div>
+<div class="font-label-sm text-on-surface-variant">1.200 Cxs (14 Paletes)</div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="font-label-sm text-on-surface font-semibold">Coop. Central Agro Brasil</div>
+<div class="font-label-sm text-outline">CNPJ 61.209.441/0003-89</div>
+<div class="font-label-sm text-on-surface-variant mt-1">Cedente: <span class="font-medium">Bunge Alimentos S.A.</span></div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">account_balance</span> TED / STR
+                    </div>
+<div class="font-label-sm text-on-surface-variant mt-1">Itaú -&gt; Santander Escrow</div>
+</td>
+<td class="py-3 px-space-md align-top text-right">
+<div class="font-label-lg text-on-surface font-bold">R$ 145.000,00</div>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm font-bold">
+                      Fora de Grade OK
+                    </span>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="flex flex-col gap-0.5">
+<div class="flex justify-between font-label-sm">
+<span class="text-on-surface-variant">Take Rate (6.5%):</span>
+<span class="text-primary font-bold">R$ 9.425,00</span>
+</div>
+<div class="flex justify-between font-label-sm">
+<span class="text-on-surface-variant">Escrow Bloqueado:</span>
+<span class="text-on-surface font-semibold">R$ 135.575,00</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md align-top text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="px-2 py-0.5 rounded bg-secondary text-on-secondary font-label-sm font-bold">
+                        TERMO EMITIDO
+                      </span>
+<button class="font-label-sm text-primary hover:underline inline-flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs">description</span> TERMO-EXC-088
+                      </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Cartão B2B Parcelado 3x -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md align-top">
+<div class="font-label-md text-primary font-bold">Lote #CAF-2026-14</div>
+<div class="font-body-sm text-on-surface">Café Torrado Especial 500g</div>
+<div class="font-label-sm text-on-surface-variant">600 Cxs • Safra 2026</div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="font-label-sm text-on-surface font-semibold">Rede Bom Preço Distribuição</div>
+<div class="font-label-sm text-outline">CNPJ 03.940.829/0001-12</div>
+<div class="font-label-sm text-on-surface-variant mt-1">Cedente: <span class="font-medium">Torrefação Mogiana</span></div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">credit_card</span> Cartão PJ 3x
+                    </div>
+<div class="font-label-sm text-on-surface-variant mt-1">Visa Corp • NSU 849201</div>
+</td>
+<td class="py-3 px-space-md align-top text-right">
+<div class="font-label-lg text-on-surface font-bold">R$ 18.900,00</div>
+<div class="font-label-sm text-on-surface-variant">3x R$ 6.300,00</div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="flex flex-col gap-0.5">
+<div class="flex justify-between font-label-sm">
+<span class="text-on-surface-variant">MDR + Take (8%):</span>
+<span class="text-primary font-bold">R$ 1.512,00</span>
+</div>
+<div class="flex justify-between font-label-sm">
+<span class="text-on-surface-variant">Escrow Líquido:</span>
+<span class="text-on-surface font-semibold">R$ 17.388,00</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md align-top text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">security</span> 3DS 2.2 OK
+                    </span>
+</td>
+</tr>
+<!-- Row 4: Pix QR Code Dinâmico -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md align-top">
+<div class="font-label-md text-primary font-bold">Lote #GRA-2026-31</div>
+<div class="font-body-sm text-on-surface">Arroz Fardo 5kg Tipo 1</div>
+<div class="font-label-sm text-on-surface-variant">800 Fardos (2 Carretas)</div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="font-label-sm text-on-surface font-semibold">Atacadão Brasil Sul Bebidas</div>
+<div class="font-label-sm text-outline">CNPJ 88.301.992/0002-19</div>
+<div class="font-label-sm text-on-surface-variant mt-1">Cedente: <span class="font-medium">Cerealista Pampa S.A.</span></div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">qr_code_2</span> Pix Dinâmico
+                    </div>
+<div class="font-label-sm text-on-surface-variant mt-1 font-mono">TXID-4839210-9</div>
+</td>
+<td class="py-3 px-space-md align-top text-right">
+<div class="font-label-lg text-on-surface font-bold">R$ 41.200,00</div>
+<div class="font-label-sm text-secondary">Liq. D+0 (2.1s)</div>
+</td>
+<td class="py-3 px-space-md align-top">
+<div class="flex flex-col gap-0.5">
+<div class="flex justify-between font-label-sm">
+<span class="text-on-surface-variant">Take Rate (6.5%):</span>
+<span class="text-primary font-bold">R$ 2.678,00</span>
+</div>
+<div class="flex justify-between font-label-sm">
+<span class="text-on-surface-variant">Escrow Bloqueado:</span>
+<span class="text-on-surface font-semibold">R$ 38.522,00</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md align-top text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">pending</span> Aguardando MDF-e
+                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination & Summary -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-label-sm text-on-surface-variant">
+              Exibindo 4 de 1.428 transações liquidadas neste ciclo fiscal
+            </span>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm font-bold disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm font-bold">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm font-bold">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm font-bold">3</button>
+<span class="px-1 text-outline font-label-sm">...</span>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm font-bold">143</button>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm font-bold">Próximo</button>
+</div>
+</div>
+</div>
+<!-- Volume & Liquidity Distribution Chart Widget -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="font-headline-md text-on-surface">Distribuição de Volume &amp; Liquidez por Canal</h3>
+<p class="font-body-sm text-on-surface-variant">Representação comparativa das rotas de liquidação no mês corrente</p>
+</div>
+<span class="font-label-sm text-secondary font-bold">Total: R$ 18.42M</span>
+</div>
+<!-- Channel Share Visualizer (Stacked Bar & Legend) -->
+<div class="w-full h-4 rounded-full overflow-hidden flex bg-surface-container">
+<div class="h-full bg-secondary" style="width: 61%;" title="Pix BACEN: 61%"></div>
+<div class="h-full bg-primary" style="width: 26%;" title="Cartão B2B: 26%"></div>
+<div class="h-full bg-surface-tint" style="width: 13%;" title="TED / STR CIP: 13%"></div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md mt-space-md pt-space-xs">
+<div class="flex items-start gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary mt-1 shrink-0"></span>
+<div class="flex flex-col">
+<span class="font-label-md text-on-surface font-bold">Pix BACEN Instantâneo</span>
+<span class="font-body-sm text-on-surface-variant">R$ 11.240.800,00 (61.0%)</span>
+<span class="font-label-sm text-secondary">Taxa média: 0.01% (R$ 1,50 fixo)</span>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<span class="w-3 h-3 rounded-full bg-primary mt-1 shrink-0"></span>
+<div class="flex flex-col">
+<span class="font-label-md text-on-surface font-bold">Cartão de Crédito Corporativo</span>
+<span class="font-body-sm text-on-surface-variant">R$ 4.820.400,00 (26.2%)</span>
+<span class="font-label-sm text-primary">MDR Médio: 2.45% • 3DS Ativo</span>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<span class="w-3 h-3 rounded-full bg-surface-tint mt-1 shrink-0"></span>
+<div class="flex flex-col">
+<span class="font-label-md text-on-surface font-bold">TED / STR CIP Integrada</span>
+<span class="font-body-sm text-on-surface-variant">R$ 2.504.300,00 (12.8%)</span>
+<span class="font-label-sm text-on-surface font-bold">Exceções Homologadas: 100%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Governance, Escrow & Gateway Engine (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Card Custódia Escrow BACEN (Garantia Segregada) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">account_balance</span>
+<h3 class="font-headline-md text-on-surface">Custódia Escrow BACEN</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary font-label-sm font-bold">Segregada</span>
+</div>
+<div class="mt-space-md p-space-md rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Saldo Bloqueado sob Garantia</span>
+<div class="font-headline-lg text-on-surface tracking-tight mt-1">R$ 4.890.150,00</div>
+<div class="font-body-sm text-on-surface-variant mt-1">
+              86 lotes com entrega ou conferência pendente
+            </div>
+</div>
+<div class="mt-space-md space-y-space-sm">
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-on-surface-variant">Instituição Liquidante:</span>
+<span class="font-label-md text-on-surface font-bold">Santander / BMP SCF</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-on-surface-variant">Conta Segregada:</span>
+<span class="font-label-md text-on-surface font-mono">Ag 0001 • CC 99281-0</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-on-surface-variant">Chave Pix Escrow:</span>
+<span class="font-label-sm text-primary font-mono font-bold">escrow@varejista.com.br</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-on-surface-variant">Protocolo BACEN:</span>
+<span class="font-label-sm text-secondary font-bold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">verified</span> Res. 4.656 Conforme
+              </span>
+</div>
+</div>
+<button class="w-full mt-space-md py-2 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-md transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">download_for_offline</span>
+            Extrato Oficial Conciliado BACEN
+          </button>
+</div>
+<!-- Motor de Split Automático (Regra Operacional) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-xl">splitscreen</span>
+<h3 class="font-headline-md text-on-surface">Motor de Split Automático</h3>
+</div>
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse" title="Motor Ativo"></span>
+</div>
+<p class="font-body-sm text-on-surface-variant mt-1">
+            Liquidação instantânea tripartite parametrizada pela política corporativa Master:
+          </p>
+<div class="mt-space-md space-y-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm font-bold shrink-0 mt-0.5">
+                1
+              </div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface font-bold">6.5% Take Rate Plataforma</span>
+<span class="font-label-sm text-primary font-bold">Retenção Imediata</span>
+</div>
+<span class="font-body-sm text-on-surface-variant mt-0.5">Creditado na Conta Corrente Operacional Master Varejista.</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm font-bold shrink-0 mt-0.5">
+                2
+              </div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface font-bold">93.5% Escrow Cedente</span>
+<span class="font-label-sm text-secondary font-bold">Bloqueado em Custódia</span>
+</div>
+<span class="font-body-sm text-on-surface-variant mt-0.5">Retido até validação do MDF-e / Canhoto Digital SEFAZ.</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm font-bold shrink-0 mt-0.5">
+                3
+              </div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface font-bold">Payout D+0 via SPI</span>
+<span class="font-label-sm text-on-surface font-bold">Automático</span>
+</div>
+<span class="font-body-sm text-on-surface-variant mt-0.5">Disparo de Pix BACEN pós-comprovante de entrega sem fricção.</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-space-md py-2 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">settings</span>
+            Editar Parâmetros de Split por Categoria
+          </button>
+</div>
+<!-- Matriz de Meios B2B & Acordo de SLA -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs pb-space-xs">
+<span class="material-symbols-outlined text-outline text-xl">speed</span>
+<h3 class="font-headline-md text-on-surface">Matriz dos Meios B2B</h3>
+</div>
+<span class="font-body-sm text-on-surface-variant">SLA e Custo Operacional por Transação</span>
+<div class="mt-space-md space-y-space-sm">
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-md text-on-surface font-semibold">Pix BACEN SPI</span>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-on-surface font-bold">R$ 1,50 fixo / op</div>
+<div class="font-label-sm text-secondary">Tempo: 2s (D+0)</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-md text-on-surface font-semibold">Cartão PJ (Até 6x)</span>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-on-surface font-bold">2.1% a 2.8% MDR</div>
+<div class="font-label-sm text-primary">Tempo: 30s (3DS)</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<span class="font-label-md text-on-surface font-semibold">TED / STR CIP</span>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-on-surface font-bold">R$ 2,90 fixo / op</div>
+<div class="font-label-sm text-on-surface font-semibold">Grade CIP / Termo</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

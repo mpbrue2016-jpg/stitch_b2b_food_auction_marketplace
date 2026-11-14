@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-tertiary":"#ffffff","on-background":"#191c1e","outline":"#737783","surface-container-high":"#e6e8ea","tertiary":"#720009","on-tertiary-fixed-variant":"#930010","on-surface-variant":"#434652","secondary-fixed":"#a3f69c","on-secondary-fixed":"#002204","on-error-container":"#93000a","surface":"#f7f9fb","on-primary-fixed-variant":"#00429c","on-primary-fixed":"#001945","surface-container-low":"#f2f4f6","surface-bright":"#f7f9fb","surface-dim":"#d8dadc","primary-fixed-dim":"#b0c6ff","on-primary-container":"#a1bbff","on-secondary-fixed-variant":"#005312","on-tertiary-container":"#ffa59d","on-surface":"#191c1e","on-error":"#ffffff","tertiary-container":"#9d0011","tertiary-fixed":"#ffdad6","on-secondary-container":"#217128","inverse-primary":"#b0c6ff","tertiary-fixed-dim":"#ffb3ac","surface-container":"#eceef0","surface-container-lowest":"#ffffff","primary-fixed":"#d9e2ff","inverse-on-surface":"#eff1f3","secondary-container":"#a0f399","outline-variant":"#c3c6d4","background":"#f7f9fb","on-secondary":"#ffffff","primary-container":"#0d47a1","surface-container-highest":"#e0e3e5","error-container":"#ffdad6","on-tertiary-fixed":"#410003","secondary":"#1b6d24","on-primary":"#ffffff","primary":"#003178","secondary-fixed-dim":"#88d982","inverse-surface":"#2d3133","surface-tint":"#2b5bb5","error":"#ba1a1a","surface-variant":"#e0e3e5"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter-mobile":"0.75rem","margin":"1.5rem","margin-mobile":"1rem","space-sm":"0.5rem","gutter":"1rem","space-lg":"1.25rem","space-xs":"0.25rem","space-xl":"2rem","space-md":"0.75rem"},"fontFamily":{"label-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"]},"fontSize":{"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><header class="fixed top-0 left-0 right-0 h-16 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-16 px-space-xl flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">VO</div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight leading-none">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">B2B Marketplace &amp; Leilões</span></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-full text-secondary"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm font-bold text-on-surface uppercase">Pregão Conectado</span></div><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container-high rounded-full"><span class="material-symbols-outlined text-sm text-primary">verified_user</span><span class="font-label-sm text-label-sm text-on-surface-variant">Custódia BACEN Escrow Ativa</span></div></div><div class="flex-1 max-w-xl mx-space-md hidden md:block"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span><input class="w-full h-10 pl-10 pr-24 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar pedidos, NF-e, lote, SKU, motorista ou placa..." type="text"/><div class="absolute right-2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">ALT + K</div></div></div><div class="flex items-center gap-space-md"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm flex items-center justify-center">4</span></button><div class="h-8 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm text-right"><div class="hidden sm:flex flex-col"><span class="font-label-md text-label-md text-on-surface">Atacadão Distribuidora SA</span><span class="font-label-sm text-label-sm text-on-surface-variant">Logística &amp; Fretes Integrados</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-72 bg-surface-container-low z-40 overflow-y-auto"><div class="p-space-lg flex flex-col gap-space-lg"><nav class="flex flex-col gap-space-lg" data-active-classes="bg-primary-container text-on-primary-container font-headline-md"><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Operações &amp; Pregão</span><div class="flex flex-col gap-0.5"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="inicio" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Início</a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="leiloes-ao-vivo" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-lg">gavel</span>Leilões ao Vivo</div><span class="px-1.5 py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm">AO VIVO</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="oportunidades-e-alertas" href="#"><span class="material-symbols-outlined text-lg">bolt</span>Oportunidades &amp; Alertas</a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="validade-proxima-fefo" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-lg">hourglass_top</span>Validade Próxima (FEFO)</div><span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm">18</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="giro-rapido" href="#"><span class="material-symbols-outlined text-lg">trending_up</span>Giro Rápido</a></div></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Gestão Comercial &amp; Pedidos</span><div class="flex flex-col gap-0.5"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="pedidos-e-faturamento" href="#"><span class="material-symbols-outlined text-lg">receipt_long</span>Pedidos &amp; Faturamento</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="separacao-e-expedicao-wms" href="#"><span class="material-symbols-outlined text-lg">conveyor_belt</span>Separação &amp; Expedição WMS</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="clientes-varejistas" href="#"><span class="material-symbols-outlined text-lg">storefront</span>Clientes Varejistas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="gestao-de-lotes-e-estoque" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span>Gestão de Lotes &amp; Estoque</a></div></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Logística &amp; Transportes</span><div class="flex flex-col gap-0.5"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="gestao-de-fretes-e-rastreamento-de-cargas" href="#"><span class="material-symbols-outlined text-lg">local_shipping</span>Gestão de Fretes &amp; Cargas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="agendamento-de-docas" href="#"><span class="material-symbols-outlined text-lg">warehouse</span>Agendamento de Docas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="frotas-e-motoristas" href="#"><span class="material-symbols-outlined text-lg">badge</span>Frotas &amp; Motoristas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="roteirizacao-e-mdf-e" href="#"><span class="material-symbols-outlined text-lg">alt_route</span>Roteirização &amp; MDF-e</a></div></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Financeiro &amp; Governança</span><div class="flex flex-col gap-0.5"><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="extrato-escrow-e-repasses" href="#"><span class="material-symbols-outlined text-lg">account_balance_wallet</span>Extrato Escrow &amp; Repasses D+0</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="relatorios-e-sped-fiscal" href="#"><span class="material-symbols-outlined text-lg">description</span>Relatórios &amp; SPED Fiscal</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="regras-de-comissao-e-take-rate" href="#"><span class="material-symbols-outlined text-lg">percent</span>Comissões &amp; Take Rate</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md text-label-md transition-colors" data-path="auditoria-worm" href="#"><span class="material-symbols-outlined text-lg">security</span>Auditoria WORM</a></div></div></nav></div></aside><div class="pl-72"><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Sub-header Técnico & Breadcrumbs -->
+<div class="px-space-xl pt-space-lg pb-space-md flex flex-col gap-space-sm bg-surface-container-low shadow-sm">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<nav class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">Início</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface-variant">Governança &amp; TI</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-bold">Topologia de Arquitetura &amp; Stack Técnica</span>
+</nav>
+<div class="flex items-center gap-space-md flex-wrap">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Topologia de Arquitetura, Engenharia de Nuvem &amp; Stack Supabase</h1>
+<div class="flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            CLUSTER MULTI-AZ ATIVO
+          </div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-highest text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm" id="btn-stress-test">
+<span class="material-symbols-outlined text-base text-primary">speed</span>
+          Simular Carga &amp; Concorrência
+        </button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-highest text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-base">picture_as_pdf</span>
+          Exportar Dossiê (.PDF)
+        </button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-base">lan</span>
+          Status dos Ambientes
+        </button>
+</div>
+</div>
+<!-- Badges de Infraestrutura e Governança Técnica -->
+<div class="flex items-center gap-space-sm flex-wrap pt-space-xs">
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-primary">dns</span>
+        Supabase Enterprise Cluster Multi-Tenant
+      </div>
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-secondary">verified_user</span>
+        RLS 100% Coberto (Zero Leaks)
+      </div>
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-primary">bolt</span>
+        WebSockets Realtime SLA 99.99%
+      </div>
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-primary">database</span>
+        PostgreSQL 16.4 Multi-AZ (Read Replicas)
+      </div>
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs text-primary">lock_clock</span>
+        NTP.br Stratum 1 Sincronizado
+      </div>
+</div>
+</div>
+<!-- Conteúdo Principal -->
+<div class="p-space-xl flex flex-col gap-space-xl">
+<!-- BANNER DE KPIs DE ENGENHARIA & PERFORMANCE -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-md">
+<!-- Latência Realtime -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Latência P99 Lances</span>
+<span class="font-headline-xl text-headline-xl text-secondary font-extrabold mt-1">18 ms</span>
+</div>
+<div class="p-2 rounded-lg bg-secondary-container/30 text-secondary">
+<span class="material-symbols-outlined">network_check</span>
+</div>
+</div>
+<div class="mt-space-md flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Cluster Phoenix/Elixir</span>
+<span class="text-secondary font-bold">-4ms vs SLA</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 28%"></div>
+</div>
+</div>
+</div>
+<!-- Cobertura RLS -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Cobertura RLS (Tabelas)</span>
+<span class="font-headline-xl text-headline-xl text-primary font-extrabold mt-1">100%</span>
+</div>
+<div class="p-2 rounded-lg bg-primary-fixed text-primary">
+<span class="material-symbols-outlined">shield</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">42 de 42 tabelas auditadas</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">Zero Leaks</span>
+</div>
+</div>
+<!-- Cron Jobs & Workers -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Workers &amp; Cron pg_cron</span>
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold mt-1">28 Ativos</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Pregão / Escrow / FEFO 24h</span>
+<span class="text-secondary font-bold">100% Ok</span>
+</div>
+</div>
+<!-- Storage Privado -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Storage S3 Seguro</span>
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold mt-1">1.84 TB</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined">cloud_done</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Signed URLs TTL 15min</span>
+<span class="text-primary font-bold">AES-256</span>
+</div>
+</div>
+<!-- Throughput Webhooks -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Throughput Webhooks</span>
+<span class="font-headline-xl text-headline-xl text-primary font-extrabold mt-1">12.4k/m</span>
+</div>
+<div class="p-2 rounded-lg bg-primary-fixed text-primary">
+<span class="material-symbols-outlined">sync_alt</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Redis Lock Idempotente</span>
+<span class="text-secondary font-bold">DLQ: 0 falhas</span>
+</div>
+</div>
+</div>
+<!-- DIAGRAMA VISUAL DE TOPOLOGIA (6 MÓDULOS ARQUITETURAIS) -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">account_tree</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Diagrama Arquitetural de Engenharia &amp; Fluxo de Dados B2B</h2>
+</div>
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> Ativo &amp; Operante</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span> Criptografado TLS 1.3 / mTLS</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- MÓDULO 1: FRONT-END & BORDA (Edge CDN) -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs text-primary font-headline-md text-headline-md">
+<span class="material-symbols-outlined">language</span>
+<span>MÓDULO 01</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm">EDGE / SSR</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Front-End &amp; Vercel Edge Network</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Entrega de alta densidade de dados com indexação massiva de SKUs e baixa latência.</p>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Next.js 15 + React 19</span>
+<span class="text-secondary font-bold">App Router</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">SSR &amp; SSG em rotas públicas para indexação SEO de 280.000+ EAN/GTINs no Google.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Tailwind CSS + Design System</span>
+<span class="text-primary font-bold">Sub-50ms FCP</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Design corporativo denso, zero layout shift (CLS 0.00) e bundle otimizado com compressão Brotli.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Edge Middleware &amp; WAF</span>
+<span class="text-secondary font-bold">mTLS &amp; Rate-Limit</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Filtro de requisições maliciosas na borda e validação de tokens JWT antes de tocar o cluster.</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Disponibilidade CDN</span>
+<span class="font-bold text-secondary">99.995% Global</span>
+</div>
+</div>
+<!-- MÓDULO 2: CAMADA REALTIME & TEMPO DE SERVIDOR -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs text-secondary font-headline-md text-headline-md">
+<span class="material-symbols-outlined">sensors</span>
+<span>MÓDULO 02</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary text-on-secondary font-label-sm text-label-sm">WEBSOCKETS</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Supabase Realtime &amp; NTP Authority</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Canal pub/sub isolado por pregão com integridade temporal auditável.</p>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Canal Pub/Sub por Lote</span>
+<span class="text-secondary font-bold">Phoenix Engine</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Transmissão instantânea de lances com deduplicação de mensagens e isolamento multi-tenant.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">NTP Server Authority</span>
+<span class="text-primary font-bold">NTP.br Stratum 1</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Relógio do pregão blindado contra fraudes no client-side; timestamp gerado exclusivamente no Postgres.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Anti-Sniping Guard Engine</span>
+<span class="text-tertiary font-bold">+120s Extensão</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Prorrogação automática de 2 minutos caso ocorra lance nos últimos 60 segundos do pregão.</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Conexões Simultâneas</span>
+<span class="font-bold text-on-surface">24.180 sockets ativos</span>
+</div>
+</div>
+<!-- MÓDULO 3: BANCO DE DADOS & SEGURANÇA (RLS) -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs text-primary font-headline-md text-headline-md">
+<span class="material-symbols-outlined">lock</span>
+<span>MÓDULO 03</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm">POSTGRES 16.4</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">PostgreSQL &amp; Row Level Security</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Controle de acesso granular a nível de tupla diretamente no motor relacional.</p>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Políticas RLS Rigorosas</span>
+<span class="text-secondary font-bold">100% Auditado</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Compradores só veem seus dados; Vendedores só seu faturamento; Impossível vazamento acidental.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Particionamento Declarativo</span>
+<span class="text-primary font-bold">Por Ano/Mês</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tabelas de lances históricos e logs de auditoria fiduciária particionadas para consultas sub-segundo.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Indexação de Alta Performance</span>
+<span class="text-secondary font-bold">B-Tree, GiST &amp; BRIN</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">B-Tree em GTIN/EAN, GiST para fretes por raio de distância e BRIN em séries temporais.</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Pooler Supavisor</span>
+<span class="font-bold text-secondary">450 / 2.000 conexões (2.1ms)</span>
+</div>
+</div>
+<!-- MÓDULO 4: WORKERS, CRON JOBS & FILAS ASSÍNCRONAS -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs text-on-surface font-headline-md text-headline-md">
+<span class="material-symbols-outlined">precision_manufacturing</span>
+<span>MÓDULO 04</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm">PG_CRON &amp; QUEUES</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Workers &amp; Filas com Idempotência</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Garantia estrita de execução única em liquidações financeiras e encerramentos.</p>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Cron Jobs ao Segundo</span>
+<span class="text-secondary font-bold">pg_cron Nativo</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Fechamento cirúrgico de pregões, expiração de vouchers Pix (2h) e cálculo de aging FEFO.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Trava Idempotente (Redis Lock)</span>
+<span class="text-primary font-bold">UUIDv5 Hash</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Webhooks bancários recebem token determinístico impedindo duplicação de liquidação financeira.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Dead Letter Queue (DLQ)</span>
+<span class="text-secondary font-bold">Backoff Exponencial</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Re-tentativas automáticas com jitter para SEFAZ e gateways parceiros com alerta imediato.</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Taxa de Reprocessamento</span>
+<span class="font-bold text-secondary">0.02% (Dentro do SLA)</span>
+</div>
+</div>
+<!-- MÓDULO 5: STORAGE SEGURO & BUCKETS PRIVADOS -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs text-primary font-headline-md text-headline-md">
+<span class="material-symbols-outlined">folder_special</span>
+<span>MÓDULO 05</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">S3 COMPATIBLE</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Storage Criptografado &amp; Signed URLs</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Repositório imutável para documentos fiscais, canhotos e perícias logísticas.</p>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Zero Buckets Públicos</span>
+<span class="text-secondary font-bold">100% Privado</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Nenhum asset B2B exposto; links gerados dinamicamente com TTL estrito de 15 minutos.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Documentos Fiscais &amp; MDF-e</span>
+<span class="text-primary font-bold">XML &amp; DANFE</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Armazenamento em conformidade SPED com carimbo de tempo ICP-Brasil e hash SHA-256.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Canhotos &amp; Fotos de Carga</span>
+<span class="text-secondary font-bold">WMS Audit</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Evidências de recebimento cego de paletes assinadas com geolocalização e metadados EXIF.</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Criptografia At Rest</span>
+<span class="font-bold text-primary">AES-256 Server-Side</span>
+</div>
+</div>
+<!-- MÓDULO 6: MATRIZ DE AMBIENTES (Dev / Hml / Prod) -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs text-secondary font-headline-md text-headline-md">
+<span class="material-symbols-outlined">hub</span>
+<span>MÓDULO 06</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">CI/CD &amp; STAGING</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Matriz de Ambientes &amp; Sandbox</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Isolamento estrito entre tráfego financeiro real e ambiente de homologação.</p>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Produção (Live)</span>
+<span class="text-secondary font-bold">mTLS Santander &amp; SEFAZ</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">SPB/SPI direto, custódia fiduciária BACEN e réplicas Multi-AZ geograficamente dispersas.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Homologação (Staging)</span>
+<span class="text-primary font-bold">10k Lotes Mockados</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ambiente espelho para testes de estresse de arremates e emissão em homologação SEFAZ.</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface">
+<span class="font-bold">Dev &amp; Local CLI</span>
+<span class="text-on-surface-variant font-bold">Branch DBs</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Supabase CLI em containers Docker para testes unitários automatizados de RLS via pgTAP.</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Pipeline CI/CD</span>
+<span class="font-bold text-secondary">GitHub Actions / 100% Verde</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SEÇÃO DE AUDITORIA DE SEGURANÇA & MATRIZ RLS -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">gavel</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Políticas de Row Level Security (RLS) &amp; Auditoria de Integridade</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Matriz ativa de restrições relacionais validadas via testes automatizados pgTAP.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-space-sm py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+            42 TABELAS BLINDADAS
+          </span>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">
+            Executar Scan RLS
+          </button>
+</div>
+</div>
+<!-- Tabela Densificada de Políticas RLS -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="p-space-sm">Tabela do Banco</th>
+<th class="p-space-sm">Nome da Política (RLS)</th>
+<th class="p-space-sm">Operações</th>
+<th class="p-space-sm">Regra SQL / Expressão Permissiva</th>
+<th class="p-space-sm text-right">Status Auditoria</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Linha 1: tb_lotes -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-space-sm font-bold text-primary font-mono text-xs">tb_lotes</td>
+<td class="p-space-sm font-label-md text-label-md text-on-surface">leitura_publica_escrita_vendedor_homologado</td>
+<td class="p-space-sm">
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-bold">SELECT, INSERT, UPDATE</span>
+</td>
+<td class="p-space-sm font-mono text-xs text-on-surface-variant">
+                SELECT true; INSERT/UPDATE WITH CHECK (auth.uid() = vendedor_id AND auth.jwt() -&gt;&gt; 'status_pj' = 'HOMOLOGADO');
+              </td>
+<td class="p-space-sm text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">verified</span> ATIVA
+                </span>
+</td>
+</tr>
+<!-- Linha 2: tb_lances -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-space-sm font-bold text-primary font-mono text-xs">tb_lances</td>
+<td class="p-space-sm font-label-md text-label-md text-on-surface">insercao_apenas_comprador_credito_ativo</td>
+<td class="p-space-sm">
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed-dim text-on-secondary-fixed font-label-sm text-label-sm font-bold">INSERT, SELECT</span>
+</td>
+<td class="p-space-sm font-mono text-xs text-on-surface-variant">
+                WITH CHECK (auth.uid() = comprador_id AND fn_limite_credito_disponivel(auth.uid()) &gt;= valor_lance AND fn_pregao_aberto(lote_id));
+              </td>
+<td class="p-space-sm text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">verified</span> ATIVA
+                </span>
+</td>
+</tr>
+<!-- Linha 3: tb_custodia_escrow -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-space-sm font-bold text-primary font-mono text-xs">tb_custodia_escrow</td>
+<td class="p-space-sm font-label-md text-label-md text-on-surface">restricao_estrita_fiduciaria_bacen</td>
+<td class="p-space-sm">
+<span class="px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">ALL (RESTRICTIVE)</span>
+</td>
+<td class="p-space-sm font-mono text-xs text-on-surface-variant">
+                USING (auth.jwt() -&gt;&gt; 'role' = 'service_role' OR (auth.jwt() -&gt;&gt; 'role' = 'auditor_bacen' AND current_setting('request.jwt.claim.mfa') = 'true'));
+              </td>
+<td class="p-space-sm text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">verified</span> ATIVA
+                </span>
+</td>
+</tr>
+<!-- Linha 4: tb_documentos_fiscais -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-space-sm font-bold text-primary font-mono text-xs">tb_documentos_fiscais</td>
+<td class="p-space-sm font-label-md text-label-md text-on-surface">acesso_partes_contrato_e_transportador</td>
+<td class="p-space-sm">
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-bold">SELECT, INSERT</span>
+</td>
+<td class="p-space-sm font-mono text-xs text-on-surface-variant">
+                USING (auth.uid() IN (vendedor_id, comprador_id, transportadora_id));
+              </td>
+<td class="p-space-sm text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">verified</span> ATIVA
+                </span>
+</td>
+</tr>
+<!-- Linha 5: tb_auditoria_worm -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-space-sm font-bold text-primary font-mono text-xs">tb_auditoria_worm</td>
+<td class="p-space-sm font-label-md text-label-md text-on-surface">imutabilidade_append_only_strict</td>
+<td class="p-space-sm">
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm font-bold">INSERT ONLY</span>
+</td>
+<td class="p-space-sm font-mono text-xs text-on-surface-variant">
+                UPDATE/DELETE PROIBIDOS; Trigger fn_prevent_worm_mutation() bloqueia qualquer tentativa de alteração.
+              </td>
+<td class="p-space-sm text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">verified</span> ATIVA
+                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- CONSOLE INTERATIVO DE MONITORAMENTO DE SERVIÇOS & STRESS TESTING -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Telemetria dos Componentes Centrais -->
+<div class="lg:col-span-2 p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">monitor_heart</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Telemetria &amp; Healthcheck de Microsserviços Supabase</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span> Live Refresh 1s
+          </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Item 1: Auth Service -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Auth Service (GoTrue)</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">OPERACIONAL</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Uptime Acumulado</span>
+<span class="font-bold text-on-surface">99.998%</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Sessões JWT Ativas</span>
+<span class="font-bold text-primary">14.890 tokens</span>
+</div>
+</div>
+</div>
+<!-- Item 2: Realtime Engine -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Realtime WebSockets</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">OPERACIONAL</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Throughput Mensagens</span>
+<span class="font-bold text-on-surface">8.420 msgs/s</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Latência Média</span>
+<span class="font-bold text-secondary">6.4 ms</span>
+</div>
+</div>
+</div>
+<!-- Item 3: Supavisor Pooler -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">PostgREST &amp; Supavisor</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">OPERACIONAL</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Ocupação do Pool</span>
+<span class="font-bold text-on-surface">22.5% (450/2000)</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Query Response Time</span>
+<span class="font-bold text-secondary">2.1 ms</span>
+</div>
+</div>
+</div>
+<!-- Item 4: Webhook & Redis Idempotency -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Webhook Engine (PIX/TED)</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">OPERACIONAL</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Locks Idempotentes Ativos</span>
+<span class="font-bold text-on-surface">1.240 locks</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Fila Morta (DLQ)</span>
+<span class="font-bold text-secondary">0 mensagens</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Terminal de Logs de Infraestrutura em Tempo Real -->
+<div class="mt-space-xs flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Log de Eventos do Cluster Supabase</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Canal: sys.events.prod</span>
+</div>
+<div class="p-space-md rounded-lg bg-on-background text-surface font-mono text-xs h-36 overflow-y-auto flex flex-col gap-1 shadow-inner" id="terminal-logs">
+<div class="text-secondary">[2025-05-14T15:28:01.102Z] [INFRA-INFO] Cluster multi-az healthcheck respondido em 1.8ms (us-east-1a, us-east-1b).</div>
+<div class="text-surface-container-high">[2025-05-14T15:28:02.441Z] [REALTIME-BROADCAST] Canal pregao_lote_88392: novo lance R$ 142.500,00 registrado por Comprador #44109 via Phoenix.</div>
+<div class="text-surface-container-high">[2025-05-14T15:28:02.448Z] [RLS-ENFORCE] Politica 'tb_lances' avaliada com sucesso. Token verificado via EdDSA.</div>
+<div class="text-primary-fixed-dim">[2025-05-14T15:28:03.110Z] [CRON-EXEC] pg_cron lote_aging_fefo_sync concluido em 12ms. 0 inconformidades.</div>
+<div class="text-secondary">[2025-05-14T15:28:04.004Z] [STORAGE-SIGN] URL assinada gerada para DANFE_NFe_0049281.xml com TTL 900s.</div>
+</div>
+</div>
+</div>
+<!-- Simulador de Carga Interativo -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">tune</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Simulador de Carga B2B</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Teste a resiliência do motor de concorrência com lances simultâneos no mesmo milissegundo.</p>
+</div>
+<div class="flex flex-col gap-space-md my-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface">Concorrência de Usuários</span>
+<span class="font-bold text-primary" id="label-usuarios">5.000 Varejistas</span>
+</div>
+<input class="w-full accent-primary cursor-pointer" id="range-concorrencia" max="50000" min="1000" step="1000" type="range" value="5000"/>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>1k</span>
+<span>25k</span>
+<span>50k simultâneos</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Projeção de Latência P99</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-secondary font-extrabold" id="proj-latencia">21.4 ms</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(Dentro do SLA &lt; 50ms)</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold" id="proj-status">✓ Zero enfileiramento na trava de concorrência</span>
+</div>
+<div class="flex flex-col gap-space-xs p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Throughput do Supavisor</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-md text-headline-md text-primary font-bold" id="proj-throughput">1.250 queries/s</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Capacidade máxima do cluster: 18.000 queries/s</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md flex items-center justify-center gap-space-xs transition-colors shadow-sm" id="btn-rodar-simulacao">
+<span class="material-symbols-outlined text-base">play_arrow</span>
+          Disparar Teste de Estresse (Load Test)
+        </button>
+</div>
+</div>
+<!-- DOCUMENTAÇÃO E AUDITORIA DE BACKUP & RETENÇÃO DE DADOS -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Conformidade Regulatória BACEN &amp; LGPD</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Backup contínuo Point-in-Time Recovery (PITR) a cada 60 segundos com retenção imutável de 5 anos para compliance fiscal.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<span class="px-space-sm py-1.5 rounded bg-surface-container text-on-surface font-mono font-bold text-xs">PITR: ATIVO (RPO &lt; 1min)</span>
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-colors">
+          Certificado de Conformidade
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function initTechDashboard() {
+    const range = document.getElementById('range-concorrencia');
+    const labelUsuarios = document.getElementById('label-usuarios');
+    const projLatencia = document.getElementById('proj-latencia');
+    const projThroughput = document.getElementById('proj-throughput');
+    const projStatus = document.getElementById('proj-status');
+    const btnSimular = document.getElementById('btn-rodar-simulacao');
+    const btnStressTop = document.getElementById('btn-stress-test');
+    const terminalLogs = document.getElementById('terminal-logs');
+
+    if (range) {
+      range.addEventListener('input', function(e) {
+        const val = parseInt(e.target.value, 10);
+        labelUsuarios.innerText = val.toLocaleString('pt-BR') + ' Varejistas';
+        
+        // Simulação dinâmica de latência e consumo
+        const latenciaCalculada = (16 + (val / 1800)).toFixed(1);
+        projLatencia.innerText = latenciaCalculada + ' ms';
+
+        const throughput = Math.round(val * 0.28);
+        projThroughput.innerText = throughput.toLocaleString('pt-BR') + ' queries/s';
+
+        if (val > 35000) {
+          projStatus.innerText = '⚡ Escalonamento automático de réplicas ativado';
+          projStatus.className = 'font-label-sm text-label-sm text-primary font-bold';
+        } else {
+          projStatus.innerText = '✓ Zero enfileiramento na trava de concorrência';
+          projStatus.className = 'font-label-sm text-label-sm text-secondary font-bold';
+        }
+      });
+    }
+
+    function addLogEntry(msg, colorClass) {
+      if (!terminalLogs) return;
+      const el = document.createElement('div');
+      const now = new Date().toISOString();
+      el.className = colorClass || 'text-surface-container-high';
+      el.innerText = `[${now}] ${msg}`;
+      terminalLogs.appendChild(el);
+      terminalLogs.scrollTop = terminalLogs.scrollHeight;
+    }
+
+    function triggerStressSimulation() {
+      if (!btnSimular) return;
+      btnSimular.disabled = true;
+      btnSimular.innerText = 'Simulando pico de carga...';
+      addLogEntry('[SIMULAÇÃO] Iniciando injeção de 10.000 requisições simultâneas via k6 engine...', 'text-primary-fixed-dim');
+
+      setTimeout(() => {
+        addLogEntry('[SIMULAÇÃO] 10.000 requisições processadas. Erros: 0 (0.00%). P99: 19.8ms. RLS intacto.', 'text-secondary');
+        btnSimular.disabled = false;
+        btnSimular.innerHTML = '<span class="material-symbols-outlined text-base">play_arrow</span> Disparar Teste de Estresse (Load Test)';
+      }, 1800);
+    }
+
+    if (btnSimular) {
+      btnSimular.addEventListener('click', triggerStressSimulation);
+    }
+    if (btnStressTop) {
+      btnStressTop.addEventListener('click', triggerStressSimulation);
+    }
+
+    // Gerador de logs orgânicos da infraestrutura em background
+    const logsPool = [
+      { text: '[REALTIME-SOCKET] Heartbeat 24.180 conexões ativas validado sem drop de pacotes.', color: 'text-surface-container-high' },
+      { text: '[PG_CRON] Execução de rotina de limpeza de sessões expiradas (TTL 24h).', color: 'text-primary-fixed-dim' },
+      { text: '[STORAGE-RLS] Verificação de integridade de 1.84 TB em buckets concluída com sucesso.', color: 'text-secondary' },
+      { text: '[REDIS-LOCK] Idempotência confirmada para chave webhook_santander_tx_992104.', color: 'text-surface-container-high' }
+    ];
+
+    setInterval(() => {
+      const item = logsPool[Math.floor(Math.random() * logsPool.length)];
+      addLogEntry(item.text, item.color);
+    }, 7000);
+  })();
+</script></main></div></body></html>

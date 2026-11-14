@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"outline":"#737783","tertiary-fixed-dim":"#ffb3ac","on-tertiary":"#ffffff","surface-container-lowest":"#ffffff","on-error-container":"#93000a","outline-variant":"#c3c6d4","tertiary":"#720009","surface-dim":"#d8dadc","tertiary-container":"#9d0011","on-tertiary-fixed":"#410003","error-container":"#ffdad6","secondary-fixed-dim":"#88d982","secondary-fixed":"#a3f69c","primary-container":"#0d47a1","inverse-surface":"#2d3133","surface-tint":"#2b5bb5","on-primary-fixed":"#001945","secondary-container":"#a0f399","surface":"#f7f9fb","on-background":"#191c1e","inverse-on-surface":"#eff1f3","secondary":"#1b6d24","surface-container-high":"#e6e8ea","background":"#f7f9fb","surface-container-low":"#f2f4f6","on-tertiary-container":"#ffa59d","primary-fixed":"#d9e2ff","on-secondary-container":"#217128","on-secondary-fixed-variant":"#005312","on-error":"#ffffff","tertiary-fixed":"#ffdad6","surface-container":"#eceef0","on-primary-fixed-variant":"#00429c","on-primary-container":"#a1bbff","on-secondary-fixed":"#002204","surface-variant":"#e0e3e5","on-surface-variant":"#434652","surface-container-highest":"#e0e3e5","inverse-primary":"#b0c6ff","on-primary":"#ffffff","surface-bright":"#f7f9fb","on-surface":"#191c1e","on-secondary":"#ffffff","primary-fixed-dim":"#b0c6ff","error":"#ba1a1a","primary":"#003178"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-lg":"1.25rem","margin-mobile":"1rem","space-xl":"2rem","margin":"1.5rem","space-md":"0.75rem","space-xs":"0.25rem","gutter":"1rem","gutter-mobile":"0.75rem","space-sm":"0.5rem"},"fontFamily":{"headline-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},"fontSize":{"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="p-space-lg"><div class="flex items-center gap-space-sm mb-space-lg pb-space-md border-b border-surface-container-high"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-xl">factory</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary leading-none">AGROIND B2B</span><span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-bold tracking-widest mt-0.5">Portal da Indústria</span></div></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pt-space-xs pb-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Visão Geral</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="painel-geral" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Painel Geral & Indicadores</a><div class="px-space-sm pt-space-md pb-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Gestão Industrial</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="minhas-marcas-linhas" href="#"><span class="material-symbols-outlined text-lg">branding_watermark</span>Minhas Marcas & Linhas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="catalogo-dun-ean" href="#"><span class="material-symbols-outlined text-lg">qr_code_2</span>Catálogo & DUN/EAN</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="lotes-shelf-life" href="#"><span class="material-symbols-outlined text-lg">hourglass_top</span>Lotes & Shelf Life</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="estoque-fisico-cds" href="#"><span class="material-symbols-outlined text-lg">warehouse</span>Estoque Físico & CDs</a><div class="px-space-sm pt-space-md pb-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Canal Desova & Leilões</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="criar-novo-leilao" href="#"><span class="material-symbols-outlined text-lg">add_circle</span>Criar Novo Leilão B2B</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="pregoes-ao-vivo" href="#"><span class="material-symbols-outlined text-lg text-tertiary">gavel</span>Pregões Ao Vivo</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="promocoes-venda-direta" href="#"><span class="material-symbols-outlined text-lg">shopping_cart_checkout</span>Promoções & Venda Direta</a><div class="px-space-sm pt-space-md pb-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Motivos de Liquidação</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="excesso-de-producao" href="#"><span class="material-symbols-outlined text-lg">precision_manufacturing</span>Excesso de Produção</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="vencimento-curto" href="#"><span class="material-symbols-outlined text-lg">notification_important</span>Vencimento Curto</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="embalagem-reformulacao" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span>Embalagem & Reformulação</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="descontinuados-fim-linha" href="#"><span class="material-symbols-outlined text-lg">block</span>Descontinuados / Fim Linha</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="estoque-parado-giro-lento" href="#"><span class="material-symbols-outlined text-lg">history</span>Estoque Parado & Giro Lento</a><div class="px-space-sm pt-space-md pb-1"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Comercial & Financeiro</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="pedidos-arremates" href="#"><span class="material-symbols-outlined text-lg">receipt_long</span>Pedidos & Arremates</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="repasses-escrow" href="#"><span class="material-symbols-outlined text-lg">account_balance</span>Repasses Escrow & D+0</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="relatorios-nfe" href="#"><span class="material-symbols-outlined text-lg">description</span>Relatórios & NF-e</a></nav></div><div class="p-space-md border-t border-surface-container-high bg-surface-container-low flex flex-col gap-space-sm"><div class="flex items-center justify-between gap-space-xs"><div class="flex items-center gap-1.5 px-2 py-1 bg-surface-container-highest rounded-lg border border-outline-variant"><span class="material-symbols-outlined text-secondary text-sm">verified</span><span class="font-label-sm text-label-sm font-bold text-on-surface">SIF / MAPA</span></div><div class="flex items-center gap-1.5 px-2 py-1 bg-surface-container-highest rounded-lg border border-outline-variant"><span class="material-symbols-outlined text-primary text-sm">shield</span><span class="font-label-sm text-label-sm font-bold text-on-surface">Santander Escrow</span></div></div><div class="flex items-center justify-between text-on-surface-variant px-1"><span class="font-label-sm text-label-sm text-outline">Liquidação Garantida</span><span class="font-label-sm text-label-sm font-bold text-secondary flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>D+0 Ativo</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg border-b border-surface-container-high"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1.5 rounded-lg border border-outline-variant text-on-surface-variant w-80"><span class="material-symbols-outlined text-base">search</span><span class="font-body-sm text-body-sm text-outline">Buscar SKU, Lote, DUN ou Pregão...</span></div><div class="hidden xl:flex items-center gap-2"><span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>3 Pregões Ativos</span><span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Liquidação D+0</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-2"><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors relative"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-xl">sync_alt</span></button></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm pl-1"><div class="flex flex-col text-right"><span class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Moinho & Agro Indústria S/A</span><span class="font-label-sm text-label-sm text-on-surface-variant">Planta Matriz - SP (CD 01)</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-fixed" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Navigation & Metadata Strip -->
+<div class="px-space-xl pt-space-lg pb-space-md">
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider mb-space-sm">
+<span class="hover:text-primary cursor-pointer transition-colors">Portal da Indústria</span>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Gestão Industrial</span>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+<span class="text-primary font-bold">Catálogo de Produtos & Homologação GS1</span>
+</div>
+<!-- Main Title & Strategic Integrations -->
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-space-md pb-space-md">
+<div class="flex flex-col max-w-3xl">
+<div class="flex items-center gap-space-sm mb-1">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest font-bold">SIF / MAPA 2041</span>
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Unidade Industrial Araraquara - SP</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-tight">
+          Catálogo de Produtos & Padronização EAN / DUN-14
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5 leading-relaxed">
+          Gerencie a taxonomia de produtos industriais, conversão de unidades (unidade, fardo, caixa e palete PBR) e validação técnica de códigos de barras GS1 Brasil com certificação SIF.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-2 self-start lg:self-center">
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors shadow-sm" id="btnBulkCheck">
+<span class="material-symbols-outlined text-lg text-primary">fact_check</span>
+          Validar Dígitos em Lote
+        </button>
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">file_upload</span>
+          Importar Planilha / XML
+        </button>
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">add_box</span>
+          + Cadastrar Novo SKU Industrial
+        </button>
+</div>
+</div>
+<!-- Live Integration Badges -->
+<div class="flex flex-wrap items-center gap-3 pt-space-xs">
+<div class="flex items-center gap-2 px-3 py-1 rounded bg-surface-container-lowest shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface tracking-wide">SINCRONISMO GS1 BRASIL ATIVO</span>
+<span class="font-label-sm text-label-sm text-outline">| API v3.8</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 rounded bg-surface-container-lowest shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface tracking-wide">INTEGRAÇÃO ERP SAP S/4HANA</span>
+<span class="font-label-sm text-label-sm text-outline">| RFC Online</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 rounded bg-surface-container-lowest shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface tracking-wide">BANCO FISCAL SEFAZ OK</span>
+<span class="font-label-sm text-label-sm text-outline">| NCM/CEST Vigente 2025</span>
+</div>
+<div class="ml-auto hidden xl:flex items-center gap-1 font-label-sm text-label-sm text-outline">
+<span class="material-symbols-outlined text-sm">schedule</span>
+        Última auditoria ótica automatizada: Hoje, 06:14 BRT
+      </div>
+</div>
+</div>
+<!-- KPI Metric Mosaic (Bento Style) -->
+<div class="px-space-xl py-space-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Metric 1: Total SKUs -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Portfólio Global</span>
+<span class="font-headline-xl text-headline-xl text-primary font-bold mt-1">128</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2">
+<span>4 marcas industriais ativas</span>
+<span class="font-label-sm text-label-sm font-bold text-secondary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs">trending_up</span> +3 novos SKUs
+          </span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-primary"></div>
+</div>
+<!-- Metric 2: GS1 Homologation -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Homologação GS1</span>
+<span class="font-headline-xl text-headline-xl text-secondary font-bold mt-1">100%</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl">barcode_scanner</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2">
+<span>0 conflitos de leitura no CD</span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">ISO/IEC 15416 Grau A</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-secondary"></div>
+</div>
+<!-- Metric 3: Paletes PBR Mapeados -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Posições PBR Mapeadas</span>
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold mt-1">3.420</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-xl">pallet</span>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2">
+<span>Estrado PBR 1,00m x 1,20m</span>
+<span class="font-label-sm text-label-sm font-bold text-outline">98.2% Cubagem Ot.</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-outline"></div>
+</div>
+<!-- Metric 4: Ciclo Comercial de Linhas -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Status de Linha</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-headline-lg text-headline-lg text-secondary font-bold">94</span>
+<span class="font-label-sm text-label-sm text-outline">/ 18 ref / 16 drop</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-error-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-xl">sync_problem</span>
+</div>
+</div>
+<!-- Micro status bar -->
+<div class="mt-space-md pt-2 flex flex-col gap-1">
+<div class="h-2 w-full bg-surface-container flex rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 73.4%"></div>
+<div class="bg-amber-500 h-full" style="width: 14.1%"></div>
+<div class="bg-tertiary h-full" style="width: 12.5%"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="text-secondary font-bold">94 Ativos</span>
+<span class="text-amber-700 font-bold">18 Alt. Rotulagem</span>
+<span class="text-tertiary font-bold">16 Descontinuados</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-surface-container-highest"></div>
+</div>
+</div>
+</div>
+<!-- Filter & Search Console -->
+<div class="px-space-xl py-space-sm">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-sm">
+<!-- Search Input Group -->
+<div class="flex-1 min-w-[280px] relative">
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-2.5 rounded-lg text-on-surface">
+<span class="material-symbols-outlined text-outline text-xl">search</span>
+<input class="bg-transparent border-0 outline-none w-full font-body-md text-body-md text-on-surface placeholder:text-outline" id="searchInput" placeholder="Pesquisar por SKU, EAN-13, DUN-14 (ITF-14), NCM ou CEST fiscal..." type="text"/>
+<button class="text-outline hover:text-on-surface">
+<span class="material-symbols-outlined text-base">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Quick Filter Dropdowns -->
+<div class="flex flex-wrap items-center gap-2">
+<!-- Linha / Marca -->
+<div class="flex items-center gap-1.5 px-3 py-2 bg-surface-container-low rounded-lg text-on-surface font-label-sm text-label-sm">
+<span class="text-outline uppercase font-bold">Marca:</span>
+<select class="bg-transparent border-0 outline-none font-bold text-on-surface cursor-pointer">
+<option value="all">Todas as 4 Marcas</option>
+<option value="dona-benta">Dona Benta Industrial</option>
+<option value="trigo-ouro">Trigo de Ouro Gourmet</option>
+<option value="panmais">PanMais Indústria</option>
+<option value="santa-rita">Santa Rita Bio & Food Service</option>
+</select>
+</div>
+<!-- Categoria -->
+<div class="flex items-center gap-1.5 px-3 py-2 bg-surface-container-low rounded-lg text-on-surface font-label-sm text-label-sm">
+<span class="text-outline uppercase font-bold">Categoria:</span>
+<select class="bg-transparent border-0 outline-none font-bold text-on-surface cursor-pointer">
+<option value="all">Todas as Categorias</option>
+<option value="farinhas">Farinhas Industriais</option>
+<option value="pre-misturas">Pré-Misturas e Aditivos</option>
+<option value="semolas">Sêmolas Purificadas</option>
+<option value="graos">Grãos & Farelos</option>
+</select>
+</div>
+<!-- Status Comercial -->
+<div class="flex items-center gap-1.5 px-3 py-2 bg-surface-container-low rounded-lg text-on-surface font-label-sm text-label-sm">
+<span class="text-outline uppercase font-bold">Status:</span>
+<select class="bg-transparent border-0 outline-none font-bold text-on-surface cursor-pointer">
+<option value="all">Todos os Status</option>
+<option value="ativo">Em Linha Regular</option>
+<option value="rebranding">Troca Embalagem / Rebranding</option>
+<option value="drop">Descontinuado / Drop</option>
+<option value="excesso">Excesso de Produção Sazonal</option>
+</select>
+</div>
+<!-- View Options -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg">
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-primary font-bold shadow-sm flex items-center">
+<span class="material-symbols-outlined text-lg">view_list</span>
+</button>
+<button class="px-2 py-1 rounded text-outline hover:text-on-surface flex items-center">
+<span class="material-symbols-outlined text-lg">grid_view</span>
+</button>
+</div>
+<!-- Reset & Export -->
+<button class="p-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant flex items-center justify-center" title="Atualizar dados GS1">
+<span class="material-symbols-outlined text-lg">refresh</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dense Enterprise Product & Barcode Table -->
+<div class="px-space-xl py-space-sm">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Table Header Bar -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="selectAllCheckbox" type="checkbox"/>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Portfólio de Itens Homologados</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">Exibindo 4 de 128 SKUs</span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> GS1 Conforme</span>
+<span class="flex items-center gap-1 ml-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Desvio de Rotulagem</span>
+<span class="flex items-center gap-1 ml-2"><span class="w-2 h-2 rounded-full bg-tertiary"></span> Ação Comercial Urgente</span>
+</div>
+</div>
+<!-- High-Density Table Body -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm text-on-surface border-collapse">
+<thead>
+<tr class="bg-surface-container text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md w-12 text-center">Sel.</th>
+<th class="py-3 px-space-md min-w-[280px]">SKU / Especificação Técnica</th>
+<th class="py-3 px-space-md min-w-[220px]">EAN-13 (Primário) & DUN-14 (Logístico)</th>
+<th class="py-3 px-space-md min-w-[190px]">Conversão & Paletização PBR</th>
+<th class="py-3 px-space-md min-w-[170px]">Fiscal & Sanitário</th>
+<th class="py-3 px-space-md min-w-[140px]">Status / Lotes</th>
+<th class="py-3 px-space-md text-right min-w-[150px]">Ações Operacionais</th>
+</tr>
+</thead>
+<tbody>
+<!-- Row 1: Farinha Especial 25kg -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md text-center align-top">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex-shrink-0 flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A clean industrial white paper kraft bag of Dona Benta industrial special wheat flour 25kg with sharp logo printed, studio lighting, warehouse background with stacked pallets, high resolution commercial product shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoJxtniKjtcnRCY6f5W3vYH7PkxqQmLp-x1RzedaqCpDBvPHSSbVjGsxfE7cKTiA8IgCURZorDKzIAqeBhlbKyGRPd6UqnDScYdsdOcB9LxTfAiQ3sRitF-kzwCl1gUbvZMBBRHLPyoPaRJAIUObfr5GnX9nupItq7WPthxwreGHmdHelRU-qJHWoeWrNwCd98LtxM-Zhrp9ouwlB9YWgkW87Kc7vwFyplFdezw-8v"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">Dona Benta Industrial</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface leading-tight hover:text-primary cursor-pointer">
+                      Farinha de Trigo Especial 25kg (Sacos Valvulados)
+                    </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                      Cód. SAP: <code class="font-mono text-xs text-on-surface bg-surface-container px-1 py-0.5 rounded">MAT-88401-SP</code> • Moagem Tipo 1 Panificação
+                    </span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<!-- EAN-13 -->
+<div class="flex items-center justify-between bg-surface-container-low px-2 py-1 rounded">
+<div class="flex items-center gap-1.5 font-mono text-xs">
+<span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+<span class="font-bold text-on-surface">7891000248110</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">EAN-13</span>
+</div>
+<!-- DUN-14 -->
+<div class="flex items-center justify-between bg-surface-container px-2 py-1 rounded">
+<div class="flex items-center gap-1.5 font-mono text-xs">
+<span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+<span class="font-bold text-on-surface">17891000248117</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">DUN-14</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col text-xs leading-relaxed">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-medium">Fator Palete:</span>
+<span class="font-bold text-on-surface">40 sacos / 1.000 kg</span>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span>Lastro x Camadas:</span>
+<span class="font-mono">8 x 5 fiadas</span>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span>Dimensões Palete:</span>
+<span>1,00m x 1,20m x 1,45m</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col text-xs">
+<span class="font-bold text-on-surface">NCM 1101.00.10</span>
+<span class="text-on-surface-variant">CEST 17.001.00</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">ICMS 7% (SP)</span>
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">SIF 2041</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold self-start">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Ativo em Linha
+                  </span>
+<span class="text-outline text-xs mt-0.5">14 lotes fabris vinculados</span>
+<span class="text-secondary font-label-sm text-label-sm font-bold">120 Ton em estoque CD</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Gerar Etiqueta GS1 (ZPL/PDF)">
+<span class="material-symbols-outlined text-lg">print</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Editar Dados Mestre">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-primary hover:bg-primary-container text-on-primary font-label-sm text-label-sm font-bold transition-colors" title="Criar Pregão / Leilão deste SKU">
+                    Desovar
+                  </button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Mistura Bolo Chocolate 400g Display -->
+<tr class="hover:bg-surface-container-low transition-colors group bg-surface-container-low/40">
+<td class="py-3.5 px-space-md text-center align-top">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex-shrink-0 flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A commercial retail display box containing 12 colorful units of Trigo de Ouro Gourmet chocolate cake premix 400g packages, bold typography, warm bakery tones, white studio background, studio photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCijG1GClj2zc6niORvm7yuRoeStvOnmJfl6eSIsV9xjY0qjBW4dvyOlH5N6duZOqblz8mzS1Y3IUsuHEInZ9b4vasFMJZQ8f73FJxtxu94-yDRZ2UJDQnf3KE01UyHIaZuo023u37svzU-z9AAwtXdXf9ouyxN-miLNPVN4_HkQ_NxsIPdD_Xc28UM6CsalRQrB_4z8jOuBWYtCJdmsIHP4HolpWQYL--aMWY3CfsY"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-amber-700 uppercase font-bold tracking-wider">Trigo de Ouro Gourmet</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface leading-tight hover:text-primary cursor-pointer">
+                      Mistura para Bolo Chocolate 400g (Display c/ 12 un)
+                    </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                      Cód. SAP: <code class="font-mono text-xs text-on-surface bg-surface-container px-1 py-0.5 rounded">MAT-42110-CX</code> • Caixa Display Shelf-Ready
+                    </span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<!-- EAN-13 -->
+<div class="flex items-center justify-between bg-surface-container-low px-2 py-1 rounded">
+<div class="flex items-center gap-1.5 font-mono text-xs">
+<span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+<span class="font-bold text-on-surface">7891234992011</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">EAN-13</span>
+</div>
+<!-- DUN-14 -->
+<div class="flex items-center justify-between bg-amber-50 px-2 py-1 rounded">
+<div class="flex items-center gap-1.5 font-mono text-xs text-amber-900">
+<span class="material-symbols-outlined text-sm text-amber-600">sync_alt</span>
+<span class="font-bold">17891234992018</span>
+</div>
+<span class="font-label-sm text-label-sm text-amber-700 uppercase font-bold">DUN-14 (Cx)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col text-xs leading-relaxed">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-medium">Fator Caixa:</span>
+<span class="font-bold text-on-surface">12 un / 4,8 kg</span>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span>Palete Fechado:</span>
+<span class="font-mono">140 caixas (1.680 un)</span>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span>Lastro x Camadas:</span>
+<span>14 cxs x 10 fiadas</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col text-xs">
+<span class="font-bold text-on-surface">NCM 1901.20.00</span>
+<span class="text-on-surface-variant">CEST 17.004.00</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">ICMS 18%</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">ANVISA Isento</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-label-sm text-label-sm font-bold self-start">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> Rebranding / Nova Arte
+                  </span>
+<span class="text-amber-800 text-xs mt-0.5 font-medium">6 lotes rotulagem anterior</span>
+<span class="text-outline font-label-sm text-label-sm">Fim da janela: 45 dias</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Gerar Etiqueta GS1">
+<span class="material-symbols-outlined text-lg">print</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Editar Dados Mestre">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-tertiary-container hover:bg-tertiary text-on-primary font-label-sm text-label-sm font-bold transition-colors" title="Leilão de Estoque Parado">
+                    Liquidar
+                  </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Farinha Integral Rústica 10kg -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md text-center align-top">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex-shrink-0 flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Eco-friendly brown kraft package of Santa Rita Bio organic whole wheat stone-milled flour 10kg with botanical graphics, natural light studio shoot, green agroindustrial tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTNRvIkATCDleuVh8UmbEi_819Veu9a0RCPLFHVHGoeaVq-CZgj7BZxZ-BfE5YAujOjUeiRhb6yi2Zc8kfDstXXOLfiuVqU3fguKiufKWfDKkbjxohlTqwGkYx1nLQpr18_zXpur-MnMU0CUsQRluueJKAjtHHiq-pXUW3_0YD8XrN8_eO8GeU9mfotVtN6n_8s9gQR7uK9X8MMykCa-74WAirvHIt4WkLG6xyylC8"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary uppercase font-bold tracking-wider">Santa Rita Bio</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface leading-tight hover:text-primary cursor-pointer">
+                      Farinha Integral Rústica Granito 10kg
+                    </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                      Cód. SAP: <code class="font-mono text-xs text-on-surface bg-surface-container px-1 py-0.5 rounded">MAT-10029-BIO</code> • Moagem em Pedra
+                    </span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<!-- EAN-13 -->
+<div class="flex items-center justify-between bg-surface-container-low px-2 py-1 rounded">
+<div class="flex items-center gap-1.5 font-mono text-xs">
+<span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+<span class="font-bold text-on-surface">7898234003316</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">EAN-13</span>
+</div>
+<!-- DUN-14 -->
+<div class="flex items-center justify-between bg-surface-container px-2 py-1 rounded">
+<div class="flex items-center gap-1.5 font-mono text-xs">
+<span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+<span class="font-bold text-on-surface">17898234003319</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">DUN-14</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col text-xs leading-relaxed">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-medium">Fator Palete:</span>
+<span class="font-bold text-on-surface">50 sacos / 500 kg</span>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span>Lastro x Camadas:</span>
+<span class="font-mono">10 x 5 fiadas</span>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span>Peso Palete Bruto:</span>
+<span>525 kg c/ estrado</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col text-xs">
+<span class="font-bold text-on-surface">NCM 1101.00.20</span>
+<span class="text-on-surface-variant">CEST 17.001.01</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Orgânico Cert.</span>
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">SIF 2041</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold self-start">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Descontinuado / Drop
+                  </span>
+<span class="text-tertiary text-xs mt-0.5 font-bold">3 lotes para desova imediata</span>
+<span class="text-outline font-label-sm text-label-sm">Validade média: 68 dias</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Gerar Etiqueta GS1">
+<span class="material-symbols-outlined text-lg">print</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Editar Dados Mestre">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-tertiary text-on-primary font-label-sm text-label-sm font-bold hover:bg-tertiary-container transition-colors shadow-sm" title="Criar Pregão Instantâneo de Desova">
+                    Abrir Pregão
+                  </button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Sêmola Durum Big Bag 1.000kg -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3.5 px-space-md text-center align-top">
+<input class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex-shrink-0 flex items-center justify-center overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Industrial polypropylene woven Big Bag container filled with yellow semolina flour 1000kg with lifting loops, heavy-duty warehouse equipment, clean agronomic facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCovT_iO7apRA0j9elXe-IIhaWABdPuv6gt_3cnGx9XkV2Zf0XxoymIFEwU4aIhMuQzTzy5yClBrFuj7FahveEG9TGsfj7pYgDlcPn5XA7OR8109f8AxaZWv6nH2ReclN70iez2P6xWGqgW4tWU6JgI1MtsBZn-aIct50zR0FIO6fMOm4Q3J4HtHicUcQzYhD5-n75WcMxl0mmVmlBskpoX0RXnDJzLzsE1_WEFtRnV"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">PanMais Indústria</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface leading-tight hover:text-primary cursor-pointer">
+                      Sêmola Purificada Trigo Durum 1.000kg (Big Bag)
+                    </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                      Cód. SAP: <code class="font-mono text-xs text-on-surface bg-surface-container px-1 py-0.5 rounded">MAT-99003-BB</code> • Fornecimento Massa Seca
+                    </span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<!-- EAN-13 -->
+<div class="flex items-center justify-between bg-surface-container-low px-2 py-1 rounded">
+<div class="flex items-center gap-1.5 font-mono text-xs">
+<span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+<span class="font-bold text-on-surface">7898234009948</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">EAN-13</span>
+</div>
+<!-- DUN-14 -->
+<div class="flex items-center justify-between bg-surface-container px-2 py-1 rounded">
+<div class="flex items-center gap-1.5 font-mono text-xs">
+<span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+<span class="font-bold text-on-surface">17898234009945</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">DUN-14 (BB)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col text-xs leading-relaxed">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-medium">Embalagem:</span>
+<span class="font-bold text-on-surface">1 Big Bag / Palete</span>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span>Peso Líquido:</span>
+<span class="font-mono">1.000,00 kg</span>
+</div>
+<div class="flex items-center justify-between text-outline">
+<span>Altura Palete:</span>
+<span>1,65m com alças</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col text-xs">
+<span class="font-bold text-on-surface">NCM 1103.11.00</span>
+<span class="text-on-surface-variant">CEST 17.003.00</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Diferimento SP</span>
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">SIF 2041</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top">
+<div class="flex flex-col gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold self-start">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Ativo em Linha
+                  </span>
+<span class="text-outline text-xs mt-0.5">8 Big Bags disponíveis</span>
+<span class="text-primary font-label-sm text-label-sm font-bold">Contratos B2B Recorrentes</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Gerar Etiqueta GS1">
+<span class="material-symbols-outlined text-lg">print</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Editar Dados Mestre">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="px-2.5 py-1 rounded bg-primary hover:bg-primary-container text-on-primary font-label-sm text-label-sm font-bold transition-colors" title="Criar Lote">
+                    Lote
+                  </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination & Volume Summary -->
+<div class="px-space-lg py-space-sm bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-space-md">
+<span>Mostrando <strong>1 - 4</strong> de <strong>128</strong> SKUs cadastrados</span>
+<div class="flex items-center gap-1">
+<span class="text-outline">Linhas por página:</span>
+<select class="bg-surface-container px-2 py-1 rounded border-0 outline-none font-bold text-on-surface text-xs">
+<option>20</option>
+<option>50</option>
+<option>100</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-outline disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-base">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary font-bold text-xs flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container flex items-center justify-center text-on-surface text-xs font-semibold">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container flex items-center justify-center text-on-surface text-xs font-semibold">3</button>
+<span class="px-1 text-outline">...</span>
+<button class="w-8 h-8 rounded hover:bg-surface-container flex items-center justify-center text-on-surface text-xs font-semibold">7</button>
+<button class="w-8 h-8 rounded bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Deep Architecture Section: Packaging Hierarchy & Barcode Simulator -->
+<div class="px-space-xl py-space-md mb-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Packaging Hierarchy Visualizer (8 cols) -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">view_in_ar</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+                Mapeamento Estrutural de Embalagem & Cubagem Logística
+              </h2>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">
+              Padrão PBR-1 (ABRAS/GS1)
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Relação matemática de empilhamento, lastro e consolidação de unidades primárias para transporte paletizado fechado homologado no WMS.
+          </p>
+<!-- Interactive Hierarchy Diagram -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md p-space-md bg-surface-container-low rounded-xl">
+<!-- Tier 1: Primária -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex flex-col justify-between shadow-sm relative">
+<div>
+<div class="flex items-center justify-between text-outline mb-1">
+<span class="font-label-sm text-label-sm uppercase font-bold">Nível 1 • Primária</span>
+<span class="material-symbols-outlined text-base text-primary">shopping_bag</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface block">Saco Valvulado 25kg</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1">Papel Kraft Extensível Duplo</span>
+<div class="mt-3 p-2 bg-surface-container-low rounded font-mono text-xs flex flex-col gap-0.5">
+<span class="text-outline font-sans text-[10px] uppercase font-bold">Código Primário</span>
+<span class="font-bold text-primary">EAN-13: 7891000248110</span>
+<span class="text-on-surface-variant">Peso Líquido: 25,00 kg</span>
+</div>
+</div>
+<div class="mt-4 pt-2 flex items-center justify-between text-xs text-outline">
+<span>Tara: 120g</span>
+<span class="font-bold text-secondary">Grau A Leitura</span>
+</div>
+</div>
+<!-- Tier 2: Secundária / Amarração -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex flex-col justify-between shadow-sm relative">
+<div>
+<div class="flex items-center justify-between text-outline mb-1">
+<span class="font-label-sm text-label-sm uppercase font-bold">Nível 2 • Agrupamento</span>
+<span class="material-symbols-outlined text-base text-primary">layers</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface block">Camada Trançada (Lastro)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1">8 Sacos entrelaçados / Camada</span>
+<div class="mt-3 p-2 bg-surface-container-low rounded font-mono text-xs flex flex-col gap-0.5">
+<span class="text-outline font-sans text-[10px] uppercase font-bold">Estabilidade</span>
+<span class="font-bold text-on-surface">5 Fiadas Verticais</span>
+<span class="text-on-surface-variant">Encolhimento Film Stretch</span>
+</div>
+</div>
+<div class="mt-4 pt-2 flex items-center justify-between text-xs text-outline">
+<span>Cantoneiras: 4 un</span>
+<span class="font-bold text-primary">Bloqueio Anti-Tombamento</span>
+</div>
+</div>
+<!-- Tier 3: Terciária / Palete PBR -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex flex-col justify-between shadow-sm relative">
+<div>
+<div class="flex items-center justify-between text-outline mb-1">
+<span class="font-label-sm text-label-sm uppercase font-bold">Nível 3 • Logística Master</span>
+<span class="material-symbols-outlined text-base text-secondary">pallet</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-on-surface block">Palete PBR Padronizado</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1">Dim: 1,00m x 1,20m x 1,45m</span>
+<div class="mt-3 p-2 bg-surface-container-low rounded font-mono text-xs flex flex-col gap-0.5">
+<span class="text-outline font-sans text-[10px] uppercase font-bold">Código Logístico</span>
+<span class="font-bold text-secondary">DUN-14: 17891000248117</span>
+<span class="text-on-surface-variant">Total: 40 Sacos (1.000 kg)</span>
+</div>
+</div>
+<div class="mt-4 pt-2 flex items-center justify-between text-xs text-outline">
+<span>Peso Bruto: 1.030 kg</span>
+<span class="font-bold text-secondary">Aprovado SIF/WMS</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Footer Spec -->
+<div class="mt-space-md pt-space-sm flex flex-wrap items-center justify-between gap-space-sm text-xs text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+<span>Especificações em total aderência à <strong>Portaria Inmetro nº 248/2008</strong> e GS1 General Specifications.</span>
+</div>
+<button class="font-label-sm text-label-sm font-bold text-primary hover:underline flex items-center gap-1">
+            Download Ficha Técnica de Paletização (PDF)
+            <span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+</div>
+<!-- Live Barcode Tester & GS1 Validator (4 cols) -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-xl">qr_code_scanner</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">
+                Simulador GS1
+              </h2>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" title="Pronto para leitura ótica"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            Teste e valide o algoritmo módulo 10 de dígitos verificadores para coletores Honeywell e Zebra.
+          </p>
+<!-- Input interactive -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase font-bold text-outline">Entrada EAN-13 ou DUN-14</label>
+<div class="flex items-center bg-surface-container-low rounded-lg px-3 py-2">
+<input class="w-full bg-transparent border-0 outline-none font-mono text-sm text-on-surface font-bold tracking-wider" id="barcodeSimulatorInput" maxlength="14" type="text" value="7891000248110"/>
+<button class="text-primary hover:text-primary-container p-1" id="btnSimulateScan" title="Disparar Leitor">
+<span class="material-symbols-outlined text-xl">sensors</span>
+</button>
+</div>
+</div>
+<!-- Live Visual Barcode Generator Preview (Pure SVG) -->
+<div class="mt-4 p-space-md bg-surface-container-low rounded-lg flex flex-col items-center justify-center">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-2 font-bold">Simulação de Renderização Ótica</span>
+<!-- Simplified vector barcode pattern representation -->
+<svg class="w-56 h-14" fill="currentColor" viewbox="0 0 220 50">
+<!-- Guard Bars Left -->
+<rect class="text-on-surface" height="46" width="3" x="0" y="0"></rect>
+<rect class="text-on-surface" height="46" width="3" x="6" y="0"></rect>
+<!-- Data Bars Variable Pattern -->
+<rect class="text-on-surface" height="40" width="2" x="14" y="0"></rect>
+<rect class="text-on-surface" height="40" width="5" x="18" y="0"></rect>
+<rect class="text-on-surface" height="40" width="1" x="26" y="0"></rect>
+<rect class="text-on-surface" height="40" width="4" x="30" y="0"></rect>
+<rect class="text-on-surface" height="40" width="2" x="38" y="0"></rect>
+<rect class="text-on-surface" height="40" width="5" x="43" y="0"></rect>
+<rect class="text-on-surface" height="40" width="3" x="52" y="0"></rect>
+<rect class="text-on-surface" height="40" width="1" x="58" y="0"></rect>
+<rect class="text-on-surface" height="40" width="4" x="63" y="0"></rect>
+<rect class="text-on-surface" height="40" width="2" x="71" y="0"></rect>
+<rect class="text-on-surface" height="40" width="5" x="76" y="0"></rect>
+<rect class="text-on-surface" height="40" width="3" x="85" y="0"></rect>
+<rect class="text-on-surface" height="40" width="2" x="91" y="0"></rect>
+<rect class="text-on-surface" height="40" width="4" x="96" y="0"></rect>
+<!-- Guard Center -->
+<rect class="text-on-surface" height="46" width="3" x="105" y="0"></rect>
+<rect class="text-on-surface" height="46" width="3" x="111" y="0"></rect>
+<!-- Right Data Bars -->
+<rect class="text-on-surface" height="40" width="4" x="119" y="0"></rect>
+<rect class="text-on-surface" height="40" width="2" x="126" y="0"></rect>
+<rect class="text-on-surface" height="40" width="5" x="131" y="0"></rect>
+<rect class="text-on-surface" height="40" width="1" x="140" y="0"></rect>
+<rect class="text-on-surface" height="40" width="4" x="144" y="0"></rect>
+<rect class="text-on-surface" height="40" width="3" x="152" y="0"></rect>
+<rect class="text-on-surface" height="40" width="5" x="158" y="0"></rect>
+<rect class="text-on-surface" height="40" width="2" x="166" y="0"></rect>
+<rect class="text-on-surface" height="40" width="4" x="171" y="0"></rect>
+<rect class="text-on-surface" height="40" width="1" x="178" y="0"></rect>
+<rect class="text-on-surface" height="40" width="5" x="183" y="0"></rect>
+<rect class="text-on-surface" height="40" width="2" x="191" y="0"></rect>
+<rect class="text-on-surface" height="40" width="4" x="196" y="0"></rect>
+<rect class="text-on-surface" height="40" width="3" x="203" y="0"></rect>
+<!-- Guard Bars Right -->
+<rect class="text-on-surface" height="46" width="3" x="211" y="0"></rect>
+<rect class="text-on-surface" height="46" width="3" x="217" y="0"></rect>
+</svg>
+<div class="font-mono text-xs tracking-[0.25em] font-bold text-on-surface mt-1" id="barcodeCodeDisplay">
+              7 891000 248110
+            </div>
+</div>
+<!-- Verification Outcome Status -->
+<div class="mt-3 p-2.5 rounded bg-secondary-container text-on-secondary-container flex items-center gap-2" id="validatorResult">
+<span class="material-symbols-outlined text-lg text-secondary">verified</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold">Dígito Verificador (DV: 0) Válido!</span>
+<span class="text-[11px] leading-tight">Prefixo GS1 Brasil (789) registrado para Moinho Santa Rita.</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg font-bold transition-colors flex items-center justify-center gap-1.5" id="btnTestAnother">
+<span class="material-symbols-outlined text-base">barcode_reader</span>
+          Testar Leitor Sem Fio (Bluetooth)
+        </button>
+</div>
+</div>
+</div>
+<!-- Industrial System Integrity Footer -->
+<div class="px-space-xl py-space-md border-t border-surface-container bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-base">check_box</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Moinho Santa Rita Agroindustrial S/A</span>
+<span class="font-label-sm text-label-sm text-outline">Planta Araraquara/SP • CNPJ: 52.884.102/0001-44 • Inscrição SIF/MAPA 2041</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-md font-label-sm text-label-sm text-outline">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">lock</span>
+        Protocolo GS1 GEPIR Certificado
+      </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">cloud_sync</span>
+        SAP RFC v8.4.1 (Sync OK)
+      </span>
+<span>•</span>
+<a class="text-primary hover:underline font-bold" href="#">Manual de Padronização Logística PBR</a>
+</div>
+</div>
+</div>
+<script>
+  // Simple client-side micro-interactions for validation and interactivity
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('barcodeSimulatorInput');
+    const display = document.getElementById('barcodeCodeDisplay');
+    const simulateBtn = document.getElementById('btnSimulateScan');
+    const validatorResult = document.getElementById('validatorResult');
+    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+    const rowCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+    const searchInput = document.getElementById('searchInput');
+
+    // Sync input to graphic text
+    if (input && display) {
+      input.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/[^0-9]/g, '');
+        e.target.value = val;
+        display.textContent = val.split('').join(' ');
+        validateBarcode(val);
+      });
+    }
+
+    // GS1 Modulo 10 Check digit verification routine
+    function validateBarcode(code) {
+      if (!validatorResult) return;
+      if (code.length !== 13 && code.length !== 14) {
+        validatorResult.className = "mt-3 p-2.5 rounded bg-surface-container text-on-surface-variant flex items-center gap-2";
+        validatorResult.innerHTML = `
+          <span class="material-symbols-outlined text-lg text-outline">hourglass_empty</span>
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm font-bold">Aguardando código completo...</span>
+            <span class="text-[11px] leading-tight">Insira 13 dígitos (EAN-13) ou 14 dígitos (DUN-14).</span>
+          </div>
+        `;
+        return;
+      }
+
+      // Simple GS1 checksum calculation
+      let sum = 0;
+      let len = code.length;
+      let providedCheck = parseInt(code.charAt(len - 1), 10);
+      
+      for (let i = 0; i < len - 1; i++) {
+        let n = parseInt(code.charAt(len - 2 - i), 10);
+        sum += (i % 2 === 0) ? n * 3 : n * 1;
+      }
+      
+      let calcCheck = (10 - (sum % 10)) % 10;
+
+      if (calcCheck === providedCheck) {
+        validatorResult.className = "mt-3 p-2.5 rounded bg-secondary-container text-on-secondary-container flex items-center gap-2";
+        validatorResult.innerHTML = `
+          <span class="material-symbols-outlined text-lg text-secondary">verified</span>
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm font-bold">Dígito Verificador (DV: ${calcCheck}) Válido!</span>
+            <span class="text-[11px] leading-tight">Padrão GS1 Brasil homologado com sucesso no leitor ótico.</span>
+          </div>
+        `;
+      } else {
+        validatorResult.className = "mt-3 p-2.5 rounded bg-error-container text-on-error-container flex items-center gap-2";
+        validatorResult.innerHTML = `
+          <span class="material-symbols-outlined text-lg text-tertiary">error</span>
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm font-bold">Erro de Dígito Verificador!</span>
+            <span class="text-[11px] leading-tight">DV informado é ${providedCheck}, mas o cálculo GS1 exige ${calcCheck}.</span>
+          </div>
+        `;
+      }
+    }
+
+    if (simulateBtn && input) {
+      simulateBtn.addEventListener('click', () => {
+        // Toggle sample barcodes
+        const samples = ['7891000248110', '17891000248117', '7891234992011', '17898234003319'];
+        let currentIdx = samples.indexOf(input.value);
+        let next = samples[(currentIdx + 1) % samples.length];
+        input.value = next;
+        display.textContent = next.split('').join(' ');
+        validateBarcode(next);
+      });
+    }
+
+    // Bulk selection
+    if (selectAllCheckbox) {
+      selectAllCheckbox.addEventListener('change', (e) => {
+        rowCheckboxes.forEach(cb => cb.checked = e.target.checked);
+      });
+    }
+
+    // Search filter interaction feedback
+    if (searchInput) {
+      searchInput.addEventListener('keyup', (e) => {
+        const query = e.target.value.toLowerCase();
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
+    }
+
+    // Bulk check button simulated action
+    const btnBulkCheck = document.getElementById('btnBulkCheck');
+    if (btnBulkCheck) {
+      btnBulkCheck.addEventListener('click', () => {
+        btnBulkCheck.innerHTML = `<span class="material-symbols-outlined text-lg animate-spin text-primary">autorenew</span> Validando 128 SKUs...`;
+        setTimeout(() => {
+          btnBulkCheck.innerHTML = `<span class="material-symbols-outlined text-lg text-secondary">check_circle</span> 100% Homologado GS1`;
+          setTimeout(() => {
+            btnBulkCheck.innerHTML = `<span class="material-symbols-outlined text-lg text-primary">fact_check</span> Validar Dígitos em Lote`;
+          }, 2500);
+        }, 1200);
+      });
+    }
+  });
+</script></main></div></body></html>

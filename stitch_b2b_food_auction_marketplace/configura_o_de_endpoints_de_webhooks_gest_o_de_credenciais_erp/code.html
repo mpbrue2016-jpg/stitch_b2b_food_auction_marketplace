@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-container": "#ffa59d", "on-surface-variant": "#434652", "surface-tint": "#2b5bb5", "on-error": "#ffffff", "inverse-surface": "#2d3133", "primary": "#003178", "primary-fixed-dim": "#b0c6ff", "tertiary-fixed": "#ffdad6", "surface-variant": "#e0e3e5", "surface": "#f7f9fb", "on-primary-fixed": "#001945", "primary-container": "#0d47a1", "secondary-fixed": "#a3f69c", "on-secondary-fixed-variant": "#005312", "on-surface": "#191c1e", "surface-container-highest": "#e0e3e5", "error": "#ba1a1a", "surface-bright": "#f7f9fb", "background": "#f7f9fb", "surface-container": "#eceef0", "on-tertiary": "#ffffff", "primary-fixed": "#d9e2ff", "on-primary": "#ffffff", "on-error-container": "#93000a", "error-container": "#ffdad6", "secondary-fixed-dim": "#88d982", "surface-dim": "#d8dadc", "on-secondary-fixed": "#002204", "outline": "#737783", "inverse-primary": "#b0c6ff", "on-secondary-container": "#217128", "secondary": "#1b6d24", "outline-variant": "#c3c6d4", "on-tertiary-fixed": "#410003", "on-secondary": "#ffffff", "inverse-on-surface": "#eff1f3", "surface-container-low": "#f2f4f6", "secondary-container": "#a0f399", "on-primary-container": "#a1bbff", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#00429c", "on-background": "#191c1e", "surface-container-high": "#e6e8ea", "tertiary-container": "#9d0011", "tertiary-fixed-dim": "#ffb3ac", "tertiary": "#720009", "on-tertiary-fixed-variant": "#930010" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "gutter": "1rem", "space-lg": "1.25rem", "space-xl": "2rem", "space-sm": "0.5rem", "space-md": "0.75rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "margin": "1.5rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm px-margin"><span class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-on-primary"><span class="material-symbols-outlined text-[18px]">hub</span></span><div><span class="block font-headline-md text-headline-md text-primary tracking-tight">VAREJISTA</span><span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">B2B Liquidação</span></div></div><div class="flex flex-col gap-space-md"><div class="px-margin"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider font-bold">OPERAÇÃO &amp; NEGOCIAÇÃO</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-[18px]">analytics</span><span>Visão Geral</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="leiloes-e-lotes" href="#"><span class="material-symbols-outlined text-[18px]">gavel</span><span>Leilões &amp; Lotes</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="esteira-cnpj-homologacao" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span>Esteira CNPJ &amp; Homologação</span></a></nav></div><div class="flex flex-col gap-space-md"><div class="px-margin"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider font-bold">LIQUIDAÇÃO &amp; INTEGRAÇÕES</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="gestao-financeira-meios" href="#"><span class="material-symbols-outlined text-[18px]">payments</span><span>Gestão Financeira &amp; Meios</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="remessas-retornos-cnab-240" href="#"><span class="material-symbols-outlined text-[18px]">receipt_long</span><span>Remessas &amp; Retornos CNAB 240</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="webhooks-erp" href="#"><span class="material-symbols-outlined text-[18px]">sync_alt</span><span>Webhooks &amp; ERP</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="auditoria-logs" href="#"><span class="material-symbols-outlined text-[18px]">security</span><span>Auditoria &amp; Logs</span></a></nav></div></div><div class="px-margin"><div class="p-space-sm rounded-lg bg-surface-container flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Protocolo B2B</span><span class="w-2 h-2 rounded-full bg-secondary"></span></div><span class="font-body-sm text-body-sm text-on-surface font-semibold">SPB / CIP Operante</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-full h-10 pl-10 pr-space-md bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary transition-all" placeholder="Buscar por CNPJ, SKU, EAN/GTIN, ID de Lote ou Protocolo..." type="text"/></div></div><div class="flex items-center gap-space-md shrink-0"><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-lg bg-secondary-container"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wide">Host-to-Host Santander 033: Online</span></div><div class="h-6 w-px bg-surface-container-highest"></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container"></span></button><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="text-right"><span class="block font-label-md text-label-md text-on-surface font-semibold">Administrador Master</span><span class="block font-body-sm text-body-sm text-on-surface-variant">Liquidação Direta</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 w-full min-h-screen bg-surface"><div class="flex flex-col w-full">
+<div class="px-space-xl py-space-lg flex flex-col gap-space-lg max-w-[1720px] mx-auto w-full">
+<!-- 1. Breadcrumbs de Navegação e Cabeçalho Operacional -->
+<section class="flex flex-col gap-space-md">
+<!-- Breadcrumb Bar -->
+<nav aria-label="Trilha de navegação" class="flex items-center gap-space-xs text-on-surface-variant">
+<a class="font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+          Início
+        </a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Liquidação &amp; Integrações</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Webhooks &amp; ERP</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Configurações de Endpoints</span>
+</nav>
+<!-- Main Header Area -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Arquitetura H2H B2B Event-Driven</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">•</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Host-to-Host Santander 033</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+            Configuração de Endpoints de Webhooks &amp; Gestão de Credenciais ERP
+          </h1>
+<div class="flex flex-wrap items-center gap-space-xs pt-1">
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wide">Cluster Event-Driven Ativo</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wide">Criptografia mTLS &amp; HMAC SHA-256</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">account_balance</span>
+<span class="font-label-sm text-label-sm font-semibold">Modo Produção / Santander H2H CIP-SPB</span>
+</div>
+</div>
+</div>
+<!-- Header Actions -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-lg font-label-md text-label-md transition-all shadow-sm" onclick="openTestModal()" type="button">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span>Simulador / Testar Payload</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-lg font-label-md text-label-md transition-all shadow-sm" onclick="rotateKeyAlert()" type="button">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+<span>Rotacionar Chaves Globais HMAC</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md text-label-md transition-all shadow-md" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Novo Endpoint Corporativo</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 2. Métricas de Integração e Saúde de Conectividade (4 Cards) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Endpoints Homologados -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-primary/5"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Topologia Conectada</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">34 ERPs Conectados</span>
+</div>
+<span class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>SAP S/4: 12 • TOTVS: 14</span>
+<span class="font-semibold text-secondary">SLA 99.98%</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 99.8%"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Oracle NetSuite: 5 • Senior / Bling: 3</span>
+</div>
+</div>
+<!-- Card 2: Volume de Tráfego 24h -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-secondary/5"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Vazão &amp; Disparos (24h)</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">142.850 Disparos</span>
+</div>
+<span class="w-9 h-9 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<!-- Sparkline SVG -->
+<div class="h-6 w-full flex items-end gap-1">
+<span class="h-2 w-full bg-surface-container-highest rounded-sm"></span>
+<span class="h-3 w-full bg-surface-container-highest rounded-sm"></span>
+<span class="h-2.5 w-full bg-surface-container-highest rounded-sm"></span>
+<span class="h-4 w-full bg-secondary-container rounded-sm"></span>
+<span class="h-3.5 w-full bg-secondary-container rounded-sm"></span>
+<span class="h-5 w-full bg-secondary rounded-sm"></span>
+<span class="h-6 w-full bg-secondary rounded-sm"></span>
+<span class="h-3 w-full bg-secondary-container rounded-sm"></span>
+<span class="h-2 w-full bg-surface-container-highest rounded-sm"></span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Pico: 120 req/s (18h CNAB)</span>
+<span class="font-semibold text-secondary">0% Rejeição 401/403</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Certificados mTLS X.509 -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-tertiary/5"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Parque Criptográfico mTLS</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">32 Válidos • 2 Alertas</span>
+</div>
+<span class="w-9 h-9 rounded-lg bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[20px]">vpn_key_alert</span>
+</span>
+</div>
+<div class="flex items-center justify-between p-space-xs px-space-sm rounded-lg bg-surface-container-high">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">2 expiram &lt; 15 dias</span>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline font-bold" type="button">
+            Renovar Agora →
+          </button>
+</div>
+</div>
+<!-- Card 4: Taxa de Entrega Global -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-primary-container/5"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Taxa de Entrega Global</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">99.94%</span>
+</div>
+<span class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Latência p95: <strong>145ms</strong></span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-primary">TLS 1.3 Strict</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span>Retentativas automáticas backoff ativo</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Seletor de Abas & Filtros Rápidos -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<!-- Tabs -->
+<div class="flex flex-wrap items-center gap-space-xs" id="endpointFilterTabs">
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md bg-primary-container text-on-primary font-bold shadow-sm transition-all filter-tab" onclick="filterEndpoints('all', this)" type="button">
+          Todos os Endpoints (34)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all filter-tab" onclick="filterEndpoints('sap', this)" type="button">
+          SAP S/4HANA (12)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all filter-tab" onclick="filterEndpoints('totvs', this)" type="button">
+          TOTVS Protheus (14)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all filter-tab" onclick="filterEndpoints('netsuite', this)" type="button">
+          Oracle NetSuite (5)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all filter-tab" onclick="filterEndpoints('custom', this)" type="button">
+          Outros / Custom (3)
+        </button>
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-error bg-error-container/40 hover:bg-error-container transition-all filter-tab font-semibold flex items-center gap-1" onclick="filterEndpoints('expiring', this)" type="button">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+          Certificados Expirando (2)
+        </button>
+</div>
+<!-- Quick Search Inside Table -->
+<div class="flex items-center gap-space-sm w-full lg:w-96">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-space-md bg-surface-container rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary transition-all" id="endpointSearchInput" onkeyup="searchEndpointTable()" placeholder="Razão Social, CNPJ, URL ou ID..." type="text"/>
+</div>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Filtros avançados de auditoria" type="button">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</section>
+<!-- 4. Tabela Avançada de Endpoints Configurados -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface">Topologia de Webhooks de Liquidação Financeira</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant">Ambiente: Live PROD</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Exibindo 5 de 34 registros homologados</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="endpointsMainTable">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-md px-space-lg">Empresa &amp; ERP Homologado</th>
+<th class="py-space-md px-space-md">URL de Callback &amp; Protocolo</th>
+<th class="py-space-md px-space-md">Eventos Inscritos</th>
+<th class="py-space-md px-space-md">Segurança / mTLS</th>
+<th class="py-space-md px-space-md">Último Disparo</th>
+<th class="py-space-md px-space-md">Status</th>
+<th class="py-space-md px-space-lg text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm text-on-surface">
+<!-- Linha 1: SAP S/4HANA Serra Bella -->
+<tr class="hover:bg-surface-container-low/70 transition-colors endpoint-row" data-erp="sap" data-status="ok">
+<td class="py-space-md px-space-lg">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-on-surface">Laticínios Serra Bella Ltda</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm font-bold">SAP S/4HANA</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">CNPJ: 18.239.112/0001-90 • ID: WH-SAP-9812</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-1.5 max-w-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]" title="TLS 1.3 Strict Ativo">lock</span>
+<code class="font-mono text-body-sm text-primary font-semibold truncate" title="https://api.serrabella.ind.br/sap/cpi/v1/settlement">
+                    https://api.serrabella.ind.br/sap/cpi/v1/settlement
+                  </code>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SAP Cloud Platform Integration (CPI)</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-wrap gap-1 max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">settlement.liquidated</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">escrow.released</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">cnab.retorno_ok</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 text-on-surface font-semibold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+<span>mTLS Ativo + HMAC SHA-256</span>
+</div>
+<span class="font-mono text-body-sm text-on-surface-variant">whsec_live_98a...29df</span>
+<span class="font-body-sm text-body-sm text-secondary">Certificado X.509 expira em 312 dias</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">200 OK</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">118ms</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Há 4 min</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Homologado
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" onclick="triggerSimulatedPing('SAP S/4HANA Serra Bella')" title="Testar Disparo Instantâneo" type="button">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Ver Histórico de Logs" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Opções de Credencial" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Linha 2: TOTVS Protheus Mantiqueira -->
+<tr class="hover:bg-surface-container-low/70 transition-colors endpoint-row" data-erp="totvs" data-status="ok">
+<td class="py-space-md px-space-lg">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-on-surface">Cooperativa Agrícola Mantiqueira</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">TOTVS Protheus</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">CNPJ: 04.982.441/0001-11 • ID: WH-TOTVS-3321</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-1.5 max-w-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<code class="font-mono text-body-sm text-primary font-semibold truncate" title="https://protheus.mantiqueira.coop.br/rest/b2b/fin">
+                    https://protheus.mantiqueira.coop.br/rest/b2b/fin
+                  </code>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">AdvPL REST Endpoint API Gateway</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-wrap gap-1 max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">settlement.liquidated</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">pix.payout_done</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 text-on-surface font-semibold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+<span>mTLS Ativo + HMAC SHA-256</span>
+</div>
+<span class="font-mono text-body-sm text-on-surface-variant">whsec_live_77b...11aa</span>
+<span class="font-body-sm text-body-sm text-secondary">Certificado X.509 expira em 188 dias</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">200 OK</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">165ms</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Há 4 min</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Homologado
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" onclick="triggerSimulatedPing('TOTVS Protheus Mantiqueira')" title="Testar Disparo Instantâneo" type="button">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Ver Logs" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Mais Opções" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Linha 3: Oracle NetSuite Moinho Sul (ALERTA EXPIRAÇÃO) -->
+<tr class="hover:bg-surface-container-low/70 transition-colors endpoint-row bg-error-container/10" data-erp="netsuite" data-status="expiring">
+<td class="py-space-md px-space-lg">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-on-surface">Moinho Sul Alimentos S.A.</span>
+<span class="px-1.5 py-0.5 rounded bg-tertiary-fixed text-tertiary font-label-sm text-label-sm font-bold">NetSuite SuiteTalk</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">CNPJ: 61.229.400/0002-45 • ID: WH-NS-0914</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-1.5 max-w-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<code class="font-mono text-body-sm text-primary font-semibold truncate" title="https://612294.restlets.api.netsuite.com/app/site/hosting/restlet.nl">
+                    https://612294.restlets.api.netsuite.com/app/...
+                  </code>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">RESTlet Script v2.1 Handshake</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-wrap gap-1 max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">settlement.liquidated</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">invoice.issued</span>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm">dlq.alert</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 text-on-surface font-semibold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-error">warning</span>
+<span>mTLS + OAuth 2.0 Token</span>
+</div>
+<span class="font-mono text-body-sm text-on-surface-variant">whsec_live_44c...98bb</span>
+<span class="font-body-sm text-body-sm text-error font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">alarm</span>
+                    Certificado expira em 12 dias
+                  </span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">200 OK</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">142ms</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Há 5 min</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                  Atenção Certificado
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="px-2 py-1 rounded bg-error text-on-error font-label-sm text-label-sm font-bold hover:bg-tertiary transition-colors shadow-sm" type="button">
+                    Renovar Certificado
+                  </button>
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" onclick="triggerSimulatedPing('Oracle NetSuite Moinho Sul')" title="Testar Disparo" type="button">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Linha 4: Bling ERP Ouro Branco -->
+<tr class="hover:bg-surface-container-low/70 transition-colors endpoint-row" data-erp="custom" data-status="ok">
+<td class="py-space-md px-space-lg">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-on-surface">Laticínios Ouro Branco Comércio</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">Bling v3</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">CNPJ: 08.441.229/0001-09 • ID: WH-BLING-5510</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-1.5 max-w-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<code class="font-mono text-body-sm text-primary font-semibold truncate" title="https://api.ourobranco.com.br/bling/integration/v3">
+                    https://api.ourobranco.com.br/bling/integration/v3
+                  </code>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Webhook Bridge Standard</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-wrap gap-1 max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">settlement.liquidated</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 text-on-surface font-semibold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">verified_user</span>
+<span>HMAC SHA-256 Signature Header</span>
+</div>
+<span class="font-mono text-body-sm text-on-surface-variant">whsec_live_12c...88ee</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Autenticação por Assinatura HTTP</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">200 OK</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">95ms</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Há 5 min</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Homologado
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" onclick="triggerSimulatedPing('Bling ERP Ouro Branco')" title="Testar Disparo" type="button">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Ver Logs" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Mais Opções" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Linha 5: Senior Sapiens Central Carnes -->
+<tr class="hover:bg-surface-container-low/70 transition-colors endpoint-row" data-erp="custom" data-status="ok">
+<td class="py-space-md px-space-lg">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-on-surface">Frigorífico Central de Carnes</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">Senior Sapiens</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">CNPJ: 21.009.843/0001-33 • ID: WH-SENIOR-1102</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-1.5 max-w-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<code class="font-mono text-body-sm text-primary font-semibold truncate" title="https://integrador.centralcarnes.com.br/senior/webhook">
+                    https://integrador.centralcarnes.com.br/senior/webhook
+                  </code>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Senior Integration Platform (eDocs)</span>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-wrap gap-1 max-w-xs">
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">settlement.liquidated</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm">ted.conciliated</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1 text-on-surface font-semibold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+<span>mTLS Ativo + HMAC SHA-256</span>
+</div>
+<span class="font-mono text-body-sm text-on-surface-variant">whsec_live_33a...09cc</span>
+<span class="font-body-sm text-body-sm text-secondary">Certificado X.509 expira em 240 dias</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">200 OK</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">134ms</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Há 5 min</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Homologado
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" onclick="triggerSimulatedPing('Senior Sapiens Central Carnes')" title="Testar Disparo" type="button">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Ver Logs" type="button">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface-variant transition-colors" title="Mais Opções" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="px-space-lg py-space-sm bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+          Página 1 de 7 • Total de 34 conexões bancárias e ERP ativas sob custódia
+        </span>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md opacity-50 cursor-not-allowed" type="button">Anterior</button>
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-md text-label-md font-bold" type="button">1</button>
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md" type="button">2</button>
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md" type="button">3</button>
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md" type="button">Próxima</button>
+</div>
+</div>
+</section>
+<!-- 5. Seção de Segurança, Validação de Assinatura e Playground Rápido (2 Colunas) -->
+<section class="grid grid-cols-1 xl:grid-cols-2 gap-space-lg">
+<!-- Coluna 1: Políticas de Assinatura Criptográfica & Verificação -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">security</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Políticas de Assinatura Criptográfica &amp; Verificação</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-primary font-label-sm text-label-sm font-bold">RFC 2104 / TLS 1.3</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Todos os payloads enviados pela plataforma contêm o cabeçalho <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-mono">X-Varejista-Signature</code>. O timestamp impede ataques de repetição (replay attacks) em até 300 segundos.
+          </p>
+</div>
+<!-- Master Key Card -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Chave Secreta Master da Conta (Ambiente Produção)</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Ativa há 45 dias</span>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-lowest p-space-xs rounded-lg">
+<code class="font-mono text-body-sm text-on-surface flex-1 px-space-xs truncate" id="masterSecretKeyDisplay">
+              whsec_live_948a3bf2c1e74109bd3841a998bc01d2e8749a0f
+            </code>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors" onclick="copyMasterKey()" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span id="copyBtnText">Copiar</span>
+</button>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors" onclick="rotateKeyAlert()" type="button">
+<span class="material-symbols-outlined text-[14px]">autorenew</span>
+<span>Regenerar (Grace 48h)</span>
+</button>
+</div>
+</div>
+<!-- Code Snippet Tabs -->
+<div class="flex flex-col rounded-lg bg-inverse-surface text-inverse-on-surface overflow-hidden">
+<div class="flex items-center justify-between px-space-md py-space-xs bg-inverse-surface/80">
+<div class="flex items-center gap-space-xs" id="codeLangTabs">
+<button class="px-space-sm py-1 font-label-sm text-label-sm font-bold text-primary-fixed-dim bg-inverse-surface rounded" onclick="selectCodeLang('python', this)" type="button">Python</button>
+<button class="px-space-sm py-1 font-label-sm text-label-sm text-surface-dim hover:text-white rounded" onclick="selectCodeLang('node', this)" type="button">Node.js</button>
+<button class="px-space-sm py-1 font-label-sm text-label-sm text-surface-dim hover:text-white rounded" onclick="selectCodeLang('csharp', this)" type="button">C# .NET</button>
+</div>
+<span class="font-label-sm text-label-sm text-surface-dim uppercase font-mono">HMAC SHA-256</span>
+</div>
+<!-- Code Box -->
+<div class="p-space-md overflow-x-auto text-[13px] font-mono leading-relaxed">
+<pre class="text-surface-bright" id="codeSnippetBox"><code>import hmac, hashlib, time
+
+def verify_varejista_webhook(payload_body, header_signature, secret):
+    parts = dict(x.split('=') for x in header_signature.split(','))
+    timestamp = parts.get('t')
+    signature = parts.get('v1')
+    
+    if abs(time.time() - int(timestamp)) &gt; 300:
+        return False  # Replay attack detectado (&gt; 5 min)
+        
+    signed_payload = f"{timestamp}.{payload_body}".encode('utf-8')
+    computed = hmac.new(secret.encode('utf-8'), signed_payload, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(computed, signature)</code></pre>
+</div>
+</div>
+</div>
+<!-- Coluna 2: Painel de Teste de Handshake & Validador de Webhook -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">play_arrow</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Painel de Teste de Handshake &amp; Validador de Webhook</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Simulação mTLS Live</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Dispare eventos simulados para validar a conformidade dos endpoints parceiros contra o certificado cliente X.509 da plataforma.
+          </p>
+</div>
+<!-- Form de Disparo -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant" for="eventSelect">Evento B2B Simulado</label>
+<select class="h-9 px-space-sm bg-surface-container rounded-lg font-body-sm text-body-sm text-on-surface outline-none focus:ring-1 focus:ring-primary" id="eventSelect">
+<option value="settlement.liquidated">settlement.liquidated (R$ 54.200,00)</option>
+<option value="escrow.released">escrow.released (Lote #4910)</option>
+<option value="cnab.retorno_ok">cnab.retorno_ok (Arquivo CO251002.RET)</option>
+<option value="pix.payout_done">pix.payout_done (Arremate Instantâneo)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant" for="erpDestinationSelect">ERP Parceiro Destino</label>
+<select class="h-9 px-space-sm bg-surface-container rounded-lg font-body-sm text-body-sm text-on-surface outline-none focus:ring-1 focus:ring-primary" id="erpDestinationSelect">
+<option value="sap">SAP S/4HANA (Serra Bella)</option>
+<option value="totvs">TOTVS Protheus (Mantiqueira)</option>
+<option value="netsuite">Oracle NetSuite (Moinho Sul)</option>
+<option value="bling">Bling ERP v3 (Ouro Branco)</option>
+<option value="senior">Senior Sapiens (Central Carnes)</option>
+</select>
+</div>
+</div>
+<!-- Payload Preview Box -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="uppercase font-bold">Payload JSON Pré-configurado</span>
+<span class="font-mono">Tamanho: 428 bytes</span>
+</div>
+<div class="p-space-sm bg-surface-container rounded-lg font-mono text-[12px] text-on-surface max-h-36 overflow-y-auto">
+            {<br/>
+              "event": "settlement.liquidated",<br/>
+              "event_id": "evt_b2b_9041289140",<br/>
+              "timestamp": 1729879200,<br/>
+              "data": {<br/>
+                "batch_lot_id": "LOT-BR-2024-8891",<br/>
+                "settlement_amount_brl": 54200.00,<br/>
+                "clearing_channel": "SANTANDER_H2H_CIP",<br/>
+                "beneficiary_cnpj": "18.239.112/0001-90"<br/>
+              }<br/>
+            }
+          </div>
+</div>
+<!-- Botão de Disparo e Log de Retorno -->
+<div class="flex flex-col gap-space-sm">
+<button class="w-full py-space-sm bg-secondary hover:bg-on-secondary-container text-on-secondary rounded-lg font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-space-xs shadow-sm" id="btnSimulateWebhook" onclick="executeWebhookSimulation()" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Enviar Ping de Teste / Disparar Payload Simulado</span>
+</button>
+<!-- Result Area -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center justify-between" id="simulationResultArea">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]" id="simResultIcon">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface" id="simResultTitle">Pronto para Teste</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="simResultSubtitle">Clique no botão acima para validar handshake TLS 1.3 e resposta HTTP.</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-mono text-body-sm text-on-surface-variant" id="simLatency">idle</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Rodapé Corporativo e Certificações Bacen / H2H -->
+<footer class="mt-space-md pt-space-lg pb-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md border-t border-surface-container-high text-on-surface-variant">
+<div class="flex flex-wrap items-center gap-space-md">
+<a class="font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+          Documentação da API de Webhooks (OpenAPI 3.1)
+        </a>
+<a class="font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">download</span>
+          Download do Certificado Raiz CA (ICP-Brasil)
+        </a>
+<a class="font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">assignment</span>
+          Auditoria de Logs &amp; DLQ
+        </a>
+<a class="font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+          Voltar à Liquidação CO251002.RET
+        </a>
+</div>
+<div class="flex items-center gap-space-sm text-right">
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Conformidade Regulatória Financeira</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">BACEN Resolução 4.656 • ISO/IEC 27001 • LGPD</span>
+</div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+</footer>
+</div>
+</div>
+<script>
+  // Tab Code Language Switcher
+  const snippets = {
+    python: `import hmac, hashlib, time
+
+def verify_varejista_webhook(payload_body, header_signature, secret):
+    parts = dict(x.split('=') for x in header_signature.split(','))
+    timestamp = parts.get('t')
+    signature = parts.get('v1')
+    
+    if abs(time.time() - int(timestamp)) > 300:
+        return False  # Replay attack detectado (> 5 min)
+        
+    signed_payload = f"{timestamp}.{payload_body}".encode('utf-8')
+    computed = hmac.new(secret.encode('utf-8'), signed_payload, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(computed, signature)`,
+    node: `const crypto = require('crypto');
+
+function verifyVarejistaWebhook(payloadBody, headerSignature, secret) {
+    const parts = Object.fromEntries(headerSignature.split(',').map(s => s.split('=')));
+    const timestamp = parts.t;
+    const signature = parts.v1;
+    
+    if (Math.abs(Date.now() / 1000 - parseInt(timestamp, 10)) > 300) {
+        return false; // Replay attack (> 5 min)
+    }
+    
+    const signedPayload = \`\${timestamp}.\${payloadBody}\`;
+    const computed = crypto.createHmac('sha256', secret).update(signedPayload).digest('hex');
+    return crypto.timingSafeEqual(Buffer.from(computed), Buffer.from(signature));
+}`,
+    csharp: `using System;
+using System.Security.Cryptography;
+using System.Text;
+
+public static bool VerifyVarejistaWebhook(string payload, string headerSignature, string secret)
+{
+    var parts = headerSignature.Split(',');
+    var timestamp = parts[0].Split('=')[1];
+    var signature = parts[1].Split('=')[1];
+    
+    long ts = long.Parse(timestamp);
+    if (Math.Abs(DateTimeOffset.UtcNow.ToUnixTimeSeconds() - ts) > 300) return false;
+    
+    using var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(secret));
+    var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes($"{timestamp}.{payload}"));
+    var computed = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+    return CryptographicOperations.FixedTimeEquals(
+        Encoding.UTF8.GetBytes(computed),
+        Encoding.UTF8.GetBytes(signature)
+    );
+}`
+  };
+
+  function selectCodeLang(lang, btn) {
+    const codeBox = document.getElementById('codeSnippetBox');
+    if (codeBox && snippets[lang]) {
+      codeBox.textContent = snippets[lang];
+    }
+    const container = document.getElementById('codeLangTabs');
+    if (container) {
+      const buttons = container.querySelectorAll('button');
+      buttons.forEach(b => {
+        b.className = 'px-space-sm py-1 font-label-sm text-label-sm text-surface-dim hover:text-white rounded';
+      });
+      btn.className = 'px-space-sm py-1 font-label-sm text-label-sm font-bold text-primary-fixed-dim bg-inverse-surface rounded';
+    }
+  }
+
+  // Copy Master Key Helper
+  function copyMasterKey() {
+    const key = document.getElementById('masterSecretKeyDisplay').innerText.trim();
+    navigator.clipboard.writeText(key).then(() => {
+      const btnText = document.getElementById('copyBtnText');
+      btnText.textContent = 'Copiado!';
+      setTimeout(() => {
+        btnText.textContent = 'Copiar';
+      }, 2000);
+    });
+  }
+
+  function rotateKeyAlert() {
+    alert('Aviso de Segurança: Ao iniciar a rotação, a chave anterior permanecerá válida por um grace period de 48h para migração suave nos ERPs parceiros.');
+  }
+
+  function openTestModal() {
+    const simBox = document.getElementById('btnSimulateWebhook');
+    if (simBox) {
+      simBox.scrollIntoView({ behavior: 'smooth' });
+      simBox.focus();
+    }
+  }
+
+  // Table Filtering
+  function filterEndpoints(type, tabBtn) {
+    // Update active tab styles
+    const tabContainer = document.getElementById('endpointFilterTabs');
+    if (tabContainer) {
+      const buttons = tabContainer.querySelectorAll('.filter-tab');
+      buttons.forEach(b => {
+        b.className = 'px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all filter-tab';
+      });
+      tabBtn.className = 'px-space-md py-space-xs rounded-lg font-label-md text-label-md bg-primary-container text-on-primary font-bold shadow-sm transition-all filter-tab';
+    }
+
+    const rows = document.querySelectorAll('.endpoint-row');
+    rows.forEach(row => {
+      const erp = row.getAttribute('data-erp');
+      const status = row.getAttribute('data-status');
+      if (type === 'all') {
+        row.style.display = '';
+      } else if (type === 'expiring') {
+        row.style.display = status === 'expiring' ? '' : 'none';
+      } else {
+        row.style.display = erp === type ? '' : 'none';
+      }
+    });
+  }
+
+  // Search Filter
+  function searchEndpointTable() {
+    const input = document.getElementById('endpointSearchInput');
+    const filter = input.value.toLowerCase();
+    const rows = document.querySelectorAll('.endpoint-row');
+
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(filter) ? '' : 'none';
+    });
+  }
+
+  // Quick Ping Simulator Execution
+  function executeWebhookSimulation() {
+    const btn = document.getElementById('btnSimulateWebhook');
+    const resultArea = document.getElementById('simulationResultArea');
+    const title = document.getElementById('simResultTitle');
+    const subtitle = document.getElementById('simResultSubtitle');
+    const latency = document.getElementById('simLatency');
+    const icon = document.getElementById('simResultIcon');
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">sync</span><span>Disparando e validando mTLS...</span>';
+
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">send</span><span>Enviar Ping de Teste / Disparar Payload Simulado</span>';
+
+      resultArea.className = 'p-space-sm rounded-lg bg-secondary-container/30 flex items-center justify-between border-none';
+      icon.textContent = 'verified';
+      icon.className = 'material-symbols-outlined text-secondary text-[20px]';
+      title.textContent = '200 OK • Assinatura Validada';
+      subtitle.textContent = 'Handshake TLS 1.3 estabelecido com sucesso e ACK registrado pelo ERP remoto.';
+      latency.textContent = '112ms';
+      latency.className = 'px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-mono text-body-sm font-bold';
+    }, 700);
+  }
+
+  function triggerSimulatedPing(partnerName) {
+    alert(`Iniciando teste de conectividade mTLS com ${partnerName}...`);
+    executeWebhookSimulation();
+  }
+</script></main></div></body></html>

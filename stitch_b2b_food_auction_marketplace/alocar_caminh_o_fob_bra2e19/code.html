@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "secondary-container": "#a0f399", "error": "#ba1a1a", "on-tertiary-fixed": "#410003", "on-background": "#191c1e", "surface-bright": "#f7f9fb", "on-secondary-container": "#217128", "on-secondary": "#ffffff", "tertiary": "#720009", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "outline": "#737783", "primary": "#003178", "error-container": "#ffdad6", "on-surface": "#191c1e", "inverse-primary": "#b0c6ff", "on-surface-variant": "#434652", "tertiary-container": "#9d0011", "surface-container-high": "#e6e8ea", "primary-fixed": "#d9e2ff", "on-primary-fixed-variant": "#00429c", "secondary": "#1b6d24", "on-secondary-fixed-variant": "#005312", "on-primary": "#ffffff", "outline-variant": "#c3c6d4", "surface-container": "#eceef0", "tertiary-fixed": "#ffdad6", "surface-variant": "#e0e3e5", "surface-container-low": "#f2f4f6", "surface-dim": "#d8dadc", "on-tertiary": "#ffffff", "surface": "#f7f9fb", "inverse-on-surface": "#eff1f3", "secondary-fixed": "#a3f69c", "on-tertiary-fixed-variant": "#930010", "inverse-surface": "#2d3133", "primary-container": "#0d47a1", "surface-container-highest": "#e0e3e5", "tertiary-fixed-dim": "#ffb3ac", "on-primary-fixed": "#001945", "on-tertiary-container": "#ffa59d", "on-primary-container": "#a1bbff", "surface-tint": "#2b5bb5", "on-error": "#ffffff", "primary-fixed-dim": "#b0c6ff", "on-secondary-fixed": "#002204", "background": "#f7f9fb", "secondary-fixed-dim": "#88d982" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "gutter": "1rem", "margin-mobile": "1rem", "space-xl": "2rem", "margin": "1.5rem", "space-lg": "1.25rem", "gutter-mobile": "0.75rem", "space-xs": "0.25rem", "space-md": "0.75rem", "space-sm": "0.5rem" }, fontFamily: { "body-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"] }, fontSize: { "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs min-w-0"><button aria-label="Voltar" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors -ml-space-xs rounded-full" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><div class="flex flex-col min-w-0"><h1 class="font-headline-md text-headline-md text-on-surface truncate">Alocar Caminhão Fob</h1><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider truncate">BRA2E19 • Coleta e Retirada</span></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Ajuda e Suporte" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors rounded-full"><span class="material-symbols-outlined text-[22px]">help_outline</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 bg-surface pb-safe min-h-screen"><div class="flex flex-col w-full pb-8 space-y-space-md">
+<!-- Operational Status & Vehicle Hero Card -->
+<section class="mx-margin-mobile mt-space-sm bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-space-xs bg-secondary-container px-space-sm py-1 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-secondary-container font-bold uppercase">Veículo Disponível • 100% Livre</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Pátio Central Bragança</span>
+</div>
+<div class="flex items-start gap-space-md pt-1">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden bg-surface-container flex-shrink-0 shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Commercial white delivery cargo truck Mercedes Benz Accelo toco with dry van box body parked in logistics warehouse depot in sunny day, clean Brazilian freight logistics setting, realistic 4k" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBL2ad7ZpioWENlNDfu5bKG8zj955b7sE9xvO9Zy1Z7w7lhdwCb8h22_CQNalvgXNYxSd1j-vHff_Op4OiaxzesfTrHW2HEb8QW9jNSfvZsGvtsgoI-8WtpkPjIyruo6NCW2k7oJQrP9szGYSzWOknu7GkBfia6Uf_O_8jTeVEQNZnA5BnVglpvP-m1Si2dH_QcSX4YvDXB2sig4jdOsllSmps660PhVolRfnrynsP"/>
+<div class="absolute bottom-0 inset-x-0 bg-primary/90 text-on-primary text-[10px] font-bold text-center py-0.5 tracking-wider">
+          TOCO 8T
+        </div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center gap-space-xs">
+<div class="bg-primary text-on-primary font-headline-md text-headline-md px-2 py-0.5 rounded-lg tracking-wider font-extrabold shadow-sm">
+            BRA2E19
+          </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-1.5 py-0.5 rounded">Mercosul</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate mt-1">Caminhão Toco Baú Fechado • 8.000 kg C.Ú.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">6,50m × 2,40m × 2,50m • PBT 16.000 kg</p>
+</div>
+</div>
+<!-- Active Driver Allocation Bar -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between mt-1">
+<div class="flex items-center gap-space-xs min-w-0">
+<div class="w-7 h-7 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-md text-label-md text-on-surface font-bold truncate">Carlos Eduardo Mendes</p>
+<p class="font-label-sm text-label-sm text-secondary truncate font-semibold">CNH D Digital • RNTRC 4920185-9 Regular</p>
+</div>
+</div>
+<button class="px-2.5 py-1 bg-surface-container-highest hover:bg-surface-dim text-on-surface font-label-sm text-label-sm rounded-lg font-bold transition-colors" type="button">
+        Trocar
+      </button>
+</div>
+</section>
+<!-- Step 1: Arrematado Lot Selection -->
+<section class="mx-margin-mobile flex flex-col space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">1</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Selecionar Lote Arrematado</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase bg-secondary-container px-2 py-0.5 rounded-full">1 Pronto para Coleta</span>
+</div>
+<!-- Option A (Recommended & Selected) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col space-y-space-xs relative overflow-hidden transition-all ring-0" id="card-lote-a">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<input checked="" class="w-4 h-4 text-primary accent-primary cursor-pointer" id="lote-a" name="lote-alocado" type="radio"/>
+<label class="font-label-lg text-label-lg text-primary font-bold cursor-pointer" for="lote-a">Lote #CAF-2026-14</label>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Pronto p/ Coleta
+        </span>
+</div>
+<div class="flex gap-space-sm mt-1">
+<div class="w-14 h-14 rounded-lg bg-surface-container shrink-0 overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Multiple stacked commercial packaging master boxes of premium roasted traditional ground coffee in 500g pouches inside an organized industrial logistics warehouse palletized food distribution center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu7h3HSg3qxXfNq1UjLoIMJKABk9IgMPyml8sWOyS0I6bl1C3NmbSlCG1bzMWpAiLF59ju5w67bMTmGJxuin3Oc7bcauxsJufGMSYiy1LpMhSyMKnziR0e0MQpITimBYet1HOJLygkFcgyBwsdJsPtZrkiIVFyqQwjYI591f8pgJE_kze-bVRNFU0DduWPKvjBMH_pIGLpmnprgh2Jz249EY3GbwDJupXH5fRETCWl"/>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-label-md text-label-md text-on-surface font-extrabold truncate">Café Torrado &amp; Moído Tradicional 500g</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">300 Caixas Master • Peso Total: 3.600 kg</p>
+<p class="font-label-sm text-label-sm text-primary font-bold mt-0.5">Arrematado: R$ 18.900,00 • Escrow Liquidado</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs bg-surface-container-low p-space-sm rounded-lg mt-space-xs">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">warehouse</span>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Origem Retirada</p>
+<p class="font-label-md text-label-md text-on-surface font-bold truncate">CD Torrefação Mogiana</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Campinas/SP • 68 km</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">inventory_2</span>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Volume Logístico</p>
+<p class="font-label-md text-label-md text-on-surface font-bold">2 Paletes PBR</p>
+<p class="font-body-sm text-body-sm text-secondary font-bold">Sobra: 4 posições (66%)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Option B (Pending Documentation) -->
+<div class="bg-surface-container-lowest/80 rounded-xl p-space-md flex flex-col space-y-space-xs opacity-75">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<input class="w-4 h-4 accent-primary cursor-not-allowed" disabled="" id="lote-b" name="lote-alocado" type="radio"/>
+<label class="font-label-lg text-label-lg text-on-surface-variant font-bold cursor-not-allowed" for="lote-b">Lote #ARR-2026-05</label>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full font-bold">
+<span class="material-symbols-outlined text-[14px]">pending_actions</span> Aguardando Fiscal
+        </span>
+</div>
+<div class="flex gap-space-sm mt-1">
+<div class="w-14 h-14 rounded-lg bg-surface-container shrink-0 overflow-hidden opacity-60">
+<img class="w-full h-full object-cover" data-alt="Shrink-wrapped commercial logistics bales of 5kg white rice bags packed on wooden pallets inside warehouse storage facility bright clean corporate aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk_8aTjTmoUHorUxi0FkrN3WchlTJ0SBHAJxQxBc1QX4nf62a27OAdft9qWo2lwANM-PxdnMMomaREfvmMCRnYvEboKgW1_W2E0nnqaPpTkCIJGwx1HNIfOSsz-B_VYWEYXgaMXSjs7lo9XJLy89jCX3iwI9vaOEFY3qp49La9I-hmYBxAsKDj_ic8HlmaCnV01hd2IB4eXMJ4a_wB1CnHzMIhabLEyAfb3Wz0UCM5"/>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-label-md text-label-md text-on-surface font-bold truncate">Arroz Agulhinha Tipo 1 5kg (100 Fardos)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Peso Estimado: 3.000 kg • CD Jundiaí/SP (84 km)</p>
+<p class="font-label-sm text-label-sm text-error font-semibold mt-0.5">Nota Fiscal em homologação SEFAZ</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 2: Capacity & Safety Validation Gauge -->
+<section class="mx-margin-mobile flex flex-col space-y-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">2</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Compatibilidade &amp; Carga</h2>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col space-y-space-md">
+<!-- Weight Utilization Bar -->
+<div class="space-y-1">
+<div class="flex justify-between items-baseline">
+<span class="font-label-md text-label-md text-on-surface font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">scale</span>
+            Capacidade de Carga Útil (Peso)
+          </span>
+<span class="font-headline-md text-headline-md text-primary font-extrabold">45% <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">(3.600 / 8.000 kg)</span></span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden p-0.5 flex">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 45%;"></div>
+</div>
+<div class="flex justify-between text-[11px] text-on-surface-variant font-semibold px-0.5">
+<span>0 kg</span>
+<span class="text-secondary font-bold">4.400 kg de margem livre</span>
+<span>8.000 kg máx</span>
+</div>
+</div>
+<!-- Pallet Volume Grid -->
+<div class="space-y-1.5 pt-1">
+<div class="flex justify-between items-baseline">
+<span class="font-label-md text-label-md text-on-surface font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">grid_view</span>
+            Posições de Paletes PBR (Baú 6,5m)
+          </span>
+<span class="font-label-md text-label-md text-secondary font-bold">2 de 6 Ocupadas (33%)</span>
+</div>
+<div class="grid grid-cols-6 gap-1.5 p-2 bg-surface-container-low rounded-lg">
+<div class="h-10 bg-primary rounded flex flex-col items-center justify-center text-on-primary shadow-sm">
+<span class="font-label-sm text-label-sm font-bold">P1</span>
+<span class="text-[9px] font-semibold opacity-90">1.800kg</span>
+</div>
+<div class="h-10 bg-primary rounded flex flex-col items-center justify-center text-on-primary shadow-sm">
+<span class="font-label-sm text-label-sm font-bold">P2</span>
+<span class="text-[9px] font-semibold opacity-90">1.800kg</span>
+</div>
+<div class="h-10 bg-surface-container-highest/60 rounded flex flex-col items-center justify-center text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">P3</span>
+<span class="text-[8px]">Livre</span>
+</div>
+<div class="h-10 bg-surface-container-highest/60 rounded flex flex-col items-center justify-center text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">P4</span>
+<span class="text-[8px]">Livre</span>
+</div>
+<div class="h-10 bg-surface-container-highest/60 rounded flex flex-col items-center justify-center text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">P5</span>
+<span class="text-[8px]">Livre</span>
+</div>
+<div class="h-10 bg-surface-container-highest/60 rounded flex flex-col items-center justify-center text-on-surface-variant">
+<span class="font-label-sm text-label-sm font-bold">P6</span>
+<span class="text-[8px]">Livre</span>
+</div>
+</div>
+</div>
+<!-- Regulatory Pill Banner -->
+<div class="bg-secondary-container/60 p-space-sm rounded-lg flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">verified_user</span>
+<div class="min-w-0">
+<p class="font-label-sm text-label-sm text-on-secondary-container font-extrabold">Em conformidade com Resolução CONTRAN nº 882/21</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Baú fechado seco aprovado para gêneros alimentícios secos. Isento de transbordo em balança.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 3: Logistics Scheduling & Route Navigation -->
+<section class="mx-margin-mobile flex flex-col space-y-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Agendamento de Doca &amp; Rota</h2>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col space-y-space-md">
+<!-- Date and Slot Pickers -->
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<label class="font-label-sm text-label-sm text-on-surface-variant block uppercase font-bold">Data da Coleta</label>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface font-bold font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
+<span>Amanhã, 26/10</span>
+</div>
+<span class="text-[10px] text-secondary font-semibold">Janela confirmada</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<label class="font-label-sm text-label-sm text-on-surface-variant block uppercase font-bold">Doca de Carga</label>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface font-bold font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary text-[18px]">rv_hookup</span>
+<span>08:30 às 10:00</span>
+</div>
+<span class="text-[10px] text-primary font-bold">Doca 02 (Expedição Express)</span>
+</div>
+</div>
+<!-- Route Card with Map View Integration -->
+<div class="rounded-lg overflow-hidden bg-surface-container flex flex-col">
+<div class="w-full h-28 bg-cover bg-center relative flex items-end p-2.5" data-location="Rodovia Dom Pedro I, Campinas, São Paulo, Brazil" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5CZ_UAfZNuZKsm7Y3XVoiE3onZa81bDeG-H0PIMv9MJPDAHarg-aHvDnKem2QfBNbclLUsbZB0TSmS8g3VBWTe0qNrBotWgoUWIkzm7RTI2OlRiZ6hgQBye27-iKItL2b9ut4PFs0NpAIiOJKkJdxdm90K-MKNPEyLgSf1DtqVZTBJ5y0D3tP3m_oc4nIBUaNKzLRAzWStg9jWm-tfi3XSf6iqEbDShu9UYZFIH4N')">
+<div class="bg-surface/90 backdrop-blur-md px-2.5 py-1 rounded-md shadow flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">alt_route</span>
+<span class="font-label-md text-label-md text-on-surface font-extrabold">SP-065 (Rod. D. Pedro I)</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Distância</p>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">68 km</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Tempo Estimado</p>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">~1h 10min</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold">
+<span class="material-symbols-outlined text-[13px]">toll</span> Vale-Pedágio Tag OK
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 4: Pre-Trip Safety & Document Checklist -->
+<section class="mx-margin-mobile flex flex-col space-y-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">4</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Checklist de Saída do Pátio</h2>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md space-y-2.5">
+<label class="flex items-center gap-space-sm cursor-pointer p-1 rounded hover:bg-surface-container-low transition-colors">
+<input checked="" class="w-5 h-5 rounded accent-primary cursor-pointer text-primary" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Pneus, calibragem e iluminação do baú conferidos</span>
+</label>
+<label class="flex items-center gap-space-sm cursor-pointer p-1 rounded hover:bg-surface-container-low transition-colors">
+<input checked="" class="w-5 h-5 rounded accent-primary cursor-pointer text-primary" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface font-semibold">CRLV-e 2026 e RNTRC ANTT sincronizados no app</span>
+</label>
+<label class="flex items-center gap-space-sm cursor-pointer p-1 rounded hover:bg-surface-container-low transition-colors">
+<input checked="" class="w-5 h-5 rounded accent-primary cursor-pointer text-primary" type="checkbox"/>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Dispositivo condutor com app Varejista Scanner ativo</span>
+</label>
+</div>
+</section>
+<!-- Action CTA Area -->
+<section class="mx-margin-mobile pt-space-xs flex flex-col space-y-space-xs">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold py-3.5 px-space-md rounded-xl shadow-md active:scale-[0.99] transition-all flex items-center justify-center gap-space-xs" id="btn-confirmar-coleta" type="button">
+<span>Confirmar Alocação e Emitir Ordem FOB</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<button class="w-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-bold py-2.5 px-space-md rounded-xl transition-colors" type="button">
+      Salvar Pré-agendamento no Pátio
+    </button>
+</section>
+</div>
+<script>
+  // Simple client-side micro-interaction for visual feedback
+  const confirmBtn = document.getElementById('btn-confirmar-coleta');
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      confirmBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[20px] animate-spin">sync</span>
+        <span>Gerando Ordem de Coleta e Doca...</span>
+      `;
+      confirmBtn.classList.add('opacity-90');
+      setTimeout(() => {
+        confirmBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px]">check_circle</span>
+          <span>Ordem FOB #ORD-8842 Emitida!</span>
+        `;
+        confirmBtn.classList.remove('bg-primary');
+        confirmBtn.classList.add('bg-secondary');
+      }, 900);
+    });
+  }
+</script></main></body></html>

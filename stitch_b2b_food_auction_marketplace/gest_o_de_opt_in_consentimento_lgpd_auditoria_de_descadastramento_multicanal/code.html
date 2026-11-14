@@ -1,0 +1,852 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-primary": "#ffffff",
+          "secondary": "#1b6d24",
+          "tertiary": "#720009",
+          "on-secondary": "#ffffff",
+          "outline": "#737783",
+          "error-container": "#ffdad6",
+          "inverse-on-surface": "#eff1f3",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-container": "#ffa59d",
+          "tertiary-container": "#9d0011",
+          "primary": "#003178",
+          "surface-bright": "#f7f9fb",
+          "surface-variant": "#e0e3e5",
+          "tertiary-fixed-dim": "#ffb3ac",
+          "inverse-surface": "#2d3133",
+          "on-secondary-fixed-variant": "#005312",
+          "secondary-container": "#a0f399",
+          "on-surface-variant": "#434652",
+          "surface-container-high": "#e6e8ea",
+          "on-error": "#ffffff",
+          "primary-fixed": "#d9e2ff",
+          "on-primary-container": "#a1bbff",
+          "surface-container-lowest": "#ffffff",
+          "surface": "#f7f9fb",
+          "outline-variant": "#c3c6d4",
+          "background": "#f7f9fb",
+          "on-error-container": "#93000a",
+          "error": "#ba1a1a",
+          "surface-container-low": "#f2f4f6",
+          "on-tertiary-fixed-variant": "#930010",
+          "primary-container": "#0d47a1",
+          "secondary-fixed": "#a3f69c",
+          "primary-fixed-dim": "#b0c6ff",
+          "on-primary-fixed-variant": "#00429c",
+          "on-secondary-fixed": "#002204",
+          "on-background": "#191c1e",
+          "surface-dim": "#d8dadc",
+          "surface-tint": "#2b5bb5",
+          "tertiary-fixed": "#ffdad6",
+          "on-surface": "#191c1e",
+          "surface-container": "#eceef0",
+          "surface-container-highest": "#e0e3e5",
+          "on-tertiary-fixed": "#410003",
+          "on-primary-fixed": "#001945",
+          "secondary-fixed-dim": "#88d982",
+          "on-secondary-container": "#217128",
+          "inverse-primary": "#b0c6ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-mobile": "0.75rem",
+          "space-xl": "2rem",
+          "space-lg": "1.25rem",
+          "margin": "1.5rem",
+          "space-xs": "0.25rem",
+          "space-md": "0.75rem",
+          "space-sm": "0.5rem",
+          "margin-mobile": "1rem",
+          "gutter": "1rem"
+        },
+        "fontFamily": {
+          "headline-md": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "label-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "numeric-timer": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "headline-md": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "700"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "600"
+            }
+          ],
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "700"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ],
+          "numeric-timer": [
+            "20px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "800"
+            }
+          ],
+          "headline-xl": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "fontWeight": "800"
+            }
+          ],
+          "headline-lg-mobile": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "700"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-xl-mobile": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "800"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto"><div class="h-16 px-margin flex items-center gap-space-sm shrink-0 bg-surface-container-lowest"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPgE2AzfUp8uq2xlqXLzJAU2yWKEXCkm01bAU8YASDuZrX22oqaR9kW6IOCB_jiuRsOuMKt4sUruDEpbfr4fs8mQ6CJX_wW8hAXofn3wLE6bEjhTiYEIlpJ11bXDgzFN6tAkcCZhuz1QOXVsfr8LqpvTQ5H6mi8oFGWFshUU2zub55lZLowSphPRtsk6xbf_C43Zo_YjvIBTcgOEyp41HU8FIrSiCXP2zlYwMidd7ZClB3U9gSzNyCfQ" alt="Varejista Online" class="h-10 w-auto object-contain"></div><nav class="flex-1 px-space-sm py-space-sm space-y-space-md" data-active-classes="bg-primary-container text-on-primary font-label-md"><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Operacional</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-body-lg">grid_view</span>Visão Geral</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="controle-validade-fefo" href="#"><span class="material-symbols-outlined text-body-lg">hourglass_top</span>Controle Validade &amp; FEFO</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="tipos-de-leilao-pregoes" href="#"><span class="material-symbols-outlined text-body-lg">gavel</span>Tipos de Leilão &amp; Pregões</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="oportunidades-ponta-estoque" href="#"><span class="material-symbols-outlined text-body-lg">local_offer</span>Oportunidades &amp; Ponta Estoque</a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Mensageria &amp; Comunicação</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="central-de-notificacoes" href="#"><span class="material-symbols-outlined text-body-lg">notifications_active</span>Central de Notificações</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="editor-de-templates-hsm" href="#"><span class="material-symbols-outlined text-body-lg">mark_chat_unread</span>Editor Templates HSM</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="simulador-de-disparos" href="#"><span class="material-symbols-outlined text-body-lg">send</span>Simulador de Disparos</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="analytics-conversao" href="#"><span class="material-symbols-outlined text-body-lg">insights</span>Analytics &amp; Conversão</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="consentimento-lgpd-opt-in" href="#"><span class="material-symbols-outlined text-body-lg">verified_user</span>Consentimento LGPD &amp; Opt-in</a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Catálogo &amp; Estoque</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="arvore-de-categorias" href="#"><span class="material-symbols-outlined text-body-lg">account_tree</span>Árvore de Categorias</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="produtos-lotes" href="#"><span class="material-symbols-outlined text-body-lg">inventory_2</span>Produtos &amp; Lotes</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="armazens-wms" href="#"><span class="material-symbols-outlined text-body-lg">warehouse</span>Armazéns &amp; WMS</a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Governança &amp; Auditoria</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="bloqueio-sanitario-auto" href="#"><span class="material-symbols-outlined text-body-lg">health_and_safety</span>Bloqueio Sanitário Auto</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="arbitragem-escrow" href="#"><span class="material-symbols-outlined text-body-lg">balance</span>Arbitragem &amp; Escrow</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="auditoria-worm-ledger" href="#"><span class="material-symbols-outlined text-body-lg">lock</span>Auditoria WORM Ledger</a></div></nav><div class="p-space-sm bg-surface-container-low shrink-0"><div class="px-space-sm py-space-xs rounded-lg bg-surface-container-lowest flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-body-lg">security</span><span class="font-label-sm text-label-sm text-on-surface">Conformidade</span></div><span class="font-label-sm text-label-sm text-secondary bg-secondary-container px-space-xs py-0.5 rounded-full font-bold">100% OK</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin gap-space-md"><div class="flex-1 max-w-md relative"><span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-outline text-body-lg">search</span><input class="w-full bg-surface-container-low text-on-surface font-body-sm text-body-sm pl-9 pr-space-sm py-space-xs rounded-lg focus:outline-none focus:bg-surface-container-lowest text-ellipsis" placeholder="Buscar globalmente por CNPJ, Razão Social, GTIN/EAN ou Lote..." type="text"></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-low rounded-lg"><span class="material-symbols-outlined text-primary text-body-lg">account_balance_wallet</span><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface-variant leading-none uppercase">Escrow Liquidado</span><span class="font-label-md text-label-md text-primary font-bold leading-none mt-0.5">R$ 4.890.350,00</span></div></div><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-space-xs bg-secondary-container rounded-lg"><span class="material-symbols-outlined text-secondary text-body-lg">verified</span><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-secondary-container leading-none uppercase">WORM Ledger &amp; LGPD</span><span class="font-label-sm text-label-sm text-secondary font-bold leading-none mt-0.5">Ativo &amp; Imutável</span></div></div><button class="relative p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-headline-md">notifications</span><span class="absolute top-1 right-1 w-2 h-2 bg-tertiary rounded-full"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="hidden md:flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface leading-none">Central de Compras Matriz</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none mt-0.5">CNPJ 45.120.890/0001-72</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"></div></div></header><main class="w-full pt-16 bg-surface px-margin pb-space-xl"><div class="flex flex-col w-full">
+<!-- BREADCRUMB & METADADOS SUPERIORES -->
+<div class="flex flex-col gap-space-xs mb-space-md">
+<nav class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span>Governança &amp; Comunicação</span>
+<span class="material-symbols-outlined text-body-sm text-outline-variant">chevron_right</span>
+<span>Central de Notificações</span>
+<span class="material-symbols-outlined text-body-sm text-outline-variant">chevron_right</span>
+<span class="text-primary font-bold">Consentimento LGPD &amp; Opt-in / Unsubscribe</span>
+</nav>
+<!-- CABEÇALHO DA PÁGINA -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md mt-space-xs">
+<div class="flex flex-col max-w-3xl">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          Consentimento LGPD, Auditoria de Opt-in &amp; Descadastramento Multicanal
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">
+          Governança estrita de consentimento comercial B2B (Art. 7º e 11 da Lei 13.709/2018), logs criptográficos de adesão/revogação e conformidade automatizada com as diretrizes da Meta Cloud API e ANPD.
+        </p>
+</div>
+<!-- BOTÕES DE AÇÃO PRINCIPAL -->
+<div class="flex items-center flex-wrap gap-space-xs shrink-0">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-lg text-primary">download</span>
+<span>Exportar Dossiê (.PDF/A)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-lg text-on-surface-variant">assignment</span>
+<span>Relatório ANPD (.CSV)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-body-lg">verified_user</span>
+<span>Importar Termo (ICP-Brasil)</span>
+</button>
+</div>
+</div>
+<!-- BADGES DE STATUS / INTEGRIDADE FORENSE -->
+<div class="flex items-center flex-wrap gap-space-xs mt-space-sm pt-space-xs">
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+        LGPD Engine v2.4 (Ativo)
+      </div>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-mono">
+<span class="material-symbols-outlined text-[13px] text-primary">key</span>
+        Hash SHA-256 Imutável
+      </div>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px] text-secondary">lock</span>
+        Audit Trail WORM Ledger
+      </div>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px] text-primary">bolt</span>
+        Opt-out Zero Latência (&lt;100ms)
+      </div>
+</div>
+</div>
+<!-- CARDS DE MÉTRICAS E BIG NUMBERS (GRID 4 COLUNAS) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter mb-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="p-space-xs rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-headline-md">domain</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">100% Comprovado</span>
+</div>
+<div class="mt-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Destinatários B2B Ativos</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">14.890</span>
+<span class="font-label-md text-label-md text-on-surface-variant">empresas</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary flex items-center gap-1 mt-1 font-semibold">
+<span class="material-symbols-outlined text-body-sm">trending_up</span>
+          +380 novos opt-ins este mês
+        </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="p-space-xs rounded-lg bg-secondary-container text-secondary">
+<span class="material-symbols-outlined text-headline-md">gshield</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Risco Zero ANPD</span>
+</div>
+<div class="mt-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Taxa de Consentimento Válido</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span class="font-headline-xl text-headline-xl text-secondary font-bold">99.88%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-body-sm text-secondary">check_circle</span>
+          Apenas 18 contestações em 12 meses
+        </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="p-space-xs rounded-lg bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined text-headline-md">person_remove</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">Executado D+0</span>
+</div>
+<div class="mt-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Descadastramentos (Opt-out)</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">42</span>
+<span class="font-label-md text-label-md text-on-surface-variant">solicitações (0.03%)</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary flex items-center gap-1 mt-1 font-semibold">
+<span class="material-symbols-outlined text-body-sm">timer</span>
+          Tempo médio de efetivação: 42ms
+        </p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="p-space-xs rounded-lg bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-headline-md">mark_chat_read</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">Tier 3 Meta</span>
+</div>
+<div class="mt-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Canal Predileto de Comunicação</span>
+<div class="flex items-baseline gap-space-xs mt-0.5">
+<span class="font-headline-xl text-headline-xl text-primary font-bold">82.4%</span>
+<span class="font-label-md text-label-md text-primary font-bold">WhatsApp HSM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+          Push Mobile 13.2% • E-mail 4.4%
+        </p>
+</div>
+</div>
+</div>
+<!-- SEÇÃO PRINCIPAL EM 2 COLUNAS (2/3 + 1/3) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-space-lg">
+<!-- COLUNA ESQUERDA (8 COLUNAS) -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- PAINEL DE GESTÃO E POLÍTICAS DE FINALIDADE -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md">policy</span>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface leading-tight">Painel de Gestão e Políticas de Comunicação por Finalidade</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Classificação legal conforme Marco Civil e LGPD (Lei 13.709/2018)</span>
+</div>
+</div>
+<button class="text-primary hover:text-primary-container font-label-md text-label-md flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-body-md">add_circle</span>
+            Nova Finalidade
+          </button>
+</div>
+<div class="space-y-space-xs">
+<!-- Finalidade 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex flex-col flex-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Oportunidades Relâmpago &amp; Motor FEFO (Validade &lt; 30 dias)</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Ativo</span>
+</div>
+<div class="flex items-center flex-wrap gap-x-space-md gap-y-1 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-body-sm text-primary">gavel</span> Base Legal: <strong class="text-on-surface font-semibold">Art. 7º, I (Consentimento Expresso)</strong></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-body-sm text-outline">devices</span> Canais: WhatsApp HSM, Push Mobile</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<div class="flex flex-col text-right">
+<span class="font-numeric-timer text-numeric-timer text-primary font-bold">14.810</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">opt-ins ativos</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-surface-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<!-- Finalidade 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex flex-col flex-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Alertas Operacionais &amp; Liberação de Cancela/Doca</span>
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">Compulsório Operacional</span>
+</div>
+<div class="flex items-center flex-wrap gap-x-space-md gap-y-1 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-body-sm text-primary">local_shipping</span> Base Legal: <strong class="text-on-surface font-semibold">Art. 7º, V (Execução de Contrato Logístico)</strong></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-body-sm text-outline">devices</span> Canais: WhatsApp, SMS, Push</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<div class="flex flex-col text-right">
+<span class="font-numeric-timer text-numeric-timer text-on-surface font-bold">14.890</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">empresas vinculadas</span>
+</div>
+<span class="material-symbols-outlined text-outline text-headline-md" title="Finalidade regulatória e contratual obrigatória">lock</span>
+</div>
+</div>
+<!-- Finalidade 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex flex-col flex-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Avisos de Pregão, Lances e Mecanismo Anti-Sniper</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Ativo</span>
+</div>
+<div class="flex items-center flex-wrap gap-x-space-md gap-y-1 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-body-sm text-primary">timer</span> Base Legal: <strong class="text-on-surface font-semibold">Art. 7º, I (Consentimento Expresso)</strong></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-body-sm text-outline">devices</span> Canais: Push Instantâneo, WhatsApp</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<div class="flex flex-col text-right">
+<span class="font-numeric-timer text-numeric-timer text-primary font-bold">13.940</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">opt-ins ativos</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-surface-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<!-- Finalidade 4 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex flex-col flex-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Extratos Fiduciários Escrow &amp; Comprovantes Pix</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-bold">Obrigação Regulatória</span>
+</div>
+<div class="flex items-center flex-wrap gap-x-space-md gap-y-1 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-body-sm text-primary">account_balance</span> Base Legal: <strong class="text-on-surface font-semibold">Art. 7º, II (Cumprimento de Obrigação BACEN)</strong></span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-body-sm text-outline">devices</span> Canais: E-mail Transacional, WhatsApp</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<div class="flex flex-col text-right">
+<span class="font-numeric-timer text-numeric-timer text-on-surface font-bold">14.890</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">registros compulsórios</span>
+</div>
+<span class="material-symbols-outlined text-outline text-headline-md" title="Obrigação contábil BACEN">lock</span>
+</div>
+</div>
+</div>
+</div>
+<!-- AUDITORIA FORENSE DE CNPJ ESPECÍFICO -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md">quick_reference_all</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-tight">Consulta Forense de Consentimento &amp; Revogação Imediata</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Verificação de custódia e trilha de auditoria para atender requisição do titular</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-space-xs mb-space-md">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-body-lg">search</span>
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:bg-surface-container-lowest" type="text" value="14.890.312/0001-44 - Supermercado Alvorada Ltda">
+</div>
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-space-xs hover:bg-primary-container transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-body-md">manage_search</span>
+            Buscar Histórico Forense
+          </button>
+</div>
+<!-- CARD DO RESULTADO DA AUDITORIA -->
+<div class="p-space-md rounded-xl bg-surface-container-low">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-headline-md">verified</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface">Supermercado Alvorada Ltda</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Consentimento Pleno Ativo</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">CNPJ: 14.890.312/0001-44 • Matriz Campinas/SP • Canal Ativo: WhatsApp (+55 19 99812-4091)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-body-sm">description</span>
+                Certidão Negativa
+              </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-tertiary font-label-sm text-label-sm flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-body-sm">block</span>
+                Revogar Canais (Opt-out)
+              </button>
+</div>
+</div>
+<!-- DETALHES FORENSES DO REGISTRO -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-sm mt-space-sm font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">DPO / Encarregado da Empresa</span>
+<span class="font-semibold text-on-surface mt-0.5">Dr. Marcelo P. Silveira</span>
+<span class="text-on-surface-variant text-body-sm">dpo@superalvorada.com.br</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Data &amp; Origem do Opt-in</span>
+<span class="font-semibold text-on-surface mt-0.5">14/01/2026 09:14:22 BRT</span>
+<span class="text-on-surface-variant text-body-sm">Termo ICP-Brasil Onboarding</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Hash SHA-256 Termo Assinado</span>
+<span class="font-mono text-primary font-bold mt-0.5 truncate" title="a3f8902b740e53a291f003e41c9028913">a3f8902b...e41c90</span>
+<span class="text-on-surface-variant text-body-sm">Bloco WORM Ledger #489.124</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">IP &amp; Geolocalização Registrada</span>
+<span class="font-semibold text-on-surface mt-0.5">177.18.241.90</span>
+<span class="text-on-surface-variant text-body-sm">Campinas/SP • ASN 28573</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUNA DIREITA (4 COLUNAS) -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- SIMULADOR DE DESCADASTRAMENTO ZERO-LATENCY -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center gap-space-xs pb-space-sm mb-space-sm border-b border-surface-container">
+<span class="material-symbols-outlined text-tertiary-container text-headline-md">sync_disabled</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-tight">Mecanismo Instantâneo de Opt-out</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fluxo NLP &amp; Webhook em tempo real</span>
+</div>
+</div>
+<!-- PASSOS DO FLUXO -->
+<div class="relative pl-6 space-y-space-md before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-highest">
+<!-- Passo 1 -->
+<div class="relative">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold">1</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Palavras-gatilho &amp; Botão Nativo</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                O comprador responde "SAIR", "STOP", "CANCELAR" ou clica no botão fixo de rodapé HSM do WhatsApp.
+              </p>
+<div class="mt-1 flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-surface-container font-mono text-[11px] rounded text-on-surface font-bold">"SAIR"</span>
+<span class="px-1.5 py-0.5 bg-surface-container font-mono text-[11px] rounded text-on-surface font-bold">"PARAR"</span>
+<span class="px-1.5 py-0.5 bg-surface-container font-mono text-[11px] rounded text-on-surface font-bold">Botão HSM</span>
+</div>
+</div>
+</div>
+<!-- Passo 2 -->
+<div class="relative">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold">2</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Classificação NLP &lt; 50ms</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                O motor semântico identifica intenção de revogação e bloqueia o tráfego imediato no roteador de mensageria.
+              </p>
+</div>
+</div>
+<!-- Passo 3 -->
+<div class="relative">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-sm text-label-sm font-bold">3</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Blacklist Geral &amp; Webhook ERP</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Propagação em cluster Redis (<span class="font-mono font-bold text-secondary">TTL inf</span>) e notificação síncrona aos sistemas satélites.
+              </p>
+</div>
+</div>
+<!-- Passo 4 -->
+<div class="relative">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center font-label-sm text-label-sm font-bold">4</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Registro em Bloco WORM</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Gravação imutável para prova fiscal e certidão de expurgo caso requisitado pela ANPD.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- REPUTAÇÃO E CONFORMIDADE META CLOUD API -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md">verified_user</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Meta Cloud API Health</h3>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">HIGH TIER</span>
+</div>
+<div class="flex items-center gap-space-md my-space-sm">
+<div class="relative flex items-center justify-center w-16 h-16 shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+<path class="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="99, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<span class="absolute font-numeric-timer text-numeric-timer text-secondary font-bold">9.9</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Qualidade do Número: Verde</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Taxa de denúncia de spam: <strong>0.002%</strong> (Limite Meta: 0.10%)</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold mt-0.5">Capacidade: Disparos Ilimitados (Tier 3)</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low mt-space-sm">
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-primary font-bold">
+<span class="material-symbols-outlined text-body-sm">lightbulb</span>
+            Recomendação Algorítmica Preventiva:
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+            Manter intervalo mínimo de 4h entre disparos de lote promocional para o mesmo CNPJ para garantir permanência na classificação de alta relevância comercial.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- TABELA DE LOG DE AUDITORIA DE CONSENTIMENTOS E REVOGAÇÕES EM TEMPO REAL -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-md mb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md">history_toggle_off</span>
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface">Log de Auditoria de Consentimentos e Revogações em Tempo Real</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Trilha criptografada mTLS com registro distribuído e carimbo de tempo oficial</span>
+</div>
+</div>
+<!-- FILTROS RÁPIDOS -->
+<div class="flex items-center flex-wrap gap-1 bg-surface-container-low p-1 rounded-xl">
+<button class="px-space-sm py-1 rounded-lg bg-surface-container-lowest shadow-sm font-label-sm text-label-sm text-primary font-bold" type="button">
+          Todos os Registros
+        </button>
+<button class="px-space-sm py-1 rounded-lg hover:bg-surface-container font-label-sm text-label-sm text-on-surface-variant" type="button">
+          Apenas Opt-in
+        </button>
+<button class="px-space-sm py-1 rounded-lg hover:bg-surface-container font-label-sm text-label-sm text-on-surface-variant" type="button">
+          Apenas Opt-out/Revogação
+        </button>
+<button class="px-space-sm py-1 rounded-lg hover:bg-surface-container font-label-sm text-label-sm text-on-surface-variant" type="button">
+          Exclusão Definitiva (Art. 18)
+        </button>
+</div>
+</div>
+<!-- TABELA Densa -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm text-on-surface">
+<thead>
+<tr class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider border-b border-surface-container">
+<th class="py-space-sm px-space-xs">Data/Hora UTC &amp; Protocolo</th>
+<th class="py-space-sm px-space-xs">Empresa / CNPJ</th>
+<th class="py-space-sm px-space-xs">Canal Afetado</th>
+<th class="py-space-sm px-space-xs">Tipo de Ação</th>
+<th class="py-space-sm px-space-xs">Base Legal &amp; Encarregado</th>
+<th class="py-space-sm px-space-xs">Hash Criptográfico WORM</th>
+<th class="py-space-sm px-space-xs text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Linha 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-xs whitespace-nowrap">
+<span class="font-bold text-on-surface block">28/02/2026 14:32:08</span>
+<span class="font-mono text-[11px] text-on-surface-variant">PRT-2026-904128</span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="font-semibold text-on-surface block">Supermercado Alvorada Ltda</span>
+<span class="text-on-surface-variant text-[11px]">14.890.312/0001-44</span>
+</td>
+<td class="py-space-sm px-space-xs whitespace-nowrap">
+<span class="inline-flex items-center gap-1 font-semibold text-primary">
+<span class="material-symbols-outlined text-body-sm">chat</span>
+                WhatsApp HSM
+              </span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                Adesão Opt-in
+              </span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="block font-semibold">Art. 7º, I (Expressa)</span>
+<span class="text-on-surface-variant text-[11px]">DPO: Marcelo P. Silveira</span>
+</td>
+<td class="py-space-sm px-space-xs font-mono text-[11px] text-on-surface-variant">
+<span class="text-primary font-bold">3a19b8...ff201a</span>
+<span class="block text-[10px] text-outline">Bloco #512.901</span>
+</td>
+<td class="py-space-sm px-space-xs text-right whitespace-nowrap">
+<button class="p-1 hover:bg-surface-container rounded text-primary" title="Inspecionar Registro Criptográfico" type="button">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant" title="Baixar Termo Assinado" type="button">
+<span class="material-symbols-outlined text-body-md">file_download</span>
+</button>
+</td>
+</tr>
+<!-- Linha 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-xs whitespace-nowrap">
+<span class="font-bold text-on-surface block">28/02/2026 13:19:44</span>
+<span class="font-mono text-[11px] text-on-surface-variant">PRT-2026-904085</span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="font-semibold text-on-surface block">Moinho Alvorada S/A</span>
+<span class="text-on-surface-variant text-[11px]">02.441.902/0002-18</span>
+</td>
+<td class="py-space-sm px-space-xs whitespace-nowrap">
+<span class="inline-flex items-center gap-1 font-semibold text-on-surface">
+<span class="material-symbols-outlined text-body-sm text-tertiary">notifications_off</span>
+                Push Instantâneo
+              </span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-tertiary font-label-sm text-label-sm font-bold">
+                Revogação Parcial
+              </span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="block font-semibold">Art. 8º, § 5º (Revogação)</span>
+<span class="text-on-surface-variant text-[11px]">DPO: Beatriz Fagundes</span>
+</td>
+<td class="py-space-sm px-space-xs font-mono text-[11px] text-on-surface-variant">
+<span class="text-on-surface font-bold">90f23d...a4e109</span>
+<span class="block text-[10px] text-outline">Bloco #512.900</span>
+</td>
+<td class="py-space-sm px-space-xs text-right whitespace-nowrap">
+<button class="p-1 hover:bg-surface-container rounded text-primary" title="Inspecionar Registro Criptográfico" type="button">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant" title="Baixar Termo Assinado" type="button">
+<span class="material-symbols-outlined text-body-md">file_download</span>
+</button>
+</td>
+</tr>
+<!-- Linha 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-xs whitespace-nowrap">
+<span class="font-bold text-on-surface block">28/02/2026 11:05:12</span>
+<span class="font-mono text-[11px] text-on-surface-variant">PRT-2026-903870</span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="font-semibold text-on-surface block">Distribuidora Minas-Goiás Ltda</span>
+<span class="text-on-surface-variant text-[11px]">29.118.004/0001-99</span>
+</td>
+<td class="py-space-sm px-space-xs whitespace-nowrap">
+<span class="inline-flex items-center gap-1 font-semibold text-primary">
+<span class="material-symbols-outlined text-body-sm">chat</span>
+                WhatsApp HSM
+              </span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-tertiary-container text-on-tertiary font-label-sm text-label-sm font-bold">
+                Opt-out Geral (STOP)
+              </span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="block font-semibold">Art. 18, VI (Eliminação)</span>
+<span class="text-on-surface-variant text-[11px]">Titular via WhatsApp Bot</span>
+</td>
+<td class="py-space-sm px-space-xs font-mono text-[11px] text-on-surface-variant">
+<span class="text-tertiary font-bold">bb4821...71ac04</span>
+<span class="block text-[10px] text-outline">Bloco #512.898</span>
+</td>
+<td class="py-space-sm px-space-xs text-right whitespace-nowrap">
+<button class="p-1 hover:bg-surface-container rounded text-primary" title="Inspecionar Registro Criptográfico" type="button">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant" title="Baixar Termo Assinado" type="button">
+<span class="material-symbols-outlined text-body-md">file_download</span>
+</button>
+</td>
+</tr>
+<!-- Linha 4 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-xs whitespace-nowrap">
+<span class="font-bold text-on-surface block">28/02/2026 09:44:50</span>
+<span class="font-mono text-[11px] text-on-surface-variant">PRT-2026-903612</span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="font-semibold text-on-surface block">Atacadão Bragança Central</span>
+<span class="text-on-surface-variant text-[11px]">08.773.120/0003-51</span>
+</td>
+<td class="py-space-sm px-space-xs whitespace-nowrap">
+<span class="inline-flex items-center gap-1 font-semibold text-on-surface">
+<span class="material-symbols-outlined text-body-sm text-primary">mail</span>
+                E-mail Corporativo
+              </span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">
+                Direito de Acesso
+              </span>
+</td>
+<td class="py-space-sm px-space-xs">
+<span class="block font-semibold">Art. 18, II (Consulta)</span>
+<span class="text-on-surface-variant text-[11px]">DPO: Lucas V. Rezende</span>
+</td>
+<td class="py-space-sm px-space-xs font-mono text-[11px] text-on-surface-variant">
+<span class="text-primary font-bold">48a209...ee8812</span>
+<span class="block text-[10px] text-outline">Bloco #512.895</span>
+</td>
+<td class="py-space-sm px-space-xs text-right whitespace-nowrap">
+<button class="p-1 hover:bg-surface-container rounded text-primary" title="Inspecionar Registro Criptográfico" type="button">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant" title="Baixar Termo Assinado" type="button">
+<span class="material-symbols-outlined text-body-md">file_download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- RODAPÉ DA TABELA (PAGINAÇÃO E TOTAL) -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pt-space-sm mt-space-sm border-t border-surface-container font-body-sm text-body-sm text-on-surface-variant">
+<span>Exibindo 4 de 14.890 registros de custódia ativos</span>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm disabled:opacity-50" disabled="" type="button">
+          Anterior
+        </button>
+<span class="font-bold text-on-surface px-space-xs">Página 1 de 372</span>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm" type="button">
+          Próxima
+        </button>
+</div>
+</div>
+</div>
+<!-- RODAPÉ DE CONFORMIDADE REGULATÓRIA -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-headline-lg">verified</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Infraestrutura Blindada de Governança e Compliance</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Arquitetura auditada sem perda de consentimento e conformidade com os mais altos padrões regulatórios da América Latina.</span>
+</div>
+</div>
+<div class="flex items-center flex-wrap gap-space-sm">
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-lowest font-label-sm text-label-sm text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-body-sm text-secondary">security</span>
+<span>ANPD Art. 18 Compliant</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-lowest font-label-sm text-label-sm text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-body-sm text-primary">cloud_done</span>
+<span>Meta Business Partner v19.0</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-lowest font-label-sm text-label-sm text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-body-sm text-primary">key</span>
+<span>AES-256 &amp; mTLS 1.3</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-lowest font-label-sm text-label-sm text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-body-sm text-secondary">schedule</span>
+<span>NTP.br Observatório Nacional</span>
+</div>
+</div>
+</div>
+</div></main></div>
+
+</body></html>

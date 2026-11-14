@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"secondary-fixed-dim":"#88d982","tertiary-container":"#9d0011","surface-container-low":"#f2f4f6","primary-fixed":"#d9e2ff","on-tertiary-fixed":"#410003","inverse-primary":"#b0c6ff","surface-container-highest":"#e0e3e5","outline":"#737783","secondary":"#1b6d24","on-secondary-fixed-variant":"#005312","secondary-fixed":"#a3f69c","surface-variant":"#e0e3e5","outline-variant":"#c3c6d4","on-tertiary-fixed-variant":"#930010","on-tertiary":"#ffffff","on-primary-fixed":"#001945","on-surface":"#191c1e","error":"#ba1a1a","surface-container-lowest":"#ffffff","on-primary-container":"#a1bbff","primary-container":"#0d47a1","on-primary":"#ffffff","surface-dim":"#d8dadc","on-error":"#ffffff","error-container":"#ffdad6","inverse-surface":"#2d3133","tertiary-fixed-dim":"#ffb3ac","on-error-container":"#93000a","secondary-container":"#a0f399","surface":"#f7f9fb","primary":"#003178","primary-fixed-dim":"#b0c6ff","on-secondary-container":"#217128","surface-tint":"#2b5bb5","tertiary-fixed":"#ffdad6","on-surface-variant":"#434652","inverse-on-surface":"#eff1f3","on-primary-fixed-variant":"#00429c","background":"#f7f9fb","on-background":"#191c1e","on-tertiary-container":"#ffa59d","surface-container":"#eceef0","on-secondary":"#ffffff","on-secondary-fixed":"#002204","surface-container-high":"#e6e8ea","tertiary":"#720009","surface-bright":"#f7f9fb"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1rem","gutter-mobile":"0.75rem","space-md":"0.75rem","margin-mobile":"1rem","margin":"1.5rem","space-xl":"2rem","space-sm":"0.5rem","space-xs":"0.25rem","space-lg":"1.25rem"},"fontFamily":{"numeric-timer":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},"fontSize":{"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">V</div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight leading-none">VAREJISTA B2B</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Enterprise Portal</span></div></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs mb-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Operação &amp; Negociação</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Visão Geral</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="leiloes-lotes" href="#"><span class="material-symbols-outlined text-lg">gavel</span>Leilões &amp; Lotes</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="esteira-cnpj-homologacao" href="#"><span class="material-symbols-outlined text-lg">verified_user</span>Esteira CNPJ &amp; Homologação</a></nav><div class="px-space-sm py-space-xs mt-space-md mb-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Liquidação &amp; Integrações</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="gestao-financeira-meios-pagamento" href="#"><span class="material-symbols-outlined text-lg">payments</span>Gestão Financeira &amp; Meios</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="remessas-retornos-cnab-240" href="#"><span class="material-symbols-outlined text-lg">receipt_long</span>Remessas &amp; Retornos CNAB 240</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="webhooks-integracoes-erp" href="#"><span class="material-symbols-outlined text-lg">hub</span>Webhooks &amp; ERP</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="auditoria-logs-liquidacao" href="#"><span class="material-symbols-outlined text-lg">shield</span>Auditoria &amp; Logs</a></nav></div></div><div class="p-space-md bg-surface-container-lowest m-space-md rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-outline uppercase">Conectividade Host-to-Host</span><span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span></div><div class="flex items-center justify-between text-on-surface font-body-sm text-body-sm"><span class="font-label-md text-label-md">Santander 033</span><span class="font-label-sm text-label-sm text-secondary font-bold">SFTP ONLINE</span></div><div class="mt-space-xs text-on-surface-variant font-label-sm text-label-sm">BACEN Res. 4.656 Conforme</div></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest z-40 flex items-center justify-between px-space-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md flex-1 max-w-lg"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span><input class="w-full bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm font-body-sm pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Pesquisar por Lote, SKU, EAN/GTIN ou CNPJ homologado..." type="text"/></div></div><div class="flex items-center gap-space-lg"><div class="hidden xl:flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-full"><span class="material-symbols-outlined text-secondary text-base">check_circle</span><span class="font-label-sm text-label-sm text-on-surface-variant">Status H2H: <strong class="text-secondary font-bold">Online / Host-to-Host Santander 033</strong></span></div><div class="flex items-center gap-space-sm"><button aria-label="Notificações em tempo real" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button><button aria-label="Ajuda e Suporte BACEN" class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-xl">contact_support</span></button></div><div class="flex items-center gap-space-md pl-space-md"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Administrador Master</span><span class="font-label-sm text-label-sm text-secondary font-bold">Liquidação Direta</span></div></div></div></header><main class="flex-1 pt-16 bg-surface px-space-xl py-space-lg w-full"><div class="flex flex-col w-full">
+<!-- Top Breadcrumbs Bar -->
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mb-space-md">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">home</span> Início
+    </a>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Gestão Financeira</a>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Remessas &amp; Retornos CNAB</a>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Disparo de Webhooks</a>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+<span class="text-on-surface font-bold">Auditoria &amp; DLQ</span>
+</div>
+<!-- Header Section with Corporate Status Badges & Quick Command CTAs -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg mb-space-xl">
+<div class="flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Auditoria de Logs &amp; Dead Letter Queue (DLQ)</h1>
+<span class="inline-flex items-center gap-1.5 px-space-md py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm shadow-sm">
+<span class="w-2 h-2 rounded-full bg-surface animate-pulse"></span>
+          Fila Operacional Normal
+        </span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm font-label-md text-label-md text-on-surface-variant">
+<span class="inline-flex items-center gap-1 bg-surface-container-high text-on-surface px-space-sm py-0.5 rounded">
+<span class="material-symbols-outlined text-sm text-primary">tag</span>
+          Protocolo DLQ-SAN-20261025
+        </span>
+<span class="inline-flex items-center gap-1 bg-primary text-on-primary px-space-sm py-0.5 rounded font-bold">
+<span class="material-symbols-outlined text-sm text-on-primary">sync_saved_locally</span>
+          Batch CO251002.RET
+        </span>
+<span class="text-outline">|</span>
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">account_balance</span>
+          Santander 033 Host-to-Host (BACEN Res. 4.656)
+        </span>
+</div>
+</div>
+<!-- Action Bar Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface-variant shadow-sm hover:bg-surface-container-high transition-colors font-label-md text-label-md opacity-80 cursor-not-allowed" title="Sem itens represados na DLQ" type="button">
+<span class="material-symbols-outlined text-base">replay</span>
+        Reprocessar DLQ Manualmente (0 pendentes)
+      </button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm hover:bg-surface-container-low transition-colors" type="button">
+<span class="material-symbols-outlined text-base">file_download</span>
+        Exportar Logs NDJSON / Syslog
+      </button>
+<button class="inline-flex items-center gap-space-xs px-space-lg py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:bg-primary-container transition-colors" type="button">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+        Voltar a Webhooks (CO251002.RET)
+      </button>
+</div>
+</div>
+<!-- Real-Time Operational Telemetry Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1 -->
+<div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Total Mensagens Auditadas</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">receipt_long</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold">85</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">100% gravadas</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+          Imutabilidade em cold storage (WORM) validada para auditoria fiscal.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Partição: logs-san-co251</span>
+<span class="text-secondary font-bold">SHA-256 OK</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Entrega 1ª Tentativa</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-lg">verified</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-secondary font-extrabold">97,6%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">83 imediatas</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+          2 entregas recuperadas com êxito na retentativa programada (429 Throttle).
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>SLA Garantido: &gt; 95.0%</span>
+<span class="text-secondary font-bold">SLA Superado</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Eventos em DLQ</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold">0</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">0.00% de perda</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+          Nenhuma mensagem descartada ou bloqueada em fila morta.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Fila Morta: 0 / 10.000 max</span>
+<span class="text-secondary font-bold">Limpa</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Latência Média p99</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-lg">speed</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-primary font-extrabold">184ms</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">p50: 92ms</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">
+          HMAC SHA-256 computado e verificado em 100% dos disparos de liquidação.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Segurança: SigV4 / RFC 7519</span>
+<span class="text-primary font-bold">Ativa</span>
+</div>
+</div>
+</div>
+<!-- Filter & Search Console -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm mb-space-md flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search Input with Leading Icon -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-outline text-body-md font-body-md pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Filtrar por Trace ID, Transaction ID, EndToEndId Pix ou CNPJ..." type="text"/>
+</div>
+<!-- Quick Filter Chips & Selectors -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Status HTTP Filter -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg">
+<button class="px-3 py-1 rounded-md bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold shadow-sm" type="button">Todos (85)</button>
+<button class="px-3 py-1 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm" type="button">2xx OK (85)</button>
+<button class="px-3 py-1 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm" type="button">4xx Retentados (2)</button>
+<button class="px-3 py-1 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm" type="button">5xx Falha (0)</button>
+</div>
+<!-- ERP Destino Select -->
+<select class="bg-surface-container-low text-on-surface text-label-md font-label-md py-2 px-space-md rounded-lg focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
+<option value="">ERP Destino (Todos)</option>
+<option value="sap">SAP S/4HANA (38)</option>
+<option value="totvs">TOTVS Protheus (24)</option>
+<option value="oracle">Oracle NetSuite (12)</option>
+<option value="bling">Bling ERP (7)</option>
+<option value="senior">Senior ERP (4)</option>
+</select>
+<!-- Severidade -->
+<select class="bg-surface-container-low text-on-surface text-label-md font-label-md py-2 px-space-md rounded-lg focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
+<option value="">Severidade (Todos)</option>
+<option value="info">INFO</option>
+<option value="warn">WARN</option>
+<option value="error">ERROR</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Interactive Telemetry & Execution Log Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-xl">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">dvr</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Logs de Execução em Tempo Real (Cluster H2H)</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Exibindo 5 amostras detalhadas de 85 registros</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="px-space-md py-3">Timestamp (UTC-3)</th>
+<th class="px-space-md py-3">Trace &amp; Event ID</th>
+<th class="px-space-md py-3">Destinatário &amp; ERP</th>
+<th class="px-space-md py-3">Endpoint Remoto</th>
+<th class="px-space-md py-3 text-center">Tentativas</th>
+<th class="px-space-md py-3 text-right">Latência</th>
+<th class="px-space-md py-3 text-center">Status HTTP</th>
+<th class="px-space-md py-3">Assinatura / Payload</th>
+<th class="px-space-md py-3 text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1: SAP S/4HANA -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="px-space-md py-3.5 font-numeric-timer text-label-md text-on-surface whitespace-nowrap">
+              18:01:04.842
+            </td>
+<td class="px-space-md py-3.5 whitespace-nowrap">
+<span class="font-bold text-primary">TRC-842-SBE</span>
+<span class="block text-outline font-label-sm text-label-sm">evt_san_0091823a</span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="font-label-md text-label-md text-on-surface font-bold">Laticínios Serra Bella Ltda</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> SAP S/4HANA Cloud (CNPJ 18.239.112/0001-90)
+              </div>
+</td>
+<td class="px-space-md py-3.5 font-label-sm text-label-sm text-outline font-mono truncate max-w-xs">
+              https://api.serrabella.ind.br/sap/cpi/v1/settlement/webhook
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">1ª tentativa</span>
+</td>
+<td class="px-space-md py-3.5 text-right font-numeric-timer text-label-md text-secondary whitespace-nowrap">
+              118 ms
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">done</span> 200 OK
+              </span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-secondary">verified_user</span>
+                HMAC-256 Valid
+              </div>
+<span class="text-outline text-xs font-mono">EndToEndId: E0033...902</span>
+</td>
+<td class="px-space-md py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container text-primary hover:bg-primary hover:text-on-primary transition-colors font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span> Tracing
+              </button>
+</td>
+</tr>
+<!-- Row 2: TOTVS Protheus -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="px-space-md py-3.5 font-numeric-timer text-label-md text-on-surface whitespace-nowrap">
+              18:01:04.910
+            </td>
+<td class="px-space-md py-3.5 whitespace-nowrap">
+<span class="font-bold text-primary">TRC-843-CAM</span>
+<span class="block text-outline font-label-sm text-label-sm">evt_san_0091823b</span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="font-label-md text-label-md text-on-surface font-bold">Cooperativa Agrícola Mantiqueira</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> TOTVS Protheus REST (CNPJ 04.982.441/0001-11)
+              </div>
+</td>
+<td class="px-space-md py-3.5 font-label-sm text-label-sm text-outline font-mono truncate max-w-xs">
+              https://protheus.mantiqueira.coop.br/rest/b2b/fin/notify
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">1ª tentativa</span>
+</td>
+<td class="px-space-md py-3.5 text-right font-numeric-timer text-label-md text-secondary whitespace-nowrap">
+              165 ms
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">done</span> 200 OK
+              </span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-secondary">verified_user</span>
+                HMAC-256 Valid
+              </div>
+<span class="text-outline text-xs font-mono">EndToEndId: E0033...903</span>
+</td>
+<td class="px-space-md py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container text-primary hover:bg-primary hover:text-on-primary transition-colors font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span> Tracing
+              </button>
+</td>
+</tr>
+<!-- Row 3: Oracle NetSuite (Retried after 429 Throttle) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-high/20">
+<td class="px-space-md py-3.5 font-numeric-timer text-label-md text-on-surface whitespace-nowrap">
+              18:01:05.002
+            </td>
+<td class="px-space-md py-3.5 whitespace-nowrap">
+<span class="font-bold text-primary">TRC-844-MSU</span>
+<span class="block text-outline font-label-sm text-label-sm">evt_san_0091823c</span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="font-label-md text-label-md text-on-surface font-bold">Moinho Sul Alimentos S.A.</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Oracle NetSuite SuiteTalk (CNPJ 61.229.400/0002-45)
+              </div>
+</td>
+<td class="px-space-md py-3.5 font-label-sm text-label-sm text-outline font-mono truncate max-w-xs">
+              https://612294.restlets.api.netsuite.com/app/site/hosting/restlet.nl
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-bold" title="Recuperado após 429 Rate Limit no gateway remoto">
+<span class="material-symbols-outlined text-xs">sync</span> 2ª tent. (Recuperado 429)
+              </span>
+</td>
+<td class="px-space-md py-3.5 text-right font-numeric-timer text-label-md text-secondary whitespace-nowrap">
+              142 ms
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">done</span> 200 OK
+              </span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-secondary">verified_user</span>
+                HMAC-256 Valid
+              </div>
+<span class="text-outline text-xs font-mono">EndToEndId: E0033...904</span>
+</td>
+<td class="px-space-md py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container text-primary hover:bg-primary hover:text-on-primary transition-colors font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span> Tracing
+              </button>
+</td>
+</tr>
+<!-- Row 4: Bling ERP -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="px-space-md py-3.5 font-numeric-timer text-label-md text-on-surface whitespace-nowrap">
+              18:01:05.120
+            </td>
+<td class="px-space-md py-3.5 whitespace-nowrap">
+<span class="font-bold text-primary">TRC-845-LOB</span>
+<span class="block text-outline font-label-sm text-label-sm">evt_san_0091823d</span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="font-label-md text-label-md text-on-surface font-bold">Laticínios Ouro Branco Comércio</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Bling ERP Webhook v3 (CNPJ 08.441.229/0001-09)
+              </div>
+</td>
+<td class="px-space-md py-3.5 font-label-sm text-label-sm text-outline font-mono truncate max-w-xs">
+              https://api.ourobranco.com.br/bling/integration/webhook/bank-clear
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">1ª tentativa</span>
+</td>
+<td class="px-space-md py-3.5 text-right font-numeric-timer text-label-md text-secondary whitespace-nowrap">
+              95 ms
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">done</span> 200 OK
+              </span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-secondary">verified_user</span>
+                HMAC-256 Valid
+              </div>
+<span class="text-outline text-xs font-mono">EndToEndId: E0033...905</span>
+</td>
+<td class="px-space-md py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container text-primary hover:bg-primary hover:text-on-primary transition-colors font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span> Tracing
+              </button>
+</td>
+</tr>
+<!-- Row 5: Senior ERP -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="px-space-md py-3.5 font-numeric-timer text-label-md text-on-surface whitespace-nowrap">
+              18:01:05.215
+            </td>
+<td class="px-space-md py-3.5 whitespace-nowrap">
+<span class="font-bold text-primary">TRC-846-FCE</span>
+<span class="block text-outline font-label-sm text-label-sm">evt_san_0091823e</span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="font-label-md text-label-md text-on-surface font-bold">Frigorífico Central de Carnes</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Senior Sapiens ERP (CNPJ 21.009.843/0001-33)
+              </div>
+</td>
+<td class="px-space-md py-3.5 font-label-sm text-label-sm text-outline font-mono truncate max-w-xs">
+              https://integrador.centralcarnes.com.br/senior/sapiens/webhook
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">1ª tentativa</span>
+</td>
+<td class="px-space-md py-3.5 text-right font-numeric-timer text-label-md text-secondary whitespace-nowrap">
+              134 ms
+            </td>
+<td class="px-space-md py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">done</span> 200 OK
+              </span>
+</td>
+<td class="px-space-md py-3.5">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm text-secondary">verified_user</span>
+                HMAC-256 Valid
+              </div>
+<span class="text-outline text-xs font-mono">EndToEndId: E0033...906</span>
+</td>
+<td class="px-space-md py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container text-primary hover:bg-primary hover:text-on-primary transition-colors font-label-sm text-label-sm" type="button">
+<span class="material-symbols-outlined text-sm">visibility</span> Tracing
+              </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Bulk Status -->
+<div class="px-space-lg py-space-sm bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Pipeline assíncrono Kafka + RabbitMQ operando sem gargalo. Taxa de ingestão: 42 msg/seg.</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-outline hover:text-on-surface shadow-sm disabled:opacity-50" disabled="">Anterior</button>
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-bold">Página 1 de 17</span>
+<button class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container-high shadow-sm">Próxima</button>
+</div>
+</div>
+</div>
+<!-- OpenTelemetry / Jaeger Distributed Tracing Inspection & Topology Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- Left: Distributed Trace Span Visualizer (8 cols) -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">account_tree</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Inspeção de Tracing Distribuído (OpenTelemetry / Jaeger)</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Trace Root: <strong class="text-primary font-mono">TRC-842-SBE</strong> (Duração Total: 118ms) • Timestamp: 2026-10-25T18:01:04.842Z
+          </p>
+</div>
+<span class="px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+          STATUS: 200 OK
+        </span>
+</div>
+<!-- Spans Timeline Waterfall -->
+<div class="flex flex-col gap-space-sm font-label-sm text-label-sm">
+<!-- Span 1 -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary"></span> 1. Início da Liquidação Bancária (Santander H2H Parser)
+            </span>
+<span class="text-on-surface-variant font-mono">14ms [0ms - 14ms]</span>
+</div>
+<div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 12%; margin-left: 0%;"></div>
+</div>
+</div>
+<!-- Span 2 -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-surface-tint"></span> 2. Geração do Token JWT e Assinatura Criptográfica HMAC-SHA256
+            </span>
+<span class="text-on-surface-variant font-mono">8ms [14ms - 22ms]</span>
+</div>
+<div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden">
+<div class="bg-surface-tint h-full rounded-full" style="width: 7%; margin-left: 12%;"></div>
+</div>
+</div>
+<!-- Span 3: The remote call (longest) -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-secondary"></span> 3. Disparo HTTP POST TLS 1.3 (Gateway SAP S/4HANA Serra Bella)
+            </span>
+<span class="text-on-surface-variant font-mono">86ms [22ms - 108ms]</span>
+</div>
+<div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 73%; margin-left: 19%;"></div>
+</div>
+</div>
+<!-- Span 4 -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary-fixed-dim"></span> 4. Validação de ACKs e Parsing do Retorno Remoto
+            </span>
+<span class="text-on-surface-variant font-mono">4ms [108ms - 112ms]</span>
+</div>
+<div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full rounded-full" style="width: 3.5%; margin-left: 92%;"></div>
+</div>
+</div>
+<!-- Span 5 -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-bold text-on-surface flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary"></span> 5. Persistência de Auditoria Imutável (Cold Storage WORM)
+            </span>
+<span class="text-on-surface-variant font-mono">6ms [112ms - 118ms]</span>
+</div>
+<div class="w-full bg-surface-container h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 5%; margin-left: 95%;"></div>
+</div>
+</div>
+</div>
+<!-- Trace Metadata & Digest -->
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg flex flex-wrap items-center justify-between gap-space-xs font-label-sm text-label-sm">
+<span class="text-on-surface">Spans: <strong>5 de 5 finalizados</strong></span>
+<span class="text-on-surface">Parent Span ID: <span class="font-mono text-outline">0x8a92f00bc19e</span></span>
+<span class="text-on-surface">Span Format: <strong class="text-primary">W3C TraceContext (traceparent)</strong></span>
+</div>
+</div>
+<!-- Right: Telemetry Health & Throughput Widget (4 cols) -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Distribuição de Status HTTP</h3>
+<span class="material-symbols-outlined text-secondary text-xl">analytics</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+          Performance consolidada para o lote de liquidação CO251002.RET.
+        </p>
+<!-- Inline SVG Pie/Donut Chart -->
+<div class="flex items-center justify-center my-space-sm">
+<div class="relative w-36 h-36 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<!-- Background ring -->
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4.5"></path>
+<!-- Success ring (97.6%) -->
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="97.6, 100" stroke-linecap="round" stroke-width="4.5"></path>
+<!-- Retry ring (2.4%) -->
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="2.4, 100" stroke-dashoffset="-97.6" stroke-linecap="round" stroke-width="4.5"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold leading-none">100%</span>
+<span class="font-label-sm text-label-sm text-outline">Sucesso Final</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs mt-space-md font-label-sm text-label-sm">
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> 200/201 OK Imediatos
+            </span>
+<span class="font-bold text-on-surface">83 (97,6%)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span> 200 OK pós-Retentativa
+            </span>
+<span class="font-bold text-on-surface">2 (2,4%)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span> DLQ / Fila Morta (Erros)
+            </span>
+<span class="font-bold text-secondary">0 (0.00%)</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs bg-surface-container-low p-space-sm rounded-lg text-center">
+<span class="text-on-surface-variant font-label-sm text-label-sm">
+          Cluster de Enfileiramento: <strong>Kafka Consumer Group `wh-bank-ack`</strong>
+</span>
+</div>
+</div>
+</div>
+<!-- Dual Cards: Policies & Fault Tolerance + Regulatory Compliance -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Políticas de Tolerância a Falhas e DLQ -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">tune</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Políticas de Tolerância a Falhas &amp; DLQ</h3>
+<span class="font-label-sm text-label-sm text-outline">Estratégia de Backoff Exponencial &amp; Notificações Críticas</span>
+</div>
+</div>
+<div class="space-y-space-md mt-space-md">
+<!-- Policy Item 1 -->
+<div class="p-space-md bg-surface-container-low rounded-lg">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-on-surface font-bold">Regra de Retry Exponencial com Jitter</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-mono">5 Passos</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-xs">
+              Tentativas automáticas acionadas em respostas 429, 502, 503 ou Timeouts TCP de rede.
+            </p>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold">1 min</span>
+<span class="text-outline">→</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold">5 min</span>
+<span class="text-outline">→</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold">15 min</span>
+<span class="text-outline">→</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold">1 hora</span>
+<span class="text-outline">→</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold">6 horas</span>
+</div>
+</div>
+<!-- Policy Item 2 -->
+<div class="p-space-md bg-surface-container-low rounded-lg">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-on-surface font-bold">Critério de Alarme e Escalonamento</span>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Zero Alarms</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Caso uma mensagem esgote as 5 retentativas e entre na Dead Letter Queue (<strong class="text-on-surface">DLQ &gt; 0</strong>), o sistema despacha pager automático:
+            </p>
+<div class="mt-space-xs flex flex-wrap items-center gap-space-sm font-label-sm text-label-sm">
+<span class="inline-flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-tertiary">emergency</span> PagerDuty P1 (FinOps On-Call)
+              </span>
+<span class="text-outline">•</span>
+<span class="inline-flex items-center gap-1 text-on-surface">
+<span class="material-symbols-outlined text-sm text-primary">chat</span> Slack <strong>#eng-finops-alerts</strong>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Último teste de failover: Ontem, 23:40</span>
+<span class="text-secondary font-bold">100% de Recuperabilidade</span>
+</div>
+</div>
+<!-- Conformidade e Certificação Regulatória -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-sm mb-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl">shield</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Conformidade e Certificação Operacional</h3>
+<span class="font-label-sm text-label-sm text-outline">Segurança Bancária Santander 033 e Regulação BACEN</span>
+</div>
+</div>
+<div class="space-y-space-md mt-space-md">
+<!-- Cert 1 -->
+<div class="flex items-start gap-space-sm p-space-md bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-secondary text-2xl mt-0.5">lock</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">Certificado de Imutabilidade WORM (Write Once, Read Many)</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Os registros de webhook, headers e payloads de liquidação são criptografados e retidos por 5 anos sem possibilidade de expurgo prévio ou alteração.
+              </p>
+</div>
+</div>
+<!-- Cert 2 -->
+<div class="flex items-start gap-space-sm p-space-md bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary text-2xl mt-0.5">policy</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">Resolução BACEN nº 4.656 &amp; LGPD (Lei 13.709/2018)</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Mascaramento automático de dados sensíveis de pessoas físicas (quando aplicável) e integridade de chave Pix garantida de ponta a ponta.
+              </p>
+</div>
+</div>
+<!-- Cert 3 -->
+<div class="flex items-start gap-space-sm p-space-md bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-secondary text-2xl mt-0.5">vpn_key</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">Criptografia em Trânsito TLS 1.3 &amp; mTLS Santander</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Autenticação mútua de certificados com o gateway de mensageria do Banco Santander e clientes ERP homologados.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Hash de Integridade do Lote:</span>
+<span class="font-mono text-on-surface font-bold">sha256:7b1e84...f902ac</span>
+</div>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-lowest px-space-xl py-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm"><span>© 2025 Plataforma Varejista Online B2B S.A. Todos os direitos reservados. CNPJ 00.000.000/0001-00</span><div class="flex items-center gap-space-lg"><span>Conformidade Operacional: <strong>BACEN Res. 4.656</strong></span><span>Link Bancário: <strong>SFTP Santander Ativo</strong></span><span>Ambiente: <strong>PROD-CLUSTER-01</strong></span></div></div></footer></div></body></html>

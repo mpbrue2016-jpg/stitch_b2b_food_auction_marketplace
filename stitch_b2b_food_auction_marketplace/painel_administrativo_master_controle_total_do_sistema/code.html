@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-highest": "#e0e3e5", "on-error-container": "#93000a", "on-background": "#191c1e", "on-secondary-fixed": "#002204", "secondary": "#1b6d24", "on-tertiary": "#ffffff", "primary-fixed": "#d9e2ff", "on-error": "#ffffff", "surface": "#f7f9fb", "on-tertiary-fixed": "#410003", "surface-tint": "#2b5bb5", "tertiary-fixed": "#ffdad6", "inverse-surface": "#2d3133", "surface-container-high": "#e6e8ea", "error": "#ba1a1a", "surface-container": "#eceef0", "on-secondary-container": "#217128", "secondary-fixed": "#a3f69c", "on-tertiary-fixed-variant": "#930010", "surface-dim": "#d8dadc", "on-primary": "#ffffff", "background": "#f7f9fb", "secondary-fixed-dim": "#88d982", "error-container": "#ffdad6", "outline": "#737783", "surface-container-lowest": "#ffffff", "inverse-primary": "#b0c6ff", "primary": "#003178", "surface-container-low": "#f2f4f6", "on-primary-fixed-variant": "#00429c", "on-secondary": "#ffffff", "on-secondary-fixed-variant": "#005312", "secondary-container": "#a0f399", "inverse-on-surface": "#eff1f3", "on-primary-fixed": "#001945", "primary-fixed-dim": "#b0c6ff", "primary-container": "#0d47a1", "surface-variant": "#e0e3e5", "tertiary-fixed-dim": "#ffb3ac", "on-tertiary-container": "#ffa59d", "tertiary-container": "#9d0011", "outline-variant": "#c3c6d4", "on-surface": "#191c1e", "on-surface-variant": "#434652", "tertiary": "#720009", "on-primary-container": "#a1bbff", "surface-bright": "#f7f9fb" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "space-lg": "1.25rem", "margin": "1.5rem", "gutter-mobile": "0.75rem", "gutter": "1rem", "space-xl": "2rem", "space-md": "0.75rem" }, "fontFamily": { "body-lg": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "numeric-timer": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "numeric-timer": [ "20px", { "lineHeight": "24px", "fontWeight": "800" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "18px", { "lineHeight": "24px", "fontWeight": "700" } ], "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "fontWeight": "800" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "fontWeight": "700" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "fontWeight": "800" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="h-16 px-margin flex items-center gap-space-sm bg-surface-container"><span class="material-symbols-outlined text-primary text-headline-md">shield_person</span><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight leading-tight">GOV MASTER</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">B2B Wholesale Core</span></div></div><div class="px-space-md py-space-sm"><div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)] mb-space-sm"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Auditoria Ativa</span><span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-secondary"><span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>WORM LIVE</span></div><div class="font-body-sm text-body-sm text-on-surface mt-space-xs truncate">Cluster SP-01 • HA Mode</div></div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold"><div class="px-space-sm pt-space-xs pb-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Operação Global</div><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg transition-colors bg-primary-container text-on-primary font-bold" data-path="cockpit-master" href="#"><span class="material-symbols-outlined text-body-lg">grid_view</span><span class="font-label-md text-label-md">Cockpit Master</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="controle-de-empresas-cnpjs" href="#"><span class="material-symbols-outlined text-body-lg">corporate_fare</span><span class="font-label-md text-label-md">Controle de Empresas &amp; CNPJs</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="gestao-de-lotes-pregoes" href="#"><span class="material-symbols-outlined text-body-lg">gavel</span><span class="font-label-md text-label-md">Gestão de Lotes &amp; Pregões</span></a><div class="px-space-sm pt-space-sm pb-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Governança &amp; Compliance</div><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="moderacao-bloqueios" href="#"><span class="material-symbols-outlined text-body-lg">gpp_maybe</span><span class="font-label-md text-label-md">Moderação &amp; Bloqueios</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="centro-financeiro-split" href="#"><span class="material-symbols-outlined text-body-lg">payments</span><span class="font-label-md text-label-md">Centro Financeiro &amp; Split</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="auditoria-worm-logs" href="#"><span class="material-symbols-outlined text-body-lg">receipt_long</span><span class="font-label-md text-label-md">Auditoria WORM &amp; Logs</span></a><div class="px-space-sm pt-space-sm pb-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Infraestrutura</div><a class="flex items-center gap-space-sm px-space-sm py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="parametros-globais-do-sistema" href="#"><span class="material-symbols-outlined text-body-lg">tune</span><span class="font-label-md text-label-md">Parâmetros Globais do Sistema</span></a></nav></div><div class="p-space-md bg-surface-container-low"><div class="bg-surface-container p-space-sm rounded-lg flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant">SLA Global 30d</span><span class="font-label-md text-label-md text-secondary font-bold">99.992% OK</span></div><span class="material-symbols-outlined text-secondary text-headline-md">verified</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-margin flex items-center justify-between"><div class="flex items-center gap-space-md flex-1 max-w-2xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-body-lg">search</span><input class="w-full bg-surface-container-low pl-10 pr-space-md py-space-xs rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_1px_8px_rgba(0,0,0,0.08)] transition-all" placeholder="Busca global: CNPJ matriz, ID do lote, Hash WORM, chave NF-e... (Ctrl+K)" type="text"/></div><div class="flex items-center gap-space-xs bg-surface-container-high px-space-sm py-space-xs rounded-lg"><span class="material-symbols-outlined text-body-md text-secondary">toggle_on</span><span class="font-label-sm text-label-sm text-on-surface uppercase whitespace-nowrap font-bold">PROD / HA-SYNC</span></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex items-center gap-space-xs"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-lg"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface">SEFAZ Síncrono</span></div><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-lg"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface">BACEN Escrow OK</span></div><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-space-xs rounded-lg"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface">SLA 99.99%</span></div></div><div class="flex items-center gap-space-sm"><button aria-label="Notificações Críticas" class="relative p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-headline-md">notifications_active</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span></button><button aria-label="Terminal de Comandos" class="p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-headline-md">terminal</span></button></div><div class="h-8 w-px bg-surface-container-high"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface leading-tight font-bold">Superadmin Master</span><span class="font-label-sm text-label-sm text-tertiary font-bold tracking-tight">Nível 0 • Irrestrito</span></div></div></div></header><main class="relative pt-16 w-full px-margin py-space-lg bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Command Banner / Superadmin Master Bar -->
+<section class="bg-surface-container-lowest p-margin rounded-xl shadow-sm mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+            Nível 0 • Soberano
+          </span>
+<span class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+            HA-Sync SP01 / BSB02
+          </span>
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase">Sessão: MASTER-ADM-88912-BR</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">
+          Painel Administrativo Master • Controle Total &amp; Governança Executiva
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+          Central de controle irrestrito de cadastros, leilões, travas de segurança, alteração de valores/limites, liquidação de recebimentos/pagamentos e intervenção fiduciária manual no atacado B2B Varejista Online.
+        </p>
+</div>
+<!-- Emergency & Master Controls -->
+<div class="flex items-center gap-space-sm flex-wrap self-start lg:self-center">
+<!-- Emergency Killswitch Toggle -->
+<button class="group relative px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-error hover:text-on-error text-error font-label-md text-label-md transition-all shadow-sm flex items-center gap-space-xs" id="btn-emergency-lock" onclick="toggleEmergencyLock()">
+<span class="material-symbols-outlined text-body-lg text-error group-hover:text-on-error">power_settings_new</span>
+<span id="txt-emergency-label">Modo Emergencial / Trava Geral</span>
+<span class="px-space-xs py-0.5 rounded text-[10px] bg-secondary-container text-on-secondary-container font-label-sm group-hover:bg-on-error group-hover:text-error" id="badge-emergency-status">NORMAL</span>
+</button>
+<button class="px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-all shadow-sm flex items-center gap-space-xs" onclick="openInterventionModal()">
+<span class="material-symbols-outlined text-body-lg">bolt</span>
+<span>Executar Intervenção Manual</span>
+</button>
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-all flex items-center gap-space-xs" onclick="triggerWormExport()">
+<span class="material-symbols-outlined text-body-lg">download</span>
+<span>Exportar Trilha WORM</span>
+</button>
+</div>
+</div>
+<!-- Rapid View Entity Switcher -->
+<div class="mt-space-md pt-space-sm flex items-center justify-between border-t border-transparent bg-surface-container-low p-space-xs rounded-lg overflow-x-auto">
+<div class="flex items-center gap-space-xs">
+<button class="tab-btn active px-space-md py-space-xs rounded font-label-sm text-label-sm uppercase tracking-wider bg-surface-container-lowest text-primary font-bold shadow-sm transition-colors" onclick="switchTab('all')">Todas as Entidades (1.570)</button>
+<button class="tab-btn px-space-md py-space-xs rounded font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="switchTab('companies')">Empresas &amp; CNPJs (1.428)</button>
+<button class="tab-btn px-space-md py-space-xs rounded font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="switchTab('lots')">Lotes &amp; Pregões (142)</button>
+<button class="tab-btn px-space-md py-space-xs rounded font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="switchTab('treasury')">Tesouraria &amp; Escrow (R$ 14,8M)</button>
+<button class="tab-btn px-space-md py-space-xs rounded font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="switchTab('rates')">Regras, Split &amp; Taxas</button>
+</div>
+<div class="hidden md:flex items-center gap-space-sm px-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-body-md text-secondary">verified_user</span>
+<span>Autenticação Biometria/FIDO2 Ativa</span>
+</div>
+</div>
+</section>
+<!-- KPI Cards with Direct Administrative Actions -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter mb-space-lg">
+<!-- Card 1: Empresas -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between transition-all hover:shadow-md">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Empresas Cadastradas</span>
+<span class="material-symbols-outlined text-primary text-headline-md">corporate_fare</span>
+</div>
+<div class="mt-space-xs flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-black">1.428</span>
+<span class="font-label-md text-label-md text-secondary font-bold">+18 nesta semana</span>
+</div>
+<div class="mt-space-xs flex items-center gap-space-xs flex-wrap font-body-sm text-body-sm text-on-surface-variant">
+<span class="text-secondary font-bold">1.390 Ativas</span>
+<span>•</span>
+<span class="text-error font-bold">26 Suspensas</span>
+<span>•</span>
+<span class="text-on-surface-variant font-semibold">12 Pendentes</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs">
+<button class="flex-1 py-space-xs px-space-sm bg-primary-fixed text-on-primary-fixed-variant hover:bg-primary hover:text-on-primary rounded font-label-sm text-label-sm transition-colors text-center font-bold" onclick="showQuickAlert('12 empresas aprovadas sumariamente por regra SEFAZ/RFB.')">
+          Aprovar em Lote (12)
+        </button>
+<button class="flex-1 py-space-xs px-space-sm bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded font-label-sm text-label-sm transition-colors text-center font-semibold" onclick="filterSuspended()">
+          Ver Suspensas
+        </button>
+</div>
+</div>
+<!-- Card 2: Lotes & Pregões -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between transition-all hover:shadow-md">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Lotes &amp; Pregões Ativos</span>
+<span class="material-symbols-outlined text-secondary text-headline-md">gavel</span>
+</div>
+<div class="mt-space-xs flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-black">142</span>
+<span class="font-label-md text-label-md text-error font-bold">Reta Final: 18</span>
+</div>
+<div class="mt-space-xs flex items-center gap-space-xs flex-wrap font-body-sm text-body-sm text-on-surface-variant">
+<span class="text-secondary font-bold">98 Ao Vivo</span>
+<span>•</span>
+<span class="text-tertiary font-bold">14 Pausados</span>
+<span>•</span>
+<span>30 Retirada/Pátio</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs">
+<button class="flex-1 py-space-xs px-space-sm bg-tertiary-fixed text-on-tertiary-fixed-variant hover:bg-tertiary hover:text-on-tertiary rounded font-label-sm text-label-sm transition-colors text-center font-bold" onclick="pauseAllAuctions()">
+          Pausar Pregões
+        </button>
+<button class="flex-1 py-space-xs px-space-sm bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded font-label-sm text-label-sm transition-colors text-center font-semibold" onclick="openPriceModal()">
+          Ajustar Mínimos
+        </button>
+</div>
+</div>
+<!-- Card 3: Custódia Escrow -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between transition-all hover:shadow-md">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Custódia Escrow Aberta</span>
+<span class="material-symbols-outlined text-primary text-headline-md">account_balance</span>
+</div>
+<div class="mt-space-xs flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-black">R$ 14.850.200</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">100% BACEN</span>
+</div>
+<div class="mt-space-xs flex items-center gap-space-xs flex-wrap font-body-sm text-body-sm text-on-surface-variant">
+<span>87 ordens retidas</span>
+<span>•</span>
+<span class="text-error font-semibold">2 em disputa arbitral</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs">
+<button class="flex-1 py-space-xs px-space-sm bg-secondary-fixed text-on-secondary-fixed-variant hover:bg-secondary hover:text-on-secondary rounded font-label-sm text-label-sm transition-colors text-center font-bold" onclick="openForcePaymentDialog()">
+          Liberar Forçado
+        </button>
+<button class="flex-1 py-space-xs px-space-sm bg-surface-container-high hover:bg-error hover:text-on-error text-error rounded font-label-sm text-label-sm transition-colors text-center font-semibold" onclick="lockEscrow()">
+          Travar Liquidação
+        </button>
+</div>
+</div>
+<!-- Card 4: Recebimentos & Payout -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between transition-all hover:shadow-md">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Recebimentos &amp; Payout D+0</span>
+<span class="material-symbols-outlined text-secondary text-headline-md">payments</span>
+</div>
+<div class="mt-space-xs flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-black">R$ 3.420.000</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">hoje</span>
+</div>
+<div class="mt-space-xs flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Taxa Master Retida:</span>
+<span class="font-label-md text-label-md text-secondary font-bold">R$ 171.000 (5,0%)</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs">
+<button class="w-full py-space-xs px-space-sm bg-surface-container-high hover:bg-primary hover:text-on-primary text-primary rounded font-label-sm text-label-sm transition-colors text-center font-bold flex items-center justify-center gap-space-xs" onclick="openSplitAdjustModal()">
+<span class="material-symbols-outlined text-body-md">tune</span>
+          Ajustar Parâmetros de Split
+        </button>
+</div>
+</div>
+</section>
+<!-- Main Administrative Command Grid (Table & Instant Console) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter mb-space-lg">
+<!-- Left Column: Master Entities Control Table (8 Columns on XL) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Entity Management Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Table Toolbar -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-md">tune</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Gestão Total de Entidades</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Controle granular: ativar, desativar, suspender, alterar limites e excluir registros</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-md">filter_list</span>
+<input class="bg-surface-container-lowest pl-8 pr-space-sm py-1.5 rounded-lg text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:shadow-sm" id="table-search" onkeyup="filterEntities()" placeholder="Filtrar CNPJ, razão social, lote..." type="text"/>
+</div>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface transition-colors" onclick="refreshEntityTable()" title="Atualizar dados em tempo real">
+<span class="material-symbols-outlined text-body-md">refresh</span>
+</button>
+</div>
+</div>
+<!-- Table Responsive Wrapper -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm text-on-surface">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Entidade / Lote</th>
+<th class="py-space-sm px-space-sm">Categoria &amp; Identificador</th>
+<th class="py-space-sm px-space-sm">Parâmetro / Valor</th>
+<th class="py-space-sm px-space-sm">Status</th>
+<th class="py-space-sm px-space-md text-right">Ações de Soberania Master</th>
+</tr>
+</thead>
+<tbody id="entity-table-body">
+<!-- Row 1: Supermercado Matriz do Vale -->
+<tr class="hover:bg-surface-container-low transition-colors" id="row-ent-1">
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Supermercado Matriz do Vale Ltda</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CNPJ: 27.841.952/0001-80</span>
+<span class="text-[11px] text-secondary font-semibold">Conta Verificada • Bacen Pix SPI OK</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-bold">Comprador Master</span>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Região Sudeste • ICMS Normal</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Limite de Crédito</span>
+<span class="font-label-md text-label-md text-primary font-extrabold" id="limit-val-1">R$ 100.000,00</span>
+<span class="text-[11px] text-on-surface-variant">Disponível: R$ 62.000,00</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold" id="badge-status-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> ATIVO
+                  </span>
+</td>
+<td class="py-space-md px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1 flex-wrap">
+<button class="p-1.5 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface-variant transition-colors flex items-center" onclick="promptEditLimit('Supermercado Matriz do Vale Ltda', 'limit-val-1', 100000)" title="Alterar Limite / Valor">
+<span class="material-symbols-outlined text-body-md">attach_money</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed text-on-surface-variant transition-colors flex items-center" onclick="toggleSuspendEntity('row-ent-1', 'badge-status-1')" title="Suspender Operação Temporariamente">
+<span class="material-symbols-outlined text-body-md">pause_circle</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-surface-container-highest text-on-surface-variant transition-colors flex items-center" onclick="toggleDeactivateEntity('row-ent-1', 'badge-status-1')" title="Desativar / Inativar Cadastro">
+<span class="material-symbols-outlined text-body-md">block</span>
+</button>
+<button class="p-1.5 rounded bg-error-container hover:bg-error hover:text-on-error text-on-error-container transition-colors flex items-center" onclick="deleteEntityRow('row-ent-1', 'Supermercado Matriz do Vale Ltda')" title="Excluir Definitivamente com Log Forense">
+<span class="material-symbols-outlined text-body-md">delete_forever</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface transition-colors flex items-center" onclick="viewDossier('27.841.952/0001-80')" title="Dossiê Fiscal e Compliance">
+<span class="material-symbols-outlined text-body-md">description</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Indústria Três Corações Alimentos -->
+<tr class="hover:bg-surface-container-low transition-colors" id="row-ent-2">
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Indústria Três Corações Alimentos S.A.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CNPJ: 61.082.426/0001-59</span>
+<span class="text-[11px] text-primary font-semibold">18 Lotes em Leilão Simultâneo</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Vendedor Indústria</span>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Origem: MG / SP • Grade A</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Take Rate / Comissão</span>
+<span class="font-label-md text-label-md text-secondary font-extrabold" id="rate-val-2">4.50%</span>
+<span class="text-[11px] text-on-surface-variant">Faturamento: R$ 890k/mês</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold" id="badge-status-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> ATIVO
+                  </span>
+</td>
+<td class="py-space-md px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1 flex-wrap">
+<button class="p-1.5 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface-variant transition-colors flex items-center" onclick="promptEditRate('Indústria Três Corações Alimentos S.A.', 'rate-val-2', 4.5)" title="Alterar Taxa / Take Rate">
+<span class="material-symbols-outlined text-body-md">percent</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed text-on-surface-variant transition-colors flex items-center" onclick="toggleSuspendEntity('row-ent-2', 'badge-status-2')" title="Suspender Vendas / Travar Lotes">
+<span class="material-symbols-outlined text-body-md">pause_circle</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-surface-container-highest text-on-surface-variant transition-colors flex items-center" onclick="toggleDeactivateEntity('row-ent-2', 'badge-status-2')" title="Desativar Vendedor">
+<span class="material-symbols-outlined text-body-md">block</span>
+</button>
+<button class="p-1.5 rounded bg-error-container hover:bg-error hover:text-on-error text-on-error-container transition-colors flex items-center" onclick="deleteEntityRow('row-ent-2', 'Indústria Três Corações Alimentos S.A.')" title="Excluir Definitivamente">
+<span class="material-symbols-outlined text-body-md">delete_forever</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface transition-colors flex items-center" onclick="auditSKUGroup('61.082.426/0001-59')" title="Auditar Produtos e Lotes">
+<span class="material-symbols-outlined text-body-md">inventory_2</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Distribuidora Minas-Goiás Atacado (SUSPENSO) -->
+<tr class="bg-surface-container-high/30 hover:bg-surface-container-high transition-colors" id="row-ent-3">
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Distribuidora Minas-Goiás Atacado Ltda</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CNPJ: 03.112.441/0001-92</span>
+<span class="text-[11px] text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">warning</span> Divergência Sanitária em Lote #312
+                    </span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex px-space-xs py-0.5 rounded bg-surface-variant text-on-surface-variant font-label-sm text-label-sm font-bold">Distribuidor 3PL</span>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Origem: GO • Bloqueio Cautelar</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Saldo Retido Escrow</span>
+<span class="font-label-md text-label-md text-tertiary font-extrabold">R$ 54.200,00</span>
+<span class="text-[11px] text-error">Bloqueio Bacen-Jud</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold" id="badge-status-3">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> SUSPENSO
+                  </span>
+</td>
+<td class="py-space-md px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1 flex-wrap">
+<button class="p-1.5 rounded bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-on-secondary transition-colors flex items-center" onclick="reactivateCompany('row-ent-3', 'badge-status-3')" title="Reativar Empresa Imediatamente">
+<span class="material-symbols-outlined text-body-md">play_arrow</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-secondary hover:text-on-secondary text-on-surface transition-colors flex items-center" onclick="releaseEscrowLocked('03.112.441/0001-92', 54200)" title="Liberar Saldo Retido Manualmente">
+<span class="material-symbols-outlined text-body-md">lock_open</span>
+</button>
+<button class="p-1.5 rounded bg-error-container hover:bg-error hover:text-on-error text-on-error-container transition-colors flex items-center" onclick="deleteEntityRow('row-ent-3', 'Distribuidora Minas-Goiás Atacado Ltda')" title="Excluir Definitivamente">
+<span class="material-symbols-outlined text-body-md">delete_forever</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-surface-container-highest text-on-surface transition-colors flex items-center" onclick="viewPenaltyHistory('03.112.441/0001-92')" title="Histórico Forense de Penalidades">
+<span class="material-symbols-outlined text-body-md">history</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Lote #418 Café Tradicional -->
+<tr class="hover:bg-surface-container-low transition-colors" id="row-ent-4">
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="px-1.5 py-0.5 rounded bg-error text-on-error font-label-sm text-label-sm font-bold">PREGÃO AO VIVO</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Lote #418 • Café Tradicional 500g</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Volume: 1.200 Cxs (14 Paletes) • EAN 7891000100102</span>
+<span class="text-[11px] text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">timer</span> Encerra em 00:14:22 (Reta Final)
+                    </span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-bold">Leilão Industrial</span>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Validade: 180 dias restantes</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lance Atual / Reserva</span>
+<span class="font-label-md text-label-md text-secondary font-black" id="bid-val-4">R$ 38.000,00</span>
+<span class="text-[11px] text-on-surface-variant">Mínimo Reserva: R$ 35.000,00</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold" id="badge-status-4">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> EM DISPUTA
+                  </span>
+</td>
+<td class="py-space-md px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1 flex-wrap">
+<button class="p-1.5 rounded bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface-variant transition-colors flex items-center" onclick="promptEditLotBid('Lote #418', 'bid-val-4', 38000)" title="Alterar Valor / Lance Atual">
+<span class="material-symbols-outlined text-body-md">edit_note</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed text-on-surface-variant transition-colors flex items-center" onclick="togglePauseAuction('row-ent-4', 'badge-status-4')" title="Pausar / Interromper Pregão Imediatamente">
+<span class="material-symbols-outlined text-body-md">pause_circle_filled</span>
+</button>
+<button class="p-1.5 rounded bg-secondary-fixed hover:bg-secondary hover:text-on-secondary text-on-secondary-fixed font-label-sm text-label-sm px-2 py-1 transition-colors flex items-center gap-1" onclick="closeAuctionPrematurely('Lote #418', 'Supermercado Matriz do Vale')" title="Encerrar Antecipadamente e Declarar Vencedor">
+<span class="material-symbols-outlined text-body-sm">gavel</span>
+<span>Bater Martelo</span>
+</button>
+<button class="p-1.5 rounded bg-error-container hover:bg-error hover:text-on-error text-on-error-container transition-colors flex items-center" onclick="deleteEntityRow('row-ent-4', 'Lote #418')" title="Cancelar Lote &amp; Excluir do Pregão">
+<span class="material-symbols-outlined text-body-md">close</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Summary / Footer -->
+<div class="p-space-sm bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span>Exibindo 4 entidades em destaque sob supervisão contínua WORM</span>
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Auditoria Criptográfica NTP.br Ativa</span>
+</div>
+</div>
+</div>
+<!-- Financial Control & Receivables / Payout Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-headline-md">account_balance_wallet</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Controle de Recebimentos, Liquidação de Pagamentos &amp; Intervenções Escrow</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Liberação manual de pagamentos, estornos compulsórios, alteração de retenções e conciliação SPI/TED</p>
+</div>
+</div>
+<span class="px-space-sm py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm">lock_clock</span> Custódia 100% Segura
+          </span>
+</div>
+<!-- Financial Table -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm text-on-surface">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">ID Transação</th>
+<th class="py-space-sm px-space-sm">Lote / Partes Envolvidas</th>
+<th class="py-space-sm px-space-sm">Valor &amp; Canal</th>
+<th class="py-space-sm px-space-sm">Status Escrow</th>
+<th class="py-space-sm px-space-md text-right">Intervenção Fiduciária Master</th>
+</tr>
+</thead>
+<tbody>
+<!-- TX 1 -->
+<tr class="hover:bg-surface-container-low transition-colors" id="tx-row-1">
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">#TX-9021-BACEN</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SPI ID: e38f90...81a</span>
+<span class="text-[11px] text-on-surface-variant">Timestamp: Hoje 14:32:09</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Lote #418 (Café Tradicional)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pagador: Supermercado Matriz do Vale</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Favorecido: Indústria Três Corações</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary font-black">R$ 38.000,00</span>
+<span class="inline-flex items-center gap-1 text-[11px] text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Pix SPI Instantâneo
+                    </span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-bold" id="tx-status-1">
+                    EM CUSTÓDIA ESCROW
+                  </span>
+</td>
+<td class="py-space-md px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1 flex-wrap">
+<button class="px-2 py-1 rounded bg-secondary text-on-secondary hover:bg-secondary-fixed hover:text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold transition-all shadow-sm" onclick="forceReleasePayment('TX-9021', 'Indústria Três Corações S.A.', 38000)">
+                      Forçar Liberação
+                    </button>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-error hover:text-on-error text-error font-label-sm text-label-sm font-bold transition-all" onclick="refundBuyer('TX-9021', 'Supermercado Matriz do Vale', 38000)">
+                      Estornar
+                    </button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-surface-container-highest text-on-surface transition-colors" onclick="holdInDispute('TX-9021', 'tx-status-1')" title="Reter em Disputa">
+<span class="material-symbols-outlined text-body-md">lock</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- TX 2 -->
+<tr class="hover:bg-surface-container-low transition-colors" id="tx-row-2">
+<td class="py-space-md px-space-md align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">#TX-8994-TED</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Comprovante: TED-04981</span>
+<span class="text-[11px] text-on-surface-variant">Timestamp: Hoje 11:15:40</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Lote #399 (Biscoito Cream Cracker)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pagador: Rede São Paulo Express</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Favorecido: M. Dias Branco S.A.</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-black">R$ 42.500,00</span>
+<span class="text-[11px] text-on-surface-variant">TED STR Agendada</span>
+</div>
+</td>
+<td class="py-space-md px-space-sm align-top">
+<span class="inline-flex px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold" id="tx-status-2">
+                    AGUARDANDO COMPENSAÇÃO
+                  </span>
+</td>
+<td class="py-space-md px-space-md align-top text-right">
+<div class="flex items-center justify-end gap-1 flex-wrap">
+<button class="px-2 py-1 rounded bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm font-bold transition-all shadow-sm" onclick="confirmReceiptManual('TX-8994', 42500, 'tx-status-2')">
+                      Confirmar Manualmente
+                    </button>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-error hover:text-on-error text-on-surface font-label-sm text-label-sm font-semibold transition-all" onclick="cancelCharge('TX-8994', 'tx-row-2')">
+                      Cancelar Cobrança
+                    </button>
+<button class="p-1.5 rounded bg-surface-container hover:bg-surface-container-highest text-on-surface transition-colors" onclick="resendPaymentOrder('TX-8994')" title="Reenviar Ordem de Pagamento">
+<span class="material-symbols-outlined text-body-md">send</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Global Fees, Take-Rates & Commission Rules Management -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-md">percent</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Configuração Global de Taxas, Take Rate &amp; Split</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Alteração dinâmica de regras financeiras aplicáveis instantaneamente a novas liquidações</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Aplicação Instantânea D+0</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-sm mt-space-sm">
+<!-- Rate 1 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Comissão Comprador</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Retenção de entrada</span>
+</div>
+<div class="mt-space-sm flex items-center gap-space-xs">
+<input class="w-20 bg-surface-container-lowest px-2 py-1 rounded font-label-md text-label-md text-on-surface font-bold text-center focus:outline-none" id="input-rate-buyer" step="0.1" type="number" value="0.0"/>
+<span class="font-label-md text-label-md text-on-surface font-bold">%</span>
+<button class="ml-auto px-2 py-1 bg-primary text-on-primary hover:bg-primary-container rounded font-label-sm text-label-sm font-bold transition-colors" onclick="saveFeeParam('Comissão Comprador', 'input-rate-buyer')">
+                Salvar
+              </button>
+</div>
+</div>
+<!-- Rate 2 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Take Rate Indústria</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Fabricantes diretos</span>
+</div>
+<div class="mt-space-sm flex items-center gap-space-xs">
+<input class="w-20 bg-surface-container-lowest px-2 py-1 rounded font-label-md text-label-md text-on-surface font-bold text-center focus:outline-none" id="input-rate-industry" step="0.1" type="number" value="4.5"/>
+<span class="font-label-md text-label-md text-on-surface font-bold">%</span>
+<button class="ml-auto px-2 py-1 bg-primary text-on-primary hover:bg-primary-container rounded font-label-sm text-label-sm font-bold transition-colors" onclick="saveFeeParam('Take Rate Indústria', 'input-rate-industry')">
+                Alterar
+              </button>
+</div>
+</div>
+<!-- Rate 3 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Take Rate Distribuidor</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Atacado secundário</span>
+</div>
+<div class="mt-space-sm flex items-center gap-space-xs">
+<input class="w-20 bg-surface-container-lowest px-2 py-1 rounded font-label-md text-label-md text-on-surface font-bold text-center focus:outline-none" id="input-rate-dist" step="0.1" type="number" value="6.0"/>
+<span class="font-label-md text-label-md text-on-surface font-bold">%</span>
+<button class="ml-auto px-2 py-1 bg-primary text-on-primary hover:bg-primary-container rounded font-label-sm text-label-sm font-bold transition-colors" onclick="saveFeeParam('Take Rate Distribuidor', 'input-rate-dist')">
+                Alterar
+              </button>
+</div>
+</div>
+<!-- Rate 4 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Mensalidade Operador 3PL</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cobrança recorrente</span>
+</div>
+<div class="mt-space-sm flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">R$</span>
+<input class="w-20 bg-surface-container-lowest px-2 py-1 rounded font-label-md text-label-md text-on-surface font-bold text-center focus:outline-none" id="input-rate-monthly" step="10" type="number" value="490"/>
+<button class="ml-auto px-2 py-1 bg-primary text-on-primary hover:bg-primary-container rounded font-label-sm text-label-sm font-bold transition-colors" onclick="saveFeeParam('Mensalidade 3PL', 'input-rate-monthly')">
+                Salvar
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Instant Executive Console & Live Audit Log (4 Columns on XL) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Quick Command Console (Intervenção Imediata) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col">
+<div class="flex items-center gap-space-sm mb-space-sm">
+<span class="material-symbols-outlined text-error text-headline-md">terminal</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Console de Intervenção Rápida</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Execução forçada com bypass de checagem regular</p>
+</div>
+</div>
+<form class="flex flex-col gap-space-sm" id="console-form" onsubmit="handleQuickIntervention(event)">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Ação Soberana a Executar</label>
+<select class="w-full bg-surface-container-low p-space-xs rounded-lg text-body-sm text-on-surface font-semibold focus:outline-none focus:bg-surface-container-lowest transition-colors" id="console-action">
+<option value="SUSPEND_COMPANY">Suspender Empresa / Bloquear Lances</option>
+<option value="CANCEL_AUCTION">Cancelar Pregão &amp; Desclassificar</option>
+<option value="ALTER_CREDIT">Alterar Limite de Crédito / Saldo</option>
+<option value="FORCE_PAYMENT">Liberar Pagamento Forçado ao Vendedor</option>
+<option value="BLOCK_PIX">Bloquear Chave Pix &amp; SPI de Recebimento</option>
+<option value="DELETE_ENTITY">Excluir Registro / Purgar do Sistema</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Alvo da Intervenção (CNPJ ou ID do Lote)</label>
+<input class="w-full bg-surface-container-low p-space-xs rounded-lg text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest transition-colors" id="console-target" placeholder="Ex: 27.841.952/0001-80 ou LOTE-418" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Novo Valor ou Parâmetro (se aplicável)</label>
+<input class="w-full bg-surface-container-low p-space-xs rounded-lg text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest transition-colors" id="console-param" placeholder="Ex: R$ 150.000,00 ou Taxa 3.8%" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Justificativa Mandatória (WORM Audit Trail)</label>
+<textarea class="w-full bg-surface-container-low p-space-xs rounded-lg text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest transition-colors resize-none" id="console-reason" placeholder="Ex: Intervenção fiduciária por solicitação BACEN-2026-901 / Averiguação de lote." required="" rows="2"></textarea>
+</div>
+<div class="p-space-xs bg-error-container rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-error-container text-body-md">key</span>
+<input class="w-full bg-surface-container-lowest px-2 py-1 rounded text-body-sm text-on-surface focus:outline-none" id="console-2fa" placeholder="Chave Master / Assinatura FIDO2" required="" type="password"/>
+</div>
+<button class="w-full py-space-sm bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md text-label-md font-bold transition-all shadow-sm flex items-center justify-center gap-space-xs" type="submit">
+<span class="material-symbols-outlined text-body-lg">gavel</span>
+<span>Confirmar e Executar no Sistema</span>
+</button>
+</form>
+</div>
+<!-- Real-Time Administrative Audit Trail (Logs Forenses) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col flex-1">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-headline-md">receipt_long</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Auditoria em Tempo Real</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span> WORM LIVE
+          </span>
+</div>
+<div class="flex flex-col gap-space-xs overflow-y-auto max-h-[380px] pr-1" id="live-audit-feed">
+<!-- Log 1 -->
+<div class="p-space-xs bg-surface-container-low rounded-lg flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-primary font-bold">INTERVENÇÃO_ESCROW</span>
+<span class="text-on-surface-variant font-mono">14:32:09</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Custódia #TX-9021 aberta no valor de R$ 38.000,00 via Pix SPI.</span>
+<span class="text-[10px] text-on-surface-variant font-mono truncate">HASH: 8f4b00...ad21 | Assinatura HSM OK</span>
+</div>
+<!-- Log 2 -->
+<div class="p-space-xs bg-surface-container-low rounded-lg flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-tertiary font-bold">SUSPENSÃO_PREVENTIVA</span>
+<span class="text-on-surface-variant font-mono">13:48:12</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Empresa CNPJ 03.112.441/0001-92 suspensa: divergência de validade.</span>
+<span class="text-[10px] text-on-surface-variant font-mono truncate">OP: Master_SP01 | NTP.br Verified</span>
+</div>
+<!-- Log 3 -->
+<div class="p-space-xs bg-surface-container-low rounded-lg flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-bold">AJUSTE_LIMITE_CRÉDITO</span>
+<span class="text-on-surface-variant font-mono">12:10:04</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Limite Matriz do Vale alterado de R$ 80.000 para R$ 100.000.</span>
+<span class="text-[10px] text-on-surface-variant font-mono truncate">Protocolo BACEN-2026-901</span>
+</div>
+<!-- Log 4 -->
+<div class="p-space-xs bg-surface-container-low rounded-lg flex flex-col gap-0.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant font-bold">TAXA_ATUALIZADA</span>
+<span class="text-on-surface-variant font-mono">10:02:18</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface">Take Rate Global Indústria mantido em 4.5% pela mesa diretora.</span>
+<span class="text-[10px] text-on-surface-variant font-mono truncate">ID: ADM-PAR-9912</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Analytics & Infrastructure Health Strip -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-space-lg">
+<!-- Visual 1: Split Distribution Graphic (Pure SVG) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-bold">Distribuição do Volume Financeiro B2B</span>
+<span class="material-symbols-outlined text-primary text-body-lg">pie_chart</span>
+</div>
+<div class="flex items-center gap-space-md py-space-sm">
+<!-- SVG Donut Chart -->
+<svg class="w-24 h-24 shrink-0" viewbox="0 0 36 36">
+<path class="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4.5"></path>
+<!-- 65% Vendedores -->
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="65, 100" stroke-width="4.5"></path>
+<!-- 20% Escrow Retido -->
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="20, 100" stroke-dashoffset="-65" stroke-width="4.5"></path>
+<!-- 15% Taxas Master -->
+<path class="text-error" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="15, 100" stroke-dashoffset="-85" stroke-width="4.5"></path>
+</svg>
+<div class="flex flex-col gap-1 text-[11px]">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-semibold text-on-surface">65% Vendedores (Payout Liberado)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-semibold text-on-surface">20% Custódia em Aberto Escrow</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span class="font-semibold text-on-surface">15% Taxas Plataforma &amp; Fundo Reserva</span>
+</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Liquidação automática via Bacen SPI em 24h</span>
+</div>
+<!-- Visual 2: Live Auction Bid Velocity (Pure SVG Sparkline) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-bold">Intensidade de Lances por Minuto</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">148 lances/min</span>
+</div>
+<div class="py-space-sm">
+<svg class="w-full h-16 text-primary" fill="none" viewbox="0 0 200 50">
+<path d="M 0 45 L 20 40 L 40 42 L 60 30 L 80 35 L 100 20 L 120 25 L 140 10 L 160 15 L 180 5 L 200 2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M 0 45 L 20 40 L 40 42 L 60 30 L 80 35 L 100 20 L 120 25 L 140 10 L 160 15 L 180 5 L 200 2 L 200 50 L 0 50 Z" fill="currentColor" fill-opacity="0.08"></path>
+</svg>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>09:00 (Abertura)</span>
+<span class="text-error font-bold">Pico de pregões simultâneos</span>
+<span>Agora (14:35)</span>
+</div>
+</div>
+<!-- Visual 3: Compliance & WORM Cryptographic Status -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-bold">Integridade de Governança Master</span>
+<span class="material-symbols-outlined text-secondary text-headline-md">verified</span>
+</div>
+<div class="flex flex-col gap-space-xs my-space-xs">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Carimbo de Tempo NTP.br:</span>
+<span class="font-mono text-secondary font-bold">Sincronizado (0.2ms)</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Conformidade BACEN 4.656:</span>
+<span class="font-mono text-secondary font-bold">Auditado 100% OK</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Armazenamento WORM (Imutável):</span>
+<span class="font-mono text-primary font-bold">AWS S3 Object Lock</span>
+</div>
+</div>
+<div class="p-space-xs bg-surface-container rounded font-label-sm text-label-sm text-on-surface-variant truncate">
+        Último bloco assinado: 0x9f88c...d091e7c44
+      </div>
+</div>
+</section>
+<!-- Legal & Master Governance Footer -->
+<footer class="p-space-md bg-surface-container-low rounded-xl flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-bold text-on-surface">Varejista Online B2B Platform • Core Master</span>
+<span>•</span>
+<span>Certificação ISO/IEC 27001</span>
+<span>•</span>
+<span>LGPD Fiduciária</span>
+<span>•</span>
+<span>Resolução BACEN nº 4.656/2018</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-secondary">lock</span>
+<span>Todas as alterações são registradas em trilha forense irrevogável</span>
+</div>
+</footer>
+<!-- Modal Template for Manual Adjustments (Dynamically triggered by JS) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-margin" id="master-modal">
+<div class="bg-surface-container-lowest max-w-lg w-full rounded-xl shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-md" id="modal-icon">edit</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold" id="modal-title">Intervenção Master</h3>
+</div>
+<button class="p-1 rounded-lg hover:bg-surface-container-highest text-on-surface-variant" onclick="closeMasterModal()">
+<span class="material-symbols-outlined text-body-lg">close</span>
+</button>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<p class="font-body-md text-body-md text-on-surface-variant" id="modal-desc">
+          Especifique o novo valor e a justificativa administrativa auditada.
+        </p>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" id="modal-input-label">Novo Valor</label>
+<input class="w-full bg-surface-container-low p-space-xs rounded-lg text-body-md text-on-surface font-bold focus:outline-none focus:bg-surface-container-lowest" id="modal-input-field" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Justificativa Regulatória Obrigatória</label>
+<textarea class="w-full bg-surface-container-low p-space-xs rounded-lg text-body-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest resize-none" id="modal-input-reason" placeholder="Motivo da alteração formal..." rows="2"></textarea>
+</div>
+<div class="p-space-xs bg-surface-container rounded flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md">lock</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Operação auditada e assinada por Superadmin Master</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors" onclick="closeMasterModal()">
+          Cancelar
+        </button>
+<button class="px-space-md py-space-xs rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold transition-all shadow-sm" id="modal-confirm-btn" onclick="executeModalAction()">
+          Confirmar e Aplicar
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // State variables
+  let emergencyLocked = false;
+  let activeModalCallback = null;
+
+  // Toggle Global Emergency Lock
+  function toggleEmergencyLock() {
+    emergencyLocked = !emergencyLocked;
+    const badge = document.getElementById('badge-emergency-status');
+    const label = document.getElementById('txt-emergency-label');
+    const btn = document.getElementById('btn-emergency-lock');
+
+    if (emergencyLocked) {
+      badge.textContent = 'TRAVA ATIVA (FREEZE)';
+      badge.className = 'px-space-xs py-0.5 rounded text-[10px] bg-error text-on-error font-label-sm font-black animate-pulse';
+      btn.className = 'group relative px-space-md py-space-sm rounded-lg bg-error text-on-error font-label-md text-label-md shadow-md flex items-center gap-space-xs';
+      label.textContent = 'Modo Emergencial Ativado';
+      addAuditLog('TRAVA_GERAL_ATIVADA', 'Todas as liquidações e lances foram congelados imediatamente por intervenção soberana.');
+      alert('ATENÇÃO: Trava geral de emergência ativada em todo o sistema. Todas as operações financeiras e leilões foram suspensos temporariamente.');
+    } else {
+      badge.textContent = 'NORMAL';
+      badge.className = 'px-space-xs py-0.5 rounded text-[10px] bg-secondary-container text-on-secondary-container font-label-sm';
+      btn.className = 'group relative px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-error hover:text-on-error text-error font-label-md text-label-md transition-all shadow-sm flex items-center gap-space-xs';
+      label.textContent = 'Modo Emergencial / Trava Geral';
+      addAuditLog('TRAVA_GERAL_LIBERADA', 'Sistema retornou à operação regular após verificação de governança.');
+      alert('Operação regular reestabelecida com sucesso.');
+    }
+  }
+
+  // Add Log into Live Audit Feed
+  function addAuditLog(type, text) {
+    const feed = document.getElementById('live-audit-feed');
+    if (!feed) return;
+    const now = new Date();
+    const timeStr = now.toTimeString().split(' ')[0];
+    const logEl = document.createElement('div');
+    logEl.className = 'p-space-xs bg-surface-container rounded-lg flex flex-col gap-0.5 animate-in fade-in slide-in-from-top-1';
+    logEl.innerHTML = `
+      <div class="flex items-center justify-between font-label-sm text-label-sm">
+        <span class="text-error font-bold">${type}</span>
+        <span class="text-on-surface-variant font-mono">${timeStr}</span>
+      </div>
+      <span class="font-body-sm text-body-sm text-on-surface">${text}</span>
+      <span class="text-[10px] text-on-surface-variant font-mono truncate">ID: HSM-${Math.random().toString(36).substring(2, 9).toUpperCase()} | Assinado</span>
+    `;
+    feed.insertBefore(logEl, feed.firstChild);
+  }
+
+  // Quick Notification Helper
+  function showQuickAlert(msg) {
+    addAuditLog('AÇÃO_EM_LOTE', msg);
+    alert(msg);
+  }
+
+  // Tab switcher
+  function switchTab(type) {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.className = 'tab-btn px-space-md py-space-xs rounded font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors';
+    });
+    event.currentTarget.className = 'tab-btn px-space-md py-space-xs rounded font-label-sm text-label-sm uppercase tracking-wider bg-surface-container-lowest text-primary font-bold shadow-sm transition-colors';
+  }
+
+  // Entity Row Controls
+  function toggleSuspendEntity(rowId, badgeId) {
+    const badge = document.getElementById(badgeId);
+    if (!badge) return;
+    const isSuspended = badge.textContent.includes('SUSPENSO');
+    if (isSuspended) {
+      badge.className = 'inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> ATIVO';
+      addAuditLog('ENTIDADE_REATIVADA', `Entidade da linha #${rowId} teve a suspensão revogada.`);
+    } else {
+      badge.className = 'inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> SUSPENSO';
+      addAuditLog('ENTIDADE_SUSPENSA', `Entidade da linha #${rowId} foi suspensa manualmente por ordem Master.`);
+    }
+  }
+
+  function toggleDeactivateEntity(rowId, badgeId) {
+    const badge = document.getElementById(badgeId);
+    if (!badge) return;
+    const isInactive = badge.textContent.includes('INATIVO');
+    if (isInactive) {
+      badge.className = 'inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> ATIVO';
+      addAuditLog('ENTIDADE_ATIVADA', `Cadastro ${rowId} reativado.`);
+    } else {
+      badge.className = 'inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-variant text-on-surface-variant font-label-sm text-label-sm font-bold';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> INATIVO';
+      addAuditLog('ENTIDADE_INATIVADA', `Cadastro ${rowId} desativado pelo administrador.`);
+    }
+  }
+
+  function deleteEntityRow(rowId, entityName) {
+    const reason = prompt(`ATENÇÃO: Você está prestes a EXCLUIR DEFINITIVAMENTE "${entityName}". Digite a justificativa forense para o log WORM:`);
+    if (reason && reason.trim().length > 3) {
+      const row = document.getElementById(rowId);
+      if (row) {
+        row.style.opacity = '0.3';
+        row.style.pointerEvents = 'none';
+        setTimeout(() => row.remove(), 400);
+      }
+      addAuditLog('EXCLUSÃO_REGISTRO', `"${entityName}" foi excluído permanentemente. Justificativa: ${reason}`);
+      alert(`Registro "${entityName}" excluído com sucesso e arquivado na trilha de auditoria.`);
+    } else if (reason !== null) {
+      alert('Operação cancelada: a justificativa é obrigatória para qualquer exclusão no sistema.');
+    }
+  }
+
+  function reactivateCompany(rowId, badgeId) {
+    const badge = document.getElementById(badgeId);
+    if (badge) {
+      badge.className = 'inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> ATIVO';
+    }
+    const row = document.getElementById(rowId);
+    if (row) row.classList.remove('bg-surface-container-high/30');
+    addAuditLog('REATIVAÇÃO_PLENA', 'Distribuidora Minas-Goiás Atacado Ltda liberada para transacionar.');
+    alert('Empresa reativada com sucesso.');
+  }
+
+  // Auction specific controls
+  function togglePauseAuction(rowId, badgeId) {
+    const badge = document.getElementById(badgeId);
+    if (!badge) return;
+    const isPaused = badge.textContent.includes('PAUSADO');
+    if (isPaused) {
+      badge.className = 'inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> EM DISPUTA';
+      addAuditLog('PREGÃO_RETOMADO', 'Lote #418 retomou cronômetro e disputa de lances.');
+    } else {
+      badge.className = 'inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold';
+      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> PAUSADO';
+      addAuditLog('PREGÃO_INTERROMPIDO', 'Lote #418 foi pausado cautelarmente pelo Master.');
+    }
+  }
+
+  function closeAuctionPrematurely(lotTitle, winner) {
+    const confirmed = confirm(`Deseja realmente ENCERRAR ANTECIPADAMENTE o ${lotTitle} e bater o martelo para "${winner}" com lance atual?`);
+    if (confirmed) {
+      const badge = document.getElementById('badge-status-4');
+      if (badge) {
+        badge.className = 'inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold';
+        badge.textContent = 'ARREMATADO (ENCERRADO)';
+      }
+      addAuditLog('MARTELO_BATIDO', `${lotTitle} arrematado forçadamente pelo Master. Vencedor: ${winner}.`);
+      alert(`${lotTitle} encerrado com sucesso. Notificação de pagamento emitida.`);
+    }
+  }
+
+  // Modals & Inline Edits
+  function promptEditLimit(company, elementId, currentVal) {
+    openModalCustom(
+      'Alterar Limite de Crédito B2B',
+      `Definir novo limite financeiro de compra para: ${company}`,
+      'Novo Limite de Crédito (R$)',
+      currentVal,
+      (newVal, reason) => {
+        const num = parseFloat(newVal);
+        if (!isNaN(num)) {
+          document.getElementById(elementId).textContent = `R$ ${num.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+          addAuditLog('AJUSTE_LIMITE', `Limite de ${company} ajustado para R$ ${num.toLocaleString('pt-BR')}. Motivo: ${reason}`);
+          alert('Limite de crédito atualizado com sucesso.');
+        }
+      }
+    );
+  }
+
+  function promptEditRate(company, elementId, currentVal) {
+    openModalCustom(
+      'Alterar Take Rate / Taxa Customizada',
+      `Ajustar percentual cobrado sobre as vendas de: ${company}`,
+      'Nova Taxa / Take Rate (%)',
+      currentVal,
+      (newVal, reason) => {
+        const num = parseFloat(newVal);
+        if (!isNaN(num)) {
+          document.getElementById(elementId).textContent = `${num.toFixed(2)}%`;
+          addAuditLog('AJUSTE_TAXA', `Taxa de ${company} alterada para ${num}%. Motivo: ${reason}`);
+          alert('Taxa comercial atualizada com sucesso.');
+        }
+      }
+    );
+  }
+
+  function promptEditLotBid(lot, elementId, currentVal) {
+    openModalCustom(
+      'Alterar Lance / Preço do Pregão',
+      `Intervenção no valor de lance corrente para o ${lot}`,
+      'Novo Valor do Lance (R$)',
+      currentVal,
+      (newVal, reason) => {
+        const num = parseFloat(newVal);
+        if (!isNaN(num)) {
+          document.getElementById(elementId).textContent = `R$ ${num.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+          addAuditLog('AJUSTE_LANCE', `Lance de ${lot} alterado administrativamente para R$ ${num.toLocaleString('pt-BR')}. Motivo: ${reason}`);
+          alert('Valor do pregão atualizado com sucesso.');
+        }
+      }
+    );
+  }
+
+  // Financial Escrow Actions
+  function forceReleasePayment(txId, recipient, val) {
+    const ok = confirm(`CONFIRMAÇÃO FIDUCIÁRIA: Deseja FORÇAR A LIBERAÇÃO de R$ ${val.toLocaleString('pt-BR')} para ${recipient}? O valor sairá da custódia do BACEN SPI.`);
+    if (ok) {
+      const badge = document.getElementById('tx-status-1');
+      if (badge) {
+        badge.className = 'inline-flex px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold';
+        badge.textContent = 'PAGAMENTO FORÇADO LIBERADO';
+      }
+      addAuditLog('PAGAMENTO_FORÇADO', `Transação #${txId} liberada no valor de R$ ${val.toLocaleString('pt-BR')} para ${recipient}.`);
+      alert(`Ordem de payout executada com sucesso para ${recipient}.`);
+    }
+  }
+
+  function refundBuyer(txId, buyer, val) {
+    const ok = confirm(`CONFIRMAR ESTORNO: Deseja cancelar a custódia de R$ ${val.toLocaleString('pt-BR')} e devolver integralmente ao comprador ${buyer}?`);
+    if (ok) {
+      const badge = document.getElementById('tx-status-1');
+      if (badge) {
+        badge.className = 'inline-flex px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold';
+        badge.textContent = 'ESTORNADO AO COMPRADOR';
+      }
+      addAuditLog('ESTORNO_COMPULSÓRIO', `Transação #${txId} estornada para ${buyer}.`);
+      alert(`Valor estornado com sucesso ao pagador original.`);
+    }
+  }
+
+  function holdInDispute(txId, statusBadgeId) {
+    const badge = document.getElementById(statusBadgeId);
+    if (badge) {
+      badge.className = 'inline-flex px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold';
+      badge.textContent = 'RETIDO EM DISPUTA ARBITRAL';
+    }
+    addAuditLog('RETENÇÃO_DISPUTA', `Custódia #${txId} bloqueada para liquidação até conclusão da perícia.`);
+    alert(`Custódia #${txId} colocada em bloqueio de disputa.`);
+  }
+
+  function confirmReceiptManual(txId, val, badgeId) {
+    const badge = document.getElementById(badgeId);
+    if (badge) {
+      badge.className = 'inline-flex px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold';
+      badge.textContent = 'RECEBIMENTO CONFIRMADO MANUAL';
+    }
+    addAuditLog('RECEBIMENTO_MANUAL', `TED referente à transação #${txId} conciliada manualmente no valor de R$ ${val.toLocaleString('pt-BR')}.`);
+    alert('TED confirmada com sucesso no sistema fiduciário.');
+  }
+
+  function cancelCharge(txId, rowId) {
+    if (confirm(`Cancelar cobrança #${txId}? A ordem de faturamento será cancelada.`)) {
+      const row = document.getElementById(rowId);
+      if (row) row.style.opacity = '0.4';
+      addAuditLog('COBRANÇA_CANCELADA', `Ordem de pagamento #${txId} cancelada.`);
+    }
+  }
+
+  function resendPaymentOrder(txId) {
+    addAuditLog('ORDEM_REENVIADA', `Notificação e guia Pix SPI da #${txId} reenviadas.`);
+    alert(`Ordem de pagamento #${txId} reenviada aos canais cadastrados.`);
+  }
+
+  function releaseEscrowLocked(cnpj, amount) {
+    if (confirm(`Liberar saldo bloqueado de R$ ${amount.toLocaleString('pt-BR')} para o CNPJ ${cnpj}?`)) {
+      addAuditLog('SALDO_RETIDO_LIBERADO', `Saldo de R$ ${amount.toLocaleString('pt-BR')} desbloqueado para ${cnpj}.`);
+      alert('Saldo liberado com sucesso.');
+    }
+  }
+
+  function saveFeeParam(name, inputId) {
+    const el = document.getElementById(inputId);
+    if (el) {
+      addAuditLog('PARÂMETRO_ALTERADO', `Regra global "${name}" atualizada para ${el.value}.`);
+      alert(`Parâmetro "${name}" atualizado para ${el.value} e aplicado a todas as novas liquidações.`);
+    }
+  }
+
+  // Quick Command Console submission
+  function handleQuickIntervention(e) {
+    e.preventDefault();
+    const action = document.getElementById('console-action').value;
+    const target = document.getElementById('console-target').value;
+    const param = document.getElementById('console-param').value;
+    const reason = document.getElementById('console-reason').value;
+    const token = document.getElementById('console-2fa').value;
+
+    if (!token) {
+      alert('Por favor, informe a Chave Master ou assine com biometria.');
+      return;
+    }
+
+    addAuditLog(`EXECUÇÃO_${action}`, `Alvo: ${target} | Parâmetro: ${param || 'N/A'} | Motivo: ${reason}`);
+    alert(`Comando soberano executado com sucesso no cluster.\n\nAção: ${action}\nAlvo: ${target}\nHash de Auditoria gerado e assinado no NTP.br.`);
+    
+    document.getElementById('console-form').reset();
+  }
+
+  // Filter entities in table
+  function filterEntities() {
+    const query = document.getElementById('table-search').value.toLowerCase();
+    const rows = document.querySelectorAll('#entity-table-body tr');
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(query) ? '' : 'none';
+    });
+  }
+
+  function filterSuspended() {
+    const search = document.getElementById('table-search');
+    search.value = 'SUSPENSO';
+    filterEntities();
+  }
+
+  function refreshEntityTable() {
+    addAuditLog('SYNC_TABELA', 'Dados de CNPJs e lotes sincronizados com RFB/SEFAZ.');
+    alert('Tabela sincronizada em tempo real com a SEFAZ e os nós de pregão.');
+  }
+
+  function viewDossier(cnpj) {
+    alert(`Dossiê Fiscal & Compliance para CNPJ ${cnpj}:\n- Situação Cadastral: ATIVA\n- Regime: Lucro Real\n- CND Federal: Válida até 12/2026\n- Risco de Fraude: 0.02% (Mínimo)\n- Histórico de Protestos: Nenhum`);
+  }
+
+  function auditSKUGroup(cnpj) {
+    alert(`Auditoria de Estoque & Lotes para CNPJ ${cnpj}:\n- Total de Lotes: 18 cadastrados\n- Rastreabilidade de Lote: 100% OK\n- Laudo Sanitário MAPA/ANVISA: Regular\n- Vistoria em CD: Aprovada`);
+  }
+
+  function viewPenaltyHistory(cnpj) {
+    alert(`Histórico de Penalidades para CNPJ ${cnpj}:\n- 14/03/2026: Suspensão por divergência de lote #312 (Em análise)\n- 10/01/2026: Advertência por atraso em carregamento\n- Total de ocorrências: 2`);
+  }
+
+  // General Dialogs
+  function openModalCustom(title, desc, inputLabel, defaultVal, callback) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-desc').textContent = desc;
+    document.getElementById('modal-input-label').textContent = inputLabel;
+    const input = document.getElementById('modal-input-field');
+    input.value = defaultVal;
+    document.getElementById('modal-input-reason').value = '';
+    activeModalCallback = callback;
+    document.getElementById('master-modal').classList.remove('hidden');
+    document.getElementById('master-modal').classList.add('flex');
+    input.focus();
+  }
+
+  function closeMasterModal() {
+    document.getElementById('master-modal').classList.add('hidden');
+    document.getElementById('master-modal').classList.remove('flex');
+    activeModalCallback = null;
+  }
+
+  function executeModalAction() {
+    const val = document.getElementById('modal-input-field').value;
+    const reason = document.getElementById('modal-input-reason').value;
+    if (!reason || reason.trim().length < 3) {
+      alert('A justificativa da intervenção é estritamente obrigatória.');
+      return;
+    }
+    if (activeModalCallback) {
+      activeModalCallback(val, reason);
+    }
+    closeMasterModal();
+  }
+
+  function openInterventionModal() {
+    const target = prompt('Informe o CNPJ, Lote ou ID de Transação para intervenção manual imediata:');
+    if (target) {
+      document.getElementById('console-target').value = target;
+      document.getElementById('console-target').focus();
+    }
+  }
+
+  function triggerWormExport() {
+    addAuditLog('EXPORT_WORM', 'Dossiê criptográfico WORM exportado em formato JSON-LD com assinatura digital.');
+    alert('Relatório de auditoria WORM compilado com sucesso. O download de 1.428 registros assinados foi iniciado.');
+  }
+
+  function pauseAllAuctions() {
+    if (confirm('DESEJA PAUSAR TODOS OS 98 PREGÕES EM ANDAMENTO? Nenhum novo lance será aceito até a retomada manual.')) {
+      addAuditLog('PAUSA_GLOBAL_PREGÕES', 'Todos os 98 leilões ao vivo foram pausados pelo Master.');
+      alert('Todos os pregões foram pausados.');
+    }
+  }
+
+  function openPriceModal() {
+    promptEditLotBid('Todos os Lotes Ativos', 'bid-val-4', 35000);
+  }
+
+  function openForcePaymentDialog() {
+    forceReleasePayment('TX-GLOBAL-ESCROW', 'Pool de Vendedores Selecionados', 14850200);
+  }
+
+  function lockEscrow() {
+    if (confirm('TRAVAR LIQUIDAÇÃO DE ESCROW: Deseja impedir saídas da conta custódia no BACEN temporariamente?')) {
+      addAuditLog('ESCROW_TRAVADO', 'Conta de custódia fiduciária bloqueada para conciliação preventiva.');
+      alert('Custódia temporariamente travada.');
+    }
+  }
+
+  function openSplitAdjustModal() {
+    saveFeeParam('Regra de Split D+0', 'input-rate-industry');
+  }
+</script></main></div></body></html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "primary-fixed-dim": "#b0c6ff",
+          "inverse-primary": "#b0c6ff",
+          "on-secondary-container": "#217128",
+          "surface-dim": "#d8dadc",
+          "on-tertiary-container": "#ffa59d",
+          "surface-bright": "#f7f9fb",
+          "outline": "#737783",
+          "primary": "#003178",
+          "inverse-on-surface": "#eff1f3",
+          "on-primary-fixed-variant": "#00429c",
+          "secondary-fixed-dim": "#88d982",
+          "on-tertiary": "#ffffff",
+          "tertiary-fixed-dim": "#ffb3ac",
+          "surface-container-lowest": "#ffffff",
+          "on-error-container": "#93000a",
+          "on-primary": "#ffffff",
+          "tertiary": "#720009",
+          "on-primary-container": "#a1bbff",
+          "background": "#f7f9fb",
+          "secondary-fixed": "#a3f69c",
+          "primary-container": "#0d47a1",
+          "on-secondary": "#ffffff",
+          "surface-container-low": "#f2f4f6",
+          "on-primary-fixed": "#001945",
+          "on-tertiary-fixed": "#410003",
+          "outline-variant": "#c3c6d4",
+          "error": "#ba1a1a",
+          "primary-fixed": "#d9e2ff",
+          "secondary-container": "#a0f399",
+          "on-error": "#ffffff",
+          "on-background": "#191c1e",
+          "on-secondary-fixed-variant": "#005312",
+          "surface-container": "#eceef0",
+          "surface-container-highest": "#e0e3e5",
+          "surface-variant": "#e0e3e5",
+          "error-container": "#ffdad6",
+          "surface-tint": "#2b5bb5",
+          "surface-container-high": "#e6e8ea",
+          "inverse-surface": "#2d3133",
+          "on-secondary-fixed": "#002204",
+          "on-tertiary-fixed-variant": "#930010",
+          "secondary": "#1b6d24",
+          "surface": "#f7f9fb",
+          "tertiary-container": "#9d0011",
+          "on-surface-variant": "#434652",
+          "tertiary-fixed": "ffdad6",
+          "on-surface": "#191c1e"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "margin": "1.5rem",
+          "gutter": "1rem",
+          "space-sm": "0.5rem",
+          "space-md": "0.75rem",
+          "margin-mobile": "1rem",
+          "space-xl": "2rem",
+          "space-lg": "1.25rem",
+          "gutter-mobile": "0.75rem",
+          "space-xs": "0.25rem"
+        },
+        "fontFamily": {
+          "headline-lg": ["Plus Jakarta Sans"],
+          "body-lg": ["Plus Jakarta Sans"],
+          "numeric-timer": ["Plus Jakarta Sans"],
+          "headline-xl-mobile": ["Plus Jakarta Sans"],
+          "headline-lg-mobile": ["Plus Jakarta Sans"],
+          "headline-xl": ["Plus Jakarta Sans"],
+          "label-md": ["Plus Jakarta Sans"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "label-lg": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "label-sm": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+          "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+          "numeric-timer": ["20px", {"lineHeight": "24px", "fontWeight": "800"}],
+          "headline-xl-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "800"}],
+          "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+          "headline-xl": ["32px", {"lineHeight": "40px", "fontWeight": "800"}],
+          "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+          "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+          "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+          "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+          "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+          "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="px-space-lg pb-space-lg flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">Ω</div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">OmniReg B2B</span><span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Arquitetura Fiscal &amp; Sanidade</span></div></div><div class="px-space-lg py-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Motor Multissetorial</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl"><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm transition-colors bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl" data-path="overview-expansao" href="#"><span class="material-symbols-outlined text-body-lg">hub</span>Visão Geral de Expansão</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="matriz-cnaes" href="#"><span class="material-symbols-outlined text-body-lg">account_tree</span>Matriz de CNAEs &amp; Setores</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="orgaos-reguladores" href="#"><span class="material-symbols-outlined text-body-lg">verified_user</span>Órgãos &amp; Homologações</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="travas-seguranca" href="#"><span class="material-symbols-outlined text-body-lg">lock</span>Travas Psicotrópicos &amp; Frio</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="parametrizacao-shelf-life" href="#"><span class="material-symbols-outlined text-body-lg">hourglass_empty</span>Regras de Shelf Life</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="matriz-tributaria" href="#"><span class="material-symbols-outlined text-body-lg">receipt_long</span>Parametrização Fiscal &amp; NCM</a></nav><div class="px-space-lg pt-space-lg pb-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Compliance &amp; Auditoria</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="auditoria-sngpc" href="#"><span class="material-symbols-outlined text-body-lg">health_and_safety</span>CRF &amp; SNGPC Farmacêutico</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="logs-parametros" href="#"><span class="material-symbols-outlined text-body-lg">terminal</span>Logs de Arquitetura</a></nav></div><div class="px-space-lg"><div class="bg-surface-container-lowest p-space-md rounded-xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline">Motor Fiscal</span><span class="font-label-md text-label-md text-secondary flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>Ativo v4.12</span></div><span class="material-symbols-outlined text-on-surface-variant">dns</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-xl"><span class="font-label-sm text-label-sm uppercase text-outline">Cluster:</span><span class="font-label-md text-label-md text-on-surface">SP-BR / Hub Central</span></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="bg-primary-container text-on-primary font-label-md text-label-md rounded-lg"><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary-container text-on-primary font-label-md text-label-md rounded-lg" data-path="overview-expansao" href="#">Painel Geral</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="matriz-cnaes" href="#">CNAEs</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="orgaos-reguladores" href="#">Reguladores</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="travas-seguranca" href="#">Travas Críticas</a></nav></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-error-container text-on-error-container px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-body-sm">ac_unit</span><span class="font-label-sm text-label-sm">Cadeia Frio: 2.1°C</span></div><button class="flex items-center justify-center p-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span></button><button class="flex items-center justify-center p-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined">tune</span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-md text-label-md text-on-surface">Dr. Arquiteto Chefe</span><span class="font-label-sm text-label-sm text-on-surface-variant">SecOps &amp; Regulação</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></header><main class="relative w-full pt-16 bg-surface px-margin py-space-lg"><div class="flex flex-col w-full gap-space-lg">
+<!-- TOP CONSOLE / HEADER DE GOVERNANÇA -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-outline font-label-md text-label-md">
+<span>Arquitetura &amp; Governança</span>
+<span class="material-symbols-outlined text-body-sm text-outline-variant">chevron_right</span>
+<span>Expansão de Mercados</span>
+<span class="material-symbols-outlined text-body-sm text-outline-variant">chevron_right</span>
+<span class="text-primary font-label-md text-label-md">Matriz Multissetorial</span>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Expansão de Verticais: Farmácia, Padaria, Pet Shop &amp; Mercearia</h1>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-space-sm py-space-xs rounded-lg uppercase tracking-wider flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Cluster Produção v4.12
+        </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+        Parametrização dinâmica de regras de negócio, exigências sanitárias (ANVISA, MAPA, VISA), validação de CNAEs, temperatura de transporte e travas de segurança em tempo de execução.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap xl:flex-nowrap">
+<button class="flex items-center gap-space-xs bg-surface-container-high text-on-surface px-space-md py-space-sm rounded-xl font-label-lg text-label-lg hover:bg-surface-dim transition-colors shadow-sm" onclick="simulateTransactionModal()">
+<span class="material-symbols-outlined text-body-lg text-primary">play_circle</span>
+        Simular Transação
+      </button>
+<button class="flex items-center gap-space-xs bg-surface-container-high text-on-surface px-space-md py-space-sm rounded-xl font-label-lg text-label-lg hover:bg-surface-dim transition-colors shadow-sm" onclick="exportArchitectureDossier()">
+<span class="material-symbols-outlined text-body-lg text-outline">picture_as_pdf</span>
+        Dossiê (.PDF)
+      </button>
+<button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm rounded-xl font-label-lg text-label-lg hover:bg-primary-container transition-colors shadow-md">
+<span class="material-symbols-outlined text-body-lg">add_circle</span>
+        Novo CNAE / Setor
+      </button>
+</div>
+</div>
+<!-- KPIS DE ARQUITETURA MULTIDOMÍNIO -->
+<div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Setores Ativos</span>
+<span class="material-symbols-outlined text-primary text-body-lg">domain</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-primary font-numeric-timer">5</span>
+<span class="font-label-sm text-label-sm text-secondary font-label-md text-label-md">+4 verticais</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Alimentos + 4 Novas Verticais</span>
+<div class="w-full bg-surface-container-highest h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-primary h-full w-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">CNAEs Mapeados</span>
+<span class="material-symbols-outlined text-secondary text-body-lg">account_tree</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-numeric-timer">38</span>
+<span class="font-label-sm text-label-sm text-outline">Classes RFB</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">100% Homologadas na Receita</span>
+<div class="w-full bg-surface-container-highest h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-secondary h-full w-[95%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Órgãos &amp; APIs</span>
+<span class="material-symbols-outlined text-primary text-body-lg">verified_user</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-numeric-timer">6</span>
+<span class="font-label-sm text-label-sm text-secondary font-label-md text-label-md">100% Up</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">ANVISA, MAPA, SNGPC, VISA, SEFAZ</span>
+<div class="w-full bg-surface-container-highest h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-secondary h-full w-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Regras de Negócio</span>
+<span class="material-symbols-outlined text-primary-container text-body-lg">rule</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface font-numeric-timer">142</span>
+<span class="font-label-sm text-label-sm text-secondary font-label-md text-label-md">0 conflitos</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Motor Rete &amp; Validador FEFO</span>
+<div class="w-full bg-surface-container-highest h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-primary-container h-full w-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Latência Checkout</span>
+<span class="material-symbols-outlined text-secondary text-body-lg">bolt</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-secondary font-numeric-timer">18<span class="text-headline-md font-headline-md">ms</span></span>
+<span class="font-label-sm text-label-sm text-outline">Redis L1</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">RLS + Cache em Memória</span>
+<div class="w-full bg-surface-container-highest h-1 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-secondary h-full w-[88%]"></div>
+</div>
+</div>
+</div>
+<!-- MATRIZ COMPARATIVA DOS 4 SETORES ESTRATÉGICOS -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-md font-headline-md">hub</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Matriz Reguladora das 4 Verticais Estratégicas</h2>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+<span class="material-symbols-outlined text-body-sm text-secondary">security</span>
+        Isolamento de Domínio e Validação Sanitária Automática Ativada
+      </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- CARD 1: FARMÁCIAS & DROGARIAS -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm flex flex-col justify-between overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined">local_pharmacy</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Farmácias &amp; Drogarias</h3>
+<span class="font-label-sm text-label-sm text-outline font-numeric-timer">CNAE 4771-7/01</span>
+</div>
+</div>
+<span class="bg-error-container text-on-error-container font-label-sm text-label-sm px-space-xs py-0.5 rounded uppercase">Crítico</span>
+</div>
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-outline">Exigências Sanitárias Obrigatórias:</span>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">AFE ANVISA</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">CRF Ativo (RT)</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">VISA Municipal</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">CRT Válida</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-outline">Produtos Habilitados:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Medicamentos MIP, dermocosméticos, higiene pessoal, suplementos vitamínicos, correlatos e primeiros socorros.</p>
+</div>
+<div class="bg-error-container/30 p-space-sm rounded-lg flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-error text-body-lg shrink-0">block</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-error-container">Trava Portaria 344/98 (Psicotrópicos)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Leilão aberto bloqueia Tarja Preta/Vermelha com retenção. Requer túnel seguro SNGPC.</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container p-space-xs rounded">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-primary">thermostat</span>
+              15°C a 30°C / Frio 2° a 8°C
+            </span>
+<span class="font-label-sm text-label-sm text-error font-numeric-timer">Corte: 60 dias</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 18 APIs Regulatórias Ativas
+          </span>
+<button class="text-primary hover:text-primary-container font-label-md text-label-md flex items-center gap-space-xs" onclick="inspectSector('farmacia')">
+            Configurar <span class="material-symbols-outlined text-body-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- CARD 2: PADARIAS & PANIFICAÇÃO -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm flex flex-col justify-between overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">bakery_dining</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Padarias &amp; Confeitarias</h3>
+<span class="font-label-sm text-label-sm text-outline font-numeric-timer">CNAE 1091-1 &amp; 4721-1</span>
+</div>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm px-space-xs py-0.5 rounded uppercase">Ultra-Giro</span>
+</div>
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-outline">Exigências Sanitárias Obrigatórias:</span>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Alvará VISA Municipal</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Manual BPF</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">POPs Sanitários</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Potabilidade Água</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-outline">Produtos Habilitados:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Farinhas especiais, fermentos biológicos, pré-misturas, chocolates culinários, laticínios industriais e embalagens térmicas.</p>
+</div>
+<div class="bg-secondary-container/40 p-space-sm rounded-lg flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-lg shrink-0">speed</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-secondary-container">Motor FEFO de Giro Rápido</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Fermento biológico fresco com semáforo restrito a 15 dias de vencimento.</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container p-space-xs rounded">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-primary">ac_unit</span>
+              Frio +4°C / Ambiente Seco
+            </span>
+<span class="font-label-sm text-label-sm text-error font-numeric-timer">Corte: 15 dias</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 12 Regras BPF Validadas
+          </span>
+<button class="text-primary hover:text-primary-container font-label-md text-label-md flex items-center gap-space-xs" onclick="inspectSector('padaria')">
+            Configurar <span class="material-symbols-outlined text-body-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- CARD 3: PET SHOPS & VETERINÁRIA -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm flex flex-col justify-between overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined">pets</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Pet Shops &amp; Veterinária</h3>
+<span class="font-label-sm text-label-sm text-outline font-numeric-timer">CNAE 4789-0 &amp; 7500-1</span>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-space-xs py-0.5 rounded uppercase">MAPA</span>
+</div>
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-outline">Exigências Sanitárias Obrigatórias:</span>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Registro MAPA</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">SIPEAGRO Ativo</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">CRMV Veterinário</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Alvará Localização</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-outline">Produtos Habilitados:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rações Super Premium, snacks, medicamentos isentos (antipulgas/carrapatos), dermocosmética animal e acessórios pet.</p>
+</div>
+<div class="bg-surface-container-highest p-space-sm rounded-lg flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-outline text-body-lg shrink-0">inventory_2</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Nutritional Decay Lock</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bloqueio compulsório de rações a 45 dias da validade por perda de vitaminas homologadas.</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container p-space-xs rounded">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-primary">inventory</span>
+              Paletização Padrão PBR
+            </span>
+<span class="font-label-sm text-label-sm text-error font-numeric-timer">Corte: 45 dias</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 8 APIs MAPA Integradas
+          </span>
+<button class="text-primary hover:text-primary-container font-label-md text-label-md flex items-center gap-space-xs" onclick="inspectSector('petshop')">
+            Configurar <span class="material-symbols-outlined text-body-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- CARD 4: MERCEARIAS & EMPÓRIOS -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm flex flex-col justify-between overflow-hidden hover:shadow-md transition-shadow">
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mercearias &amp; Minimercados</h3>
+<span class="font-label-sm text-label-sm text-outline font-numeric-timer">CNAE 4712-1/00</span>
+</div>
+</div>
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-space-xs py-0.5 rounded uppercase">Varejo Local</span>
+</div>
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-outline">Exigências Sanitárias Obrigatórias:</span>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Inscrição Estadual (IE)</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Alvará Sanitário VISA</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Matriz Alimentar Base</span>
+<span class="bg-surface-container-highest px-space-xs py-0.5 rounded text-on-surface font-label-sm text-label-sm">Cadastro CCG/SEFAZ</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-outline">Produtos Habilitados:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Mercearia seca, bebidas não-alcoólicas e alcoólicas, produtos de limpeza, higiene e miudezas em lotes reduzidos.</p>
+</div>
+<div class="bg-primary/5 p-space-sm rounded-lg flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-body-lg shrink-0">call_split</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary">Fracionamento Inteligente</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Quebra automática de paletes fechados para fardos menores e milk-run regional.</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant bg-surface-container p-space-xs rounded">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-primary">local_shipping</span>
+              Consolidação Last-Mile
+            </span>
+<span class="font-label-sm text-label-sm text-secondary font-numeric-timer">Corte: 30 dias</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Cluster Base Integrado
+          </span>
+<button class="text-primary hover:text-primary-container font-label-md text-label-md flex items-center gap-space-xs" onclick="inspectSector('mercearia')">
+            Configurar <span class="material-symbols-outlined text-body-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CONFIGURADOR INTERATIVO DO ARQUITETO & MOTOR TRIBUTÁRIO/FEFO -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-space-lg">
+<!-- CONSOLE ESQUERDA: PARÂMETROS DO SETOR SELECIONADO (2 COLUNAS) -->
+<div class="xl:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md font-headline-md">tune</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Parametrização Dinâmica do Motor de Negócios</h3>
+</div>
+<!-- SELETOR DE ABAS DE VERTICAIS -->
+<div class="flex bg-surface-container-low p-1 rounded-xl gap-1" id="sectorTabs">
+<button class="px-space-sm py-space-xs rounded-lg font-label-md text-label-md bg-primary text-on-primary transition-all" id="tab-farmacia" onclick="switchTab('farmacia')">Farmácias</button>
+<button class="px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-padaria" onclick="switchTab('padaria')">Padarias</button>
+<button class="px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-petshop" onclick="switchTab('petshop')">Pet Shops</button>
+<button class="px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-mercearia" onclick="switchTab('mercearia')">Mercearias</button>
+</div>
+</div>
+<!-- PAINEL DE REGRAS ESPECÍFICAS DA VERTICAL (DINÂMICO) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- SUB-BLOCO: REGRAS FEFO E SEMÁFORO DE SHELF LIFE -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase text-outline flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-primary">hourglass_bottom</span>
+              Semáforo FEFO de Shelf Life
+            </span>
+<span class="font-label-sm text-label-sm text-secondary font-label-md text-label-md" id="shelfStatusBadge">Regra ANVISA RDC 304</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex justify-between items-center text-body-sm">
+<span class="flex items-center gap-space-xs text-on-surface"><span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>Verde (Leilão Normal)</span>
+<span class="font-numeric-timer text-on-surface" id="greenThreshold">&gt; 120 dias</span>
+</div>
+<input class="w-full accent-secondary cursor-pointer" max="365" min="60" oninput="updateFEFO('green', this.value)" type="range" value="120"/>
+<div class="flex justify-between items-center text-body-sm pt-space-xs">
+<span class="flex items-center gap-space-xs text-on-surface"><span class="w-2.5 h-2.5 rounded-full bg-surface-tint"></span>Amarelo (Desconto Gradual)</span>
+<span class="font-numeric-timer text-on-surface" id="yellowThreshold">90 a 119 dias</span>
+</div>
+<input class="w-full accent-primary-container cursor-pointer" max="120" min="40" oninput="updateFEFO('yellow', this.value)" type="range" value="90"/>
+<div class="flex justify-between items-center text-body-sm pt-space-xs">
+<span class="flex items-center gap-space-xs text-on-surface"><span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span>Vermelho (Bloqueio Automático)</span>
+<span class="font-numeric-timer text-tertiary-container font-label-md text-label-md" id="redThreshold">&lt; 60 dias (Corte)</span>
+</div>
+<input class="w-full accent-error cursor-pointer" max="90" min="15" oninput="updateFEFO('red', this.value)" type="range" value="60"/>
+</div>
+<div class="p-space-xs bg-surface-container rounded font-body-sm text-body-sm text-on-surface-variant flex items-center justify-between">
+<span>Corte Sanitário Mínimo:</span>
+<span class="font-label-md text-label-md text-on-surface" id="sanitaryCutDisplay">60 Dias</span>
+</div>
+</div>
+<!-- SUB-BLOCO: REGRAS FISCAIS & TRIBUTÁRIAS -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase text-outline flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-primary">receipt_long</span>
+              Matriz Fiscal &amp; ST Setorial
+            </span>
+<span class="font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed px-space-xs py-0.5 rounded font-label-md text-label-md">SEFAZ v4.0</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-center py-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Alíquota ICMS Interestadual:</span>
+<span class="font-label-md text-label-md text-on-surface" id="taxICMS">12.0% (Origem SP)</span>
+</div>
+<div class="flex justify-between items-center py-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Margem de Valor Agregado (MVA/ST):</span>
+<span class="font-label-md text-label-md text-primary font-numeric-timer" id="taxMVA">42.8%</span>
+</div>
+<div class="flex justify-between items-center py-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Regime PIS/COFINS:</span>
+<span class="font-label-md text-label-md text-on-surface" id="taxPIS">Monofásico (Lei 10.147)</span>
+</div>
+<div class="flex justify-between items-center py-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Benefício Fiscal Cesta Básica:</span>
+<span class="font-label-md text-label-md text-outline" id="taxBenefit">Não Aplicável</span>
+</div>
+</div>
+<div class="mt-auto p-space-sm bg-surface-container rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-secondary">verified</span>
+<span class="font-body-sm text-body-sm text-on-surface">Validação XML da NFe em tempo real</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-label-md text-label-md">Ativo</span>
+</div>
+</div>
+</div>
+<!-- TRAVAS E DOCUMENTOS DA ESTEIRA DE HOMOLOGAÇÃO (KYB) -->
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-md text-label-md uppercase text-outline">Checklist de Validação Automatizada de Documentos (KYB)</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm" id="kybChecklistContainer">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-lg">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">AFE ANVISA</span>
+<span class="font-body-sm text-body-sm text-outline">API Portal Gov</span>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-1.5 py-0.5 rounded">Obrigatório</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-lg">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">CRF / Responsável</span>
+<span class="font-body-sm text-body-sm text-outline">Validador CFF</span>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-1.5 py-0.5 rounded">Obrigatório</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-lg">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Alvará Sanitário VISA</span>
+<span class="font-body-sm text-body-sm text-outline">OCR + Validação</span>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-1.5 py-0.5 rounded">Obrigatório</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CONSOLE DIREITA: MONITOR DE EXECUÇÃO E TELEMETRIA DE REGRAS (1 COLUNA) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md font-headline-md">terminal</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Motor Rete &amp; Ingress</h3>
+</div>
+<span class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span> Stream Live
+          </span>
+</div>
+<!-- SIMULADOR RÁPIDO DE CNAE / INGRESS -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-outline">Testar Ingestão de CNPJ / CNAE</span>
+<div class="flex gap-space-xs">
+<input class="w-full bg-surface-container-lowest px-space-sm py-space-xs rounded-lg text-body-md text-on-surface font-numeric-timer" id="inputCNPJTest" placeholder="00.000.000/0000-00" type="text" value="33.456.789/0001-92"/>
+<button class="bg-primary text-on-primary px-space-md py-space-xs rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shrink-0" onclick="runIngressCheck()">
+              Validar
+            </button>
+</div>
+<div class="p-space-xs rounded font-body-sm text-body-sm bg-surface-container text-on-surface flex items-center justify-between" id="ingressResult">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-sm text-secondary">verified</span>
+              CNAE 4771-7/01 Detectado
+            </span>
+<span class="font-label-sm text-label-sm text-primary font-label-md text-label-md">Cluster: Farmácias</span>
+</div>
+</div>
+<!-- SVG DE FLUXO DE DECISÃO EM GRAFO -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-outline">Topologia da Árvore de Decisão Sanitária</span>
+<div class="bg-surface-container-low p-space-sm rounded-xl flex items-center justify-center">
+<svg class="w-full h-28 text-primary" fill="none" viewbox="0 0 320 110" xmlns="http://www.w3.org/2000/svg">
+<rect fill="currentColor" fill-opacity="0.15" height="34" rx="6" width="55" x="10" y="38"></rect>
+<text fill="#003178" font-size="10" font-weight="700" text-anchor="middle" x="37" y="58">CNPJ</text>
+<path d="M65 55 L95 55" stroke="#737783" stroke-dasharray="3 3" stroke-width="2"></path>
+<rect fill="#0d47a1" height="30" rx="6" width="70" x="95" y="10"></rect>
+<text fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle" x="130" y="28">CNAE RFB</text>
+<rect fill="#003178" height="30" rx="6" width="70" x="95" y="70"></rect>
+<text fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle" x="130" y="88">VISA/MAPA</text>
+<path d="M65 55 L95 25" stroke="#003178" stroke-width="1.5"></path>
+<path d="M65 55 L95 85" stroke="#003178" stroke-width="1.5"></path>
+<path d="M165 25 L200 45" stroke="#1b6d24" stroke-width="1.5"></path>
+<path d="M165 85 L200 65" stroke="#1b6d24" stroke-width="1.5"></path>
+<rect fill="#a0f399" height="34" rx="6" width="60" x="200" y="38"></rect>
+<text fill="#005312" font-size="9" font-weight="800" text-anchor="middle" x="230" y="58">RLS Token</text>
+<path d="M260 55 L285 55" stroke="#1b6d24" stroke-width="2"></path>
+<circle cx="295" cy="55" fill="#1b6d24" r="8"></circle>
+<path d="M292 55 L294 57 L298 53" stroke="#ffffff" stroke-linecap="round" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<!-- LOG DE EVENTOS DO ARQUITETO EM TEMPO REAL -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-outline">Logs de Arquitetura &amp; Homologações</span>
+<div class="flex flex-col gap-1 font-body-sm text-body-sm font-numeric-timer">
+<div class="p-space-xs bg-surface-container-low rounded flex items-center justify-between text-on-surface">
+<span class="truncate">[14:22:08] AFE ANVISA validada: Drogarias SP</span>
+<span class="text-secondary text-label-sm font-label-sm">OK (14ms)</span>
+</div>
+<div class="p-space-xs bg-surface-container-low rounded flex items-center justify-between text-on-surface">
+<span class="truncate">[14:21:40] Bloqueio Psicotrópico #SKU-9921</span>
+<span class="text-tertiary text-label-sm font-label-sm">Travado</span>
+</div>
+<div class="p-space-xs bg-surface-container-low rounded flex items-center justify-between text-on-surface">
+<span class="truncate">[14:20:12] SIPEAGRO MAPA ração Premium #P40</span>
+<span class="text-secondary text-label-sm font-label-sm">OK (21ms)</span>
+</div>
+<div class="p-space-xs bg-surface-container-low rounded flex items-center justify-between text-on-surface">
+<span class="truncate">[14:19:55] Alíquota ICMS ST calculada Padarias</span>
+<span class="text-outline text-label-sm font-label-sm">Auditado</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-space-sm flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Hash Kernel: <span class="font-numeric-timer text-on-surface">sha256:7f4a...92b</span></span>
+<button class="text-primary hover:underline font-label-md text-label-md" onclick="flushRuleCache()">Limpar Cache L1</button>
+</div>
+</div>
+</div>
+<!-- TABELA DE CNAES HOMOLOGADOS E CONTROLE DE POLÍTICAS DE CHECKOUT -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md font-headline-md">table_chart</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Matriz Detalhada de CNAEs Homologados por Vertical</h3>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-outline">Filtro de Status:</span>
+<select class="bg-surface-container-low text-on-surface text-label-md font-label-md px-space-sm py-space-xs rounded-lg">
+<option>Todos os CNAEs Ativos (38)</option>
+<option>Apenas com Trava Crítica (14)</option>
+<option>Homologações Recentes (4)</option>
+</select>
+</div>
+</div>
+<!-- TABELA COMPACTA DE DADOS DENSOS -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">CNAE / Subclasse</th>
+<th class="py-space-sm px-space-md">Vertical</th>
+<th class="py-space-sm px-space-md">Órgão Regulador</th>
+<th class="py-space-sm px-space-md">Documentação Chave</th>
+<th class="py-space-sm px-space-md">Trava de Segurança (Checkout)</th>
+<th class="py-space-sm px-space-md">Corte Shelf Life</th>
+<th class="py-space-sm px-space-md text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y-0">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-numeric-timer text-on-surface font-label-md text-label-md">4771-7/01</td>
+<td class="py-space-sm px-space-md text-on-surface font-label-md text-label-md">Farmácias / Drogarias</td>
+<td class="py-space-sm px-space-md"><span class="bg-primary/10 text-primary px-space-xs py-0.5 rounded font-label-sm text-label-sm">ANVISA / CRF</span></td>
+<td class="py-space-sm px-space-md text-on-surface-variant">AFE Ativa + Certidão Regularidade CRF</td>
+<td class="py-space-sm px-space-md"><span class="bg-error-container text-on-error-container px-space-xs py-0.5 rounded font-label-sm text-label-sm">Bloqueio Portaria 344</span></td>
+<td class="py-space-sm px-space-md font-numeric-timer text-error">60 dias</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-primary hover:text-primary-container p-1 rounded"><span class="material-symbols-outlined text-body-lg">tune</span></button>
+</td>
+</tr>
+<tr class="bg-surface-container-low/50 hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-numeric-timer text-on-surface font-label-md text-label-md">1091-1/01</td>
+<td class="py-space-sm px-space-md text-on-surface font-label-md text-label-md">Panificação Industrial</td>
+<td class="py-space-sm px-space-md"><span class="bg-secondary/10 text-secondary px-space-xs py-0.5 rounded font-label-sm text-label-sm">VISA Municipal</span></td>
+<td class="py-space-sm px-space-md text-on-surface-variant">Manual BPF + Laudo de Água</td>
+<td class="py-space-sm px-space-md"><span class="bg-surface-container text-on-surface-variant px-space-xs py-0.5 rounded font-label-sm text-label-sm">Cadeia de Frio (+4°C)</span></td>
+<td class="py-space-sm px-space-md font-numeric-timer text-error">15 dias</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-primary hover:text-primary-container p-1 rounded"><span class="material-symbols-outlined text-body-lg">tune</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-numeric-timer text-on-surface font-label-md text-label-md">4789-0/04</td>
+<td class="py-space-sm px-space-md text-on-surface font-label-md text-label-md">Pet Shops / Rações</td>
+<td class="py-space-sm px-space-md"><span class="bg-primary/10 text-primary px-space-xs py-0.5 rounded font-label-sm text-label-sm">MAPA / SIPEAGRO</span></td>
+<td class="py-space-sm px-space-md text-on-surface-variant">Registro SIPEAGRO Lotes</td>
+<td class="py-space-sm px-space-md"><span class="bg-surface-container text-on-surface-variant px-space-xs py-0.5 rounded font-label-sm text-label-sm">Degradação Nutricional</span></td>
+<td class="py-space-sm px-space-md font-numeric-timer text-error">45 dias</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-primary hover:text-primary-container p-1 rounded"><span class="material-symbols-outlined text-body-lg">tune</span></button>
+</td>
+</tr>
+<tr class="bg-surface-container-low/50 hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-numeric-timer text-on-surface font-label-md text-label-md">4712-1/00</td>
+<td class="py-space-sm px-space-md text-on-surface font-label-md text-label-md">Mercearias e Empórios</td>
+<td class="py-space-sm px-space-md"><span class="bg-secondary/10 text-secondary px-space-xs py-0.5 rounded font-label-sm text-label-sm">VISA / SEFAZ</span></td>
+<td class="py-space-sm px-space-md text-on-surface-variant">Inscrição Estadual Habilitada</td>
+<td class="py-space-sm px-space-md"><span class="bg-secondary-container text-on-secondary-container px-space-xs py-0.5 rounded font-label-sm text-label-sm">Fracionamento Mínimo</span></td>
+<td class="py-space-sm px-space-md font-numeric-timer text-error">30 dias</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-primary hover:text-primary-container p-1 rounded"><span class="material-symbols-outlined text-body-lg">tune</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-space-xs">
+<span>Exibindo 4 de 38 classes CNAE mapeadas na arquitetura de regras.</span>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm hover:bg-surface-container">Anterior</button>
+<button class="px-space-sm py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm">1</button>
+<button class="px-space-sm py-1 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm hover:bg-surface-container">2</button>
+<button class="px-space-sm py-1 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm hover:bg-surface-container">Próxima</button>
+</div>
+</div>
+</div>
+<!-- SCRIPT DE INTERAÇÕES E TRANSIÇÃO DINÂMICA DE VERTICAIS -->
+<script>
+    const sectorConfig = {
+      farmacia: {
+        badge: "Regra ANVISA RDC 304",
+        green: "> 120 dias",
+        yellow: "90 a 119 dias",
+        red: "< 60 dias (Corte)",
+        cutDisplay: "60 Dias",
+        icms: "12.0% (Origem SP)",
+        mva: "42.8%",
+        pis: "Monofásico (Lei 10.147)",
+        benefit: "Não Aplicável",
+        kyb: [
+          { name: "AFE ANVISA", sub: "API Portal Gov", tag: "Obrigatório" },
+          { name: "CRF / Responsável Técnico", sub: "Validador CFF", tag: "Obrigatório" },
+          { name: "Alvará Sanitário VISA", sub: "OCR + Validação", tag: "Obrigatório" }
+        ]
+      },
+      padaria: {
+        badge: "Regra RDC 216 / BPF",
+        green: "> 45 dias",
+        yellow: "20 a 44 dias",
+        red: "< 15 dias (Corte)",
+        cutDisplay: "15 Dias",
+        icms: "7.0% (Cesta Básica SP)",
+        mva: "33.5%",
+        pis: "Alíquota Zero (Farinhas)",
+        benefit: "Isenção Parcial Própria",
+        kyb: [
+          { name: "Alvará VISA Municipal", sub: "Prefeitura / Sanitário", tag: "Obrigatório" },
+          { name: "Manual BPF Homologado", sub: "Auditoria Interna", tag: "Obrigatório" },
+          { name: "Laudo de Potabilidade de Água", sub: "Periódico 6 meses", tag: "Exigido" }
+        ]
+      },
+      petshop: {
+        badge: "Instrução Normativa MAPA 30",
+        green: "> 90 dias",
+        yellow: "50 a 89 dias",
+        red: "< 45 dias (Corte)",
+        cutDisplay: "45 Dias",
+        icms: "18.0% (Padrão Pet)",
+        mva: "51.2%",
+        pis: "Tributação Normal",
+        benefit: "Crédito Presumido Alíquota",
+        kyb: [
+          { name: "Registro MAPA SIPEAGRO", sub: "API MAPA Agro", tag: "Obrigatório" },
+          { name: "CRMV Clínico / Técnico", sub: "Conselho Veterinário", tag: "Condicional" },
+          { name: "Alvará de Localização", sub: "Zoneamento Urbano", tag: "Obrigatório" }
+        ]
+      },
+      mercearia: {
+        badge: "Regra Geral de Alimentos VISA",
+        green: "> 60 dias",
+        yellow: "35 a 59 dias",
+        red: "< 30 dias (Corte)",
+        cutDisplay: "30 Dias",
+        icms: "12.0% a 18.0% (Misto)",
+        mva: "38.0%",
+        pis: "Cumulativo / Lucro Presumido",
+        benefit: "Substituição ST Regional",
+        kyb: [
+          { name: "Inscrição Estadual (IE)", sub: "Sintegra Ativo", tag: "Obrigatório" },
+          { name: "Alvará Sanitário VISA", sub: "Varejo Alimentício", tag: "Obrigatório" },
+          { name: "Certificado Digital e-CNPJ", sub: "Emissão NFe", tag: "Obrigatório" }
+        ]
+      }
+    };
+
+    function switchTab(sectorKey) {
+      // Toggle tabs UI
+      const tabs = ['farmacia', 'padaria', 'petshop', 'mercearia'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        if (t === sectorKey) {
+          btn.className = "px-space-sm py-space-xs rounded-lg font-label-md text-label-md bg-primary text-on-primary transition-all";
+        } else {
+          btn.className = "px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all";
+        }
+      });
+
+      const conf = sectorConfig[sectorKey];
+      if (!conf) return;
+
+      document.getElementById('shelfStatusBadge').innerText = conf.badge;
+      document.getElementById('greenThreshold').innerText = conf.green;
+      document.getElementById('yellowThreshold').innerText = conf.yellow;
+      document.getElementById('redThreshold').innerText = conf.red;
+      document.getElementById('sanitaryCutDisplay').innerText = conf.cutDisplay;
+
+      document.getElementById('taxICMS').innerText = conf.icms;
+      document.getElementById('taxMVA').innerText = conf.mva;
+      document.getElementById('taxPIS').innerText = conf.pis;
+      document.getElementById('taxBenefit').innerText = conf.benefit;
+
+      // Update KYB checklist
+      const kybContainer = document.getElementById('kybChecklistContainer');
+      kybContainer.innerHTML = '';
+      conf.kyb.forEach(item => {
+        const div = document.createElement('div');
+        div.className = "bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between";
+        div.innerHTML = `
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-secondary text-body-lg">check_circle</span>
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-on-surface">${item.name}</span>
+              <span class="font-body-sm text-body-sm text-outline">${item.sub}</span>
+            </div>
+          </div>
+          <span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-1.5 py-0.5 rounded">${item.tag}</span>
+        `;
+        kybContainer.appendChild(div);
+      });
+    }
+
+    function inspectSector(sec) {
+      switchTab(sec);
+      window.scrollTo({ top: 500, behavior: 'smooth' });
+    }
+
+    function updateFEFO(tier, val) {
+      if(tier === 'green') {
+        document.getElementById('greenThreshold').innerText = '> ' + val + ' dias';
+      } else if (tier === 'yellow') {
+        document.getElementById('yellowThreshold').innerText = val + ' a ' + (parseInt(val)+29) + ' dias';
+      } else if (tier === 'red') {
+        document.getElementById('redThreshold').innerText = '< ' + val + ' dias (Corte)';
+        document.getElementById('sanitaryCutDisplay').innerText = val + ' Dias';
+      }
+    }
+
+    function runIngressCheck() {
+      const c = document.getElementById('inputCNPJTest').value;
+      const res = document.getElementById('ingressResult');
+      res.innerHTML = `
+        <span class="flex items-center gap-space-xs">
+          <span class="material-symbols-outlined text-body-sm text-secondary">verified</span>
+          CNPJ Validado na RFB em 11ms!
+        </span>
+        <span class="font-label-sm text-label-sm text-secondary font-label-md text-label-md">CNAE 4771-7 Aprovado</span>
+      `;
+    }
+
+    function flushRuleCache() {
+      alert("Cache de Regras Rete L1 e Tokens RLS limpos com sucesso. Re-sincronizado com Redis em 4ms.");
+    }
+
+    function simulateTransactionModal() {
+      alert("Simulador Multissetorial: Inicializando pipeline de teste simulando carrinho misto [Medicamento MIP + Insumo Confeitaria + Ração Super Premium] com cálculo de ST segregado e rota de frete climatizado.");
+    }
+
+    function exportArchitectureDossier() {
+      alert("Compilando Dossiê Executivo de Arquitetura Multissetorial (PDF com 38 páginas de diagramas C4 e mapeamento de APIs sanitárias). Download iniciando.");
+    }
+  </script>
+</div></main></div></body></html>

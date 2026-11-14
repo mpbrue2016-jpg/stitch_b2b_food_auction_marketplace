@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "outline-variant": "#c3c6d4",
+          "tertiary": "#720009",
+          "secondary": "#1b6d24",
+          "on-tertiary-fixed-variant": "#930010",
+          "surface-bright": "#f7f9fb",
+          "secondary-fixed": "#a3f69c",
+          "surface-tint": "#2b5bb5",
+          "on-primary": "#ffffff",
+          "on-secondary-fixed": "#002204",
+          "on-background": "#191c1e",
+          "on-tertiary-container": "#ffa59d",
+          "surface": "#f7f9fb",
+          "on-secondary-container": "#217128",
+          "on-primary-container": "#a1bbff",
+          "on-error": "#ffffff",
+          "on-error-container": "#93000a",
+          "secondary-fixed-dim": "#88d982",
+          "surface-container-highest": "#e0e3e5",
+          "inverse-primary": "#b0c6ff",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#d8dadc",
+          "error": "#ba1a1a",
+          "on-tertiary": "#ffffff",
+          "primary-container": "#0d47a1",
+          "error-container": "#ffdad6",
+          "tertiary-fixed-dim": "#ffb3ac",
+          "background": "#f7f9fb",
+          "on-surface-variant": "#434652",
+          "on-secondary-fixed-variant": "#005312",
+          "primary-fixed": "#d9e2ff",
+          "inverse-surface": "#2d3133",
+          "on-secondary": "#ffffff",
+          "on-primary-fixed-variant": "#00429c",
+          "surface-variant": "#e0e3e5",
+          "primary-fixed-dim": "#b0c6ff",
+          "inverse-on-surface": "#eff1f3",
+          "on-surface": "#191c1e",
+          "secondary-container": "#a0f399",
+          "tertiary-container": "#9d0011",
+          "surface-container-low": "#f2f4f6",
+          "outline": "#737783",
+          "surface-container": "#eceef0",
+          "surface-container-high": "#e6e8ea",
+          "on-primary-fixed": "#001945",
+          "tertiary-fixed": "#ffdad6",
+          "primary": "#003178",
+          "on-tertiary-fixed": "#410003"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-mobile": "0.75rem",
+          "space-sm": "0.5rem",
+          "margin": "1.5rem",
+          "space-lg": "1.25rem",
+          "space-xs": "0.25rem",
+          "space-md": "0.75rem",
+          "gutter": "1rem",
+          "margin-mobile": "1rem",
+          "space-xl": "2rem"
+        },
+        "fontFamily": {
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-md": [
+            "Plus Jakarta Sans"
+          ],
+          "numeric-timer": [
+            "Plus Jakarta Sans"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl": [
+            "Plus Jakarta Sans"
+          ],
+          "label-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-lg-mobile": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-md": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "700"
+            }
+          ],
+          "numeric-timer": [
+            "20px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "800"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-xl-mobile": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "800"
+            }
+          ],
+          "headline-xl": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "fontWeight": "800"
+            }
+          ],
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col overflow-y-auto"><div class="p-space-lg flex items-center gap-space-md"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-md text-headline-md font-bold">VA</div><div><span class="block font-headline-md text-headline-md text-primary tracking-tight">VarejoB2B</span><span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Portal Distribuidor</span></div></div><div class="px-space-lg py-space-sm"><div class="bg-surface-container-low p-space-md rounded-lg"><span class="block font-label-sm text-label-sm text-on-surface-variant uppercase">CD Central Ativo</span><span class="font-label-md text-label-md text-on-surface font-bold">CD-01 Campinas SP</span></div></div><nav class="flex-1 px-space-md py-space-sm space-y-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Visão Geral</span><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="painel-geral-do-distribuidor-cockpit-comercial-b2b" href="#">Painel Geral &amp; Cockpit Comercial</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Catálogo &amp; Estoque</span><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="produtos-lotes-controle-de-shelf-life-do-distribuidor" href="#">Produtos, Lotes &amp; Shelf Life</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Operação Comercial</span><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="central-de-leiloes-pregoes-ao-vivo-promocoes-b2b" href="#">Central de Pregões &amp; Leilões Ao Vivo</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="criacao-de-novo-leilao-b2b-parametrizacao-comercial-de-lote" href="#">Criar Leilão &amp; Parametrizar Lote</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Gestão de Pedidos &amp; Logística</span><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="pedidos-clientes-varejistas-faturamento-comissoes" href="#">Pedidos &amp; Carteira Varejista</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="expedicao-de-docas-frotas-romaneio-de-carga-do-distribuidor" href="#">Expedição, Docas &amp; Frotas</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Financeiro &amp; Comissões</span><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="extrato-fiduciario-escrow-conciliacao-pix-spi-repasses-d0" href="#">Extrato Fiduciário Escrow &amp; Repasses D+0</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="gestao-de-taxas-comissoes-b2b-retencoes-contratuais" href="#">Taxas, Comissões B2B &amp; Retenções</a></div></nav><div class="p-space-md bg-surface-container"><div class="space-y-space-xs"><div class="flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm">Sincronização ERP</span><span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold"><span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>SAP/TOTVS Online</span></div><div class="flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm">Mensageria SEFAZ</span><span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold"><span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span>Ativa D+0</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40"><div class="h-16 w-full px-space-xl flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-0"><div class="min-w-0"><div class="flex items-center gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Distribuidora Aliança de Alimentos Ltda</span><span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px]">verified</span>Distribuidor Certificado B2B</span></div><span class="block font-body-sm text-body-sm text-on-surface-variant">CNPJ 08.319.442/0001-50</span></div></div><div class="flex items-center gap-space-lg flex-shrink-0"><div class="hidden xl:flex items-center gap-space-md bg-surface-container-lowest px-space-md py-space-xs rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col text-right"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Saldo a Receber (D+0)</span><span class="font-headline-md text-headline-md text-secondary font-bold">R$ 384.920,00</span></div><a class="p-1.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-on-secondary transition-colors" data-path="extrato-fiduciario-escrow-conciliacao-pix-spi-repasses-d0" href="#" title="Conciliação Escrow D+0"><span class="material-symbols-outlined text-[18px]">currency_exchange</span></a></div><div class="flex items-center gap-space-xs"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Notificações de Pregão"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container"></span></button><button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Configurações"><span class="material-symbols-outlined text-[20px]">tune</span></button></div><div class="h-6 w-[1px] bg-outline-variant"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="hidden sm:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-bold">Carlos Mendonça</span><span class="font-label-sm text-label-sm text-on-surface-variant">Mesa de Operações</span></div></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="flex flex-col w-full">
+<!-- Sub-header Breadcrumb and Actions Bar -->
+<div class="px-space-xl py-space-lg bg-surface-container-lowest shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="min-w-0">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider mb-space-xs">
+<span>Portal Distribuidor</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span>Financeiro &amp; Comissões</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary font-bold">Taxas &amp; Comissões B2B</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Gestão de Taxas, Comissões &amp; Bonificações B2B</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl mt-1">
+        Painel transparente de take-rate da plataforma, tabela progressiva por volume faturado (Tierização Comercial), demonstrativo mensal de encargos e relatórios de comissões para auditoria fiscal.
+      </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm flex-shrink-0">
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors" title="Download Demonstrativo">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span>Demonstrativo Fiscal (.PDF)</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors" title="Exportar SPED Fiscal">
+<span class="material-symbols-outlined text-[18px]">table_view</span>
+<span>Relatório SPED Contábil</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md transition-colors shadow-sm" title="Consultar política de bonificação">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+<span>Regras de Bonificação Tier</span>
+</button>
+</div>
+</div>
+<div class="p-space-xl space-y-space-xl max-w-[1600px] w-full mx-auto">
+<!-- Executive Tier Highlight Card -->
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary p-space-xl shadow-md">
+<div class="relative z-10 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-xl">
+<div class="space-y-space-sm max-w-2xl">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-bold uppercase tracking-wide shadow-sm">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<span>Classificação Vigente: Tier Diamante</span>
+<span class="text-on-secondary-fixed-variant text-[11px] font-normal">• Volume &gt; R$ 1,5M/mês</span>
+</div>
+<div class="space-y-1">
+<h2 class="font-headline-lg text-headline-lg text-on-primary font-bold">
+              Benefício de Take-rate: -0,70% sobre a Taxa Padrão
+            </h2>
+<p class="font-body-md text-body-md text-on-primary-container">
+              Sua alíquota base de intermediação foi reduzida de <span class="line-through opacity-75">4,50%</span> para <strong class="text-on-primary font-bold">3,80% efetivo</strong> devido ao alto volume faturado e cumprimento de 99,4% de pontualidade no despacho de docas.
+            </p>
+</div>
+<div class="pt-space-xs flex items-center gap-space-md text-label-md font-label-md">
+<div class="flex items-center gap-1.5 text-secondary-fixed">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span>Economia acumulada no trimestre: <strong>R$ 14.820,00</strong></span>
+</div>
+<div class="h-3 w-px bg-on-primary-container/30"></div>
+<div class="text-on-primary-container">
+              Reavaliação de Tier: <span class="text-on-primary font-bold">31/10/2024</span>
+</div>
+</div>
+</div>
+<!-- Tier Progression Gauge / Meter -->
+<div class="w-full xl:w-96 bg-surface-container-lowest/10 backdrop-blur-md p-space-lg rounded-xl text-on-primary flex flex-col justify-between">
+<div class="flex items-center justify-between font-label-md text-label-md mb-space-xs">
+<span class="text-on-primary-container font-label-sm text-label-sm uppercase tracking-wider">Volume Faturado Mês</span>
+<span class="font-bold text-on-primary">R$ 1.842.900 / R$ 2,5M</span>
+</div>
+<div class="w-full bg-surface-container-highest/20 rounded-full h-3 mb-space-sm overflow-hidden p-0.5">
+<div class="bg-secondary-fixed h-full rounded-full transition-all duration-700" style="width: 73.7%;"></div>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-secondary-fixed-dim font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              73,7% concluído
+            </span>
+<span class="text-on-primary-container">Meta Platinum (3,2% Take-rate)</span>
+</div>
+<div class="mt-space-sm pt-space-xs text-on-primary-container font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">bolt</span>
+<span>Faltam apenas <strong>R$ 657.100,00</strong> para desbloquear a taxa de 3,20%.</span>
+</div>
+</div>
+</div>
+<!-- Subtle background graphic watermark -->
+<div class="absolute right-[-20px] bottom-[-30px] opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[240px]">finance_mode</span>
+</div>
+</div>
+<!-- 4 High-Density Key Performance Indicators -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Faturado no Mês (Bruto)</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+</span>
+</div>
+<div class="my-space-sm">
+<div class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">R$ 1.842.900,00</div>
+<span class="font-body-sm text-body-sm text-secondary font-bold flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+            +18,4% vs mês anterior
+          </span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm">
+          48 pregões e vendas homologadas
+        </div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Comissões Retidas Plataforma</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">percent</span>
+</span>
+</div>
+<div class="my-space-sm">
+<div class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">R$ 70.030,20</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="font-bold text-primary">3,80%</span> taxa efetiva consolidada
+          </span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm">
+          Débito automático via Santander Escrow
+        </div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Bonificações &amp; Rebates</span>
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[18px]">savings</span>
+</span>
+</div>
+<div class="my-space-sm">
+<div class="font-headline-lg text-headline-lg text-secondary font-extrabold tracking-tight">R$ 12.900,30</div>
+<span class="font-body-sm text-body-sm text-secondary font-bold flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+            Descontos de Tier e SLA Doca
+          </span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm">
+          Economia creditada diretamente no lote
+        </div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Repasse Líquido Efetivo</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+</span>
+</div>
+<div class="my-space-sm">
+<div class="font-headline-lg text-headline-lg text-secondary font-extrabold tracking-tight">R$ 1.772.869,80</div>
+<span class="font-body-sm text-body-sm text-secondary font-bold flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+            100% liquidação fiduciária D+0
+          </span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm">
+          Conta Escrow Vinculada CNPJ 08.319...
+        </div>
+</div>
+</div>
+<!-- Main Workspace Split: Left (68%) / Right (32%) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column: Analytical Commission Ledger & Withholding Breakdown (68%) -->
+<div class="xl:col-span-8 space-y-space-xl">
+<!-- Analytical Table Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-space-lg bg-surface-container-lowest flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">receipt_long</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Extrato Analítico de Comissões por Lote / Pedido</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Demonstração detalhada da retenção aplicada sobre cada pregão e venda direta encerrada.
+              </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="relative">
+<input class="pl-8 pr-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest placeholder:text-outline" placeholder="Filtrar por #PED ou SKU..." type="text"/>
+<span class="material-symbols-outlined text-[16px] absolute left-2.5 top-2 text-outline">search</span>
+</div>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant" title="Filtrar Período">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-md px-space-lg">Pedido &amp; Lote Faturado</th>
+<th class="py-space-md px-space-md text-right">Valor Venda</th>
+<th class="py-space-md px-space-md">Modalidade</th>
+<th class="py-space-md px-space-md text-center">Taxa Base / Tier</th>
+<th class="py-space-md px-space-md text-center">Tx. Aplicada</th>
+<th class="py-space-md px-space-md text-right">Comissão Retida</th>
+<th class="py-space-md px-space-lg text-right">Documentos</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex-shrink-0 flex items-center justify-center text-primary font-bold font-label-md text-label-md">
+                        #01
+                      </div>
+<div class="min-w-0">
+<span class="font-label-md text-label-md text-primary font-bold block">#PED-9901</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate block">Farinha Trigo Especial 1kg (15 Toneladas)</span>
+<span class="font-label-sm text-label-sm text-outline">EAN 7891000315541 • 375 Fardos</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">R$ 58.800,00</span>
+<span class="block font-label-sm text-label-sm text-secondary font-bold">R$ 3,92 / un</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[12px]">gavel</span>
+                      Leilão Inglês
+                    </span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="font-body-sm text-body-sm">
+<span class="text-outline">4,50%</span>
+<span class="text-secondary font-bold ml-1">-0,70%</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed bg-secondary-fixed px-1 rounded">Tier Diamante</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-extrabold text-primary">3,80%</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-extrabold text-tertiary">R$ 2.234,40</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Economia: R$ 411,60</span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<a class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-bold inline-flex items-center gap-1" href="#" title="Visualizar NFS-e">
+<span class="material-symbols-outlined text-[14px]">description</span>
+                        NFS-e #88192
+                      </a>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container" title="Recibo de Retenção Escrow">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 (Super Lote) -->
+<tr class="hover:bg-surface-container-low transition-colors bg-secondary-container/10">
+<td class="py-space-md px-space-lg">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed flex-shrink-0 flex items-center justify-center text-on-secondary-fixed font-bold font-label-md text-label-md">
+                        #02
+                      </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-primary font-bold">#PED-9884</span>
+<span class="px-1.5 py-0.2 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">Super Lote</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate block">Azeite de Oliva Extra Virgem 500ml Importado</span>
+<span class="font-label-sm text-label-sm text-outline">EAN 7898912344012 • 28 Paletes / 18.700 un</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">R$ 187.000,00</span>
+<span class="block font-label-sm text-label-sm text-secondary font-bold">R$ 10,00 / un</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+                      Pregão Holandês
+                    </span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="font-body-sm text-body-sm">
+<span class="text-outline">4,50%</span>
+<span class="text-secondary font-bold ml-1">-1,00%</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed bg-secondary-fixed px-1 rounded">Diamante + Volume</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-extrabold text-secondary">3,50%</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-extrabold text-tertiary">R$ 6.545,00</span>
+<span class="block font-label-sm text-label-sm text-secondary font-bold">Economia: R$ 1.870,00</span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<a class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-bold inline-flex items-center gap-1" href="#" title="Visualizar NFS-e">
+<span class="material-symbols-outlined text-[14px]">description</span>
+                        NFS-e #88145
+                      </a>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container" title="Recibo de Retenção Escrow">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex-shrink-0 flex items-center justify-center text-primary font-bold font-label-md text-label-md">
+                        #03
+                      </div>
+<div class="min-w-0">
+<span class="font-label-md text-label-md text-primary font-bold block">#PED-9870</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate block">Café Torrado e Moído Tradicional 500g Almofada</span>
+<span class="font-label-sm text-label-sm text-outline">EAN 7896001221901 • 960 Caixas</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">R$ 138.240,00</span>
+<span class="block font-label-sm text-label-sm text-secondary font-bold">R$ 14,40 / cx</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[12px]">gavel</span>
+                      Leilão Inglês
+                    </span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<div class="font-body-sm text-body-sm">
+<span class="text-outline">4,50%</span>
+<span class="text-secondary font-bold ml-1">-0,70%</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed bg-secondary-fixed px-1 rounded">Tier Diamante</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-extrabold text-primary">3,80%</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-extrabold text-tertiary">R$ 5.253,12</span>
+<span class="block font-label-sm text-label-sm text-on-surface-variant">Economia: R$ 967,68</span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<a class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-bold inline-flex items-center gap-1" href="#" title="Visualizar NFS-e">
+<span class="material-symbols-outlined text-[14px]">description</span>
+                        NFS-e #88099
+                      </a>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container" title="Recibo de Retenção Escrow">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 (Venda Direta) -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex-shrink-0 flex items-center justify-center text-primary font-bold font-label-md text-label-md">
+                        #04
+                      </div>
+<div class="min-w-0">
+<span class="font-label-md text-label-md text-primary font-bold block">#PED-9812</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate block">Queijo Prato 1kg Fatiado Congelado Food Service</span>
+<span class="font-label-sm text-label-sm text-outline">EAN 7891288492019 • 1.460 Peças</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">R$ 40.880,00</span>
+<span class="block font-label-sm text-label-sm text-secondary font-bold">R$ 28,00 / un</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[12px]">shopping_cart</span>
+                      Venda Direta
+                    </span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Tabela Promocional</span>
+<span class="block font-label-sm text-label-sm text-outline">Ponta de Estoque</span>
+</td>
+<td class="py-space-md px-space-md text-center whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-extrabold text-secondary">3,00%</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<span class="font-label-lg text-label-lg font-extrabold text-tertiary">R$ 1.226,40</span>
+<span class="block font-label-sm text-label-sm text-secondary font-bold">Taxa reduzida</span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-1">
+<a class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm font-bold inline-flex items-center gap-1" href="#" title="Visualizar NFS-e">
+<span class="material-symbols-outlined text-[14px]">description</span>
+                        NFS-e #87980
+                      </a>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container" title="Recibo de Retenção Escrow">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination/Summary -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-on-surface-variant">
+<div>
+              Mostrando <strong class="text-on-surface">4</strong> de <strong class="text-on-surface">48</strong> lotes faturados no ciclo atual de faturamento.
+            </div>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-2 py-1 rounded bg-primary-container text-on-primary font-bold">1</button>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">2</button>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">3</button>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface">Próximo</button>
+</div>
+</div>
+</div>
+<!-- Tax Withholdings Breakdown (Demonstrativo de Retenções Tributárias na Fonte) -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">policy</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Demonstrativo de Retenções Tributárias na Fonte (Lei 10.833 / ISSQN)</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Discriminação fiscal dos tributos retidos sobre os serviços de intermediação comercial prestados pela plataforma VarejoB2B S.A.
+              </p>
+</div>
+<span class="px-space-sm py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Emissão Automática D+0
+            </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md pt-space-xs">
+<!-- Box IRRF -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">IRRF Fonte (Código 1708)</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-bold">1,50%</span>
+</div>
+<div class="my-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">R$ 1.050,45</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Retenção de comissão digital</span>
+</div>
+<div class="text-[11px] text-outline font-label-sm">
+                Disponível na DIRF e Informe Anual
+              </div>
+</div>
+<!-- Box PIS/COFINS/CSLL -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">PIS / COFINS / CSLL (CRF 5952)</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-bold">4,65%</span>
+</div>
+<div class="my-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">R$ 3.256,40</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Base compensável no SPED</span>
+</div>
+<div class="text-[11px] text-outline font-label-sm">
+                Guia DARF unificada gerada pelo Escrow
+              </div>
+</div>
+<!-- Box ISSQN -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">ISSQN Retido (São Paulo)</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-bold">2,00%</span>
+</div>
+<div class="my-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">R$ 1.400,60</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Subitem 10.05 da LC 116/03</span>
+</div>
+<div class="text-[11px] text-outline font-label-sm">
+                Comprovante de Recolhimento Eletrônico
+              </div>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container flex items-start gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0 mt-0.5">info</span>
+<p>
+              Os valores retidos na fonte são transmitidos automaticamente via mensageria EFD-Reinf e DCTFWeb. Para compensação no regime de Lucro Real, acesse o pacote contábil de XMLs emitidos ao lado.
+            </p>
+</div>
+</div>
+</div>
+<!-- Right Column: Tier Progression Matrix & NFS-e Consolidation (32%) -->
+<div class="xl:col-span-4 space-y-space-xl">
+<!-- Tier Progression Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Tabela de Tiers Comerciais</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Regra progressiva calculada pelo volume faturado mensal.</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[24px]">stairs</span>
+</div>
+<!-- Tier List Items -->
+<div class="space-y-space-sm pt-space-xs">
+<!-- Tier Bronze -->
+<div class="p-space-md rounded-lg bg-surface-container-low transition-all">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Tier Bronze</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">5,00%</span>
+</div>
+<div class="flex items-center justify-between mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>Até R$ 250.000 / mês</span>
+<span class="text-outline font-label-sm">Suporte padrão</span>
+</div>
+</div>
+<!-- Tier Prata -->
+<div class="p-space-md rounded-lg bg-surface-container-low transition-all">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Tier Prata</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">4,50%</span>
+</div>
+<div class="flex items-center justify-between mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>R$ 250k a R$ 750k / mês</span>
+<span class="text-outline font-label-sm">Gerente de contas</span>
+</div>
+</div>
+<!-- Tier Ouro -->
+<div class="p-space-md rounded-lg bg-surface-container-low transition-all">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Tier Ouro</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">4,00%</span>
+</div>
+<div class="flex items-center justify-between mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>R$ 750k a R$ 1,5M / mês</span>
+<span class="text-secondary font-bold font-label-sm">Doca prioritária + D+0</span>
+</div>
+</div>
+<!-- Tier Diamante (CURRENT ACTIVE) -->
+<div class="p-space-md rounded-lg bg-primary/5 shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<span class="font-label-md text-label-md text-primary font-bold">Tier Diamante</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm font-bold uppercase">Atual</span>
+</div>
+<span class="font-headline-md text-headline-md font-extrabold text-primary">3,5% - 3,8%</span>
+</div>
+<div class="flex items-center justify-between mt-1 text-on-surface font-body-sm text-body-sm">
+<span class="font-semibold">R$ 1,5M a R$ 3,0M / mês</span>
+<span class="text-primary font-bold font-label-sm">API WMS/ERP sem custo</span>
+</div>
+<div class="mt-space-xs pt-space-xs text-body-sm font-body-sm text-on-surface-variant">
+                Seu faturamento atual (R$ 1,84M) garante esta faixa até a virada do ciclo.
+              </div>
+</div>
+<!-- Tier Enterprise -->
+<div class="p-space-md rounded-lg bg-surface-container-low transition-all opacity-85">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md text-on-surface font-bold">Tier Enterprise</span>
+<span class="material-symbols-outlined text-[16px] text-outline">lock</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-secondary">A partir de 2,90%</span>
+</div>
+<div class="flex items-center justify-between mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>Acima de R$ 3.000.000 / mês</span>
+<span class="text-outline font-label-sm">Consultor dedicado</span>
+</div>
+</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-high/60 text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Dúvidas sobre o enquadramento de volume?</span>
+<a class="font-label-md text-label-md text-primary font-bold hover:underline inline-flex items-center gap-1" href="#">
+              Falar com o Diretor de Contas B2B
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- NFS-e Consolidation & Tax Deductibility Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">folder_zip</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Notas Fiscais de Serviço (NFS-e)</h3>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Pacote mensal consolidado da comissão emitido pela operadora do marketplace com espelho XML/PDF para dedução de despesas operacionais no IRPJ/CSLL (Lucro Real).
+          </p>
+<div class="space-y-space-sm pt-space-xs">
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Ciclo de Competência:</span>
+<span class="font-bold text-on-surface">Outubro / 2024</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Total de NFS-e Emitidas:</span>
+<span class="font-bold text-on-surface">48 documentos fiscais</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Total da Taxa Intermediação:</span>
+<span class="font-bold text-tertiary">R$ 70.030,20</span>
+</div>
+</div>
+<div class="pt-space-xs space-y-space-xs">
+<button class="w-full inline-flex items-center justify-center gap-space-xs py-space-sm px-space-md rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md font-bold transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Baixar Pacote de NFS-e Mensal (.ZIP)</span>
+</button>
+<button class="w-full inline-flex items-center justify-center gap-space-xs py-space-sm px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Enviar Diretamente para Contabilidade</span>
+</button>
+</div>
+</div>
+<!-- Escrow Protection Trust Badge -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-bold text-on-surface block">Garantia Santander Escrow</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Liquidação D+0 e comissões retidas em conta fiduciária auditada pelo BACEN.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

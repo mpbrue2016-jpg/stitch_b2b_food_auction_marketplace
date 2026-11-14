@@ -1,0 +1,651 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline-variant": "#c3c6d4", "surface-container-lowest": "#ffffff", "secondary-container": "#a0f399", "on-secondary-fixed-variant": "#005312", "background": "#f7f9fb", "inverse-surface": "#2d3133", "primary-fixed": "#d9e2ff", "on-primary-fixed-variant": "#00429c", "on-primary": "#ffffff", "surface-tint": "#2b5bb5", "surface-bright": "#f7f9fb", "primary-container": "#0d47a1", "surface-dim": "#d8dadc", "on-primary-container": "#a1bbff", "error-container": "#ffdad6", "on-secondary-fixed": "#002204", "on-error": "#ffffff", "secondary-fixed-dim": "#88d982", "on-tertiary-fixed": "#410003", "error": "#ba1a1a", "on-background": "#191c1e", "tertiary-fixed-dim": "#ffb3ac", "secondary": "#1b6d24", "tertiary": "#720009", "on-secondary-container": "#217128", "surface-variant": "#e0e3e5", "on-primary-fixed": "#001945", "on-tertiary-container": "#ffa59d", "surface-container-highest": "#e0e3e5", "primary-fixed-dim": "#b0c6ff", "on-secondary": "#ffffff", "on-tertiary": "#ffffff", "tertiary-container": "#9d0011", "secondary-fixed": "#a3f69c", "surface-container-high": "#e6e8ea", "on-tertiary-fixed-variant": "#930010", "surface": "#f7f9fb", "on-surface-variant": "#434652", "outline": "#737783", "inverse-primary": "#b0c6ff", "inverse-on-surface": "#eff1f3", "surface-container": "#eceef0", "on-error-container": "#93000a", "on-surface": "#191c1e", "surface-container-low": "#f2f4f6", "primary": "#003178", "tertiary-fixed": "#ffdad6" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "margin": "1.5rem", "space-sm": "0.5rem", "space-xl": "2rem", "space-lg": "1.25rem", "space-md": "0.75rem", "gutter": "1rem", "space-xs": "0.25rem" }, "fontFamily": { "headline-lg": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "numeric-timer": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "headline-lg": [ "24px", { "lineHeight": "32px", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "700" } ], "numeric-timer": [ "20px", { "lineHeight": "24px", "fontWeight": "800" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "fontWeight": "800" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" } ], "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "fontWeight": "800" } ], "headline-md": [ "18px", { "lineHeight": "24px", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center justify-between bg-surface-container-low"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPgE2AzfUp8uq2xlqXLzJAU2yWKEXCkm01bAU8YASDuZrX22oqaR9kW6IOCB_jiuRsOuMKt4sUruDEpbfr4fs8mQ6CJX_wW8hAXofn3wLE6bEjhTiYEIlpJ11bXDgzFN6tAkcCZhuz1QOXVsfr8LqpvTQ5H6mi8oFGWFshUU2zub55lZLowSphPRtsk6xbf_C43Zo_YjvIBTcgOEyp41HU8FIrSiCXP2zlYwMidd7ZClB3U9gSzNyCfQ" alt="Varejista Online" class="h-10 w-auto object-contain"><span class="material-symbols-outlined text-outline text-[18px]">verified_user</span></div><nav class="flex-1 overflow-y-auto px-space-md py-space-lg flex flex-col gap-space-lg" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg"><div class="flex flex-col gap-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Operacional</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="painel-operacional" href="#"><span class="material-symbols-outlined text-[20px]">space_dashboard</span>Painel Operacional</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="leiloes-ao-vivo" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span>Leilões &amp; Pregões</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="pedidos-em-lote" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span>Pedidos em Lote</a></div><div class="flex flex-col gap-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Catálogo &amp; Categorias</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="catalogo-skus" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span>Gestão de SKUs / Lotes</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="categorias-alimentos" href="#"><span class="material-symbols-outlined text-[20px]">category</span>Alimentos &amp; Bebidas</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="shelf-life-validade" href="#"><span class="material-symbols-outlined text-[20px]">hourglass_top</span>Shelf-Life &amp; Validade</a></div><div class="flex flex-col gap-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Logística &amp; Governança</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="notificacoes-alertas" href="#"><span class="material-symbols-outlined text-[20px]">notifications_active</span>Central de Notificações</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="bloqueio-sanitario" href="#"><span class="material-symbols-outlined text-[20px]">health_and_safety</span>Bloqueio Sanitário</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="wms-logistica" href="#"><span class="material-symbols-outlined text-[20px]">pallet</span>WMS &amp; Rastreamento</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="arbitragem-escrow" href="#"><span class="material-symbols-outlined text-[20px]">account_balance</span>Arbitragem &amp; Escrow</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="auditoria-worm" href="#"><span class="material-symbols-outlined text-[20px]">lock_clock</span>Auditoria WORM</a></div></nav><div class="p-space-md bg-surface-container-low"><div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[16px]">policy</span><span class="font-label-sm text-label-sm text-on-surface-variant">Compliance SLA:</span></div><span class="font-label-md text-label-md text-secondary">99.98%</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-margin flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-full"><span class="inline-block w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">WORM Ledger: Imutável</span><span class="font-label-sm text-label-sm text-outline">|</span><span class="font-label-sm text-label-sm text-outline">Bloco #489.124</span></div><div class="hidden xl:flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm"><span class="material-symbols-outlined text-[16px] text-primary">security_update_good</span><span>Conformidade ANVISA / MAPA Ativa</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm bg-secondary-container/40 px-space-md py-space-xs rounded-lg"><div class="flex flex-col items-end"><span class="font-label-sm text-label-sm text-on-secondary-fixed-variant leading-none uppercase">Escrow Balance</span><span class="font-label-lg text-label-lg text-secondary leading-tight font-bold">R$ 4.285.450,00</span></div><span class="material-symbols-outlined text-secondary text-[22px]">lock_open_right</span></div><div class="flex items-center gap-space-md"><button aria-label="Notificações e Alertas" class="relative w-9 h-9 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container"></span></button><button aria-label="Ajuda e Suporte" class="w-9 h-9 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[20px]">help_outline</span></button></div><div class="flex items-center gap-space-sm pl-space-sm border-l border-surface-container"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface leading-snug font-bold">Dr. Roberto C. Vasconcelos</span><span class="font-label-sm text-label-sm text-outline leading-tight">Diretor de Compliance &amp; Risco</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 w-full px-margin"><div class="flex flex-col w-full pb-space-xl">
+<!-- BREADCRUMB -->
+<div class="flex items-center gap-space-xs text-outline py-space-sm">
+<a class="font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Governança &amp; Comunicação</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Central de Notificações &amp; Alertas</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Simulador de Disparos &amp; Validação de Payload</span>
+</div>
+<!-- HEADER & CONTROLS -->
+<div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-space-md mt-space-xs mb-space-lg">
+<div class="flex flex-col gap-space-xs max-w-4xl">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Ambiente Sandbox / Staging Seguro
+        </span>
+<span class="px-space-sm py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm tracking-wider uppercase font-semibold">
+          Meta Cloud API v19.0 (Simulador Ativo)
+        </span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+          Firebase FCM v1
+        </span>
+<span class="px-space-sm py-0.5 rounded bg-secondary-container text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">
+          Fila Isolada (Zero Prod)
+        </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight mt-space-xs">
+        Simulador de Disparos, Playground &amp; Validador de Templates Multicanal
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Ambiente controlado de homologação de HSM Meta WhatsApp, Push Notification FCM e E-mail Transacional com verificação estrita de sintaxe de variáveis, simulação de estresse e inspeção granular de payloads criptografados.
+      </p>
+</div>
+<!-- ACTION BUTTONS -->
+<div class="flex flex-wrap items-center gap-space-xs self-start shrink-0">
+<a class="px-space-md py-space-sm rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center gap-space-xs shadow-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        Voltar à Central
+      </a>
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md transition-colors flex items-center gap-space-xs shadow-sm" onclick="carregarTemplatePreAprovado()">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+        Carregar Template
+      </button>
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center gap-space-xs" onclick="limparConsoleLogs()">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+        Limpar Logs
+      </button>
+<button class="px-space-lg py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-all flex items-center gap-space-xs shadow-md" id="btn-executar" onclick="executarDisparo()">
+<span class="material-symbols-outlined text-[18px]">send</span>
+        Executar Disparo (F5)
+      </button>
+</div>
+</div>
+<!-- TOP METRIC CARDS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-lg">
+<!-- METRIC 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Latência Média Sandbox</span>
+<span class="w-8 h-8 rounded-lg bg-primary-fixed/50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+</span>
+</div>
+<div class="my-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-extrabold">24<span class="text-body-md text-outline font-normal">ms</span></span>
+</div>
+<div class="flex items-center justify-between text-outline text-body-sm font-body-sm pt-space-xs border-t-0 bg-surface-container-low px-space-xs py-1 rounded">
+<span>WA: <strong class="text-secondary font-bold">18ms</strong></span>
+<span>•</span>
+<span>FCM: <strong class="text-on-surface font-semibold">32ms</strong></span>
+<span>•</span>
+<span>SES: <strong class="text-on-surface font-semibold">45ms</strong></span>
+</div>
+</div>
+<!-- METRIC 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Taxa de Entrega Homologada</span>
+<span class="w-8 h-8 rounded-lg bg-secondary-container/60 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">task_alt</span>
+</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-secondary tracking-tight font-extrabold">100.0%</span>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed-variant bg-secondary-fixed px-1.5 py-0.5 rounded font-bold">Zero Rejeições</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Templates validados em sintaxe de tokens {{var}}
+      </p>
+</div>
+<!-- METRIC 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Créditos de Mensageria Teste</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">toll</span>
+</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-extrabold">9.850</span>
+<span class="font-body-sm text-body-sm text-outline">/ 10.000 cotas</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[98.5%] rounded-full"></div>
+</div>
+</div>
+<!-- METRIC 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Validação de Sintaxe &amp; LGPD</span>
+<span class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</span>
+</div>
+<div class="my-space-xs flex items-center gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold">100% Blindado</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px]">security</span>
+        Opt-in ativo &amp; sanitização de CPF/PIX
+      </p>
+</div>
+</div>
+<!-- TWO-COLUMN INTERACTIVE PLAYGROUND -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md mb-space-lg">
+<!-- LEFT COLUMN: 60% (7 cols on lg) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- CHANNEL SELECTOR & TRIGGER RULES -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-bold">1. Canal de Mensageria &amp; Fallback</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            Webhook Mock Ativo
+          </span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-xs mb-space-md">
+<button class="canal-tab p-space-sm rounded-lg bg-primary-container text-on-primary flex flex-col gap-1 items-start transition-all shadow-sm" id="tab-whatsapp" onclick="selecionarCanal('whatsapp')" type="button">
+<div class="flex items-center gap-1 w-full justify-between">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="text-[10px] font-bold px-1 rounded bg-secondary text-on-secondary">v19.0</span>
+</div>
+<span class="font-label-md text-label-md font-bold leading-tight">WhatsApp HSM</span>
+<span class="text-[11px] opacity-80">Meta Cloud API</span>
+</button>
+<button class="canal-tab p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex flex-col gap-1 items-start transition-all" id="tab-push" onclick="selecionarCanal('push')" type="button">
+<div class="flex items-center gap-1 w-full justify-between">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+<span class="text-[10px] font-bold px-1 rounded bg-surface-dim text-on-surface-variant">FCM</span>
+</div>
+<span class="font-label-md text-label-md font-bold leading-tight">Push Mobile</span>
+<span class="text-[11px] text-outline">Firebase / APNS</span>
+</button>
+<button class="canal-tab p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex flex-col gap-1 items-start transition-all" id="tab-email" onclick="selecionarCanal('email')" type="button">
+<div class="flex items-center gap-1 w-full justify-between">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span class="text-[10px] font-bold px-1 rounded bg-surface-dim text-on-surface-variant">SES</span>
+</div>
+<span class="font-label-md text-label-md font-bold leading-tight">E-mail Transac.</span>
+<span class="text-[11px] text-outline">AWS SES DKIM</span>
+</button>
+<button class="canal-tab p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex flex-col gap-1 items-start transition-all" id="tab-multicanal" onclick="selecionarCanal('multicanal')" type="button">
+<div class="flex items-center gap-1 w-full justify-between">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+<span class="text-[10px] font-bold px-1 rounded bg-secondary-fixed text-on-secondary-fixed-variant">Auto</span>
+</div>
+<span class="font-label-md text-label-md font-bold leading-tight">Multicanal</span>
+<span class="text-[11px] text-outline">Cascata Fallback</span>
+</button>
+</div>
+<!-- TEMPLATE SELECTOR -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-bold">2. Gatilho Transacional &amp; Modelo HSM Homologado</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg py-2.5 px-space-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary shadow-sm pr-10" id="select-template" onchange="atualizarTemplateSelecionado()">
+<option selected="" value="FEFO_CRITICAL">Regra #GAT-01: Validade Crítica FEFO (&lt;30d) - Oportunidade Relâmpago</option>
+<option value="BID_OUTBID">Regra #GAT-02: Lance Superado (Proteção Anti-Sniper 120s)</option>
+<option value="ESCROW_WIN">Regra #GAT-03: Arremate Confirmado &amp; Chave Pix Escrow</option>
+<option value="SANITARY_BLOCK">Regra #GAT-04: Bloqueio Sanitário ANVISA / MAPA D&lt;=0</option>
+<option value="WMS_GATE_PASS">Regra #GAT-05: Liberação de Cancela WMS &amp; Agendamento Docas</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-3 top-3 text-outline text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- RECIPIENT / TARGET CONFIGURATION -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-bold">3. Dados de Teste do Destinatário B2B</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container/50 px-2 py-0.5 rounded font-bold">CNPJ Homologado no Sandbox</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div>
+<label class="font-label-sm text-label-sm text-outline block mb-1">CNPJ &amp; Razão Social</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary">domain</span>
+<input class="bg-transparent text-on-surface font-label-md text-label-md w-full focus:outline-none" type="text" value="14.890.312/0001-44 - Supermercado Alvorada Ltda">
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-outline block mb-1">Telefone WhatsApp (Sandbox Whitelist)</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">phone</span>
+<input class="bg-transparent text-on-surface font-label-md text-label-md w-full focus:outline-none" type="text" value="+55 (19) 99821-4402">
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-outline block mb-1">Device Push Token (FCM v1 Target)</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">phone_android</span>
+<input class="bg-transparent text-on-surface font-label-md text-label-md w-full focus:outline-none" type="text" value="fcm_tok_98a72c4e18b...zebra_tc26">
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-outline block mb-1">E-mail Corporativo de Destino</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">alternate_email</span>
+<input class="bg-transparent text-on-surface font-label-md text-label-md w-full focus:outline-none" type="email" value="compras@superalvorada.com.br">
+</div>
+</div>
+</div>
+</div>
+<!-- PAYLOAD JSON EDITOR -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-bold">4. Payload JSON &amp; Variáveis de Interpolação</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">● Sintaxe Válida</span>
+</div>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1 transition-colors" onclick="copiarPayload()">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+            Copiar JSON
+          </button>
+</div>
+<div class="bg-inverse-surface rounded-lg p-space-md font-mono text-body-sm overflow-x-auto relative shadow-inner">
+<div class="flex gap-4">
+<!-- LINE NUMBERS -->
+<div class="text-outline select-none flex flex-col text-right font-mono pr-2">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+</div>
+<!-- CODE CONTENT -->
+<pre class="text-inverse-on-surface flex-1 m-0 font-mono leading-relaxed"><code id="code-payload">{
+  <span class="text-primary-fixed-dim">"event"</span>: <span class="text-secondary-fixed">"FEFO_CRITICAL_ALERT"</span>,
+  <span class="text-primary-fixed-dim">"lot_id"</span>: <span class="text-secondary-fixed">"LOTE-SBE-2026-09"</span>,
+  <span class="text-primary-fixed-dim">"product_name"</span>: <span class="text-secondary-fixed">"Óleo de Soja Refinado 900ml"</span>,
+  <span class="text-primary-fixed-dim">"days_remaining"</span>: <span class="text-tertiary-fixed-dim">18</span>,
+  <span class="text-primary-fixed-dim">"discount_pct"</span>: <span class="text-tertiary-fixed-dim">38.0</span>,
+  <span class="text-primary-fixed-dim">"current_price"</span>: <span class="text-secondary-fixed">"R$ 4,12"</span>,
+  <span class="text-primary-fixed-dim">"escrow_bank"</span>: <span class="text-secondary-fixed">"Conta Escrow Fiduciária"</span>,
+  <span class="text-primary-fixed-dim">"cta_action_url"</span>: <span class="text-secondary-fixed">"https://varejistaonline.com.br/pregao/SBE-2026-09"</span>
+}</code></pre>
+</div>
+</div>
+<!-- SIMULATION CONFIGURATION FOOTER -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm mt-space-md pt-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div>
+<span class="font-label-sm text-label-sm text-outline block mb-1">Delay / Agendamento</span>
+<select class="w-full bg-surface-container-lowest rounded p-1.5 font-label-md text-label-md text-on-surface focus:outline-none">
+<option>Disparo Imediato (0ms)</option>
+<option>Latência Sintética (500ms)</option>
+<option>Fila de Estresse (100 req/s)</option>
+</select>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-outline block mb-1">Modo de Resposta</span>
+<select class="w-full bg-surface-container-lowest rounded p-1.5 font-label-md text-label-md text-on-surface focus:outline-none" id="mock-response-mode">
+<option value="200">200 OK (Sent &amp; Delivered)</option>
+<option value="400">400 Bad Request (Param Inválido)</option>
+<option value="408">408 Request Timeout (Fallback)</option>
+</select>
+</div>
+<div class="flex items-center gap-space-xs pt-4">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary accent-primary" id="check-worm" type="checkbox">
+<label class="font-label-sm text-label-sm text-on-surface cursor-pointer select-none" for="check-worm">
+              Registrar no Ledger WORM de Teste
+            </label>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: 40% (5 cols on lg) - LIVE PREVIEW & SMARTPHONE MOCKUP -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col items-center">
+<!-- PREVIEW MODE SELECTOR -->
+<div class="flex items-center justify-between w-full mb-space-md">
+<div class="flex gap-1 bg-surface-container p-1 rounded-lg">
+<button class="px-space-sm py-1 rounded-md bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold shadow-sm" id="prev-tab-wa" onclick="trocarDevicePreview('wa')">WhatsApp HSM</button>
+<button class="px-space-sm py-1 rounded-md text-on-surface-variant font-label-sm text-label-sm" id="prev-tab-push" onclick="trocarDevicePreview('push')">Push FCM</button>
+<button class="px-space-sm py-1 rounded-md text-on-surface-variant font-label-sm text-label-sm" id="prev-tab-mail" onclick="trocarDevicePreview('mail')">E-mail</button>
+</div>
+<span class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">smartphone</span> 390x844 CSS
+          </span>
+</div>
+<!-- SMARTPHONE DEVICE WRAPPER -->
+<div class="w-full max-w-[340px] bg-inverse-surface rounded-[32px] p-2.5 shadow-2xl relative">
+<!-- TOP SPEAKER & CAMERA NOTCH -->
+<div class="w-24 h-4 bg-inverse-surface mx-auto rounded-b-xl flex items-center justify-center gap-1.5 mb-1">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant/20 inline-block"></span>
+<span class="w-8 h-1 rounded-full bg-surface-variant/20 inline-block"></span>
+</div>
+<!-- SMARTPHONE SCREEN -->
+<div class="bg-[#ECE5DD] rounded-[24px] overflow-hidden flex flex-col min-h-[520px] max-h-[580px] shadow-inner text-on-surface" id="device-screen-body">
+<!-- WA TOP BAR -->
+<div class="bg-primary px-space-sm py-2 text-on-primary flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<div class="w-7 h-7 rounded-full bg-surface-container-lowest text-primary font-bold flex items-center justify-center text-xs">V</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold leading-tight flex items-center gap-1">
+                    Varejista Online B2B
+                    <span class="material-symbols-outlined text-[14px] text-secondary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+<span class="text-[9px] opacity-80 leading-none">Conta Comercial Oficial</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">videocam</span>
+<span class="material-symbols-outlined text-[18px]">call</span>
+</div>
+</div>
+<!-- CHAT BODY -->
+<div class="p-space-sm flex-1 overflow-y-auto flex flex-col justify-end gap-space-xs">
+<div class="mx-auto bg-surface-container-lowest/80 px-2 py-0.5 rounded text-[10px] text-on-surface-variant font-semibold shadow-xs">
+                Hoje • Criptografia de ponta a ponta
+              </div>
+<!-- WHATSAPP HSM BUBBLE -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border-0 max-w-[290px] self-start">
+<!-- PRODUCT LOT IMAGE HEADER -->
+<div class="relative w-full h-32 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up commercial shot of organized industrial pallets with refined soybean oil 900ml boxes in a clean automated warehouse with soft blue lighting and high contrast sharpness" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQYYl6jIne0-Npw9Y2s5sc45fK3KqZ3im1mrSg_hryAMWYEX9G2zhnN9E4WSKn2WkrETh1OMNivmH3uf5a-r4fO_UYH5XCp7FywQGSUKASNQerrXPIf2MpNw5sjPDZPDWQGzaLQI6jQCuO-5Ra0Rcm7f-9q-dqhAGZhnwm-xSwTsTCDttzUj9fxoQCCn6p3I_Bb6o9DphGxWA3gg70cf-2TY7FQXeY2NZw0uzstzhG">
+<div class="absolute top-2 left-2 bg-tertiary text-on-tertiary px-1.5 py-0.5 rounded text-[10px] font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px]">hourglass_top</span>
+                    FEFO: 18 Dias Restantes
+                  </div>
+<div class="absolute bottom-2 right-2 bg-primary/90 text-on-primary text-[10px] px-1.5 py-0.5 rounded font-mono font-bold backdrop-blur-xs">
+                    #SBE-2026-09
+                  </div>
+</div>
+<!-- BUBBLE CONTENT WITH DYNAMIC REPLACEMENTS -->
+<div class="p-space-sm flex flex-col gap-1 text-[12px] leading-snug">
+<p class="font-bold text-primary">⚡ Oportunidade Relâmpago de Ponta de Estoque</p>
+<p class="text-on-surface">
+                    Olá <strong class="text-on-surface font-semibold">Supermercado Alvorada</strong>! O lote de <strong class="text-on-surface">Óleo de Soja Refinado 900ml</strong> está disponível para sua rota logística com margem de <span class="text-secondary font-bold">38.0% de desconto</span>.
+                  </p>
+<div class="bg-surface-container-low p-2 rounded flex items-center justify-between my-1">
+<span class="text-outline text-[11px]">Preço Homologado:</span>
+<span class="text-secondary font-extrabold text-[13px]">R$ 4,12 / un</span>
+</div>
+<p class="text-[10px] text-on-surface-variant">Garantia Escrow Fiduciária assegurada. Prazo de arremate expira em 1h 45min.</p>
+<div class="text-right text-[9px] text-outline flex items-center justify-end gap-1 mt-1">
+                    14:42 <span class="material-symbols-outlined text-[12px] text-primary" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+</div>
+<!-- HSM INTERACTIVE CTA BUTTONS -->
+<div class="bg-surface-container-low flex flex-col divide-y divide-surface-container">
+<a class="py-2 px-space-sm text-center font-label-sm text-label-sm text-primary font-bold hover:bg-surface-container flex items-center justify-center gap-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-[14px]">gavel</span>
+                    Arrematar Imediatamente
+                  </a>
+<button class="py-2 px-space-sm text-center font-label-sm text-label-sm text-primary font-bold hover:bg-surface-container flex items-center justify-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+                    Copiar Chave Pix Escrow
+                  </button>
+<a class="py-2 px-space-sm text-center font-label-sm text-label-sm text-outline hover:bg-surface-container flex items-center justify-center gap-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-[14px]">support_agent</span>
+                    Falar com Concierge B2B
+                  </a>
+</div>
+</div>
+</div>
+<!-- CHAT INPUT BAR MOCK -->
+<div class="p-2 bg-surface-container-low flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">add</span>
+<div class="flex-1 bg-surface-container-lowest rounded-full px-3 py-1 text-[11px] text-outline">Resposta automática indisponível...</div>
+<span class="material-symbols-outlined text-primary text-[18px]">mic</span>
+</div>
+</div>
+</div>
+<!-- GATEWAY RESPONSE INSPECTOR BADGE -->
+<div class="w-full mt-space-md bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline font-bold">META GATEWAY RESPONSE</span>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold" id="response-status-badge">200 OK • 22ms</span>
+</div>
+<div class="font-mono text-[11px] text-on-surface-variant break-all">
+            wamid: <span class="text-on-surface font-semibold">wamid.HBgNNTUxOTk4MjE0NDAyFQIAERgSMzAy...AgA=</span>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-secondary font-medium">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+            Assinatura HMAC SHA-256 Validada pela Meta Cloud API
+          </div>
+</div>
+</div>
+</div>
+</div>
+<!-- BOTTOM SECTION: CONSOLE DE EXECUÇÃO & TRILHA DE AUDITORIA STAGING -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Console de Execução &amp; Trilha de Disparos em Staging</h2>
+<span class="font-label-sm text-label-sm text-outline">Registros voláteis de telemetria isolados do ambiente de produção</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-colors" onclick="exportarDossieJson()">
+<span class="material-symbols-outlined text-[16px]">download</span>
+          Exportar Dossiê (.JSON)
+        </button>
+<button class="px-space-md py-space-sm rounded-lg bg-secondary text-on-secondary hover:bg-secondary/90 font-label-md text-label-md flex items-center gap-space-xs transition-colors shadow-sm" onclick="salvarComoTemplateHomologado()">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+          Salvar como Template Homologado
+        </button>
+</div>
+</div>
+<!-- FILTERABLE TELEMETRY TERMINAL TABLE -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Timestamp</th>
+<th class="py-space-sm px-space-sm">Canal / Provider</th>
+<th class="py-space-sm px-space-sm">Destinatário B2B</th>
+<th class="py-space-sm px-space-sm">Status HTTP</th>
+<th class="py-space-sm px-space-sm">Latência</th>
+<th class="py-space-sm px-space-sm">Hash Ledger WORM</th>
+<th class="py-space-sm px-space-md text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-on-surface" id="telemetry-log-body">
+<!-- ROW 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-mono text-outline">14:42:08.112</td>
+<td class="py-space-sm px-space-sm">
+<span class="inline-flex items-center gap-1 font-semibold text-primary">
+<span class="material-symbols-outlined text-[16px]">chat</span> WhatsApp HSM
+              </span>
+</td>
+<td class="py-space-sm px-space-sm">
+<span class="font-bold text-on-surface">Supermercado Alvorada Ltda</span>
+<span class="block text-[11px] text-outline font-mono">+55 (19) 99821-4402</span>
+</td>
+<td class="py-space-sm px-space-sm">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 200 OK (Delivered)
+              </span>
+</td>
+<td class="py-space-sm px-space-sm font-mono text-secondary font-bold">18ms</td>
+<td class="py-space-sm px-space-sm font-mono text-outline">#TST-9921-X9</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-primary hover:underline font-label-sm text-label-sm font-bold">Inspecionar</button>
+</td>
+</tr>
+<!-- ROW 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-mono text-outline">14:40:22.408</td>
+<td class="py-space-sm px-space-sm">
+<span class="inline-flex items-center gap-1 font-semibold text-on-surface">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span> Push FCM
+              </span>
+</td>
+<td class="py-space-sm px-space-sm">
+<span class="font-bold text-on-surface">Carlos M. (TransLog Express)</span>
+<span class="block text-[11px] text-outline font-mono">fcm_tok_98a72c...tc26</span>
+</td>
+<td class="py-space-sm px-space-sm">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 200 OK (Received)
+              </span>
+</td>
+<td class="py-space-sm px-space-sm font-mono text-on-surface">32ms</td>
+<td class="py-space-sm px-space-sm font-mono text-outline">#TST-9920-F4</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-primary hover:underline font-label-sm text-label-sm font-bold">Inspecionar</button>
+</td>
+</tr>
+<!-- ROW 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-mono text-outline">14:38:50.910</td>
+<td class="py-space-sm px-space-sm">
+<span class="inline-flex items-center gap-1 font-semibold text-on-surface">
+<span class="material-symbols-outlined text-[16px]">alt_route</span> Multicanal Fallback
+              </span>
+</td>
+<td class="py-space-sm px-space-sm">
+<span class="font-bold text-on-surface">Atacadão Central de Distribuição</span>
+<span class="block text-[11px] text-outline font-mono">compras@atacadaocentral.com.br</span>
+</td>
+<td class="py-space-sm px-space-sm">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+                404 WA → Switch SMS/SES 200 OK
+              </span>
+</td>
+<td class="py-space-sm px-space-sm font-mono text-on-surface">240ms</td>
+<td class="py-space-sm px-space-sm font-mono text-outline">#TST-9919-C8</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-primary hover:underline font-label-sm text-label-sm font-bold">Inspecionar</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- TERMINAL FOOTER NOTIFICATION -->
+<div class="flex items-center justify-between text-outline font-body-sm text-body-sm pt-space-xs border-t-0 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
+<span>Conexão TLS 1.3 ativa com simulador de webhook em staging. Nenhum custo financeiro debitado da conta de produção.</span>
+</div>
+<span class="font-mono text-primary font-bold">Audit Hash Token: SHA256:7f4a28...d891b</span>
+</div>
+</div>
+</div>
+<!-- CLIENT INTERACTIONS JAVASCRIPT -->
+<script>
+  function selecionarCanal(canal) {
+    const tabs = ['whatsapp', 'push', 'email', 'multicanal'];
+    tabs.forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if (t === canal) {
+        el.className = 'canal-tab p-space-sm rounded-lg bg-primary-container text-on-primary flex flex-col gap-1 items-start transition-all shadow-sm';
+      } else {
+        el.className = 'canal-tab p-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface flex flex-col gap-1 items-start transition-all';
+      }
+    });
+
+    if (canal === 'whatsapp') {
+      trocarDevicePreview('wa');
+    } else if (canal === 'push') {
+      trocarDevicePreview('push');
+    } else if (canal === 'email') {
+      trocarDevicePreview('mail');
+    }
+  }
+
+  function trocarDevicePreview(tipo) {
+    const bWa = document.getElementById('prev-tab-wa');
+    const bPush = document.getElementById('prev-tab-push');
+    const bMail = document.getElementById('prev-tab-mail');
+
+    bWa.className = 'px-space-sm py-1 rounded-md text-on-surface-variant font-label-sm text-label-sm';
+    bPush.className = 'px-space-sm py-1 rounded-md text-on-surface-variant font-label-sm text-label-sm';
+    bMail.className = 'px-space-sm py-1 rounded-md text-on-surface-variant font-label-sm text-label-sm';
+
+    if (tipo === 'wa') {
+      bWa.className = 'px-space-sm py-1 rounded-md bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold shadow-sm';
+    } else if (tipo === 'push') {
+      bPush.className = 'px-space-sm py-1 rounded-md bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold shadow-sm';
+    } else {
+      bMail.className = 'px-space-sm py-1 rounded-md bg-surface-container-lowest text-primary font-label-sm text-label-sm font-bold shadow-sm';
+    }
+  }
+
+  function atualizarTemplateSelecionado() {
+    const val = document.getElementById('select-template').value;
+    const code = document.getElementById('code-payload');
+    if (val === 'BID_OUTBID') {
+      code.innerHTML = `{\n  <span class="text-primary-fixed-dim">"event"</span>: <span class="text-secondary-fixed">"BID_OUTBID_ALERT"</span>,\n  <span class="text-primary-fixed-dim">"lot_id"</span>: <span class="text-secondary-fixed">"LOTE-LEITE-UHT-402"</span>,\n  <span class="text-primary-fixed-dim">"new_highest_bid"</span>: <span class="text-secondary-fixed">"R$ 84.500,00"</span>,\n  <span class="text-primary-fixed-dim">"seconds_remaining"</span>: <span class="text-tertiary-fixed-dim">118</span>,\n  <span class="text-primary-fixed-dim">"anti_sniper_active"</span>: <span class="text-secondary-fixed">true</span>\n}`;
+    } else if (val === 'ESCROW_WIN') {
+      code.innerHTML = `{\n  <span class="text-primary-fixed-dim">"event"</span>: <span class="text-secondary-fixed">"ESCROW_CONFIRMED"</span>,\n  <span class="text-primary-fixed-dim">"lot_id"</span>: <span class="text-secondary-fixed">"LOTE-SBE-2026-09"</span>,\n  <span class="text-primary-fixed-dim">"amount_authorized"</span>: <span class="text-secondary-fixed">"R$ 28.840,00"</span>,\n  <span class="text-primary-fixed-dim">"pix_copia_cola"</span>: <span class="text-secondary-fixed">"00020126580014br.gov.bcb.pix..."</span>\n}`;
+    } else if (val === 'SANITARY_BLOCK') {
+      code.innerHTML = `{\n  <span class="text-primary-fixed-dim">"event"</span>: <span class="text-secondary-fixed">"ANVISA_INTERDICTION"</span>,\n  <span class="text-primary-fixed-dim">"sku_gtin"</span>: <span class="text-secondary-fixed">"7891000315507"</span>,\n  <span class="text-primary-fixed-dim">"quarantine_action"</span>: <span class="text-secondary-fixed">"IMMEDIATE_STOP"</span>,\n  <span class="text-primary-fixed-dim">"cert_issuer"</span>: <span class="text-secondary-fixed">"MAPA/SIF-401"</span>\n}`;
+    } else if (val === 'WMS_GATE_PASS') {
+      code.innerHTML = `{\n  <span class="text-primary-fixed-dim">"event"</span>: <span class="text-secondary-fixed">"WMS_GATE_PASS"</span>,\n  <span class="text-primary-fixed-dim">"dock_assigned"</span>: <span class="text-secondary-fixed">"Doca 04B"</span>,\n  <span class="text-primary-fixed-dim">"carrier_name"</span>: <span class="text-secondary-fixed">"TransLog Brasil"</span>,\n  <span class="text-primary-fixed-dim">"qr_code_token"</span>: <span class="text-secondary-fixed">"QR-WMS-9981"</span>\n}`;
+    } else {
+      code.innerHTML = `{\n  <span class="text-primary-fixed-dim">"event"</span>: <span class="text-secondary-fixed">"FEFO_CRITICAL_ALERT"</span>,\n  <span class="text-primary-fixed-dim">"lot_id"</span>: <span class="text-secondary-fixed">"LOTE-SBE-2026-09"</span>,\n  <span class="text-primary-fixed-dim">"product_name"</span>: <span class="text-secondary-fixed">"Óleo de Soja Refinado 900ml"</span>,\n  <span class="text-primary-fixed-dim">"days_remaining"</span>: <span class="text-tertiary-fixed-dim">18</span>,\n  <span class="text-primary-fixed-dim">"discount_pct"</span>: <span class="text-tertiary-fixed-dim">38.0</span>,\n  <span class="text-primary-fixed-dim">"current_price"</span>: <span class="text-secondary-fixed">"R$ 4,12"</span>,\n  <span class="text-primary-fixed-dim">"escrow_bank"</span>: <span class="text-secondary-fixed">"Santander Escrow"</span>,\n  <span class="text-primary-fixed-dim">"cta_action_url"</span>: <span class="text-secondary-fixed">"https://varejistaonline.com.br/pregao/SBE-2026-09"</span>\n}`;
+    }
+  }
+
+  function copiarPayload() {
+    const code = document.getElementById('code-payload').innerText;
+    navigator.clipboard.writeText(code);
+    alert('Payload JSON copiado com sucesso para a área de transferência!');
+  }
+
+  function carregarTemplatePreAprovado() {
+    document.getElementById('select-template').value = 'FEFO_CRITICAL';
+    atualizarTemplateSelecionado();
+    alert('Template padrão FEFO (<30d) carregado com sucesso!');
+  }
+
+  function limparConsoleLogs() {
+    const tbody = document.getElementById('telemetry-log-body');
+    tbody.innerHTML = '';
+  }
+
+  function executarDisparo() {
+    const btn = document.getElementById('btn-executar');
+    const respMode = document.getElementById('mock-response-mode').value;
+    const originalText = btn.innerHTML;
+
+    btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">sync</span> Disparando...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+
+      const now = new Date();
+      const timeStr = now.toTimeString().split(' ')[0] + '.' + String(now.getMilliseconds()).padStart(3, '0');
+      const tbody = document.getElementById('telemetry-log-body');
+      const newRow = document.createElement('tr');
+      newRow.className = 'hover:bg-surface-container-low transition-colors';
+
+      let statusBadge = `<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold inline-flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 200 OK (Delivered)</span>`;
+      let latencyStr = '22ms';
+
+      if (respMode === '400') {
+        statusBadge = `<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold inline-flex items-center gap-1">400 Bad Request</span>`;
+        latencyStr = '12ms';
+      } else if (respMode === '408') {
+        statusBadge = `<span class="px-2 py-0.5 rounded bg-surface-container-high text-outline font-label-sm text-label-sm font-bold inline-flex items-center gap-1">408 Timeout Fallback</span>`;
+        latencyStr = '850ms';
+      }
+
+      newRow.innerHTML = `
+        <td class="py-space-sm px-space-md font-mono text-outline">${timeStr}</td>
+        <td class="py-space-sm px-space-sm">
+          <span class="inline-flex items-center gap-1 font-semibold text-primary">
+            <span class="material-symbols-outlined text-[16px]">chat</span> WhatsApp HSM
+          </span>
+        </td>
+        <td class="py-space-sm px-space-sm">
+          <span class="font-bold text-on-surface">Supermercado Alvorada Ltda</span>
+          <span class="block text-[11px] text-outline font-mono">+55 (19) 99821-4402</span>
+        </td>
+        <td class="py-space-sm px-space-sm">${statusBadge}</td>
+        <td class="py-space-sm px-space-sm font-mono text-secondary font-bold">${latencyStr}</td>
+        <td class="py-space-sm px-space-sm font-mono text-outline">#TST-${Math.floor(1000 + Math.random() * 9000)}-OK</td>
+        <td class="py-space-sm px-space-md text-right">
+          <button class="text-primary hover:underline font-label-sm text-label-sm font-bold">Inspecionar</button>
+        </td>
+      `;
+      tbody.insertBefore(newRow, tbody.firstChild);
+    }, 600);
+  }
+
+  function exportarDossieJson() {
+    alert('Dossiê completo de homologação exportado: "sandbox-homolog-report-staging.json" baixado.');
+  }
+
+  function salvarComoTemplateHomologado() {
+    alert('Configuração de variáveis e payload promovida para o status "Template Homologado Staging".');
+  }
+</script></main></div>
+
+</body></html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-container": "#ffa59d", "on-primary-fixed-variant": "#00429c", "on-surface-variant": "#434652", "primary-fixed": "#d9e2ff", "secondary-fixed": "#a3f69c", "tertiary-fixed-dim": "#ffb3ac", "primary-fixed-dim": "#b0c6ff", "background": "#f7f9fb", "on-tertiary-fixed": "#410003", "on-tertiary": "#ffffff", "on-tertiary-fixed-variant": "#930010", "outline-variant": "#c3c6d4", "surface-container": "#eceef0", "surface-container-highest": "#e0e3e5", "inverse-primary": "#b0c6ff", "tertiary-fixed": "#ffdad6", "on-secondary-container": "#217128", "secondary-container": "#a0f399", "surface-tint": "#2b5bb5", "tertiary-container": "#9d0011", "primary": "#003178", "on-primary-container": "#a1bbff", "outline": "#737783", "inverse-on-surface": "#eff1f3", "on-surface": "#191c1e", "primary-container": "#0d47a1", "on-secondary-fixed": "#002204", "on-background": "#191c1e", "error": "#ba1a1a", "on-primary-fixed": "#001945", "surface-bright": "#f7f9fb", "error-container": "#ffdad6", "on-error": "#ffffff", "on-primary": "#ffffff", "surface-container-low": "#f2f4f6", "on-secondary": "#ffffff", "surface-container-lowest": "#ffffff", "surface-dim": "#d8dadc", "surface": "#f7f9fb", "on-error-container": "#93000a", "tertiary": "#720009", "secondary-fixed-dim": "#88d982", "on-secondary-fixed-variant": "#005312", "surface-variant": "#e0e3e5", "secondary": "#1b6d24", "surface-container-high": "#e6e8ea", "inverse-surface": "#2d3133" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "space-xs": "0.25rem", "space-md": "0.75rem", "margin": "1.5rem", "space-lg": "1.25rem", "space-xl": "2rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }] } } } }</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">VO</div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary leading-none">Varejista Online</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-space-xs">Operação Fiduciária B2B</span></div></div></div><div class="px-space-md py-space-xs"><div class="px-space-sm py-space-xs rounded-lg bg-surface-container flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Núcleo Sentinel</span><span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary"><span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>Online v4.12</span></div></div><nav class="flex flex-col gap-space-xs px-space-sm mt-space-sm" data-active-classes="bg-primary-container text-on-primary font-label-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-body-lg">grid_view</span>Visão Geral</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="leiloes-e-lotes" href="#"><span class="material-symbols-outlined text-body-lg">gavel</span>Leilões &amp; Lotes</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="esteira-cnpj" href="#"><span class="material-symbols-outlined text-body-lg">badge</span>Esteira CNPJ</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="gestao-financeira-e-meios" href="#"><span class="material-symbols-outlined text-body-lg">account_balance_wallet</span>Gestão Financeira &amp; Meios</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="remessas-e-retornos-cnab-240" href="#"><span class="material-symbols-outlined text-body-lg">receipt_long</span>Remessas &amp; Retornos CNAB 240</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="webhooks-e-erp" href="#"><span class="material-symbols-outlined text-body-lg">hub</span>Webhooks &amp; ERP</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="auditoria-e-logs" href="#"><span class="material-symbols-outlined text-body-lg">verified_user</span>Auditoria &amp; Logs</a></nav></div><div class="p-space-md m-space-sm rounded-lg bg-surface-container-low flex flex-col gap-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Buffer DLQ Sentinel</span><span class="font-label-sm text-label-sm text-secondary bg-secondary-container px-space-xs py-0.5 rounded-DEFAULT">0 Falhas</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-secondary h-1.5 rounded-full" style="width: 4%"></div></div><div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant"><span>Latência Nós SPB</span><span class="font-label-md text-label-md text-on-surface font-semibold">18ms (p99)</span></div></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm px-space-sm py-1 rounded-lg bg-surface-container"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-bold">SPB Santander</span><span class="font-label-sm text-label-sm text-secondary font-bold">OPERACIONAL</span></div><div class="flex items-center gap-space-sm px-space-sm py-1 rounded-lg bg-surface-container"><span class="material-symbols-outlined text-secondary text-base">verified</span><span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-bold">ICP-Brasil A3</span><span class="font-label-sm text-label-sm text-secondary font-bold">VÁLIDO (284d)</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface p-space-xs rounded-lg transition-colors cursor-pointer"><span class="material-symbols-outlined text-body-lg">notifications</span></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Carlos Eduardo Brandão</span><span class="font-label-sm text-label-sm text-on-surface-variant">Gestor Fiduciário Sênior</span></div></div></div></header><main class="relative pt-16 w-full flex-1 px-space-lg py-space-md bg-background"><div class="flex flex-col w-full">
+<!-- BREADCRUMB & CONTEXTUAL NAV -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<div class="flex flex-wrap items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">Início</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Liquidação &amp; Integrações</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Webhooks &amp; ERP</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Fila de Exceções &amp; DLQ</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-bold">Incidente #INC-2026-9038</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary">database</span>
+<span>Redis Sentinel: <strong class="text-on-surface">Cluster 03-SP</strong></span>
+</div>
+<div class="flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">schedule</span>
+<span id="incident-timer">Decorrido: <strong>01h 42m 18s</strong></span>
+</div>
+</div>
+</div>
+<!-- ALERTA CRÍTICO / HERO BANNER -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-lg shadow-md mb-space-lg">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-error/5 blur-3xl pointer-events-none"></div>
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-error"></div>
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-4xl">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="px-space-sm py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm uppercase font-extrabold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+            INCIDENTE CRÍTICO • SOCKET TIMEOUT (PORTA 8443)
+          </span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+            DLQ ROUTE: dead-escrow-q
+          </span>
+<span class="px-space-sm py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">
+            ÚLTIMA PENDÊNCIA (1 de 1)
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-space-xs">
+          Tratativa de Falha de Comunicação REST • Moinho Alvorada S.A.
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Custódia Fiduciária de <strong class="text-on-surface font-semibold">R$ 21.500,00</strong> retida em cofre fiduciário SPB. Lote arrematado <span class="font-semibold text-primary">#ALV-TRIGO-12</span> (Farinha de Trigo Especial Tipo 1 • 500 Sacas de 50kg).
+        </p>
+<!-- CAUSA RAIZ FORMATADA MONO -->
+<div class="mt-space-xs px-space-md py-space-sm rounded-lg bg-surface-container font-mono text-body-sm text-on-surface flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-error text-base">error_outline</span>
+<span class="text-error font-bold">Causa Raiz:</span>
+<span class="truncate">java.net.SocketTimeoutException: Read timed out (timeout=5000ms excedido no TOTVS REST API)</span>
+</div>
+</div>
+<!-- BOTÕES DE AÇÃO SUPERIORES -->
+<div class="flex flex-wrap items-center gap-space-xs self-stretch lg:self-center justify-end">
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+          Exportar Log TCP/Dump
+        </button>
+<button class="px-space-md py-space-sm rounded-lg bg-surface-container-highest text-primary hover:bg-primary hover:text-on-primary transition-colors font-label-md text-label-md flex items-center gap-1 shadow-sm" id="btn-quick-ping" type="button">
+<span class="material-symbols-outlined text-base">lan</span>
+          Testar Conectividade REST
+        </button>
+<button class="px-space-md py-space-sm rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md flex items-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-base">arrow_back</span>
+          Voltar à Fila DLQ
+        </button>
+</div>
+</div>
+</div>
+<!-- CARDS DE INDICADORES / KPIS OPERACIONAIS -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-lg">
+<!-- KPI 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm uppercase">
+<span>Custódia Fiduciária</span>
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+</div>
+<div class="my-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight">R$ 21.500,00</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Retido no Cofre Santander SPB • Bloqueio Ativo</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm uppercase">
+<span>Diagnóstico TCP / HTTP</span>
+<span class="material-symbols-outlined text-error">timer_off</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-error tracking-tight">7.820 ms</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">p99 (Pico)</span>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm truncate">
+        Timeout 5.000ms Excedido • TOTVS Protheus 12.1.33
+      </div>
+</div>
+<!-- KPI 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm uppercase">
+<span>Chave Idempotência</span>
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+</div>
+<div class="my-space-xs">
+<span class="font-label-lg text-label-lg font-mono text-on-surface bg-surface-container px-space-xs py-1 rounded block truncate">
+          IDEMP-ALV-2026-12-LIQ
+        </span>
+</div>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span>Garantida no Redis Sentinel (0 duplicidade)</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm uppercase">
+<span>Tentativas no Backoff</span>
+<span class="material-symbols-outlined text-tertiary">history</span>
+</div>
+<div class="my-space-xs flex items-center justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight">5 <span class="text-on-surface-variant font-normal text-headline-md">/ 5 Esgotadas</span></span>
+<div class="flex gap-1">
+<span class="w-2.5 h-6 rounded bg-error"></span>
+<span class="w-2.5 h-6 rounded bg-error"></span>
+<span class="w-2.5 h-6 rounded bg-error"></span>
+<span class="w-2.5 h-6 rounded bg-error"></span>
+<span class="w-2.5 h-6 rounded bg-error"></span>
+</div>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm">
+        Intervalos: 10s • 30s • 2m • 10m • 30m
+      </div>
+</div>
+</div>
+<!-- CONSOLE CENTRAL DIVIDIDO: ESQUERDA (DIAGNÓSTICO TÉCNICO & LOTE) | DIREITA (REPLAY & HOTFIX) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- COLUNA ESQUERDA: DIAGNÓSTICO E ESPECIFICAÇÃO DO LOTE (7 COLUNAS) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- DETALHES TÉCNICOS DO LOTE E COMPRADOR B2B -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">inventory_2</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Lote Arrematado &amp; Dados Fiduciários</h2>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+            Arremate Confirmado
+          </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-md">
+<div class="p-space-md rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant block">Identificador de Lote</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">#ALV-TRIGO-12</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1">EAN: 7898912340019</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant block">Volume Total Arrematado</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">500 Sacas (50kg)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1">25.000 kg • 10 Paletes</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant block">Custo Unitário Negociado</span>
+<span class="font-headline-md text-headline-md text-secondary font-bold">R$ 43,00 <span class="text-body-sm text-on-surface-variant font-normal">/ saca</span></span>
+<span class="font-body-sm text-body-sm text-secondary block mt-1">Margem: +14.2% sobre ref. Cepea</span>
+</div>
+</div>
+<!-- ESPECIFICAÇÃO COMPLETA DO SKU -->
+<div class="flex flex-col md:flex-row items-center gap-space-md p-space-md rounded-lg bg-surface-container">
+<div class="w-full md:w-32 h-24 rounded-lg overflow-hidden relative flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="High resolution industrial warehouse photograph of stacked high quality 50kg flour sacks on wooden logistics pallets in a clean Brazilian food processing and distribution facility, illuminated by bright daylight, showing corporate order and security." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg5-M-VXb65qvgTO53zQbrtUIYFMX1xd4ZZbGHPcZAEy87eFhy57r-9ENVv9ifTkl9ajmiPkCxvzKhxvnIozPlaW7S3ZaIKEbFYbrF_F57gQDSIgeUdHov3da5L508mBJLkRUJSq4guvJVTOUfT4b0gCrgHTV2mVOLVtPmFWWwlkqSCdisq7Cry_lnThTgg_zwy7D3C5w28OAsmJ--vPLdRdoMcEQW8AMwkVbNd-lo"/>
+<div class="absolute bottom-1 left-1 px-1 py-0.5 rounded bg-on-surface/80 text-surface font-label-sm text-label-sm">
+              Lote #12
+            </div>
+</div>
+<div class="flex flex-col gap-1 flex-1 min-w-0">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-md text-headline-md text-on-surface truncate">Farinha de Trigo Especial Tipo 1 Premium</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-semibold">Uso Industrial Panificação</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-body-sm text-on-surface-variant mt-1">
+<div><strong class="text-on-surface">Comprador:</strong> Moinho Alvorada S.A.</div>
+<div><strong class="text-on-surface">CNPJ:</strong> 14.882.109/0001-45</div>
+<div><strong class="text-on-surface">Local:</strong> Mogi Guaçu / SP</div>
+<div><strong class="text-on-surface">Safra:</strong> 2025/2026</div>
+<div><strong class="text-on-surface">Shelf Life:</strong> 180 dias restantes</div>
+<div><strong class="text-on-surface">Certificação:</strong> MAPA / SIF 4012</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PAINEL DE ANÁLISE FORENSE TCP & GARGALO TOTVS -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">troubleshoot</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Diagnóstico da Conexão REST • TOTVS Protheus</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold uppercase">
+              Porta 8443 TLS 1.3
+            </span>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant font-mono bg-surface-container p-space-sm rounded-lg">
+<span class="text-primary font-bold">POST</span>
+<span class="truncate px-2">https://erp.moinhoalvorada.com.br:8443/rest/v2/contabil/titulos-escrow</span>
+<span class="text-on-surface font-semibold text-xs">DNS: 187.54.120.91</span>
+</div>
+<!-- DIAGNÓSTICO DE GARGALO APPSERVER -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-error text-base">memory</span>
+                Gargalo Identificado: AppServer Protheus (Thread Lock / Garbage Collector)
+              </span>
+<span class="font-label-sm text-label-sm text-error bg-error-container px-space-xs py-0.5 rounded font-bold">Retenção de Thread</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              A requisição chegou com sucesso ao AppServer TOTVS. Durante a gravação do registro fiduciário na tabela <code class="font-mono bg-surface-container px-1 py-0.5 rounded text-on-surface">SE2 (Contas a Pagar)</code>, um ciclo de Garbage Collection concorrente na instância <code class="font-mono bg-surface-container px-1 py-0.5 rounded text-on-surface">ADVPL_SRV_02</code> bloqueou a resposta por 7.820ms, superando o teto contratual de 5.000ms do nosso nó Sentinel.
+            </p>
+</div>
+<!-- DUMP TCP WIRESHARK RECONSTRUÍDO (SVG TIMELINE) -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-bold">Rastreamento de Pacotes TCP (Wireshark Reconstructed)</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Handshake Inicial: 18ms</span>
+</div>
+<!-- TIMELINE VISUAL DE CONEXÃO -->
+<div class="w-full flex flex-col gap-2 pt-space-xs">
+<!-- Passo 1 -->
+<div class="flex items-center gap-space-sm text-body-sm">
+<div class="w-16 font-mono text-label-sm text-on-surface-variant text-right">00.000 ms</div>
+<div class="w-2.5 h-2.5 rounded-full bg-secondary"></div>
+<div class="flex-1 bg-surface-container-low p-space-xs rounded flex items-center justify-between">
+<span class="font-mono text-on-surface">SYN -&gt; SYN/ACK -&gt; ACK (Porta 8443)</span>
+<span class="font-label-sm text-secondary font-semibold">Conexão Estabelecida</span>
+</div>
+</div>
+<!-- Passo 2 -->
+<div class="flex items-center gap-space-sm text-body-sm">
+<div class="w-16 font-mono text-label-sm text-on-surface-variant text-right">00.018 ms</div>
+<div class="w-2.5 h-2.5 rounded-full bg-secondary"></div>
+<div class="flex-1 bg-surface-container-low p-space-xs rounded flex items-center justify-between">
+<span class="font-mono text-on-surface">TLS 1.3 Key Exchange (Ciphersuite SHA256)</span>
+<span class="font-label-sm text-secondary font-semibold">Canal Seguro OK</span>
+</div>
+</div>
+<!-- Passo 3 -->
+<div class="flex items-center gap-space-sm text-body-sm">
+<div class="w-16 font-mono text-label-sm text-on-surface-variant text-right">00.042 ms</div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+<div class="flex-1 bg-surface-container-low p-space-xs rounded flex items-center justify-between">
+<span class="font-mono text-primary font-bold">HTTP POST Payload (JSON 1.84 KB)</span>
+<span class="font-label-sm text-on-surface-variant font-semibold">Disparado com Sucesso</span>
+</div>
+</div>
+<!-- Passo 4: O Abismo -->
+<div class="flex items-center gap-space-sm text-body-sm">
+<div class="w-16 font-mono text-label-sm text-error font-bold text-right">05.000 ms</div>
+<div class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></div>
+<div class="flex-1 bg-error-container/40 p-space-xs rounded flex items-center justify-between">
+<span class="font-mono text-error font-bold">Client Socket ReadTimeout (Limite 5.000ms Excedido)</span>
+<span class="font-label-sm text-error font-bold">CONEXÃO CORTADA</span>
+</div>
+</div>
+<!-- Passo 5: O que aconteceu depois -->
+<div class="flex items-center gap-space-sm text-body-sm opacity-60">
+<div class="w-16 font-mono text-label-sm text-on-surface-variant text-right">07.820 ms</div>
+<div class="w-2.5 h-2.5 rounded-full bg-on-surface-variant"></div>
+<div class="flex-1 bg-surface-container p-space-xs rounded flex items-center justify-between">
+<span class="font-mono text-on-surface-variant">TOTVS AppServer enviou HTTP 200 (Órfão após corte)</span>
+<span class="font-label-sm text-on-surface-variant">Recebido tardiamente</span>
+</div>
+</div>
+</div>
+<!-- Resumo Conclusivo -->
+<div class="mt-2 p-space-sm rounded bg-surface-container-low font-body-sm text-body-sm text-on-surface flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-base">check_circle</span>
+<div>
+<strong>Conclusão Técnica do Perito:</strong> Não houve recusa nem erro 500 no Protheus. Apenas lentidão temporária de persistência em disco. Estender o timeout temporário viabilizará a liquidação imediata sem risco de duplicidade de título.
+              </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUNA DIREITA: CONSOLE DE HOTFIX, AJUSTE DE TIMEOUT & REPLAY SUPERVISIONADO (5 COLUNAS) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- PAINEL DE HOTFIX ADAPTATIVO -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">tune</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Ajuste de Timeout Adaptativo</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+            Hotfix Provisório
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Eleve a tolerância de espera exclusivamente para este lote e incidente na fila DLQ, permitindo que a rotina contábil do Moinho Alvorada complete o commit.
+        </p>
+<!-- SELETORES DE TIMEOUT -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface">Read Timeout HTTP</span>
+<span class="font-mono font-bold text-headline-md text-primary" id="current-timeout-badge">30.000 ms</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container rounded-lg cursor-pointer" id="timeout-slider" max="60000" min="5000" step="5000" type="range" value="30000"/>
+<div class="flex justify-between text-label-sm text-on-surface-variant font-mono">
+<span>5.000 ms (Padrão)</span>
+<span class="text-primary font-bold">30.000 ms (Recomendado)</span>
+<span>60.000 ms (Máx)</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Connection Timeout</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">10 Segundos</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">TCP Keep-Alive</span>
+<span class="font-label-lg text-label-lg font-bold text-secondary">Ativo (60s)</span>
+</div>
+</div>
+<!-- TESTADOR INTERATIVO DE PING REST -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Sonda de Conectividade Sintética</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-container font-bold" id="ping-status-tag">
+              Estável (6.420ms)
+            </span>
+</div>
+<div class="flex items-center justify-between gap-space-sm mt-1">
+<button class="w-full px-space-md py-space-sm rounded bg-surface-container text-primary hover:bg-primary hover:text-on-primary transition-all font-label-md text-label-md flex items-center justify-center gap-1 shadow-sm" id="btn-run-probe" type="button">
+<span class="material-symbols-outlined text-base">network_ping</span>
+              Disparar Sonda HEAD/OPTIONS (Timeout 30s)
+            </button>
+</div>
+<div class="mt-2 p-space-xs rounded bg-surface-container-lowest font-mono text-body-sm text-secondary flex items-center gap-2" id="probe-result-box">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>HTTP/1.1 200 OK • Latência: 6.420ms • Porta 8443 Pronta</span>
+</div>
+</div>
+</div>
+<!-- PAINEL DE DISPARO E AUTORIZAÇÃO FIDUCIÁRIA -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-xl">gavel</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Terminal de Replay Supervisionado</h2>
+</div>
+<span class="material-symbols-outlined text-secondary text-base">shield</span>
+</div>
+<!-- CHECKBOXES DE SEGURANÇA OPERACIONAL -->
+<div class="flex flex-col gap-space-xs">
+<label class="flex items-start gap-space-sm p-space-xs rounded hover:bg-surface-container transition-colors cursor-pointer">
+<input checked="" class="mt-1 accent-primary rounded" disabled="" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Preservar Idempotência Contábil</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mantém a chave <code class="text-xs bg-surface-container px-1 rounded">IDEMP-ALV-2026-12</code> para evitar duplicidade de títulos a pagar no TOTVS.</span>
+</div>
+</label>
+<label class="flex items-start gap-space-sm p-space-xs rounded hover:bg-surface-container transition-colors cursor-pointer">
+<input checked="" class="mt-1 accent-primary rounded" id="check-timeout-provisorio" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Aplicar Timeout Provisório de 30.000ms</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sobrescreve a política global de 5s para este replay pontual.</span>
+</div>
+</label>
+<label class="flex items-start gap-space-sm p-space-xs rounded hover:bg-surface-container transition-colors cursor-pointer">
+<input checked="" class="mt-1 accent-primary rounded" type="checkbox"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Notificar Liquidação SPB Santander (D+0)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Libera o saldo de R$ 21.500,00 da conta escrow direto ao vendedor.</span>
+</div>
+</label>
+</div>
+<!-- PARECER TÉCNICO REGULATÓRIO -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Parecer Fiduciário do Operador</label>
+<textarea class="w-full h-20 p-space-sm rounded-lg bg-surface-container-low text-body-sm text-on-surface focus:outline-none focus:bg-surface-container resize-none" readonly="">Timeout adaptativo estendido para 30s homologado com suporte de TI Moinho Alvorada. Sonda REST confirmou liberação de locks na tabela SE2. Autorizado conforme Art. 14 Res. BACEN 4.656/2018.</textarea>
+</div>
+<!-- ASSINATURA DIGITAL ICP-BRASIL -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-xl">token</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold leading-tight">Certificado ICP-Brasil A3 (Ativo)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Carlos Eduardo Brandão • Token Luna PCI</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container px-space-xs py-0.5 rounded font-bold">Pronto</span>
+</div>
+<!-- CTA DE REPLAY COM GRADIENTE INSTITUCIONAL -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<button class="w-full py-space-md px-space-lg rounded-xl bg-gradient-to-r from-primary to-secondary text-on-primary font-headline-md text-headline-md shadow-md hover:opacity-95 active:scale-[0.99] transition-all flex items-center justify-center gap-space-sm" id="btn-replay-execution" type="button">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+<span>Executar Replay &amp; Liberar Custódia (R$ 21.500,00)</span>
+</button>
+<span class="text-center font-body-sm text-body-sm text-on-surface-variant">
+            Ação irrevogável. A fila DLQ será zerada após a confirmação.
+          </span>
+</div>
+</div>
+</div>
+</div>
+<!-- AUDITORIA FORENSE & RASTREABILIDADE CRONOLÓGICA (TABELA DENSA) -->
+<div class="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm mb-space-lg">
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">receipt_long</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Histórico Forense do Incidente #INC-2026-9038</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-bold">Audit Hash:</span>
+<code class="font-mono text-label-sm text-primary bg-surface-container px-space-xs py-0.5 rounded">0x9c3d4a8f7e2b1049...b82</code>
+</div>
+</div>
+<!-- TABELA COMPACTA -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm text-on-surface">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-space-sm px-space-md">Horário (BRT)</th>
+<th class="py-space-sm px-space-md">Origem / Nó</th>
+<th class="py-space-sm px-space-md">Evento / Ação</th>
+<th class="py-space-sm px-space-md">Payload / Chave</th>
+<th class="py-space-sm px-space-md">Latência</th>
+<th class="py-space-sm px-space-md text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-md font-mono text-label-sm text-on-surface-variant">14:18:02.104</td>
+<td class="py-space-sm px-space-md">Engine de Leilão #04</td>
+<td class="py-space-sm px-space-md font-semibold">Arremate Homologado (500 Sacas)</td>
+<td class="py-space-sm px-space-md font-mono text-xs text-on-surface-variant">LOT:#ALV-TRIGO-12</td>
+<td class="py-space-sm px-space-md font-mono text-xs">12 ms</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">SUCESSO</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-md font-mono text-label-sm text-on-surface-variant">14:18:03.450</td>
+<td class="py-space-sm px-space-md">SPB Santander API</td>
+<td class="py-space-sm px-space-md font-semibold">Custódia Fiduciária Travada</td>
+<td class="py-space-sm px-space-md font-mono text-xs text-on-surface-variant">ESCROW:R$21.500,00</td>
+<td class="py-space-sm px-space-md font-mono text-xs">184 ms</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">RETIDO</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-md font-mono text-label-sm text-on-surface-variant">14:18:04.010</td>
+<td class="py-space-sm px-space-md">Webhook Worker #02</td>
+<td class="py-space-sm px-space-md font-semibold">POST /titulos-escrow (Tentativa 1/5)</td>
+<td class="py-space-sm px-space-md font-mono text-xs text-on-surface-variant">IDEMP-ALV-2026-12</td>
+<td class="py-space-sm px-space-md font-mono text-xs text-error font-bold">5.001 ms</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">TIMEOUT</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-md font-mono text-label-sm text-on-surface-variant">14:48:04.882</td>
+<td class="py-space-sm px-space-md">Webhook Worker #08</td>
+<td class="py-space-sm px-space-md font-semibold">POST /titulos-escrow (Tentativa 5/5)</td>
+<td class="py-space-sm px-space-md font-mono text-xs text-on-surface-variant">IDEMP-ALV-2026-12</td>
+<td class="py-space-sm px-space-md font-mono text-xs text-error font-bold">5.002 ms</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">TIMEOUT</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low/80 font-bold">
+<td class="py-space-sm px-space-md font-mono text-label-sm text-tertiary">14:48:05.120</td>
+<td class="py-space-sm px-space-md">Sentinel Guard Core</td>
+<td class="py-space-sm px-space-md">Esgotamento de Retentativas -&gt; Rota DLQ</td>
+<td class="py-space-sm px-space-md font-mono text-xs text-on-surface">QUEUE:dead-escrow-q</td>
+<td class="py-space-sm px-space-md font-mono text-xs">2 ms</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="px-space-xs py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm font-bold">DLQ BUFFER</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- RODAPÉ REGULATÓRIO & COMPLIANCE BACEN -->
+<footer class="flex flex-wrap items-center justify-between gap-space-md py-space-md px-space-lg rounded-xl bg-surface-container font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-base text-secondary">verified</span>
+<span>Operação em conformidade com o <strong>Art. 14 da Resolução BACEN nº 4.656/2018</strong> (Contas Fiduciárias de Custódia e Liquidação).</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<span>NTP Stratum 1: <strong>a.st1.ntp.br (Sync ±0.4ms)</strong></span>
+<span>Criptografia: <strong>TLS 1.3 / AES-256-GCM</strong></span>
+<span>SLA Restante: <strong class="text-secondary font-bold">04h 17m</strong></span>
+</div>
+</footer>
+</div>
+<!-- COMPONENT SCRIPTS & MICRO-INTERACTIONS -->
+<script>
+  (function initIncidentConsole() {
+    const timeoutSlider = document.getElementById('timeout-slider');
+    const timeoutBadge = document.getElementById('current-timeout-badge');
+    const btnRunProbe = document.getElementById('btn-run-probe');
+    const probeResultBox = document.getElementById('probe-result-box');
+    const pingStatusTag = document.getElementById('ping-status-tag');
+    const btnReplay = document.getElementById('btn-replay-execution');
+    const btnQuickPing = document.getElementById('btn-quick-ping');
+
+    if (timeoutSlider && timeoutBadge) {
+      timeoutSlider.addEventListener('input', (e) => {
+        const val = Number(e.target.value).toLocaleString('pt-BR');
+        timeoutBadge.textContent = `${val} ms`;
+      });
+    }
+
+    function executeProbe() {
+      if (!probeResultBox || !btnRunProbe) return;
+      btnRunProbe.disabled = true;
+      btnRunProbe.innerHTML = `<span class="material-symbols-outlined text-base animate-spin">refresh</span> Testando Conectividade...`;
+      probeResultBox.innerHTML = `<span class="material-symbols-outlined text-primary text-sm animate-spin">sync</span> Disparando pacote TCP SYN e handshake TLS na porta 8443...`;
+      
+      setTimeout(() => {
+        btnRunProbe.disabled = false;
+        btnRunProbe.innerHTML = `<span class="material-symbols-outlined text-base">network_ping</span> Disparar Sonda HEAD/OPTIONS (Timeout 30s)`;
+        probeResultBox.innerHTML = `<span class="material-symbols-outlined text-secondary text-sm">check_circle</span> <strong>HTTP/1.1 200 OK</strong> • Latência: <strong>5.890ms</strong> • AppServer Protheus desbloqueado`;
+        if (pingStatusTag) {
+          pingStatusTag.textContent = "Estável (5.890ms)";
+          pingStatusTag.className = "px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-secondary-container text-on-secondary-container font-bold";
+        }
+      }, 1200);
+    }
+
+    if (btnRunProbe) btnRunProbe.addEventListener('click', executeProbe);
+    if (btnQuickPing) btnQuickPing.addEventListener('click', executeProbe);
+
+    if (btnReplay) {
+      btnReplay.addEventListener('click', () => {
+        const confirmed = confirm("Confirmar Replay do Incidente #INC-2026-9038 com Timeout Provisório de 30.000ms e liberação de R$ 21.500,00 da custódia fiduciária?");
+        if (!confirmed) return;
+
+        btnReplay.disabled = true;
+        btnReplay.innerHTML = `<span class="material-symbols-outlined text-2xl animate-spin">sync</span> Processando Replay & Assinando com Luna PCI...`;
+        
+        setTimeout(() => {
+          btnReplay.innerHTML = `<span class="material-symbols-outlined text-2xl">check_circle</span> Custódia Liberada com Sucesso! DLQ Zerada.`;
+          btnReplay.className = "w-full py-space-md px-space-lg rounded-xl bg-secondary text-on-secondary font-headline-md text-headline-md shadow-md flex items-center justify-center gap-space-sm";
+          
+          const timer = document.getElementById('incident-timer');
+          if (timer) timer.innerHTML = `Status: <strong class="text-secondary">RESOLVIDO</strong>`;
+        }, 1800);
+      });
+    }
+  })();
+</script></main></div></body></html>

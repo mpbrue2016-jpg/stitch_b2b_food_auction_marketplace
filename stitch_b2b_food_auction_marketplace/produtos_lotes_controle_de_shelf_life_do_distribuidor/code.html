@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "outline-variant": "#c3c6d4",
+          "tertiary": "#720009",
+          "secondary": "#1b6d24",
+          "on-tertiary-fixed-variant": "#930010",
+          "surface-bright": "#f7f9fb",
+          "secondary-fixed": "#a3f69c",
+          "surface-tint": "#2b5bb5",
+          "on-primary": "#ffffff",
+          "on-secondary-fixed": "#002204",
+          "on-background": "#191c1e",
+          "on-tertiary-container": "#ffa59d",
+          "surface": "#f7f9fb",
+          "on-secondary-container": "#217128",
+          "on-primary-container": "#a1bbff",
+          "on-error": "#ffffff",
+          "on-error-container": "#93000a",
+          "secondary-fixed-dim": "#88d982",
+          "surface-container-highest": "#e0e3e5",
+          "inverse-primary": "#b0c6ff",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#d8dadc",
+          "error": "#ba1a1a",
+          "on-tertiary": "#ffffff",
+          "primary-container": "#0d47a1",
+          "error-container": "#ffdad6",
+          "tertiary-fixed-dim": "#ffb3ac",
+          "background": "#f7f9fb",
+          "on-surface-variant": "#434652",
+          "on-secondary-fixed-variant": "#005312",
+          "primary-fixed": "#d9e2ff",
+          "inverse-surface": "#2d3133",
+          "on-secondary": "#ffffff",
+          "on-primary-fixed-variant": "#00429c",
+          "surface-variant": "#e0e3e5",
+          "primary-fixed-dim": "#b0c6ff",
+          "inverse-on-surface": "#eff1f3",
+          "on-surface": "#191c1e",
+          "secondary-container": "#a0f399",
+          "tertiary-container": "#9d0011",
+          "surface-container-low": "#f2f4f6",
+          "outline": "#737783",
+          "surface-container": "#eceef0",
+          "surface-container-high": "#e6e8ea",
+          "on-primary-fixed": "#001945",
+          "tertiary-fixed": "#ffdad6",
+          "primary": "#003178",
+          "on-tertiary-fixed": "#410003"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-mobile": "0.75rem",
+          "space-sm": "0.5rem",
+          "margin": "1.5rem",
+          "space-lg": "1.25rem",
+          "space-xs": "0.25rem",
+          "space-md": "0.75rem",
+          "gutter": "1rem",
+          "margin-mobile": "1rem",
+          "space-xl": "2rem"
+        },
+        "fontFamily": {
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-md": [
+            "Plus Jakarta Sans"
+          ],
+          "numeric-timer": [
+            "Plus Jakarta Sans"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl": [
+            "Plus Jakarta Sans"
+          ],
+          "label-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-lg-mobile": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-md": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "700"
+            }
+          ],
+          "numeric-timer": [
+            "20px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "800"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-xl-mobile": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "800"
+            }
+          ],
+          "headline-xl": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "fontWeight": "800"
+            }
+          ],
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col overflow-y-auto"><div class="p-space-lg flex items-center gap-space-md"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-md text-headline-md font-bold">VA</div><div><span class="block font-headline-md text-headline-md text-primary tracking-tight">VarejoB2B</span><span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Portal Distribuidor</span></div></div><div class="px-space-lg py-space-sm"><div class="bg-surface-container-low p-space-md rounded-lg"><span class="block font-label-sm text-label-sm text-on-surface-variant uppercase">CD Central Ativo</span><span class="font-label-md text-label-md text-on-surface font-bold">CD-01 Campinas SP</span></div></div><nav class="flex-1 px-space-md py-space-sm space-y-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Visão Geral</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="painel-do-distribuidor" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span>Painel do Distribuidor</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="kpis-comerciais" href="#"><span class="material-symbols-outlined text-[20px]">query_stats</span>KPIs &amp; Desempenho</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Catálogo &amp; Estoque</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="produtos-e-skus" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span>Produtos &amp; SKUs</a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm transition-colors bg-primary-container text-on-primary font-bold rounded-lg shadow-sm" data-path="lotes-e-shelf-life" href="#"><span class="material-symbols-outlined text-[20px]">hourglass_top</span>Lotes &amp; Shelf Life</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="controle-de-armazem-e-cds" href="#"><span class="material-symbols-outlined text-[20px]">warehouse</span>Armazéns &amp; CDs</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Operação Comercial</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="criar-leilao-e-pregao" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span>Criar Leilão/Pregão</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="criar-promocoes-e-venda-direta" href="#"><span class="material-symbols-outlined text-[20px]">sell</span>Promoções &amp; Venda Direta</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="central-de-lances-ao-vivo" href="#"><span class="material-symbols-outlined text-[20px]">stream</span>Central de Lances Ao Vivo</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="gestao-de-clientes-varejistas" href="#"><span class="material-symbols-outlined text-[20px]">storefront</span>Clientes Varejistas</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Gestão de Pedidos &amp; Logística</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="pedidos-faturados" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span>Pedidos Faturados</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="expedicao-e-docas" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span>Expedição &amp; Docas</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="nfe-e-mdfe" href="#"><span class="material-symbols-outlined text-[20px]">description</span>NF-e &amp; MDF-e Fiscal</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Financeiro &amp; Comissões</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="faturamento-e-d0" href="#"><span class="material-symbols-outlined text-[20px]">payments</span>Faturamento &amp; D+0</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="comissoes-da-plataforma" href="#"><span class="material-symbols-outlined text-[20px]">percent</span>Taxas &amp; Comissões</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="extrato-escrow" href="#"><span class="material-symbols-outlined text-[20px]">account_balance</span>Extrato Escrow</a></div></nav><div class="p-space-md bg-surface-container"><div class="flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm">Status da Conexão</span><span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold"><span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>Online</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40"><div class="h-16 w-full px-space-xl flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-0"><div class="min-w-0"><div class="flex items-center gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Distribuidora Aliança de Alimentos Ltda</span><span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px]">verified</span>Distribuidor Certificado B2B</span></div><span class="block font-body-sm text-body-sm text-on-surface-variant">CNPJ 08.319.442/0001-50</span></div></div><div class="flex items-center gap-space-lg flex-shrink-0"><div class="hidden xl:flex items-center gap-space-md bg-surface-container-lowest px-space-md py-space-xs rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col text-right"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Saldo a Receber (D+0)</span><span class="font-headline-md text-headline-md text-secondary font-bold">R$ 384.920,00</span></div><a class="p-1.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-on-secondary transition-colors" data-path="faturamento-e-d0" href="#" title="Antecipar D+0"><span class="material-symbols-outlined text-[18px]">currency_exchange</span></a></div><div class="flex items-center gap-space-xs"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Notificações de Pregão"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container"></span></button><button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Configurações"><span class="material-symbols-outlined text-[20px]">tune</span></button></div><div class="h-6 w-[1px] bg-outline-variant"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="hidden sm:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-bold">Carlos Mendonça</span><span class="font-label-sm text-label-sm text-on-surface-variant">Mesa de Operações</span></div></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="flex flex-col w-full">
+<!-- Sub-header / Breadcrumb and Meta Context -->
+<div class="px-space-xl pt-space-lg pb-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span>Portal Distribuidor</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Catálogo &amp; Estoque</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Gestão de SKUs, Lotes &amp; Shelf Life</span>
+</div>
+<div class="flex items-center gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 bg-surface-container-high rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+        Sincronização ERP/WMS: Ativa (há 4 min)
+      </span>
+<span class="inline-flex items-center gap-1 px-space-sm py-1 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-[14px] text-primary">verified_user</span>
+        FEFO Engine v4.2 Habilitada
+      </span>
+</div>
+</div>
+<!-- Header Section with High Contrast Actions -->
+<div class="px-space-xl pb-space-lg">
+<div class="flex flex-col xl:flex-row xl:items-start justify-between gap-space-lg">
+<div class="max-w-4xl min-w-0">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-extrabold">
+          Gestão de Catálogo de Produtos, Lotes &amp; Controle de Validade (Shelf Life)
+        </h1>
+<p class="mt-space-xs font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Cadastro de itens individuais ou em massa via XML/Planilha, controle volumétrico em armazéns, conferência rigorosa de códigos EAN/DUN-14 e alertas automatizados de vencimento baseado na matriz <strong class="text-on-surface font-semibold">FEFO (First Expire, First Out)</strong>.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm flex-shrink-0">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-highest text-on-surface hover:bg-surface-dim transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm" onclick="document.getElementById('modal-regras-shelf').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[18px]">rule_folder</span>
+          Regras de Automação de Shelf Life
+        </button>
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm" onclick="triggerExportNotice()">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+          Download Espelho (.XLSX)
+        </button>
+<label class="cursor-pointer px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-primary hover:bg-primary-fixed/30 transition-all flex items-center gap-space-xs font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+          Importar XML de NF-e
+          <input accept=".xml" class="hidden" onchange="alert('Leitor de NF-e: 1 lote identificado com sucesso para inclusão.')" type="file"/>
+</label>
+<button class="px-space-lg py-2.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-all flex items-center gap-space-xs font-label-md text-label-md font-bold shadow-md" onclick="document.getElementById('modal-cadastro-manual').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+          + Cadastrar Produto Manual
+        </button>
+</div>
+</div>
+</div>
+<!-- Operational Filter Hub -->
+<div class="px-space-xl mb-space-lg">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-center">
+<!-- Search bar -->
+<div class="lg:col-span-5 relative">
+<span class="material-symbols-outlined text-outline absolute left-3 top-1/2 -translate-y-1/2 text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-lg bg-surface-container-low font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#0d47a1] transition-all" id="table-search-input" oninput="handleLiveSearch(this.value)" placeholder="Buscar por Nome, SKU, Código EAN-13, Lote ou Fabricante Original..." type="text"/>
+</div>
+<!-- Filter dropdowns -->
+<div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-space-sm">
+<div>
+<select class="w-full py-2.5 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-1 focus:ring-primary">
+<option value="">Todas Categorias</option>
+<option value="laticinios">Laticínios</option>
+<option value="mercearia">Mercearia Seca</option>
+<option value="bebidas">Bebidas</option>
+<option value="matinais">Matinais</option>
+<option value="conservas">Conservas</option>
+</select>
+</div>
+<div>
+<select class="w-full py-2.5 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-1 focus:ring-primary">
+<option value="">Todos os CDs</option>
+<option value="jundiai">CD Jundiaí - SP</option>
+<option value="betim">CD Betim - MG</option>
+</select>
+</div>
+<div>
+<select class="w-full py-2.5 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-1 focus:ring-primary font-bold" id="filter-shelf-select" onchange="filterByShelf(this.value)">
+<option value="all">Faixa de Shelf Life</option>
+<option class="text-error" value="critico">&lt; 30 dias (Crítico)</option>
+<option class="text-tertiary" value="atencao">30 a 60 dias (Atenção)</option>
+<option value="medio">60 a 90 dias</option>
+<option class="text-secondary" value="saudavel">&gt; 90 dias (Saudável)</option>
+</select>
+</div>
+<div>
+<select class="w-full py-2.5 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-1 focus:ring-primary">
+<option value="">Status do Produto</option>
+<option value="catalogo">Ativo em Catálogo</option>
+<option value="leilao">Em Leilão Ativo</option>
+<option value="reserva">Reservado Venda Direta</option>
+<option value="esgotado">Esgotado</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Quick Shelf Life Alert Pills -->
+<div class="mt-space-sm pt-space-sm flex flex-wrap items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Filtro Ágil de Risco FEFO:</span>
+<button class="px-space-sm py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold flex items-center gap-1 hover:brightness-95 transition-all" onclick="setFilter('critico')">
+<span class="material-symbols-outlined text-[14px]">emergency_heat</span>
+          &lt; 30 dias: 1 SKU Crítico
+        </button>
+<button class="px-space-sm py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1 hover:brightness-95 transition-all" onclick="setFilter('atencao')">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+          30-60 dias: 1 SKU sob Alerta
+        </button>
+<button class="px-space-sm py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1 hover:brightness-95 transition-all" onclick="setFilter('saudavel')">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+          &gt; 90 dias: Regular
+        </button>
+<button class="text-outline hover:text-on-surface text-label-sm font-label-sm underline ml-auto" onclick="resetFilters()">
+          Limpar Filtros
+        </button>
+</div>
+</div>
+</div>
+<!-- Analytical Dense Catalog & Lots Table -->
+<div class="px-space-xl mb-space-lg">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Table Top Meta bar -->
+<div class="px-space-lg py-space-sm bg-surface-container-low flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs font-label-md text-label-md font-bold text-on-surface">
+<span>Listando</span>
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-numeric-timer text-label-sm" id="lot-count-badge">4 Lotes</span>
+<span>em 2 Centros de Distribuição</span>
+</div>
+<span class="h-4 w-px bg-outline-variant"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">inventory</span>
+            Volume Total Consolidado: <strong class="text-on-surface">20.200 Unidades</strong>
+</span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span>Ordem:</span>
+<button class="font-bold text-primary flex items-center gap-0.5">
+            Menor Shelf Life Primeiro (FEFO)
+            <span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse" id="catalog-table">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider select-none">
+<th class="py-space-md px-space-md w-12 text-center">
+<input class="rounded w-4 h-4 text-primary focus:ring-0" type="checkbox"/>
+</th>
+<th class="py-space-md px-space-md min-w-[280px]">Produto / SKU / EAN</th>
+<th class="py-space-md px-space-md min-w-[190px]">Lote &amp; Armazenagem CD</th>
+<th class="py-space-md px-space-md min-w-[220px]">Validade &amp; Shelf Life</th>
+<th class="py-space-md px-space-md min-w-[180px]">Estoque Disponível</th>
+<th class="py-space-md px-space-md min-w-[180px]">Preço Custo / Balcão B2B</th>
+<th class="py-space-md px-space-md text-right min-w-[240px]">Ações Rápidas</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-body-md text-body-md text-on-surface">
+<!-- ROW 1: QUEIJO PRATO (Crítico < 30d) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group bg-error-container/10" data-risk="critico">
+<td class="py-space-md px-space-md text-center">
+<input class="rounded w-4 h-4 text-primary" type="checkbox"/>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0 relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Pack of sliced Prato yellow cheese stacked neatly in clear vacuum-sealed industrial commercial catering packaging, clean studio lighting with cool white backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0zjYxa2LvkMv0sVkM2LuYsoxVZjMmiNYUJOYoGmqh5COmu2mNIJU_lXP9cLXIpOphZ7qlKH2SoawRGsvPpi5Zqez3DFNwUWGIREIkthF25fn2xqfeo_RlWNdmcchb0STwpqX_03aKcTEYaTihHA3-1Yi_T7TJeYJjKjUkSoBi2IAN8apbZM6YpQZrT0CNOq1b_L9TxF7ZLGlNRp6AmxVVs0rY9BF5zY6eiSPoVr-S"/>
+<span class="absolute bottom-0 right-0 bg-error text-on-error text-[9px] font-bold px-1 rounded-tl">URGENTE</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Queijo Prato Fatiado 1kg</span>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">25 dias rest.</span>
+</div>
+<div class="mt-0.5 font-label-sm text-label-sm text-on-surface-variant flex flex-wrap gap-x-2">
+<span>SKU: <code class="font-mono text-primary font-bold">QUE-PRA-10</code></span>
+<span>•</span>
+<span>EAN: <code class="font-mono">7898321099411</code></span>
+</div>
+<div class="font-label-sm text-label-sm text-outline mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">factory</span>
+                      Laticínios Vale da Serra S/A • DUN-14: 17898321099418
+                    </div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">qr_code_2</span>
+<span class="font-bold text-primary font-label-md text-label-md">#LT-9032</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">CD Betim - MG (Câmara Fria 02)</span>
+<span class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">forklift</span>
+                    Rua F-04 • Doca D-02 (Temp -2°C)
+                  </span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Validade: <strong class="text-on-surface">18/05/2026</strong></span>
+<span class="font-bold text-error">14% livre</span>
+</div>
+<!-- Progress bar: Vermelho -->
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-error h-full rounded-full transition-all duration-500" style="width: 14%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-0.5 text-error font-bold">
+<span class="material-symbols-outlined text-[12px]">timer</span>
+                      25 Dias Restantes
+                    </span>
+<span class="text-outline">Fab: 18/02/2026</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">800 kg</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">80 caixas masters (10 un)</span>
+<span class="font-label-sm text-label-sm text-outline">2 Paletes PBR • Peso Liq: 800kg</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md font-bold text-secondary">R$ 28,50</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/kg</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Custo: R$ 24,10/kg</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Margem Balcão: +18.2%</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5 flex-wrap">
+<button class="px-space-sm py-1.5 rounded-lg bg-tertiary text-on-tertiary hover:bg-tertiary-container transition-all font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm" onclick="openAuctionModal('Queijo Prato Fatiado 1kg', 'LT-9032', '800 kg', '28.50')" title="Disparar Leilão devido ao Shelf Life crítico">
+<span class="material-symbols-outlined text-[15px]">flash_on</span>
+                    Pregão Relâmpago
+                  </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-sm text-label-sm transition-all" onclick="openPromoModal('Queijo Prato Fatiado 1kg', 'LT-9032')">
+                    Promoção
+                  </button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 2: LEITE CONDENSADO (Atenção 30-60d) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-risk="atencao">
+<td class="py-space-md px-space-md text-center">
+<input class="rounded w-4 h-4 text-primary" type="checkbox"/>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0 relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Commercial cans of semi-skimmed sweetened condensed milk neatly aligned in factory shrink wrap packaging for wholesale distribution, high resolution industrial food photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWpityhmYfyAbyF7GN3iOqGlqlrFAsWmRwCSG7qQU7LdbfxHohlV7Q6vWa5CASMldwqzwHdHvCnOO4m_Uak59pJiChLXysZUfzS-_ipIGzmFymZ_hgapNfQ9SoZrYozuxb1VYvUaN1fSUGTuVZfSXWmmU3JzuvMCaMdaeCWvnU4RwDxnm7yLm_yZiX6DFgE8BZgd-IY4nrkio5Nn0B95yRuLKiRBIamWled4a9aPRJ"/>
+<span class="absolute bottom-0 right-0 bg-tertiary-fixed text-on-tertiary-fixed text-[9px] font-bold px-1 rounded-tl">ATENÇÃO</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Leite Condensado Semidesnatado 395g</span>
+</div>
+<div class="mt-0.5 font-label-sm text-label-sm text-on-surface-variant flex flex-wrap gap-x-2">
+<span>SKU: <code class="font-mono text-primary font-bold">LEI-395-04</code></span>
+<span>•</span>
+<span>EAN: <code class="font-mono">7891000244102</code></span>
+</div>
+<div class="font-label-sm text-label-sm text-outline mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">factory</span>
+                      Laticínios Central Alvorada • DUN-14: 17891000244109
+                    </div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">qr_code_2</span>
+<span class="font-bold text-primary font-label-md text-label-md">#LT-7721</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">CD Jundiaí - SP (Galpão 01)</span>
+<span class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warehouse</span>
+                    Rua A-12 • Nível 03
+                  </span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Validade: <strong class="text-on-surface">02/06/2026</strong></span>
+<span class="font-bold text-tertiary">24% livre</span>
+</div>
+<!-- Progress bar: Amarelo/Laranja -->
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full transition-all duration-500" style="width: 24%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-0.5 text-tertiary font-bold">
+<span class="material-symbols-outlined text-[12px]">schedule</span>
+                      40 Dias Restantes
+                    </span>
+<span class="text-outline">Fab: 02/06/2025</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">5.000 un</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">180 caixas (27 un/cx)</span>
+<span class="font-label-sm text-label-sm text-outline">3.5 Paletes • Peso: 1.975kg</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md font-bold text-secondary">R$ 4,10</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/un</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Custo: R$ 3,45/un</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Margem Balcão: +18.8%</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5 flex-wrap">
+<button class="px-space-sm py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-all font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm" onclick="openAuctionModal('Leite Condensado 395g', 'LT-7721', '5.000 un', '4.10')">
+<span class="material-symbols-outlined text-[15px]">gavel</span>
+                    Criar Leilão Imediato
+                  </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-sm text-label-sm transition-all" onclick="openPromoModal('Leite Condensado 395g', 'LT-7721')">
+                    Promoção
+                  </button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 3: CAFÉ TRADICIONAL (Saudável > 90d) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-risk="saudavel">
+<td class="py-space-md px-space-md text-center">
+<input class="rounded w-4 h-4 text-primary" type="checkbox"/>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0 relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Roasted and ground vacuum packed dark red coffee packaging pouches in organized rows for wholesale logistics distribution center, balanced natural commercial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9UplX-iFKH3VOS0bwsEqP1LoXq0eNGgyX3NP8_m7cpVEJ2QZDRN5LWm63aLQQt9uon_JhwN3q19RVUR43y9C7K-MMIccGZ28Zq1opYe6Y49kkD9pdLKUDpJygLakNpqKcE3ekxeujQbjG0Y_pmmsgw3xmEh9onwNGLIWS5e1R6tIRWra7BhwanL9odhex2bVo3uetrOhIAq3XuwaxXzpDHGRqXQqvEIpuUfnH4Oyn"/>
+<span class="absolute bottom-0 right-0 bg-secondary-fixed text-on-secondary-fixed text-[9px] font-bold px-1 rounded-tl">ESTÁVEL</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Café Tradicional 500g Aliança</span>
+</div>
+<div class="mt-0.5 font-label-sm text-label-sm text-on-surface-variant flex flex-wrap gap-x-2">
+<span>SKU: <code class="font-mono text-primary font-bold">CAF-500-01</code></span>
+<span>•</span>
+<span>EAN: <code class="font-mono">7898912340012</code></span>
+</div>
+<div class="font-label-sm text-label-sm text-outline mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">factory</span>
+                      Torrefação &amp; Moagem Aliança • DUN-14: 17898912340019
+                    </div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">qr_code_2</span>
+<span class="font-bold text-primary font-label-md text-label-md">#LT-8819</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">CD Jundiaí - SP (Galpão 02)</span>
+<span class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warehouse</span>
+                    Rua C-08 • Nível 01
+                  </span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Validade: <strong class="text-on-surface">14/11/2026</strong></span>
+<span class="font-bold text-secondary">82% livre</span>
+</div>
+<!-- Progress bar: Verde -->
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 82%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-0.5 text-secondary font-bold">
+<span class="material-symbols-outlined text-[12px]">check</span>
+                      210 Dias Restantes
+                    </span>
+<span class="text-outline">Fab: 15/01/2026</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">2.400 un</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">100 caixas (24 un/cx)</span>
+<span class="font-label-sm text-label-sm text-outline">4 Paletes PBR • 1.200 kg</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md font-bold text-secondary">R$ 14,80</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/un</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Custo: R$ 11,90/un</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Margem Balcão: +24.3%</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5 flex-wrap">
+<button class="px-space-sm py-1.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-on-secondary transition-all font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm" onclick="openPromoModal('Café Tradicional 500g', 'LT-8819')">
+<span class="material-symbols-outlined text-[15px]">sell</span>
+                    Criar Promoção B2B
+                  </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-sm text-label-sm transition-all" onclick="openAuctionModal('Café Tradicional 500g', 'LT-8819', '2.400 un', '14.80')">
+                    Leilão
+                  </button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 4: BISCOITO RECHEADO (Saudável > 90d) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-risk="saudavel">
+<td class="py-space-md px-space-md text-center">
+<input class="rounded w-4 h-4 text-primary" type="checkbox"/>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden flex-shrink-0 relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Corrugated cardboard master cartons and packaged chocolate sandwich cookies ready on wooden pallets inside an organized distribution warehouse, crisp industrial photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAU30bYiU_03jRHLSNzgJVT7xhinny6bLbEOi_i-i61llAVzshOVypD5yO3Qka3Xn2xMoHBnDNXVshrBVvxciObXnaBwATcEW7RIPG7knw4ctU2fkR4S32DJrxg6LfpnNcIutFOBfxra1v9nVQILnBCqcwI4Y7_GExy1tYRW9k0B0adQk3IbRZFEj9O0JsEHNDSyHMvbUZCaa3fzZntoPF8TrIlDVGqmOWHIl72O82"/>
+<span class="absolute bottom-0 right-0 bg-secondary-fixed text-on-secondary-fixed text-[9px] font-bold px-1 rounded-tl">ESTÁVEL</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Biscoito Recheado Chocolate 130g</span>
+</div>
+<div class="mt-0.5 font-label-sm text-label-sm text-on-surface-variant flex flex-wrap gap-x-2">
+<span>SKU: <code class="font-mono text-primary font-bold">BIS-130-08</code></span>
+<span>•</span>
+<span>EAN: <code class="font-mono">7892211904554</code></span>
+</div>
+<div class="font-label-sm text-label-sm text-outline mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">factory</span>
+                      Indústria de Alimentos Croc S/A • DUN-14: 17892211904551
+                    </div>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">qr_code_2</span>
+<span class="font-bold text-primary font-label-md text-label-md">#LT-6540</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">CD Betim - MG (Galpão Seco)</span>
+<span class="font-body-sm text-body-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warehouse</span>
+                    Rua D-01 • Doca 04
+                  </span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Validade: <strong class="text-on-surface">30/12/2026</strong></span>
+<span class="font-bold text-secondary">88% livre</span>
+</div>
+<!-- Progress bar: Verde -->
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 88%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-0.5 text-secondary font-bold">
+<span class="material-symbols-outlined text-[12px]">check</span>
+                      250 Dias Restantes
+                    </span>
+<span class="text-outline">Fab: 02/02/2026</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">12.000 un</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">400 caixas (30 un/cx)</span>
+<span class="font-label-sm text-label-sm text-outline">10 Paletes PBR • 1.560 kg</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md font-bold text-secondary">R$ 2,15</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/un</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Custo: R$ 1,60/un</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Margem Balcão: +34.3%</span>
+</div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="flex items-center justify-end gap-1.5 flex-wrap">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-sm text-label-sm transition-all" onclick="openPromoModal('Biscoito Recheado 130g', 'LT-6540')">
+                    Promoção
+                  </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-lowest border border-outline-variant hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-all" onclick="openStockAdjustModal('Biscoito Recheado 130g', 'LT-6540', '12000')">
+                    Ajustar
+                  </button>
+<button class="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Mais opções">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination & Density Control -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-space-sm">
+<span>Mostrando 4 de 4 lotes cadastrados</span>
+<span class="text-outline-variant">•</span>
+<button class="text-primary font-label-sm text-label-sm hover:underline">Ver Histórico de Lotes Baixados</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm">Itens por página:</span>
+<select class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm border-none focus:ring-1 focus:ring-primary">
+<option>25</option>
+<option>50</option>
+<option>100</option>
+</select>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded bg-surface-container-highest text-on-surface opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="p-1 rounded bg-surface-container-highest text-on-surface opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Health & Shelf Life Analytics Bento Bottom Deck -->
+<div class="px-space-xl pb-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card 1: Risco Iminente FEFO -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-error uppercase font-bold tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+            Alerta Crítico FEFO
+          </span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+            3 Lotes Iminentes
+          </span>
+</div>
+<div class="mt-space-md">
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Valor em Risco de Vencimento (&lt; 45d)</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-headline-xl text-headline-xl font-extrabold text-error">R$ 74.200,00</span>
+</div>
+<span class="block font-label-sm text-label-sm text-outline mt-1">Impacto direto no CMV se não liquidado em até 18 dias</span>
+</div>
+<!-- Inline micro visual sparkline / urgency bar -->
+<div class="mt-space-md pt-space-sm border-t border-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-error font-bold">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span>
+            Disparo Automático de Pregão: Agendado para hoje 18:00
+          </div>
+</div>
+</div>
+<!-- Card 2: Capacidade Ocupada em Armazém -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">warehouse</span>
+            Ocupação Volumétrica
+          </span>
+<span class="font-label-sm text-label-sm text-primary font-bold">2 CDs Operacionais</span>
+</div>
+<div class="mt-space-md space-y-space-sm">
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<span class="font-bold text-on-surface">CD Jundiaí - SP (Padrão PBR)</span>
+<span class="font-numeric-timer text-on-surface">68%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-primary h-full rounded-full" style="width: 68%;"></div>
+</div>
+<span class="text-[11px] text-outline">1.360 posições de 2.000 ocupadas</span>
+</div>
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<span class="font-bold text-on-surface">CD Betim - MG (Seco + Refrigerado)</span>
+<span class="font-numeric-timer text-on-surface">52%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-secondary h-full rounded-full" style="width: 52%;"></div>
+</div>
+<span class="text-[11px] text-outline">780 posições de 1.500 ocupadas</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-surface-container-high flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Capacidade Livre para Giro:</span>
+<strong class="text-on-surface">1.360 Paletes livres</strong>
+</div>
+</div>
+<!-- Card 3: Giro Médio / Dwell Time -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">speed</span>
+            Eficiência Logística
+          </span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+            -3.4d vs. meta
+          </span>
+</div>
+<div class="mt-space-md">
+<span class="block font-body-sm text-body-sm text-on-surface-variant">Giro Médio de Lotes (Dwell Time)</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-headline-xl text-headline-xl font-extrabold text-secondary">16 Dias</span>
+<span class="font-body-md text-body-md text-on-surface-variant">entre recebimento e arremate</span>
+</div>
+<!-- Inline mini visual chart SVG representation -->
+<div class="mt-space-sm flex items-end gap-1 h-8">
+<div class="flex-1 bg-surface-container-high rounded-t h-4" title="Semana 1"></div>
+<div class="flex-1 bg-surface-container-high rounded-t h-6" title="Semana 2"></div>
+<div class="flex-1 bg-surface-container-high rounded-t h-7" title="Semana 3"></div>
+<div class="flex-1 bg-secondary rounded-t h-3" title="Semana Atual (16d)"></div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-surface-container-high flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Liquidez no pregão B2B:</span>
+<span class="font-bold text-secondary">94.8% arrematados na 1ª rodada</span>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL: Criação Rápida de Leilão / Pregão Relâmpago (Hidden by default) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="modal-leilao">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+<div class="p-space-lg bg-primary-container text-on-primary flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+<div>
+<h3 class="font-headline-md text-headline-md font-bold">Lançar Pregão Imediato</h3>
+<span class="font-label-sm text-label-sm text-on-primary-container">Venda rápida por liquidação de Shelf Life</span>
+</div>
+</div>
+<button class="text-on-primary hover:text-surface-container-highest" onclick="document.getElementById('modal-leilao').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-space-lg space-y-space-md" onsubmit="handleFormSubmit(event, 'Pregão lançado com sucesso na Central de Lances Ao Vivo!'); document.getElementById('modal-leilao').classList.add('hidden');">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Item Selecionado &amp; Lote</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container font-bold text-on-surface text-body-md focus:outline-none" id="modal-leilao-item" readonly="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Volume Total do Lote</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container font-body-md text-on-surface focus:outline-none" id="modal-leilao-volume" readonly="" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Lance Inicial Sugerido (R$)</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low font-headline-md text-headline-md font-bold text-secondary focus:ring-2 focus:ring-primary focus:outline-none" id="modal-leilao-preco" step="0.01" type="number"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Duração do Pregão</label>
+<select class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-md focus:outline-none">
+<option>15 minutos (Pregão Flash)</option>
+<option>30 minutos</option>
+<option selected="">1 hora</option>
+<option>24 horas</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Preço de Reserva Oculto</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-md focus:outline-none" placeholder="R$ 0,00 (Opcional)" type="text"/>
+</div>
+</div>
+<div class="p-space-md bg-tertiary-fixed/40 rounded-lg flex items-start gap-space-sm text-tertiary">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 mt-0.5">info</span>
+<span class="font-body-sm text-body-sm">
+            Notificação imediata via Push e WhatsApp para <strong>142 supermercadistas e atacadistas</strong> cadastrados na sua região de cobertura.
+          </span>
+</div>
+<div class="pt-space-sm flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md" onclick="document.getElementById('modal-leilao').classList.add('hidden')" type="button">
+            Cancelar
+          </button>
+<button class="px-space-lg py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md font-bold shadow-md flex items-center gap-1" type="submit">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+            Confirmar e Publicar Pregão
+          </button>
+</div>
+</form>
+</div>
+</div>
+<!-- MODAL: Cadastro Manual de Produto (Hidden by default) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="modal-cadastro-manual">
+<div class="bg-surface-container-lowest rounded-xl max-w-2xl w-full shadow-2xl overflow-hidden max-h-[921px] flex flex-col">
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Cadastrar Novo Produto &amp; Lote</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Conformidade GS1 Brasil &amp; Rastreabilidade ANVISA/MAPA</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="document.getElementById('modal-cadastro-manual').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-space-lg space-y-space-md overflow-y-auto flex-1" onsubmit="handleFormSubmit(event, 'SKU e lote cadastrados com sucesso no armazém!'); document.getElementById('modal-cadastro-manual').classList.add('hidden');">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="md:col-span-2">
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Descrição Completa do SKU</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-md focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Ex: Arroz Tipo 1 Longo Fino 5kg - Fardo c/ 6un" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Código EAN-13 (Unidade)</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low font-mono text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" placeholder="789..." required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Código DUN-14 (Caixa Master)</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low font-mono text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" placeholder="1789..." type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Fabricante / Fornecedor</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Razão Social ou Nome Fantasia" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Categoria</label>
+<select class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-md focus:ring-2 focus:ring-primary focus:outline-none">
+<option>Mercearia Seca</option>
+<option>Laticínios &amp; Refrigerados</option>
+<option>Bebidas</option>
+<option>Matinais &amp; Cereais</option>
+<option>Conservas &amp; Molhos</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Código do Lote</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low font-mono font-bold text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" placeholder="LT-XXXX" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Data de Validade (Vencimento)</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" required="" type="date"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Centro de Distribuição Destino</label>
+<select class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-md focus:ring-2 focus:ring-primary focus:outline-none">
+<option>CD-01 Campinas SP</option>
+<option>CD Jundiaí - SP</option>
+<option>CD Betim - MG</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Quantidade de Unidades</label>
+<input class="w-full mt-1 p-2.5 rounded-lg bg-surface-container-low text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Ex: 5000" required="" type="number"/>
+</div>
+</div>
+<div class="pt-space-md border-t border-surface-container-high flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md" onclick="document.getElementById('modal-cadastro-manual').classList.add('hidden')" type="button">
+            Cancelar
+          </button>
+<button class="px-space-lg py-2.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md font-bold shadow-md" type="submit">
+            Salvar e Estocar no CD
+          </button>
+</div>
+</form>
+</div>
+</div>
+<!-- MODAL: Regras de Shelf Life FEFO (Hidden by default) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="modal-regras-shelf">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full shadow-2xl overflow-hidden">
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">tune</span>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Políticas de Shelf Life Automático</h3>
+</div>
+<button class="text-on-surface-variant" onclick="document.getElementById('modal-regras-shelf').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-space-lg space-y-space-md">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+<div>
+<span class="block font-label-md text-label-md font-bold text-on-surface">Auto-Pregão em &lt; 30 dias</span>
+<span class="font-body-sm text-body-sm text-outline">Gera leilão relâmpago de 24h quando atingir o limiar</span>
+</div>
+<input checked="" class="w-5 h-5 rounded text-primary" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+<div>
+<span class="block font-label-md text-label-md font-bold text-on-surface">Desconto Dinâmico Escalonado</span>
+<span class="font-body-sm text-body-sm text-outline">Aplica -15% no balcão a cada 10 dias abaixo de 60d</span>
+</div>
+<input checked="" class="w-5 h-5 rounded text-primary" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low">
+<div>
+<span class="block font-label-md text-label-md font-bold text-on-surface">Trava de Expedição Crítica (&lt; 15 dias)</span>
+<span class="font-body-sm text-body-sm text-outline">Bloqueia saída para redes de varejo com SLA restritivo</span>
+</div>
+<input checked="" class="w-5 h-5 rounded text-primary" type="checkbox"/>
+</div>
+</div>
+<div class="pt-space-sm flex justify-end gap-space-sm">
+<button class="px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-bold" onclick="document.getElementById('modal-regras-shelf').classList.add('hidden')" type="button">
+            Salvar Parâmetros
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Script for Filtering, Dynamic Modals and Micro-interactions -->
+<script>
+    function openAuctionModal(productName, lotCode, volume, price) {
+      document.getElementById('modal-leilao-item').value = productName + ' (' + lotCode + ')';
+      document.getElementById('modal-leilao-volume').value = volume;
+      document.getElementById('modal-leilao-preco').value = price;
+      document.getElementById('modal-leilao').classList.remove('hidden');
+    }
+
+    function openPromoModal(productName, lotCode) {
+      const discount = prompt('Defina a % de desconto imediato para o lote ' + lotCode + ' (' + productName + '):', '15');
+      if (discount) {
+        alert('Promoção ativada! O lote ' + lotCode + ' agora está visível no portal de Venda Direta com ' + discount + '% OFF.');
+      }
+    }
+
+    function openStockAdjustModal(productName, lotCode, currentQty) {
+      const newQty = prompt('Ajuste de inventário WMS para ' + productName + ' (' + lotCode + '):\nQuantidade atual: ' + currentQty + ' un\nDigite a nova contagem física auditada:', currentQty);
+      if (newQty && newQty !== currentQty) {
+        alert('Inventário atualizado com sucesso para ' + newQty + ' unidades. Log de divergência gerado.');
+      }
+    }
+
+    function handleLiveSearch(query) {
+      const term = query.toLowerCase().trim();
+      const rows = document.querySelectorAll('#catalog-table tbody tr');
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        if (text.includes(term)) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      document.getElementById('lot-count-badge').innerText = visibleCount + ' Lotes';
+    }
+
+    function filterByShelf(val) {
+      const rows = document.querySelectorAll('#catalog-table tbody tr');
+      let visible = 0;
+      rows.forEach(row => {
+        const risk = row.getAttribute('data-risk');
+        if (val === 'all' || !val) {
+          row.style.display = '';
+          visible++;
+        } else if (risk === val) {
+          row.style.display = '';
+          visible++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      document.getElementById('lot-count-badge').innerText = visible + ' Lotes';
+    }
+
+    function setFilter(riskValue) {
+      document.getElementById('filter-shelf-select').value = riskValue;
+      filterByShelf(riskValue);
+    }
+
+    function resetFilters() {
+      document.getElementById('table-search-input').value = '';
+      document.getElementById('filter-shelf-select').value = 'all';
+      filterByShelf('all');
+    }
+
+    function triggerExportNotice() {
+      alert('Relatório de Espelho de Estoque (.XLSX) gerado com sucesso. O download iniciará em instantes.');
+    }
+
+    function handleFormSubmit(e, message) {
+      e.preventDefault();
+      alert(message);
+    }
+  </script>
+</div></main></div></body></html>

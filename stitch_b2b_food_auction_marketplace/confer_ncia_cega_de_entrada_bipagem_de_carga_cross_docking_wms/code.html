@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 24;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error-container":"#ffdad6","secondary-fixed":"#a3f69c","on-secondary":"#ffffff","on-error":"#ffffff","on-primary":"#ffffff","secondary-fixed-dim":"#88d982","inverse-primary":"#b0c6ff","primary-fixed-dim":"#b0c6ff","background":"#f7f9fb","surface-container-high":"#e6e8ea","on-background":"#191c1e","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#005312","on-tertiary-fixed-variant":"#930010","on-surface-variant":"#434652","on-secondary-fixed":"#002204","surface-container-highest":"#e0e3e5","surface-container":"#eceef0","on-secondary-container":"#217128","primary-fixed":"#d9e2ff","surface-variant":"#e0e3e5","inverse-on-surface":"#eff1f3","on-error-container":"#93000a","on-tertiary":"#ffffff","inverse-surface":"#2d3133","surface-dim":"#d8dadc","surface-container-low":"#f2f4f6","outline-variant":"#c3c6d4","tertiary-fixed-dim":"#ffb3ac","tertiary":"#720009","on-primary-fixed":"#001945","secondary":"#1b6d24","on-surface":"#191c1e","on-primary-container":"#a1bbff","primary":"#003178","on-tertiary-container":"#ffa59d","tertiary-fixed":"#ffdad6","on-tertiary-fixed":"#410003","surface-bright":"#f7f9fb","outline":"#737783","error":"#ba1a1a","tertiary-container":"#9d0011","surface-tint":"#2b5bb5","primary-container":"#0d47a1","on-primary-fixed-variant":"#00429c","secondary-container":"#a0f399","surface":"#f7f9fb"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-lg":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem",gutter:"1rem","space-xl":"2rem",margin:"1.5rem","space-md":"0.75rem","margin-mobile":"1rem","gutter-mobile":"0.75rem"},fontFamily:{"label-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"]},fontSize:{"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"numeric-timer":["20px",{lineHeight:"24px",fontWeight:"800"}],"headline-lg":["24px",{lineHeight:"32px",fontWeight:"700"}],"headline-xl-mobile":["24px",{lineHeight:"32px",fontWeight:"800"}],"headline-lg-mobile":["20px",{lineHeight:"28px",fontWeight:"700"}],"headline-xl":["32px",{lineHeight:"40px",fontWeight:"800"}],"headline-md":["18px",{lineHeight:"24px",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-low"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-xl">pallet</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary leading-none">REDE B2B</span><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider mt-0.5">WMS &amp; Atacado Log</span></div></div><div class="flex-1 overflow-y-auto px-space-md py-space-md space-y-space-lg"><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Operacional</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Visão Geral</a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="scanner-optico-wms" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-lg">barcode_scanner</span><span>Scanner Óptico / Barcode WMS</span></div><span class="w-2 h-2 rounded-full bg-secondary"></span></a></nav><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Catálogo &amp; Estoque</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="produtos-e-lotes" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span>Produtos &amp; Lotes</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="homologacao-gs1" href="#"><span class="material-symbols-outlined text-lg">verified</span>Homologação GS1</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="armazens-e-cds" href="#"><span class="material-symbols-outlined text-lg">warehouse</span>Armazéns &amp; CDs</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="emissao-etiquetas-gs1-128" href="#"><span class="material-symbols-outlined text-lg">print</span>Etiquetas GS1-128 &amp; ZPL</a></nav><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Operação Comercial</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="criar-leilao" href="#"><span class="material-symbols-outlined text-lg">gavel</span>Criar Pregão / Leilão</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="central-de-lances" href="#"><span class="material-symbols-outlined text-lg">stream</span>Central de Lances ao Vivo</a></nav><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Logística &amp; Controladoria</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="expedicao-e-docas" href="#"><span class="material-symbols-outlined text-lg">local_shipping</span>Expedição &amp; Docas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="gestao-financeira" href="#"><span class="material-symbols-outlined text-lg">account_balance</span>Gestão Financeira Escrow</a></nav></div><div class="p-space-md bg-surface-container-high/60 m-space-sm rounded-xl space-y-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Motor ZPL Zebra</span><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">PRONTO</span></div><div class="font-body-sm text-body-sm text-on-surface-variant truncate">ZT411 Industrial (203dpi)</div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-full px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container rounded-lg text-on-surface"><span class="material-symbols-outlined text-primary text-xl">domain</span><div class="flex flex-col"><span class="font-label-sm text-label-sm uppercase text-outline">Hub Ativo</span><span class="font-label-md text-label-md font-bold text-on-surface leading-none">CD 01 - Campinas / SP</span></div><span class="material-symbols-outlined text-on-surface-variant text-base ml-1">expand_more</span></div><div class="hidden xl:flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container-low rounded-lg"><span class="material-symbols-outlined text-secondary text-xl">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline uppercase">Escrow Fiduciário</span><span class="font-label-md text-label-md font-bold text-on-surface leading-none">R$ 4.892.450,00</span></div></div><div class="hidden 2xl:flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container-low rounded-lg"><span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm font-bold text-on-surface-variant">Zebra DS3678:</span><span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Conectado (BT)</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors relative"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-md text-label-md font-bold text-on-surface leading-none">Carlos Mendonça</span><span class="font-label-sm text-label-sm text-outline mt-0.5">Operador Logístico WMS Senior</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter py-space-lg"><div class="flex flex-col w-full space-y-space-md">
+<!-- Doca & Veículo Context Bar (Top Strip) -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center flex-wrap gap-space-md">
+<div class="flex items-center gap-space-sm bg-primary-container text-on-primary px-space-md py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-xl">garage</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase opacity-80 leading-none">Ponto de Descarga</span>
+<span class="font-label-lg text-label-lg font-bold leading-none mt-0.5">Doca 02 - Recebimento FTL</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-outline text-lg">local_shipping</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase leading-none">Placa Carreta</span>
+<span class="font-label-md text-label-md font-bold text-on-surface leading-none mt-0.5">DXP9A41</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-outline text-lg">factory</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase leading-none">Fornecedor</span>
+<span class="font-label-md text-label-md font-bold text-on-surface leading-none mt-0.5">Indústria Aliança S/A</span>
+</div>
+</div>
+<div class="hidden 2xl:flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg max-w-sm truncate">
+<span class="material-symbols-outlined text-outline text-lg">receipt_long</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-outline uppercase leading-none">Chave NF-e 55</span>
+<span class="font-label-md text-label-md font-bold text-on-surface truncate leading-none mt-0.5">3524 0401 2345 6700 0189 5500 1000 0394 8219 2831 4710</span>
+</div>
+</div>
+</div>
+<!-- Progresso Geral da Carga -->
+<div class="flex items-center gap-space-md ml-auto">
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm uppercase font-bold text-secondary flex items-center gap-1 justify-end">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+          Em Andamento
+        </span>
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface leading-none mt-0.5">72% Bipado</span>
+</div>
+<div class="w-28 h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 72%;"></div>
+</div>
+</div>
+</div>
+<!-- Header Institucional com Ações Rápidas -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold tracking-wider">Protocolo Cego GS1-WMS</span>
+<span class="font-label-sm text-label-sm uppercase px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-semibold">Anti-Fraude Logístico</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary font-extrabold tracking-tight">Conferência Cega de Doca &amp; Validação de Carga</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+        Bipagem automatizada sem exposição prévia de saldo contábil. Conciliação cega em tempo real de caixas master/fardos, cálculo volumétrico instantâneo e contenção preventiva de quebras de FEFO.
+      </p>
+</div>
+<!-- CTA Group -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">pause_circle</span>
+        Pausar
+      </button>
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">print</span>
+        Relatório Parcial
+      </button>
+<button class="flex items-center gap-space-xs px-space-md py-2 bg-tertiary-container hover:bg-tertiary text-on-tertiary rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">report_problem</span>
+        Avaria / Quebra
+      </button>
+<button class="flex items-center gap-space-xs px-space-lg py-2 bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary rounded-lg font-label-md text-label-md font-bold transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">verified</span>
+        Concluir &amp; Liberar Guardamento
+      </button>
+</div>
+</div>
+<!-- Painel de Indicadores Operacionais (Cards Métricos de Doca) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-sm">
+<!-- Card 1: Bipagem Caixas -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Caixas Bipadas</span>
+<span class="material-symbols-outlined text-primary text-xl">inventory_2</span>
+</div>
+<div class="my-space-xs">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg font-extrabold text-on-surface">864</span>
+<span class="font-body-md text-body-md text-outline">/ 1.200 cx</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 72%;"></div>
+</div>
+</div>
+<div class="font-label-sm text-label-sm text-outline flex items-center justify-between">
+<span>336 pendentes</span>
+<span class="text-primary font-bold">72% da carga</span>
+</div>
+</div>
+<!-- Card 2: Paletes Montados -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Paletes PBR Prontos</span>
+<span class="material-symbols-outlined text-secondary text-xl">pallet</span>
+</div>
+<div class="my-space-xs">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg font-extrabold text-on-surface">18</span>
+<span class="font-body-md text-body-md text-outline">/ 25 PBR</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 72%;"></div>
+</div>
+</div>
+<div class="font-label-sm text-label-sm text-outline flex items-center justify-between">
+<span>Palete #018 ativo</span>
+<span class="text-secondary font-bold">7 restante</span>
+</div>
+</div>
+<!-- Card 3: Acurácia Leitura -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Acurácia Óptica GS1</span>
+<span class="material-symbols-outlined text-primary text-xl">qr_code_scanner</span>
+</div>
+<div class="my-space-xs">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg font-extrabold text-on-surface">99.8%</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">ALTA</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 99.8%;"></div>
+</div>
+</div>
+<div class="font-label-sm text-label-sm text-outline flex items-center justify-between">
+<span>Checksum inválido: 0</span>
+<span class="text-secondary font-bold">Zebra DS3678</span>
+</div>
+</div>
+<!-- Card 4: Divergência Crítica -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-tertiary">
+<span class="font-label-sm text-label-sm uppercase font-bold text-tertiary">Divergências FEFO</span>
+<span class="material-symbols-outlined text-tertiary text-xl">warning</span>
+</div>
+<div class="my-space-xs">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg font-extrabold text-tertiary">1 Alerta</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-bold">CRÍTICO</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+<div class="font-label-sm text-label-sm text-tertiary font-bold truncate">
+        Shelf Life: 150d vs 210d contratado
+      </div>
+</div>
+<!-- Card 5: Climatização & Balança -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Temperatura do Baú</span>
+<span class="material-symbols-outlined text-outline text-xl">device_thermostat</span>
+</div>
+<div class="my-space-xs">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-lg text-headline-lg font-extrabold text-on-surface">19.4°C</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold">Carga Seca</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 48%;"></div>
+</div>
+</div>
+<div class="font-label-sm text-label-sm text-outline flex items-center justify-between">
+<span>Faixa ideal: 15°C - 25°C</span>
+<span class="text-secondary font-bold">Normal</span>
+</div>
+</div>
+</div>
+<!-- Alerta Ativo de Divergência de Shelf Life (Tratativa Imediata) -->
+<div class="w-full bg-error-container rounded-xl shadow-sm p-space-md flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl">priority_high</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-tertiary text-on-tertiary font-bold uppercase">Discrepância Gravada</span>
+<span class="font-label-md text-label-md font-bold text-on-error-container">SKU: BIS-400-01 - Biscoito Cream Cracker Especial 400g</span>
+</div>
+<p class="font-body-md text-body-md text-on-error-container">
+          O lote físico bipado (<strong class="font-bold">SBE-2026-09</strong> com validade <strong class="font-bold">15/05/2026</strong>) possui <strong class="font-bold">95 dias a menos de vida útil</strong> do que o acordado no leilão fiduciário (mínimo de 210 dias).
+        </p>
+</div>
+</div>
+<!-- Opções de Resolução de Acordo B2B -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="px-space-md py-2 bg-on-tertiary text-tertiary font-label-md text-label-md font-bold rounded-lg hover:bg-surface-container-lowest transition-colors shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-base">price_change</span>
+        Aceitar com Desconto (-15% no Escrow)
+      </button>
+<button class="px-space-md py-2 bg-tertiary text-on-tertiary font-label-md text-label-md font-bold rounded-lg hover:bg-tertiary-container transition-colors shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-base">assignment_return</span>
+        Segregar para Devolução Imediata
+      </button>
+<button class="px-space-md py-2 bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg hover:bg-surface-container-highest transition-colors shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-base">gavel</span>
+        Mesa de Arbitragem
+      </button>
+</div>
+</div>
+<!-- SEÇÃO PRINCIPAL (Grid Duplo de Trabalho: Terminal de Bipagem x Conciliação Cega) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- COLUNA ESQUERDA: Terminal de Bipagem & Scanner Óptico Zebra (5 Colunas) -->
+<div class="lg:col-span-5 space-y-space-md flex flex-col">
+<!-- Box Principal do Coletor RF -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg space-y-space-md">
+<!-- Header do Terminal -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-2xl">barcode_reader</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface leading-none">Console de Bipagem Rápida</span>
+<span class="font-label-sm text-label-sm text-outline leading-none mt-1">Coletor Zebra TC26 / BT Auto-Sync</span>
+</div>
+</div>
+<span class="w-3 h-3 rounded-full bg-secondary animate-pulse" title="Leitor Ativo e Prontidão"></span>
+</div>
+<!-- Seletor de Modo Operacional -->
+<div class="grid grid-cols-3 gap-1 bg-surface-container-low p-1 rounded-lg">
+<button class="py-1.5 px-2 bg-surface-container-lowest text-primary rounded font-label-sm text-label-sm font-bold shadow-sm flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">fast_forward</span>
+            Contínua
+          </button>
+<button class="py-1.5 px-2 text-on-surface-variant hover:text-on-surface rounded font-label-sm text-label-sm font-medium flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">scale</span>
+            + Pesagem
+          </button>
+<button class="py-1.5 px-2 text-on-surface-variant hover:text-on-surface rounded font-label-sm text-label-sm font-medium flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">flaky</span>
+            Amostragem
+          </button>
+</div>
+<!-- Input com Foco Rápido e Tecla Enter WMS -->
+<div class="space-y-space-xs">
+<label class="font-label-sm text-label-sm uppercase font-bold text-outline flex items-center justify-between">
+<span>Aguardando Leitura de Código DUN-14 / GS1-128</span>
+<span class="text-primary font-mono text-[10px]">AUTO-FOCUS: ON</span>
+</label>
+<div class="relative flex items-center">
+<input autofocus="" class="w-full h-14 pl-12 pr-28 bg-surface-container-low rounded-xl text-on-surface font-numeric-timer text-numeric-timer tracking-wider placeholder:text-outline placeholder:font-normal focus:bg-surface-container-lowest focus:shadow-md transition-all outline-none" id="barcode-input" placeholder="Bipar caixa ou fardo..." type="text" value="17898912340019"/>
+<span class="material-symbols-outlined absolute left-3.5 text-2xl text-primary">barcode</span>
+<button class="absolute right-2 px-space-sm py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md font-bold hover:bg-primary-container transition-colors shadow-sm">
+              Confirmar
+            </button>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm px-1">
+<span>Pressione [ENTER] ou acione o gatilho RF</span>
+<span class="font-bold text-secondary">Balança Doca: 12.18 kg (Estável)</span>
+</div>
+</div>
+<!-- Card de Último Volume Bipado (Feedback Imediato) -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-base">check_circle</span>
+              Último Volume Bipado Com Sucesso
+            </span>
+<span class="font-label-sm text-label-sm text-outline font-mono">14:38:22</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up photo of high quality roasted packaged ground coffee boxes organized neatly inside a distribution warehouse facility under clear industrial LED lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcsgth0xBCAust-B6rgensAl0GF7wY9FEdCKaMnqlFK8P7MHKLnyxDTzX-tlktbZOsO2l99xMop-bm8aUXuJz1ywN8BDw7bTdLK1sj_p4wuuXqyA2TUXDhKmak0UY7g5ayKKVoa_z2vlYlbaY0w6LNLSEdHhAKmUlwPEBAiDfTNpcNw1i7Ba9_ZUiErntJH9G7ZA9TX6QezcRiFnNU8dIy7uqBRfPLtZFSxhe3BCdZ"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Café Aliança Tradicional 500g</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Caixa c/ 24 unidades | DUN-14: 17898912340019</span>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-mono">Lote: 2026-8819</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">Validade: 14/11/2026</span>
+</div>
+</div>
+</div>
+<!-- Progresso do Palete PBR Ativo -->
+<div class="bg-surface-container-lowest rounded-lg p-space-sm space-y-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<div class="flex items-center gap-1 font-bold text-on-surface">
+<span class="material-symbols-outlined text-base text-primary">view_in_ar</span>
+<span>Palete PBR #018 Aberto</span>
+</div>
+<span class="font-bold text-primary">48 de 50 Caixas (96%)</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-300" style="width: 96%;"></div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-outline">Faltam 2 caixas para lastro completo</span>
+<button class="font-label-sm text-label-sm font-bold text-primary hover:underline">Alterar Camadas</button>
+</div>
+</div>
+<!-- Ações Rápidas de Palete -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<button class="flex items-center justify-center gap-1 py-2 px-space-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md font-bold hover:bg-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-base">print</span>
+              Fechar Palete &amp; SSCC
+            </button>
+<button class="flex items-center justify-center gap-1 py-2 px-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg font-label-md text-label-md font-bold transition-colors">
+<span class="material-symbols-outlined text-base">swap_horiz</span>
+              Trocar Palete PBR
+            </button>
+</div>
+</div>
+<!-- Log de Bipagens Recentes (Live Stream) -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Histórico Instantâneo de Bipagem</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">Últimas 5 leituras</span>
+</div>
+<div class="space-y-1">
+<!-- Evento 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="font-mono text-outline text-label-sm">14:38:22</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-semibold text-on-surface truncate">Café Aliança Trad. 500g</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-outline text-label-sm shrink-0">
+<span>12.18 kg</span>
+<span class="text-primary font-bold">PBR #018</span>
+</div>
+</div>
+<!-- Evento 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="font-mono text-outline text-label-sm">14:38:15</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-semibold text-on-surface truncate">Café Aliança Trad. 500g</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-outline text-label-sm shrink-0">
+<span>12.15 kg</span>
+<span class="text-primary font-bold">PBR #018</span>
+</div>
+</div>
+<!-- Evento 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="font-mono text-outline text-label-sm">14:38:08</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-semibold text-on-surface truncate">Café Aliança Trad. 500g</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-outline text-label-sm shrink-0">
+<span>12.20 kg</span>
+<span class="text-primary font-bold">PBR #018</span>
+</div>
+</div>
+<!-- Evento 4 -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-error-container text-on-error-container font-body-sm text-body-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="font-mono text-label-sm">14:35:40</span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="font-bold truncate">Bis. Cream Cracker (Validade Curta)</span>
+</div>
+<div class="flex items-center gap-space-sm font-mono text-label-sm shrink-0">
+<span>8.40 kg</span>
+<span class="font-bold text-tertiary">QUARENTENA</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUNA DIREITA: Grade de Conciliação Cega de Carga (7 Colunas) -->
+<div class="lg:col-span-7 space-y-space-md flex flex-col">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex-1 flex flex-col justify-between">
+<div>
+<!-- Topo da Tabela de Conciliação -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md gap-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Conciliação Cega de Volumes da NF</h2>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">FEFO Ativo</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Comparativo cego: O conferente bipou fisicamente sem visualizar a meta contábil até a consolidação de lote.
+              </p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="p-2 bg-surface-container rounded-lg text-on-surface hover:bg-surface-container-high transition-colors" title="Filtrar">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+</button>
+<button class="p-2 bg-surface-container rounded-lg text-on-surface hover:bg-surface-container-high transition-colors" title="Exportar Log">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</div>
+</div>
+<!-- Tabela Densificada de Lotes e SKUs -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-2.5 px-3 rounded-l-lg">SKU / Descrição Técnica</th>
+<th class="py-2.5 px-3">Lote / Validade</th>
+<th class="py-2.5 px-3 text-center">Bipado</th>
+<th class="py-2.5 px-3">Status Auditoria</th>
+<th class="py-2.5 px-3 text-right rounded-r-lg">Ação de Doca</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Linha 1: 100% OK -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Café Torrado e Moído Trad. 500g</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">DUN-14: 17898912340019</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">24 un/cx | 18 Paletes fechados</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-mono font-bold text-on-surface">2026-8819</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold w-fit mt-1">
+                        Val: 14/11/2026 (712d)
+                      </span>
+</div>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex flex-col items-center">
+<span class="font-headline-md text-headline-md font-bold text-secondary leading-none">864</span>
+<span class="font-label-sm text-label-sm text-outline">de 864 cx</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold text-secondary uppercase">100% Validado</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline text-[11px] block mt-0.5">Bate integral com NF-e</span>
+</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">check</span>
+                      Liberado P/ Guarda
+                    </span>
+</td>
+</tr>
+<!-- Linha 2: Em Conferência (Óleo de Soja) -->
+<tr class="hover:bg-surface-container-low transition-colors bg-primary-fixed/20">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Óleo de Soja Refinado Cocamar 900ml</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">DUN-14: 17896001200331</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">20 un/cx | Paletização padrão</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-mono font-bold text-on-surface">2026-900</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-semibold w-fit mt-1">
+                        Val: 15/02/2026 (440d)
+                      </span>
+</div>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex flex-col items-center">
+<span class="font-headline-md text-headline-md font-bold text-primary leading-none">0</span>
+<span class="font-label-sm text-label-sm text-outline">de 240 cx</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-sm text-label-sm font-bold text-outline uppercase">Fila de Leitura</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline text-[11px] block mt-0.5">Aguardando descarregamento</span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="px-space-sm py-1 bg-primary text-on-primary rounded font-label-sm text-label-sm font-bold hover:bg-primary-container transition-colors shadow-sm">
+                      Iniciar SKU
+                    </button>
+</td>
+</tr>
+<!-- Linha 3: Divergência Crítica / Quarentena -->
+<tr class="hover:bg-surface-container-low transition-colors bg-error-container/30">
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-tertiary">Biscoito Cream Cracker Especial 400g</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">DUN-14: 17891000331008</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">24 un/cx | SKU: BIS-400-01</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-mono font-bold text-tertiary">SBE-2026-09</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-tertiary-container text-on-tertiary font-bold w-fit mt-1">
+                        Lido: 15/05/26 (-95 dias)
+                      </span>
+</div>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex flex-col items-center">
+<span class="font-headline-md text-headline-md font-bold text-tertiary leading-none">96</span>
+<span class="font-label-sm text-label-sm text-outline">Bloqueadas</span>
+</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-bold text-tertiary uppercase">Quarentena Doca</span>
+</div>
+<span class="font-body-sm text-body-sm text-tertiary text-[11px] block mt-0.5 font-bold">Validade contratada violada</span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="px-space-sm py-1 bg-tertiary text-on-tertiary rounded font-label-sm text-label-sm font-bold hover:bg-tertiary-container transition-colors shadow-sm">
+                      Resolver
+                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Seção Inferior da Tabela: Resumo de Cross-Docking e Direcionamento WMS -->
+<div class="pt-space-md border-t-0 space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Direcionamento de Armazenagem &amp; Cross-Docking</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Roteamento WMS Dinâmico</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">forklift</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline leading-none">Guardamento Pulmão</span>
+<span class="font-label-md text-label-md font-bold text-on-surface leading-none mt-1">16 Paletes (Rua 04)</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-xl">sync_alt</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline leading-none">Cross-Docking Imediato</span>
+<span class="font-label-md text-label-md font-bold text-on-surface leading-none mt-1">2 Paletes (Doca 08)</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-xl">inventory</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline leading-none">Área de Quarentena</span>
+<span class="font-label-md text-label-md font-bold text-tertiary leading-none mt-1">1 Palete Retido</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Barra de Rodapé Operacional / Teclas de Atalho WMS & Status de Sincronismo -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-sm p-space-md flex flex-wrap items-center justify-between gap-space-md">
+<!-- Atalhos Rápidos de Terminal Coletor -->
+<div class="flex items-center flex-wrap gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline mr-1">Atalhos Operacionais:</span>
+<span class="flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-mono font-bold text-[10px]">F1</kbd>
+        Guia Doca
+      </span>
+<span class="flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-mono font-bold text-[10px]">F3</kbd>
+        Fechar Palete SSCC
+      </span>
+<span class="flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-mono font-bold text-[10px]">F7</kbd>
+        Registrar Avaria
+      </span>
+<span class="flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<kbd class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-mono font-bold text-[10px]">Enter</kbd>
+        Confirmar Leitura
+      </span>
+</div>
+<!-- Integridade de Sistemas / Conexões Online -->
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">SEFAZ NF-e: Online</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">WMS Cross-Docking: Ativo</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Escrow Fiduciário: Travado em Garantia</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Script para manter o leitor de código de barras sempre focado e simular bipagens de teste
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('barcode-input');
+    if (input) {
+      // Re-foca no campo sempre que clicar na área de trabalho
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('button') && !e.target.closest('input')) {
+          input.focus();
+        }
+      });
+
+      // Simulação rápida ao teclar Enter
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const val = input.value.trim();
+          if (val) {
+            input.value = '';
+          }
+        }
+      });
+    }
+  });
+</script></main></div></body></html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 24;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error-container":"#ffdad6","secondary-fixed":"#a3f69c","on-secondary":"#ffffff","on-error":"#ffffff","on-primary":"#ffffff","secondary-fixed-dim":"#88d982","inverse-primary":"#b0c6ff","primary-fixed-dim":"#b0c6ff","background":"#f7f9fb","surface-container-high":"#e6e8ea","on-background":"#191c1e","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#005312","on-tertiary-fixed-variant":"#930010","on-surface-variant":"#434652","on-secondary-fixed":"#002204","surface-container-highest":"#e0e3e5","surface-container":"#eceef0","on-secondary-container":"#217128","primary-fixed":"#d9e2ff","surface-variant":"#e0e3e5","inverse-on-surface":"#eff1f3","on-error-container":"#93000a","on-tertiary":"#ffffff","inverse-surface":"#2d3133","surface-dim":"#d8dadc","surface-container-low":"#f2f4f6","outline-variant":"#c3c6d4","tertiary-fixed-dim":"#ffb3ac","tertiary":"#720009","on-primary-fixed":"#001945","secondary":"#1b6d24","on-surface":"#191c1e","on-primary-container":"#a1bbff","primary":"#003178","on-tertiary-container":"#ffa59d","tertiary-fixed":"#ffdad6","on-tertiary-fixed":"#410003","surface-bright":"#f7f9fb","outline":"#737783","error":"#ba1a1a","tertiary-container":"#9d0011","surface-tint":"#2b5bb5","primary-container":"#0d47a1","on-primary-fixed-variant":"#00429c","secondary-container":"#a0f399","surface":"#f7f9fb"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-lg":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem",gutter:"1rem","space-xl":"2rem",margin:"1.5rem","space-md":"0.75rem","margin-mobile":"1rem","gutter-mobile":"0.75rem"},fontFamily:{"label-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"]},fontSize:{"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"numeric-timer":["20px",{lineHeight:"24px",fontWeight:"800"}],"headline-lg":["24px",{lineHeight:"32px",fontWeight:"700"}],"headline-xl-mobile":["24px",{lineHeight:"32px",fontWeight:"800"}],"headline-lg-mobile":["20px",{lineHeight:"28px",fontWeight:"700"}],"headline-xl":["32px",{lineHeight:"40px",fontWeight:"800"}],"headline-md":["18px",{lineHeight:"24px",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-low"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-xl">pallet</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary leading-none">REDE B2B</span><span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider mt-0.5">WMS & Atacado Log</span></div></div><div class="flex-1 overflow-y-auto px-space-md py-space-md space-y-space-lg"><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Operacional</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-lg">dashboard</span>Visão Geral</a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="scanner-optico-wms" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-lg">barcode_scanner</span><span>Scanner Óptico / Barcode WMS</span></div><span class="w-2 h-2 rounded-full bg-secondary"></span></a></nav><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Catálogo & Estoque</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="produtos-e-lotes" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span>Produtos & Lotes</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="homologacao-gs1" href="#"><span class="material-symbols-outlined text-lg">verified</span>Homologação GS1</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="armazens-e-cds" href="#"><span class="material-symbols-outlined text-lg">warehouse</span>Armazéns & CDs</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="emissao-etiquetas-gs1-128" href="#"><span class="material-symbols-outlined text-lg">print</span>Etiquetas GS1-128 & ZPL</a></nav><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Operação Comercial</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="criar-leilao" href="#"><span class="material-symbols-outlined text-lg">gavel</span>Criar Pregão / Leilão</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="central-de-lances" href="#"><span class="material-symbols-outlined text-lg">stream</span>Central de Lances ao Vivo</a></nav><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Logística & Controladoria</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="expedicao-e-docas" href="#"><span class="material-symbols-outlined text-lg">local_shipping</span>Expedição & Docas</a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="gestao-financeira" href="#"><span class="material-symbols-outlined text-lg">account_balance</span>Gestão Financeira Escrow</a></nav></div><div class="p-space-md bg-surface-container-high/60 m-space-sm rounded-xl space-y-space-xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Motor ZPL Zebra</span><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">PRONTO</span></div><div class="font-body-sm text-body-sm text-on-surface-variant truncate">ZT411 Industrial (203dpi)</div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-full px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container rounded-lg text-on-surface"><span class="material-symbols-outlined text-primary text-xl">domain</span><div class="flex flex-col"><span class="font-label-sm text-label-sm uppercase text-outline">Hub Ativo</span><span class="font-label-md text-label-md font-bold text-on-surface leading-none">CD 01 - Campinas / SP</span></div><span class="material-symbols-outlined text-on-surface-variant text-base ml-1">expand_more</span></div><div class="hidden xl:flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container-low rounded-lg"><span class="material-symbols-outlined text-secondary text-xl">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline uppercase">Escrow Fiduciário</span><span class="font-label-md text-label-md font-bold text-on-surface leading-none">R$ 4.892.450,00</span></div></div><div class="hidden 2xl:flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container-low rounded-lg"><span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm font-bold text-on-surface-variant">Zebra DS3678:</span><span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Conectado (BT)</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><button class="w-9 h-9 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors relative"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-md text-label-md font-bold text-on-surface leading-none">Carlos Mendonça</span><span class="font-label-sm text-label-sm text-outline mt-0.5">Operador Logístico WMS Senior</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter py-space-lg"><div class="flex flex-col w-full space-y-space-lg">
+<!-- 1. CABEÇALHO DE NAVEGAÇÃO & STATUS OPERACIONAL -->
+<section class="flex flex-col space-y-space-md">
+<!-- Breadcrumb e Metadados -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<nav class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span>Portal Distribuidor</span>
+<span class="material-symbols-outlined text-sm text-outline">chevron_right</span>
+<span>Catálogo & Estoque</span>
+<span class="material-symbols-outlined text-sm text-outline">chevron_right</span>
+<span>Scanner Óptico</span>
+<span class="material-symbols-outlined text-sm text-outline">chevron_right</span>
+<span class="text-primary font-bold">Emissão de Etiquetas GS1-128</span>
+</nav>
+<!-- Badges de Conectividade em Hardware e GS1 -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="flex items-center gap-space-xs px-space-md py-1 bg-surface-container rounded-lg">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface">Zebra ZT411 (Doca 03 - 192.168.1.145)</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">ONLINE 203 DPI</span>
+</div>
+<div class="flex items-center gap-space-xs px-space-md py-1 bg-surface-container-high rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-base text-primary">verified_user</span>
+<span class="font-label-sm text-label-sm uppercase font-bold">GS1 Gen-Specs v23.0 • SSCC Ativo</span>
+</div>
+</div>
+</div>
+<!-- Título Principal & Ações Executivas -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="max-w-3xl space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-2xl">qr_code_scanner</span>
+<h1 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">
+            Impressão de Etiquetas GS1-128, Paletização PBR & SSCC WMS
+          </h1>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Geração automatizada de identificadores logísticos GS1 padrão internacional com Códigos de Aplicação (AI), data de validade FEFO, lote e integração direta com impressoras Zebra (ZPL/EPL).
+        </p>
+</div>
+<!-- Botões de Ação de Cabeçalho -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="flex items-center gap-space-xs px-space-md py-2.5 bg-surface-container text-on-surface font-label-md text-label-md rounded-lg hover:bg-surface-container-high transition-colors" id="btnCalibrar" onclick="simularCalibracao()">
+<span class="material-symbols-outlined text-lg">tune</span>
+<span>Calibrar ZPL</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2.5 bg-surface-container text-on-surface font-label-md text-label-md rounded-lg hover:bg-surface-container-high transition-colors" onclick="baixarZPL()">
+<span class="material-symbols-outlined text-lg">file_download</span>
+<span>Baixar Pacote ZPL</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-lg py-2.5 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary-container hover:text-on-primary shadow-sm transition-all transform active:scale-95" onclick="dispararImpressaoLote()">
+<span class="material-symbols-outlined text-lg">print</span>
+<span>Imprimir Lote Completo (50 Cx + 1 Palete)</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 2. LINHA DE KPIS & RESUMO DA PALETIZAÇÃO ATIVA -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1: Produto Selecionado -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Produto Selecionado</span>
+<span class="p-1 rounded bg-surface-container text-primary material-symbols-outlined text-lg">inventory</span>
+</div>
+<div class="mt-space-xs">
+<div class="font-label-lg text-label-lg font-bold text-on-surface line-clamp-1">Café Torrado e Moído Aliança Tradicional 500g</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">SKU: CAF-500-01</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-space-xs py-1 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">EAN-13 Unitário:</span>
+<span class="font-label-sm text-label-sm font-bold text-primary font-numeric-timer">7898912340012</span>
+</div>
+</div>
+<!-- Card 2: Composição da Carga -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Composição da Carga</span>
+<span class="p-1 rounded bg-secondary-fixed text-on-secondary-fixed material-symbols-outlined text-lg">layers</span>
+</div>
+<div class="mt-space-xs">
+<div class="font-label-lg text-label-lg font-bold text-on-surface">50 Caixas Master (24 un/cx)</div>
+<div class="font-body-sm text-body-sm text-secondary font-bold mt-0.5">Total: 1.200 Unidades Físicas</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-space-xs py-1 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Peso Líq / Bruto:</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">600,00 kg / 618,00 kg</span>
+</div>
+</div>
+<!-- Card 3: Lote & Shelf Life FEFO -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Lote & Shelf Life FEFO</span>
+<span class="p-1 rounded bg-secondary-fixed text-on-secondary-fixed material-symbols-outlined text-lg">schedule</span>
+</div>
+<div class="mt-space-xs">
+<div class="font-label-lg text-label-lg font-bold text-on-surface">Lote #2026-8819</div>
+<div class="font-body-sm text-body-sm text-secondary font-bold mt-0.5">Validade: 14/11/2026 (210 dias • FEFO Seguro)</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-space-xs py-1 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Fabricação:</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">15/01/2026</span>
+</div>
+</div>
+<!-- Card 4: Palete PBR Identificado -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Palete PBR Identificado</span>
+<span class="p-1 rounded bg-primary-fixed text-on-primary-fixed material-symbols-outlined text-lg">pallet</span>
+</div>
+<div class="mt-space-xs">
+<div class="font-label-lg text-label-lg font-bold text-primary">Palete PBR 01/01</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">CD 01 • Galpão 02 / R-04 / P-12 / N-03</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-secondary-fixed px-space-xs py-1 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-secondary-fixed-variant">Status WMS:</span>
+<span class="font-label-sm text-label-sm font-bold text-on-secondary-fixed-variant uppercase">Pronto p/ Docas</span>
+</div>
+</div>
+</section>
+<!-- 3. SEÇÃO PRINCIPAL: CONFIGURAÇÃO DE EMISSÃO & PREVIEW EM TEMPO REAL -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- COLUNA ESQUERDA: PARÂMETROS E IDENTIFICADORES GS1 (60% ~ 7 colunas) -->
+<div class="lg:col-span-7 flex flex-col space-y-space-md">
+<!-- Seletor de Tipo de Etiqueta (Tabs) -->
+<div class="bg-surface-container-lowest p-space-xs rounded-xl shadow-sm flex flex-wrap gap-1">
+<button class="flex-1 py-2.5 px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs bg-primary text-on-primary transition-all" id="tabMaster" onclick="trocarAbaEtiqueta('master')">
+<span class="material-symbols-outlined text-lg">package_2</span>
+<span>Caixa Master (DUN-14 / GS1-128)</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-lowest/20">100x75mm</span>
+</button>
+<button class="flex-1 py-2.5 px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" id="tabPalete" onclick="trocarAbaEtiqueta('palete')">
+<span class="material-symbols-outlined text-lg">pallet</span>
+<span>Palete PBR SSCC (18 dígitos)</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container">100x150mm</span>
+</button>
+<button class="flex-1 py-2.5 px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" id="tabGondola" onclick="trocarAbaEtiqueta('gondola')">
+<span class="material-symbols-outlined text-lg">sell</span>
+<span>Gôndola / Unidade (EAN-13)</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container">60x30mm</span>
+</button>
+</div>
+<!-- Bloco de Identificadores de Aplicação GS1 (AIs) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">database</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Identificadores de Aplicação GS1 (AIs)</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-fixed px-space-xs py-0.5 rounded font-bold uppercase">Sintaxe Validada</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Os campos abaixo codificam diretamente a simbologia Code 128 com caractere de função FNC1 conforme GS1 General Specifications.
+        </p>
+<!-- Formulário Modular de AIs -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- AI (01) GTIN Caixa Master -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold flex items-center justify-between">
+<span>AI (01) GTIN Caixa Master / DUN-14</span>
+<span class="text-outline font-normal">14 dígitos numéricos</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-sm text-label-sm font-bold text-primary bg-primary-fixed px-1.5 py-0.5 rounded">(01)</span>
+<input class="w-full pl-16 pr-3 py-2 bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary font-numeric-timer" id="inputGTIN" oninput="atualizarPreview()" type="text" value="17898912340019"/>
+</div>
+</div>
+<!-- AI (10) Lote -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold flex items-center justify-between">
+<span>AI (10) Lote de Fabricação</span>
+<span class="text-outline font-normal">Alfanumérico (máx 20)</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-sm text-label-sm font-bold text-primary bg-primary-fixed px-1.5 py-0.5 rounded">(10)</span>
+<input class="w-full pl-16 pr-3 py-2 bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary font-numeric-timer" id="inputLote" oninput="atualizarPreview()" type="text" value="2026-8819"/>
+</div>
+</div>
+<!-- AI (17) Validade -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold flex items-center justify-between">
+<span>AI (17) Data de Validade</span>
+<span class="text-outline font-normal">Formato AAMMDD</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-sm text-label-sm font-bold text-primary bg-primary-fixed px-1.5 py-0.5 rounded">(17)</span>
+<input class="w-full pl-16 pr-3 py-2 bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary font-numeric-timer" id="inputValidade" oninput="atualizarPreview()" type="text" value="261114"/>
+</div>
+<span class="text-[10px] text-on-surface-variant text-right">Data decodificada: 14/11/2026</span>
+</div>
+<!-- AI (3102) Peso Líquido -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold flex items-center justify-between">
+<span>AI (3102) Peso Líquido (kg)</span>
+<span class="text-outline font-normal">2 decimais fixas</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-sm text-label-sm font-bold text-primary bg-primary-fixed px-1.5 py-0.5 rounded">(3102)</span>
+<input class="w-full pl-20 pr-3 py-2 bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary font-numeric-timer" id="inputPeso" oninput="atualizarPreview()" type="text" value="012000"/>
+</div>
+<span class="text-[10px] text-on-surface-variant text-right">Valor formatado: 12,00 kg</span>
+</div>
+<!-- AI (37) Quantidade de Unidades -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold flex items-center justify-between">
+<span>AI (37) Qtd. Unidades Internas</span>
+<span class="text-outline font-normal">Contagem unitária</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-sm text-label-sm font-bold text-primary bg-primary-fixed px-1.5 py-0.5 rounded">(37)</span>
+<input class="w-full pl-16 pr-3 py-2 bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary font-numeric-timer" id="inputQtd" oninput="atualizarPreview()" type="text" value="24"/>
+</div>
+</div>
+<!-- AI (00) Código SSCC do Palete -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold flex items-center justify-between">
+<span>AI (00) Serial Shipping Container (SSCC)</span>
+<span class="text-secondary font-bold">18 dígitos PBR</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-sm text-label-sm font-bold text-primary bg-primary-fixed px-1.5 py-0.5 rounded">(00)</span>
+<input class="w-full pl-16 pr-3 py-2 bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary font-numeric-timer" id="inputSSCC" oninput="atualizarPreview()" type="text" value="3 789891234 00000042 9"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Configurações de Impressão Térmica Zebra ZPL -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">settings_applications</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Configurações de Impressão Térmica (ZPL Engine)</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Driver Nativo Raw Socket</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Impressora Ativa -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold">Dispositivo Selecionado</label>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">print</span>
+<select class="bg-transparent font-label-md text-label-md text-on-surface w-full focus:outline-none">
+<option>Zebra ZT411 Industrial (Doca 03 - 192.168.1.145)</option>
+<option>Zebra ZD421 Térmica (Bancada Verificação 01)</option>
+<option>Zebra 220Xi4 Alta Largura (Doca Paletização Central)</option>
+</select>
+</div>
+</div>
+<!-- Velocidade e Dark / Temperatura -->
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold">Velocidade</label>
+<select class="bg-surface-container-low px-space-sm py-2 rounded-lg font-label-md text-label-md text-on-surface focus:outline-none">
+<option>6 ips (152 mm/s)</option>
+<option>8 ips (203 mm/s)</option>
+<option>4 ips (102 mm/s)</option>
+</select>
+</div>
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold">Temperatura / Dark</label>
+<select class="bg-surface-container-low px-space-sm py-2 rounded-lg font-label-md text-label-md text-on-surface focus:outline-none">
+<option>22 (Médio-Alto)</option>
+<option>20 (Padrão)</option>
+<option>25 (Máximo Contraste)</option>
+</select>
+</div>
+</div>
+<!-- Cópias Caixa -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold">Cópias da Etiqueta de Caixa Master</label>
+<div class="flex items-center bg-surface-container-low rounded-lg px-2">
+<button class="w-8 h-8 flex items-center justify-center font-bold text-lg text-primary hover:bg-surface-container rounded" onclick="alterarCopias('copiasCaixa', -1)">-</button>
+<input class="w-full text-center bg-transparent py-2 font-numeric-timer text-on-surface focus:outline-none" id="copiasCaixa" max="999" min="1" type="number" value="50"/>
+<button class="w-8 h-8 flex items-center justify-center font-bold text-lg text-primary hover:bg-surface-container rounded" onclick="alterarCopias('copiasCaixa', 1)">+</button>
+</div>
+</div>
+<!-- Cópias Palete -->
+<div class="flex flex-col space-y-1">
+<label class="font-label-sm text-label-sm text-on-surface font-bold">Cópias de Palete (Frontal + Lateral)</label>
+<div class="flex items-center bg-surface-container-low rounded-lg px-2">
+<button class="w-8 h-8 flex items-center justify-center font-bold text-lg text-primary hover:bg-surface-container rounded" onclick="alterarCopias('copiasPalete', -1)">-</button>
+<input class="w-full text-center bg-transparent py-2 font-numeric-timer text-on-surface focus:outline-none" id="copiasPalete" max="10" min="1" type="number" value="2"/>
+<button class="w-8 h-8 flex items-center justify-center font-bold text-lg text-primary hover:bg-surface-container rounded" onclick="alterarCopias('copiasPalete', 1)">+</button>
+</div>
+</div>
+</div>
+<!-- Opções Avançadas e Toggles -->
+<div class="pt-space-xs flex flex-wrap items-center gap-space-lg">
+<label class="flex items-center gap-space-xs cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Girar 90° para aplicação horizontal na caixa</span>
+</label>
+<label class="flex items-center gap-space-xs cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface">Incluir logotipo da Distribuidora Aliança e selo ANVISA</span>
+</label>
+</div>
+</div>
+</div>
+<!-- COLUNA DIREITA: PREVIEW DA ETIQUETA TÉRMICA GS1 (40% ~ 5 colunas) -->
+<div class="lg:col-span-5 flex flex-col space-y-space-md">
+<!-- Container do Preview com Moldura Simulada -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md sticky top-20">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">visibility</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Pré-Visualização Térmica Real (100x75mm)</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Simulador 203 DPI</span>
+</div>
+<!-- A ETIQUETA REALISTA TIPO TÉRMICA (ESTÉTICA MONOCROMÁTICA INDUSTRIAL) -->
+<div class="bg-white text-black p-4 rounded shadow-sm border-2 border-black flex flex-col font-sans transition-all duration-200" id="etiquetaFisica">
+<!-- Cabeçalho da Etiqueta -->
+<div class="flex items-center justify-between border-b-2 border-black pb-2 mb-2">
+<div class="flex flex-col">
+<span class="font-bold text-xs uppercase tracking-tight leading-none">DISTRIBUIDORA ALIANÇA B2B</span>
+<span class="text-[9px] text-gray-700 tracking-wider font-semibold">CD 01 - CAMPINAS / SP • WMS CENTRAL</span>
+</div>
+<div class="flex items-center gap-1 bg-black text-white px-2 py-0.5 text-[10px] font-bold rounded-sm">
+<span class="material-symbols-outlined text-xs">store</span>
+<span>VAREJISTA ONLINE</span>
+</div>
+</div>
+<!-- Título Descritivo do SKU -->
+<div class="text-center my-1">
+<h3 class="font-extrabold text-sm uppercase tracking-tight leading-tight">
+              CAFÉ TORRADO E MOÍDO ALIANÇA TRADICIONAL 500G
+            </h3>
+<div class="flex justify-between items-center text-[11px] font-semibold mt-1 px-1">
+<span>SKU: <strong class="font-mono">CAF-500-01</strong></span>
+<span>CONTEÚDO: <strong>24 PACOTES x 500g</strong></span>
+</div>
+</div>
+<!-- Grade de Atributos Críticos com Divisores Fortes -->
+<div class="grid grid-cols-2 gap-1 border-t-2 border-b-2 border-black py-1.5 my-2 text-[10px]">
+<div class="flex flex-col border-r border-black pr-1">
+<span class="text-gray-600 font-semibold uppercase text-[8px]">Lote / Batelada</span>
+<span class="font-extrabold text-xs font-mono" id="previewLote">2026-8819</span>
+</div>
+<div class="flex flex-col pl-1">
+<span class="text-gray-600 font-semibold uppercase text-[8px]">Fabricação</span>
+<span class="font-bold text-xs font-mono">15/01/2026</span>
+</div>
+<div class="flex flex-col border-r border-black pr-1 border-t border-black pt-1">
+<span class="text-gray-600 font-semibold uppercase text-[8px]">Validade FEFO</span>
+<span class="font-extrabold text-xs font-mono" id="previewValidade">14/11/2026</span>
+</div>
+<div class="flex flex-col pl-1 border-t border-black pt-1">
+<span class="text-gray-600 font-semibold uppercase text-[8px]">Pesagem</span>
+<span class="font-bold text-xs font-mono" id="previewPeso">BRUTO: 12,36kg | LÍQ: 12,00kg</span>
+</div>
+</div>
+<!-- Simbologia do Código de Barras GS1-128 em SVG Direto -->
+<div class="flex flex-col items-center justify-center my-1.5 px-2">
+<svg class="w-full h-16" preserveaspectratio="none" viewbox="0 0 340 70">
+<!-- Padrão gráfico de barras GS1-128 de alta fidelidade visual -->
+<rect fill="#000" height="70" width="3" x="0" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="5" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="9" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="16" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="20" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="28" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="33" y="0"></rect>
+<rect fill="#000" height="70" width="6" x="38" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="47" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="52" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="58" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="63" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="71" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="76" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="83" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="89" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="97" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="102" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="108" y="0"></rect>
+<rect fill="#000" height="70" width="6" x="113" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="122" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="128" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="133" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="141" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="146" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="153" y="0"></rect>
+<rect fill="#000" height="70" width="6" x="159" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="168" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="173" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="180" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="186" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="194" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="199" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="206" y="0"></rect>
+<rect fill="#000" height="70" width="6" x="211" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="220" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="226" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="231" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="239" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="244" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="251" y="0"></rect>
+<rect fill="#000" height="70" width="6" x="257" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="266" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="271" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="278" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="284" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="292" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="297" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="304" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="309" y="0"></rect>
+<rect fill="#000" height="70" width="2" x="317" y="0"></rect>
+<rect fill="#000" height="70" width="3" x="322" y="0"></rect>
+<rect fill="#000" height="70" width="4" x="328" y="0"></rect>
+<rect fill="#000" height="70" width="5" x="335" y="0"></rect>
+</svg>
+<!-- HRI: Human Readable Interpretation Formatado -->
+<div class="font-mono text-[10px] font-bold tracking-tight text-center mt-1" id="previewHRI">
+              (01) 17898912340019 (10) 2026-8819 (17) 261114 (3102) 012000
+            </div>
+</div>
+<!-- Rodapé da Etiqueta: Destino e SSCC Vinculado -->
+<div class="border-t border-black pt-1.5 mt-1 flex items-center justify-between text-[9px] font-semibold">
+<span>SSCC MASTER: <strong class="font-mono">3789891234000000429</strong></span>
+<span>REGISTRO MAPA/ANVISA: 004819-2</span>
+</div>
+</div>
+<!-- Miniatura Expansível: Etiqueta de Palete PBR com SSCC -->
+<div class="bg-surface-container p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-base">pallet</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Etiqueta de Palete PBR (A5 SSCC)</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-secondary bg-secondary-fixed px-1.5 py-0.5 rounded">VINCULADO</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">Código SSCC Gerado:</span>
+<span class="font-mono font-bold text-xs text-primary">(00) 3 789891234 00000042 9</span>
+<span class="text-[10px] text-on-surface-variant">Destino: DOCA 01 EXPEDIÇÃO • CARRETA BRA2E19</span>
+</div>
+<button class="px-space-sm py-1 bg-surface-container text-on-surface font-label-sm text-label-sm rounded hover:bg-surface-container-high transition-colors flex items-center gap-1" onclick="copiarSSCC()">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+<span>Copiar</span>
+</button>
+</div>
+</div>
+<!-- Botões de Ação Rápida de Preview -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<button class="flex items-center justify-center gap-space-xs py-2 bg-surface-container text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-all" onclick="imprimirProva()">
+<span class="material-symbols-outlined text-lg">receipt_long</span>
+<span>Imprimir Prova [F9]</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs py-2 bg-secondary text-on-secondary rounded-lg font-label-md text-label-md hover:bg-secondary/90 transition-all" onclick="simularBipLeitor()">
+<span class="material-symbols-outlined text-lg">barcode_scanner</span>
+<span>Simular Bip Zebra</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. TABELA DE FILA DE IMPRESSÃO & HISTÓRICO DE PALETIZAÇÃO -->
+<section class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">list_alt</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Fila de Impressão Ativa & Histórico de Paletização</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-outline">3 Trabalhos Registrados Hoje</span>
+<button class="p-1 rounded text-primary hover:bg-surface-container transition-colors" onclick="atualizarFila()">
+<span class="material-symbols-outlined text-lg">refresh</span>
+</button>
+</div>
+</div>
+<!-- Tabela Densificada de Jobs WMS -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-2.5 px-space-md">Job ID</th>
+<th class="py-2.5 px-space-md">Lote WMS</th>
+<th class="py-2.5 px-space-md">Descrição do Produto</th>
+<th class="py-2.5 px-space-md">Volume Emitido</th>
+<th class="py-2.5 px-space-md">Impressora / Doca</th>
+<th class="py-2.5 px-space-md">Status Fila</th>
+<th class="py-2.5 px-space-md text-right">Ações Operacionais</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high font-body-sm text-body-sm text-on-surface">
+<!-- Linha 1: Trabalho Atual -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-primary-fixed/20">
+<td class="py-3 px-space-md font-bold font-numeric-timer text-primary">#PRN-9021</td>
+<td class="py-3 px-space-md font-bold font-mono">#2026-8819</td>
+<td class="py-3 px-space-md font-bold text-on-surface">Café Torrado Aliança 500g</td>
+<td class="py-3 px-space-md">50 cx + 2 palete</td>
+<td class="py-3 px-space-md">Zebra ZT411 (Doca 03)</td>
+<td class="py-3 px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded font-bold bg-primary text-on-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                Pronto p/ Disparo
+              </span>
+</td>
+<td class="py-3 px-space-md text-right space-x-1">
+<button class="px-space-sm py-1 bg-primary text-on-primary rounded font-label-sm text-label-sm font-bold hover:bg-primary-container transition-colors" onclick="dispararImpressaoLote()">
+                Imprimir Agora
+              </button>
+<button class="px-space-sm py-1 bg-surface-container text-on-surface rounded font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" onclick="editarJob('PRN-9021')">
+                Editar
+              </button>
+</td>
+</tr>
+<!-- Linha 2: Concluído -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-space-md font-bold font-numeric-timer text-on-surface">#PRN-9020</td>
+<td class="py-3 px-space-md font-mono text-outline">#OLE-SOJ-900</td>
+<td class="py-3 px-space-md">Óleo de Soja Cocamar 900ml</td>
+<td class="py-3 px-space-md">120 cx + 4 paletes</td>
+<td class="py-3 px-space-md">Zebra ZT411 (Doca 02)</td>
+<td class="py-3 px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded font-bold bg-secondary-fixed text-on-secondary-fixed">
+<span class="material-symbols-outlined text-xs">done_all</span>
+                Concluído (100%)
+              </span>
+</td>
+<td class="py-3 px-space-md text-right">
+<button class="px-space-sm py-1 bg-surface-container text-on-surface rounded font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" onclick="reemitirJob('PRN-9020')">
+                Reemitir 2ª Via
+              </button>
+</td>
+</tr>
+<!-- Linha 3: Concluído -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3 px-space-md font-bold font-numeric-timer text-on-surface">#PRN-9019</td>
+<td class="py-3 px-space-md font-mono text-outline">#FAR-TRI-01</td>
+<td class="py-3 px-space-md">Farinha de Trigo Alvorada Especial 1kg</td>
+<td class="py-3 px-space-md">200 fardos + 6 paletes</td>
+<td class="py-3 px-space-md">Zebra 220Xi4 (Doca 01)</td>
+<td class="py-3 px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2 py-0.5 rounded font-bold bg-secondary-fixed text-on-secondary-fixed">
+<span class="material-symbols-outlined text-xs">done_all</span>
+                Concluído (100%)
+              </span>
+</td>
+<td class="py-3 px-space-md text-right">
+<button class="px-space-sm py-1 bg-surface-container text-on-surface rounded font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" onclick="reemitirJob('PRN-9019')">
+                Reemitir 2ª Via
+              </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Barra de Rodapé com Atalhos Operacionais WMS -->
+<div class="pt-space-xs flex flex-wrap items-center justify-between text-on-surface-variant font-label-sm text-label-sm border-t border-surface-container-high">
+<div class="flex flex-wrap items-center gap-space-md">
+<span class="flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container font-mono rounded text-on-surface font-bold">F2</kbd> Novo Lote
+        </span>
+<span class="flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container font-mono rounded text-on-surface font-bold">F4</kbd> Trocar Impressora
+        </span>
+<span class="flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container font-mono rounded text-on-surface font-bold">F9</kbd> Imprimir Prova
+        </span>
+<span class="flex items-center gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container font-mono rounded text-on-surface font-bold">Enter</kbd> Disparar Fila
+        </span>
+</div>
+<div class="flex items-center gap-space-xs mt-2 sm:mt-0">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-bold text-on-surface">Servidor Spooler ZPL: Operacional (Latência 4ms)</span>
+</div>
+</div>
+</section>
+</div>
+<!-- SCRIPT OPERACIONAL DE ATUALIZAÇÃO REATIVA DO PREVIEW E ATALHOS -->
+<script>
+  function atualizarPreview() {
+    const gtin = document.getElementById('inputGTIN').value || '17898912340019';
+    const lote = document.getElementById('inputLote').value || '2026-8819';
+    const val = document.getElementById('inputValidade').value || '261114';
+    const peso = document.getElementById('inputPeso').value || '012000';
+    
+    // Atualiza tags no preview da etiqueta física
+    document.getElementById('previewLote').innerText = lote;
+    
+    // Formata AAMMDD para DD/MM/AAAA
+    if (val.length === 6) {
+      const aa = '20' + val.substring(0, 2);
+      const mm = val.substring(2, 4);
+      const dd = val.substring(4, 6);
+      document.getElementById('previewValidade').innerText = `${dd}/${mm}/${aa}`;
+    }
+    
+    // Formata o peso líquido
+    if (peso.length >= 4) {
+      const pInt = (parseInt(peso, 10) / 1000).toFixed(2);
+      document.getElementById('previewPeso').innerText = `BRUTO: 12,36kg | LÍQ: ${pInt}kg`;
+    }
+    
+    // Atualiza linha HRI
+    document.getElementById('previewHRI').innerText = `(01) ${gtin} (10) ${lote} (17) ${val} (3102) ${peso}`;
+  }
+
+  function alterarCopias(idInput, delta) {
+    const input = document.getElementById(idInput);
+    let val = parseInt(input.value, 10) || 0;
+    val += delta;
+    if (val < 1) val = 1;
+    input.value = val;
+  }
+
+  function trocarAbaEtiqueta(tipo) {
+    const tabMaster = document.getElementById('tabMaster');
+    const tabPalete = document.getElementById('tabPalete');
+    const tabGondola = document.getElementById('tabGondola');
+    const etiqueta = document.getElementById('etiquetaFisica');
+
+    [tabMaster, tabPalete, tabGondola].forEach(btn => {
+      btn.className = "flex-1 py-2.5 px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all";
+    });
+
+    if (tipo === 'master') {
+      tabMaster.className = "flex-1 py-2.5 px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs bg-primary text-on-primary transition-all";
+      etiqueta.style.transform = "scale(1)";
+    } else if (tipo === 'palete') {
+      tabPalete.className = "flex-1 py-2.5 px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs bg-primary text-on-primary transition-all";
+      etiqueta.style.transform = "scale(1.02)";
+    } else {
+      tabGondola.className = "flex-1 py-2.5 px-space-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs bg-primary text-on-primary transition-all";
+      etiqueta.style.transform = "scale(0.95)";
+    }
+  }
+
+  function simularCalibracao() {
+    const btn = document.getElementById('btnCalibrar');
+    const txtOriginal = btn.innerHTML;
+    btn.innerHTML = `<span class="material-symbols-outlined text-lg animate-spin">refresh</span><span>Calibrando Sensor...</span>`;
+    setTimeout(() => {
+      btn.innerHTML = `<span class="material-symbols-outlined text-lg text-secondary">check</span><span>ZPL Calibrada!</span>`;
+      setTimeout(() => { btn.innerHTML = txtOriginal; }, 2500);
+    }, 1200);
+  }
+
+  function baixarZPL() {
+    const gtin = document.getElementById('inputGTIN').value;
+    const lote = document.getElementById('inputLote').value;
+    const validade = document.getElementById('inputValidade').value;
+    const zplCode = `^XA\n^FO50,50^ADN,36,20^FDALIANCA B2B - CD 01^FS\n^FO50,100^BY3^BCN,100,Y,N,N\n^FD>;>801${gtin}10${lote}17${validade}^FS\n^XZ`;
+    const blob = new Blob([zplCode], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `LOTE_${lote}_GS1_128.zpl`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function dispararImpressaoLote() {
+    const qtd = document.getElementById('copiasCaixa').value;
+    const pal = document.getElementById('copiasPalete').value;
+    alert(`Comando ZPL enviado com sucesso para Zebra ZT411 (Doca 03)!\n\nDisparando:\n• ${qtd} Etiquetas de Caixa Master GS1-128\n• ${pal} Etiquetas de Palete PBR com SSCC\n\nStatus: Buffer WMS sincronizado.`);
+  }
+
+  function imprimirProva() {
+    alert("Enviando 1 etiqueta de teste/prova para calibração do leitor óptico.");
+  }
+
+  function simularBipLeitor() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(2600, audioContext.currentTime);
+    gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+    osc.start();
+    osc.stop(audioContext.currentTime + 0.08);
+
+    const etiqueta = document.getElementById('etiquetaFisica');
+    etiqueta.classList.add('bg-secondary-fixed');
+    setTimeout(() => {
+      etiqueta.classList.remove('bg-secondary-fixed');
+    }, 300);
+  }
+
+  function copiarSSCC() {
+    navigator.clipboard.writeText("3789891234000000429");
+    alert("Código SSCC (18 dígitos) copiado para a área de transferência!");
+  }
+
+  function reemitirJob(jobId) {
+    alert(`Reemitindo segunda via do job ${jobId} na respectiva impressora de doca.`);
+  }
+
+  function editarJob(jobId) {
+    alert(`Abrindo editor de parâmetros para o job ${jobId}.`);
+  }
+
+  function atualizarFila() {
+    alert("Fila de spooler de etiquetas atualizada.");
+  }
+
+  // Atalhos de teclado WMS
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'F9') {
+      e.preventDefault();
+      imprimirProva();
+    } else if (e.key === 'F2') {
+      e.preventDefault();
+      alert("Atalho F2: Iniciando novo lote de paletização.");
+    }
+  });
+</script></main></div></body></html>

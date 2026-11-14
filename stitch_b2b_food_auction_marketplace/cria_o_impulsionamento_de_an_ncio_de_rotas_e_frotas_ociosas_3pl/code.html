@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary":"#ffffff","on-tertiary":"#ffffff","surface-container-highest":"#e0e3e5","outline-variant":"#c3c6d4","on-secondary":"#ffffff","primary-fixed":"#d9e2ff","on-background":"#191c1e","outline":"#737783","on-tertiary-fixed-variant":"#930010","on-primary-container":"#a1bbff","inverse-surface":"#2d3133","on-primary-fixed-variant":"#00429c","tertiary-fixed-dim":"#ffb3ac","tertiary":"#720009","tertiary-container":"#9d0011","inverse-primary":"#b0c6ff","on-primary-fixed":"#001945","error-container":"#ffdad6","tertiary-fixed":"#ffdad6","background":"#f7f9fb","on-secondary-container":"#217128","surface-dim":"#d8dadc","surface":"#f7f9fb","primary":"#003178","secondary-container":"#a0f399","on-error":"#ffffff","surface-container":"#eceef0","on-secondary-fixed":"#002204","surface-container-low":"#f2f4f6","primary-container":"#0d47a1","secondary":"#1b6d24","surface-variant":"#e0e3e5","secondary-fixed-dim":"#88d982","on-secondary-fixed-variant":"#005312","surface-container-lowest":"#ffffff","primary-fixed-dim":"#b0c6ff","on-surface":"#191c1e","on-error-container":"#93000a","error":"#ba1a1a","on-surface-variant":"#434652","on-tertiary-fixed":"#410003","secondary-fixed":"#a3f69c","surface-tint":"#2b5bb5","surface-container-high":"#e6e8ea","on-tertiary-container":"#ffa59d","inverse-on-surface":"#eff1f3","surface-bright":"#f7f9fb"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1rem","margin-mobile":"1rem","space-sm":"0.5rem","space-xs":"0.25rem","space-md":"0.75rem","space-lg":"1.25rem","margin":"1.5rem","gutter-mobile":"0.75rem","space-xl":"2rem"},"fontFamily":{"label-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"]},"fontSize":{"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-lg flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">local_shipping</span></div><div><div class="font-headline-md text-headline-md text-primary tracking-tight leading-none">Varejista Online</div><div class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mt-0.5">Portal 3PL · Transportes</div></div></div></div><nav class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-md" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg shadow-sm"><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Operações &amp; Cargas</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="cockpit-da-frota" href="#"><span class="material-symbols-outlined text-[18px]">monitoring</span>Cockpit da Frota</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="cargas-em-transito" href="#"><span class="material-symbols-outlined text-[18px]">route</span>Cargas em Trânsito</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="ofertas-frete-fob-cif" href="#"><span class="material-symbols-outlined text-[18px]">sell</span>Ofertas Frete FOB/CIF</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="docas-e-cds" href="#"><span class="material-symbols-outlined text-[18px]">warehouse</span>Docas &amp; CDs</a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Emissão Fiscal &amp; Compliance</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="emissao-fiscal" href="#"><span class="material-symbols-outlined text-[18px]">receipt_long</span>CT-e, MDF-e, CIOT ANTT</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="averbacao-at-m" href="#"><span class="material-symbols-outlined text-[18px]">verified_user</span>Averbação AT&amp;M</a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Frotas &amp; Motoristas</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="gestao-de-veiculos" href="#"><span class="material-symbols-outlined text-[18px]">directions_bus</span>Veículos &amp; Cavalos</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="rastreamento-e-telemetria" href="#"><span class="material-symbols-outlined text-[18px]">sensors</span>Rastreamento, Telemetria &amp; Iscas</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="checklist-operacional" href="#"><span class="material-symbols-outlined text-[18px]">fact_check</span>Checklist &amp; Inspeções</a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Comercial &amp; Assinatura</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="planos-e-mensalidade" href="#"><span class="material-symbols-outlined text-[18px]">loyalty</span>Planos &amp; Mensalidade</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="anuncios-e-vitrine-patrocinada" href="#"><span class="material-symbols-outlined text-[18px]">campaign</span>Anúncios de Rotas &amp; Vitrine</a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Financeiro &amp; Escrow</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="extrato-e-faturamento" href="#"><span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>Extrato &amp; Faturamento</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="payout-d-0-escrow" href="#"><span class="material-symbols-outlined text-[18px]">payments</span>Payout D+0 Escrow &amp; Pedágio</a></div><div class="space-y-space-xs"><div class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Inteligência Logística</div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="relatorios-e-sla" href="#"><span class="material-symbols-outlined text-[18px]">speed</span>Relatórios &amp; SLA On-Time</a></div></nav><div class="p-space-md bg-surface-container-lowest border-t border-surface-container-highest"><div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><span>Status Operacional</span><span class="inline-flex items-center gap-1 font-bold text-secondary"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>Conectado ANTT</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-space-xl flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="w-full flex items-center bg-surface-container-low rounded-lg px-space-md py-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[20px] text-outline mr-space-xs">search</span><span class="font-body-sm text-body-sm text-outline">Buscar por CTe, MDF-e, Placa, EAN ou Chave NFe...</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-sm px-space-sm py-space-xs bg-surface-container-low rounded-lg"><span class="material-symbols-outlined text-secondary text-[18px]">lock_clock</span><span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Escrow Protegido:</span><span class="font-label-sm text-label-sm text-secondary font-bold">R$ 342.890,00</span></div><div class="flex items-center gap-space-xs text-on-surface-variant"><button class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><button class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">sync_alt</span></button></div><div class="h-8 w-[1px] bg-surface-container-highest mx-space-xs"></div><div class="flex items-center gap-space-sm"><div class="text-right hidden sm:block"><div class="font-label-md text-label-md text-on-surface leading-tight">TransLog Sul 3PL</div><div class="font-label-sm text-label-sm text-outline">Operador Master • CNPJ 44.102/0001</div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></header><main class="relative pt-16 w-full px-space-xl py-space-lg bg-surface min-h-screen"><div class="flex flex-col w-full space-y-space-lg">
+<!-- BREADCRUMB & METADATA -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-outline">
+<a class="hover:text-primary transition-colors" href="#">Início</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Painel do Operador 3PL</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Anúncios e Vitrine Patrocinada</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-bold">Criar Novo Anúncio de Rota</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline font-label-sm text-label-sm">
+<span class="inline-flex items-center gap-1 text-secondary font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+        TransAlimentos Logística Express • CNPJ 18.244.912/0001-40
+      </span>
+<span>|</span>
+<span>RNTRC: 54983214</span>
+</div>
+</div>
+<!-- HEADER BANNER & ACTION BAR -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm tracking-wider uppercase">
+            Impulsionamento Logístico B2B
+          </span>
+<span class="px-space-sm py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+            Plano Frotista Ouro (4/10 em Uso)
+          </span>
+<span class="px-space-sm py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+            Algoritmo de Prioridade Ativado
+          </span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+            Garantia Escrow D+0
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+          Criar Anúncio de Rota, Frete de Retorno &amp; Capacidade Ociosa
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Divulgue caminhões vazios, frotas disponíveis e garanta prioridade algorítmica no checkout dos leilões e compras B2B do Varejista Online para neutralizar custos de diesel em percursos de retorno.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface bg-surface-container hover:bg-surface-container-high transition-colors" type="button">
+          Salvar Rascunho
+        </button>
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-primary bg-primary-fixed hover:bg-primary-fixed-dim transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+          Ver Prévia
+        </button>
+<button class="px-space-lg py-space-xs rounded-lg font-label-md text-label-md text-on-primary bg-primary-container hover:bg-primary transition-all shadow-sm flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+          Publicar c/ Destaque
+        </button>
+</div>
+</div>
+</div>
+<!-- MAIN 2-COLUMN WORKSPACE -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: FORM CONFIGURATION (65% -> 8 of 12 cols) -->
+<div class="lg:col-span-8 space-y-space-lg">
+<!-- CARD 1: DADOS BÁSICOS & MODALIDADE -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-lg bg-primary-fixed text-primary flex items-center justify-center font-label-md text-label-md">1</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Dados Básicos do Anúncio &amp; Tipo de Oferta</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container px-space-sm py-0.5 rounded font-bold">Otimizado p/ Checkout B2B</span>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between">
+<span>Título Comercial do Anúncio de Rota</span>
+<span class="text-outline font-label-sm text-label-sm">82/120 caracteres</span>
+</label>
+<input class="w-full px-space-md py-space-xs bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:shadow-[0_0_0_2px_#003178]" type="text" value="Carreta Sider 28-30 Paletes: Retorno Goiânia/GO ➔ Campinas &amp; RMC - Frete Ocioso c/ 25% OFF"/>
+<p class="font-body-sm text-body-sm text-outline">Inclua polo de partida, destino e benefício tarifário para maior atratividade nas compras em atacado.</p>
+</div>
+<!-- MODALIDADE SELECTION -->
+<div class="space-y-space-xs pt-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Modalidade Operacional da Capacidade</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<!-- Option 1: Backhaul (Selected) -->
+<label class="relative p-space-md rounded-xl bg-primary-fixed/30 cursor-pointer flex flex-col justify-between space-y-space-sm shadow-sm">
+<input checked="" class="sr-only" name="modalidade" type="radio"/>
+<div class="flex items-start justify-between">
+<span class="px-space-xs py-0.5 rounded bg-tertiary-container text-on-tertiary font-label-sm text-label-sm uppercase font-bold">Maior Procura</span>
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-primary font-bold">Frete de Retorno (Backhaul)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Veículo retornando vazio de descarregamento anterior. Maior flexibilidade tarifária.</div>
+</div>
+<div class="font-label-sm text-label-sm text-secondary font-bold pt-space-xs">Prioridade Máxima no Algoritmo</div>
+</label>
+<!-- Option 2: Rota Regular -->
+<label class="relative p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer flex flex-col justify-between space-y-space-sm transition-colors">
+<input class="sr-only" name="modalidade" type="radio"/>
+<div class="flex items-start justify-between">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase">Fixo Contratual</span>
+<span class="material-symbols-outlined text-outline text-[20px]">radio_button_unchecked</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">Rota Regular / Diária</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Disponibilidade agendada contínua entre polos de produção e distribuição.</div>
+</div>
+<div class="font-label-sm text-label-sm text-outline pt-space-xs">Grade Recorrente</div>
+</label>
+<!-- Option 3: Spot Imediato -->
+<label class="relative p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer flex flex-col justify-between space-y-space-sm transition-colors">
+<input class="sr-only" name="modalidade" type="radio"/>
+<div class="flex items-start justify-between">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase">Pronto Envio</span>
+<span class="material-symbols-outlined text-outline text-[20px]">radio_button_unchecked</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">Capacidade Ociosa (Spot)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Caminhão parado no CD ou pátio parceiro apto para carregamento em até 2h.</div>
+</div>
+<div class="font-label-sm text-label-sm text-outline pt-space-xs">Carregamento Rápido</div>
+</label>
+</div>
+</div>
+<!-- CATEGORIAS DE CARGA -->
+<div class="space-y-space-xs pt-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Categorias de Carga Suportadas pelo Veículo</label>
+<div class="flex flex-wrap gap-space-sm">
+<label class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container text-on-surface cursor-pointer font-label-sm text-label-sm">
+<input checked="" class="accent-primary" type="checkbox"/>
+              Carga Seca Geral / Matérias-Primas
+            </label>
+<label class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container text-on-surface cursor-pointer font-label-sm text-label-sm">
+<input checked="" class="accent-primary" type="checkbox"/>
+              Alimentos Embalados, Grãos &amp; Farináceos
+            </label>
+<label class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container text-on-surface cursor-pointer font-label-sm text-label-sm">
+<input checked="" class="accent-primary" type="checkbox"/>
+              Bebidas, Águas &amp; Sucos em Paletes
+            </label>
+<label class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container text-on-surface cursor-pointer font-label-sm text-label-sm">
+<input class="accent-primary" type="checkbox"/>
+              Frios &amp; Laticínios Climatizados (15°C - 18°C)
+            </label>
+<label class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container text-on-surface cursor-pointer font-label-sm text-label-sm">
+<input class="accent-primary" type="checkbox"/>
+              Perecíveis Congelados (-18°C)
+            </label>
+</div>
+</div>
+</section>
+<!-- CARD 2: ORIGEM, DESTINO & CORREDORES -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-lg bg-primary-fixed text-primary flex items-center justify-center font-label-md text-label-md">2</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Origem, Destino &amp; Mesorregiões de Atendimento</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Corredor Rodoviário BR-153 / BR-050</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- ORIGEM -->
+<div class="p-space-md bg-surface-container-low rounded-xl space-y-space-sm">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]">trip_origin</span>
+              Ponto de Origem / Pátio de Saída
+            </div>
+<div class="grid grid-cols-3 gap-space-xs">
+<div class="col-span-1">
+<label class="font-label-sm text-label-sm text-outline">UF</label>
+<input class="w-full px-space-sm py-space-xs bg-surface-container-lowest rounded-lg font-body-sm text-body-sm font-bold text-on-surface" type="text" value="GO"/>
+</div>
+<div class="col-span-2">
+<label class="font-label-sm text-label-sm text-outline">Polo Regional / CD</label>
+<input class="w-full px-space-sm py-space-xs bg-surface-container-lowest rounded-lg font-body-sm text-body-sm font-bold text-on-surface" type="text" value="Goiânia e Região Metropolitana"/>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-space-xs">
+<span>Raio Flexível de Coleta:</span>
+<span class="font-bold text-primary bg-primary-fixed px-space-xs py-0.5 rounded">+50 km raio (Aparecida, Senador Canedo)</span>
+</div>
+</div>
+<!-- DESTINO -->
+<div class="p-space-md bg-surface-container-low rounded-xl space-y-space-sm">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-secondary font-bold">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+              Ponto de Destino / Polos de Descarrego
+            </div>
+<div class="grid grid-cols-3 gap-space-xs">
+<div class="col-span-1">
+<label class="font-label-sm text-label-sm text-outline">UF</label>
+<input class="w-full px-space-sm py-space-xs bg-surface-container-lowest rounded-lg font-body-sm text-body-sm font-bold text-on-surface" type="text" value="SP"/>
+</div>
+<div class="col-span-2">
+<label class="font-label-sm text-label-sm text-outline">Mesorregião de Entrega</label>
+<input class="w-full px-space-sm py-space-xs bg-surface-container-lowest rounded-lg font-body-sm text-body-sm font-bold text-on-surface" type="text" value="Campinas, Paulínia, Vinhedo &amp; RMC"/>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-space-xs">
+<span>Tolerância de Desvio:</span>
+<span class="font-bold text-secondary bg-secondary-container px-space-xs py-0.5 rounded">+100 km (Atende Piracicaba &amp; Jundiaí)</span>
+</div>
+</div>
+</div>
+<!-- DROPOFF INTERMEDIÁRIO -->
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Polos de Passagem &amp; Drop-off Intermediário Aceito</label>
+<div class="flex flex-wrap items-center gap-space-xs p-space-sm bg-surface-container-low rounded-lg">
+<span class="inline-flex items-center gap-1 px-space-sm py-space-xs bg-surface-container-lowest rounded font-label-sm text-label-sm text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-outline">pin_drop</span> Uberlândia / Triângulo Mineiro
+              <button class="text-outline hover:text-error ml-1" type="button">×</button>
+</span>
+<span class="inline-flex items-center gap-1 px-space-sm py-space-xs bg-surface-container-lowest rounded font-label-sm text-label-sm text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-outline">pin_drop</span> Ribeirão Preto / SP (Norte Paulista)
+              <button class="text-outline hover:text-error ml-1" type="button">×</button>
+</span>
+<span class="inline-flex items-center gap-1 px-space-sm py-space-xs bg-surface-container-lowest rounded font-label-sm text-label-sm text-on-surface">
+<span class="material-symbols-outlined text-[14px] text-outline">pin_drop</span> Limeira / SP
+              <button class="text-outline hover:text-error ml-1" type="button">×</button>
+</span>
+<button class="px-space-sm py-space-xs font-label-sm text-label-sm text-primary hover:underline flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span> Adicionar Polo
+            </button>
+</div>
+</div>
+<!-- DISPONIBILIDADE TEMPORAL -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm pt-space-xs">
+<div class="space-y-space-xs">
+<label class="font-label-sm text-label-sm text-outline">Data Disponível para Carregamento</label>
+<div class="flex items-center bg-surface-container-low px-space-sm py-space-xs rounded-lg gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">calendar_today</span>
+<input class="bg-transparent font-body-sm text-body-sm font-bold text-on-surface w-full focus:outline-none" type="text" value="26/Out/2026"/>
+</div>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-sm text-label-sm text-outline">Janela Horária de Coleta</label>
+<div class="flex items-center bg-surface-container-low px-space-sm py-space-xs rounded-lg gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">schedule</span>
+<input class="bg-transparent font-body-sm text-body-sm font-bold text-on-surface w-full focus:outline-none" type="text" value="07:00 às 14:00 (Imediato)"/>
+</div>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-sm text-label-sm text-outline">Frequência da Operação</label>
+<div class="flex items-center bg-surface-container-low px-space-sm py-space-xs rounded-lg gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-outline">repeat</span>
+<select class="bg-transparent font-body-sm text-body-sm font-bold text-on-surface w-full focus:outline-none">
+<option selected="">Viagem Única (Spot / Backhaul)</option>
+<option>2x por Semana</option>
+<option>Diário Contínuo</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- CARD 3: ESPECIFICAÇÕES DO VEÍCULO & CAPACIDADE -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-lg bg-primary-fixed text-primary flex items-center justify-center font-label-md text-label-md">3</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Especificações do Veículo &amp; Capacidade Logística</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container px-space-sm py-0.5 rounded font-bold">Motorista e Telemetria Validados</span>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Veículo Alocado da Frota Vinculada</label>
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">rv_hookup</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">Scania G410 Bitrem 9 Eixos • Placa GHY-7741</div>
+<div class="font-body-sm text-body-sm text-outline">Motorista: Danilo Barbosa (CNH E) • Sascar 5G Satelital Conectado • Ano 2023</div>
+</div>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline" type="button">Trocar Veículo</button>
+</div>
+</div>
+<!-- CAPACIDADE ÚTIL -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="p-space-sm bg-surface-container rounded-lg">
+<div class="font-label-sm text-label-sm text-outline">Tipo de Carroceria</div>
+<div class="font-headline-md text-headline-md text-on-surface mt-0.5">Bitrem Sider / Graneleiro</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Lona lateral c/ trava antifurto</div>
+</div>
+<div class="p-space-sm bg-surface-container rounded-lg">
+<div class="font-label-sm text-label-sm text-outline">Capacidade de Carga Líquida</div>
+<div class="font-headline-md text-headline-md text-primary mt-0.5">38.000 kg (38 Ton)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Tara aferida em balança</div>
+</div>
+<div class="p-space-sm bg-surface-container rounded-lg">
+<div class="font-label-sm text-label-sm text-outline">Ocupação Paletes PBR</div>
+<div class="font-headline-md text-headline-md text-secondary mt-0.5">30 Posições (1,0 x 1,2m)</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Compatível c/ fracionamento</div>
+</div>
+</div>
+<!-- ACESSÓRIOS E COMPLIANCE -->
+<div class="space-y-space-xs pt-space-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Equipamentos, Protocolos &amp; Acessórios Embarcados</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm font-label-sm text-label-sm">
+<div class="flex items-center gap-space-xs p-space-xs rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+              Plataforma Elevatória Hidráulica Traseira (2.500 kg)
+            </div>
+<div class="flex items-center gap-space-xs p-space-xs rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+              Rastreador Híbrido Sascar (Satelital Iridium + 5G)
+            </div>
+<div class="flex items-center gap-space-xs p-space-xs rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+              Termógrafo Digital Calibrado c/ Registro em Nuvem
+            </div>
+<div class="flex items-center gap-space-xs p-space-xs rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+              Kit de Cintas de Alta Tensão (12x) e Cantoneiras
+            </div>
+<div class="flex items-center gap-space-xs p-space-xs rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+              Certificado de Conformidade Sanitária ANVISA Alimentos
+            </div>
+<div class="flex items-center gap-space-xs p-space-xs rounded bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+              Seguro de Carga RCTR-C Porto Seguro até R$ 1.500.000
+            </div>
+</div>
+</div>
+</section>
+<!-- CARD 4: CONDIÇÕES COMERCIAIS & CIOT -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-lg bg-primary-fixed text-primary flex items-center justify-center font-label-md text-label-md">4</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Condições Comerciais, Preço Estimado &amp; CIOT Integrado</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container px-space-sm py-0.5 rounded font-bold">Escrow D+0 Ativado</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md bg-surface-container-low rounded-xl space-y-space-xs">
+<label class="font-label-sm text-label-sm text-outline">Valor Fechado por Carreta (Lotação Completa)</label>
+<div class="flex items-center bg-surface-container-lowest px-space-md py-space-xs rounded-lg gap-space-xs">
+<span class="font-headline-md text-headline-md text-primary font-bold">R$</span>
+<input class="w-full bg-transparent font-headline-xl text-headline-xl text-primary font-bold focus:outline-none" type="text" value="6.800,00"/>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Tabela Regular: <del>R$ 8.900,00</del></span>
+<span class="text-secondary font-bold">Economia de 23,6% no Backhaul</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-xl space-y-space-xs">
+<label class="font-label-sm text-label-sm text-outline">Custo Calculado por Palete (Fracionado)</label>
+<div class="flex items-center bg-surface-container-lowest px-space-md py-space-xs rounded-lg gap-space-xs">
+<span class="font-headline-md text-headline-md text-secondary font-bold">R$</span>
+<input class="w-full bg-transparent font-headline-xl text-headline-xl text-secondary font-bold focus:outline-none" readonly="" type="text" value="226,67"/>
+<span class="font-label-sm text-label-sm text-outline">/ palete</span>
+</div>
+<div class="font-body-sm text-body-sm text-outline">Calculado sobre a capacidade útil de 30 paletes PBR.</div>
+</div>
+</div>
+<!-- COMPLIANCE ANTT & PEDÁGIO -->
+<div class="p-space-sm bg-surface-container rounded-lg space-y-space-xs">
+<div class="flex flex-wrap items-center justify-between gap-space-xs">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">gavel</span>
+<span>Piso Mínimo Obrigatório ANTT:</span>
+<span class="font-bold text-secondary">R$ 5.420,00</span>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">
+              100% em Conformidade (Resolução 5.867/2019)
+            </span>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs text-outline font-body-sm text-body-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">toll</span>
+              Vale-Pedágio Obrigatório: Incluso via Tag Sem Parar / CIOT Automático gerado na SEFAZ sem custo.
+            </div>
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+              Repasse SPI Pix D+0 após MDF-e
+            </div>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: BOOST SIMULATOR, PREVIEW & ROI (35% -> 4 of 12 cols) -->
+<div class="lg:col-span-4 space-y-space-lg">
+<!-- CARD A: INTERACTIVE BOOST SELECTOR -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary-container text-[22px]">bolt</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Impulsionamento de Rota</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-tertiary-container text-on-tertiary font-label-sm text-label-sm font-bold">Alta Conversão</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Destaque sua carreta vazia diretamente no fluxo de compras dos grandes arremates de alimentos no atacado.
+        </p>
+<!-- NÍVEIS DE IMPULSIONAMENTO -->
+<div class="space-y-space-sm">
+<!-- Básico -->
+<label class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container flex items-center justify-between cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<input class="accent-primary" name="boost_tier" type="radio"/>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Padrão Ouro (Incluso)</div>
+<div class="font-body-sm text-body-sm text-outline">Top 5 nas buscas regionais • ~1.200 views</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Grátis</span>
+</label>
+<!-- Super Destaque -->
+<label class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container flex items-center justify-between cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<input class="accent-primary" name="boost_tier" type="radio"/>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Super Destaque</div>
+<div class="font-body-sm text-body-sm text-outline">Top 2 cotações + Notificação p/ 420 compradores</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary">+ R$ 150</span>
+</label>
+<!-- Urgência Máxima (SELECTED) -->
+<label class="p-space-sm rounded-xl bg-primary-fixed/40 flex items-center justify-between cursor-pointer shadow-sm">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="accent-primary" name="boost_tier" type="radio"/>
+<div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-primary font-bold">
+                  Urgência Máxima • Top 1
+                  <span class="material-symbols-outlined text-[16px] text-tertiary-container">local_fire_department</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Banner na sala de lances + #1 no Checkout do Lote</div>
+</div>
+</div>
+<span class="font-label-md text-label-md font-bold text-primary-container">+ R$ 290</span>
+</label>
+</div>
+<div class="p-space-xs rounded bg-surface-container-low text-outline font-label-sm text-label-sm flex items-center justify-between">
+<span>Duração do Impulsionamento:</span>
+<span class="font-bold text-on-surface">7 dias (Até 02/Nov/2026)</span>
+</div>
+</section>
+<!-- CARD B: SIMULADOR DE ROI OPERACIONAL -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">trending_up</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Simulador de Retorno (ROI)</h2>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">8,4x Estimado</span>
+</div>
+<!-- METRICS TILES -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<div class="font-label-sm text-label-sm text-outline">Alcance Previsto</div>
+<div class="font-headline-md text-headline-md text-primary font-bold">3.400</div>
+<div class="font-body-sm text-body-sm text-outline">Compradores varejistas</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg">
+<div class="font-label-sm text-label-sm text-outline">Taxa Conversão</div>
+<div class="font-headline-md text-headline-md text-secondary font-bold">68%</div>
+<div class="font-body-sm text-body-sm text-outline">Média em backhaul</div>
+</div>
+</div>
+<!-- DETAILED FINANCIAL BREAKDOWN -->
+<div class="space-y-space-xs font-body-sm text-body-sm pt-space-xs">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span>Receita de Frete Fechado:</span>
+<span class="font-bold text-on-surface">R$ 6.800,00</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span>Investimento em Impulsionamento:</span>
+<span class="font-bold text-error">- R$ 290,00</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span>Economia de Custo Morto (850 km diesel):</span>
+<span class="font-bold text-secondary">+ R$ 3.120,00</span>
+</div>
+<div class="h-[1px] bg-surface-container-highest my-space-xs"></div>
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="text-on-surface font-bold">Lucro Líquido Projetado:</span>
+<span class="font-bold text-secondary text-headline-md">R$ 2.450,00</span>
+</div>
+</div>
+<!-- MINI SPARKLINE CHART SVG -->
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm">
+<span>Velocidade Média de Fechamento</span>
+<span class="text-secondary font-bold">&lt; 4.2 horas</span>
+</div>
+<svg class="w-full h-10 text-secondary" fill="none" preserveaspectratio="none" viewbox="0 0 200 40">
+<path d="M0 35 Q 30 30, 60 22 T 120 14 T 170 8 T 200 4" fill="none" stroke="currentColor" stroke-width="2.5"></path>
+<path d="M0 35 Q 30 30, 60 22 T 120 14 T 170 8 T 200 4 L 200 40 L 0 40 Z" fill="currentColor" fill-opacity="0.1"></path>
+</svg>
+<div class="flex justify-between text-outline text-[10px] font-label-sm">
+<span>Lançamento</span>
+<span>2h pós-anúncio</span>
+<span>Fechamento</span>
+</div>
+</div>
+</section>
+<!-- CARD C: LIVE PREVIEW NA VITRINE DE FRETES -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-outline text-[20px]">preview</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Prévia em Tempo Real</h2>
+</div>
+<span class="text-outline font-label-sm text-label-sm">Visão do Comprador</span>
+</div>
+<!-- SIMULATED MARKETPLACE CARD -->
+<div class="rounded-xl overflow-hidden bg-surface-container-lowest shadow-md space-y-space-sm">
+<!-- CARD IMAGE & TOP BADGE -->
+<div class="relative h-36 bg-cover bg-center" data-alt="Commercial highway transport, modern Scania heavy truck with blue cabin and silver enclosed curtainsider trailer moving on modern brazilian multi-lane highway in sunny afternoon with clean logistics branding." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2zWwQ6yTGL7KW0lCjA_sP2Nxat8Y_FLfy1-m8xSsAvYw0kqOM8U4evU-bxT9sJ_4n6hLRPtqx78QtfnFTUaxJteFIPY7lllbVx_vvbROJ3yw-bJXJnkphcgp2Kv8DgmSTdfgoUYw0XYMbxSWaGHwwTDJfeAeo-TiO4FSvgcSZLsvI0aa4EYOJ6hnjNx8SZuewg2X7Zx6g1JVOq87EyjbhE97XK3gR9VHZw5lxFP6Z')">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="absolute top-2 left-2 flex items-center gap-1 px-space-xs py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[12px]">local_fire_department</span>
+              Patrocinado • Top 1
+            </div>
+<div class="absolute top-2 right-2 px-space-xs py-0.5 rounded bg-surface-container-lowest/90 backdrop-blur font-label-sm text-label-sm text-on-surface font-bold">
+              Backhaul -23%
+            </div>
+<div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-on-primary font-label-sm text-label-sm">
+<span class="font-bold">TransAlimentos Express</span>
+<span class="flex items-center gap-0.5 text-secondary-fixed">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                4.9/5 (482 viagens)
+              </span>
+</div>
+</div>
+<!-- CARD CONTENT -->
+<div class="p-space-md space-y-space-sm">
+<div class="font-label-md text-label-md text-on-surface font-bold line-clamp-1">
+              Goiânia/GO ➔ Campinas, Paulínia &amp; RMC
+            </div>
+<!-- ORIGIN DESTINATION FLOW -->
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>GOI (GO)</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline">arrow_forward</span>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>CPQ / RMC (SP)</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">850 km</span>
+</div>
+<!-- MINI CAPACITY PILLS -->
+<div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm">
+<span class="px-space-xs py-0.5 bg-surface-container rounded">30 Paletes PBR</span>
+<span class="px-space-xs py-0.5 bg-surface-container rounded">38 Toneladas</span>
+<span class="px-space-xs py-0.5 bg-surface-container rounded">Sider</span>
+</div>
+<!-- PRICE HIGHLIGHT & CTA -->
+<div class="pt-space-xs flex items-baseline justify-between">
+<div>
+<div class="font-label-sm text-label-sm text-outline">Carreta Fechada:</div>
+<div class="font-headline-md text-headline-md text-primary font-bold">R$ 6.800,00</div>
+</div>
+<div class="text-right">
+<div class="font-label-sm text-label-sm text-outline">Ou Fracionado:</div>
+<div class="font-headline-md text-headline-md text-secondary font-bold">R$ 226,67<span class="text-[10px] font-normal text-outline">/pal</span></div>
+</div>
+</div>
+<button class="w-full py-space-xs rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+              Contratar Frete com Garantia Escrow
+            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- STICKY / BOTTOM COMPLIANCE & ACTION BAR -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
+<div>
+<div class="text-on-surface font-bold">Operação 100% Homologada • CIOT Gratuito Automático</div>
+<div class="text-outline">ANTT RNTRC 54983214 • Seguro RCTR-C Ativo • Liquidação Segura via Banco Central SPI</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm w-full md:w-auto justify-end">
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-on-surface bg-surface-container hover:bg-surface-container-high transition-colors" type="button">
+        Salvar como Rascunho
+      </button>
+<button class="px-space-md py-space-xs rounded-lg font-label-md text-label-md text-primary bg-primary-fixed hover:bg-primary-fixed-dim transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[18px]">map</span>
+        Simular Viagem no Mapa
+      </button>
+<button class="px-space-lg py-space-xs rounded-lg font-label-md text-label-md text-on-primary bg-primary-container hover:bg-primary shadow-md transition-all flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+<span>Confirmar e Publicar Anúncio Patrocinado (R$ 290,00) →</span>
+</button>
+</div>
+</div>
+</div></main></div></body></html>

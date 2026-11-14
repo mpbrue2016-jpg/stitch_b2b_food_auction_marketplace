@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#00429c", "on-secondary-fixed-variant": "#005312", "on-primary-container": "#a1bbff", "on-secondary-container": "#217128", "surface-variant": "#e0e3e5", "tertiary": "#720009", "error": "#ba1a1a", "secondary-fixed": "#a3f69c", "secondary-fixed-dim": "#88d982", "tertiary-container": "#9d0011", "on-tertiary-container": "#ffa59d", "on-surface-variant": "#434652", "on-primary-fixed": "#001945", "surface-container-highest": "#e0e3e5", "outline": "#737783", "surface-container-low": "#f2f4f6", "on-primary": "#ffffff", "tertiary-fixed": "#ffdad6", "inverse-primary": "#b0c6ff", "surface-container-high": "#e6e8ea", "secondary-container": "#a0f399", "on-secondary-fixed": "#002204", "on-error-container": "#93000a", "surface-container": "#eceef0", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#ffb3ac", "on-surface": "#191c1e", "surface-dim": "#d8dadc", "primary-fixed-dim": "#b0c6ff", "on-tertiary": "#ffffff", "surface-bright": "#f7f9fb", "primary-container": "#0d47a1", "primary-fixed": "#d9e2ff", "surface-container-lowest": "#ffffff", "secondary": "#1b6d24", "surface-tint": "#2b5bb5", "background": "#f7f9fb", "on-error": "#ffffff", "surface": "#f7f9fb", "inverse-on-surface": "#eff1f3", "on-background": "#191c1e", "on-tertiary-fixed-variant": "#930010", "outline-variant": "#c3c6d4", "primary": "#003178", "inverse-surface": "#2d3133", "on-tertiary-fixed": "#410003" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1.5rem", "space-xl": "2rem", "gutter": "1rem", "space-xs": "0.25rem", "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-md": "0.75rem", "space-lg": "1.25rem" }, "fontFamily": { "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"] }, "fontSize": { "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 w-full px-space-xl flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg shrink-0"><div class="flex items-center gap-space-sm"><img alt="Varejista Online" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Marketplace B2B &amp; Leilões</span></div></div></div><div class="hidden xl:flex flex-1 max-w-md mx-space-md"><div class="relative w-full flex items-center"><span class="material-symbols-outlined absolute left-3 text-outline text-lg pointer-events-none">search</span><input class="w-full pl-10 pr-4 py-2 bg-surface-container-low font-body-md text-body-md text-on-surface placeholder:text-outline rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar por SKU, EAN/GTIN, Lote ou Categoria..." type="text"/></div></div><nav class="hidden lg:flex items-center gap-space-md shrink-0" data-active-classes="text-primary font-label-lg border-b-2 border-primary"><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="catalogo-publico" href="#">Catálogo Público</a><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="lotes-e-leiloes" href="#">Lotes &amp; Leilões</a><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="setores" href="#">Setores</a><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="central-de-cadastros" href="#">Central de Cadastros</a><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="como-funciona" href="#">Como Funciona</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="hidden sm:inline-flex items-center px-space-md py-2 rounded-lg bg-surface-container-high font-label-lg text-label-lg text-on-surface hover:bg-surface-container-highest transition-colors whitespace-nowrap" data-path="catalogo-publico" href="#">Explorar como Visitante</a><a class="inline-flex items-center px-space-md py-2 rounded-lg bg-primary font-label-lg text-label-lg text-on-primary hover:bg-primary-container hover:text-on-primary transition-colors whitespace-nowrap shadow-sm" data-path="autenticacao-e-cadastro" href="#">Cadastre sua Empresa / Login</a><img alt="Profile" class="w-8 h-8 rounded-full object-cover shrink-0 ml-space-xs" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- Banner Informativo de Visitante (Sem Login) -->
+<div class="w-full bg-primary-fixed text-on-primary-fixed px-space-xl py-space-md shadow-sm">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-primary-fixed-variant">Acesso Convidado</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase text-secondary">Catálogo Público em Tempo Real</span>
+</div>
+<p class="font-body-md text-body-md text-on-primary-fixed leading-tight">
+<strong>Modo Visitante:</strong> Você está visualizando o catálogo aberto com preços e lotes públicos. Para dar lances em leilões, comprar a preço fixo ou contatar vendedores, é necessário cadastrar sua empresa (CNPJ).
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 w-full md:w-auto">
+<a class="w-full md:w-auto text-center px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-colors shadow-sm whitespace-nowrap" data-path="autenticacao-e-cadastro" href="#">
+          Cadastrar CNPJ Grátis
+        </a>
+</div>
+</div>
+</div>
+<!-- Hero de Apresentação / Indicadores Operacionais B2B -->
+<section class="w-full px-space-xl py-space-lg bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-space-lg mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary bg-primary-fixed px-space-xs py-0.5 rounded">Operação B2B Verificada</span>
+<span class="font-label-sm text-label-sm text-outline">• Liquidação D+0 com Escrow Garantido</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+            Lotes Industriais, Excedentes e Ponta de Estoque
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+            Acesse o pregão aberto da cadeia de distribuição nacional. Arremate cargas fechadas com rastreabilidade sanitária ANVISA/MAPA e auditoria pré-embarque.
+          </p>
+</div>
+<!-- Indicadores rápidos de liquidez -->
+<div class="flex items-center gap-space-sm bg-surface-container-low p-space-sm rounded-xl">
+<div class="px-space-md py-space-xs text-left">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant block">Lotes Ativos Hoje</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">142 Lotes</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="px-space-md py-space-xs text-left">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant block">Volume Movimentado</span>
+<span class="font-headline-md text-headline-md text-secondary font-bold">R$ 4.8M</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="px-space-md py-space-xs text-left">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant block">Média de Desconto</span>
+<span class="font-headline-md text-headline-md text-on-tertiary-fixed-variant font-bold">-38%</span>
+</div>
+</div>
+</div>
+<!-- Barra de Pesquisa Rápida e Filtros Operacionais B2B -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<!-- Linha 1: Input de Pesquisa Principal com parâmetros técnicos -->
+<div class="flex flex-col lg:flex-row gap-space-sm items-center">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-3.5 top-3 text-outline text-xl pointer-events-none">search</span>
+<input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low font-body-md text-body-md text-on-surface placeholder:text-outline rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar por EAN/GTIN, Descrição do Produto, Marca, Fabricante ou Código de Lote..." type="text"/>
+</div>
+<div class="flex items-center gap-space-xs w-full lg:w-auto shrink-0">
+<button class="flex items-center justify-center gap-space-xs px-space-md py-2.5 bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-lg font-label-lg text-label-lg transition-colors w-full lg:w-auto">
+<span class="material-symbols-outlined text-lg">tune</span>
+              Filtros Avançados
+            </button>
+<button class="flex items-center justify-center gap-space-xs px-space-lg py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-lg text-label-lg transition-colors w-full lg:w-auto shadow-sm">
+<span class="material-symbols-outlined text-lg">filter_alt</span>
+              Filtrar Catálogo
+            </button>
+</div>
+</div>
+<!-- Linha 2: Filtros de Verticais / Segmentos -->
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mr-space-xs shrink-0">Verticais B2B:</span>
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-primary text-on-primary">Todas</button>
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-colors">Alimentos &amp; Bebidas</button>
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-colors">Farmácia &amp; Farma-MIP</button>
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-colors">Padaria &amp; Frios</button>
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-colors">Pet Shop &amp; Nutrição</button>
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-high hover:bg-surface-container-highest text-on-surface transition-colors">Mercearia &amp; Limpeza</button>
+</div>
+<!-- Raio Logístico / Distância -->
+<div class="flex items-center gap-space-xs shrink-0 w-full md:w-auto">
+<span class="material-symbols-outlined text-outline text-base">near_me</span>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Raio:</span>
+<select class="bg-surface-container-high text-on-surface font-label-md text-label-md px-space-sm py-1.5 rounded-lg focus:outline-none">
+<option>Perto de Mim (GPS)</option>
+<option selected="">São Paulo (Grande SP)</option>
+<option>Até 50 km</option>
+<option>Até 100 km</option>
+<option>Brasil (Interestadual)</option>
+</select>
+</div>
+</div>
+<!-- Linha 3: Semáforo de Validade FEFO (First-Expired, First-Out) -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-sm text-primary">hourglass_top</span>
+              Semáforo de Validade FEFO:
+            </span>
+<label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface cursor-pointer text-body-sm font-label-md shadow-sm">
+<input checked="" class="rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span>Normal (&gt; 120 dias)</span>
+</label>
+<label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface cursor-pointer text-body-sm font-label-md shadow-sm">
+<input checked="" class="rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+<span>Atenção (30 a 119 dias)</span>
+</label>
+<label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface cursor-pointer text-body-sm font-label-md shadow-sm">
+<input checked="" class="rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="w-2.5 h-2.5 rounded-full bg-orange-600"></span>
+<span>Próxima (15 a 29 dias)</span>
+</label>
+<label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface cursor-pointer text-body-sm font-label-md shadow-sm">
+<input class="rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span>Crítica (&lt; 15 dias - Ponta de Estoque)</span>
+</label>
+</div>
+<div class="flex items-center gap-space-xs text-outline text-body-sm font-body-sm">
+<span>Ordenado por: <strong>Menor Shelf-Life / Fim de Pregão</strong></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Grade Principal de Lotes e Leilões (Catálogo Aberto) -->
+<section class="w-full px-space-xl py-space-lg bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Lotes em Destaque Disponíveis para Arremate e Compra Direta</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Lotes verificados fisicamente com documentação fiscal, inspeção sanitária e laudo de doca.</p>
+</div>
+<span class="hidden sm:inline-flex px-space-sm py-1 bg-surface-container-high rounded text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+          Exibindo 4 de 142 Lotes
+        </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- CARD 1: Café Tradicional 500g (Leilão ao Vivo) -->
+<div class="bg-surface-container-lowest rounded-xl flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<!-- Top Tag & Urgência -->
+<div class="p-space-md pb-0">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm uppercase">Leilão ao Vivo</span>
+<div class="flex items-center gap-1 px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">timer</span>
+<span class="font-numeric-timer text-body-sm font-bold">02h 14m</span>
+</div>
+</div>
+<!-- Imagem e EAN -->
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-surface-container-low mb-space-sm">
+<img class="w-full h-full object-cover" data-alt="Commercial pallet boxes of packaged ground coffee in industrial warehouse setting with clean packaging and high palletization shrink wrap, professional commercial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq-i3NRA3EzVcbk6oxiDGL2jMQlINawgbwgM9hr9whwUeU5OF5OlOB0DLo4YEOkumv5F4bsqKndBRuyhA3ar2bIf-xETuylZI3Za3voZZm4KIeH06VpWS0MUZyKXxjsC0wXJ6g0fzpVrK8QsM9IjLzxGwcVJI4WGVITzU2HUE8mLJQBHyt6ugaplWYVt8V3UYB8BGDff4seBjjDrbL-FaHuJ61FK2uysF7gH7mTptt"/>
+<span class="absolute bottom-2 left-2 bg-inverse-surface/85 text-inverse-on-surface text-[10px] font-mono px-1.5 py-0.5 rounded">
+                EAN: 7891000123456
+              </span>
+<span class="absolute top-2 right-2 bg-surface-container-lowest/90 text-on-surface text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm">
+                Lote #418
+              </span>
+</div>
+<!-- Título e Categoria -->
+<div class="mb-space-sm">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider block">Alimentos &amp; Bebidas • Secos</span>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug line-clamp-2">
+                Café Tradicional Almofada 500g - Caixa c/ 20 un
+              </h3>
+</div>
+<!-- Semáforo e Dados Logísticos -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-space-xs mb-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Shelf Life / Validade:</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                  140 dias (Normal)
+                </span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Carga Total:</span>
+<span class="font-label-md text-label-md text-on-surface">1.200 Cxs (12 Paletes)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Localização da Doca:</span>
+<span class="font-label-md text-label-md text-on-surface">CD Campinas - SP</span>
+</div>
+</div>
+<!-- Preços e Lance -->
+<div class="pt-space-xs mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-outline block">Lance Atual do Pregão:</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">R$ 38.000</span>
+<span class="font-label-md text-label-md text-secondary font-bold">R$ 1,58 / un</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline block mt-0.5">Incremento mínimo: R$ 500,00</span>
+</div>
+</div>
+<!-- Rodapé de Ação e Proteção B2B -->
+<div class="p-space-md pt-0 flex flex-col gap-space-xs">
+<div class="p-space-xs rounded bg-surface-container text-on-surface-variant text-[11px] leading-tight flex items-start gap-1">
+<span class="material-symbols-outlined text-xs text-outline shrink-0 mt-0.5">lock</span>
+<span>Dados de contato e CNPJ do vendedor protegidos. Cadastre-se para negociar com garantia escrow.</span>
+</div>
+<a class="w-full py-2.5 px-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg text-center transition-colors shadow-sm flex items-center justify-center gap-1.5" data-path="autenticacao-e-cadastro" href="#">
+<span class="material-symbols-outlined text-lg">gavel</span>
+              Fazer Cadastro para Dar Lance
+            </a>
+</div>
+</div>
+<!-- CARD 2: Dipirona 500mg Gotas (Farmácia / MIP) -->
+<div class="bg-surface-container-lowest rounded-xl flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<!-- Top Tag & Urgência -->
+<div class="p-space-md pb-0">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm uppercase">Venda Direta / Fixo</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">verified</span>
+                AFE ANVISA
+              </span>
+</div>
+<!-- Imagem e EAN -->
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-surface-container-low mb-space-sm">
+<img class="w-full h-full object-cover" data-alt="Industrial pharmaceutical warehouse with pallets of certified over-the-counter medicine bottles Dipirone liquid in sterilized temperature-controlled pharmaceutical depot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLCOd2ESmOPaVnDaODqx8ZLgNsaaBw0tqIFuSotuHzWPiVvYPM7MiLP2UCQSS_WQqIauEpBQzp7r0Q74vaF98tIFv9XwQ-LZ9G0Ol05pb2Z_FoLImuDJx3khJatnxGho9vmE4fmn0BBUiHCuH7MzX5NRDQJxu3BAvY_oWNbCrQFO4liZDMqhcLLUd3JgrOxHSL6I0KPiDzlKMfQglmC6nF_pfBskz8Ba_sRDMJUwoO"/>
+<span class="absolute bottom-2 left-2 bg-inverse-surface/85 text-inverse-on-surface text-[10px] font-mono px-1.5 py-0.5 rounded">
+                EAN: 7896004702143
+              </span>
+<span class="absolute top-2 right-2 bg-surface-container-lowest/90 text-on-surface text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm">
+                Lote #F-88
+              </span>
+</div>
+<!-- Título e Categoria -->
+<div class="mb-space-sm">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider block">Farmácia &amp; MIP • Medicamento</span>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug line-clamp-2">
+                Dipirona Monoidratada 500mg/mL Gotas 20ml - Cx c/ 100
+              </h3>
+</div>
+<!-- Semáforo e Dados Logísticos -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-space-xs mb-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Shelf Life / Validade:</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                  210 dias (Normal)
+                </span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Exigência Legal:</span>
+<span class="font-label-md text-label-md text-primary font-bold">AFE / Farmacêutico RT</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Carga Total:</span>
+<span class="font-label-md text-label-md text-on-surface">5.000 Unidades (50 Cxs)</span>
+</div>
+</div>
+<!-- Preços e Lance -->
+<div class="pt-space-xs mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-outline block">Preço de Lote Fechado:</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">R$ 14.500</span>
+<span class="font-label-md text-label-md text-secondary font-bold">R$ 2,90 / un</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary block mt-0.5 font-semibold">Preço PMC: R$ 8,50 (Margem 65%)</span>
+</div>
+</div>
+<!-- Rodapé de Ação e Proteção B2B -->
+<div class="p-space-md pt-0 flex flex-col gap-space-xs">
+<div class="p-space-xs rounded bg-surface-container text-on-surface-variant text-[11px] leading-tight flex items-start gap-1">
+<span class="material-symbols-outlined text-xs text-outline shrink-0 mt-0.5">lock</span>
+<span>Dados de contato e CNPJ do vendedor protegidos. Cadastre-se para negociar com garantia escrow.</span>
+</div>
+<a class="w-full py-2.5 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg text-center transition-colors shadow-sm flex items-center justify-center gap-1.5" data-path="autenticacao-e-cadastro" href="#">
+<span class="material-symbols-outlined text-lg">medical_services</span>
+              Homologar CNPJ Farma
+            </a>
+</div>
+</div>
+<!-- CARD 3: Queijo Muçarela Peça 4kg (Padaria / Frios) -->
+<div class="bg-surface-container-lowest rounded-xl flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<!-- Top Tag & Urgência -->
+<div class="p-space-md pb-0">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm uppercase font-bold">-45% Oportunidade</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">ac_unit</span>
+                +4°C Climatizado
+              </span>
+</div>
+<!-- Imagem e EAN -->
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-surface-container-low mb-space-sm">
+<img class="w-full h-full object-cover" data-alt="Vacuum packed industrial yellow mozzarella cheese blocks 4kg on refrigerated stainless steel racks in dairy distribution cold room, commercial dairy storage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIyeNC8OJJDIIV0ERbxm99pGN5TkUGv6OpODQEbYtwHBL60S-neIc2GpOhlurf5e0oYffQ1jg-SXwlnwkSJZB429zg8WPjmel6VjW-GDVzBuK0rzQN162SEZRnlh1Wf9aOKqr8acG3XmXfxJ20YZLddOhhc0DKmTKohBkdtJZ9V6cnJ-rZujgr_hZcaRAUyVPKtggwdMDrEpbL5pMqDtMTanNA6Zd_DQFr7JeciKay"/>
+<span class="absolute bottom-2 left-2 bg-inverse-surface/85 text-inverse-on-surface text-[10px] font-mono px-1.5 py-0.5 rounded">
+                SIF: 0042/12
+              </span>
+<span class="absolute top-2 right-2 bg-surface-container-lowest/90 text-on-surface text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm">
+                Lote #PAD-12
+              </span>
+</div>
+<!-- Título e Categoria -->
+<div class="mb-space-sm">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider block">Padaria &amp; Transformação • Frios</span>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug line-clamp-2">
+                Queijo Muçarela Peça Inteira 4kg (4x4kg por Caixa)
+              </h3>
+</div>
+<!-- Semáforo e Dados Logísticos -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-space-xs mb-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Shelf Life / Validade:</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                  24 dias (Atenção)
+                </span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Carga Total:</span>
+<span class="font-label-md text-label-md text-on-surface">320 kg (20 Caixas)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Rastreio Térmico:</span>
+<span class="font-label-md text-label-md text-secondary font-bold">Datalogger Aprovado</span>
+</div>
+</div>
+<!-- Preços e Lance -->
+<div class="pt-space-xs mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-outline block">Preço Promocional Imediato:</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-tertiary-container font-bold">R$ 8.900</span>
+<span class="font-label-md text-label-md text-on-surface-variant line-through">R$ 16.200</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary block mt-0.5 font-bold">R$ 27,81 / kg (Giro Imediato)</span>
+</div>
+</div>
+<!-- Rodapé de Ação e Proteção B2B -->
+<div class="p-space-md pt-0 flex flex-col gap-space-xs">
+<div class="p-space-xs rounded bg-surface-container text-on-surface-variant text-[11px] leading-tight flex items-start gap-1">
+<span class="material-symbols-outlined text-xs text-outline shrink-0 mt-0.5">lock</span>
+<span>Dados de contato e CNPJ do vendedor protegidos. Cadastre-se para negociar com garantia escrow.</span>
+</div>
+<a class="w-full py-2.5 px-space-sm rounded-lg bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-lg text-label-lg text-center transition-colors shadow-sm flex items-center justify-center gap-1.5" data-path="autenticacao-e-cadastro" href="#">
+<span class="material-symbols-outlined text-lg">shopping_cart_checkout</span>
+              Comprar com CNPJ
+            </a>
+</div>
+</div>
+<!-- CARD 4: Ração Premium Cães Adultos 15kg (Pet Shop) -->
+<div class="bg-surface-container-lowest rounded-xl flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<!-- Top Tag & Urgência -->
+<div class="p-space-md pb-0">
+<div class="flex items-center justify-between gap-space-xs mb-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm uppercase">Ponta de Fábrica</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-orange-100 text-orange-950 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-xs">pets</span>
+                Pet Shop / Agro
+              </span>
+</div>
+<!-- Imagem e EAN -->
+<div class="relative w-full h-44 rounded-lg overflow-hidden bg-surface-container-low mb-space-sm">
+<img class="w-full h-full object-cover" data-alt="Modern stacked bags of dry premium dog food on wooden pallets in clean logistics warehouse with safety shrink wrap, high quality wholesale product packaging" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC01LjqNtbCBmbpRUyi9PkyTuKov6rNbOQ_piw1Qa6eZL6x2gmPYs9PePevBRtLBdSO_hl1DeVr_PpLLzbZXB6bexY1ljYq79nJUtwUO1B9DsJzTGZm8dIdMpgRrpLow7aDqax1WadEDRCrmrbwF9Tduaz0GNb5ElkA9Cg8IhsrfTZftrEKev6K8oosj6w0Lc24ws7S_evttxSNYT-TK0PXqzgKXPH2zkRwQcQNizIs"/>
+<span class="absolute bottom-2 left-2 bg-inverse-surface/85 text-inverse-on-surface text-[10px] font-mono px-1.5 py-0.5 rounded">
+                MAPA: SP-08992
+              </span>
+<span class="absolute top-2 right-2 bg-surface-container-lowest/90 text-on-surface text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm">
+                Lote #PET-90
+              </span>
+</div>
+<!-- Título e Categoria -->
+<div class="mb-space-sm">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider block">Pet Shop &amp; Nutrição Animal</span>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug line-clamp-2">
+                Ração Especial Premium Frango &amp; Arroz Cães Adultos 15kg
+              </h3>
+</div>
+<!-- Semáforo e Dados Logísticos -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-space-xs mb-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Shelf Life / Validade:</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-orange-100 text-orange-900 font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-orange-600"></span>
+                  55 dias (Próxima)
+                </span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Carga Total:</span>
+<span class="font-label-md text-label-md text-on-surface">120 Sacos (2 Paletes)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-body-sm">Peso Total:</span>
+<span class="font-label-md text-label-md text-on-surface">1.800 kg Líquido</span>
+</div>
+</div>
+<!-- Preços e Lance -->
+<div class="pt-space-xs mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-outline block">Valor Total do Lote:</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">R$ 12.300</span>
+<span class="font-label-md text-label-md text-secondary font-bold">R$ 102,50 / sc</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline block mt-0.5">Preço médio de mercado: R$ 179,00</span>
+</div>
+</div>
+<!-- Rodapé de Ação e Proteção B2B -->
+<div class="p-space-md pt-0 flex flex-col gap-space-xs">
+<div class="p-space-xs rounded bg-surface-container text-on-surface-variant text-[11px] leading-tight flex items-start gap-1">
+<span class="material-symbols-outlined text-xs text-outline shrink-0 mt-0.5">lock</span>
+<span>Dados de contato e CNPJ do vendedor protegidos. Cadastre-se para negociar com garantia escrow.</span>
+</div>
+<a class="w-full py-2.5 px-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg text-center transition-colors shadow-sm flex items-center justify-center gap-1.5" data-path="autenticacao-e-cadastro" href="#">
+<span class="material-symbols-outlined text-lg">description</span>
+              Cadastre-se para Comprar
+            </a>
+</div>
+</div>
+</div>
+<!-- Alerta Informativo de Visitante na grade -->
+<div class="mt-space-lg p-space-md bg-surface-container-low rounded-xl flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-xl">shield_person</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Por que os dados de contato do vendedor não aparecem?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Para proteger a integridade dos acordos de confidencialidade da indústria e evitar fraudes fiscais, a intermediação financeira e os contatos diretos são liberados exclusivamente após homologação do CNPJ junto à Receita Federal e órgãos reguladores.
+            </p>
+</div>
+</div>
+<a class="px-space-md py-2 rounded-lg bg-surface-container-high hover:bg-surface-container-highest font-label-lg text-label-lg text-on-surface whitespace-nowrap transition-colors" data-path="como-funciona" href="#">
+          Entender o Processo Escrow
+        </a>
+</div>
+</div>
+</section>
+<!-- Seção: Por que negociar no Varejista Online? (Pilares de Confiança B2B) -->
+<section class="w-full px-space-xl py-space-xl bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.02)]">
+<div class="max-w-7xl mx-auto">
+<div class="max-w-3xl mb-space-xl">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Infraestrutura B2B Institucional</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1 mb-space-xs">
+          Por que grandes redes e indústrias negociam no Varejista Online?
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Construímos o ecossistema com mecanismos de governança que eliminam os riscos comuns de compras em leilão e ponta de estoque.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Pilar 1: Custódia Fiduciária D+0 (Escrow) -->
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">account_balance</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+              Custódia Fiduciária D+0 (Conta Escrow)
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              O comprador deposita o montante em conta escrow segura. O valor só é liberado para o vendedor após o comprador realizar o aceite técnico e contagem física na doca de descarga.
+            </p>
+</div>
+<div class="mt-space-md pt-space-md flex items-center gap-space-xs text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-base">verified_user</span>
+<span>Zero risco de inadimplência ou produto extraviado</span>
+</div>
+</div>
+<!-- Pilar 2: Inspeção de Doca & Laudo Sanitário -->
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary text-on-secondary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">fact_check</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+              Inspeção de Doca &amp; Validade Auditada
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Todos os lotes perecíveis e secos possuem laudo fotográfico em alta resolução, registro de temperatura em tempo real e atestado de integridade de palete emitido por peritos na doca.
+            </p>
+</div>
+<div class="mt-space-md pt-space-md flex items-center gap-space-xs text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-base">task_alt</span>
+<span>Rastreabilidade em conformidade ANVISA e MAPA</span>
+</div>
+</div>
+<!-- Pilar 3: Emissão Automática e Triangulação Fiscal -->
+<div class="p-space-lg rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest text-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">receipt_long</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+              Compliance Fiscal &amp; NF-e Automatizada
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Emissão transparente de Danfe, conciliação de ICMS ST entre estados e liberação de manifestação de destinatário sem burocracia manual ou risco de bitributação.
+            </p>
+</div>
+<div class="mt-space-md pt-space-md flex items-center gap-space-xs text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-base">calculate</span>
+<span>Calculadora tributária interestadual integrada</span>
+</div>
+</div>
+</div>
+<!-- Mini Gráfico Demonstrativo de Ciclo de Venda B2B -->
+<div class="mt-space-xl p-space-lg bg-surface-container rounded-xl flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="max-w-md">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Giro Médio de Inventário</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mt-1">
+            Redução de 72% no tempo de liquidação de ponta de estoque
+          </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Indústrias vendem excedentes em menos de 48 horas e varejistas recompõem margens de gôndola comprando diretamente do fabricante.
+          </p>
+</div>
+<!-- Gráfico Vetorial Simplificado de Performance -->
+<div class="w-full md:w-auto flex items-center gap-space-lg">
+<div class="flex flex-col items-center">
+<div class="h-28 w-14 bg-surface-variant rounded-t-lg flex items-end justify-center pb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">14 dias</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline mt-2">Canal Convencional</span>
+</div>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-2xl">arrow_forward</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="h-28 w-14 bg-primary rounded-t-lg flex items-end justify-center pb-2">
+<span class="font-label-sm text-label-sm text-on-primary font-bold">48 horas</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold mt-2">Varejista Online</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Big CTA: Cadastro Segmentado (Comprador vs Vendedor) -->
+<section class="w-full px-space-xl py-space-xl bg-primary text-on-primary">
+<div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+<span class="px-space-md py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm uppercase tracking-wider mb-space-sm">
+        Cadastramento B2B Homologado
+      </span>
+<h2 class="font-headline-xl text-headline-xl text-on-primary max-w-2xl mb-space-xs">
+        Sua empresa vende ou compra excedentes? Escolha seu perfil e cadastre-se agora.
+      </h2>
+<p class="font-body-lg text-body-lg text-on-primary-container max-w-2xl mb-space-xl">
+        A aprovação de cadastro PJ leva menos de 15 minutos em horário comercial via integração direta com a Receita Federal e Sintegra.
+      </p>
+<!-- Cartões de Escolha de Perfil -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg w-full max-w-3xl text-left">
+<!-- Opção 1: Quero Comprar -->
+<div class="p-space-lg bg-surface-container-lowest text-on-surface rounded-xl shadow-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded font-bold">Comprador</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+              Supermercados, Drogarias &amp; Redes Varejistas
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Tenha acesso antecipado a leilões de ponta de estoque, compre direto da indústria e aumente sua margem líquida em até 40%.
+            </p>
+<ul class="flex flex-col gap-space-xs text-body-sm text-on-surface-variant mb-space-md">
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                Acesso aos pregões e histórico de arremates
+              </li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                Negociação direta com garantia fiduciária
+              </li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                Cotação de frete pallet/truck consolidado
+              </li>
+</ul>
+</div>
+<a class="w-full py-3 px-space-md rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg text-center transition-colors shadow-sm block" data-path="autenticacao-e-cadastro" href="#">
+            Cadastrar como Comprador
+          </a>
+</div>
+<!-- Opção 2: Quero Vender -->
+<div class="p-space-lg bg-surface-container-lowest text-on-surface rounded-xl shadow-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">storefront</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase bg-primary-fixed text-primary px-2 py-0.5 rounded font-bold">Vendedor</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+              Indústrias, Distribuidores &amp; Cooperativas
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Monetize lotes com validade curta, descontinue SKUs e dê liquidez rápida a saldos de armazém com proteção de canal comercial.
+            </p>
+<ul class="flex flex-col gap-space-xs text-body-sm text-on-surface-variant mb-space-md">
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                Controle geográfico de visibilidade de marca
+              </li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                Pregões relâmpago de 24h ou venda balcão
+              </li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+                Liquidação garantida via escrow no D+0
+              </li>
+</ul>
+</div>
+<a class="w-full py-3 px-space-md rounded-lg bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-lg text-label-lg text-center transition-colors shadow-sm block" data-path="central-de-cadastros" href="#">
+            Homologar Empresa Vendedora
+          </a>
+</div>
+</div>
+<div class="mt-space-lg flex items-center gap-space-md text-on-primary-container font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">lock</span>
+          Ambiente Criptografado 256-bit
+        </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified</span>
+          Suporte Regulatório ANVISA / MAPA
+        </span>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-xl shadow-[0_-1px_8px_rgba(0,0,0,0.02)]"><div class="w-full px-space-xl py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl mb-space-xl"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="Varejista Online" class="w-7 h-7 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><span class="font-headline-md text-headline-md text-primary">VAREJISTA ONLINE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Ecossistema B2B de ponta de estoque, leilões industriais em tempo real e distribuição atacadista de alto volume.</p></div><div class="flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface">Setores Especializados</span><div class="flex flex-col gap-space-xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Alimentos &amp; Bebidas</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Farmácia &amp; Farma-Cosméticos</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Padaria &amp; Panificação</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Pet Shop &amp; Veterinária</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Mercearia &amp; Secos</a></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface">Operacional B2B</span><div class="flex flex-col gap-space-xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="lotes-e-leiloes" href="#">Pregões ao Vivo</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="central-de-cadastros" href="#">Formulários de Homologação</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="como-funciona" href="#">Regras de Arremate &amp; Caução</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="como-funciona" href="#">Inspeção de Lotes &amp; Validade</a></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface">Compliance &amp; Acesso</span><div class="flex flex-col gap-space-xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="autenticacao-e-cadastro" href="#">Portal do Fornecedor / Indústria</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="autenticacao-e-cadastro" href="#">Credenciamento de Compradores</a><span class="font-body-sm text-body-sm text-outline mt-space-xs">Operação em conformidade com normas ANVISA e MAPA.</span></div></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-outline font-body-sm text-body-sm"><p>© 2025 Varejista Online S.A. Plataforma de Atacado e Pregões Industriais. Todos os direitos reservados.</p><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Liquidez Atacadista Garantida</span></div></div></div></footer></body></html>

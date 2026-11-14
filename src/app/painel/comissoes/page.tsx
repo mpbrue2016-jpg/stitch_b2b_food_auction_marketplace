@@ -1,0 +1,139 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { CommissionCalculator } from '@/components/CommissionCalculator';
+import { MOCK_ORDERS } from '@/lib/mock-data';
+import { generateFinancialSummary } from '@/lib/commission-engine';
+
+export default function PainelComissoesPage() {
+  const summary = generateFinancialSummary(MOCK_ORDERS);
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+      {/* Header */}
+      <div className="space-y-1">
+        <nav className="text-xs text-on-surface-variant flex items-center gap-1.5">
+          <Link href="/" className="hover:text-primary">Início</Link>
+          <span>/</span>
+          <Link href="/painel/admin" className="hover:text-primary">Painel Admin</Link>
+          <span>/</span>
+          <span className="font-bold text-primary">Gestão de Comissões & Take-Rate</span>
+        </nav>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
+              Central de Comissões, Regras de Take-Rate & Split
+            </h1>
+            <p className="text-xs sm:text-sm text-on-surface-variant">
+              Parametrização dinâmica das alíquotas administrativas da plataforma (6%, 20% ou taxas customizadas).
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-secondary bg-secondary-fixed/50 px-3 py-1.5 rounded-full flex items-center gap-1">
+              <span className="material-symbols-outlined text-[16px]">verified</span>
+              Motor BACEN Regulado
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* KPI Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
+          <span className="text-xs font-bold uppercase text-on-surface-variant block">GMV Transacionado</span>
+          <span className="text-2xl font-extrabold text-primary block">
+            R$ {summary.gmvTotalTransacionado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
+          <span className="text-[11px] text-outline block">{summary.quantidadeTransacoes} arremates liquidados</span>
+        </div>
+
+        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
+          <span className="text-xs font-bold uppercase text-on-surface-variant block">Receita de Comissões</span>
+          <span className="text-2xl font-extrabold text-secondary block">
+            R$ {summary.receitaTotalComissoes.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
+          <span className="text-[11px] text-secondary font-bold block">Take-Rate Efetivo: {summary.takeRateMedioEfetivo}%</span>
+        </div>
+
+        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
+          <span className="text-xs font-bold uppercase text-on-surface-variant block">Repasses Líquidos à Indústria</span>
+          <span className="text-2xl font-extrabold text-on-surface block">
+            R$ {summary.totalRepassesFornecedores.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
+          <span className="text-[11px] text-outline block">Via SPI / PIX Instantâneo D+0</span>
+        </div>
+
+        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
+          <span className="text-xs font-bold uppercase text-on-surface-variant block">Saldo Retido em Escrow</span>
+          <span className="text-2xl font-extrabold text-primary block">
+            R$ {summary.totalEmCustodiaEscrow.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
+          <span className="text-[11px] text-outline block">Aguardando conferência na doca</span>
+        </div>
+      </div>
+
+      {/* Interactive Commission Engine Component */}
+      <CommissionCalculator />
+
+      {/* Financial Transactions & Commission Audit Table */}
+      <div className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4 text-xs">
+        <div className="flex items-center justify-between border-b border-surface-container pb-3">
+          <h3 className="font-extrabold text-base text-on-surface">
+            Relatório Analítico de Comissões por Transação
+          </h3>
+          <span className="text-outline text-xs">Auditoria Fiduciária em Tempo Real</span>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-surface-container-low text-on-surface-variant uppercase font-bold text-[10px]">
+              <tr>
+                <th className="p-3">Pedido</th>
+                <th className="p-3">Lote / Descrição</th>
+                <th className="p-3">Comprador</th>
+                <th className="p-3">Fornecedor</th>
+                <th className="p-3">Valor Bruto</th>
+                <th className="p-3">Taxa (%)</th>
+                <th className="p-3">Comissão Plataforma</th>
+                <th className="p-3">Repasse Líquido</th>
+                <th className="p-3">Custódia</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-surface-container">
+              {MOCK_ORDERS.map((order) => (
+                <tr key={order.id} className="hover:bg-surface-container-low/50">
+                  <td className="p-3 font-mono font-bold text-primary">{order.codigoPedido}</td>
+                  <td className="p-3 font-medium text-on-surface">{order.tituloLote}</td>
+                  <td className="p-3 text-on-surface-variant">{order.compradorNome}</td>
+                  <td className="p-3 text-on-surface-variant">{order.fornecedorNome}</td>
+                  <td className="p-3 font-extrabold text-on-surface">
+                    R$ {order.valorTotalArremate.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  </td>
+                  <td className="p-3 font-extrabold text-primary">{order.percentualComissao}%</td>
+                  <td className="p-3 font-extrabold text-secondary">
+                    R$ {order.valorComissaoPlataforma.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  </td>
+                  <td className="p-3 font-extrabold text-on-surface">
+                    R$ {order.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  </td>
+                  <td className="p-3">
+                    <span
+                      className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                        order.statusPagamento === 'em_custodia_escrow'
+                          ? 'bg-primary-fixed text-on-primary-fixed'
+                          : 'bg-secondary-fixed text-on-secondary-fixed'
+                      }`}
+                    >
+                      {order.statusPagamento === 'em_custodia_escrow' ? 'Retido Escrow' : 'Liquidado D+0'}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}

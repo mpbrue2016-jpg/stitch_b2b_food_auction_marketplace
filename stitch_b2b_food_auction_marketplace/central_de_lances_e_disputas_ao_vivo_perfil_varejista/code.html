@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-secondary":"#ffffff","inverse-primary":"#b0c6ff","tertiary-fixed":"#ffdad6","on-tertiary-fixed":"#410003","surface-container":"#eceef0","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#005312","primary-container":"#0d47a1","primary-fixed":"#d9e2ff","surface-dim":"#d8dadc","on-secondary-fixed":"#002204","surface-bright":"#f7f9fb","primary":"#003178","surface-variant":"#e0e3e5","surface-container-highest":"#e0e3e5","on-error-container":"#93000a","tertiary-container":"#9d0011","on-tertiary-fixed-variant":"#930010","surface-container-low":"#f2f4f6","on-tertiary-container":"#ffa59d","outline-variant":"#c3c6d4","background":"#f7f9fb","secondary-container":"#a0f399","secondary-fixed":"#a3f69c","on-surface":"#191c1e","secondary-fixed-dim":"#88d982","outline":"#737783","on-primary":"#ffffff","on-primary-fixed":"#001945","on-primary-fixed-variant":"#00429c","primary-fixed-dim":"#b0c6ff","inverse-on-surface":"#eff1f3","surface-tint":"#2b5bb5","on-error":"#ffffff","tertiary":"#720009","on-primary-container":"#a1bbff","surface-container-high":"#e6e8ea","on-tertiary":"#ffffff","on-background":"#191c1e","error":"#ba1a1a","on-secondary-container":"#217128","error-container":"#ffdad6","inverse-surface":"#2d3133","tertiary-fixed-dim":"#ffb3ac","surface":"#f7f9fb","on-surface-variant":"#434652","secondary":"#1b6d24"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin":"1.5rem","space-xl":"2rem","gutter-mobile":"0.75rem","space-sm":"0.5rem","space-md":"0.75rem","margin-mobile":"1rem","space-lg":"1.25rem","space-xs":"0.25rem","gutter":"1rem"},"fontFamily":{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"]},"fontSize":{"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-lg flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">VO</div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight leading-none">Varejista<span class="text-secondary">Online</span></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">B2B Wholesale Portal</span></div></div><span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase font-bold">Varejo</span></div><div class="flex-1 overflow-y-auto px-space-md py-space-sm space-y-space-md"><div class="space-y-space-xs"><p class="px-space-sm py-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Navegação Principal</p><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-label-lg rounded-lg"><a class="flex items-center px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-md text-body-md" data-path="painel-geral" href="#">Painel Geral</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-md text-body-md" data-path="pregoes-e-lances-ao-vivo" href="#">Pregões e Lances Ao Vivo</a><a aria-current="page" class="flex items-center px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary-container font-label-lg rounded-lg" data-path="meus-lances-e-disputas" href="#">Meus Lances e Disputas</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-md text-body-md" data-path="venda-direta-por-palete" href="#">Venda Direta por Palete</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-md text-body-md" data-path="pedidos-e-logistica-fob-cif" href="#">Pedidos e Logística FOB/CIF</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-md text-body-md" data-path="radar-de-alertas" href="#">Radar de Alertas</a><a class="flex items-center px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-md text-body-md" data-path="avaliacoes-de-fabricantes" href="#">Avaliações de Fabricantes</a></nav></div></div><div class="p-space-md bg-surface-container-low"><div class="flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm uppercase tracking-wide">Status da Conta B2B</span><span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Ativo Santander</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-md min-w-0"><div class="flex items-center justify-center w-9 h-9 rounded-lg bg-surface-container text-primary"><span class="material-symbols-outlined">store</span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Supermercado Central do Vale Ltda</span><span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">VERIFICADO</span></div><span class="font-label-sm text-label-sm text-outline truncate">Perfil: Comprador B2B • CNPJ: 18.234.901/0003-88</span></div></div><div class="flex items-center gap-space-lg"><div class="hidden xl:flex items-center gap-space-md px-space-md py-space-xs rounded-xl bg-surface-container-low"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline uppercase">Saldo Escrow Santander Disponível</span><span class="font-numeric-timer text-numeric-timer text-secondary leading-tight">R$ 450.000,00</span></div><div class="h-7 w-[1px] bg-surface-variant"></div><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline uppercase">Status Fiduciário</span><span class="font-label-lg text-label-lg text-on-surface font-bold leading-tight">Liberado BACEN</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Notificações" class="relative p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button></div><div class="h-8 w-[1px] bg-surface-variant"></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-md text-label-md text-on-surface leading-tight">Supermercado Central do Vale</span><span class="font-label-sm text-label-sm text-outline">Comprador B2B</span></div><div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md font-bold shadow-sm">CV</div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-space-xl py-space-xl"><div class="flex flex-col w-full">
+<!-- Top Command & Status Ribbon -->
+<div class="flex flex-col gap-space-md mb-space-lg">
+<!-- Breadcrumb & Direct Metadata -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<nav aria-label="Navegação Estrutural" class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="hover:text-primary cursor-pointer transition-colors">Portal do Varejista</span>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Canal de Compras</span>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+<span class="text-primary font-bold">Meus Lances &amp; Pregões Ao Vivo</span>
+</nav>
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          WEBSOCKET CONECTADO (12ms)
+        </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+          GARANTIA FIDUCIÁRIA ESCROW ATIVA
+        </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">
+<span class="text-outline uppercase">Saldo Livre:</span>
+<span class="text-secondary font-numeric-timer text-[13px]">R$ 327.800,00</span>
+</span>
+</div>
+</div>
+<!-- Editorial Header Block -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col max-w-3xl">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm tracking-wider uppercase">Console Operacional</span>
+<span class="text-outline font-label-sm text-label-sm uppercase">Sessão B2B SP-01 • NTP.br Sync</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight leading-tight mb-2">
+          Central de Lances, Disputas Ativas &amp; Pregões em Tempo Real
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Monitoramento contínuo de lances com tecnologia WebSocket (12ms), cobrimento instantâneo em 1-clique e garantia de custódia escrow Santander (Resolução BACEN nº 4.656).
+        </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<button class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+          + Novo Lance Rápido
+        </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" onclick="document.getElementById('modal-soft-close').classList.remove('hidden')" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">rule</span>
+          Regras &amp; Soft-Close
+        </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">picture_as_pdf</span>
+          Relatório de Lances (.PDF)
+        </button>
+</div>
+</div>
+</div>
+<!-- KPI Indicators Quartet -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Card 1 -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-outline">Lances Liderando</span>
+<span class="p-1 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">emoji_events</span>
+</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-secondary">02</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Pregões Vencendo</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2 bg-surface-container-low/50 -mx-space-md -mb-space-md px-space-md pb-space-sm mt-space-xs">
+<span>Garantidos em custódia</span>
+<span class="font-bold text-on-surface">R$ 122.200,00</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-error animate-pulse"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-error font-bold">Lances Superados (Urgência)</span>
+<span class="p-1 rounded bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-error">01</span>
+<span class="font-label-md text-label-md text-error font-bold">Cobrimento Crítico</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2 bg-error-container/30 -mx-space-md -mb-space-md px-space-md pb-space-sm mt-space-xs">
+<span class="text-on-error-container font-medium">Prazo para reação:</span>
+<span class="font-numeric-timer text-[13px] text-error font-extrabold">&lt; 03 minutos</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-outline">Pregões Monitorados</span>
+<span class="p-1 rounded bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-primary">08</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Lotes Favoritados</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2 bg-surface-container-low/50 -mx-space-md -mb-space-md px-space-md pb-space-sm mt-space-xs">
+<span>Início previsto hoje:</span>
+<span class="font-bold text-on-surface">5 Lotes às 15:00</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary-container"></div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wide text-outline">Economia Estimada</span>
+<span class="p-1 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+</span>
+</div>
+<div class="flex items-baseline gap-space-xs mb-1">
+<span class="font-headline-xl text-headline-xl text-secondary">R$ 46.800</span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">-28.4%</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pt-2 bg-surface-container-low/50 -mx-space-md -mb-space-md px-space-md pb-space-sm mt-space-xs">
+<span>vs. Atacado Tradicional</span>
+<span class="font-bold text-secondary">Margem Adicional</span>
+</div>
+</div>
+</div>
+<!-- Critical Emergency Alert Banner -->
+<div class="bg-error text-on-error p-space-lg rounded-xl shadow-md mb-space-xl relative overflow-hidden">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md relative z-10">
+<div class="flex items-start gap-space-md min-w-0">
+<div class="w-12 h-12 rounded-lg bg-on-error/15 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-error text-[28px] animate-pulse">crisis_alert</span>
+</div>
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-space-xs mb-1">
+<span class="px-2 py-0.5 rounded bg-white text-error font-label-sm text-label-sm font-extrabold uppercase">Alerta de Ultrapassagem</span>
+<span class="text-on-error/80 font-label-sm text-label-sm">Pregão Reta Final • Soft-Close Ativo</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-error font-bold leading-tight">
+            Atenção: Seu lance no Lote #LOTE-LAC-3418 (Queijo Mussarela 2t - Laticínios Serra Bella) foi superado por Supermercado Roldão (R$ 64.200,00).
+          </p>
+<div class="flex items-center gap-space-md mt-1 text-on-error/90 font-body-md text-body-md">
+<span>Tempo restante no relógio de arremate:</span>
+<span class="inline-flex items-center gap-1 font-numeric-timer text-numeric-timer bg-black/20 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+              02m:45s
+            </span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<button class="px-space-lg py-3 rounded-lg bg-surface-container-lowest text-error font-label-lg text-label-lg font-extrabold hover:bg-surface-container transition-all shadow-md flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+          Cobrir Lance Imediato: R$ 65.000,00 (+ R$ 800)
+        </button>
+<button class="px-space-md py-3 rounded-lg bg-on-error/15 hover:bg-on-error/25 text-on-error font-label-md text-label-md font-bold transition-colors" type="button">
+          Abrir Sala Completa
+        </button>
+<button class="px-space-sm py-3 rounded-lg text-on-error/80 hover:text-on-error font-label-md text-label-md transition-colors" type="button">
+          Desistir do Lote
+        </button>
+</div>
+</div>
+</div>
+<!-- Main Grid: Dispute Board + Financial Escrow Control Panel -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Left Col (8 cols): Interactive Bids & Auction Monitor -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-secondary animate-ping"></span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Pregões com Minha Participação</h2>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span>Ordenação:</span>
+<span class="font-bold text-on-surface">Urgência de Fechamento</span>
+</div>
+</div>
+<!-- CARD 1: SUPERADO (Queijo Mussarela) -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm relative overflow-hidden transition-all">
+<div class="h-1.5 w-full bg-error"></div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Header Card Info -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm bg-surface-container-low/60 -mx-space-lg -mt-space-lg p-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-error text-on-error font-label-sm text-label-sm font-bold uppercase tracking-wider animate-pulse flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">arrow_downward</span>
+                SUPERADO
+              </span>
+<span class="font-label-md text-label-md font-bold text-primary">#LOTE-LAC-3418</span>
+<span class="text-outline text-body-sm font-body-sm">• CD Jundiaí/SP (Retirada FOB)</span>
+<span class="text-on-surface-variant text-body-sm font-body-sm">• SIF 4402</span>
+</div>
+<div class="flex items-center gap-2 bg-error-container text-on-error-container px-3 py-1 rounded">
+<span class="material-symbols-outlined text-[16px] text-error">hourglass_bottom</span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-error">Encerra em:</span>
+<span class="font-numeric-timer text-[16px] text-error font-extrabold" id="timer-1">02:45</span>
+<span class="px-1.5 py-0.2 rounded bg-error text-on-error font-label-sm text-[9px] uppercase font-bold">Soft-Close</span>
+</div>
+</div>
+<!-- Product Details Split -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-3 flex md:flex-col items-center gap-space-sm">
+<img class="w-24 h-24 md:w-full md:h-32 object-cover rounded-lg bg-surface-container" data-alt="Blocos de queijo mussarela industrial empilhados em paletes sob refrigeração de laticínio inspecionado, atmosfera corporativa e logística rigorosa de alimentos com iluminação limpa e uniforme" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIHmCzD05r2O1LuUm_k9TQa8VqbEM4wpKge6QYcrFtDQzufMCHweSOR9O_jqkVntQjbJlNjWu5m2XnQIGfjYXjNeZN0YiPqwcZ6hzYWBcIkzP-Fj5x-YFegLUK4Yky78eM6MphDDLvBaN8KkudYid5BtHnDQ2yNTIROuzsSqIqEFX1Rbv5wv6PL9BfwHvVZlNrw8d-pf_06T6ZScYDsRURVnF-NWgh87g81l737YDu"/>
+<div class="flex flex-col text-center w-full">
+<span class="font-label-sm text-label-sm text-outline uppercase">Shelf Life / Validade</span>
+<span class="inline-flex items-center justify-center gap-1 font-label-md text-label-md text-on-surface font-bold bg-surface-container px-2 py-1 rounded mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">calendar_today</span>
+                  75 dias restantes
+                </span>
+</div>
+</div>
+<div class="md:col-span-9 flex flex-col justify-between h-full">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">
+                  Queijo Mussarela Barra 4kg (Lote Fechado: 2.000kg)
+                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                  Fabricante: <strong>Laticínios Serra Bella Ltda</strong> • Embalagem a vácuo com atmosfera modificada. Adequado para fatiamento comercial e revenda fracionada.
+                </p>
+</div>
+<!-- Price Comparison Dashboard Matrix -->
+<div class="grid grid-cols-3 gap-2 bg-surface-container-low p-space-sm rounded-lg mt-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Último Lance (Roldão)</span>
+<span class="font-numeric-timer text-[16px] text-error font-bold">R$ 64.200,00</span>
+<span class="font-label-sm text-label-sm text-outline">R$ 32,10/kg</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Seu Lance Anterior</span>
+<span class="font-numeric-timer text-[16px] text-on-surface-variant line-through">R$ 62.000,00</span>
+<span class="font-label-sm text-label-sm text-outline">R$ 31,00/kg</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Preço Atacado Médio</span>
+<span class="font-numeric-timer text-[16px] text-secondary font-bold">R$ 82.000,00</span>
+<span class="font-label-sm text-label-sm text-secondary">R$ 41,00/kg</span>
+</div>
+</div>
+<!-- Interactive Bid Incrementor -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mt-space-md pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-on-surface font-bold">Próximo Lance:</span>
+<div class="flex items-center rounded-lg bg-surface-container">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:bg-surface-variant rounded-l font-bold" type="button">-</button>
+<input class="w-32 bg-transparent text-center font-numeric-timer text-[15px] font-bold text-primary focus:outline-none" type="text" value="R$ 65.000,00"/>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:bg-surface-variant rounded-r font-bold" type="button">+</button>
+</div>
+<span class="text-outline font-label-sm text-label-sm">(+ R$ 800 passo mín.)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold flex items-center gap-2 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+                    Cobrir Lance Agora
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 2: GANHANDO (Farinha de Trigo) -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm relative overflow-hidden">
+<div class="h-1.5 w-full bg-secondary"></div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm bg-surface-container-low/60 -mx-space-lg -mt-space-lg p-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                LANCE VENCEDOR PROVISÓRIO
+              </span>
+<span class="font-label-md text-label-md font-bold text-primary">#LOTE-IND-9021</span>
+<span class="text-outline text-body-sm font-body-sm">• CD Araraquara/SP</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1 rounded">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Tempo Restante:</span>
+<span class="font-numeric-timer text-[16px] text-primary font-bold">07:10</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-3 flex md:flex-col items-center gap-space-sm">
+<img class="w-24 h-24 md:w-full md:h-32 object-cover rounded-lg bg-surface-container" data-alt="Sacos de farinha de trigo especial empilhados em paletes de madeira maciça em armazém industrial limpo de moinho, sacaria branca e padronizada sob luz diurna difusa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB9BcmBhE6nog4N3Az1hLFS9U_BRnBDgCD6Mcat9XzPe3xF_997u3TAoaJpHSCf0yXAwyzf5OlRfOO_zFG_dRkCALJdsPSG1AtTSxBHCjgDT7aehw3nQVkuN9-vnV0fiCqvMi1vI_PYGsVLfiD8ofhR3uyiUTZJEwK26meb-DKECce9C3GI856VAWl2h8cOke9YFJ-er9dGvY-cJnkpKxiDXvyujOCZmle9gA90tH3"/>
+<div class="flex flex-col text-center w-full">
+<span class="font-label-sm text-label-sm text-outline uppercase">Shelf Life / Validade</span>
+<span class="inline-flex items-center justify-center gap-1 font-label-md text-label-md text-on-surface font-bold bg-surface-container px-2 py-1 rounded mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">calendar_today</span>
+                  180 dias restantes
+                </span>
+</div>
+</div>
+<div class="md:col-span-9 flex flex-col justify-between h-full">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">
+                  Farinha de Trigo Especial Tipo 1 (800 Sacos 25kg / 20 Toneladas)
+                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                  Fabricante: <strong>Moinho Santa Rita S/A</strong> • Trigo argentino de alta panificação, W300. Carga paletizada padrão PBR pronta para doca de expedição.
+                </p>
+</div>
+<div class="grid grid-cols-3 gap-2 bg-secondary-container/20 p-space-sm rounded-lg mt-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Seu Lance Atual</span>
+<span class="font-numeric-timer text-[16px] text-secondary font-bold">R$ 58.000,00</span>
+<span class="font-label-sm text-label-sm text-secondary">R$ 72,50 / saco</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Segundo Colocado</span>
+<span class="font-numeric-timer text-[16px] text-on-surface-variant">R$ 57.200,00</span>
+<span class="font-label-sm text-label-sm text-outline">Atacadão Leste</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Preço Mercado Médio</span>
+<span class="font-numeric-timer text-[16px] text-on-surface">R$ 71.200,00</span>
+<span class="font-label-sm text-label-sm text-outline">R$ 89,00 / saco</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm mt-space-md pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">shield</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Saldo Escrow bloqueado: <strong>R$ 58.000,00</strong></span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md font-bold transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">smart_toy</span>
+                    Configurar Auto-Lance até R$ 60.000
+                  </button>
+<button class="px-space-md py-2 rounded-lg bg-primary/10 text-primary font-label-md text-label-md font-bold hover:bg-primary/20 transition-colors" type="button">
+                    Ver Disputa Ao Vivo
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 3: GANHANDO (Biscoitos Alvorada) -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm relative overflow-hidden">
+<div class="h-1.5 w-full bg-secondary"></div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm bg-surface-container-low/60 -mx-space-lg -mt-space-lg p-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                LIDERANDO
+              </span>
+<span class="font-label-md text-label-md font-bold text-primary">#LOTE-ALV-8830</span>
+<span class="text-outline text-body-sm font-body-sm">• CD Jundiaí/SP</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1 rounded">
+<span class="material-symbols-outlined text-[16px] text-outline">schedule</span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Tempo Restante:</span>
+<span class="font-numeric-timer text-[16px] text-primary font-bold">18:30</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-3 flex md:flex-col items-center gap-space-sm">
+<img class="w-24 h-24 md:w-full md:h-32 object-cover rounded-lg bg-surface-container" data-alt="Caixas de papelão lacradas de biscoito recheado de chocolate empilhadas em pallets logísticos, iluminação de armazém de atacado de alta rotatividade limpo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE1NsDXOcjfmXUH1FpwYpVUeqG24CEdaqm9cFqPOGPbmBVy_C2iESSUXoRI0ahxtv3YChdZd_C2YkV0Afoh7KP1bTrSaUJbZVXDi55UTGYCc3C8bbGZWxjj_gOs387B4I8sG9ei9H-2dOzxi90ZFb_WS51zxXl0uGYfX1WNlV5-CcuH0O_a0KmoZhCp2kcHfGq6CJkJpAjUfhKvXhC5JvRXLGU2jCGjUhikcWflcOR"/>
+<div class="flex flex-col text-center w-full">
+<span class="font-label-sm text-label-sm text-outline uppercase">Shelf Life / Validade</span>
+<span class="inline-flex items-center justify-center gap-1 font-label-md text-label-md text-on-surface font-bold bg-surface-container px-2 py-1 rounded mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">calendar_today</span>
+                  120 dias restantes
+                </span>
+</div>
+</div>
+<div class="md:col-span-9 flex flex-col justify-between h-full">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">
+                  Biscoito Recheado Chocolate 130g (2.200 Cxs c/ 30 un - 66.000 un)
+                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                  Fabricante: <strong>Biscoitos Alvorada S/A</strong> • GTIN 7891000349281. Categoria Giro Rápido de Mercearia Doce.
+                </p>
+</div>
+<div class="grid grid-cols-3 gap-2 bg-surface-container-low p-space-sm rounded-lg mt-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Seu Lance Vencedor</span>
+<span class="font-numeric-timer text-[16px] text-secondary font-bold">R$ 64.200,00</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">R$ 0,97 / un</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Custo Médio Distribuidor</span>
+<span class="font-numeric-timer text-[16px] text-on-surface-variant">R$ 95.700,00</span>
+<span class="font-label-sm text-label-sm text-outline">R$ 1,45 / un</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Economia Direta</span>
+<span class="font-numeric-timer text-[16px] text-secondary font-bold">R$ 31.500,00</span>
+<span class="font-label-sm text-label-sm text-secondary">+33.1% Margem Bruta</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm mt-space-md pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Status: Sem novos lances concorrentes há 14 minutos</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md font-bold transition-colors" type="button">
+                    Gerenciar Lote
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD 4: AGENDADO / FAVORITO (Café Torrado) -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm relative overflow-hidden opacity-95">
+<div class="h-1.5 w-full bg-primary-fixed-dim"></div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm bg-surface-container-low/60 -mx-space-lg -mt-space-lg p-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">alarm</span>
+                PREGÃO AGENDADO • HOJE ÀS 15:00
+              </span>
+<span class="font-label-md text-label-md font-bold text-primary">#LOTE-CAF-4180</span>
+<span class="text-outline text-body-sm font-body-sm">• CD Varginha/MG (CIF Grande SP incluso)</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1 rounded">
+<span class="material-symbols-outlined text-[16px] text-primary">timelapse</span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-primary">Inicia em:</span>
+<span class="font-numeric-timer text-[16px] text-primary font-bold">01h:15m</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-center">
+<div class="md:col-span-3 flex md:flex-col items-center gap-space-sm">
+<img class="w-24 h-24 md:w-full md:h-32 object-cover rounded-lg bg-surface-container" data-alt="Embalagens a vácuo brilhantes de café torrado e moído de primeira linha agrupadas em palete industrial pronto para varejo supermercadista" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoBlcI93GxJ83kHrlM8le0XdJHbVsRyRyUFu9ftscpYo0L1Ka3pTx_vGuYTYQ9UFOLJqFRe47cXsX131cFY55B5SANT15cH1yk3gSc8QlyfBC0LtZRcd0d_Vg1419gCMcVwPmja3ESg9Bn5eHaq3ORnwIwEE8ICbBoj2tXy8-EZz6U9Ox5BbMas9WgUqmMqmB54QX5m2ofYUcogZ9aVsR3I3CVGO8ruGB8MGbgpHGu"/>
+<div class="flex flex-col text-center w-full">
+<span class="font-label-sm text-label-sm text-outline uppercase">Shelf Life / Validade</span>
+<span class="inline-flex items-center justify-center gap-1 font-label-md text-label-md text-on-surface font-bold bg-surface-container px-2 py-1 rounded mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">calendar_today</span>
+                  240 dias restantes
+                </span>
+</div>
+</div>
+<div class="md:col-span-9 flex flex-col justify-between h-full">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1">
+                  Café Tradicional Torrado e Moído 500g (1.600 un / 80 Cxs c/ 20)
+                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                  Fabricante: <strong>Café Pura Origem S/A</strong> • Selo ABIC Pureza e Qualidade. Ponto de torra média clássica para alto giro de gôndola.
+                </p>
+</div>
+<div class="grid grid-cols-3 gap-2 bg-surface-container-low p-space-sm rounded-lg mt-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Lance Inicial Previsto</span>
+<span class="font-numeric-timer text-[16px] text-primary font-bold">R$ 22.000,00</span>
+<span class="font-label-sm text-label-sm text-outline">R$ 13,75 / un</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Preço Médio Gôndola Varejo</span>
+<span class="font-numeric-timer text-[16px] text-on-surface">R$ 31.840,00</span>
+<span class="font-label-sm text-label-sm text-outline">R$ 19,90 / un</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Potencial Lucro Bruto</span>
+<span class="font-numeric-timer text-[16px] text-secondary font-bold">R$ 9.840,00</span>
+<span class="font-label-sm text-label-sm text-secondary">+44.7% Markup</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm mt-space-md pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">notifications_active</span>
+<span>Alerta programado no app para 14:50</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2 rounded-lg bg-primary-fixed hover:bg-primary-fixed-dim text-on-primary-fixed font-label-md text-label-md font-bold transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">touch_app</span>
+                    Pré-programar Lance de Abertura (R$ 22.000)
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Col (4 cols): Escrow Custody, Rules & Arbitration Desk -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Santander Escrow Custody Breakdown -->
+<div class="flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low -mx-space-lg -mt-space-lg p-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">account_balance</span>
+<h3 class="font-label-lg text-label-lg font-bold text-primary">Resumo de Custódia Escrow</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">BACEN 4.656</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
+          Os valores dos lances vencedores ficam retidos provisoriamente sob custódia fiduciária na conta vinculada do Banco Santander, garantindo liberação imediata caso o lance seja superado.
+        </p>
+<!-- Balance Progress Visualization -->
+<div class="flex flex-col gap-space-xs mb-space-md">
+<div class="flex justify-between items-baseline">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Bloqueado em Lances Ativos</span>
+<span class="font-numeric-timer text-[16px] text-primary font-bold">R$ 122.200,00</span>
+</div>
+<div class="w-full bg-surface-container h-3 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full rounded-full" style="width: 27.1%;"></div>
+</div>
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm mt-0.5">
+<span>27.1% do limite total</span>
+<span>Teto Escrow: R$ 450.000,00</span>
+</div>
+</div>
+<!-- Metric Rows -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between py-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lote Farinha Moinho Santa Rita</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">R$ 58.000,00</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lote Biscoitos Alvorada S/A</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">R$ 64.200,00</span>
+</div>
+<div class="flex items-center justify-between py-1 text-secondary font-bold">
+<span class="font-body-sm text-body-sm">Lote Queijo Mussarela (Liberado após superação)</span>
+<span class="font-label-md text-label-md">R$ 0,00 (Devolvido)</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs mt-space-xs text-primary font-bold">
+<span class="font-label-md text-label-md">Saldo Líquido Disponível para Lances:</span>
+<span class="font-numeric-timer text-[16px] text-secondary">R$ 327.800,00</span>
+</div>
+</div>
+<button class="w-full mt-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-variant text-primary font-label-md text-label-md font-bold transition-colors flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+          Extrato Detalhado Santander Escrow
+        </button>
+</div>
+<!-- Quick Rules Box: Soft-Close & Anti-Sniper -->
+<div class="flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs mb-space-sm text-primary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<h3 class="font-label-lg text-label-lg font-bold">Regras do Pregão B2B</h3>
+</div>
+<div class="space-y-space-sm text-body-sm text-body-sm text-on-surface-variant">
+<div class="flex gap-space-xs items-start">
+<span class="font-bold text-primary font-numeric-timer text-[14px]">01.</span>
+<div>
+<strong class="text-on-surface">Soft-Close (Anti-Sniper):</strong> Qualquer lance ofertado nos últimos 3 minutos prorroga o cronômetro do lote automaticamente em +60 segundos.
+            </div>
+</div>
+<div class="flex gap-space-xs items-start">
+<span class="font-bold text-primary font-numeric-timer text-[14px]">02.</span>
+<div>
+<strong class="text-on-surface">Desbloqueio Imediato:</strong> Ao ter o lance coberto por outro varejista, seu valor em custódia é estornado imediatamente para o saldo livre.
+            </div>
+</div>
+<div class="flex gap-space-xs items-start">
+<span class="font-bold text-primary font-numeric-timer text-[14px]">03.</span>
+<div>
+<strong class="text-on-surface">Arremate Vinculante:</strong> Lances vencedores no encerramento do pregão geram Pedido de Compra e Termo de Venda Faturada automática com D+2 para expedição FOB/CIF.
+            </div>
+</div>
+</div>
+</div>
+<!-- Real-Time Arbitration Desk (WhatsApp & Phone) -->
+<div class="flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wide">Mesa de Operações &amp; Suporte</span>
+<span class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Online Agora
+          </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary font-bold mb-1">
+          Canal de Arbitragem B2B
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+          Dúvidas sobre laudos técnicos, agendamento de frotas ou autorização de crédito emergencial para cobrir lotes industriais de alta escala.
+        </p>
+<div class="flex flex-col gap-space-xs">
+<a class="w-full py-3 rounded-lg bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 transition-colors shadow-sm" href="https://wa.me/5511999999999" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+            Falar c/ Mesa de Lances via WhatsApp
+          </a>
+<button class="w-full py-2.5 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface font-label-md text-label-md font-bold transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">call</span>
+            0800 780 4000 (Ramal Pregões)
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Footer & Regulatory Compliance -->
+<div class="mt-space-xl pt-space-md pb-space-lg bg-surface-container-low/70 -mx-space-xl px-space-xl rounded-t-xl flex flex-col md:flex-row items-center justify-between gap-space-md text-outline font-body-sm text-body-sm">
+<div class="flex flex-wrap items-center gap-space-md">
+<div class="flex items-center gap-1.5 text-on-surface font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+        RESOLUÇÃO BACEN Nº 4.656/2018
+      </div>
+<span>•</span>
+<span class="text-on-surface-variant">Carimbo de Tempo: <strong>NTP.br stratum-1 certificado</strong></span>
+<span>•</span>
+<span class="text-on-surface-variant">Ambiente Criptografado TLS 1.3 SHA-256</span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span>Portal Varejista Online S.A. • CNPJ: 34.567.890/0001-12</span>
+<span>•</span>
+<span>Todos os direitos reservados</span>
+</div>
+</div>
+<!-- MODAL: Regras de Disputa & Soft-Close (Interactive Popup) -->
+<div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="modal-soft-close">
+<div class="bg-surface-container-lowest rounded-xl max-w-2xl w-full p-space-xl shadow-xl flex flex-col gap-space-md relative">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-low -mx-space-xl -mt-space-xl p-space-lg rounded-t-xl">
+<div class="flex items-center gap-2 text-primary font-headline-md text-headline-md font-bold">
+<span class="material-symbols-outlined text-primary">policy</span>
+          Regulamento de Pregões &amp; Mecanismo Soft-Close
+        </div>
+<button class="p-1 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container" onclick="document.getElementById('modal-soft-close').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-space-md text-on-surface font-body-md text-body-md">
+<div>
+<h4 class="font-label-lg text-label-lg font-bold text-primary mb-1">O que é a Reta Final com Soft-Close?</h4>
+<p class="text-on-surface-variant">
+            Para garantir uma concorrência justa e eliminar vantagens desleais por bots automatizados ou tentativas de lance no último segundo ("sniping"), nosso sistema monitora lances no encerramento. Se qualquer comprador registrar uma proposta nos últimos 180 segundos de disputa, o cronômetro é acrescido automaticamente em <strong>+60 segundos</strong>.
+          </p>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg font-bold text-primary mb-1">Como Funciona a Custódia Santander Escrow?</h4>
+<p class="text-on-surface-variant">
+            Durante o pregão, o valor do seu lance mais alto é retido temporariamente da sua linha de crédito fiduciário Santander. Nenhuma cobrança real é faturada até a batida oficial do martelo. Caso outro supermercado cubra o seu lance, seu saldo é restituído em tempo real (12ms) para novas ofertas.
+          </p>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">verified</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Auditoria e Trilha Criptográfica</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Todos os lances são registrados com hash seguro e assinatura digital vinculada ao CNPJ do comprador, gerando validade jurídica incontestável perante o Código Comercial Brasileiro.</span>
+</div>
+</div>
+</div>
+<div class="flex justify-end pt-space-xs">
+<button class="px-space-lg py-2.5 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg font-bold hover:bg-primary-container transition-colors" onclick="document.getElementById('modal-soft-close').classList.add('hidden')" type="button">
+          Compreendi as Regras
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-tick simulation for the live auction timer
+  (function initAuctionTicker() {
+    let secondsLeft = 165; // 02:45
+    const timerElement = document.getElementById('timer-1');
+    if (!timerElement) return;
+
+    const interval = setInterval(() => {
+      if (secondsLeft <= 0) {
+        clearInterval(interval);
+        timerElement.innerText = "00:00";
+        return;
+      }
+      secondsLeft--;
+      const mins = Math.floor(secondsLeft / 60);
+      const secs = secondsLeft % 60;
+      timerElement.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }, 1000);
+  })();
+</script></main></div></body></html>

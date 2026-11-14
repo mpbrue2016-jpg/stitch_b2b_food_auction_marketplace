@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "background": "#f7f9fb", "secondary-fixed-dim": "#88d982", "surface-container-high": "#e6e8ea", "surface-tint": "#2b5bb5", "on-surface-variant": "#434652", "on-primary-fixed": "#001945", "primary-container": "#0d47a1", "tertiary": "#720009", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d4", "on-primary-container": "#a1bbff", "outline": "#737783", "on-tertiary-fixed-variant": "#930010", "tertiary-fixed": "#ffdad6", "on-secondary-fixed": "#002204", "on-tertiary": "#ffffff", "on-error-container": "#93000a", "secondary-container": "#a0f399", "on-primary-fixed-variant": "#00429c", "primary-fixed": "#d9e2ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-container-highest": "#e0e3e5", "on-background": "#191c1e", "error": "#ba1a1a", "on-surface": "#191c1e", "error-container": "#ffdad6", "tertiary-container": "#9d0011", "primary-fixed-dim": "#b0c6ff", "on-secondary-container": "#217128", "surface-container": "#eceef0", "inverse-primary": "#b0c6ff", "surface-container-low": "#f2f4f6", "surface-dim": "#d8dadc", "surface": "#f7f9fb", "tertiary-fixed-dim": "#ffb3ac", "on-secondary-fixed-variant": "#005312", "on-tertiary-fixed": "#410003", "primary": "#003178", "on-tertiary-container": "#ffa59d", "surface-bright": "#f7f9fb", "secondary": "#1b6d24", "inverse-on-surface": "eff1f3", "inverse-surface": "#2d3133", "on-primary": "#ffffff", "secondary-fixed": "#a3f69c", "surface-variant": "#e0e3e5" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "margin": "1.5rem", "gutter": "1rem", "space-md": "0.75rem", "space-xl": "2rem", "space-sm": "0.5rem", "space-lg": "1.25rem", "space-xs": "0.25rem" }, "fontFamily": { "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "numeric-timer": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "700" } ], "headline-md": [ "18px", { "lineHeight": "24px", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "fontWeight": "800" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "numeric-timer": [ "20px", { "lineHeight": "24px", "fontWeight": "800" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "fontWeight": "800" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "fontWeight": "700" } ] } } } };</script></head><body class="bg-background text-on-surface font-body-md text-body-md antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center gap-space-sm bg-surface-container-lowest"><span class="material-symbols-outlined text-primary text-headline-lg">account_balance</span><div class="flex flex-col"><span class="font-label-lg text-label-lg text-primary tracking-tight">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tesouraria &amp; SPB</span></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Módulos SPB / Tesouraria</div><nav class="flex flex-col gap-space-xs mb-space-lg" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="painel-geral-de-liquidacao" href="#"><span class="material-symbols-outlined text-headline-md">payments</span><span>Painel Geral de Liquidação</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="fechamento-noturno-spb" href="#"><span class="material-symbols-outlined text-headline-md">schedule_send</span><span>Fechamento Noturno SPB</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="contas-escrow-e-garantias" href="#"><span class="material-symbols-outlined text-headline-md">shield_with_heart</span><span>Contas Escrow &amp; Garantias</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="remessas-e-retornos-cnab" href="#"><span class="material-symbols-outlined text-headline-md">sync_alt</span><span>Remessas &amp; Retornos CNAB</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="webhooks-e-erp" href="#"><span class="material-symbols-outlined text-headline-md">hub</span><span>Webhooks &amp; ERP</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="fila-dead-letter-queue" href="#"><span class="material-symbols-outlined text-headline-md">mark_email_unread</span><span>Fila Dead Letter Queue</span></a></nav><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Compliance &amp; Auditoria</div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="dossies-bacen" href="#"><span class="material-symbols-outlined text-headline-md">folder_special</span><span>Dossiês BACEN</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="certidoes-oficiais-e-worm" href="#"><span class="material-symbols-outlined text-headline-md">verified</span><span>Certidões Oficiais &amp; WORM</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="sala-virtual-de-inspecao-bacen" href="#"><span class="material-symbols-outlined text-headline-md">meeting_room</span><span>Sala Virtual de Inspeção BACEN</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="trilha-criptografica-e-merkle" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-headline-md">enhanced_encryption</span><span>Trilha Criptográfica &amp; Merkle</span></div><span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-space-xs py-0.5 rounded-lg">Ativo</span></a></nav></div><div class="p-space-md bg-surface-container-lowest m-space-sm rounded-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline uppercase">Segurança Fiduciária</span><span class="font-label-md text-label-md text-on-surface">HSM Dedicado v3.4</span></div><span class="material-symbols-outlined text-secondary text-headline-md">lock</span></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between px-margin"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-bold">RSFN/BACEN:</span><span class="font-label-sm text-label-sm text-secondary font-bold">Conectado</span></div><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-on-surface-variant text-body-md">alarm</span><span class="font-label-sm text-label-sm text-on-surface-variant">Janela SPB:</span><span class="font-label-sm text-label-sm text-error font-bold">Fechada</span><span class="font-label-sm text-label-sm text-outline">/ Grade 26/10 às 07:00 BRT</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs text-right"><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface">Dr. Eduardo Sampaio</span><span class="font-label-sm text-label-sm text-on-surface-variant">Auditor e Gestor Fiduciário</span></div></div><div class="flex items-center gap-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><span class="material-symbols-outlined text-on-surface-variant text-body-md">expand_more</span></div></div></header><main class="w-full pt-16 bg-background min-h-screen px-margin"><div class="flex flex-col w-full pb-space-xl">
+<!-- BREADCRUMBS & BADGES HEADER -->
+<div class="flex flex-col gap-space-sm pt-space-md mb-space-lg">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Início</span>
+<span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Liquidação SPB &amp; Tesouraria</span>
+<span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Compliance &amp; Auditoria</span>
+<span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Validador Interativo ITI &amp; Merkle Tree</span>
+</div>
+<div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-sm flex-wrap mb-space-xs">
+<span class="px-space-sm py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">memory</span>
+            MOTOR DE CÁLCULO LOCAL NO CLIENTE (WASM)
+          </span>
+<span class="px-space-sm py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+            CONEXÃO DIRETA ITI (ICP-BRASIL)
+          </span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">security</span>
+            HSM LUNA INTEGRADO V3.4
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+          Ambiente de computação determinística e auditoria pericial. Valide a integridade estrita de árvores de Merkle do SPB, assinaturas de conformidade ICP-Brasil e certificados de não-repúdio WORM.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<button class="px-space-md py-space-sm rounded bg-surface-container-lowest text-primary hover:bg-surface-container-high font-label-md text-label-md transition-all shadow-sm flex items-center gap-space-xs" id="btn-load-sample">
+<span class="material-symbols-outlined text-body-md">data_object</span>
+<span>Carregar Exemplo #SBE-2026-09</span>
+</button>
+<button class="px-space-md py-space-sm rounded bg-surface-container-lowest text-outline hover:text-error hover:bg-error-container/20 font-label-md text-label-md transition-all shadow-sm flex items-center gap-space-xs" id="btn-clear">
+<span class="material-symbols-outlined text-body-md">restart_alt</span>
+<span>Limpar</span>
+</button>
+<button class="px-space-md py-space-sm rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-all shadow-sm flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-md">terminal</span>
+<span>Doc API / CLI</span>
+</button>
+<button class="px-space-md py-space-sm rounded bg-primary-container text-on-primary font-label-md text-label-md hover:opacity-95 transition-all shadow-sm flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-md">article</span>
+<span>Ver Laudo Emitido</span>
+</button>
+</div>
+</div>
+</div>
+<!-- MAIN 2-COLUMN GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- LEFT COLUMN: Input Console & Parameters (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Tabs Header -->
+<div class="bg-surface-container-low px-space-md pt-space-sm flex items-center justify-between border-b border-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-space-sm rounded-t-lg bg-surface-container-lowest text-primary font-label-md text-label-md font-bold flex items-center gap-space-xs shadow-sm">
+<span class="material-symbols-outlined text-body-md">code</span>
+<span>Colar Merkle Proof JSON-LD</span>
+</button>
+<button class="px-space-md py-space-sm rounded-t-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-md">upload_file</span>
+<span>Upload .PDF / Hash SHA-256</span>
+</button>
+<button class="px-space-md py-space-sm rounded-t-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-md">tune</span>
+<span>Modo Manual / Hash Builder</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase hidden sm:inline">RFC 8785 Canonical JSON</span>
+</div>
+<!-- JSON Editor Simulation Area -->
+<div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase">Merkle Proof Payload (Lote #SBE-2026-09)</span>
+</div>
+<div class="flex items-center gap-space-sm text-outline font-label-sm text-label-sm">
+<span>SHA-256 / JCS Validado</span>
+<span class="font-bold text-on-surface">1.48 KB</span>
+</div>
+</div>
+<!-- Code Input Box -->
+<div class="relative bg-inverse-surface rounded-lg p-space-md text-inverse-on-surface font-mono text-body-sm shadow-inner overflow-x-auto min-h-[300px]">
+<textarea class="w-full h-72 bg-transparent text-secondary-fixed font-mono text-body-sm resize-none focus:outline-none leading-relaxed selection:bg-primary-container selection:text-on-primary" id="json-editor" spellcheck="false">{
+  "@context": "https://varejista-b2b.gov.br/schemas/merkle-proof-v1.jsonld",
+  "type": "SPBInclusionProof",
+  "block_id": "#BLK-2026-9042",
+  "lot_reference": "#SBE-2026-09",
+  "leaf_hash": "7a35fe8cfba8478be320f1df296e87f54c935ee59e210167667b93db59b6ad48",
+  "tree_height": 7,
+  "leaf_index": 43,
+  "algorithm": "SHA-256",
+  "normalization": "RFC-8785",
+  "siblings": [
+    { "position": "right", "hash": "d52f6b3e9a7102641a9bc38e07a3efd2f5a04b1238914b1c7c91d8a1f879685a" },
+    { "position": "left",  "hash": "01b8e4e67d26df5ef786f1e8470a1a096c4d9093bf656d05f3fbcfbf220ab24e" },
+    { "position": "right", "hash": "84a7e93dc49cb8798ef01bc83921768653fbb8c091f0c29f2c8d2035eb52f41d" },
+    { "position": "left",  "hash": "63a87612f0e340cbe3dbbe15cf6f0b471694f51950d96d2fa56efb910e7b8ca2" },
+    { "position": "left",  "hash": "c83fe1809bd63cb88d572a12d1b82fb305c458319f39bb799b61d368e547214e" },
+    { "position": "right", "hash": "2589f2571249e0c5db6cbbfe3920a2327705fe055b71fb0d4f3e69ff9f4a56c0" },
+    { "position": "left",  "hash": "52c87ffbd9267a216f91d8bc07c6f06a19f2a7dbdf9beea289be6ea3f7d18bc9" }
+  ],
+  "root_hash_declared": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "witness_timestamp": "2026-10-25T19:48:33.412Z",
+  "icp_signature": {
+    "signer": "Matheus Silveira (Auditor Fiduciário - BACEN #8841-A)",
+    "cert_serial": "4B:8F:90:22:91:DE:33:01",
+    "signature_format": "CAdES-BES with Long Term Validation (LTV)"
+  }
+}</textarea>
+</div>
+<!-- Parameter Controls Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase text-outline">Root Hash Esperado do BACEN / SPB</label>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-2 rounded">
+<span class="material-symbols-outlined text-body-sm text-primary">tag</span>
+<input class="w-full bg-transparent font-mono text-body-sm text-on-surface focus:outline-none" id="input-root" value="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase text-outline">Seletor de Motor Criptográfico</label>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-2 rounded">
+<span class="material-symbols-outlined text-body-sm text-secondary">bolt</span>
+<select class="w-full bg-transparent font-label-md text-label-md text-on-surface focus:outline-none cursor-pointer" id="engine-select">
+<option value="wasm">WebAssembly SHA-256 Nativo (&lt; 1ms / Sandbox)</option>
+<option value="rsfn">API de Validação em Nuvem BACEN-RSFN</option>
+<option value="hsm">Módulo HSM Luna Cloud FIPS 140-2 Nível 3</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-space-xs">
+<button class="w-full py-space-md px-space-lg rounded bg-primary text-on-primary hover:bg-primary-container font-headline-md text-headline-md flex items-center justify-center gap-space-sm transition-all shadow-md active:scale-[0.99]" id="btn-run">
+<span class="material-symbols-outlined text-headline-md">psychology</span>
+<span>Executar Verificação Criptográfica Instantânea (Ctrl + Enter)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Metrics Strip -->
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-outline uppercase">Profundidade da Árvore</span>
+<span class="font-headline-md text-headline-md text-primary">7 Nós Irmãos</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">128 Lotes Agregados</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-outline uppercase">Canonização</span>
+<span class="font-headline-md text-headline-md text-on-surface">RFC 8785 (JCS)</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Determinismo Estrito</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-outline uppercase">Garantia WORM</span>
+<span class="font-headline-md text-headline-md text-on-surface">Object Lock</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Legal Hold Ativo</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Proof Diagnosis & Real-Time Result (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Primary Status Banner -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden transition-all" id="status-card">
+<div class="bg-secondary p-space-md text-on-secondary flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-headline-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm tracking-wider uppercase opacity-85">Status Pericial Unificado</span>
+<span class="font-headline-md text-headline-md">PROVA MATEMÁTICA ÍNTEGRA</span>
+<span class="font-label-md text-label-md opacity-95">Raiz converge com Grade SPB BACEN às 19:48:33 BRT</span>
+</div>
+</div>
+<div class="p-space-md flex items-center justify-between bg-surface-container-low text-on-surface border-b border-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md">speed</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">Tempo de Resolução:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">1.84ms (WASM)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md">shield</span>
+<span class="font-label-sm text-label-sm text-outline uppercase">Colisões SHA-256:</span>
+<span class="font-label-md text-label-md font-bold text-secondary">0 (Zero)</span>
+</div>
+</div>
+<!-- 5 Key Audit Checks -->
+<div class="p-space-md flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Checklist de Conformidade Fiduciária</span>
+<!-- Check 1 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md mt-0.5">verified</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">1. Sintaxe e Normalização Canônica</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">RFC 8785 (JSON Canonicalization Scheme) conferido sem escape nulo.</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase font-bold">Válido</span>
+</div>
+<!-- Check 2 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md mt-0.5">account_tree</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">2. Reconstituição da Árvore de Merkle</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">7 hashes recursivos. Convergência exata com Bloco #BLK-2026-9042.</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase font-bold">100% Match</span>
+</div>
+<!-- Check 3 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md mt-0.5">fingerprint</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">3. Certificação ICP-Brasil (ITI)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Assinatura A3 Serpro: Dr. Matheus Silveira e Dra. Mariana V. Cadeia Válida (LTV).</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase font-bold">Autêntico</span>
+</div>
+<!-- Check 4 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md mt-0.5">cloud_upload</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">4. Carimbo de Tempo Seguro (ACT)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Observatório Nacional / sincronizado com Rede NTP.br. 25/10/2026 19:48:33 BRT.</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase font-bold">Conforme</span>
+</div>
+<!-- Check 5 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md mt-0.5">lock_clock</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">5. Repositório WORM S3 Object Lock</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Compliance Mode ativado. Imutável até 25/10/2031 (Retenção 5 anos).</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase font-bold">Imutável</span>
+</div>
+</div>
+<!-- Stepper Visualizer: 7 Hashes Recursivos -->
+<div class="p-space-md border-t border-surface-container-high bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Computação Passo a Passo (Hops)</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">7 de 7 computados</span>
+</div>
+<div class="flex flex-col gap-1 font-mono text-[11px] text-on-surface">
+<div class="p-1 rounded bg-surface-container-low flex items-center justify-between">
+<span class="text-outline">H0 (Leaf):</span>
+<span class="truncate max-w-[240px] text-primary">7a35fe8c...667b93db</span>
+<span class="text-secondary font-bold">OK</span>
+</div>
+<div class="p-1 rounded bg-surface-container-low flex items-center justify-between">
+<span class="text-outline">H1 (H0 + S0):</span>
+<span class="truncate max-w-[240px]">91bf5420...e461a299</span>
+<span class="text-secondary font-bold">OK</span>
+</div>
+<div class="p-1 rounded bg-surface-container-low flex items-center justify-between">
+<span class="text-outline">H2 (S1 + H1):</span>
+<span class="truncate max-w-[240px]">4c9100fa...58f7002b</span>
+<span class="text-secondary font-bold">OK</span>
+</div>
+<div class="p-1 rounded bg-surface-container-low flex items-center justify-between">
+<span class="text-outline">H3..H6 (Siblings):</span>
+<span class="truncate max-w-[240px] text-outline">Recursão intermediária</span>
+<span class="text-secondary font-bold">OK</span>
+</div>
+<div class="p-1 rounded bg-secondary-container/30 flex items-center justify-between border-l-2 border-secondary">
+<span class="text-on-secondary-container font-bold">ROOT H7:</span>
+<span class="truncate max-w-[240px] text-on-secondary-container font-bold">e3b0c442...7852b855</span>
+<span class="text-secondary font-bold">MATCH</span>
+</div>
+</div>
+</div>
+<!-- Export Buttons -->
+<div class="p-space-md bg-surface-container-low flex items-center gap-space-xs flex-wrap">
+<button class="flex-1 py-space-sm px-space-xs rounded bg-surface-container-lowest text-primary hover:bg-surface-container-high font-label-md text-label-md flex items-center justify-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-body-md">download</span>
+<span>Relatório JSON</span>
+</button>
+<button class="flex-1 py-space-sm px-space-xs rounded bg-surface-container-lowest text-primary hover:bg-surface-container-high font-label-md text-label-md flex items-center justify-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-body-md">picture_as_pdf</span>
+<span>Atesto .PDF</span>
+</button>
+<button class="py-space-sm px-space-md rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-md text-label-md flex items-center justify-center gap-1" id="btn-copy-log">
+<span class="material-symbols-outlined text-body-md">content_copy</span>
+<span>Copiar Log</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- CLI & CODE SNIPPET SECTION -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg mb-space-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm mb-space-md border-b border-surface-container-high pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-md">terminal</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">CLI e Snippet de Auditoria Independente (Offline)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Reproduza o cálculo determinístico em seu próprio terminal para certificar a integridade do SPB sem depender de terceiros.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm uppercase" id="btn-tab-curl">cURL / Shell</button>
+<button class="px-space-md py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm uppercase" id="btn-tab-python">Python (hashlib)</button>
+<button class="px-space-md py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm uppercase" id="btn-tab-node">Node.js (crypto)</button>
+</div>
+</div>
+<div class="relative bg-inverse-surface rounded-lg p-space-md text-inverse-on-surface font-mono text-body-sm overflow-x-auto shadow-inner">
+<div class="leading-relaxed whitespace-pre text-secondary-fixed" id="code-snippet-box"># 1. Download do payload canônico RFC 8785
+curl -s https://api.varejista-b2b.gov.br/v1/merkle/proofs/SBE-2026-09.json -o proof.json
+
+# 2. Computar o hash SHA-256 nativo da folha no terminal Unix/Linux
+cat proof.json | jq -S -c '.payload' | sha256sum
+
+# 3. Execução do validador pericial via binário auditado Rust/WASM
+varejista-audit-cli verify-merkle \
+  --proof proof.json \
+  --expected-root "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" \
+  --iti-truststore /etc/ssl/icp-brasil-roots.pem
+
+# Retorno: [SUCCESS] Hash root computed in 1.4ms matches SPB Root declared.</div>
+<button class="absolute top-space-sm right-space-sm px-space-sm py-1 rounded bg-surface-container-high/20 hover:bg-surface-container-high/40 text-inverse-on-surface text-label-sm flex items-center gap-1 transition-all" id="btn-copy-code">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>Copiar Snippet</span>
+</button>
+</div>
+</div>
+<!-- NAVIGATION FOOTER SHORTCUTS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm">
+<a class="p-space-md rounded-xl bg-surface-container-lowest hover:bg-surface-container-high text-on-surface shadow-sm transition-all flex items-center justify-between group" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-md group-hover:scale-110 transition-transform">verified</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Auditoria Oficial</span>
+<span class="font-label-md text-label-md font-bold">Laudo Pericial Criptográfico</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</a>
+<a class="p-space-md rounded-xl bg-surface-container-lowest hover:bg-surface-container-high text-on-surface shadow-sm transition-all flex items-center justify-between group" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-headline-md group-hover:scale-110 transition-transform">account_tree</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Estrutura de Dados</span>
+<span class="font-label-md text-label-md font-bold">Trilha de Merkle Tree</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">arrow_forward</span>
+</a>
+<a class="p-space-md rounded-xl bg-surface-container-lowest hover:bg-surface-container-high text-on-surface shadow-sm transition-all flex items-center justify-between group" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-headline-md group-hover:scale-110 transition-transform">folder_special</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Regulação e Fisco</span>
+<span class="font-label-md text-label-md font-bold">Central de Dossiês BACEN</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</a>
+<a class="p-space-md rounded-xl bg-surface-container-lowest hover:bg-surface-container-high text-on-surface shadow-sm transition-all flex items-center justify-between group" href="#">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-headline-md group-hover:scale-110 transition-transform">payments</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Tesouraria Central</span>
+<span class="font-label-md text-label-md font-bold">Painel Geral de Liquidação</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">arrow_forward</span>
+</a>
+</div>
+</div>
+<script>
+  (function initValidatorPlayground() {
+    const editor = document.getElementById('json-editor');
+    const btnLoadSample = document.getElementById('btn-load-sample');
+    const btnClear = document.getElementById('btn-clear');
+    const btnRun = document.getElementById('btn-run');
+    const btnCopyLog = document.getElementById('btn-copy-log');
+    const btnCopyCode = document.getElementById('btn-copy-code');
+    const statusCard = document.getElementById('status-card');
+    const codeSnippetBox = document.getElementById('code-snippet-box');
+    const btnCurl = document.getElementById('btn-tab-curl');
+    const btnPy = document.getElementById('btn-tab-python');
+    const btnNode = document.getElementById('btn-tab-node');
+
+    const sampleJSON = `{
+  "@context": "https://varejista-b2b.gov.br/schemas/merkle-proof-v1.jsonld",
+  "type": "SPBInclusionProof",
+  "block_id": "#BLK-2026-9042",
+  "lot_reference": "#SBE-2026-09",
+  "leaf_hash": "7a35fe8cfba8478be320f1df296e87f54c935ee59e210167667b93db59b6ad48",
+  "tree_height": 7,
+  "leaf_index": 43,
+  "algorithm": "SHA-256",
+  "normalization": "RFC-8785",
+  "siblings": [
+    { "position": "right", "hash": "d52f6b3e9a7102641a9bc38e07a3efd2f5a04b1238914b1c7c91d8a1f879685a" },
+    { "position": "left",  "hash": "01b8e4e67d26df5ef786f1e8470a1a096c4d9093bf656d05f3fbcfbf220ab24e" },
+    { "position": "right", "hash": "84a7e93dc49cb8798ef01bc83921768653fbb8c091f0c29f2c8d2035eb52f41d" },
+    { "position": "left",  "hash": "63a87612f0e340cbe3dbbe15cf6f0b471694f51950d96d2fa56efb910e7b8ca2" },
+    { "position": "left",  "hash": "c83fe1809bd63cb88d572a12d1b82fb305c458319f39bb799b61d368e547214e" },
+    { "position": "right", "hash": "2589f2571249e0c5db6cbbfe3920a2327705fe055b71fb0d4f3e69ff9f4a56c0" },
+    { "position": "left",  "hash": "52c87ffbd9267a216f91d8bc07c6f06a19f2a7dbdf9beea289be6ea3f7d18bc9" }
+  ],
+  "root_hash_declared": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "witness_timestamp": "2026-10-25T19:48:33.412Z",
+  "icp_signature": {
+    "signer": "Matheus Silveira (Auditor Fiduciário - BACEN #8841-A)",
+    "cert_serial": "4B:8F:90:22:91:DE:33:01",
+    "signature_format": "CAdES-BES with Long Term Validation (LTV)"
+  }
+}`;
+
+    if (btnLoadSample) {
+      btnLoadSample.addEventListener('click', () => {
+        editor.value = sampleJSON;
+      });
+    }
+
+    if (btnClear) {
+      btnClear.addEventListener('click', () => {
+        editor.value = '{\n  "merkle_proof": {}\n}';
+      });
+    }
+
+    if (btnRun) {
+      btnRun.addEventListener('click', () => {
+        btnRun.innerHTML = `<span class="material-symbols-outlined text-headline-md animate-spin">refresh</span><span>Processando Prova Matemática...</span>`;
+        btnRun.classList.add('opacity-75');
+
+        setTimeout(() => {
+          btnRun.innerHTML = `<span class="material-symbols-outlined text-headline-md">psychology</span><span>Executar Verificação Criptográfica Instantânea (Ctrl + Enter)</span>`;
+          btnRun.classList.remove('opacity-75');
+          statusCard.classList.add('ring-2', 'ring-secondary');
+          setTimeout(() => statusCard.classList.remove('ring-2', 'ring-secondary'), 1200);
+        }, 320);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        btnRun.click();
+      }
+    });
+
+    if (btnCopyLog) {
+      btnCopyLog.addEventListener('click', () => {
+        const originalText = btnCopyLog.innerHTML;
+        btnCopyLog.innerHTML = `<span class="material-symbols-outlined text-body-md text-secondary">check</span><span>Copiado!</span>`;
+        setTimeout(() => { btnCopyLog.innerHTML = originalText; }, 1800);
+      });
+    }
+
+    if (btnCopyCode) {
+      btnCopyCode.addEventListener('click', () => {
+        const original = btnCopyCode.innerHTML;
+        btnCopyCode.innerHTML = `<span class="material-symbols-outlined text-[14px] text-secondary">check</span><span>Copiado!</span>`;
+        setTimeout(() => { btnCopyCode.innerHTML = original; }, 1800);
+      });
+    }
+
+    const snippets = {
+      curl: `# 1. Download do payload canônico RFC 8785
+curl -s https://api.varejista-b2b.gov.br/v1/merkle/proofs/SBE-2026-09.json -o proof.json
+
+# 2. Computar o hash SHA-256 nativo da folha no terminal Unix/Linux
+cat proof.json | jq -S -c '.payload' | sha256sum
+
+# 3. Execução do validador pericial via binário auditado Rust/WASM
+varejista-audit-cli verify-merkle \\
+  --proof proof.json \\
+  --expected-root "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" \\
+  --iti-truststore /etc/ssl/icp-brasil-roots.pem
+
+# Retorno: [SUCCESS] Hash root computed in 1.4ms matches SPB Root declared.`,
+
+      python: `import json, hashlib
+
+def sha256_combine(left_hex, right_hex):
+    left = bytes.fromhex(left_hex)
+    right = bytes.fromhex(right_hex)
+    return hashlib.sha256(left + right).hexdigest()
+
+with open('proof.json', 'r') as f:
+    proof = json.load(f)
+
+current_hash = proof['leaf_hash']
+for sibling in proof['siblings']:
+    if sibling['position'] == 'right':
+        current_hash = sha256_combine(current_hash, sibling['hash'])
+    else:
+        current_hash = sha256_combine(sibling['hash'], current_hash)
+
+assert current_hash == proof['root_hash_declared'], "Falha de convergência pericial!"
+print("Status: 100% ÍNTEGRO. Raiz Merkle:", current_hash)`,
+
+      node: `const crypto = require('crypto');
+const fs = require('fs');
+
+const proof = JSON.parse(fs.readFileSync('proof.json', 'utf8'));
+
+let current = Buffer.from(proof.leaf_hash, 'hex');
+
+for (const sib of proof.siblings) {
+  const sibBuffer = Buffer.from(sib.hash, 'hex');
+  const combined = sib.position === 'right' 
+    ? Buffer.concat([current, sibBuffer]) 
+    : Buffer.concat([sibBuffer, current]);
+  current = crypto.createHash('sha256').update(combined).digest();
+}
+
+const computedRoot = current.toString('hex');
+console.log('Computado:', computedRoot);
+console.log('Válido:', computedRoot === proof.root_hash_declared);`
+    };
+
+    function setTab(activeBtn, type) {
+      [btnCurl, btnPy, btnNode].forEach(b => {
+        b.className = 'px-space-md py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm uppercase';
+      });
+      activeBtn.className = 'px-space-md py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm uppercase';
+      codeSnippetBox.textContent = snippets[type];
+    }
+
+    if (btnCurl) btnCurl.addEventListener('click', () => setTab(btnCurl, 'curl'));
+    if (btnPy) btnPy.addEventListener('click', () => setTab(btnPy, 'python'));
+    if (btnNode) btnNode.addEventListener('click', () => setTab(btnNode, 'node'));
+
+  })();
+</script></main></div></body></html>

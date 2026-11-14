@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f7f9fb;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed": "#001945", "primary": "#003178", "tertiary-fixed-dim": "#ffb3ac", "surface-container-lowest": "#ffffff", "on-tertiary-container": "#ffa59d", "primary-fixed-dim": "#b0c6ff", "background": "#f7f9fb", "surface-container": "#eceef0", "primary-fixed": "#d9e2ff", "on-error-container": "#93000a", "on-secondary-fixed-variant": "#005312", "on-primary": "#ffffff", "outline-variant": "#c3c6d4", "surface-container-high": "#e6e8ea", "on-tertiary": "#ffffff", "surface-bright": "#f7f9fb", "surface-tint": "#2b5bb5", "tertiary": "#720009", "on-background": "#191c1e", "inverse-surface": "#2d3133", "tertiary-fixed": "#ffdad6", "secondary": "#1b6d24", "on-error": "#ffffff", "secondary-fixed-dim": "#88d982", "surface-variant": "#e0e3e5", "inverse-primary": "#b0c6ff", "surface-container-highest": "#e0e3e5", "surface-dim": "#d8dadc", "on-primary-fixed-variant": "#00429c", "on-surface-variant": "#434652", "on-tertiary-fixed-variant": "#930010", "on-secondary-container": "#217128", "on-tertiary-fixed": "#410003", "surface": "#f7f9fb", "primary-container": "#0d47a1", "error-container": "#ffdad6", "on-surface": "#191c1e", "inverse-on-surface": "#eff1f3", "error": "#ba1a1a", "outline": "#737783", "tertiary-container": "#9d0011", "on-secondary-fixed": "#002204", "on-primary-container": "#a1bbff", "surface-container-low": "#f2f4f6", "on-secondary": "#ffffff", "secondary-container": "#a0f399", "secondary-fixed": "#a3f69c" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-mobile": "1rem", "space-xs": "0.25rem", "space-xl": "2rem", "space-lg": "1.25rem", "space-md": "0.75rem", "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin": "1.5rem", "gutter": "1rem" }, "fontFamily": { "headline-lg": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"] }, "fontSize": { "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "700"}], "numeric-timer": ["20px", {"lineHeight": "24px", "fontWeight": "800"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}], "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700"}], "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "700"}], "headline-xl": ["32px", {"lineHeight": "40px", "fontWeight": "800"}], "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}], "headline-xl-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "800"}], "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}], "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><button aria-label="Voltar ao painel de pedidos" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors -ml-space-xs" onclick="window.location.href='#dashboard'" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><div class="flex flex-col justify-center min-w-0"><h1 class="font-headline-md text-headline-md text-on-surface truncate tracking-tight">Mdf E Encerrado</h1><span class="font-label-sm text-label-sm text-secondary truncate flex items-center gap-1 font-semibold"><span class="material-symbols-outlined text-[13px]">verified</span>SEFAZ-SP • Evento 110112 Homologado</span></div></div><div class="flex items-center gap-space-xs shrink-0"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface"><div class="flex flex-col w-full">
+<!-- Content Container with Mobile Margins -->
+<div class="px-margin-mobile py-space-md flex flex-col gap-space-md">
+<!-- 1. Hero Success Status Banner -->
+<div class="relative overflow-hidden bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-secondary-container/30 blur-2xl pointer-events-none"></div>
+<div class="relative flex flex-col items-center text-center">
+<!-- Success Badge Indicator -->
+<div class="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shadow-sm mb-space-sm">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-bold mb-1">Operação Concluída</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-center mb-space-xs font-bold">MDF-e Encerrado com Sucesso!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-space-sm">
+          Evento 110112 homologado e registrado na base de dados nacional da SEFAZ e ANTT.
+        </p>
+<!-- Official Status Pill -->
+<div class="w-full bg-secondary-container/60 text-on-secondary-container rounded-lg px-space-sm py-2 flex items-center justify-center gap-1.5 mb-space-xs">
+<span class="material-symbols-outlined text-[16px] shrink-0 font-bold">check_circle</span>
+<span class="font-label-sm text-label-sm font-bold tracking-tight">STATUS SEFAZ: 135 - EVENTO REGISTRADO E VINCULADO</span>
+</div>
+<!-- Timestamp & Environment -->
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span class="font-body-sm text-body-sm">25/10/2026 às 14:15:42 • Produção Nacional</span>
+</div>
+</div>
+</div>
+<!-- 2. Official SEFAZ Protocol & Legal Cert Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">policy</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Certificado Fiscal Oficial</h3>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">SEFAZ / SVRS</span>
+</div>
+<!-- Protocolo Destaque -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">PROTOCOLO DO EVENTO (110112)</span>
+<span class="font-numeric-timer text-numeric-timer text-primary font-mono tracking-tight font-extrabold">135260192850419</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+<!-- Grid de Metadados Fiscais -->
+<div class="flex flex-col gap-2 pt-1 text-on-surface">
+<div class="flex items-baseline justify-between text-body-sm">
+<span class="font-body-sm text-on-surface-variant">MDF-e Referência</span>
+<span class="font-label-md text-label-md font-bold">Nº 001.000.129 <span class="text-on-surface-variant font-normal">(Série 1)</span></span>
+</div>
+<div class="flex flex-col gap-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">CHAVE DE ACESSO DO MDF-E</span>
+<button class="text-primary hover:text-primary-container flex items-center gap-1 font-label-sm text-label-sm font-bold" onclick="navigator.clipboard.writeText('35261014419001000182580010000012911948201834'); alert('Chave de Acesso copiada!');" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copiar
+            </button>
+</div>
+<span class="font-body-sm text-body-sm font-mono text-on-surface select-all break-all tracking-wide font-medium">
+            3526 1014 4190 0100 0182 5800 1000 0012 9119 4820 1834
+          </span>
+</div>
+<div class="flex items-baseline justify-between text-body-sm pt-1">
+<span class="font-body-sm text-on-surface-variant">Local Encerramento</span>
+<span class="font-label-md text-label-md text-right font-medium">Bragança Paulista / SP <span class="text-on-surface-variant text-[11px] font-mono">(IBGE 3507605)</span></span>
+</div>
+<div class="flex items-baseline justify-between text-body-sm">
+<span class="font-body-sm text-on-surface-variant">Órgão Autorizador</span>
+<span class="font-label-md text-label-md text-right font-medium">SEFAZ São Paulo • SVRS</span>
+</div>
+<!-- Hash SHA-256 -->
+<div class="flex items-center justify-between bg-surface-container-high/50 px-2.5 py-1.5 rounded text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Hash SHA-256</span>
+<div class="flex items-center gap-1 font-mono text-[11px]">
+<span class="font-bold text-on-surface">8f7e2a91b...c4391d8a</span>
+<button aria-label="Copiar Hash" class="text-primary flex items-center" onclick="navigator.clipboard.writeText('8f7e2a91be25c89901ad47a8bc391d8a391e4e9f9024c4391d8a'); alert('Hash copiado!');" type="button">
+<span class="material-symbols-outlined text-[13px]">file_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Operational Clearance Card (Desbloqueio Veículo / Condutor) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">local_shipping</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<h3 class="font-headline-md text-headline-md text-secondary">Veículo e Condutor 100% Liberados</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+            Restrição de trânsito rodoviário cancelada na base ANTT / MDF-e. Ativo desimpedido para novos manifestos em malha nacional.
+          </p>
+</div>
+</div>
+<!-- Sub-cards Informação Veículo & Condutor -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<div class="bg-surface-container-low rounded-lg p-2.5 flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">directions_car</span> PLACA / VEÍCULO
+          </span>
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">BRA2E19</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] truncate">Toco Baú Refrigerado</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2.5 flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">person_check</span> CONDUTOR
+          </span>
+<span class="font-label-md text-label-md font-bold text-on-surface truncate">Carlos E. Mendes</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px] font-mono">CPF ***.841.058-**</span>
+</div>
+</div>
+<!-- Status ANTT -->
+<div class="bg-surface-container-low rounded-lg px-space-sm py-2 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Registro RNTRC:</span>
+<span class="font-label-sm text-label-sm font-mono text-on-surface-variant">ANTT 4920185-9</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">Sem Pendências</span>
+</div>
+</div>
+<!-- 4. Canhoto Eletrônico & Comprovante de Entrega -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment_turned_in</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Canhoto Digital Homologado</h3>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">100% Conferido</span>
+</div>
+<!-- Miniatura com Imagem Placeholder e Carimbo Legal -->
+<div class="relative w-full h-32 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A macro sharp photo of an industrial warehouse logistics loading bay with stacked corrugated cardboard food cartons and pallets, soft daylight casting subtle shadows, authentic commercial B2B supply chain atmosphere in blue and neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvcamQVkJiHQueyJb18vjVVlNhcX0HA7Er8B6mSb5cPw5ccwPwUAtg4ACpZ8k0Eu0J-MpfaI6vzE4O0fjC-CmWjYLfkrTwmvGSZQceva1e0HainJbLkeqbQpJ-QkcPaXs7Fg_jlABIRRkEOonVWlw8bk-hPquQt7N9awNu6HTJt5hDwH1Cup4e8ixH_SkMOxG4ddr_39R0gBqVzYytZIo2FaRhUl96eXOE2xvyGtUg"/>
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-[1px] flex flex-col items-center justify-center p-2 text-center">
+<div class="bg-surface-container-lowest/95 text-secondary px-3 py-1.5 rounded-lg shadow-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_box</span>
+<span class="font-label-md text-label-md font-bold tracking-tight">Lacres Intactos • Carga Aprovada</span>
+</div>
+<span class="font-label-sm text-label-sm text-surface-container-lowest font-medium mt-1 drop-shadow">CD Central Estrela do Vale • Bragança Paulista/SP</span>
+</div>
+</div>
+<!-- Dados da Carga e Receptor -->
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-baseline justify-between text-body-sm">
+<span class="font-body-sm text-on-surface-variant">NF-e Vinculada</span>
+<span class="font-label-md text-label-md font-bold text-on-surface font-mono">000.003.991 <span class="text-on-surface-variant font-sans font-normal">(Lote #SBE-2026)</span></span>
+</div>
+<div class="flex items-baseline justify-between text-body-sm">
+<span class="font-body-sm text-on-surface-variant">Mercadoria</span>
+<span class="font-label-md text-label-md font-bold text-on-surface text-right">500 Cxs Biscoito Cream Cracker 400g</span>
+</div>
+<div class="flex items-baseline justify-between text-body-sm">
+<span class="font-body-sm text-on-surface-variant">Recebido por</span>
+<span class="font-body-sm text-body-sm text-on-surface text-right font-medium">Lucas S. Silveira <span class="text-on-surface-variant text-[11px]">(Matr. CD-BP-104)</span></span>
+</div>
+</div>
+</div>
+<!-- 5. Primary & Secondary Action CTAs -->
+<div class="flex flex-col gap-2.5 pt-space-xs">
+<!-- Botão Principal: PDF -->
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg py-3.5 px-space-md rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.99] transition-all" onclick="alert('Download do Comprovante de Encerramento (PDF) iniciado.');" type="button">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+<span>Baixar Comprovante de Encerramento (PDF)</span>
+</button>
+<!-- Botão Secundário: XML Oficial -->
+<button class="w-full bg-surface-container-low hover:bg-surface-container text-on-surface font-label-lg text-label-lg py-3 px-space-md rounded-xl flex items-center justify-center gap-2 active:scale-[0.99] transition-all" onclick="alert('Download do XML SEFAZ ProcEvento 110112 iniciado.');" type="button">
+<span class="material-symbols-outlined text-primary text-[20px]">code</span>
+<span>Exportar XML do Evento 110112</span>
+</button>
+<!-- Botão Terciário: WhatsApp / Compartilhar -->
+<button class="w-full bg-surface-container-lowest hover:bg-surface-container-low text-secondary font-label-md text-label-md py-2.5 px-space-md rounded-xl shadow-sm flex items-center justify-center gap-2 transition-all" onclick="alert('Abrindo compartilhamento para fiscal/contábil...');" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Enviar Certificado ao Financeiro / Fiscal</span>
+</button>
+<!-- Link Voltar ao Painel -->
+<a class="w-full text-center py-2 text-on-surface-variant hover:text-primary font-label-md text-label-md flex items-center justify-center gap-1 transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Concluir e Voltar ao Painel Logístico</span>
+</a>
+</div>
+<!-- 6. Regulatory & ICP-Brasil Footnote -->
+<div class="bg-surface-container-high/40 rounded-lg p-space-sm mt-space-xs flex items-start gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">verified_user</span>
+<p class="font-body-sm text-body-sm text-[11px] leading-relaxed">
+        Evento fiscal emitido e assinado digitalmente com Certificado padrão ICP-Brasil em estrita conformidade com o <strong class="text-on-surface">Ajuste SINIEF 21/10</strong> e Manual de Orientação do Contribuinte (MOC) MDF-e v3.00.
+      </p>
+</div>
+</div>
+</div></main></body></html>

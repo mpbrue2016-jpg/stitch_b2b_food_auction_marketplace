@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>Varejista Online - Marketplace B2B &amp; Leilões Industriais</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface-variant": "#434652", "surface-dim": "#d8dadc", "primary-container": "#0d47a1", "surface-bright": "#f7f9fb", "on-surface": "#191c1e", "background": "#f7f9fb", "error-container": "#ffdad6", "on-secondary": "#ffffff", "surface": "#f7f9fb", "on-error": "#ffffff", "on-background": "#191c1e", "inverse-surface": "#2d3133", "on-primary-fixed": "#001945", "surface-container": "#eceef0", "on-error-container": "#93000a", "surface-container-low": "#f2f4f6", "outline-variant": "#c3c6d4", "primary-fixed": "#d9e2ff", "secondary-fixed": "#a3f69c", "inverse-on-surface": "#eff1f3", "on-primary-container": "#a1bbff", "secondary-fixed-dim": "#88d982", "on-tertiary-container": "#ffa59d", "error": "#ba1a1a", "on-tertiary-fixed-variant": "#930010", "on-primary": "#ffffff", "on-primary-fixed-variant": "#00429c", "on-secondary-fixed": "#002204", "inverse-primary": "#b0c6ff", "secondary-container": "#a0f399", "tertiary-container": "#9d0011", "surface-container-highest": "#e0e3e5", "surface-tint": "#2b5bb5", "surface-container-high": "#e6e8ea", "surface-container-lowest": "#ffffff", "tertiary-fixed-dim": "#ffb3ac", "on-tertiary-fixed": "#410003", "on-tertiary": "#ffffff", "tertiary": "#720009", "outline": "#737783", "primary-fixed-dim": "#b0c6ff", "primary": "#003178", "surface-variant": "#e0e3e5", "on-secondary-container": "#217128", "tertiary-fixed": "#ffdad6", "secondary": "#1b6d24", "on-secondary-fixed-variant": "#005312" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1.5rem", "gutter-mobile": "0.75rem", "space-lg": "1.25rem", "space-xs": "0.25rem", "gutter": "1rem", "margin-mobile": "1rem", "space-xl": "2rem", "space-md": "0.75rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "numeric-timer": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "700" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "fontWeight": "800" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" } ], "headline-md": [ "18px", { "lineHeight": "24px", "fontWeight": "700" } ], "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "fontWeight": "800" } ], "numeric-timer": [ "20px", { "lineHeight": "24px", "fontWeight": "800" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "fontWeight": "700" } ] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="h-28 w-full px-margin flex flex-col justify-between py-space-xs"><div class="flex items-center justify-between gap-space-lg w-full"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="flex items-center justify-center w-9 h-9 rounded-xl bg-primary text-secondary font-headline-md font-bold text-headline-md">$</span><div class="flex flex-col"><span class="font-headline-md text-headline-md font-bold tracking-tight text-primary leading-tight">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">B2B Liquidações &amp; Pregões</span></div></div></div><div class="flex-1 max-w-2xl"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-3 text-outline">search</span><input class="w-full pl-10 pr-24 py-space-xs bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface placeholder-outline focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar por EAN, GTIN-13, SKU, Indústria ou Lote de Carga..." type="text"/><span class="absolute right-2 px-space-xs py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant">Ctrl + K</span></div></div><div class="flex items-center gap-space-md"><div class="flex flex-col items-end px-space-sm py-1 bg-surface-container-low rounded-lg"><span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-sm text-secondary">lock</span>Conta Escrow Fiduciária (BACEN Res. 4.656)</span><span class="font-headline-md text-headline-md text-secondary font-bold">R$ 1.842.500,00</span></div><a class="relative p-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="central-de-alertas" href="#"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary animate-ping"></span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary"></span></a><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right"><span class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Supermercado Alvorada</span><span class="font-label-sm text-label-sm text-secondary font-bold flex items-center justify-end gap-0.5"><span class="material-symbols-outlined text-xs">verified</span>CNPJ Verificado</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div><div class="flex items-center justify-between border-t border-outline-variant/30 pt-1"><nav class="flex items-center gap-space-sm" data-active-classes="bg-primary text-on-primary font-label-lg rounded-lg shadow-sm"><a class="px-space-md py-1 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" data-path="inicio" href="#">Início</a><a aria-current="page" class="px-space-md py-1 transition-colors flex items-center gap-1.5 bg-primary text-on-primary font-label-lg rounded-lg shadow-sm" data-path="leiloes-ao-vivo" href="#">Leilões ao Vivo<span class="px-1.5 py-0.5 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm font-bold uppercase animate-pulse">AO VIVO</span></a><a class="px-space-md py-1 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" data-path="validade-fefo" href="#">Validade FEFO</a><a class="px-space-md py-1 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" data-path="venda-direta" href="#">Venda Direta</a><a class="px-space-md py-1 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" data-path="industrias" href="#">Indústrias</a><a class="px-space-md py-1 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" data-path="fornecedores" href="#">Fornecedores</a><a class="px-space-md py-1 font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-colors" data-path="central-de-alertas" href="#">Central de Alertas</a></nav><div class="flex items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm"><span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span>Mesa de Pregão Ativa</span><span class="font-numeric-timer text-numeric-timer text-on-surface font-bold">11:42:09 BRT</span></div></div></div></header><main class="w-full pt-28 bg-surface"><div class="flex flex-col w-full">
+<!-- Sticky Operational Sub-Header: Live Status & Anti-Sniper Warning -->
+<div class="w-full bg-surface-container-lowest shadow-sm px-margin py-space-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-sm">
+<nav class="flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Início</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Leilões ao Vivo</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-label-md text-label-md text-on-surface">Pregão Eletrônico Lote #418</span>
+</nav>
+<div class="h-4 w-px bg-outline-variant/40 hidden md:block"></div>
+<div class="flex items-center gap-2">
+<span class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm uppercase font-bold tracking-wider animate-pulse">
+<span class="w-2 h-2 rounded-full bg-white"></span>
+          Pregão ao Vivo em Tempo Real
+        </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-xs text-secondary">wifi_tethering</span>
+          WS: 14ms (mTLS Fiduciário)
+        </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-surface-container font-label-sm text-label-sm text-primary font-bold">
+<span class="material-symbols-outlined text-xs">groups</span>
+          142 Licitantes Conectados
+        </span>
+</div>
+</div>
+<!-- Right Quick Controls -->
+<div class="flex items-center gap-space-sm">
+<button class="flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors" id="toggleAudioBtn" title="Ativar sino/gongo de novos lances">
+<span class="material-symbols-outlined text-sm text-primary" id="audioIcon">volume_up</span>
+<span>Áudio do Pregão</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-sm text-secondary">share</span>
+<span>Compartilhar</span>
+</button>
+<button class="flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-low hover:bg-surface-container text-tertiary font-label-md text-label-md transition-colors">
+<span class="material-symbols-outlined text-sm">support_agent</span>
+<span>Mesa de Arbitragem</span>
+</button>
+</div>
+</div>
+<!-- Countdown Banner Bar -->
+<div class="w-full bg-surface-container-high px-margin py-2 flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="px-2.5 py-1 rounded-md bg-tertiary text-on-tertiary flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-base">timer</span>
+<span class="font-numeric-timer text-numeric-timer tracking-widest font-bold" id="liveCountdown">00:03:42</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">TEMPO RESTANTE PARA ENCERRAMENTO DO LOTE</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lances no último minuto ativam prorrogação automática.</span>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">shield</span>
+      TRAVA ANTI-SNIPER ATIVA: +60s automáticos a cada lance &lt; 60 segundos
+    </div>
+</div>
+<!-- Main Trading Floor (2-Column Dense Grid) -->
+<div class="w-full px-margin py-space-md">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- LEFT COLUMN: Technical Spec, Logistics, Sanitaries & Gallery (7 cols) -->
+<section class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Primary Showcase Card -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-md flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row gap-space-md">
+<!-- Gallery Section -->
+<div class="w-full md:w-5/12 flex flex-col gap-space-xs">
+<div class="relative w-full aspect-4/3 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Professional commercial photography of pallets of roasted ground coffee packages in corrugated master boxes stacked high inside an industrial logistics distribution center warehouse, clean lighting, ISO standard packaging with visible barcodes and corporate food transport labels in blue and green tones" id="mainProductImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk8vOV3RD2wpgwpYLY-Z1NNV_vVD_kRMqDGlvwhcSDXeI_mkyf6eC-CxgVQ_8bn4P8bawsGTD66k9RuxfEt-lHu_ogvramyKJ9SZ49ZiIQHm934sS6oUcWrEDEOAAJDuY3kknkX8fYYLYMk8n0L8Kpnh81MFzQPrxR-kd13HBPEPVWfNUCkRsbtqFyHhyNOUfoNbCkWbHyjejaED8VH9a223V5zelTRZ7VU2k9p2qf"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold tracking-wider shadow">
+                  CARGA FECHADA (12 PALETES)
+                </span>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-inverse-surface/85 text-inverse-on-surface font-label-sm text-label-sm font-mono">
+                  EAN: 78940050800115
+                </span>
+</div>
+<!-- Thumbnails -->
+<div class="grid grid-cols-4 gap-1">
+<div class="aspect-square rounded overflow-hidden bg-surface-container cursor-pointer p-0.5">
+<img class="w-full h-full object-cover rounded" data-alt="High quality studio shot of single retail package of 500g traditional roasted coffee bag standing upright with intense roasted beans on background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqUIsF_aJO6sNmnCE6MCszEiuj62bh7kP_0iAozWAEIOuAM5HUJ8-CHctlqACZX2bqTsHFQhIA33qNCCMchxOU7UYeSEJbzUxIFAIt2HNWYEeXrZrKbG7Obdjy23s7YwkCbZR65zce84UDbC0kOCC1ux_lgW-Zyd1sabqTIk-KqPspPm7rUL-tZ41STQiH05fA2IOHBx2AUDk0ipb2Y11mRuxWhodC5gnhEW5oQCgd"/>
+</div>
+<div class="aspect-square rounded overflow-hidden bg-surface-container cursor-pointer p-0.5">
+<img class="w-full h-full object-cover rounded" data-alt="Close up shot of master corrugated cardboard box containing 20 packages of 500g coffee with official factory inspection and transport stamps" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbyFo7LU1FZMtzHr-amhnE82X2M-kXJbYs5Mq6faDVShlWoLItBvVYYj_oua--24jTqrII5QFYBB3N56Ic2qThzfs6OhnTOVFG7HwuZffrXPIEXOGEdGKW_lMMX4REsQSps9OTQHOp4ihSLHBpMTf6KMYD2RisR-QEs52B4V0eZ-1w0FGeh4Cu7ECn_9qR8uMI0Hvk3pU4bp-6aWPeoiwFZsKVY2lME3B_SK5g8FKg"/>
+</div>
+<div class="aspect-square rounded overflow-hidden bg-surface-container cursor-pointer p-0.5">
+<img class="w-full h-full object-cover rounded" data-alt="Loaded wooden standard PBR pallet wrapped in industrial stretch film loaded on logistics bay awaiting cross-docking" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBO0gFmATv53q-KjC45HZR7qChiMALJlbF3JhWinwdHnRgkRuzov3Kf7u9svv72G5yXXBMxS3RYm7jySFUXYYuapjxq5ygfT1PmLPCG1PHxXHvszN-1a6yYgz-Cft8ojre5VBplDRV1daKRglYsJLP2djF9rzqyAVEc5Tc2nm5cPELVoTrBP62BiwYMBREkx2c5cP-M4WoMzmGh4ychpLeSTgFrZFsCpjGR1-iGtqc"/>
+</div>
+<div class="aspect-square rounded overflow-hidden bg-surface-container cursor-pointer p-0.5 flex flex-col items-center justify-center text-primary bg-primary-fixed">
+<span class="material-symbols-outlined text-lg">description</span>
+<span class="font-label-sm text-label-sm font-bold">Laudo</span>
+</div>
+</div>
+</div>
+<!-- Title & Essential Specs -->
+<div class="w-full md:w-7/12 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between gap-space-xs mb-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-bold uppercase">
+                    Alimentos Básicos &amp; Mercearia Doce
+                  </span>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                    Homologado A+
+                  </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface leading-snug mb-space-xs">
+                  Café Torrado e Moído Tradicional 500g (Caixa c/ 20 un)
+                </h1>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm mb-space-sm">
+<span class="font-bold text-on-surface">3 Corações Alimentos S.A.</span>
+<span>•</span>
+<span>CNPJ: 63.310.411/0001-01</span>
+</div>
+<!-- FEFO Shelf Life Badge -->
+<div class="p-space-xs rounded-lg bg-secondary-fixed/50 flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-base">hourglass_top</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-secondary-fixed">VALIDADE CRÍTICA FEFO: 10/DEZ/2026</span>
+<span class="font-body-sm text-body-sm text-on-secondary-fixed-variant">180 dias restantes de Shelf Life (Apto a qualquer rede)</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">100% OK</span>
+</div>
+</div>
+<!-- Quick Metrics Grid -->
+<div class="grid grid-cols-3 gap-2 p-space-xs rounded-lg bg-surface-container-low text-on-surface">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Volume Total</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">600 Cxs</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">12.000 un 500g</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Paletização</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">12 PBR</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">50 cxs / palete</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Peso Carga</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">6.420 kg</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bruto c/ Paletes</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Specs Table (High-Density) -->
+<div class="rounded-lg bg-surface-container-low p-space-sm">
+<h3 class="font-label-md text-label-md font-bold uppercase tracking-wider text-on-surface-variant mb-space-xs flex items-center justify-between">
+<span>Especificações Cadastrais &amp; Fiscais</span>
+<span class="font-label-sm text-label-sm text-primary">NCM 0901.21.00 • CEST 17.098.00</span>
+</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm text-label-sm">DUN-14 Master:</span>
+<span class="font-bold font-mono">17894005080012</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm text-label-sm">Origem da Mercadoria:</span>
+<span class="font-bold">Nacional (0) SP</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm text-label-sm">Empilhamento Máx:</span>
+<span class="font-bold">Até 6 camadas</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm text-label-sm">Tipo de Embalagem:</span>
+<span class="font-bold">Vácuo Almofada PET</span>
+</div>
+</div>
+</div>
+<!-- Logistics & Fulfillment Route -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Local de Retirada: CD Vinhedo/SP</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rod. Anhanguera, km 74 • Distância calculada: <strong class="text-secondary">18 km do seu CD</strong></span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+                Retirada FOB Imediata (D+0)
+              </span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+                Frete CIF Opcional (D+1)
+              </span>
+</div>
+</div>
+<!-- Quality, Sanitary & Escrow Guarantee Box -->
+<div class="p-space-sm rounded-lg bg-primary-fixed/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">Dossiê Sanitário MAPA / SIF &amp; Proteção Escrow</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lote auditado, livre de avarias. Pagamento mantido em custódia fiduciária faturado após checklist na doca.</span>
+</div>
+</div>
+<button class="px-space-sm py-1 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-bold flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-xs">download</span>
+              Baixar Laudo Técnico (PDF)
+            </button>
+</div>
+</div>
+<!-- Profit Margin Calculator Widget for Retailers -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary">calculate</span>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Simulador de Margem &amp; Mark-up na Gôndola</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Base: Preço Médio Nielsen/Kantar SP</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm text-center">
+<div class="p-space-xs rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Custo Unitário Arremate</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">R$ 10,95</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">No lance líder</span>
+</div>
+<div class="p-space-xs rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Preço de Varejo Médio</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">R$ 18,90</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Prateleira Grande SP</span>
+</div>
+<div class="p-space-xs rounded-lg bg-secondary-fixed/50">
+<span class="font-label-sm text-label-sm text-on-secondary-fixed block">Margem Bruta Estimada</span>
+<span class="font-headline-md text-headline-md font-bold text-secondary">42,06%</span>
+<span class="font-body-sm text-body-sm text-secondary font-bold">+ R$ 7,95 / un</span>
+</div>
+<div class="p-space-xs rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Lucro Bruto Total</span>
+<span class="font-headline-md text-headline-md font-bold text-secondary">R$ 95.400,00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Na carga de 600 cxs</span>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT COLUMN: Auction Cockpit, Real-Time Bid Engine & Disputa (5 cols) -->
+<section class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Live Current Winning Bid Showcase -->
+<div class="rounded-xl bg-surface-container-lowest shadow-md p-space-md flex flex-col gap-space-sm border-l-4 border-secondary">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+              LANCE LÍDER ATUAL NO PREGÃO
+            </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">14:31:08 BRT</span>
+</div>
+<!-- Price Display Big Scale -->
+<div class="flex items-baseline justify-between mt-1">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider font-bold">Preço Unitário</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-xl text-headline-xl font-bold text-secondary tracking-tight" id="currentLeaderPrice">R$ 10,95</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant font-bold">/ unidade 500g</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider font-bold">Total Fechado</span>
+<div class="font-headline-lg text-headline-lg font-bold text-on-surface" id="currentLeaderTotal">
+                R$ 131.400,00
+              </div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">R$ 219,00 / caixa (20 un)</span>
+</div>
+</div>
+<!-- Current Leader Details -->
+<div class="p-space-xs rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-xs">
+                BP
+              </div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Supermercados Boa Praça Ltda</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sorocaba/SP • Habilitação Fiduciária Ativa</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-bold">
+              1º Lugar
+            </span>
+</div>
+<div class="text-center font-label-sm text-label-sm text-on-surface-variant">
+            Incremento Mínimo Obrigatório: <strong class="text-on-surface">R$ 0,10 / un</strong> (+R$ 2,00/caixa • +R$ 1.200,00 no lote total)
+          </div>
+</div>
+<!-- ACTION COCKPIT FOR USER (SUPERMERCADO ALVORADA) -->
+<div class="rounded-xl bg-surface-container-lowest shadow-md p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Mesa de Lance Rápido</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">verified</span>
+              Saldo Escrow: R$ 482.900,00
+            </span>
+</div>
+<!-- Next Suggested Price Target -->
+<div class="p-space-sm rounded-lg bg-primary-fixed/30 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-primary-fixed-variant uppercase font-bold">Próximo Lance Mínimo Sugerido</span>
+<span class="font-headline-lg text-headline-lg font-bold text-primary" id="suggestedUnitBid">R$ 11,05 / un</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Total do Lote</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface" id="suggestedTotalBid">R$ 132.600,00</span>
+</div>
+</div>
+<!-- Quick Increment Buttons -->
+<div class="grid grid-cols-3 gap-2">
+<button class="bid-pill py-2 px-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md font-bold text-center transition-colors" onclick="setBidIncrement(0.10)">
+              + R$ 0,10 <span class="block font-body-sm text-body-sm font-normal text-on-surface-variant">(R$ 11,05)</span>
+</button>
+<button class="bid-pill py-2 px-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md font-bold text-center transition-colors" onclick="setBidIncrement(0.25)">
+              + R$ 0,25 <span class="block font-body-sm text-body-sm font-normal text-on-surface-variant">(R$ 11,20)</span>
+</button>
+<button class="bid-pill py-2 px-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md font-bold text-center transition-colors" onclick="setBidIncrement(0.50)">
+              + R$ 0,50 <span class="block font-body-sm text-body-sm font-normal text-on-surface-variant">(R$ 11,45)</span>
+</button>
+</div>
+<!-- Custom Unit Bid Stepper -->
+<div class="flex items-center gap-space-xs bg-surface-container-low rounded-lg p-1">
+<span class="pl-2 font-label-sm text-label-sm font-bold text-on-surface-variant uppercase">Lance Unitário:</span>
+<div class="flex-1 flex items-center justify-end gap-1">
+<button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center font-bold text-on-surface hover:bg-surface-container-high transition-colors" onclick="adjustBidStep(-0.05)">-</button>
+<input class="w-20 text-center font-headline-md text-headline-md font-bold bg-transparent text-primary focus:outline-none" id="customBidInput" type="text" value="11.05"/>
+<button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center font-bold text-on-surface hover:bg-surface-container-high transition-colors" onclick="adjustBidStep(0.05)">+</button>
+</div>
+<span class="pr-2 font-body-sm text-body-sm text-on-surface-variant">/ un</span>
+</div>
+<!-- PRIMARY GIANT BID CTA BUTTON -->
+<button class="w-full py-3.5 px-space-md rounded-xl bg-secondary hover:bg-on-secondary-container text-on-secondary font-headline-md text-headline-md font-bold shadow-lg shadow-secondary/20 flex flex-col items-center justify-center transition-all transform active:scale-98" id="submitBidBtn" onclick="executeBidAction()">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">gavel</span>
+<span id="bidBtnText">⚡ DAR LANCE DE R$ 11,05 / UN (R$ 132.600,00)</span>
+</div>
+<span class="font-label-sm text-label-sm opacity-90 font-normal">Sua custódia fiduciária de R$ 482.900,00 cobre este lance com folga</span>
+</button>
+<!-- Auto-Proxy Bidding Robot Control -->
+<div class="p-space-xs rounded-lg bg-surface-container-low flex items-start gap-space-xs">
+<input class="mt-1 rounded text-primary focus:ring-primary w-4 h-4 cursor-pointer" id="autoProxyBid" type="checkbox"/>
+<div class="flex flex-col">
+<label class="font-label-md text-label-md font-bold text-on-surface cursor-pointer" for="autoProxyBid">
+                Ativar Robô de Lances Automáticos (Proxy Bidding)
+              </label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                O sistema cobrirá novos lances pelo incremento mínimo até o teto máximo de <strong class="text-on-surface">R$ 12,50/un (R$ 150.000,00)</strong>.
+              </p>
+</div>
+</div>
+</div>
+<!-- LIVE AUDIT LOG: Real-time dispute feed -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Feed de Disputa em Tempo Real</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-mono">
+              Audit WORM Ativo
+            </span>
+</div>
+<!-- Bid History List (Reverse Chronological) -->
+<div class="flex flex-col gap-1.5 max-h-56 overflow-y-auto pr-1" id="bidsStreamContainer">
+<!-- Item 1 (Leader) -->
+<div class="p-2 rounded-lg bg-secondary-fixed/30 flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-mono text-on-surface-variant">14:31:08</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-secondary">R$ 10,95 / un (R$ 131.400)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Supermercados Boa Praça Ltda (Sorocaba/SP)</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">Líder</span>
+</div>
+<!-- Item 2 -->
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-mono text-on-surface-variant">14:30:45</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">R$ 10,85 / un (R$ 130.200)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Atacadão Central Paulínia</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Superado</span>
+</div>
+<!-- Item 3 (You) -->
+<div class="p-2 rounded-lg bg-primary-fixed/40 flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-mono text-primary font-bold">14:30:12</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">R$ 10,75 / un (R$ 129.000)</span>
+<span class="font-body-sm text-body-sm text-primary font-bold">Você (Supermercado Alvorada)</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold">Seu Lance</span>
+</div>
+<!-- Item 4 -->
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-mono text-on-surface-variant">14:29:10</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">R$ 10,50 / un (R$ 126.000)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rede Economia Valinhos</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Superado</span>
+</div>
+<!-- Item 5 (Initial) -->
+<div class="p-2 rounded-lg bg-surface-container-low flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-mono text-on-surface-variant">14:25:00</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface-variant">R$ 9,50 / un (R$ 114.000)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lance Inicial da Fábrica (Preço de Reserva Atingido)</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-bold">Abertura</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary">security</span>
+<span>Mecanismo anti-cartel com criptografia ponta a ponta e auditoria BACEN.</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- LOWER SECTION: Concurrent Live Lots Ending Soon (Table Density) -->
+<div class="w-full px-margin py-space-md">
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-md flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-xs">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">notification_important</span>
+            Outros Pregões ao Vivo Encerrando nos Próximos 30 Minutos
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Lotes correlatos de mercearia e laticínios prontos para consolidação de frete no mesmo CD.
+          </p>
+</div>
+<a class="font-label-md text-label-md text-primary font-bold hover:underline flex items-center gap-1" href="#">
+          Ver todos os 28 leilões ativos <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Concurrent Table View -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-2.5 px-3">Lote &amp; Produto</th>
+<th class="py-2.5 px-3">Volume / Paletes</th>
+<th class="py-2.5 px-3">Validade (FEFO)</th>
+<th class="py-2.5 px-3">Lance Atual Unit.</th>
+<th class="py-2.5 px-3">Valor Total Lote</th>
+<th class="py-2.5 px-3">Tempo Restante</th>
+<th class="py-2.5 px-3 text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Stacked cans of sweetened condensed milk in master boxes on a warehouse pallet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNv7iJADU_fVfJkCPp7SIqs-fCCErwhEGHAfssxifFhfDDDfr7HwRQjdub3cxGmuY8WuonKUzXYGv4QT6DMwb33vg1Nxi4L-WJII8wSdH5sZsy-Jb5Aet0Gff_GMvbwdOlEKfI132DNn0VT33cx4VQ22Ed3KsA_rAuFAUTgkXA-qzM9equlFcdrWw9oWf3gnTH4MRNz7rJPVklZr6pJfzZ82JMw3wzzICUdVIGHCLI"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">#419 • Leite Condensado Semidesnatado 395g</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lactalis do Brasil • Caixa c/ 27 un</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface">800 Cxs</span>
+<span class="block text-on-surface-variant font-label-sm text-label-sm">16 Paletes PBR</span>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+                  24/Jan/2027 (225d)
+                </span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-secondary text-label-lg">R$ 4,15</span>
+<span class="block text-on-surface-variant text-body-sm">Gôndola: R$ 6,80</span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface text-label-lg">R$ 89.640,00</span>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-numeric-timer text-body-sm font-bold">
+                  00:11:45
+                </span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="px-space-sm py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary/90 transition-colors">
+                  Acompanhar
+                </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Stacked boxes of chocolate filled sandwich cookies in wholesale packaging" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIIfF3na-NPis_y3Xv9tZrDc4KsTwVJXuRYuu0DWc0sUKyKGAYighjKoqEJBzOtD-_ML5rM5Og_-wZ3fvW7EHIaS1E6oTIp2cYu_ziNUYAZDBLWVhZcX23ofh6nzhFL3zoxz_M6t70NzAKdI-DXY8cVlxyabIWlKTM3SEob2kSmtm7WHUmtHZQ_fKb6qq1M7I6H1x31pAyjnIDFdz7bgREJqG_sry_O9CdQpyi7T_u"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">#420 • Biscoito Recheado Chocolate 130g</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">M. Dias Branco • Caixa c/ 36 un</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface">1.200 Cxs</span>
+<span class="block text-on-surface-variant font-label-sm text-label-sm">20 Paletes PBR</span>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed/60 text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+                  15/Nov/2026 (90d FEFO)
+                </span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-secondary text-label-lg">R$ 1,68</span>
+<span class="block text-on-surface-variant text-body-sm">Gôndola: R$ 3,20</span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface text-label-lg">R$ 72.576,00</span>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-numeric-timer text-body-sm font-bold">
+                  00:19:12
+                </span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="px-space-sm py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary/90 transition-colors">
+                  Acompanhar
+                </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Industrial bags of wheat flour type 1 stacked neatly in dry goods warehouse" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByiKforLPsoi4YwI9Lzr4vHdCs-aEbB0ESwnBqXu4SxOzTPDy0GrEvY7gb9avA6-ZyCbbujAI8UAEqL1oBRtBduIM2u6XMpUiYxcdFNiEq30YpjtDqAUtRb9jRVVMz7iGKlTNbGpEf8nh8N13nDpACNJ_lCvI8NipK4zY1iN-W1HQvB1IazFoGMaF81hkZ3odcFSRK0pdwtSCUmk_Zz-8LrDU5azsT6lxiFcQnqtJw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">#421 • Farinha de Trigo Tipo 1 Tradicional 1kg</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bunge Alimentos • Fardo c/ 10 un</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface">1.500 Fardos</span>
+<span class="block text-on-surface-variant font-label-sm text-label-sm">15 Paletes PBR</span>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+                  20/Mar/2027 (310d)
+                </span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-secondary text-label-lg">R$ 3,10</span>
+<span class="block text-on-surface-variant text-body-sm">Gôndola: R$ 5,20</span>
+</td>
+<td class="py-3 px-3">
+<span class="font-bold text-on-surface text-label-lg">R$ 46.500,00</span>
+</td>
+<td class="py-3 px-3">
+<span class="px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-numeric-timer text-body-sm font-bold">
+                  00:27:04
+                </span>
+</td>
+<td class="py-3 px-3 text-right">
+<button class="px-space-sm py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold hover:bg-primary/90 transition-colors">
+                  Acompanhar
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- LEGAL SHIELD & FIDUCIARY ESCROW NOTICE BAR -->
+<div class="w-full px-margin py-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-3xl shrink-0">assured_workload</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Garantia Institucional de Arremate Irrevogável (BACEN Res. nº 4.656)</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            O pregão eletrônico possui validade jurídica de leilão extrajudicial. Os fundos arrematados permanecem bloqueados na conta escrow e a liquidação só é transferida à indústria após confirmação de entrega física no CD do comprador com nota fiscal homologada no SEFAZ.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0 font-label-sm text-label-sm text-on-surface font-bold">
+<span class="material-symbols-outlined text-primary text-base">verified</span>
+<span>Auditoria WORM &amp; mTLS 1.3</span>
+</div>
+</div>
+</div>
+<!-- Audio Ping & Real-Time Bid Simulator Micro-Interaction -->
+<script>
+    // Live countdown simulation
+    let secondsLeft = 222; // 03:42
+    const timerElement = document.getElementById('liveCountdown');
+    
+    setInterval(() => {
+      if (secondsLeft > 0) {
+        secondsLeft--;
+        const mins = Math.floor(secondsLeft / 60);
+        const secs = secondsLeft % 60;
+        timerElement.textContent = `00:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+    }, 1000);
+
+    // Dynamic Bid Form Calculations
+    const unitsInLot = 12000;
+    const customBidInput = document.getElementById('customBidInput');
+    const suggestedUnitBid = document.getElementById('suggestedUnitBid');
+    const suggestedTotalBid = document.getElementById('suggestedTotalBid');
+    const submitBidBtn = document.getElementById('submitBidBtn');
+    const bidBtnText = document.getElementById('bidBtnText');
+
+    function updateBidDisplay(val) {
+      const unitVal = parseFloat(val);
+      const totalVal = unitVal * unitsInLot;
+      const formattedTotal = totalVal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const formattedUnit = unitVal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      suggestedUnitBid.textContent = `R$ ${formattedUnit} / un`;
+      suggestedTotalBid.textContent = `R$ ${formattedTotal}`;
+      bidBtnText.textContent = `⚡ DAR LANCE DE R$ ${formattedUnit} / UN (R$ ${formattedTotal})`;
+    }
+
+    function setBidIncrement(increment) {
+      const baseLeader = 10.95;
+      const newBid = (baseLeader + increment).toFixed(2);
+      customBidInput.value = newBid;
+      updateBidDisplay(newBid);
+    }
+
+    function adjustBidStep(delta) {
+      let current = parseFloat(customBidInput.value) || 11.05;
+      let next = Math.max(11.05, current + delta);
+      customBidInput.value = next.toFixed(2);
+      updateBidDisplay(next.toFixed(2));
+    }
+
+    customBidInput.addEventListener('input', (e) => {
+      let val = parseFloat(e.target.value);
+      if (!isNaN(val) && val >= 11.05) {
+        updateBidDisplay(val.toFixed(2));
+      }
+    });
+
+    // Bid Placement Feedback Simulation
+    function executeBidAction() {
+      const val = parseFloat(customBidInput.value).toFixed(2);
+      const formattedTotal = (val * unitsInLot).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      
+      const container = document.getElementById('bidsStreamContainer');
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+
+      // Insert new winning bid
+      const newEntry = document.createElement('div');
+      newEntry.className = "p-2 rounded-lg bg-secondary-fixed/50 flex items-center justify-between text-on-surface animate-bounce";
+      newEntry.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span class="font-label-sm text-label-sm font-mono text-primary font-bold">${timeStr}</span>
+          <div class="flex flex-col">
+            <span class="font-label-md text-label-md font-bold text-secondary">R$ ${val.replace('.', ',')} / un (R$ ${formattedTotal})</span>
+            <span class="font-body-sm text-body-sm text-secondary font-bold">Você (Supermercado Alvorada) - LANCE CONFIRMADO</span>
+          </div>
+        </div>
+        <span class="px-2 py-0.5 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold">Novo Líder</span>
+      `;
+      container.insertBefore(newEntry, container.firstChild);
+
+      // Update current leader card
+      document.getElementById('currentLeaderPrice').textContent = `R$ ${val.replace('.', ',')}`;
+      document.getElementById('currentLeaderTotal').textContent = `R$ ${formattedTotal}`;
+
+      // Trigger Anti-sniper extension if under 60 seconds
+      if (secondsLeft < 60) {
+        secondsLeft += 60;
+      }
+
+      // Next step
+      const nextStep = (parseFloat(val) + 0.10).toFixed(2);
+      customBidInput.value = nextStep;
+      updateBidDisplay(nextStep);
+    }
+
+    // Toggle Audio
+    let audioEnabled = true;
+    const toggleAudioBtn = document.getElementById('toggleAudioBtn');
+    const audioIcon = document.getElementById('audioIcon');
+
+    toggleAudioBtn.addEventListener('click', () => {
+      audioEnabled = !audioEnabled;
+      if (audioEnabled) {
+        audioIcon.textContent = 'volume_up';
+        toggleAudioBtn.classList.remove('opacity-50');
+      } else {
+        audioIcon.textContent = 'volume_off';
+        toggleAudioBtn.classList.add('opacity-50');
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface-variant mt-space-xl border-t border-outline-variant/40"><div class="w-full px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl mb-space-xl"><div><div class="flex items-center gap-space-xs mb-space-sm"><span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary text-secondary font-headline-md font-bold text-headline-md">$</span><span class="font-headline-md text-headline-md font-bold text-primary">VAREJISTA ONLINE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Plataforma B2B autorizada para liquidação de cargas fechadas, ponta de estoque e leilões reversos de alimentos e bebidas em conformidade estrita com o sistema financeiro nacional.</p><div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary font-bold"><span class="material-symbols-outlined text-sm">verified_user</span>Custódia Fiduciária Assegurada</div></div><div><h4 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-sm">Compliance Sanitário</h4><ul class="space-y-space-xs font-body-sm text-body-sm"><li>Rastreabilidade de Lotes ANVISA RDC 655/2022</li><li>Certificação de Inspeção Federal (S.I.F. / MAPA)</li><li>Controle Termolábil &amp; Cadeia de Frio Auditada</li><li>Protocolos de Shelf Life &amp; Diretrizes FEFO</li><li>Descarte e Laudo de Inutilização Industrial</li></ul></div><div><div><h4 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-sm">Mesa de Operações B2B</h4><ul class="space-y-space-xs font-body-sm text-body-sm"><li class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-primary">call</span>0800 770 9400 (Pregão Exclusivo)</li><li class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-primary">mail</span>operacoes@varejistaonline.com.br</li><li>Desk de Arremate: Seg a Sex, 07h às 19h BRT</li><li>Plantão de Logística Reversa &amp; Cross-docking</li><li>Auditoria de Laudo Técnico Pré-Faturamento</li></ul></div></div><div><h4 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-sm">Marco Regulatório &amp; Segurança</h4><ul class="space-y-space-xs font-body-sm text-body-sm"><li>Resolução BACEN nº 4.656/2018 (Operações Escrow)</li><li>Liquidação D+0 via STR / Sistema SPB</li><li>Emissão Automática de NF-e e MDF-e Integrada</li><li>Termos de Arrematação Judicial e Extrajudicial</li><li>Política de Prevenção à Fraude e KYC/KYB</li></ul></div></div><div class="pt-space-md border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-body-sm text-body-sm"><p>© 2024 Varejista Online S.A. Todos os direitos reservados. CNPJ: 42.108.992/0001-35. Av. das Nações Unidas, 14261 - São Paulo/SP.</p><div class="flex items-center gap-space-md font-label-sm text-label-sm"><span>MAPA / S.I.F. 0041/SP</span><span>ANVISA AFE nº 1.48291.0</span><span>PCI DSS Nível 1</span></div></div></div></footer></body></html>

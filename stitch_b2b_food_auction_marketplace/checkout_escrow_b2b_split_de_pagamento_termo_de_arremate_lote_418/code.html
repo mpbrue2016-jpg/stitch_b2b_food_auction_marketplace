@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-primary":"#b0c6ff","tertiary-fixed-dim":"#ffb3ac","surface-container-highest":"#e0e3e5","on-error-container":"#93000a","primary":"#003178","on-error":"#ffffff","on-secondary-container":"#217128","surface-tint":"#2b5bb5","on-primary":"#ffffff","surface-variant":"#e0e3e5","inverse-on-surface":"#eff1f3","outline":"#737783","inverse-surface":"#2d3133","on-primary-container":"#a1bbff","on-surface-variant":"#434652","surface-container-lowest":"#ffffff","surface-container":"#eceef0","on-primary-fixed":"#001945","primary-container":"#0d47a1","on-tertiary-fixed-variant":"#930010","on-secondary":"#ffffff","outline-variant":"#c3c6d4","surface-dim":"#d8dadc","tertiary":"#720009","on-surface":"#191c1e","surface-bright":"#f7f9fb","secondary":"#1b6d24","error-container":"#ffdad6","secondary-fixed":"#a3f69c","surface-container-high":"#e6e8ea","primary-fixed":"#d9e2ff","surface":"#f7f9fb","on-tertiary-container":"#ffa59d","on-background":"#191c1e","primary-fixed-dim":"#b0c6ff","on-primary-fixed-variant":"#00429c","on-tertiary":"#ffffff","tertiary-fixed":"#ffdad6","background":"#f7f9fb","secondary-container":"#a0f399","secondary-fixed-dim":"#88d982","on-tertiary-fixed":"#410003","error":"#ba1a1a","on-secondary-fixed-variant":"#005312","surface-container-low":"#f2f4f6","on-secondary-fixed":"#002204","tertiary-container":"#9d0011"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter":"1rem","space-md":"0.75rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter-mobile":"0.75rem","space-xs":"0.25rem","space-lg":"1.25rem","space-xl":"2rem","margin":"1.5rem"},"fontFamily":{"headline-lg-mobile":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"]},"fontSize":{"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased min-h-screen"><header class="fixed top-0 left-0 w-full z-50 bg-surface/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full px-margin"><div class="h-16 flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-xl flex-shrink-0"><a class="flex items-center gap-space-xs" data-path="leiloes-ao-vivo" href="#"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md tracking-tighter">VO</div><div class="flex flex-col leading-none"><span class="font-headline-md text-headline-md text-primary tracking-tight font-extrabold">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">B2B Food &amp; Industrial Auction</span></div></a><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-lg"><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="leiloes-ao-vivo" href="#">Leilões ao Vivo</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="validade-fefo" href="#">Validade FEFO</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="venda-direta" href="#">Venda Direta</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="industrias-parceiras" href="#">Indústrias</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="central-de-alertas" href="#">Central de Alertas</a><a class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="painel-de-lances" href="#">Meus Lotes</a></nav></div><div class="flex items-center gap-space-md flex-shrink-0"><div class="hidden md:flex flex-col text-right pr-space-md"><span class="font-label-sm text-label-sm text-outline uppercase">Saldo Escrow BACEN</span><span class="font-headline-md text-headline-md text-secondary font-extrabold">R$ 482.500,00</span></div><div class="hidden sm:flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Conta Fiduciária Ativa</span></div><a class="hidden lg:inline-flex items-center justify-center px-space-md py-space-xs bg-secondary text-on-secondary rounded-lg font-label-lg text-label-lg hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-colors" data-path="checkout-lote" href="#">Arrematar Lote</a><div class="flex items-center gap-space-xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></div></header><main class="w-full pt-16 bg-background"><div class="flex flex-col w-full">
+<!-- Top Celebration & Countdown Alert Bar -->
+<section class="w-full bg-surface-container-low py-space-md">
+<div class="max-w-[1440px] mx-auto px-margin">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col xl:flex-row items-center justify-between gap-space-md">
+<!-- Left: Status & Identification -->
+<div class="flex items-center gap-space-md w-full xl:w-auto">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[28px]">gavel</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-headline-md text-headline-md text-primary font-extrabold tracking-tight">Arremate Homologado • Pregão #418</span>
+<span class="bg-secondary/15 text-secondary px-space-xs py-0.5 rounded text-label-sm font-label-sm uppercase font-extrabold tracking-wider">Vencedor Oficial</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm text-on-surface-variant text-body-sm font-body-sm mt-0.5">
+<span>Protocolo: <strong class="text-on-surface">#ARR-2026-0418-SBE</strong></span>
+<span class="text-outline-variant">•</span>
+<span>Comprador: <strong class="text-on-surface">Supermercado Alvorada Ltda</strong> (CNPJ 14.890.312/0001-44)</span>
+</div>
+</div>
+</div>
+<!-- Right: Liquidation Countdown & Status -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-space-md w-full xl:w-auto justify-end">
+<div class="bg-tertiary/10 rounded-lg p-space-sm flex items-center gap-space-sm">
+<div class="flex flex-col text-right">
+<span class="text-label-sm font-label-sm uppercase font-bold text-tertiary">Janela Fiduciária BACEN Res. 4.656</span>
+<div class="flex items-center gap-1 font-numeric-timer text-numeric-timer text-tertiary">
+<span class="material-symbols-outlined text-[20px] animate-pulse">timer</span>
+<span class="tracking-tight" id="liquidation-timer">01:58:42</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high px-space-md py-space-sm rounded-lg flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-ping"></span>
+<span class="text-label-sm font-label-sm font-bold text-on-surface-variant uppercase tracking-wider">Aguardando Aporte Escrow</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Executive Layout (2 Columns) -->
+<main class="w-full max-w-[1440px] mx-auto px-margin py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- ================= LEFT COLUMN (8 cols / ~65%) ================= -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg min-w-0">
+<!-- SECTION 1: Lote & Especificações Técnicas -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md mb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="High quality commercial photo of palletized packs of roasted and ground traditional Brazilian coffee in vacuum packaging stacked neatly on standardized wooden warehouse pallets inside an illuminated logistics center with clean industrial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpmiySM5Hw3p8la-7w95i9tM51hXssSkPRcoc7lrcMxoLUKCWSAKktDbJaOV_QxzJa6sBliNA_SgTzPGPaEwFfPVFmo78cobbKy1HeOGT3Wx4aXOIHhPrMf-SFvMfHTH23E4fZm2ZzvQYYFSliclX5N7w_-HEEKITwafYnAXHWxcplZD48j59icRk8xdovlC8gpffL6VIHKUDb-FurbwtaW3CbSjnIT4BbF4cDD_Zv"/>
+<span class="absolute bottom-1 right-1 bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface px-1 py-0.5 rounded text-label-sm font-label-sm font-bold">12 Paletes</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="bg-primary/10 text-primary px-space-xs py-0.5 rounded text-label-sm font-label-sm font-bold">Lote #418</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold">Validade FEFO 180 Dias</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">Café Torrado &amp; Moído Tradicional 500g (Caixa c/ 20 un)</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Fabricante: <strong>3 Corações Alimentos S.A.</strong> (Rating A+ • CNPJ 63.310.411/0001-01)</span>
+</p>
+</div>
+</div>
+<div class="flex flex-col md:text-right bg-surface-container-low md:bg-transparent p-space-sm md:p-0 rounded-lg">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold">Lance Vencedor Arrematado</span>
+<span class="text-headline-lg font-headline-lg text-secondary font-extrabold tracking-tight">R$ 10,95 <span class="text-label-sm font-label-sm text-on-surface-variant font-normal">/ un</span></span>
+<span class="text-body-sm font-body-sm text-on-surface-variant font-semibold">R$ 219,00 por cx fechada</span>
+</div>
+</div>
+<!-- Technical Grid Specs -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm bg-surface-container-low p-space-md rounded-lg">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm uppercase text-outline">Volume Total</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">600 Caixas Master</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">12.000 pacotes de 500g</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm uppercase text-outline">Padrão Paletização</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">12 Paletes PBR</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Peso Bruto: 6.420 kg</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm uppercase text-outline">Shelf Life (FEFO)</span>
+<span class="font-label-lg text-label-lg font-bold text-secondary">10/Dez/2026</span>
+<span class="text-body-sm font-body-sm text-secondary font-semibold">100% Homologado ANVISA</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm uppercase text-outline">Origem / Doca</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">CD Vinhedo/SP</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Rod. Anhanguera, km 74</span>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Modalidade Logística & Seguro de Carga -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">local_shipping</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">Modalidade Logística &amp; Seguro Operacional</h2>
+</div>
+<span class="text-label-sm font-label-sm uppercase bg-surface-container px-space-xs py-0.5 rounded font-bold text-on-surface-variant">Agendamento Integrado</span>
+</div>
+<!-- Radio Shipping Options -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md mb-space-md">
+<!-- Option FOB (Selected) -->
+<label class="relative flex flex-col p-space-md rounded-xl bg-surface-container cursor-pointer transition-all hover:bg-surface-container-high" id="label-fob">
+<div class="flex items-start justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<input checked="" class="w-4 h-4 accent-primary" name="shipping-mode" onchange="updateShipping(0)" type="radio" value="fob"/>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Retirada FOB pelo Comprador</span>
+</div>
+<span class="font-label-lg text-label-lg font-extrabold text-secondary">R$ 0,00</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant pl-6">
+                Retirada imediata com frota própria ou transportador homologado em D+0 ou D+1. Agendamento digital de doca liberado após compensação fiduciária.
+              </p>
+<div class="mt-space-sm pl-6 flex items-center gap-space-xs text-label-sm font-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Doca Express Vinhedo Liberada para Coleta</span>
+</div>
+</label>
+<!-- Option CIF -->
+<label class="relative flex flex-col p-space-md rounded-xl bg-surface-container-low cursor-pointer transition-all hover:bg-surface-container-high" id="label-cif">
+<div class="flex items-start justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<input class="w-4 h-4 accent-primary" name="shipping-mode" onchange="updateShipping(1850)" type="radio" value="cif"/>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Frete CIF Dedicado da Indústria</span>
+</div>
+<span class="font-label-lg text-label-lg font-extrabold text-on-surface">+ R$ 1.850,00</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant pl-6">
+                Entrega direta no CD de Destino (Campinas/SP) em caminhão toco/truck refrigerado lacrado em D+2. Descarregamento paletizado incluso.
+              </p>
+<div class="mt-space-sm pl-6 flex items-center gap-space-xs text-label-sm font-label-sm text-outline font-bold">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Previsão de Entrega: até 48h úteis</span>
+</div>
+</label>
+</div>
+<!-- Insurance Checkbox -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex items-start gap-space-md">
+<input checked="" class="mt-1 w-4 h-4 accent-secondary cursor-pointer" id="cargo-insurance" onchange="toggleInsurance(this.checked)" type="checkbox"/>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex flex-wrap items-center justify-between gap-space-xs">
+<label class="font-label-lg text-label-lg font-bold text-on-surface cursor-pointer" for="cargo-insurance">
+                  Incluir Seguro Garantia de Carga Adicional (Tokio Marine B2B)
+                </label>
+<span class="font-label-lg text-label-lg font-extrabold text-on-surface">R$ 280,00</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                Cobertura compreensiva RCF-DC, roubo qualificado em trânsito, avarias no tombamento de palete e ressarcimento sanitário imediato com laudo MAPA.
+              </p>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Custódia Escrow & Meios de Pagamento -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">account_balance</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">Forma de Aporte na Conta Escrow Fiduciária</h2>
+</div>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>Proteção Bacen Res. 4.656</span>
+</div>
+</div>
+<!-- Interactive Tabs -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs p-1 bg-surface-container rounded-lg mb-space-lg" id="payment-tabs">
+<button class="py-space-xs px-space-sm rounded-lg font-label-lg text-label-lg font-bold text-on-primary bg-primary shadow-sm flex items-center justify-center gap-1 transition-all" id="tab-pix" onclick="selectPaymentTab('pix')">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+<span>PIX Instantâneo</span>
+</button>
+<button class="py-space-xs px-space-sm rounded-lg font-label-lg text-label-lg font-bold text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1 transition-all" id="tab-saldo" onclick="selectPaymentTab('saldo')">
+<span class="material-symbols-outlined text-[18px]">wallet</span>
+<span>Saldo Escrow</span>
+</button>
+<button class="py-space-xs px-space-sm rounded-lg font-label-lg text-label-lg font-bold text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1 transition-all" id="tab-ted" onclick="selectPaymentTab('ted')">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+<span>TED Estruturada</span>
+</button>
+<button class="py-space-xs px-space-sm rounded-lg font-label-lg text-label-lg font-bold text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1 transition-all" id="tab-cartao" onclick="selectPaymentTab('cartao')">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+<span>Cartão Corporativo</span>
+</button>
+</div>
+<!-- TAB CONTENT: PIX (Active) -->
+<div class="block" id="content-pix">
+<div class="bg-surface-container-low rounded-xl p-space-md">
+<div class="flex flex-col md:flex-row gap-space-lg items-center">
+<!-- QR Code Box -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col items-center flex-shrink-0">
+<!-- Sharp inline stylized QR Code -->
+<div class="w-48 h-48 bg-surface-container flex items-center justify-center p-2 rounded-lg relative overflow-hidden">
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewbox="0 0 200 200">
+<!-- Corners -->
+<path d="M10 10 h60 v60 h-60 z M25 25 h30 v30 h-30 z M130 10 h60 v60 h-60 z M145 25 h30 v30 h-30 z M10 130 h60 v60 h-60 z M25 145 h30 v30 h-30 z"></path>
+<!-- Timing Patterns & Density Modules -->
+<path d="M20 80 h160 v10 h-160 z M80 20 v160 h10 v-160 z M95 35 h15 v15 h-15 z M115 35 h10 v20 h-10 z M35 95 h20 v20 h-20 z M95 95 h35 v35 h-35 z M140 95 h25 v15 h-25 z M140 120 h15 v25 h-15 z M100 140 h30 v20 h-30 z M140 150 h20 v20 h-20 z M165 140 h15 v35 h-15 z M95 165 h20 v15 h-20 z M60 110 h15 v15 h-15 z M110 70 h20 v15 h-20 z M35 125 h15 v20 h-15 z M70 145 h15 v25 h-15 z M170 95 h15 v25 h-15 z"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-9 h-9 bg-surface-container-lowest rounded-md shadow flex items-center justify-center">
+<span class="text-primary font-bold text-label-sm tracking-tighter">VO</span>
+</div>
+</div>
+</div>
+<span class="text-label-sm font-label-sm font-bold text-on-surface-variant mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">flash_on</span>
+<span>Compensação Instantânea</span>
+</span>
+</div>
+<!-- Instructions & Copy Paste -->
+<div class="flex flex-col min-w-0 flex-1 w-full">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold">Chave de Liquidação SPI Bacen</span>
+<span class="text-label-sm font-label-sm text-secondary font-bold">Válido por: 01:58:42</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg mb-space-sm flex items-center justify-between gap-space-sm shadow-sm">
+<code class="text-body-sm font-body-sm text-on-surface font-mono truncate select-all">
+                      00020126580014br.gov.bcb.pix0136e92b8d00-4b8a-4c47-975a-0418varejista131680.005204000053039865802BR5925VAREJISTA ONLINE SA ESCROW6009SAO PAULO62070503ARR6304E8A9
+                    </code>
+<button class="px-space-md py-space-xs bg-primary text-on-primary rounded font-label-md text-label-md font-bold flex items-center gap-1 flex-shrink-0 hover:bg-primary-container transition-colors" id="copy-btn" onclick="copyPixCode()">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span id="copy-text">Copiar Código</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span>Titular: <strong>Varejista Online S.A. - Conta Custódia Escrow Bacen</strong></span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary">security</span>
+<span>Instituição Liquidante: CIP / Banco Central do Brasil (ISPB 00.000.000)</span>
+</div>
+</div>
+<!-- Optional Upload Comprovante -->
+<div class="mt-space-md pt-space-sm bg-surface-container/50 p-space-sm rounded-lg flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">attachment</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Alçada corporativa dupla? Anexe o recibo:</span>
+</div>
+<label class="cursor-pointer bg-surface-container-lowest text-on-surface px-space-sm py-1 rounded text-label-sm font-label-sm font-bold shadow-sm hover:bg-surface-container transition-colors">
+<span>Anexar Comprovante</span>
+<input class="hidden" type="file"/>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB CONTENT: SALDO ESCROW (Hidden by default) -->
+<div class="hidden" id="content-saldo">
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold">Saldo Gráfico Bloqueado em Conta Bacen</span>
+<span class="text-headline-xl font-headline-xl text-secondary font-extrabold tracking-tight">R$ 482.900,00</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+                  Aporte debitado instantaneamente da sua conta fiduciária pré-aprovada. Sem taxa de transferência e liberação imediata da Doca.
+                </p>
+</div>
+<button class="w-full md:w-auto px-space-lg py-space-md bg-secondary text-on-secondary rounded-lg font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-colors shadow-sm" onclick="liquidarSaldo()">
+<span class="material-symbols-outlined text-[20px]">fingerprint</span>
+<span>Debitar R$ 131.680,00 com ICP-Brasil</span>
+</button>
+</div>
+</div>
+<!-- TAB CONTENT: TED (Hidden) -->
+<div class="hidden" id="content-ted">
+<div class="bg-surface-container-low rounded-xl p-space-md">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold mb-space-xs block">Dados Para TED STR Conciliada Automática</span>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="text-label-sm font-label-sm text-outline">Banco</span>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">001 - Banco do Brasil S.A.</p>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="text-label-sm font-label-sm text-outline">Agência Especial Escrow</span>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">3399-8 (Câmara B2B)</p>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm">
+<span class="text-label-sm font-label-sm text-outline">Conta Fiduciária Vinculada</span>
+<p class="font-label-lg text-label-lg font-bold text-on-surface">982.110-4 (Subconta #418)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB CONTENT: CARTÃO (Hidden) -->
+<div class="hidden" id="content-cartao">
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Cartão B2B Empresarial com Limite Garantido</span>
+<span class="text-label-sm font-label-sm text-secondary font-bold">Até 3x de R$ 43.893,33 sem juros</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<input class="p-space-sm bg-surface-container-lowest rounded-lg text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="Número do Cartão Corporativo" type="text"/>
+<input class="p-space-sm bg-surface-container-lowest rounded-lg text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="Nome Impresso no Cartão (Razão Social)" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 4: Minuta do Contrato & Termo Irrevogável -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">description</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">Termo de Homologação de Pregão &amp; Garantia Fiduciária</h2>
+</div>
+<a class="text-label-sm font-label-sm text-primary font-bold hover:underline flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+<span>Abrir em Tela Cheia</span>
+</a>
+</div>
+<!-- Contract Viewer Box -->
+<div class="bg-surface-container-low rounded-lg p-space-md h-44 overflow-y-auto font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface uppercase mb-2">INSTRUMENTO PARTICULAR DE COMPRA E VENDA MERCANTIL SOB CONDIÇÃO RESOLUTIVA E DEPÓSITO EM GARANTIA FIDUCIÁRIA (ESCROW)</h3>
+<p class="mb-2"><strong>PREÂMBULO:</strong> Pelo presente instrumento, de um lado, na qualidade de VENDEDORA FORNECEDORA, 3 CORAÇÕES ALIMENTOS S.A., e de outro lado, na qualidade de COMPRADORA ARREMATANTE, SUPERMERCADO ALVORADA LTDA, celebram a liquidação do Pregão Eletrônico Lote #418 sob a interveniência da intermediadora fiduciária VAREJISTA ONLINE S.A.</p>
+<p class="mb-2"><strong>CLÁUSULA PRIMEIRA (DA IRREVOGABILIDADE):</strong> O lance ofertado e sagrado vencedor no valor de R$ 10,95 por unidade constitui proposta comercial irrevogável e irretratável, conforme Artigo 427 do Código Civil Brasileiro, incorrendo a parte desistente nas penalidades previstas no Regulamento da B2B Auction House.</p>
+<p class="mb-2"><strong>CLÁUSULA SEGUNDA (DO BLOQUEIO FIDUCIÁRIO E RETENÇÃO TEMPORÁRIA):</strong> O montante integral do lote (R$ 131.680,00) permanecerá custodiado em conta escrow individualizada (Subconta ISPB nº 418), sob tutela e conformidade da Resolução BACEN nº 4.656. Os fundos NÃO serão repassados à fornecedora até a conclusão das etapas de conferência cega descritas na Cláusula Terceira.</p>
+<p class="mb-2"><strong>CLÁUSULA TERCEIRA (DA CONFERÊNCIA EM DOCA E LIBERAÇÃO DO REPASSE):</strong> A Vendedora autorizará a emissão da Nota Fiscal Eletrônica e o agendamento de doca no CD Vinhedo/SP. A COMPRADORA terá até 24 (vinte e quatro) horas úteis após a descarga física para validar: integridade de lacres, ausência de avarias mecânicas no café empacotado e conferência do lote FEFO (vencimento 10/Dez/2026). A aposição de assinatura digital no Romaneio Eletrônico autoriza o repasse automático e irrevogável dos valores custodiados à fornecedora.</p>
+</div>
+<!-- Contract Acceptance Checkbox -->
+<div class="mt-space-md flex items-start gap-space-sm pt-space-xs">
+<input checked="" class="mt-1 w-4 h-4 accent-secondary cursor-pointer" id="contract-accept" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface cursor-pointer select-none" for="contract-accept">
+              Declaro que <strong>li e aceito integralmente os termos da homologação do pregão</strong>, a minuta de custódia fiduciária regulada pelo BACEN e autorizo a retenção em conta escrow até a entrega física e fiscal da carga nas docas.
+            </label>
+</div>
+</div>
+</div>
+<!-- ================= RIGHT COLUMN (4 cols / ~35% - STICKY SUMMARY) ================= -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg lg:sticky lg:top-20">
+<!-- Detailed Financial Summary Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold tracking-wider">Fechamento do Pedido</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold tracking-tight">Detalhamento Financeiro</h2>
+</div>
+<span class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold text-label-md">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</span>
+</div>
+<!-- Line items -->
+<div class="flex flex-col gap-space-xs text-body-sm font-body-sm">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Subtotal Carga (600 Caixas / 12.000 un)</span>
+<span class="font-bold text-on-surface">R$ 131.400,00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span>Frete Retirada FOB</span>
+<span class="text-label-sm font-label-sm bg-surface-container px-1 rounded text-on-surface-variant">Doca SP</span>
+</span>
+<span class="font-bold text-secondary" id="summary-shipping">R$ 0,00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Seguro de Carga Tokio Marine (Sanitário)</span>
+<span class="font-bold text-on-surface" id="summary-insurance">R$ 280,00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span>Taxa Operação do Pregão (2.5%)</span>
+<span class="line-through text-outline text-label-sm">R$ 3.285,00</span>
+</span>
+<span class="text-secondary font-bold">Grátis (Cupom B2B)</span>
+</div>
+</div>
+<!-- Split de Pagamento Escrow (Transparent distribution) -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm uppercase font-bold text-outline">Divisão Fiduciária (Split)</span>
+<span class="text-label-sm font-label-sm text-secondary font-bold">Auditoria Automática</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>• Indústria (3 Corações S.A.):</span>
+<span class="font-semibold text-on-surface">R$ 131.400,00 (Retido Doca)</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>• Seguradora Tokio Marine:</span>
+<span class="font-semibold text-on-surface" id="split-insurance">R$ 280,00</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>• Plataforma Varejista Online:</span>
+<span class="font-semibold text-secondary">R$ 0,00 (Isenção 1º Arremate)</span>
+</div>
+</div>
+<!-- Total Aporte Escrow -->
+<div class="bg-surface-container p-space-md rounded-xl flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm uppercase text-outline font-extrabold tracking-wider">Total Aportado em Escrow</span>
+<span class="text-headline-xl font-headline-xl text-primary font-extrabold tracking-tight" id="total-amount-display">
+                R$ 131.680,00
+              </span>
+</div>
+<span class="material-symbols-outlined text-primary text-[32px]">verified</span>
+</div>
+<!-- Visual Projected Retail Margin (SVG Bar chart & stats) -->
+<div class="bg-secondary/5 rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm uppercase font-extrabold text-secondary tracking-wider">Margem Comercial Projetada</span>
+<span class="bg-secondary text-on-secondary px-space-xs py-0.5 rounded text-label-sm font-label-sm font-bold">+41.9% Mark-up</span>
+</div>
+<div class="flex items-baseline justify-between mt-1">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Preço Médio Gôndola Varejo:</span>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">R$ 18,90 / un</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Faturamento Bruto Previsto:</span>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">R$ 226.800,00</span>
+</div>
+<div class="flex items-baseline justify-between pt-1">
+<span class="text-label-md font-label-md font-bold text-secondary">Lucro Bruto Estimado:</span>
+<span class="text-headline-md font-headline-md font-extrabold text-secondary">+ R$ 95.120,00</span>
+</div>
+<!-- Mini Sparkline / Margin Visual Indicator -->
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden mt-1 flex">
+<div class="bg-primary h-full w-[58%]" title="Custo de Aquisição Arrematado"></div>
+<div class="bg-secondary h-full w-[42%]" title="Margem Bruta Livre"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-outline mt-0.5">
+<span>Custo Lote (58.1%)</span>
+<span class="text-secondary font-bold">Margem Lucro (41.9%)</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<!-- Primary Conversion Button -->
+<button class="w-full py-space-md px-space-lg bg-secondary text-on-secondary rounded-xl font-headline-md text-headline-md font-extrabold flex items-center justify-center gap-space-xs hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-all shadow-md transform active:scale-[0.99]" onclick="confirmEscrowPayment()">
+<span class="material-symbols-outlined text-[24px]">lock</span>
+<span>Confirmar Pagamento Escrow</span>
+</button>
+<!-- Secondary Quick Pay With Balance -->
+<button class="w-full py-space-sm px-space-md bg-surface-container text-on-surface rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs hover:bg-surface-container-high transition-colors" onclick="selectPaymentTab('saldo')">
+<span class="material-symbols-outlined text-[18px] text-primary">account_balance_wallet</span>
+<span>Pagar com Saldo Escrow (R$ 482.900)</span>
+</button>
+<!-- Tertiary Download Legal Agreement PDF -->
+<a class="w-full py-space-xs text-center text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors flex items-center justify-center gap-1" href="#" onclick="downloadLegalDraft(event)">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+<span>Baixar Minuta Oficial do Termo de Arremate (PDF)</span>
+</a>
+</div>
+</div>
+<!-- Trust Badges & Regulatory Protection Widget -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0">shield_lock</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Custódia Fiduciária Blindada</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Recursos protegidos em câmara Bacen até conferência cega na sua doca.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0">task_alt</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Garantia FEFO &amp; ANVISA</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Lote com 180 dias de validade e selo de pureza ABIC assegurados em contrato.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">support_agent</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Mesa de Arbitragem B2B 24/7</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">0800 770 9400 ou plantão via WhatsApp corporativo para agendamento de doca.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Interactive JavaScript for Live Interactions -->
+<script>
+    let baseLotePrice = 131400.00;
+    let shippingCost = 0.00;
+    let insuranceCost = 280.00;
+
+    function formatBRL(val) {
+      return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function recalculateTotal() {
+      const total = baseLotePrice + shippingCost + insuranceCost;
+      const displayElem = document.getElementById('total-amount-display');
+      if (displayElem) {
+        displayElem.innerText = formatBRL(total);
+      }
+    }
+
+    function updateShipping(cost) {
+      shippingCost = cost;
+      const summaryElem = document.getElementById('summary-shipping');
+      if (summaryElem) {
+        summaryElem.innerText = cost === 0 ? 'R$ 0,00' : formatBRL(cost);
+      }
+      recalculateTotal();
+    }
+
+    function toggleInsurance(checked) {
+      insuranceCost = checked ? 280.00 : 0.00;
+      const insSummary = document.getElementById('summary-insurance');
+      const insSplit = document.getElementById('split-insurance');
+      if (insSummary) insSummary.innerText = formatBRL(insuranceCost);
+      if (insSplit) insSplit.innerText = formatBRL(insuranceCost);
+      recalculateTotal();
+    }
+
+    function selectPaymentTab(tabName) {
+      const tabs = ['pix', 'saldo', 'ted', 'cartao'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        const content = document.getElementById('content-' + t);
+        if (t === tabName) {
+          btn.className = 'py-space-xs px-space-sm rounded-lg font-label-lg text-label-lg font-bold text-on-primary bg-primary shadow-sm flex items-center justify-center gap-1 transition-all';
+          if (content) content.classList.remove('hidden');
+        } else {
+          btn.className = 'py-space-xs px-space-sm rounded-lg font-label-lg text-label-lg font-bold text-on-surface-variant hover:text-on-surface flex items-center justify-center gap-1 transition-all';
+          if (content) content.classList.add('hidden');
+        }
+      });
+    }
+
+    function copyPixCode() {
+      const code = "00020126580014br.gov.bcb.pix0136e92b8d00-4b8a-4c47-975a-0418varejista131680.005204000053039865802BR5925VAREJISTA ONLINE SA ESCROW6009SAO PAULO62070503ARR6304E8A9";
+      navigator.clipboard.writeText(code).then(() => {
+        const textElem = document.getElementById('copy-text');
+        const btn = document.getElementById('copy-btn');
+        if (textElem && btn) {
+          textElem.innerText = 'Código Copiado!';
+          btn.classList.add('bg-secondary');
+          setTimeout(() => {
+            textElem.innerText = 'Copiar Código';
+            btn.classList.remove('bg-secondary');
+          }, 3000);
+        }
+      });
+    }
+
+    function confirmEscrowPayment() {
+      const isAccepted = document.getElementById('contract-accept')?.checked;
+      if (!isAccepted) {
+        alert('Por favor, aceite a minuta contratual e a cláusula fiduciária para prosseguir.');
+        return;
+      }
+      alert('Aporte em conta Escrow identificado! Redirecionando para o Agendamento de Doca no CD Vinhedo/SP...');
+    }
+
+    function liquidarSaldo() {
+      const isAccepted = document.getElementById('contract-accept')?.checked;
+      if (!isAccepted) {
+        alert('Por favor, aceite a minuta contratual para prosseguir com o débito gráfico.');
+        return;
+      }
+      if (confirm('Deseja debitar R$ 131.680,00 da sua Conta Escrow BACEN existente com assinatura digital ICP-Brasil?')) {
+        alert('Liquidação realizada com sucesso! Protocolo BACEN: #CIP-94881-2026. Ordem de Coleta gerada.');
+      }
+    }
+
+    function downloadLegalDraft(e) {
+      e.preventDefault();
+      alert('Gerando PDF assinado digitalmente com o Termo de Arremate do Lote #418...');
+    }
+
+    // Countdown Timer logic (1h 58m 42s)
+    let totalSeconds = 1 * 3600 + 58 * 60 + 42;
+    setInterval(() => {
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+        const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+        const seconds = String(totalSeconds % 60).padStart(2, '0');
+        const timerElem = document.getElementById('liquidation-timer');
+        if (timerElem) {
+          timerElem.innerText = `${hours}:${minutes}:${seconds}`;
+        }
+      }
+    }, 1000);
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-space-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-space-xs"><div class="w-6 h-6 rounded bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md">VO</div><span class="font-headline-md text-headline-md text-primary font-extrabold">VAREJISTA ONLINE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Infraestrutura transacional B2B especializada em alta rotação, desmobilização industrial, lotes ponta de estoque e liquidação programada FEFO de alimentos e bebidas.</p><div class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-[16px]">lock</span><span class="font-label-sm text-label-sm text-on-surface-variant">Custódia Fiduciária Bacen / Escrow Automático</span></div></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold mb-space-xs">Compliance Sanitário &amp; Regulatório</span><div class="flex items-start gap-space-xs"><span class="material-symbols-outlined text-outline text-[18px]">verified</span><span class="font-body-sm text-body-sm text-on-surface-variant">Registro e Certificação Sanitária ANVISA ativa em todos os SKUs</span></div><div class="flex items-start gap-space-xs"><span class="material-symbols-outlined text-outline text-[18px]">fact_check</span><span class="font-body-sm text-body-sm text-on-surface-variant">Inspeção Federal MAPA (SIF/DIPOA) rastreada por lote</span></div><div class="flex items-start gap-space-xs"><span class="material-symbols-outlined text-outline text-[18px]">qr_code_2</span><span class="font-body-sm text-body-sm text-on-surface-variant">Validação de GS1/GTIN e Shelf Life FEFO auditado em doca</span></div></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold mb-space-xs">Operação e Arremate B2B</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="leiloes-ao-vivo" href="#">Pregões Industriais Ativos</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="validade-fefo" href="#">Liquidação Validade Curta (FEFO)</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="venda-direta" href="#">Lotes Diretos de Fábrica (Carga Fechada)</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="painel-de-lances" href="#">Monitor de Ofertas &amp; Lances</a></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold mb-space-xs">Central de Atendimento B2B</span><span class="font-body-sm text-body-sm text-on-surface-variant">Mesa de Operações: 0800 882 1000</span><span class="font-body-sm text-body-sm text-on-surface-variant">Plantão de Logística Reversa &amp; Doca 24/7</span><span class="font-body-sm text-body-sm text-on-surface-variant">E-mail: transacoes@varejistaonline.b2b</span><div class="mt-space-xs bg-surface-container px-space-sm py-space-xs rounded-lg inline-flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Câmara de Liquidação Bacen Operante</span></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm bg-surface-container-high px-space-md py-space-sm rounded-lg"><span class="font-body-sm text-body-sm text-on-surface-variant">© 2025 Varejista Online S.A. Transações B2B de Alimentos e Bebidas. CNPJ 00.000.000/0001-00.</span><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm text-outline uppercase">Segurança Fiduciária</span><span class="font-label-sm text-label-sm text-outline uppercase">Auditoria Sanitária</span><span class="font-label-sm text-label-sm text-outline uppercase">Termos B2B</span></div></div></div></footer></body></html>

@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#001945","primary-container":"#0d47a1","surface-container-highest":"#e0e3e5","surface-container":"#eceef0","tertiary-fixed-dim":"#ffb3ac","on-tertiary-fixed":"#410003","surface-bright":"#f7f9fb","secondary-container":"#a0f399","surface-container-low":"#f2f4f6","tertiary-container":"#9d0011","on-secondary-fixed-variant":"#005312","surface-container-lowest":"#ffffff","surface-variant":"#e0e3e5","on-tertiary":"#ffffff","on-error-container":"#93000a","tertiary":"#720009","inverse-primary":"#b0c6ff","surface":"#f7f9fb","on-secondary-fixed":"#002204","outline-variant":"#c3c6d4","primary-fixed-dim":"#b0c6ff","on-primary-container":"#a1bbff","surface-dim":"#d8dadc","secondary-fixed-dim":"#88d982","secondary":"#1b6d24","on-tertiary-fixed-variant":"#930010","error-container":"#ffdad6","surface-tint":"#2b5bb5","secondary-fixed":"#a3f69c","background":"#f7f9fb","outline":"#737783","on-primary":"#ffffff","inverse-on-surface":"#eff1f3","inverse-surface":"#2d3133","primary":"#003178","on-background":"#191c1e","error":"#ba1a1a","on-error":"#ffffff","on-secondary":"#ffffff","on-tertiary-container":"#ffa59d","surface-container-high":"#e6e8ea","on-surface":"#191c1e","on-surface-variant":"#434652","primary-fixed":"#d9e2ff","on-primary-fixed-variant":"#00429c","on-secondary-container":"#217128","tertiary-fixed":"#ffdad6"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"margin-mobile":"1rem","space-sm":"0.5rem","space-lg":"1.25rem",gutter:"1rem","gutter-mobile":"0.75rem",margin:"1.5rem","space-xs":"0.25rem","space-xl":"2rem","space-md":"0.75rem"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"]},fontSize:{"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-md":["18px",{lineHeight:"24px",fontWeight:"700"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg":["24px",{lineHeight:"32px",fontWeight:"700"}],"headline-xl-mobile":["24px",{lineHeight:"32px",fontWeight:"800"}],"numeric-timer":["20px",{lineHeight:"24px",fontWeight:"800"}],"headline-lg-mobile":["20px",{lineHeight:"28px",fontWeight:"700"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"700"}],"headline-xl":["32px",{lineHeight:"40px",fontWeight:"800"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest flex flex-col z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">precision_manufacturing</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary leading-none">Varejista<span class="text-secondary">B2B</span></span><span class="font-label-sm text-label-sm uppercase text-outline tracking-wider mt-1">Plataforma Industrial</span></div></div><div class="flex-1 overflow-y-auto px-space-md py-space-sm space-y-space-md"><nav class="space-y-space-md" data-active-classes="bg-primary text-on-primary font-label-lg shadow-sm"><div class="space-y-1"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Visão Geral</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="painel-geral" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Painel Geral &amp; Indicadores</span></a></div><div class="space-y-1"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Gestão Industrial</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="minhas-marcas" href="#"><span class="material-symbols-outlined text-[20px]">branding_watermark</span><span>Minhas Marcas &amp; Linhas</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="catalogo-dun-ean" href="#"><span class="material-symbols-outlined text-[20px]">barcode_scanner</span><span>Catálogo &amp; DUN/EAN</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg transition-colors bg-primary text-on-primary font-label-lg shadow-sm" data-path="lotes-validade" href="#"><span class="material-symbols-outlined text-[20px]">hourglass_bottom</span><span>Lotes &amp; Shelf Life</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="estoque-fabricas-cds" href="#"><span class="material-symbols-outlined text-[20px]">warehouse</span><span>Estoque Físico &amp; CDs</span></a></div><div class="space-y-1"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Canal Desova &amp; Leilões</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="novo-leilao-b2b" href="#"><span class="material-symbols-outlined text-[20px]">add_circle</span><span>Criar Novo Leilão B2B</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="pregoes-ao-vivo" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px] text-tertiary">gavel</span><span>Pregões Ao Vivo</span></div><span class="px-1.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold animate-pulse">AO VIVO</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="venda-direta-promocoes" href="#"><span class="material-symbols-outlined text-[20px]">local_offer</span><span>Promoções &amp; Venda Direta</span></a></div><div class="space-y-1"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Motivos de Liquidação</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="excesso-producao" href="#"><span class="material-symbols-outlined text-[20px]">trending_up</span><span>Excesso de Produção</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="vencimento-curto" href="#"><span class="material-symbols-outlined text-[20px] text-tertiary">alarm</span><span>Vencimento Curto</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="embalagem-reformulacao" href="#"><span class="material-symbols-outlined text-[20px]">swap_horiz</span><span>Embalagem &amp; Reformulação</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="fora-de-linha" href="#"><span class="material-symbols-outlined text-[20px]">unpublished</span><span>Descontinuados / Fim Linha</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="estoque-parado-giro-lento" href="#"><span class="material-symbols-outlined text-[20px]">inventory</span><span>Estoque Parado &amp; Giro Lento</span></a></div><div class="space-y-1"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Comercial &amp; Financeiro</div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="pedidos-arremates" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span>Pedidos &amp; Arremates</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="repasses-escrow" href="#"><span class="material-symbols-outlined text-[20px] text-secondary">account_balance</span><span>Repasses Escrow &amp; D+0</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="relatorios-nfe" href="#"><span class="material-symbols-outlined text-[20px]">request_quote</span><span>Relatórios &amp; NF-e</span></a></div></nav></div><div class="p-space-md bg-surface-container-low space-y-space-xs"><div class="flex items-center gap-space-xs px-2 py-1.5 rounded-lg bg-surface-container-lowest shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span><div class="flex flex-col"><span class="font-label-sm text-label-sm font-bold text-on-surface">Certificação SIF / MAPA</span><span class="font-label-sm text-label-sm text-secondary font-semibold">Auditoria Válida • 2025</span></div></div><div class="flex items-center gap-space-xs px-2 py-1.5 rounded-lg bg-surface-container-lowest shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><span class="material-symbols-outlined text-primary text-[18px]">shield</span><div class="flex flex-col"><span class="font-label-sm text-label-sm font-bold text-on-surface">Custódia Santander Escrow</span><span class="font-label-sm text-label-sm text-outline font-semibold">Garantia de Liquidação 100%</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><span class="px-2 py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold tracking-wide uppercase">Portal Indústria &amp; Fabricantes</span><div class="flex items-center gap-space-xs px-3 py-1.5 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-primary text-[18px]">factory</span><div class="flex flex-col text-left"><span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Moinho Santa Rita Agroindustrial S/A</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Planta Araraquara/SP • CNPJ 61.229.004/0002-19</span></div><span class="material-symbols-outlined text-outline text-[16px]">expand_more</span></div></div><div class="flex items-center gap-space-md"><div class="relative w-80"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span><input class="w-full pl-9 pr-3 py-1.5 bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar SKU, Lote ou DUN-14..." type="text"/></div><div class="flex items-center gap-space-xs"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span>SEFAZ Síncrono</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-bold"><span class="w-2 h-2 rounded-full bg-primary"></span><span>Escrow Ativo</span></div></div><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Carlos Eduardo Mendes</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Diretor Industrial • Trade</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 w-full min-h-screen bg-surface"><div class="flex flex-col w-full">
+<!-- Top Context & Navigation Bar -->
+<div class="w-full bg-surface-container-lowest px-space-xl py-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1">
+<span class="text-on-surface-variant font-bold">Portal da Indústria</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Gestão Industrial</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Lotes, Validade &amp; Motivos de Desova</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-extrabold flex items-center gap-space-sm">
+<span>Controle de Lotes Fabris &amp; Matriz de Validade (Shelf Life)</span>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm tracking-wide">SIF 4044/SP</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5 max-w-4xl">
+          Classificação inteligente de estoque industrial por prazo crítico de validade, obsolescência de embalagem, fim de linha e excesso de moagem agroindustrial.
+        </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-bold shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span>SAP S/4HANA • Sync há 4 min</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Política FEFO Ativa (First-Expire, First-Out)</span>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm hover:bg-primary-container transition-all" id="btnExportarLotes">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Exportar Posição</span>
+</button>
+</div>
+</div>
+<!-- Quick Reason Filter Pills with Counters and Valuation -->
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-space-sm mt-space-lg pt-space-md bg-surface-container-low p-space-sm rounded-xl">
+<!-- Todos os Lotes -->
+<button class="filter-tab active text-left p-space-sm rounded-lg bg-surface-container-lowest shadow-sm transition-all flex flex-col justify-between" onclick="filtrarMotivo('todos', this)">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Geral Global</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface font-bold">42 Lotes</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-md text-headline-md text-primary font-extrabold leading-none">R$ 8.42M</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">Volume Total Ativo</div>
+</div>
+</button>
+<!-- Vencimento Curto -->
+<button class="filter-tab text-left p-space-sm rounded-lg bg-surface-container-lowest/60 hover:bg-surface-container-lowest transition-all flex flex-col justify-between" onclick="filtrarMotivo('vencimento-curto', this)">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-bold">Venc. Curto</span>
+<span class="px-1.5 py-0.5 rounded bg-tertiary-container text-on-tertiary font-label-sm text-label-sm font-bold">14 Lotes</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-md text-headline-md text-tertiary font-extrabold leading-none">R$ 3.12M</div>
+<span class="inline-block mt-1 font-label-sm text-label-sm text-tertiary font-bold tracking-tight">• Urgência Máxima</span>
+</div>
+</button>
+<!-- Excesso de Produção -->
+<button class="filter-tab text-left p-space-sm rounded-lg bg-surface-container-lowest/60 hover:bg-surface-container-lowest transition-all flex flex-col justify-between" onclick="filtrarMotivo('excesso-producao', this)">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Excesso Safra</span>
+<span class="px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">12 Lotes</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-md text-headline-md text-primary font-extrabold leading-none">R$ 2.45M</div>
+<span class="inline-block mt-1 font-label-sm text-label-sm text-primary font-bold tracking-tight">• Safra Recorde Moída</span>
+</div>
+</button>
+<!-- Embalagem Antiga / Reformulação -->
+<button class="filter-tab text-left p-space-sm rounded-lg bg-surface-container-lowest/60 hover:bg-surface-container-lowest transition-all flex flex-col justify-between" onclick="filtrarMotivo('embalagem', this)">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Rotulagem</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-bold">6 Lotes</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-md text-headline-md text-on-surface font-extrabold leading-none">R$ 1.28M</div>
+<span class="inline-block mt-1 font-label-sm text-label-sm text-on-surface-variant font-bold tracking-tight">• Transição ANVISA</span>
+</div>
+</button>
+<!-- Fora de Linha / Descontinuados -->
+<button class="filter-tab text-left p-space-sm rounded-lg bg-surface-container-lowest/60 hover:bg-surface-container-lowest transition-all flex flex-col justify-between" onclick="filtrarMotivo('fora-linha', this)">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Fora Linha</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-bold">5 Lotes</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-md text-headline-md text-on-surface font-extrabold leading-none">R$ 890k</div>
+<span class="inline-block mt-1 font-label-sm text-label-sm text-on-surface-variant font-bold tracking-tight">• Limpeza de SKU</span>
+</div>
+</button>
+<!-- Giro Lento -->
+<button class="filter-tab text-left p-space-sm rounded-lg bg-surface-container-lowest/60 hover:bg-surface-container-lowest transition-all flex flex-col justify-between" onclick="filtrarMotivo('giro-lento', this)">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Estoque Parado</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-bold">5 Lotes</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-md text-headline-md text-on-surface font-extrabold leading-none">R$ 680k</div>
+<span class="inline-block mt-1 font-label-sm text-label-sm text-outline font-bold tracking-tight">• &gt; 120 dias em CD</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Analytical Matrix Section -->
+<div class="p-space-xl space-y-space-lg">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-sm pb-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">analytics</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">
+              Matriz FEFO de Alerta &amp; Estratégia de Mitigação de Perda Fabril
+            </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Distribuição em tempo real do capital alocado por faixa residual de validade versus canal de desova recomendado.
+          </p>
+</div>
+<div class="flex items-center gap-space-md text-right">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Exposição de Capital em Risco</span>
+<span class="font-numeric-timer text-numeric-timer text-tertiary">R$ 1.940.200,00</span>
+</div>
+<div class="w-px h-8 bg-surface-container-high"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Recuperação Estimada via Leilão</span>
+<span class="font-numeric-timer text-numeric-timer text-secondary">R$ 1.625.000,00 (83.7%)</span>
+</div>
+</div>
+</div>
+<!-- FEFO Stages Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md pt-space-sm">
+<!-- Faixa Crítica -->
+<div class="p-space-md rounded-xl bg-error-container/20 flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary/5 rounded-full pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm font-extrabold uppercase tracking-wide">
+                &lt; 45 Dias Restantes
+              </span>
+<span class="font-label-md text-label-md font-bold text-tertiary">4 Lotes</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-black text-tertiary mt-space-sm">
+              R$ 890.400
+            </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1">
+              Farinhas Especiais Pré-misturas e Linhas Fermentadas.
+            </div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/80 p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm font-bold text-on-surface block">Ação Obrigatória do Sistema:</span>
+<div class="flex items-center gap-1.5 text-tertiary font-label-sm text-label-sm font-extrabold mt-1">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>Leilão Relâmpago sem Reserva Mínima</span>
+</div>
+</div>
+</div>
+<!-- Faixa Alerta -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-extrabold uppercase tracking-wide">
+                45 a 90 Dias
+              </span>
+<span class="font-label-md text-label-md font-bold text-on-surface">10 Lotes</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-black text-on-surface mt-space-sm">
+              R$ 2.230.000
+            </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1">
+              Sêmolas de Trigo Duro e Farinha Tipo 1 Granel.
+            </div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/80 p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm font-bold text-on-surface block">Estratégia Recomendada:</span>
+<div class="flex items-center gap-1.5 text-primary font-label-sm text-label-sm font-extrabold mt-1">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+<span>Pregão B2B Convencional com Soft-Close</span>
+</div>
+</div>
+</div>
+<!-- Faixa Planejada -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-extrabold uppercase tracking-wide">
+                91 a 180 Dias
+              </span>
+<span class="font-label-md text-label-md font-bold text-on-surface">18 Lotes</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-black text-on-surface mt-space-sm">
+              R$ 3.860.000
+            </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1">
+              Farinha Integral 25kg e Farelo Peletizado.
+            </div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/80 p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm font-bold text-on-surface block">Estratégia Recomendada:</span>
+<div class="flex items-center gap-1.5 text-secondary font-label-sm text-label-sm font-extrabold mt-1">
+<span class="material-symbols-outlined text-[16px]">percent</span>
+<span>Venda Direta com Desconto por Palete</span>
+</div>
+</div>
+</div>
+<!-- Estoque Saudável -->
+<div class="p-space-md rounded-xl bg-secondary-container/20 flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-extrabold uppercase tracking-wide">
+                &gt; 180 Dias (Safra)
+              </span>
+<span class="font-label-md text-label-md font-bold text-secondary">10 Lotes</span>
+</div>
+<div class="font-headline-lg text-headline-lg font-black text-secondary mt-space-sm">
+              R$ 1.440.000
+            </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1">
+              Excesso volumétrico por rotação alta de moenda.
+            </div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-lowest/80 p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm font-bold text-on-surface block">Estratégia Recomendada:</span>
+<div class="flex items-center gap-1.5 text-secondary font-label-sm text-label-sm font-extrabold mt-1">
+<span class="material-symbols-outlined text-[16px]">sync_alt</span>
+<span>Contratos Futuros / Absorção de Silo</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area: Data Dense Table & Inspection Drawer -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Table Column (Expanded or normal) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md transition-all duration-300" id="tableContainer">
+<!-- Action Toolbar -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Filtrar por Status:</span>
+<select class="bg-surface-container-low font-body-sm text-body-sm text-on-surface px-3 py-1.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" id="statusFilter">
+<option value="todos">Todos os Status Operacionais</option>
+<option value="em-leilao">Em Leilão Ativo</option>
+<option value="aguardando">Aguardando Loteamento</option>
+<option value="venda-direta">Venda Direta Liberada</option>
+<option value="quarentena">Laudo Técnico Pendente</option>
+</select>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Exibindo <strong>6 de 42</strong> lotes prioritários</span>
+<button class="px-2.5 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm font-bold hover:bg-surface-container-high transition-colors" onclick="selecionarTodosLotes()">
+              Selecionar Lote em Massa
+            </button>
+</div>
+</div>
+<!-- Technical Industrial Batch Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md w-10 text-center">
+<input class="rounded accent-primary cursor-pointer" id="selectAllCheckbox" type="checkbox"/>
+</th>
+<th class="py-3 px-space-sm">Lote &amp; QR</th>
+<th class="py-3 px-space-sm">Produto &amp; Embalagem</th>
+<th class="py-3 px-space-sm">DUN-14 / EAN</th>
+<th class="py-3 px-space-sm">Planta / Doca</th>
+<th class="py-3 px-space-sm">Fabricação / Validade</th>
+<th class="py-3 px-space-sm">Shelf Life</th>
+<th class="py-3 px-space-sm">Volume / Ton</th>
+<th class="py-3 px-space-sm">Custo • Alvo B2B</th>
+<th class="py-3 px-space-sm text-center">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-on-surface font-body-sm text-body-sm">
+<!-- ROW 1: Farinha Especial Pizzaria (Vencimento Curto) -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="abrirRastreabilidade(0)">
+<td class="py-3 px-space-md text-center" onclick="event.stopPropagation()">
+<input class="batch-checkbox rounded accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-extrabold text-primary">#LT-8849-B</span>
+<span class="font-label-sm text-label-sm text-outline">SIF 4044/SP</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Farinha Especial Pizzeria 00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sacos Valvulados 25kg • Santa Rita</span>
+<span class="mt-1 inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Vencimento Curto
+                      </span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-mono text-label-sm text-label-sm text-on-surface-variant">
+<span>DUN: 17898234001928</span>
+<span>EAN: 7898234001925</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">Araraquara/SP</span>
+<span class="text-outline">Doca F-04 / Silo 3</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-outline">Fab: 12/10/2024</span>
+<span class="font-bold text-tertiary">Val: 28/04/2025</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="w-24">
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="font-extrabold text-tertiary">26 dias</span>
+<span class="text-outline">14%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 14%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">1.200 Sacas</span>
+<span class="text-outline">30.0 Toneladas</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline line-through">R$ 94,50 un</span>
+<span class="font-label-md text-label-md font-extrabold text-secondary">R$ 56,00 un</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Total: R$ 67.200</span>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors" onclick="iniciarPregaoLote('#LT-8849-B')" title="Criar Leilão Deste Lote">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" onclick="abrirRastreabilidade(0)" title="Laudo Técnico SIF">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 2: Farinha Tipo 1 Pastelaria (Excesso de Produção) -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="abrirRastreabilidade(1)">
+<td class="py-3 px-space-md text-center" onclick="event.stopPropagation()">
+<input class="batch-checkbox rounded accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-extrabold text-primary">#LT-9012-A</span>
+<span class="font-label-sm text-label-sm text-outline">SIF 4044/SP</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Farinha de Trigo Tipo 1 Pastelaria</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fardos 10x1kg • Santa Rita Gold</span>
+<span class="mt-1 inline-flex items-center gap-1 font-label-sm text-label-sm text-primary font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Excesso de Moagem
+                      </span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-mono text-label-sm text-label-sm text-on-surface-variant">
+<span>DUN: 17898234005513</span>
+<span>EAN: 7898234005510</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">Ribeirão Preto/CD</span>
+<span class="text-outline">Doca B-12 / Rua 04</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-outline">Fab: 04/02/2025</span>
+<span class="font-bold text-on-surface">Val: 04/11/2025</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="w-24">
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="font-extrabold text-secondary">216 dias</span>
+<span class="text-outline">79%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 79%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">4.800 Fardos</span>
+<span class="text-outline">48.0 Toneladas</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline line-through">R$ 48,00 un</span>
+<span class="font-label-md text-label-md font-extrabold text-secondary">R$ 38,50 un</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Total: R$ 184.800</span>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors" onclick="iniciarPregaoLote('#LT-9012-A')" title="Criar Leilão Deste Lote">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" onclick="abrirRastreabilidade(1)" title="Laudo Técnico SIF">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 3: Mistura para Pão Francês (Embalagem Antiga) -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="abrirRastreabilidade(2)">
+<td class="py-3 px-space-md text-center" onclick="event.stopPropagation()">
+<input class="batch-checkbox rounded accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-extrabold text-primary">#LT-7731-C</span>
+<span class="font-label-sm text-label-sm text-outline">SIF 4044/SP</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Pré-Mistura Pão Francês Crocante</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sacos 25kg • Santa Rita Pan</span>
+<span class="mt-1 inline-flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Transição ANVISA RDC
+                      </span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-mono text-label-sm text-label-sm text-on-surface-variant">
+<span>DUN: 17898234008892</span>
+<span>EAN: 7898234008899</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">Araraquara/SP</span>
+<span class="text-outline">Doca F-01 / Silo 1</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-outline">Fab: 15/01/2025</span>
+<span class="font-bold text-on-surface">Val: 15/07/2025</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="w-24">
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="font-extrabold text-on-surface">104 dias</span>
+<span class="text-outline">58%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 58%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">950 Sacas</span>
+<span class="text-outline">23.75 Toneladas</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline line-through">R$ 112,00 un</span>
+<span class="font-label-md text-label-md font-extrabold text-secondary">R$ 78,00 un</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Total: R$ 74.100</span>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors" onclick="iniciarPregaoLote('#LT-7731-C')" title="Criar Leilão Deste Lote">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" onclick="abrirRastreabilidade(2)" title="Laudo Técnico SIF">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 4: Sêmola Trigo Duro (Estoque Parado) -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="abrirRastreabilidade(3)">
+<td class="py-3 px-space-md text-center" onclick="event.stopPropagation()">
+<input class="batch-checkbox rounded accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-extrabold text-primary">#LT-6501-D</span>
+<span class="font-label-sm text-label-sm text-outline">SIF 4044/SP</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Sêmola Purificada Trigo Durum</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Big Bags 1.000kg • Linha Massas</span>
+<span class="mt-1 inline-flex items-center gap-1 font-label-sm text-label-sm text-outline font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Parado &gt; 130 Dias CD
+                      </span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-mono text-label-sm text-label-sm text-on-surface-variant">
+<span>DUN: 17898234009941</span>
+<span>EAN: 7898234009948</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">Santos/SP (Porto)</span>
+<span class="text-outline">Terminal 2A</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-outline">Fab: 10/11/2024</span>
+<span class="font-bold text-on-surface">Val: 10/06/2025</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="w-24">
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="font-extrabold text-tertiary">69 dias</span>
+<span class="text-outline">33%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim rounded-full" style="width: 33%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">42 Big Bags</span>
+<span class="text-outline">42.0 Toneladas</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline line-through">R$ 3.800 un</span>
+<span class="font-label-md text-label-md font-extrabold text-secondary">R$ 2.650 un</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Total: R$ 111.300</span>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors" onclick="iniciarPregaoLote('#LT-6501-D')" title="Criar Leilão Deste Lote">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" onclick="abrirRastreabilidade(3)" title="Laudo Técnico SIF">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 5: Farinha de Trigo Integral Especial (Fora de Linha) -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="abrirRastreabilidade(4)">
+<td class="py-3 px-space-md text-center" onclick="event.stopPropagation()">
+<input class="batch-checkbox rounded accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-extrabold text-primary">#LT-5120-X</span>
+<span class="font-label-sm text-label-sm text-outline">SIF 4044/SP</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Farinha Integral Rústica Granito</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sacos 10kg • Santa Rita Bio</span>
+<span class="mt-1 inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Descontinuado (SKU Drop)
+                      </span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-mono text-label-sm text-label-sm text-on-surface-variant">
+<span>DUN: 17898234003319</span>
+<span>EAN: 7898234003316</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">Araraquara/SP</span>
+<span class="text-outline">Doca F-02 / Palete 19</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-outline">Fab: 01/12/2024</span>
+<span class="font-bold text-on-surface">Val: 01/06/2025</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="w-24">
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="font-extrabold text-tertiary">60 dias</span>
+<span class="text-outline">30%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim rounded-full" style="width: 30%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">1.800 Sacos</span>
+<span class="text-outline">18.0 Toneladas</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline line-through">R$ 52,00 un</span>
+<span class="font-label-md text-label-md font-extrabold text-secondary">R$ 31,50 un</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Total: R$ 56.700</span>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors" onclick="iniciarPregaoLote('#LT-5120-X')" title="Criar Leilão Deste Lote">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" onclick="abrirRastreabilidade(4)" title="Laudo Técnico SIF">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 6: Farinha Salgados Congelados (Validade Crítica) -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group" onclick="abrirRastreabilidade(5)">
+<td class="py-3 px-space-md text-center" onclick="event.stopPropagation()">
+<input class="batch-checkbox rounded accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-extrabold text-primary">#LT-8819-A</span>
+<span class="font-label-sm text-label-sm text-outline">SIF 4044/SP</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Farinha Especial P/ Congelamento</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sacos 25kg • Santa Rita Indústria</span>
+<span class="mt-1 inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span> Validade Crítica FEFO
+                      </span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-mono text-label-sm text-label-sm text-on-surface-variant">
+<span>DUN: 17898234007144</span>
+<span>EAN: 7898234007141</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">Araraquara/SP</span>
+<span class="text-outline">Doca F-03 / Box 8</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-outline">Fab: 02/10/2024</span>
+<span class="font-bold text-tertiary">Val: 18/04/2025</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="w-24">
+<div class="flex justify-between items-center font-label-sm text-label-sm mb-1">
+<span class="font-extrabold text-tertiary">16 dias</span>
+<span class="text-outline">8%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 8%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="font-bold text-on-surface">650 Sacas</span>
+<span class="text-outline">16.25 Toneladas</span>
+</div>
+</td>
+<td class="py-3 px-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline line-through">R$ 98,00 un</span>
+<span class="font-label-md text-label-md font-extrabold text-secondary">R$ 51,00 un</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Total: R$ 33.150</span>
+</div>
+</td>
+<td class="py-3 px-space-sm text-center" onclick="event.stopPropagation()">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-colors" onclick="iniciarPregaoLote('#LT-8819-A')" title="Criar Leilão Deste Lote">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" onclick="abrirRastreabilidade(5)" title="Laudo Técnico SIF">
+<span class="material-symbols-outlined text-[16px]">description</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Página 1 de 7 • 42 lotes em quarentena comercial</span>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm disabled:opacity-50">Anterior</button>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">3</button>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">Próximo</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Inspection Panel: Traceability & Technical Quality SIF/MAPA -->
+<div class="xl:col-span-4 bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col gap-space-md sticky top-20" id="sideInspectionPanel">
+<!-- Header with Close/Minimize -->
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">verified</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Dossiê Técnico &amp; Qualidade</span>
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface" id="inspLoteCode">Lote #LT-8849-B</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+            SIF Aprovado
+          </span>
+</div>
+<!-- Product Highlight Card -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex gap-space-md items-center">
+<div class="w-16 h-16 rounded-lg bg-surface-container-lowest overflow-hidden flex-shrink-0 shadow-sm flex items-center justify-center p-1">
+<img class="w-full h-full object-cover rounded" data-alt="Bolsa de saco industrial valvulado de farinha de trigo especial para pizzarias empilhada sobre palete de madeira em armazém logístico iluminado com padrões sanitários ISO e certificação SIF." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxc2AruS1G78jzMgyQK00ZhIgqP5eZO0_jjJwtsJOjwIdExA6yzQxwilcv3Wk0OpefZ-WuqA4lRbt3Y5jxtF0eGzR99hC_eBmMr3fI80KqprVZP449oork84Vc6MFmvwN-ISS-dji0BC4l-dV_N0MPlpGFH6AER5Sb6FqT_0lKyjJbhT_drR4F3b8wj1Ic01wo6HcOA6HHCIWDz45G-G1UBnkdunIFvH22w6cLOmeE"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-extrabold text-on-surface truncate" id="inspProductName">Farinha Especial Pizzeria 00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sacos 25kg • Granulometria Fina</span>
+<div class="flex items-center gap-1 mt-1 text-tertiary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">alarm</span>
+<span id="inspDaysLeft">26 dias para vencimento</span>
+</div>
+</div>
+</div>
+<!-- Physicochemical Lab Parameters -->
+<div class="space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline">Parâmetros Laboratoriais da Moagem</span>
+<div class="grid grid-cols-2 gap-space-xs pt-1">
+<!-- Umidade -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Umidade (%)</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface" id="inspUmidade">13.8%</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">(Máx. 15.0%)</span>
+</div>
+</div>
+<!-- Teor de Cinzas -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Teor de Cinzas</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface" id="inspCinzas">0.55%</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Grau 00</span>
+</div>
+</div>
+<!-- Glúten Úmido -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Glúten Úmido (W)</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-md text-headline-md font-extrabold text-primary" id="inspGluten">W 320</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Alta Força</span>
+</div>
+</div>
+<!-- Falling Number -->
+<div class="p-2.5 rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Falling Number</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface" id="inspFalling">360 seg</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Estável</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Origin and Grain Batch Traceability -->
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-2">
+<span class="font-label-sm text-label-sm uppercase font-bold text-outline block">Cadeia de Rastreabilidade Agro</span>
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Lote Trigo Origem:</span>
+<span class="font-bold text-on-surface" id="inspTrigoOrigem">TR-2024-PARANÁ-SILO9</span>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Certificação de Não Contaminação:</span>
+<span class="font-bold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">format_image_left</span>
+              Micotoxinas Negativo
+            </span></div>
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Laudo Emitido Por:</span>
+<span class="font-bold text-on-surface">Laboratório Central MAPA #089</span>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Chave NF-e Entrada Grão:</span>
+<span class="font-mono text-outline text-[11px] truncate max-w-[180px]">352410612290040002195500</span>
+</div>
+</div>
+<!-- Commercial Action Launcher -->
+<div class="pt-space-sm space-y-space-xs">
+<div class="flex justify-between items-end mb-1">
+<div>
+<span class="font-label-sm text-label-sm text-outline block">Preço Mínimo de Desova Sugerido</span>
+<span class="font-headline-lg text-headline-lg font-black text-secondary" id="inspSugerido">R$ 56,00 / un</span>
+</div>
+<span class="text-label-sm font-label-sm font-extrabold text-tertiary">-40.7% vs Tabela</span>
+</div>
+<button class="w-full py-2.5 px-space-md rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-sm transition-all" id="btnLaunchAuction">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Publicar Leilão B2B Deste Lote</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-space-sm rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold flex items-center justify-center gap-1.5 transition-colors" onclick="gerarLaudoPDF()">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+<span>Baixar Laudo SIF</span>
+</button>
+<button class="py-2 px-space-sm rounded-lg bg-secondary text-on-secondary hover:opacity-90 font-label-sm text-label-sm font-bold flex items-center justify-center gap-1.5 transition-colors" onclick="alocarVendaDireta()">
+<span class="material-symbols-outlined text-[16px]">point_of_sale</span>
+<span>Venda Direta</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Batch Action Floating Bar (Reveals when items selected) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-space-lg py-3 rounded-xl shadow-xl flex items-center gap-space-lg z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="batchActionBar">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]">check_circle</span>
+<span class="font-label-md text-label-md font-bold"><span id="selectedCount">0</span> lotes selecionados</span>
+<span class="text-outline text-label-sm">• Volume: <strong class="text-inverse-on-surface" id="selectedVolume">0.0 Ton</strong></span>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-3 py-1.5 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold hover:bg-primary-fixed-dim transition-colors flex items-center gap-1" onclick="criarMegaLeilaoLotes()">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+<span>Agrupar em Pregão Unificado</span>
+</button>
+<button class="p-1 rounded text-outline hover:text-inverse-on-surface" onclick="desmarcarTodosLotes()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  // Inspection Data Registry for Interactive Dossiê
+  const lotesData = [
+    {
+      codigo: "#LT-8849-B",
+      produto: "Farinha Especial Pizzeria 00",
+      dias: "26 dias para vencimento",
+      umidade: "13.8%",
+      cinzas: "0.55%",
+      gluten: "W 320",
+      falling: "360 seg",
+      trigoOrigem: "TR-2024-PARANÁ-SILO9",
+      precoSugerido: "R$ 56,00 / un",
+      motivo: "Vencimento Curto",
+      ton: 30.0
+    },
+    {
+      codigo: "#LT-9012-A",
+      produto: "Farinha de Trigo Tipo 1 Pastelaria",
+      dias: "216 dias para vencimento",
+      umidade: "14.2%",
+      cinzas: "0.65%",
+      gluten: "W 260",
+      falling: "310 seg",
+      trigoOrigem: "TR-2025-RIO-GRANDE-SILO2",
+      precoSugerido: "R$ 38,50 / un",
+      motivo: "Excesso de Moagem",
+      ton: 48.0
+    },
+    {
+      codigo: "#LT-7731-C",
+      produto: "Pré-Mistura Pão Francês Crocante",
+      dias: "104 dias para vencimento",
+      umidade: "13.1%",
+      cinzas: "0.72%",
+      gluten: "W 280",
+      falling: "330 seg",
+      trigoOrigem: "TR-2024-IMPORT-ARGENTINA",
+      precoSugerido: "R$ 78,00 / un",
+      motivo: "Transição ANVISA RDC",
+      ton: 23.75
+    },
+    {
+      codigo: "#LT-6501-D",
+      produto: "Sêmola Purificada Trigo Durum",
+      dias: "69 dias para vencimento",
+      umidade: "12.9%",
+      cinzas: "0.85%",
+      gluten: "W 380",
+      falling: "410 seg",
+      trigoOrigem: "TR-2024-CANADENSE-GRAU1",
+      precoSugerido: "R$ 2.650 / un",
+      motivo: "Giro Lento CD",
+      ton: 42.0
+    },
+    {
+      codigo: "#LT-5120-X",
+      produto: "Farinha Integral Rústica Granito",
+      dias: "60 dias para vencimento",
+      umidade: "13.5%",
+      cinzas: "1.45%",
+      gluten: "W 240",
+      falling: "290 seg",
+      trigoOrigem: "TR-2024-SANTA-CATARINA",
+      precoSugerido: "R$ 31,50 / un",
+      motivo: "Descontinuado",
+      ton: 18.0
+    },
+    {
+      codigo: "#LT-8819-A",
+      produto: "Farinha Especial P/ Congelamento",
+      dias: "16 dias para vencimento",
+      umidade: "13.9%",
+      cinzas: "0.58%",
+      gluten: "W 350",
+      falling: "375 seg",
+      trigoOrigem: "TR-2024-PARANÁ-SILO4",
+      precoSugerido: "R$ 51,00 / un",
+      motivo: "Validade Crítica FEFO",
+      ton: 16.25
+    }
+  ];
+
+  function abrirRastreabilidade(index) {
+    const item = lotesData[index];
+    if (!item) return;
+
+    document.getElementById("inspLoteCode").innerText = "Lote " + item.codigo;
+    document.getElementById("inspProductName").innerText = item.produto;
+    document.getElementById("inspDaysLeft").innerText = item.dias;
+    document.getElementById("inspUmidade").innerText = item.umidade;
+    document.getElementById("inspCinzas").innerText = item.cinzas;
+    document.getElementById("inspGluten").innerText = item.gluten;
+    document.getElementById("inspFalling").innerText = item.falling;
+    document.getElementById("inspTrigoOrigem").innerText = item.trigoOrigem;
+    document.getElementById("inspSugerido").innerText = item.precoSugerido;
+
+    const panel = document.getElementById("sideInspectionPanel");
+    panel.classList.remove("ring-2", "ring-primary");
+    void panel.offsetWidth;
+    panel.classList.add("ring-2", "ring-primary");
+    setTimeout(() => {
+      panel.classList.remove("ring-2", "ring-primary");
+    }, 800);
+  }
+
+  function filtrarMotivo(motivo, el) {
+    const tabs = document.querySelectorAll(".filter-tab");
+    tabs.forEach(tab => {
+      tab.classList.remove("bg-surface-container-lowest", "shadow-sm");
+      tab.classList.add("bg-surface-container-lowest/60");
+    });
+
+    el.classList.remove("bg-surface-container-lowest/60");
+    el.classList.add("bg-surface-container-lowest", "shadow-sm");
+  }
+
+  function iniciarPregaoLote(lote) {
+    alert("Iniciando assistente de criação de leilão B2B para o " + lote + " com regras de liquidação FEFO parametrizadas.");
+  }
+
+  function gerarLaudoPDF() {
+    alert("Gerando Dossiê Digital de Qualidade SIF em formato PDF assinado com certificado ICP-Brasil.");
+  }
+
+  function alocarVendaDireta() {
+    alert("Lote direcionado para a vitrine de Venda Direta com desconto escalonado por pallet.");
+  }
+
+  // Selection Logic for Batch Floating Action Bar
+  const checkboxes = document.querySelectorAll(".batch-checkbox");
+  const selectAll = document.getElementById("selectAllCheckbox");
+  const floatingBar = document.getElementById("batchActionBar");
+  const selectedCountEl = document.getElementById("selectedCount");
+  const selectedVolEl = document.getElementById("selectedVolume");
+
+  function atualizarBarraSelecao() {
+    let count = 0;
+    let totalTon = 0;
+
+    checkboxes.forEach((cb, idx) => {
+      if (cb.checked) {
+        count++;
+        totalTon += lotesData[idx] ? lotesData[idx].ton : 20;
+      }
+    });
+
+    selectedCountEl.innerText = count;
+    selectedVolEl.innerText = totalTon.toFixed(1) + " Ton";
+
+    if (count > 0) {
+      floatingBar.classList.remove("translate-y-24", "opacity-0", "pointer-events-none");
+      floatingBar.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+    } else {
+      floatingBar.classList.add("translate-y-24", "opacity-0", "pointer-events-none");
+      floatingBar.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+      selectAll.checked = false;
+    }
+  }
+
+  checkboxes.forEach(cb => {
+    cb.addEventListener("change", atualizarBarraSelecao);
+  });
+
+  if (selectAll) {
+    selectAll.addEventListener("change", function() {
+      checkboxes.forEach(cb => {
+        cb.checked = selectAll.checked;
+      });
+      atualizarBarraSelecao();
+    });
+  }
+
+  function selecionarTodosLotes() {
+    checkboxes.forEach(cb => cb.checked = true);
+    if (selectAll) selectAll.checked = true;
+    atualizarBarraSelecao();
+  }
+
+  function desmarcarTodosLotes() {
+    checkboxes.forEach(cb => cb.checked = false);
+    if (selectAll) selectAll.checked = false;
+    atualizarBarraSelecao();
+  }
+
+  function criarMegaLeilaoLotes() {
+    alert("Consolidando os lotes selecionados em um Super Pregão B2B com múltiplos lotes de moenda.");
+  }
+
+  document.getElementById("btnLaunchAuction")?.addEventListener("click", () => {
+    const lote = document.getElementById("inspLoteCode").innerText;
+    alert("Publicando leilão imediato para o " + lote + " no painel de pregões ao vivo.");
+  });
+
+  document.getElementById("btnExportarLotes")?.addEventListener("click", () => {
+    alert("Exportando planilha analítica de shelf life e FEFO em formato XLSX e integração SAP S/4HANA.");
+  });
+</script></main></div></body></html>

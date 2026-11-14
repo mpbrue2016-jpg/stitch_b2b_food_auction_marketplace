@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "on-primary-fixed-variant": "#00429c", "on-secondary-fixed-variant": "#005312", "on-primary-container": "#a1bbff", "on-secondary-container": "#217128", "surface-variant": "#e0e3e5", "tertiary": "#720009", "error": "#ba1a1a", "secondary-fixed": "#a3f69c", "secondary-fixed-dim": "#88d982", "tertiary-container": "#9d0011", "on-tertiary-container": "#ffa59d", "on-surface-variant": "#434652", "on-primary-fixed": "#001945", "surface-container-highest": "#e0e3e5", "outline": "#737783", "surface-container-low": "#f2f4f6", "on-primary": "#ffffff", "tertiary-fixed": "#ffdad6", "inverse-primary": "#b0c6ff", "surface-container-high": "#e6e8ea", "secondary-container": "#a0f399", "on-secondary-fixed": "#002204", "on-error-container": "#93000a", "surface-container": "#eceef0", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#ffb3ac", "on-surface": "#191c1e", "surface-dim": "#d8dadc", "primary-fixed-dim": "#b0c6ff", "on-tertiary": "#ffffff", "surface-bright": "#f7f9fb", "primary-container": "#0d47a1", "primary-fixed": "#d9e2ff", "surface-container-lowest": "#ffffff", "secondary": "#1b6d24", "surface-tint": "#2b5bb5", "background": "#f7f9fb", "on-error": "#ffffff", "surface": "#f7f9fb", "inverse-on-surface": "#eff1f3", "on-background": "#191c1e", "on-tertiary-fixed-variant": "#930010", "outline-variant": "#c3c6d4", "primary": "#003178", "inverse-surface": "#2d3133", "on-tertiary-fixed": "#410003" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1.5rem", "space-xl": "2rem", "gutter": "1rem", "space-xs": "0.25rem", "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "margin-mobile": "1rem", "space-md": "0.75rem", "space-lg": "1.25rem" }, "fontFamily": { "label-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"] }, "fontSize": { "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 w-full px-space-xl flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg shrink-0"><div class="flex items-center gap-space-sm"><img alt="Varejista Online" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Marketplace B2B &amp; Leilões</span></div></div></div><div class="hidden xl:flex flex-1 max-w-md mx-space-md"><div class="relative w-full flex items-center"><span class="material-symbols-outlined absolute left-3 text-outline text-lg pointer-events-none">search</span><input class="w-full pl-10 pr-4 py-2 bg-surface-container-low font-body-md text-body-md text-on-surface placeholder:text-outline rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Buscar por SKU, EAN/GTIN, Lote ou Categoria..." type="text"/></div></div><nav class="hidden lg:flex items-center gap-space-md shrink-0" data-active-classes="text-primary font-label-lg border-b-2 border-primary"><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="catalogo-publico" href="#">Catálogo Público</a><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="lotes-e-leiloes" href="#">Lotes &amp; Leilões</a><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="setores" href="#">Setores</a><a aria-current="page" class="px-space-xs py-2 transition-colors whitespace-nowrap text-primary font-label-lg border-b-2 border-primary" data-path="central-de-cadastros" href="#">Central de Cadastros</a><a class="px-space-xs py-2 font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors whitespace-nowrap" data-path="como-funciona" href="#">Como Funciona</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="hidden sm:inline-flex items-center px-space-md py-2 rounded-lg bg-surface-container-high font-label-lg text-label-lg text-on-surface hover:bg-surface-container-highest transition-colors whitespace-nowrap" data-path="catalogo-publico" href="#">Explorar como Visitante</a><a class="inline-flex items-center px-space-md py-2 rounded-lg bg-primary font-label-lg text-label-lg text-on-primary hover:bg-primary-container hover:text-on-primary transition-colors whitespace-nowrap shadow-sm" data-path="autenticacao-e-cadastro" href="#">Cadastre sua Empresa / Login</a><img alt="Profile" class="w-8 h-8 rounded-full object-cover shrink-0 ml-space-xs" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Command Banner / Status Header -->
+<section class="w-full bg-surface-container-low px-space-xl py-space-lg">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-gutter">
+<div class="flex items-center gap-space-md">
+<span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-on-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined text-2xl">domain_verification</span>
+</span>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">KYB Instantâneo</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sincronizado via Serpro &amp; Redesim</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Mesa Central de Credenciamento Corporativo</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="hidden sm:flex items-center gap-space-xs bg-surface-container-highest px-space-md py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-outline text-lg">schedule</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Homologação média: <strong>14 minutos</strong></span>
+</div>
+<a class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-highest hover:bg-surface-variant text-primary font-label-lg text-label-lg transition-colors" href="#cnpj-lookup">
+<span class="material-symbols-outlined text-lg">search_check</span>
+          Consulta CNPJ Express
+        </a>
+</div>
+</div>
+</section>
+<!-- Editorial Hero Introduction -->
+<section class="w-full px-space-xl pt-space-xl pb-space-lg">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-end">
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<div class="inline-flex items-center gap-space-xs text-primary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">shield</span>
+            Credenciamento Institucional B2B
+          </div>
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight">
+            Central de Cadastro de Empresas e Parceiros • Escolha o seu Perfil
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
+            Conecte sua empresa ao maior ecossistema de liquidação e arremate corporativo. Selecione sua categoria para acessar o formulário específico com validação de CNPJ em tempo real.
+          </p>
+</div>
+<div class="lg:col-span-4 flex flex-col bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-outline">Operações em Andamento</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary bg-secondary-container/40 px-2 py-0.5 rounded">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+              Ao Vivo
+            </span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs pt-space-xs">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary">R$ 14,8M</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lotes Ativos</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">3.412</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Varejistas</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-secondary">99.4%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Compliance</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Profile Selection Grid (5 Profiles Bento Layout) -->
+<section class="w-full px-space-xl py-space-lg">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center justify-between pb-space-md">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Etapa 01</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Selecione o Perfil Operacional</h2>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant hidden md:inline-block">5 formulários regulamentados com checagem automática</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Profile 1: Comprador & Varejista B2B (Featured - Double Span on LG) -->
+<article class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+<div>
+<div class="flex items-start justify-between gap-space-md mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">storefront</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Giro Rápido • Arrematante</span>
+<h3 class="font-headline-lg text-headline-lg text-primary">Comprador &amp; Varejista B2B</h3>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-primary/10 text-primary px-space-sm py-1 rounded">Perfil #01</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Supermercados, Mercados, Mercearias, Lojas de Conveniência, Farmácias, Padarias e Pet Shops que demandam reposição ágil de produtos de alta demanda.
+            </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md bg-surface-container-low p-space-md rounded-lg mb-space-lg">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-space-xs">Requisitos Documentais</span>
+<ul class="flex flex-col gap-1 text-on-surface font-body-sm text-body-sm">
+<li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span>CNPJ Ativo (Varejo / Atacarejo)</li>
+<li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span>Inscrição Estadual (IE) regularizada</li>
+<li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-sm">check_circle</span>Comprovante de endereço comercial</li>
+</ul>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block mb-space-xs">Vantagens Comerciais</span>
+<ul class="flex flex-col gap-1 text-on-surface font-body-sm text-body-sm">
+<li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-sm">bolt</span>Lances em tempo real &amp; Compra Direta</li>
+<li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-sm">verified_user</span>Proteção Escrow com liberação pós-conferência</li>
+<li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-sm">payments</span>Prazos faturados via limite pré-aprovado</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tempo médio de onboarding: <strong>6 minutos</strong></span>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors shadow-sm" onclick="openRegistrationModal('comprador')">
+<span>Iniciar Cadastro de Comprador</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Profile 2: Indústria & Fabricante B2B -->
+<article class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container text-on-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">factory</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-space-sm py-1 rounded">Perfil #02</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Geradores de Volume</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-0.5 mb-space-xs">Indústria &amp; Fabricante B2B</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Fabricantes de Alimentos, Bebidas, Higiene, Medicamentos MIP e Nutrição Animal (Rações).
+            </p>
+<div class="bg-surface-container-low p-space-md rounded-lg mb-space-md flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Requisitos Regulatórios</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-tight">
+                CNPJ Industrial, Alvará Sanitário, SIF / MAPA ou AFE ANVISA correspondente à linha fabril.
+              </p>
+<div class="h-px bg-surface-variant my-1"></div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Vantagem Exclusiva</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-tight">
+                Liquidação imediata de ponta de estoque sem canibalizar a cadeia oficial e canais diretos.
+              </p>
+</div>
+</div>
+<button class="w-full inline-flex items-center justify-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors" onclick="openRegistrationModal('industria')">
+<span>Iniciar Cadastro de Indústria</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</article>
+<!-- Profile 3: Representante Comercial & Distribuidora B2B -->
+<article class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">hub</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-space-sm py-1 rounded">Perfil #03</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Intermediação Regional</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-0.5 mb-space-xs">Distribuidora &amp; Representante</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Distribuidores regionais, operadores atacadistas e agentes comerciais devidamente autorizados.
+            </p>
+<div class="bg-surface-container-low p-space-md rounded-lg mb-space-md flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Requisitos</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-tight">
+                Contrato Social consolidado, procuração/carta de anuência da indústria e CNPJ ativo com CNAE de atacado.
+              </p>
+</div>
+</div>
+<button class="w-full inline-flex items-center justify-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors" onclick="openRegistrationModal('distribuidor')">
+<span>Iniciar Cadastro de Distribuidor</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</article>
+<!-- Profile 4: Vendedor Geral & Estoquista B2B -->
+<article class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-highest text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">inventory</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-space-sm py-1 rounded">Perfil #04</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Desova de Saldos</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-0.5 mb-space-xs">Vendedor Geral &amp; Estoquista</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Empresas comerciais com estoque excedente, devoluções comerciais e saldos de lote de giro rápido.
+            </p>
+<div class="bg-surface-container-low p-space-md rounded-lg mb-space-md flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Requisitos</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-tight">
+                CNPJ ativo e Termo de Declaração de Procedência &amp; Rastreabilidade Fiscal de origem do lote.
+              </p>
+</div>
+</div>
+<button class="w-full inline-flex items-center justify-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors" onclick="openRegistrationModal('vendedor')">
+<span>Iniciar Cadastro de Vendedor</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</article>
+<!-- Profile 5: Transportadora Parceira & Operador 3PL -->
+<article class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-md">
+<div class="w-12 h-12 rounded-xl bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">local_shipping</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant px-space-sm py-1 rounded">Perfil #05</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Logística &amp; Coletas</span>
+<h3 class="font-headline-md text-headline-md text-primary mt-0.5 mb-space-xs">Transportadora &amp; 3PL</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+              Frotas corporativas, carretas secas e isotérmicas/refrigeradas para coletas industriais dedicadas.
+            </p>
+<div class="bg-surface-container-low p-space-md rounded-lg mb-space-md flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Requisitos de Frota</span>
+<p class="font-body-sm text-body-sm text-on-surface leading-tight">
+                RNTRC / ANTT regular, apólices de seguro RCTR-C e RC-DC vigentes e plano mensal de parceiro.
+              </p>
+</div>
+</div>
+<button class="w-full inline-flex items-center justify-center gap-space-xs px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors" onclick="openRegistrationModal('transportador')">
+<span>Iniciar Cadastro de Transportador</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</article>
+</div>
+</div>
+</section>
+<!-- Interactive CNPJ Consultation & Automatic Routing Section -->
+<section class="w-full px-space-xl py-space-xl" id="cnpj-lookup">
+<div class="max-w-7xl mx-auto">
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Automação KYB</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Consulta Prévia de CNPJ • Roteamento Inteligente</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+              Informe o CNPJ da sua empresa para preenchimento cadastral automático e detecção instantânea do perfil indicado segundo o CNAE Principal.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-lg self-start">
+<span class="material-symbols-outlined text-secondary text-lg">verified</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Conexão API Receita Federal</span>
+</div>
+</div>
+<!-- CNPJ Input Row -->
+<div class="flex flex-col md:flex-row items-stretch gap-space-md mb-space-lg">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3.5 top-3.5 text-outline pointer-events-none">badge</span>
+<input class="w-full pl-11 pr-4 py-3 bg-surface-container-low text-on-surface font-headline-md text-headline-md rounded-lg focus:outline-none focus:bg-surface-container-lowest shadow-sm placeholder:font-body-md placeholder:text-outline" id="cnpj-input" maxlength="18" placeholder="Digite o CNPJ da sua empresa (Ex: 00.000.000/0001-00)" type="text" value="02.449.992/0001-64"/>
+</div>
+<button class="inline-flex items-center justify-center gap-space-sm px-space-xl py-3 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-all shadow-sm shrink-0" id="btn-verify-cnpj" onclick="consultarCNPJ()">
+<span class="material-symbols-outlined text-lg" id="btn-icon">search</span>
+<span id="btn-text">Verificar Elegibilidade Automática na Receita Federal</span>
+</button>
+</div>
+<!-- Dynamic Results Card (Simulated pre-filled return) -->
+<div class="bg-surface-container-low p-space-lg rounded-xl" id="cnpj-result-panel">
+<div class="flex items-start justify-between flex-wrap gap-space-sm pb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-lg">domain</span>
+</span>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">CNPJ Regular &amp; Apto na Receita</span>
+<h3 class="font-headline-md text-headline-md text-on-surface" id="result-razao">ALIMENTOS NATIVOS DO BRASIL S.A.</h3>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-body-sm text-body-sm text-outline">Formulário Recomendado:</span>
+<span class="font-label-lg text-label-lg bg-primary text-on-primary px-space-sm py-1 rounded" id="result-badge-perfil">
+                Indústria &amp; Fabricante B2B
+              </span>
+</div>
+</div>
+<!-- Pre-filled Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md py-space-md">
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-outline">CNAE Principal</span>
+<span class="font-label-lg text-label-lg text-on-surface mt-1" id="result-cnae">10.31-7-00 - Fabricação de Conservas</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Indústria de Alimentos</span>
+</div>
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-outline">Situação Cadastral</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-lg text-label-lg text-secondary">ATIVA (Sem Restrições)</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Última atualização: Hoje</span>
+</div>
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-outline">Município / UF</span>
+<span class="font-label-lg text-label-lg text-on-surface mt-1">Ribeirão Preto / SP</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Região Sudeste • Polo Fabril</span>
+</div>
+<div class="flex flex-col bg-surface-container-lowest p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase text-outline">Status de Compliance</span>
+<span class="font-label-lg text-label-lg text-primary mt-1">Elegível p/ Leilões</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Mesa B2B pré-autorizada</span>
+</div>
+</div>
+<!-- CTA to advance with pre-fill -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-secondary text-base">auto_fix_high</span>
+<span>Os dados já foram mapeados. Clique para abrir o formulário preenchido com seu contrato social.</span>
+</div>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-space-xl py-2.5 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container transition-colors font-label-lg text-label-lg shadow-sm" onclick="openRegistrationModal('industria', true)">
+<span>Continuar Cadastro Pré-Preenchido</span>
+<span class="material-symbols-outlined text-lg">check</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Industrial Inspection & Safety Highlights Bento -->
+<section class="w-full px-space-xl py-space-lg">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl flex items-start gap-space-md shadow-sm">
+<span class="w-10 h-10 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">receipt_long</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Checagem Fiscal Automática</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Validação de Inscrição Estadual (Sintegra/CCC) e verificação de Certidões Negativas Federais em 5 segundos.
+          </p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl flex items-start gap-space-md shadow-sm">
+<span class="w-10 h-10 rounded-lg bg-surface-container-highest text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">health_and_safety</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Inspeção ANVISA &amp; MAPA</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Auditoria de alvarás de saúde pública e registros sanitários para assegurar validade jurídica do arremate.
+          </p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl flex items-start gap-space-md shadow-sm">
+<span class="w-10 h-10 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">account_balance</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Conta Caução Blindada</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Garantia escrow depositada sob custódia de banco liquidante até confirmação da NF-e e canhoto de entrega.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Badges, Compliance Seals & Human Desk Footer -->
+<section class="w-full px-space-xl py-space-xl bg-surface-container-low">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Segurança da Informação KYB</span>
+<span class="font-headline-md text-headline-md text-on-surface">Padrões de Criptografia Bancária &amp; Conformidade</span>
+</div>
+<!-- Help Desk Button -->
+<a class="inline-flex items-center gap-space-sm px-space-lg py-2.5 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container transition-colors font-label-lg text-label-lg shadow-sm shrink-0" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20com%20o%20cadastro%20B2B" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-lg">chat</span>
+<span>Mesa de Homologação via WhatsApp</span>
+<span class="font-label-sm text-label-sm bg-on-secondary-container px-2 py-0.5 rounded text-secondary-fixed">Plantão B2B</span>
+</a>
+</div>
+<!-- Security Pills Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter pt-space-xs">
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">gavel</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">LGPD Compliant</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Dados corporativos seguros</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-xl">lock</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">AES-256 bits</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Criptografia em repouso</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">vpn_key</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Túnel mTLS</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Autenticação mútua TLS 1.3</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary text-xl">security</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Auditoria Serpro</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Validação na base governamental</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic Modal for Profile Registration Form (Client-side interactive) -->
+<div class="fixed inset-0 z-50 bg-on-surface/50 backdrop-blur-sm hidden items-center justify-center p-space-md" id="modal-registration">
+<div class="bg-surface-container-lowest w-full max-w-2xl max-h-[921px] overflow-y-auto rounded-xl shadow-xl flex flex-col">
+<!-- Modal Header -->
+<div class="px-space-lg py-space-md flex items-center justify-between bg-surface-container-low shrink-0">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-lg" id="modal-icon">storefront</span>
+</span>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary" id="modal-title">Cadastro de Comprador B2B</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Etapa 1 de 2 • Dados Básicos &amp; Documentação</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest flex items-center justify-center text-outline" onclick="closeRegistrationModal()">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Modal Body (Form Fields) -->
+<form class="p-space-lg flex flex-col gap-space-md" id="form-kyb" onsubmit="handleFormSubmit(event)">
+<div class="p-space-sm bg-surface-container rounded-lg flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-lg">verified</span>
+<span class="font-body-sm text-body-sm text-on-surface" id="modal-profile-desc">
+            Este formulário credencia varejistas para arremates diretos com proteção de margem.
+          </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline">CNPJ da Empresa</label>
+<input class="w-full px-3 py-2 bg-surface-container-low text-on-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" id="input-modal-cnpj" placeholder="00.000.000/0001-00" required="" type="text" value="02.449.992/0001-64"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline">Inscrição Estadual (IE)</label>
+<input class="w-full px-3 py-2 bg-surface-container-low text-on-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" id="input-modal-ie" placeholder="Isento ou Nº da IE" required="" type="text" value="112.984.331.009"/>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline">Razão Social Completa</label>
+<input class="w-full px-3 py-2 bg-surface-container-low text-on-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" id="input-modal-razao" required="" type="text" value="ALIMENTOS NATIVOS DO BRASIL S.A."/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline">E-mail Corporativo / Faturamento</label>
+<input class="w-full px-3 py-2 bg-surface-container-low text-on-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" placeholder="financeiro@empresa.com.br" required="" type="email"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm uppercase text-outline">Telefone / WhatsApp Comercial</label>
+<input class="w-full px-3 py-2 bg-surface-container-low text-on-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md" placeholder="(11) 98888-0000" required="" type="tel"/>
+</div>
+</div>
+<!-- Dynamic Specific Requirements Upload Area -->
+<div class="flex flex-col gap-space-xs" id="dynamic-requirements">
+<label class="font-label-sm text-label-sm uppercase text-outline">Comprovantes &amp; Documentação Específica</label>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline">upload_file</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface" id="doc-req-title">Contrato Social &amp; Alvará Sanitário</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">PDF, PNG ou JPG até 15MB</span>
+</div>
+</div>
+<label class="inline-flex items-center px-space-md py-1.5 rounded-lg bg-surface-container-highest hover:bg-surface-variant text-primary font-label-lg text-label-lg cursor-pointer">
+<span>Selecionar Arquivo</span>
+<input class="hidden" type="file"/>
+</label>
+</div>
+</div>
+<div class="flex items-start gap-2 pt-space-xs">
+<input class="mt-1" id="check-termos" required="" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant" for="check-termos">
+            Declaro sob as penas da lei que as informações e documentos enviados correspondem à realidade da pessoa jurídica representada e autorizo a consulta em órgãos de crédito e sanitários.
+          </label>
+</div>
+<div class="flex items-center justify-end gap-space-md pt-space-md">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-highest text-on-surface font-label-lg text-label-lg hover:bg-surface-variant transition-colors" onclick="closeRegistrationModal()" type="button">
+            Cancelar
+          </button>
+<button class="inline-flex items-center gap-space-xs px-space-xl py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm transition-colors" type="submit">
+<span>Enviar para Homologação Express</span>
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Interactive JavaScript Handling CNPJ Verification and Profile Modal Switching -->
+<script>
+    const profileConfigs = {
+      comprador: {
+        title: "Cadastro de Comprador & Varejista B2B",
+        icon: "storefront",
+        desc: "Acesso a pregões em tempo real, proteção escrow e faturamento direto com indústrias.",
+        docReq: "Comprovante de Endereço Comercial & Inscrição Estadual"
+      },
+      industria: {
+        title: "Cadastro de Indústria & Fabricante B2B",
+        icon: "factory",
+        desc: "Canal reservado para desova rápida de ponta de estoque industrial sem expor tabela direta.",
+        docReq: "Alvará Sanitário / SIF / MAPA / AFE ANVISA"
+      },
+      distribuidor: {
+        title: "Cadastro de Distribuidora & Representante",
+        icon: "hub",
+        desc: "Intermediação regional de marcas e lotes fechados comissionados.",
+        docReq: "Contrato Social & Carta de Procuração da Indústria Representada"
+      },
+      vendedor: {
+        title: "Cadastro de Vendedor Geral & Estoquista",
+        icon: "inventory",
+        desc: "Liquidação de ativos comerciais, excedentes e saldo de estoque de giro.",
+        docReq: "Declaração de Procedência Fiscal & Rastreamento de Lote"
+      },
+      transportador: {
+        title: "Cadastro de Transportadora Parceira & 3PL",
+        icon: "local_shipping",
+        desc: "Credenciamento de frota para fretes homologados e rotas dedicadas de paletes.",
+        docReq: "Certificado RNTRC / ANTT Ativo & Apólices RCTR-C e RC-DC"
+      }
+    };
+
+    function openRegistrationModal(profileKey, prefilled = false) {
+      const config = profileConfigs[profileKey] || profileConfigs.comprador;
+      document.getElementById('modal-title').textContent = config.title;
+      document.getElementById('modal-icon').textContent = config.icon;
+      document.getElementById('modal-profile-desc').textContent = config.desc;
+      document.getElementById('doc-req-title').textContent = config.docReq;
+
+      if (!prefilled) {
+        document.getElementById('input-modal-cnpj').value = document.getElementById('cnpj-input').value || '';
+      }
+
+      const modal = document.getElementById('modal-registration');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeRegistrationModal() {
+      const modal = document.getElementById('modal-registration');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function consultarCNPJ() {
+      const btn = document.getElementById('btn-verify-cnpj');
+      const btnIcon = document.getElementById('btn-icon');
+      const btnText = document.getElementById('btn-text');
+      const cnpjVal = document.getElementById('cnpj-input').value;
+
+      btnIcon.textContent = 'hourglass_empty';
+      btnText.textContent = 'Consultando Serpro / RFB...';
+      btn.classList.add('opacity-80', 'cursor-not-allowed');
+
+      setTimeout(() => {
+        btnIcon.textContent = 'check_circle';
+        btnText.textContent = 'CNPJ Validado com Sucesso!';
+        btn.classList.remove('opacity-80', 'cursor-not-allowed');
+
+        // Smooth scroll to results
+        const panel = document.getElementById('cnpj-result-panel');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        // Highlight visually
+        panel.classList.add('ring-2', 'ring-secondary');
+        setTimeout(() => panel.classList.remove('ring-2', 'ring-secondary'), 1800);
+      }, 700);
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Cadastro enviado para a Mesa de Homologação! Em instantes seu token de acesso B2B será enviado por WhatsApp e E-mail corporativo.');
+      closeRegistrationModal();
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-xl shadow-[0_-1px_8px_rgba(0,0,0,0.02)]"><div class="w-full px-space-xl py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl mb-space-xl"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="Varejista Online" class="w-7 h-7 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><span class="font-headline-md text-headline-md text-primary">VAREJISTA ONLINE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Ecossistema B2B de ponta de estoque, leilões industriais em tempo real e distribuição atacadista de alto volume.</p></div><div class="flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface">Setores Especializados</span><div class="flex flex-col gap-space-xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Alimentos &amp; Bebidas</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Farmácia &amp; Farma-Cosméticos</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Padaria &amp; Panificação</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Pet Shop &amp; Veterinária</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="setores" href="#">Mercearia &amp; Secos</a></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface">Operacional B2B</span><div class="flex flex-col gap-space-xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="lotes-e-leiloes" href="#">Pregões ao Vivo</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="central-de-cadastros" href="#">Formulários de Homologação</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="como-funciona" href="#">Regras de Arremate &amp; Caução</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="como-funciona" href="#">Inspeção de Lotes &amp; Validade</a></div></div><div class="flex flex-col gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface">Compliance &amp; Acesso</span><div class="flex flex-col gap-space-xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="autenticacao-e-cadastro" href="#">Portal do Fornecedor / Indústria</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="autenticacao-e-cadastro" href="#">Credenciamento de Compradores</a><span class="font-body-sm text-body-sm text-outline mt-space-xs">Operação em conformidade com normas ANVISA e MAPA.</span></div></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-outline font-body-sm text-body-sm"><p>© 2025 Varejista Online S.A. Plataforma de Atacado e Pregões Industriais. Todos os direitos reservados.</p><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Liquidez Atacadista Garantida</span></div></div></div></footer></body></html>

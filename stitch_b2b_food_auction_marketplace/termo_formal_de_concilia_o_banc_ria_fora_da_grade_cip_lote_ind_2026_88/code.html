@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#2b5bb5","on-secondary-fixed-variant":"#005312","on-primary-fixed":"#001945","secondary-fixed":"#a3f69c","on-background":"#191c1e","primary-fixed":"#d9e2ff","on-secondary-fixed":"#002204","on-secondary-container":"#217128","outline-variant":"#c3c6d4","surface-variant":"#e0e3e5","on-error":"#ffffff","primary-container":"#0d47a1","on-tertiary-fixed-variant":"#930010","inverse-on-surface":"#eff1f3","error-container":"#ffdad6","outline":"#737783","surface-dim":"#d8dadc","surface-container-high":"#e6e8ea","primary-fixed-dim":"#b0c6ff","on-tertiary-container":"#ffa59d","tertiary-fixed-dim":"#ffb3ac","surface-container-low":"#f2f4f6","inverse-primary":"#b0c6ff","on-primary-fixed-variant":"#00429c","inverse-surface":"#2d3133","on-error-container":"#93000a","on-tertiary":"#ffffff","secondary-container":"#a0f399","surface-bright":"#f7f9fb","on-primary-container":"#a1bbff","tertiary":"#720009","error":"#ba1a1a","surface-container-lowest":"#ffffff","tertiary-container":"#9d0011","secondary":"#1b6d24","surface-container-highest":"#e0e3e5","on-surface-variant":"#434652","surface":"#f7f9fb","on-primary":"#ffffff","on-tertiary-fixed":"#410003","background":"#f7f9fb","tertiary-fixed":"#ffdad6","surface-container":"#eceef0","on-secondary":"#ffffff","secondary-fixed-dim":"#88d982","primary":"#003178","on-surface":"#191c1e"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-xl":"2rem","space-xs":"0.25rem","margin":"1.5rem","space-lg":"1.25rem","gutter-mobile":"0.75rem","space-sm":"0.5rem","margin-mobile":"1rem","space-md":"0.75rem","gutter":"1rem"},fontFamily:{"label-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"]},fontSize:{"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-margin flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-[28px]">assured_workload</span><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary leading-tight tracking-tight">ESCROW B2B</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Auditoria & Custódia</span></div></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs mb-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline">Governança & Custódia</div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-xl shadow-sm"><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm transition-colors bg-primary-container text-on-primary font-label-lg rounded-xl shadow-sm" data-path="dossie-conciliacao-escrow" href="#"><span class="material-symbols-outlined text-[20px]">description</span>Dossiê do Termo</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="painel-financeiro-conciliacao" href="#"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>Painel Financeiro</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="governanca-compliance-auditoria" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span>Compliance e Regras</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="historico-certificados-liquidacao" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span>Certificados Emitidos</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="garantias-custodia-bancaria" href="#"><span class="material-symbols-outlined text-[20px]">lock_clock</span>Garantias em Escrow</a></nav></div></div><div class="p-space-md bg-surface-container"><div class="p-space-sm rounded-xl bg-surface-container-lowest flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary text-[22px]">shield</span><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface">ICP-Brasil & BACEN</span><span class="font-label-sm text-label-sm text-on-surface-variant">Selo Notarial Válido</span></div></div><span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><a class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant bg-surface-container hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="painel-financeiro-conciliacao" href="#"><span class="material-symbols-outlined text-[18px]">arrow_back</span>Voltar ao Painel Financeiro</a><div class="h-5 w-[1px] bg-surface-variant hidden md:block"></div><span class="font-label-md text-label-md text-on-surface-variant hidden md:inline-flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[16px]">fingerprint</span>DOC REF #ESC-2024-BR892</span></div><div class="flex items-center gap-space-sm"><button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl font-label-md text-label-md bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">share</span>Compartilhar WhatsApp</button><button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl font-label-md text-label-md bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">print</span>Imprimir</button><button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm" type="button"><span class="material-symbols-outlined text-[18px]">download</span>Baixar PDF Oficial</button><div class="h-6 w-[1px] bg-surface-variant ml-space-xs mr-space-xs"></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 w-full min-h-screen bg-surface px-margin py-margin"><div class="flex flex-col w-full">
+<!-- Top Command & Action Bar -->
+<div class="w-full bg-surface-container-lowest p-space-md shadow-sm rounded-xl mb-space-lg">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<!-- Breadcrumb & Badges -->
+<div class="flex flex-col gap-space-xs">
+<nav class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<span class="hover:text-primary transition-colors cursor-pointer">Painel Master</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Gestão Financeira</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Conciliação Bancária</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Termo-EXC-2026-CIP88</span>
+</nav>
+<div class="flex flex-wrap items-center gap-space-xs pt-1">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+            CONCILIAÇÃO HOMOLOGADA
+          </span>
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">workspace_premium</span>
+            AUTENTICADO COM CERTIFICADO ICP-BRASIL
+          </span>
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">gavel</span>
+            RESOLUÇÃO BACEN 4.656
+          </span>
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">enhanced_encryption</span>
+            SHA-256 IMUTÁVEL
+          </span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl font-label-md text-label-md bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" data-path="painel-financeiro-conciliacao" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Voltar ao Painel</span>
+</a>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl font-label-md text-label-md bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" id="copyHashBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">key</span>
+<span id="copyHashLabel">Copiar Hash SHA-256</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl font-label-md text-label-md bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Imprimir</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-xl font-label-md text-label-md bg-surface-container-low text-on-secondary-container hover:bg-secondary-container/40 transition-colors" id="shareWhatsAppBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>WhatsApp</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-lg py-space-xs rounded-xl font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Baixar PDF Oficial (.pdf)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Work Area: Document Viewer + Right Sidebar -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- PDF Document Viewport (Cols 1-8 / 9 on wider) -->
+<div class="xl:col-span-8 flex flex-col items-center">
+<!-- Quick Viewport Controls Bar -->
+<div class="w-full max-w-[820px] bg-surface-container-high px-space-md py-space-xs rounded-t-xl flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm shadow-xs">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1 font-bold text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">picture_as_pdf</span>
+            Visualizador Oficial PDF/A
+          </span>
+<span class="text-outline">|</span>
+<span>Página 1 de 1</span>
+<span class="text-outline">|</span>
+<span class="text-secondary font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+            Integridade Criptográfica Garantida
+          </span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="p-1 hover:bg-surface-container rounded-lg text-on-surface-variant hover:text-on-surface" title="Reduzir zoom" type="button">
+<span class="material-symbols-outlined text-[18px]">zoom_out</span>
+</button>
+<span class="px-space-xs text-on-surface font-semibold">100%</span>
+<button class="p-1 hover:bg-surface-container rounded-lg text-on-surface-variant hover:text-on-surface" title="Aumentar zoom" type="button">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded-lg text-on-surface-variant hover:text-on-surface" title="Modo tela cheia" type="button">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Realistic A4 Paper Sheet -->
+<div class="w-full max-w-[820px] bg-surface-container-lowest shadow-xl rounded-b-xl p-space-xl min-h-[1160px] text-on-surface relative overflow-hidden">
+<!-- Subtle Security Watermark Background -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-[0.025] select-none rotate-[-30deg]">
+<span class="text-[130px] font-black uppercase tracking-widest text-primary leading-none">CONCILIADO</span>
+</div>
+<!-- Document Header: Logos & Registration Block -->
+<div class="relative z-10 pb-space-lg mb-space-lg bg-surface-container-low/40 p-space-md rounded-xl">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md">
+<!-- Left: Brand Authority -->
+<div class="flex items-start gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[28px]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary tracking-tight font-extrabold leading-none">VAREJISTA ONLINE S.A.</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mt-1">Mesa Central de Liquidação & Custódia Fiduciária B2B</span>
+<span class="font-body-sm text-body-sm text-outline">CNPJ/MF: 41.802.991/0001-44 • Instituição de Pagamento Homologada</span>
+</div>
+</div>
+<!-- Right: Document Reference & Timestamp -->
+<div class="flex flex-col items-start md:items-end bg-surface-container-lowest p-space-sm rounded-xl shadow-xs">
+<div class="inline-flex items-center gap-1 font-label-sm text-label-sm font-bold text-primary">
+<span class="material-symbols-outlined text-[15px]">verified_user</span>
+<span>TERMO Nº TERMO-EXC-2026-088-CIP</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Emissão: 25/10/2026 às 17:18:34 (Horário de Brasília)</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Autenticador STR/CIP: STR #992810-CIP-EXC</span>
+</div>
+</div>
+</div>
+<!-- Document Official Title -->
+<div class="relative z-10 text-center mb-space-xl px-space-md">
+<span class="inline-block px-space-sm py-0.5 bg-primary-fixed text-on-primary-fixed rounded-lg font-label-sm text-label-sm uppercase tracking-wider font-extrabold mb-space-xs">
+            Ato Normativo de Homologação Excepcional
+          </span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight font-extrabold leading-tight">
+            TERMO DE HOMOLOGAÇÃO E CONCILIAÇÃO EXCEPCIONAL DE LIQUIDAÇÃO FORA DA GRADE CIP
+          </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl mx-auto mt-space-xs">
+            Instrumento particular de validação de crédito em conta escrow, reconhecimento de quitação e autorização irrevogável de split fiduciário sob vigilância do Sistema de Pagamentos Brasileiro (SPB).
+          </p>
+</div>
+<!-- Section 1: Transaction Identification -->
+<div class="relative z-10 mb-space-lg">
+<div class="flex items-center gap-space-xs mb-space-sm bg-surface-container px-space-sm py-1 rounded-lg">
+<span class="font-label-md text-label-md font-bold text-primary">1. IDENTIFICAÇÃO DA TRANSAÇÃO E DO LOTE ARREMATADO</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm text-body-sm">
+<!-- Box Lote & Valor -->
+<div class="bg-surface-container-low p-space-md rounded-xl">
+<div class="flex justify-between items-start mb-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase">Lote Identificador</span>
+<span class="px-space-xs py-0.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm font-bold">#IND-2026-88</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">1.200 Caixas de Óleo de Soja Refinado 900ml</p>
+<p class="text-on-surface-variant font-body-sm mt-0.5">Carga Completa • 24 Paletes PBR • Validade: 14/08/2027</p>
+<div class="mt-space-md pt-space-xs bg-surface-container-lowest p-space-sm rounded-lg flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Valor Bruto Liquidado:</span>
+<span class="font-headline-md text-headline-md text-secondary font-extrabold">R$ 145.000,00</span>
+</div>
+</div>
+<!-- Box Partes & Contas Bancárias -->
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase block mb-1">Partes Envolvidas</span>
+<div class="space-y-2">
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Comprador / Pagador:</span>
+<p class="font-body-sm text-on-surface font-medium">Cooperativa Central Agro (CNPJ: 03.118.992/0001-30)</p>
+<p class="text-label-sm text-outline">Banco Origem: Itaú Unibanco (341) Ag 0842 CC 10294-8</p>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Vendedor / Cedente:</span>
+<p class="font-body-sm text-on-surface font-medium">Bunge Alimentos S.A. (CNPJ: 84.046.101/0001-93)</p>
+</div>
+</div>
+</div>
+<div class="mt-space-xs p-space-xs rounded bg-surface-container-highest text-label-sm">
+<span class="font-semibold text-on-surface">Conta Destino / Custódia:</span>
+<p class="text-on-surface-variant">Banco Santander (033) Ag 0001 CC 99281-0 • Titularidade: Varejista Online Escrow Segregada BACEN</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Operational Diagnostic & Exception Reason -->
+<div class="relative z-10 mb-space-lg">
+<div class="flex items-center gap-space-xs mb-space-sm bg-surface-container px-space-sm py-1 rounded-lg">
+<span class="font-label-md text-label-md font-bold text-primary">2. DIAGNÓSTICO DO EVENTO OPERACIONAL E MOTIVO DA EXCEÇÃO</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm text-outline uppercase block">Modalidade de Entrada</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">TED / STR Bancário</span>
+<span class="text-label-sm text-on-surface-variant block mt-0.5">Mensageria SPB Direta</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm text-outline uppercase block">Corte da Grade CIP Regular</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">17h00min00s</span>
+<span class="text-label-sm text-tertiary block mt-0.5">Grade encerrada pelo clearing</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm text-outline uppercase block">Compensação Efetiva STR</span>
+<span class="font-label-md text-label-md text-secondary font-bold">17h14min02s (+14m02s)</span>
+<span class="text-label-sm text-secondary block mt-0.5">Crédito irrevogável capturado</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest text-body-sm leading-relaxed text-on-surface">
+<span class="font-label-md text-label-md font-bold text-primary block mb-1">Fundamentação Técnica do Despacho Operacional:</span>
+<p class="text-on-surface-variant">
+                O recurso foi liquidado pelo Itaú Unibanco via STR após a janela diária da Câmara Interbancária de Pagamentos (CIP). A integridade do numerário foi devidamente atestada mediante batimento cruzado instantâneo entre o extrato bancário oficial fornecido pelo Banco Santander e a leitura do arquivo de retorno bancário padrão <strong class="text-on-surface">CNAB 240 (Sequencial Remessa/Retorno #4819)</strong>.
+              </p>
+<div class="mt-space-xs flex items-center gap-space-sm text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Risco de Retenção de Carga: Descartado integralmente. Doca FOB desimpedida para carregamento imediato.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Financial Split Parameters -->
+<div class="relative z-10 mb-space-lg">
+<div class="flex items-center gap-space-xs mb-space-sm bg-surface-container px-space-sm py-1 rounded-lg">
+<span class="font-label-md text-label-md font-bold text-primary">3. DISPOSIÇÕES FINANCEIRAS E PARÂMETROS DO SPLIT FIDUCIÁRIO</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl">
+<!-- Split Visualization Bar -->
+<div class="w-full mb-space-md">
+<div class="flex justify-between items-center text-label-sm font-bold mb-1">
+<span class="text-secondary">Cedente / Vendedor (93,50%)</span>
+<span class="text-primary">Take Rate Marketplace (6,50%)</span>
+</div>
+<div class="w-full h-3 rounded-full bg-surface-variant overflow-hidden flex">
+<div class="bg-secondary h-full" style="width: 93.5%;"></div>
+<div class="bg-primary h-full" style="width: 6.5%;"></div>
+</div>
+</div>
+<!-- Split Table -->
+<div class="w-full overflow-hidden rounded-xl bg-surface-container-lowest">
+<div class="grid grid-cols-12 bg-surface-container-high px-space-sm py-2 text-label-sm font-bold text-on-surface-variant uppercase">
+<div class="col-span-5">Destinatário & Natureza</div>
+<div class="col-span-2 text-center">Percentual</div>
+<div class="col-span-3 text-right">Valor Líquido</div>
+<div class="col-span-2 text-center">Condição de Liberação</div>
+</div>
+<div class="grid grid-cols-12 px-space-sm py-space-sm items-center text-body-sm hover:bg-surface-container-low transition-colors">
+<div class="col-span-5 flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Bunge Alimentos S.A.</span>
+<span class="text-label-sm text-on-surface-variant">Crédito Principal de Venda (Conta Escrow Segregada)</span>
+</div>
+<div class="col-span-2 text-center font-bold text-secondary">93,50%</div>
+<div class="col-span-3 text-right font-headline-md text-headline-md text-on-surface font-extrabold">R$ 135.575,00</div>
+<div class="col-span-2 text-center">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+                    Canhoto SEFAZ / MDF-e
+                  </span>
+</div>
+</div>
+<div class="grid grid-cols-12 px-space-sm py-space-sm items-center text-body-sm bg-surface-container-low/50">
+<div class="col-span-5 flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Varejista Online S.A.</span>
+<span class="text-label-sm text-on-surface-variant">Taxa de Intermediação & Custódia Fiduciária</span>
+</div>
+<div class="col-span-2 text-center font-bold text-primary">6,50%</div>
+<div class="col-span-3 text-right font-headline-md text-headline-md text-on-surface font-extrabold">R$ 9.425,00</div>
+<div class="col-span-2 text-center">
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+                    D+0 Imediato
+                  </span>
+</div>
+</div>
+</div>
+<!-- Regulatory Anchor Note -->
+<p class="font-label-sm text-label-sm text-outline mt-space-sm leading-normal">
+<strong>Base Normativa e Legal:</strong> Homologação lavrada com respaldo na Lei Federal nº 12.865/2013 (Arranjos e Instituições de Pagamento), Circular BACEN nº 3.952, Resolução BACEN nº 4.656 e termos vigentes do Contrato Master de Adesão ao Escrow Fiduciário.
+            </p>
+</div>
+</div>
+<!-- Section 4: Signatures, Hashes & ICP-Brasil Cryptography -->
+<div class="relative z-10 pt-space-md">
+<div class="flex items-center gap-space-xs mb-space-sm bg-surface-container px-space-sm py-1 rounded-lg">
+<span class="font-label-md text-label-md font-bold text-primary">4. AUDITORIA, CRIPTOGRAFIA E ASSINATURAS DIGITAIS</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md mb-space-md">
+<!-- Signature Box 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+                    Assinado Digitalmente via ICP-Brasil A3
+                  </span>
+<p class="font-headline-md text-headline-md text-on-surface font-extrabold mt-1">Marcos Vinicius de Alencar</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Diretor de Compliance e Risco Fiduciário</p>
+<p class="font-label-sm text-label-sm text-outline">OAB/SP 382.119 • Certificado Válido até 11/2027</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-xs">
+<span class="material-symbols-outlined text-[24px]">draw</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-lowest p-space-xs rounded font-label-sm text-label-sm text-outline">
+                Selo de Tempo ICP-Brasil: 25/10/2026 17:18:34 UTC-3
+              </div>
+</div>
+<!-- Signature Box 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>
+                    Autorização Executiva Super Admin
+                  </span>
+<p class="font-headline-md text-headline-md text-on-surface font-extrabold mt-1">sec-ops@varejista.com.br</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Operador Master da Mesa de Liquidação</p>
+<p class="font-label-sm text-label-sm text-outline">Matrícula Master #0081 • IP 177.136.204.12</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary shadow-xs">
+<span class="material-symbols-outlined text-[24px]">key_vertical</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-lowest p-space-xs rounded font-label-sm text-label-sm text-outline">
+                2FA Hardware Token: Yubikey OTP Validado com Sucesso
+              </div>
+</div>
+</div>
+<!-- Bottom Cryptographic Ledger Footer with QR Code -->
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Left: Hashes and Timestamp -->
+<div class="flex-1 space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface">Hash Criptográfico SHA-256 (Canonical):</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-[10px] font-bold text-on-surface-variant">IMUTÁVEL</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-lowest font-label-sm text-label-sm text-on-surface-variant break-all select-all font-mono">
+                a7b89c32f0192e44d56e789a12bc43de567890ef123456789abcdef012345678
+              </div>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 pt-1 font-label-sm text-label-sm text-outline">
+<span>Carimbo do Tempo: ACT Observatório Nacional (ON/BR)</span>
+<span>•</span>
+<span>Registro Ledger SPB: #2026-CIP-88-EXC-992810</span>
+</div>
+</div>
+<!-- Right: QR Code Visual Simulation -->
+<div class="flex items-center gap-space-sm shrink-0 bg-surface-container-lowest p-space-sm rounded-xl shadow-xs">
+<!-- Inline High Density SVG QR Code Pattern -->
+<svg class="w-16 h-16 text-on-surface" fill="currentColor" viewbox="0 0 100 100">
+<!-- Outer Corners -->
+<rect fill="none" height="30" rx="3" stroke="currentColor" stroke-width="6" width="30" x="5" y="5"></rect>
+<rect fill="currentColor" height="14" rx="2" width="14" x="13" y="13"></rect>
+<rect fill="none" height="30" rx="3" stroke="currentColor" stroke-width="6" width="30" x="65" y="5"></rect>
+<rect fill="currentColor" height="14" rx="2" width="14" x="73" y="13"></rect>
+<rect fill="none" height="30" rx="3" stroke="currentColor" stroke-width="6" width="30" x="5" y="65"></rect>
+<rect fill="currentColor" height="14" rx="2" width="14" x="13" y="73"></rect>
+<!-- Density Pixels -->
+<rect height="6" width="6" x="42" y="10"></rect>
+<rect height="6" width="6" x="52" y="18"></rect>
+<rect height="6" width="6" x="42" y="26"></rect>
+<rect height="6" width="6" x="10" y="42"></rect>
+<rect height="6" width="8" x="22" y="48"></rect>
+<rect fill="currentColor" height="16" rx="2" width="16" x="42" y="42"></rect>
+<rect height="6" width="8" x="65" y="42"></rect>
+<rect height="6" width="10" x="80" y="48"></rect>
+<rect height="6" width="8" x="42" y="68"></rect>
+<rect height="10" width="6" x="56" y="62"></rect>
+<rect height="8" width="8" x="52" y="78"></rect>
+<rect height="6" width="12" x="68" y="68"></rect>
+<rect height="8" width="8" x="84" y="80"></rect>
+<rect height="6" width="8" x="70" y="84"></rect>
+</svg>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Validar via Celular</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Aponte a câmera</span>
+<span class="text-[10px] text-primary font-semibold mt-0.5">bacen.gov.br/valida</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PDF Bottom Page Counter Footer -->
+<div class="w-full max-w-[820px] flex items-center justify-between text-outline font-label-sm text-label-sm py-space-sm px-space-xs">
+<span>Documento eletrônico autenticado conforme MP nº 2.200-2/2001.</span>
+<span>ID de Auditoria do Servidor: SVR-BR-SAO-04.CIP</span>
+</div>
+</div>
+<!-- Right Column: Metadata, Verification Panel & Audit Trail (Cols 9-12) -->
+<div class="xl:col-span-4 flex flex-col gap-space-lg">
+<!-- Box 1: Document Integrity & File Stats -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+<span class="font-headline-md text-headline-md text-on-surface">Certidão do Termo</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+            VÁLIDO
+          </span>
+</div>
+<div class="space-y-space-sm">
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">Formato do Arquivo:</span>
+<span class="font-bold text-on-surface">PDF/A-1b (ISO 19005-1)</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">Tamanho do Arquivo:</span>
+<span class="font-bold text-on-surface">312 KB</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">Padrão Criptográfico:</span>
+<span class="font-bold text-on-surface">SHA-256 / RSA 4096-bit</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">Protocolo STR/CIP:</span>
+<span class="font-mono text-xs font-bold text-primary">CIP-STR-2026-992810-EXC</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-on-surface-variant">Canal do Retorno:</span>
+<span class="font-bold text-on-surface">CNAB 240 (#4819) Santander</span>
+</div>
+</div>
+<div class="mt-space-md p-space-sm rounded-xl bg-surface-container-low flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">verified</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Imutabilidade em Blockchain</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ancorado no Ledger Bancário DLT</span>
+</div>
+</div>
+</div>
+<!-- Box 2: Timeline Trilha de Auditoria (Audit Trail) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs pb-space-sm mb-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">history_edu</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Trilha Cronológica de Auditoria</h2>
+</div>
+<div class="relative pl-6 space-y-space-md">
+<!-- Timeline Vertical Bar -->
+<div class="absolute left-2.5 top-2 bottom-2 w-0.5 bg-surface-variant"></div>
+<!-- Step 1 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Compensação STR Pós-Grade</span>
+<span class="font-mono text-xs font-bold text-secondary">17:14:02</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Crédito de R$ 145.000,00 registrado na conta escrow via mensagem STR0010 do Santander.
+              </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Batimento CNAB 240</span>
+<span class="font-mono text-xs font-bold text-secondary">17:15:30</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Cruzamento algorítmico do arquivo de retorno bancário com a ordem do lote #IND-2026-88.
+              </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px]">how_to_reg</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Aprovação Super Admin</span>
+<span class="font-mono text-xs font-bold text-primary">17:16:45</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Despacho e liberação manual excepcional autorizada por sec-ops@varejista.com.br.
+              </p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-5 h-5 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px]">description</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Emissão e Assinatura ICP</span>
+<span class="font-mono text-xs font-bold text-primary">17:18:34</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Geração do PDF/A com carimbo do tempo oficial e fixação irrevogável do split escrow.
+              </p>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low p-space-sm rounded-xl">
+<div class="flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm font-semibold mb-1">
+<span class="material-symbols-outlined text-[16px] text-primary">shield_person</span>
+<span>Custódia Regulada BACEN</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            A conciliação atende aos requisitos de liquidação em moeda eletrônica e segregação patrimonial patrimonial da Circular 3.952.
+          </p>
+</div>
+</div>
+<!-- Box 3: Suporte & Mesa de Liquidação Direta -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs pb-space-sm mb-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">support_agent</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mesa de Exceções Bancárias</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+          Necessita de revalidação formal do termo para auditoria externa da sua empresa ou envio de cópia autenticada para o cartório?
+        </p>
+<div class="space-y-space-xs font-label-md text-label-md">
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded-lg">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">call</span>
+              Tesouraria B2B:
+            </span>
+<span class="font-bold text-on-surface">0800 941 0288</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded-lg">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+              Mesa de Conciliação:
+            </span>
+<span class="font-bold text-primary">liquidacao@varejista.com.br</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded-lg">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+              Plantão Noturno:
+            </span>
+<span class="font-bold text-on-surface">Até 22h00 via STR</span>
+</div>
+</div>
+<button class="w-full mt-space-md py-space-xs rounded-xl font-label-md text-label-md bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors flex items-center justify-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">contact_support</span>
+<span>Abrir Chamado de Auditoria</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Interactive Inline Script for Micro-interactions (Copy Hash & WhatsApp Toast) -->
+<script>
+    (function() {
+      const copyBtn = document.getElementById('copyHashBtn');
+      const copyLabel = document.getElementById('copyHashLabel');
+      const hashStr = 'a7b89c32f0192e44d56e789a12bc43de567890ef123456789abcdef012345678';
+
+      if (copyBtn && copyLabel) {
+        copyBtn.addEventListener('click', function() {
+          navigator.clipboard.writeText(hashStr).then(() => {
+            const originalText = copyLabel.textContent;
+            copyLabel.textContent = 'Hash Copiado!';
+            copyBtn.classList.add('bg-secondary-container', 'text-on-secondary-container');
+            
+            setTimeout(() => {
+              copyLabel.textContent = originalText;
+              copyBtn.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+            }, 2500);
+          }).catch(err => {
+            console.error('Falha ao copiar:', err);
+          });
+        });
+      }
+
+      const waBtn = document.getElementById('shareWhatsAppBtn');
+      if (waBtn) {
+        waBtn.addEventListener('click', function() {
+          const message = encodeURIComponent('Termo Formal de Conciliação Financeira - Lote #IND-2026-88 homologado com sucesso sob protocolo TERMO-EXC-2026-088-CIP. Hash SHA-256: a7b89c32f0192e44d56e789a12bc43de567890ef123456789abcdef012345678');
+          window.open('https://api.whatsapp.com/send?text=' + message, '_blank');
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

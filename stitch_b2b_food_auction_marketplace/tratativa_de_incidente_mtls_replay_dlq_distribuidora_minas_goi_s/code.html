@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"on-surface-variant":"#434652","primary-fixed":"#d9e2ff","inverse-on-surface":"#eff1f3","surface-container-high":"#e6e8ea","surface-variant":"#e0e3e5","secondary-fixed-dim":"#88d982","on-surface":"#191c1e","on-tertiary-fixed":"#410003","error-container":"#ffdad6","on-primary-container":"#a1bbff","outline-variant":"#c3c6d4","surface-container-low":"#f2f4f6","surface":"#f7f9fb","tertiary-container":"#9d0011","on-tertiary-container":"#ffa59d","primary-fixed-dim":"#b0c6ff","background":"#f7f9fb","inverse-surface":"#2d3133","on-primary-fixed":"#001945","surface-container":"#eceef0","on-secondary-container":"#217128","secondary":"#1b6d24","secondary-container":"#a0f399","primary":"#003178","outline":"#737783","tertiary-fixed-dim":"#ffb3ac","surface-bright":"#f7f9fb","on-tertiary":"#ffffff","secondary-fixed":"#a3f69c","tertiary":"#720009","on-tertiary-fixed-variant":"#930010","on-error-container":"#93000a","on-secondary-fixed-variant":"#005312","surface-container-highest":"#e0e3e5","on-primary-fixed-variant":"#00429c","surface-tint":"#2b5bb5","tertiary-fixed":"#ffdad6","on-secondary-fixed":"#002204","on-background":"#191c1e","on-error":"#ffffff","surface-dim":"#d8dadc","inverse-primary":"#b0c6ff","on-secondary":"#ffffff","primary-container":"#0d47a1","error":"#ba1a1a","on-primary":"#ffffff","surface-container-lowest":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin-mobile":"1rem","gutter-mobile":"0.75rem","space-xl":"2rem","space-md":"0.75rem","gutter":"1rem","space-lg":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","margin":"1.5rem"},"fontFamily":{"body-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"]},"fontSize":{"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between py-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-md"><div class="px-space-md flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary font-headline-md font-bold">B2B</div><div><div class="font-headline-md text-primary font-bold leading-tight">DLQ Sentinel</div><div class="font-label-sm text-outline uppercase tracking-wider">Operação Fiduciária</div></div></div></div><div class="px-space-md py-space-xs mx-space-md bg-surface-container-high rounded-lg flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-on-surface-variant uppercase">mTLS Ativo / v1.3</span></div><span class="font-label-sm text-outline">Port 8443</span></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Visão Geral</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="leiloes-e-lotes" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span>Leilões &amp; Lotes</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="esteira-cnpj" href="#"><span class="material-symbols-outlined text-[20px]">verified_user</span>Esteira CNPJ</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="gestao-financeira-e-meios" href="#"><span class="material-symbols-outlined text-[20px]">payments</span>Gestão Financeira &amp; Meios</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="remessas-e-retornos-cnab-240" href="#"><span class="material-symbols-outlined text-[20px]">swap_horiz</span>Remessas &amp; Retornos CNAB 240</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="webhooks-e-erp" href="#"><span class="material-symbols-outlined text-[20px]">sync_alt</span>Webhooks &amp; ERP</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="auditoria-e-logs" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span>Auditoria &amp; Logs</a></nav></div><div class="px-space-md flex flex-col gap-space-xs pt-space-md border-t border-surface-container-highest"><div class="bg-surface-container p-space-sm rounded-lg"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-outline">BUFFER DLQ</span><span class="font-label-sm text-error font-bold">12 ERROS</span></div><div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden"><div class="bg-error h-full w-[24%]"></div></div></div><div class="flex items-center justify-between text-outline font-label-sm px-space-xs"><span>Node SP-01 (Primário)</span><span>Latência 14ms</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-secondary text-[18px]">account_balance</span><span class="font-label-sm text-on-surface font-bold">SPB SANTANDER</span><span class="font-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">OPERACIONAL</span></div><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-primary text-[18px]">shield_with_heart</span><span class="font-label-sm text-on-surface font-bold">ICP-BRASIL A1/A3</span><span class="font-label-sm text-outline">Val: 04/2026</span></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex flex-col text-right"><span class="font-label-md text-on-surface font-bold">Carlos Eduardo Brandão</span><span class="font-label-sm text-primary font-bold">GESTOR FIDUCIÁRIO SÊNIOR</span></div><div class="flex items-center gap-space-sm pl-space-sm border-l border-surface-container-high"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span></button></div></div></header><main class="w-full pt-16 bg-surface px-margin"><div class="flex flex-col w-full">
+<!-- Top Bar / Breadcrumb Strip -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-md border-b border-surface-container-high">
+<nav class="flex items-center gap-space-xs text-outline font-label-sm uppercase tracking-wider flex-wrap">
+<a class="hover:text-primary transition-colors" href="#">Início</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Liquidação &amp; Integrações</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Webhooks &amp; ERP</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Fila de Exceções &amp; DLQ</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-error font-bold">Incidente #INC-2026-9040 (Minas-Goiás)</span>
+</nav>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<a class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container-high text-on-surface-variant font-label-md hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+        Voltar à Fila DLQ (2 pendentes)
+      </a>
+<div class="flex items-center gap-space-xs bg-error-container text-on-error-container px-space-md py-1 rounded-full font-label-sm">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+        DLQ ISOLATION NODE #04
+      </div>
+</div>
+</div>
+<!-- Incident Critical Header -->
+<div class="mt-space-lg bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="inline-flex items-center gap-1.5 px-space-md py-1 rounded-lg bg-tertiary text-on-tertiary font-label-sm tracking-wide uppercase">
+<span class="material-symbols-outlined text-[16px]">emergency_home</span>
+            Incidente Crítico • Falha mTLS X.509
+          </span>
+<span class="inline-flex items-center gap-1 px-space-md py-1 rounded-lg bg-error-container text-on-error-container font-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">lock_clock</span>
+            Custódia Represada R$ 62.750,00
+          </span>
+<span class="inline-flex items-center gap-1 px-space-md py-1 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+            Lote #MG-OLEO-44
+          </span>
+<span class="inline-flex items-center gap-1 px-space-md py-1 rounded-lg bg-surface-container-high text-on-surface-variant font-label-sm">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+            ERP SAP S/4HANA CPI
+          </span>
+</div>
+<h1 class="font-headline-lg text-on-surface mt-space-xs">
+          Tratativa Forense de Desconexão Criptográfica: Minas-Goiás S.A.
+        </h1>
+<p class="font-body-md text-on-surface-variant flex items-center gap-space-sm">
+<span>CNPJ: <strong>04.118.992/0002-14</strong> (Filial Anápolis/GO)</span>
+<span class="text-outline-variant">•</span>
+<span>Gateway de Arremate Fiduciário Santander SPB</span>
+<span class="text-outline-variant">•</span>
+<span class="text-tertiary font-label-md">SSLHandshakeException: Certificate Expired / Untrusted Intermediate CA</span>
+</p>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-sm flex-wrap shrink-0">
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-all" id="btn-open-log">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+          Exportar Log OpenSSL
+        </button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-label-md hover:bg-primary transition-all" id="btn-quick-test">
+<span class="material-symbols-outlined text-[18px]">network_check</span>
+          Testar Handshake mTLS
+        </button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-secondary text-on-secondary font-label-md hover:bg-on-secondary-container transition-all" onclick="document.getElementById('remediation-section').scrollIntoView({behavior: 'smooth'})">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+          Renovar/Substituir Certificado X.509
+        </button>
+</div>
+</div>
+</div>
+<!-- Key Metrics / Diagnostic Summary (4 Bento Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md mt-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-outline font-label-sm uppercase">
+<span>Status da Custódia</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">account_balance_wallet</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-lg text-tertiary font-extrabold">R$ 62.750,00</div>
+<p class="font-body-sm text-on-surface-variant mt-0.5">
+          Represados no Cofre Santander SPB (Aguardando ACK Contábil).
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-surface-container flex items-center justify-between font-label-sm">
+<span class="text-on-surface-variant">Lote 14 Paletes Óleo Soja</span>
+<span class="text-tertiary font-bold">Bloqueio Ativo</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-outline font-label-sm uppercase">
+<span>Diagnóstico mTLS</span>
+<span class="material-symbols-outlined text-error text-[20px]">key_off</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-md text-error font-extrabold">EXPIRADO (18h atrás)</div>
+<p class="font-body-sm text-on-surface-variant mt-0.5">
+          Expirou em 24/10/2026 23:59:59 BRT. AC Certisign SSL Corporativo v4.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-surface-container flex items-center justify-between font-label-sm">
+<span class="text-on-surface-variant">Severidade: Crítica P0</span>
+<span class="text-error font-bold">Cadeia Interrompida</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-outline font-label-sm uppercase">
+<span>Chave de Idempotência</span>
+<span class="material-symbols-outlined text-primary text-[20px]">fingerprint</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-label-md text-on-surface font-mono bg-surface-container-high px-space-xs py-1 rounded truncate" title="IDEMP-MG-2026-44-LIQ-ESCROW">
+          IDEMP-MG-2026-44-LIQ-ESCROW
+        </div>
+<p class="font-body-sm text-on-surface-variant mt-1.5">
+          Registro criptográfico único inviolável no Redis Cluster Sentinel.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-surface-container flex items-center justify-between font-label-sm">
+<span class="text-on-surface-variant">Preservação: Ativa</span>
+<span class="text-secondary font-bold">Garantida</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-outline font-label-sm uppercase">
+<span>Tentativas de Disparo</span>
+<span class="material-symbols-outlined text-tertiary-container text-[20px]">published_with_changes</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-lg text-tertiary font-extrabold">5 / 5</span>
+<span class="font-label-md text-outline">Esgotadas</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mt-0.5">
+          Backoff exponencial: 10s, 30s, 2m, 10m, 30m. Abortado por timeout SSL.
+        </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-surface-container flex items-center justify-between font-label-sm">
+<span class="text-on-surface-variant">DLQ Route: dead-escrow-q</span>
+<span class="text-error font-bold">Represado</span>
+</div>
+</div>
+</div>
+<!-- Main Diagnostic & Remediation 2-Column Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mt-space-lg items-start">
+<!-- LEFT COLUMN: Forensics & Trust Chain Visualization (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Visual Lote Card Brief -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col sm:flex-row gap-space-md items-center">
+<div class="w-full sm:w-44 h-32 rounded-lg bg-surface-container overflow-hidden shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Industrial pallet warehouse with shrink-wrapped cooking oil boxes ready for logistics distribution, high contrast corporate lighting, ultra realistic commercial shot, navy blue and soft amber tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm4QPRo3zuJrlVHVz7GfJepOOcX_QzMBf7cHLpMwIRFYVPQBeBvJEupYZPz8iLQ6Mznq23UpdkjbQyvBAJX3HucojBzqSYBgVflUU6C_EGSmIurJKkscg9VIgEwDxsIrCb3rg89ArFz9A_44KwjoDulLDCLmuyLPRrt4byehKkcpjIKu5bWpxqETNuLASr0J-7HcfaPZNE_IXMHqwqZ1vMsIHzFsIY1dETkJELCWfL"/>
+<span class="absolute top-2 left-2 px-space-xs py-0.5 bg-inverse-surface/80 backdrop-blur text-inverse-on-surface font-label-sm rounded font-mono">EAN: 7891000315482</span>
+</div>
+<div class="flex flex-col gap-space-xs w-full">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-secondary font-bold uppercase tracking-wider">Arremate Auditado #MG-OLEO-44</span>
+<span class="font-label-sm px-space-xs py-0.5 bg-secondary-container text-on-secondary-container rounded font-bold">Pregão Homologado</span>
+</div>
+<div class="font-headline-md text-on-surface">Óleo de Soja Refinado 900ml • Caixa com 20 un.</div>
+<div class="grid grid-cols-3 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-low p-space-xs rounded text-center">
+<span class="font-label-sm text-outline block">Volume Total</span>
+<span class="font-label-md text-on-surface font-bold">14 Paletes (1.400 Cxs)</span>
+</div>
+<div class="bg-surface-container-low p-space-xs rounded text-center">
+<span class="font-label-sm text-outline block">Custo Unitário</span>
+<span class="font-label-md text-secondary font-bold">R$ 44,82 / cx</span>
+</div>
+<div class="bg-surface-container-low p-space-xs rounded text-center">
+<span class="font-label-sm text-outline block">Validade Lote</span>
+<span class="font-label-md text-on-surface font-bold">18/08/2027</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust Chain & Cryptographic Diagnostic -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">account_tree</span>
+<div>
+<h2 class="font-headline-md text-on-surface">Cadeia Criptográfica X.509 (Trust Chain)</h2>
+<p class="font-body-sm text-on-surface-variant">Hierarquia de Autoridade Certificadora identificada na negociação TLS</p>
+</div>
+</div>
+<span class="px-space-md py-1 bg-surface-container text-outline font-label-sm font-mono rounded">TLS 1.3 / mTLS</span>
+</div>
+<!-- Hierarchy Tree UI -->
+<div class="mt-space-md flex flex-col gap-space-sm">
+<!-- Node 1: Root CA -->
+<div class="flex items-start gap-space-md p-space-md bg-surface-container-low rounded-xl">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface font-bold">1. Autoridade Raiz ICP-Brasil v5</span>
+<span class="font-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">VÁLIDA • TRUSTSTORE OK</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mt-0.5">CN = Autoridade Certificadora Raiz Brasileira v5 • O = ICP-Brasil • C = BR</p>
+<div class="font-label-sm text-outline mt-1 font-mono">Validade: 01/03/2016 até 01/03/2031 • SHA-256: 4b29f0...98a1</div>
+</div>
+</div>
+<!-- Connector -->
+<div class="flex items-center pl-7 text-outline-variant">
+<div class="w-0.5 h-4 bg-outline-variant"></div>
+<span class="font-label-sm pl-space-xs">Assinatura Digital SHA-384</span>
+</div>
+<!-- Node 2: Intermediate CA -->
+<div class="flex items-start gap-space-md p-space-md bg-surface-container-low rounded-xl">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">security</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface font-bold">2. AC Certisign Multi-Empresas G7 (Intermediária)</span>
+<span class="font-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">VÁLIDA • CRL ATUALIZADA</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mt-0.5">CN = AC Certisign Multi-Empresas G7 • O = Certisign Certificadora Digital S.A.</p>
+<div class="font-label-sm text-outline mt-1 font-mono">Validade: 14/11/2021 até 14/11/2028 • OCSP Stapling Ativo</div>
+</div>
+</div>
+<!-- Connector -->
+<div class="flex items-center pl-7 text-error">
+<div class="w-0.5 h-4 bg-error"></div>
+<span class="font-label-sm pl-space-xs font-bold text-error">Rompimento de Validade TLS</span>
+</div>
+<!-- Node 3: Leaf Certificate (Faulty) -->
+<div class="flex items-start gap-space-md p-space-md bg-error-container/40 rounded-xl">
+<div class="w-8 h-8 rounded-full bg-error text-on-error flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-error font-extrabold">3. Certificado de Endpoint: minasgoias_sap_cpi_2025.crt</span>
+<span class="font-label-sm px-space-xs py-0.5 rounded bg-error text-on-error font-bold">EXPIRADO HÁ 18 HORAS</span>
+</div>
+<p class="font-body-sm text-on-surface mt-0.5">
+                CN = sap-cpi.minasgoias.ind.br • SAN = cpi-gateway.minasgoias.com.br
+              </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs mt-space-xs p-space-xs bg-surface-container-lowest/80 rounded font-label-sm">
+<div><span class="text-outline">Emissão:</span> 24/10/2025 00:00 BRT</div>
+<div><span class="text-error font-bold">Expirado em:</span> 24/10/2026 23:59:59 BRT</div>
+<div class="truncate"><span class="text-outline">Serial:</span> 44:a9:12:ef:90:3b:55:18</div>
+<div><span class="text-outline">Key Size:</span> RSA 2048-bit</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Forensics Handshake Trace -->
+<div class="mt-space-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-on-surface font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+              Dump de Negociação Criptográfica OpenSSL v3.1.2
+            </span>
+<span class="font-label-sm text-outline font-mono">Port 8443 (Mutual TLS)</span>
+</div>
+<div class="bg-surface-container-highest p-space-md rounded-lg font-mono text-body-sm text-on-surface-variant overflow-x-auto leading-relaxed">
+<div class="text-primary font-bold">&gt;&gt;&gt; CLIENT HELLO [DLQ Sentinel SP-01]</div>
+<div>    Version: TLS 1.3 (0x0304) | SNI: sap-cpi.minasgoias.ind.br</div>
+<div>    Cipher Negotiated: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</div>
+<div class="text-secondary font-bold">&lt;&lt;&lt; SERVER HELLO [Minas-Goiás CPI Gateway]</div>
+<div>    KeyShare: X25519 | Session ID: 7c88...e014</div>
+<div class="text-on-surface font-bold">&lt;&lt;&lt; CERTIFICATE VERIFY / HANDSHAKE FAILURE</div>
+<div class="text-error font-bold">    [ERROR 10]: certificate has expired (notAfter: 2026-10-24T23:59:59Z)</div>
+<div class="text-error">    SSL routines:tls_process_server_certificate:CERTIFICATE_VERIFY_FAILED</div>
+<div class="text-tertiary font-bold">    Alert: Handshake Aborted by Client TrustStore Policy (Fatal 46: Certificate Expired)</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Remediation, Hotfix & Replay Terminal (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Hotfix & Certificate Swap Section -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm" id="remediation-section">
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="w-9 h-9 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">published_with_changes</span>
+</div>
+<div>
+<h2 class="font-headline-md text-on-surface">Hotfix Supervisionado X.509</h2>
+<p class="font-body-sm text-on-surface-variant">Carregar e associar chave pública autorizada</p>
+</div>
+</div>
+<div class="mt-space-md flex flex-col gap-space-md">
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-outline uppercase font-bold">Certificado Remetido pela TI Minas-Goiás</span>
+<span class="font-label-sm px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">Pronto para Injeção</span>
+</div>
+<div class="mt-space-xs flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">workspace_premium</span>
+<div class="min-w-0">
+<div class="font-label-md text-on-surface font-mono font-bold truncate">minasgoias_sap_cpi_2026_renewed.crt</div>
+<div class="font-body-sm text-on-surface-variant">Válido até <strong>24/10/2027</strong> • SHA-256: 8f72a4...d19e</div>
+</div>
+</div>
+</div>
+<!-- Selection Controls / Drag Drop Simulation -->
+<div class="p-space-md border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-lowest text-center flex flex-col items-center justify-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[28px]">file_upload</span>
+<div class="font-label-md text-on-surface font-bold">Certificado Válido Selecionado</div>
+<p class="font-body-sm text-outline">Recebido via ticket corporativo #TI-99120 assinado com PGP da Diretoria de TI</p>
+<div class="mt-space-xs flex gap-space-xs">
+<button class="px-space-md py-1 bg-surface-container hover:bg-surface-container-high rounded text-on-surface font-label-sm">
+                Alterar Arquivo .PEM / .CRT
+              </button>
+</div>
+</div>
+<!-- Cryptographic Validation Toggle with HSM -->
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">memory</span>
+<div>
+<div class="font-label-md text-on-surface font-bold">Validar Cadeia Criptográfica no HSM Luna PCI</div>
+<div class="font-body-sm text-on-surface-variant">Checagem de não-revogação OCSP e validação FIPS 140-2 Nível 3</div>
+</div>
+</div>
+<input checked="" class="w-4 h-4 accent-primary rounded cursor-pointer" type="checkbox"/>
+</div>
+<!-- Live Ping Handshake Test -->
+<div class="bg-surface-container p-space-md rounded-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-on-surface font-bold">Verificação em Tempo Real</span>
+<span class="font-label-sm text-outline">Endpoint: 177.136.240.12:8443</span>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary font-label-md font-bold rounded-lg hover:bg-primary-container transition-all flex items-center justify-center gap-space-xs" id="btn-run-ping">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+              Testar Handshake Bidirecional (Ping mTLS)
+            </button>
+<!-- Real-time test output box -->
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex items-center justify-between font-mono text-body-sm" id="ping-result">
+<div class="flex items-center gap-space-xs text-secondary font-bold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Handshake mTLS 200 OK</span>
+</div>
+<div class="text-outline font-label-sm">Latência: 34ms • Cifra TLS 1.3</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Safe Replay Terminal & Escrow Release -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="w-9 h-9 rounded-xl bg-tertiary-container text-on-tertiary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">currency_exchange</span>
+</div>
+<div>
+<h2 class="font-headline-md text-on-surface">Terminal de Replay Seguro &amp; Desbloqueio</h2>
+<p class="font-body-sm text-on-surface-variant">Liberação e liquidação do Escrow Fiduciário</p>
+</div>
+</div>
+<form class="mt-space-md flex flex-col gap-space-md" onsubmit="event.preventDefault();">
+<!-- Parameters Checklist -->
+<div class="flex flex-col gap-space-xs font-label-md">
+<label class="flex items-center gap-space-sm p-space-xs hover:bg-surface-container-low rounded cursor-pointer">
+<input checked="" class="accent-secondary w-4 h-4" disabled="" type="checkbox"/>
+<span class="text-on-surface">Preservar Idempotência (IDEMP-MG-2026-44-LIQ-ESCROW)</span>
+</label>
+<label class="flex items-center gap-space-sm p-space-xs hover:bg-surface-container-low rounded cursor-pointer">
+<input checked="" class="accent-secondary w-4 h-4" type="checkbox"/>
+<span class="text-on-surface">Atualizar Keystore da Fila DLQ em Memória Imediata</span>
+</label>
+<label class="flex items-center gap-space-sm p-space-xs hover:bg-surface-container-low rounded cursor-pointer">
+<input checked="" class="accent-secondary w-4 h-4" type="checkbox"/>
+<span class="text-on-surface">Notificar Custodiante Santander SPB (via Mensageria CIP/STR)</span>
+</label>
+</div>
+<!-- Mandatory Legal Compliance Note -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-outline uppercase font-bold flex items-center justify-between">
+<span>Parecer Fiduciário Obrigatório (BACEN Res. 4.656)</span>
+<span class="text-error font-bold">* Requerido para Desbloqueio</span>
+</label>
+<textarea class="w-full bg-surface-container-low p-space-sm rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Justificativa da substituição de certificado e autorização do replay manual fiduciário..." rows="3">Certificado atualizado sob chamado emergencial TI-99120. Validação de cadeia realizada contra ICP-Brasil e HSM Luna PCI. Idempotência mantida para evitar duplo débito contábil.</textarea>
+</div>
+<!-- Security Passcode / ICP-Brasil Signature Confirmation -->
+<div class="p-space-sm bg-surface-container-high rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">fingerprint</span>
+<div>
+<div class="font-label-sm text-on-surface font-bold">Assinatura Digital ICP-Brasil A3</div>
+<div class="font-label-sm text-outline">Token e-CNPJ Gestão Fiduciária Plugado</div>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm font-bold">AUTORIZADO</span>
+</div>
+<!-- Main CTA Button -->
+<button class="w-full py-space-md bg-secondary text-on-secondary font-headline-md rounded-xl hover:bg-on-secondary-container transition-all shadow-md flex items-center justify-center gap-space-sm" id="btn-execute-replay">
+<span class="material-symbols-outlined text-[24px]">lock_open</span>
+<span>Executar Replay &amp; Liberar Custódia (R$ 62.750,00)</span>
+</button>
+<div class="text-center font-label-sm text-outline">
+            Esta operação emitirá a ordem de liquidação financeira irreversível junto ao Sistema de Pagamentos Brasileiro.
+          </div>
+</form>
+</div>
+</div>
+</div>
+<!-- Audit Trail & Historical Events for this Incident -->
+<div class="mt-space-lg bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">history_edu</span>
+<h2 class="font-headline-md text-on-surface">Rastreabilidade Forense do Incidente #INC-2026-9040</h2>
+</div>
+<span class="font-label-sm text-outline">NTP Sync Stratum 1 • Observabilidade Completa</span>
+</div>
+<div class="mt-space-md overflow-x-auto">
+<table class="w-full text-left font-body-sm">
+<thead class="bg-surface-container-low text-outline font-label-sm uppercase">
+<tr>
+<th class="py-space-sm px-space-md">Horário (BRT)</th>
+<th class="py-space-sm px-space-md">Evento / Ação</th>
+<th class="py-space-sm px-space-md">Origem / Agente</th>
+<th class="py-space-sm px-space-md">Payload / Chave</th>
+<th class="py-space-sm px-space-md">Resultado</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low/50">
+<td class="py-space-sm px-space-md font-mono text-outline">25/10/2026 18:04:12.890</td>
+<td class="py-space-sm px-space-md font-bold text-on-surface">Envio de Certificado Atualizado</td>
+<td class="py-space-sm px-space-md">TI Minas-Goiás (mTLS Gateway)</td>
+<td class="py-space-sm px-space-md font-mono text-primary">minasgoias_sap_cpi_2026_renewed.crt</td>
+<td class="py-space-sm px-space-md"><span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold text-label-sm">STAGED</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low/50">
+<td class="py-space-sm px-space-md font-mono text-outline">25/10/2026 17:59:01.120</td>
+<td class="py-space-sm px-space-md font-bold text-error">Exaustão de Retries (Tentativa 5/5)</td>
+<td class="py-space-sm px-space-md">DLQ Worker #04 (RabbitMQ)</td>
+<td class="py-space-sm px-space-md font-mono text-on-surface-variant">MSG_ID: 994012-SAP-ESCROW</td>
+<td class="py-space-sm px-space-md"><span class="px-space-xs py-0.5 rounded bg-error text-on-error font-bold text-label-sm">DLQ ROUTED</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low/50">
+<td class="py-space-sm px-space-md font-mono text-outline">25/10/2026 17:28:44.004</td>
+<td class="py-space-sm px-space-md font-bold text-on-surface">Tentativa 4/5 com Backoff</td>
+<td class="py-space-sm px-space-md">DLQ Worker #04 (RabbitMQ)</td>
+<td class="py-space-sm px-space-md font-mono text-on-surface-variant">HTTP POST /sap/cpi/escrow/ack</td>
+<td class="py-space-sm px-space-md"><span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-bold text-label-sm">SSL_ERR_EXPIRED</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low/50">
+<td class="py-space-sm px-space-md font-mono text-outline">25/10/2026 16:58:19.412</td>
+<td class="py-space-sm px-space-md font-bold text-on-surface">Homologação de Arremate e Bloqueio SPB</td>
+<td class="py-space-sm px-space-md">Motor de Pregão Fiduciário</td>
+<td class="py-space-sm px-space-md font-mono text-on-surface-variant">LOTE #MG-OLEO-44 (R$ 62.750,00)</td>
+<td class="py-space-sm px-space-md"><span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold text-label-sm">ESCROW_LOCKED</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Operational Footer & Regulatory Compliance Badges -->
+<footer class="mt-space-xl pt-space-lg pb-space-xl border-t border-surface-container-high flex flex-col md:flex-row items-center justify-between gap-space-md text-outline font-label-sm">
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+<span class="text-on-surface font-bold">ICP-Brasil AC Raiz v5 Auditado</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">account_balance</span>
+<span class="text-on-surface font-bold">Resolução BACEN nº 4.656/2018</span>
+</div>
+<span>•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">lock</span>
+<span>ISO/IEC 27001 Fiduciary Escrow Guard</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span>NTP: a.st1.ntp.br (Offset &lt; 0.4ms)</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-mono text-on-surface font-bold">SHA: 7a82fe0091ca</span>
+</div>
+</footer>
+<!-- Modal / Interactive Log Viewer (Hidden by default, triggered via JS) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-margin" id="modal-log">
+<div class="bg-surface-container-lowest max-w-3xl w-full rounded-2xl shadow-2xl p-space-lg flex flex-col max-h-[870px]">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">terminal</span>
+<h3 class="font-headline-md text-on-surface">Registro Completo OpenSSL &amp; mTLS Handshake</h3>
+</div>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-outline hover:bg-surface-container hover:text-on-surface transition-colors" id="btn-close-log">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="mt-space-md bg-surface-container-highest p-space-md rounded-xl font-mono text-body-sm text-on-surface-variant overflow-y-auto max-h-[614px] space-y-2">
+<div class="text-primary font-bold">CONNECTED(00000003)</div>
+<div>depth=2 C = BR, O = ICP-Brasil, OU = Autoridade Certificadora Raiz Brasileira v5</div>
+<div class="text-secondary">verify return:1</div>
+<div>depth=1 C = BR, O = ICP-Brasil, OU = Certisign Certificadora Digital S.A., CN = AC Certisign Multi-Empresas G7</div>
+<div class="text-secondary">verify return:1</div>
+<div class="text-error font-bold">depth=0 C = BR, ST = GO, L = Anapolis, O = DISTRIBUIDORA MINAS-GOIAS S.A., CN = sap-cpi.minasgoias.ind.br</div>
+<div class="text-error font-bold">verify error:num=10:certificate has expired</div>
+<div class="text-error">notAfter=Oct 24 23:59:59 2026 GMT</div>
+<div class="text-error">verify return:1</div>
+<div>---</div>
+<div>Certificate chain</div>
+<div> 0 s:C = BR, ST = GO, L = Anapolis, O = DISTRIBUIDORA MINAS-GOIAS S.A., CN = sap-cpi.minasgoias.ind.br</div>
+<div>   i:C = BR, O = ICP-Brasil, OU = Certisign Certificadora Digital S.A., CN = AC Certisign Multi-Empresas G7</div>
+<div>---</div>
+<div>New, TLSv1.3, Cipher is TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</div>
+<div>Server public key is 2048 bit</div>
+<div>Secure Renegotiation IS NOT supported</div>
+<div>Compression: NONE</div>
+<div>Expansion: NONE</div>
+<div>No ALPN negotiated</div>
+<div>Early data was not sent</div>
+<div>Verify return code: 10 (certificate has expired)</div>
+</div>
+<div class="mt-space-md flex items-center justify-between pt-space-sm border-t border-surface-container">
+<span class="font-label-sm text-outline">Autenticado com carimbo do tempo ICP-Brasil</span>
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md" id="btn-close-log-footer">
+          Fechar Visualizador
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive Logic -->
+<script>
+    // Modal toggle
+    const logModal = document.getElementById('modal-log');
+    const openLogBtn = document.getElementById('btn-open-log');
+    const closeLogBtn = document.getElementById('btn-close-log');
+    const closeLogFooterBtn = document.getElementById('btn-close-log-footer');
+
+    if (openLogBtn && logModal) {
+      openLogBtn.addEventListener('click', () => {
+        logModal.classList.remove('hidden');
+        logModal.classList.add('flex');
+      });
+    }
+
+    const closeModal = () => {
+      logModal.classList.add('hidden');
+      logModal.classList.remove('flex');
+    };
+
+    if (closeLogBtn) closeLogBtn.addEventListener('click', closeModal);
+    if (closeLogFooterBtn) closeLogFooterBtn.addEventListener('click', closeModal);
+
+    // Live Ping Button Simulation
+    const pingBtn = document.getElementById('btn-run-ping');
+    const quickTestBtn = document.getElementById('btn-quick-test');
+    const pingResult = document.getElementById('ping-result');
+
+    const triggerPingAnimation = () => {
+      if (!pingResult) return;
+      pingResult.innerHTML = `
+        <div class="flex items-center gap-space-xs text-primary font-bold">
+          <span class="material-symbols-outlined text-[16px] animate-spin">refresh</span>
+          <span>Negociando Handshake mTLS com sap-cpi.minasgoias.ind.br...</span>
+        </div>
+        <div class="text-outline font-label-sm">Enviando ClientHello...</div>
+      `;
+      setTimeout(() => {
+        pingResult.innerHTML = `
+          <div class="flex items-center gap-space-xs text-secondary font-bold">
+            <span class="material-symbols-outlined text-[16px]">check_circle</span>
+            <span>Handshake mTLS 200 OK (Cadeia Válida minasgoias_sap_cpi_2026_renewed.crt)</span>
+          </div>
+          <div class="text-secondary font-label-sm font-bold">Latência: 31ms • TLS 1.3 Seguro</div>
+        `;
+      }, 900);
+    };
+
+    if (pingBtn) pingBtn.addEventListener('click', triggerPingAnimation);
+    if (quickTestBtn) quickTestBtn.addEventListener('click', () => {
+      document.getElementById('remediation-section').scrollIntoView({behavior: 'smooth'});
+      triggerPingAnimation();
+    });
+
+    // Replay Execution Simulation
+    const replayBtn = document.getElementById('btn-execute-replay');
+    if (replayBtn) {
+      replayBtn.addEventListener('click', () => {
+        const confirmed = confirm("Confirma a liquidação fiduciária e liberação de R$ 62.750,00 no Santander SPB com o certificado renovado?");
+        if (confirmed) {
+          replayBtn.disabled = true;
+          replayBtn.classList.remove('bg-secondary');
+          replayBtn.classList.add('bg-surface-container-high', 'text-outline');
+          replayBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[20px] animate-spin">sync</span>
+            <span>Transmitindo ACK Contábil & Desbloqueando Escrow...</span>
+          `;
+          setTimeout(() => {
+            replayBtn.classList.remove('bg-surface-container-high', 'text-outline');
+            replayBtn.classList.add('bg-secondary', 'text-on-secondary');
+            replayBtn.innerHTML = `
+              <span class="material-symbols-outlined text-[20px]">task_alt</span>
+              <span>Custódia Liberada com Sucesso (Protocolo SPB #99104-LIQ)</span>
+            `;
+            alert("Sucesso! O Lote #MG-OLEO-44 teve o ACK processado com sucesso. Custódia fiduciária de R$ 62.750,00 liberada para a Distribuidora Minas-Goiás S.A.");
+          }, 1400);
+        }
+      });
+    }
+  </script>
+</div></main></div></body></html>

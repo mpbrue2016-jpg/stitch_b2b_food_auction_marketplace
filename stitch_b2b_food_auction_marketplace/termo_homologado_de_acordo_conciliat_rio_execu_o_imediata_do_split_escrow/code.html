@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed-variant":"#00429c","on-secondary":"#ffffff","surface":"#f7f9fb","primary-container":"#0d47a1","tertiary-fixed-dim":"#ffb3ac","primary-fixed-dim":"#b0c6ff","inverse-on-surface":"#eff1f3","secondary-fixed-dim":"#88d982","outline-variant":"#c3c6d4","error-container":"#ffdad6","on-tertiary-fixed-variant":"#930010","surface-dim":"#d8dadc","tertiary-container":"#9d0011","surface-container":"#eceef0","on-tertiary":"#ffffff","inverse-surface":"#2d3133","surface-tint":"#2b5bb5","on-secondary-fixed-variant":"#005312","secondary-container":"#a0f399","outline":"#737783","inverse-primary":"#b0c6ff","surface-container-lowest":"#ffffff","tertiary-fixed":"#ffdad6","on-primary-container":"#a1bbff","on-tertiary-fixed":"#410003","on-background":"#191c1e","tertiary":"#720009","surface-container-high":"#e6e8ea","secondary-fixed":"#a3f69c","on-tertiary-container":"#ffa59d","primary-fixed":"#d9e2ff","surface-container-highest":"#e0e3e5","background":"#f7f9fb","on-error-container":"#93000a","surface-bright":"#f7f9fb","on-surface":"#191c1e","on-secondary-container":"#217128","surface-variant":"#e0e3e5","on-surface-variant":"#434652","on-primary":"#ffffff","on-error":"#ffffff","error":"#ba1a1a","primary":"#003178","on-secondary-fixed":"#002204","secondary":"#1b6d24","on-primary-fixed":"#001945","surface-container-low":"#f2f4f6"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-md":"0.75rem","margin-mobile":"1rem","space-xs":"0.25rem","margin":"1.5rem","space-sm":"0.5rem","space-lg":"1.25rem","space-xl":"2rem","gutter":"1rem","gutter-mobile":"0.75rem"},fontFamily:{"headline-xl":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"]},fontSize:{"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50"><div class="w-full h-16 px-space-xl flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-xl">storefront</span></div><div><span class="font-headline-md text-headline-md tracking-tight text-primary block leading-none">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">Portal Institucional B2B</span></div></div><div class="h-6 w-px bg-outline-variant/30 hidden lg:block"></div><div class="hidden lg:flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-sm text-secondary">verified_user</span><span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-bold">Custódia Fiduciária:</span><span class="font-label-sm text-label-sm text-on-surface font-semibold">Santander Escrow 100% Protegido</span></div></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex flex-col items-end bg-secondary-container/30 px-space-md py-space-xs rounded-lg"><span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wider font-semibold">Saldo Conta Garantia</span><span class="font-headline-md text-headline-md text-secondary leading-tight">R$ 4.850.000,00</span></div><button class="relative p-space-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-tertiary rounded-full"></span></button><div class="h-6 w-px bg-outline-variant/30"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-bold leading-none">Diretoria de Suprimentos</span><span class="font-label-sm text-label-sm text-on-surface-variant">Grupo Pão de Mel S.A.</span></div></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex flex-col justify-between py-space-md"><div class="px-space-md flex-1 overflow-y-auto"><div class="px-space-sm pb-space-xs pt-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Operações de Pregão</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="painel-geral" href="#"><span class="material-symbols-outlined text-xl">dashboard</span>Painel Geral</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="pregoes-e-lances-ao-vivo" href="#"><span class="material-symbols-outlined text-xl">gavel</span>Pregões &amp; Lances Ao Vivo</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="meus-lances-e-disputas" href="#"><span class="material-symbols-outlined text-xl">schedule</span>Meus Lances &amp; Disputas</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="venda-direta-paletes" href="#"><span class="material-symbols-outlined text-xl">inventory_2</span>Venda Direta / Paletes</a></nav><div class="px-space-sm pb-space-xs pt-space-md"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Logística &amp; Compliance</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="logistica-fob-cif-e-tracking" href="#"><span class="material-symbols-outlined text-xl">local_shipping</span>Logística FOB/CIF &amp; Tracking</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="radar-de-alertas-e-economia" href="#"><span class="material-symbols-outlined text-xl">trending_up</span>Radar de Alertas &amp; Economia</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="compras-e-dossie-fiscal-sped" href="#"><span class="material-symbols-outlined text-xl">receipt_long</span>Compras &amp; Dossiê Fiscal SPED</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="avaliacoes-e-sanitaria" href="#"><span class="material-symbols-outlined text-xl">health_and_safety</span>Avaliações &amp; Sanitária</a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="central-de-arbitragem-e-avarias" href="#"><span class="material-symbols-outlined text-xl">rule</span>Central de Arbitragem &amp; Avarias</a></nav></div><div class="px-space-md pt-space-xs"><div class="bg-surface-container-low p-space-md rounded-xl flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant">SLA de Liquidação</span><span class="font-label-md text-label-md text-secondary font-bold">D+1 Garantido</span></div><span class="material-symbols-outlined text-primary text-xl">security</span></div></div></aside><div class="pl-72"><main class="w-full pt-16 min-h-screen bg-background"><div class="flex flex-col w-full">
+<!-- TOP HERO STATUS / HOMOLOGAÇÃO JURÍDICA E BANCÁRIA -->
+<section class="relative w-full bg-surface-container-lowest overflow-hidden shadow-sm">
+<!-- Accent subtle backdrop ambient glow -->
+<div class="absolute -right-20 -top-20 w-96 h-96 bg-secondary-container/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute left-1/3 -bottom-24 w-80 h-80 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="max-w-[1400px] mx-auto px-space-xl py-space-xl relative z-10">
+<!-- Tag de Sucesso Oficial e Protocolo -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pb-space-lg">
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="inline-flex items-center gap-space-xs bg-secondary text-on-secondary px-space-md py-1 rounded-full font-label-sm uppercase tracking-wider shadow-sm">
+<span class="material-symbols-outlined text-sm">verified</span>
+            Procedimento Concluído com Eficácia Plena
+          </div>
+<div class="inline-flex items-center gap-space-xs bg-surface-container text-on-surface-variant px-space-md py-1 rounded-full font-label-sm uppercase">
+<span class="material-symbols-outlined text-sm text-primary">gavel</span>
+            Mediação Arbitral nº AC-2026-084-F
+          </div>
+<div class="inline-flex items-center gap-space-xs bg-surface-container text-on-surface-variant px-space-md py-1 rounded-full font-label-sm font-bold tracking-tight">
+<span>Dossiê: #ARB-2026-084-SEC</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-lg">lock_clock</span>
+<span class="font-label-sm text-label-sm">Carimbo ICP-Brasil / ON:</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold font-mono">2026-03-24 11:32:05 BRT</span>
+</div>
+</div>
+<!-- Título de Validade Executiva Jurídica -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-8 space-y-space-sm">
+<div class="flex items-center gap-space-xs text-secondary font-label-md">
+<span class="material-symbols-outlined text-base">task_alt</span>
+<span class="font-bold tracking-wide uppercase">Título Executivo Extrajudicial Homologado</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-tight">
+            Termo Homologado de Acordo Conciliatório &amp; Liquidação Síncrona Santander Escrow
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-3xl">
+            Acordo firmado entre <strong class="text-on-surface">Supermercado Central do Vale S.A.</strong> e <strong class="text-on-surface">Laticínios Serra Bella Ltda</strong> sob a mediação técnica pericial do <strong class="text-on-surface">Dr. Roberto Sampaio (CREA-SP)</strong>. Eficácia irrevogável nos moldes do <span class="bg-surface-container px-1 py-0.5 rounded font-mono font-bold text-on-surface text-label-sm">Art. 515, II do CPC c/c Art. 21 da Lei nº 9.307/96</span>.
+          </p>
+</div>
+<!-- Card Resumo de Liquidação Bancária -->
+<div class="lg:col-span-4 bg-surface-container-low p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-xl">account_balance</span>
+<span class="font-label-sm text-label-sm font-bold uppercase text-on-surface-variant">Custódia Santander SPI</span>
+</div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold uppercase">Liquidado D+0</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Valor Total Custodiado</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-primary font-extrabold tracking-tight">R$ 65.050,00</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">100% Repassado</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-lowest p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm text-outline block">Latência Bancária</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">184 ms</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm text-outline block">Hash SHA-256</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono font-bold">VERIFICADO</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BODY CONTENT WRAPPER -->
+<div class="max-w-[1400px] w-full mx-auto px-space-xl py-space-xl flex flex-col gap-space-xl">
+<!-- COMPROVANTES DE LIQUIDAÇÃO BANCÁRIA (SPLIT FIDUCIÁRIO) -->
+<section class="flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-lg">currency_exchange</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface leading-none">Divisão Síncrona do Split Bancário (Santander Escrow API)</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Liberação automática do montante garantido executada via Pix SPI instantâneo com assinatura mTLS v3.2</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span>Transações Chanceladas pelo Banco Central do Brasil (SPI)</span>
+</div>
+</div>
+<!-- CARDS DO SPLIT -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card 1: Estorno Supermercado -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-full pointer-events-none"></div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">keyboard_return</span> Estorno Imediato Comprador
+              </span>
+<span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold">Crédito Efetivado</span>
+</div>
+<span class="font-headline-xl text-headline-xl text-secondary font-extrabold tracking-tight">R$ 23.320,00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ressarcimento parcial por perda térmica e avaria perimétrica</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-space-xs text-on-surface-variant font-body-sm">
+<div class="flex justify-between items-center">
+<span class="text-outline font-label-sm">Beneficiário:</span>
+<strong class="text-on-surface font-label-md">Supermercado Central do Vale</strong>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline font-label-sm">Instituição / Domicílio:</span>
+<span class="font-mono text-on-surface font-semibold">Santander (033) Ag 2240 CC 004812-9</span>
+</div>
+<div class="flex justify-between items-center pt-space-xs">
+<span class="text-outline font-label-sm">End-to-End ID:</span>
+<span class="font-mono text-label-sm text-primary font-semibold truncate max-w-[160px]" title="E000381662026032411319024a">E000381662026032411319024a</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs text-outline font-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-secondary">check_circle</span> Autenticado via Pix SPI</span>
+<button class="text-primary hover:text-on-primary-fixed-variant font-bold flex items-center gap-0.5 hover:underline" onclick="alert('Autenticação Bancária: E000381662026032411319024a assinada pela chave BACEN-PIX-SPI-SANTANDER.')" type="button">
+              Recibo <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Repasse à Indústria -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">payments</span> Repasse Fiduciário Indústria
+              </span>
+<span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">Transferido D+0</span>
+</div>
+<span class="font-headline-xl text-headline-xl text-primary font-extrabold tracking-tight">R$ 40.880,00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Valor líquido acordado referente a 500 barras faturadas</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-space-xs text-on-surface-variant font-body-sm">
+<div class="flex justify-between items-center">
+<span class="text-outline font-label-sm">Beneficiário:</span>
+<strong class="text-on-surface font-label-md">Laticínios Serra Bella Ltda</strong>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline font-label-sm">Instituição / Domicílio:</span>
+<span class="font-mono text-on-surface font-semibold">Banco do Brasil (001) Ag 1024-5 CC 22091-0</span>
+</div>
+<div class="flex justify-between items-center pt-space-xs">
+<span class="text-outline font-label-sm">End-to-End ID:</span>
+<span class="font-mono text-label-sm text-primary font-semibold truncate max-w-[160px]" title="E000381662026032411319024b">E000381662026032411319024b</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs text-outline font-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-primary">check_circle</span> TED/SPI Criptografado</span>
+<button class="text-primary hover:text-on-primary-fixed-variant font-bold flex items-center gap-0.5 hover:underline" onclick="alert('TED/SPI ID E000381662026032411319024b compensado via CIP Santander Fiduciário.')" type="button">
+              Recibo <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Honorários Periciais Arbitrais -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">engineering</span> Honorários Periciais
+              </span>
+<span class="font-label-sm text-label-sm px-space-sm py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-bold">Retenção Automática</span>
+</div>
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">R$ 850,00</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Laudo de Termografia e Avaliação Bromatológica In-loco</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-space-xs text-on-surface-variant font-body-sm">
+<div class="flex justify-between items-center">
+<span class="text-outline font-label-sm">Perito Credenciado:</span>
+<strong class="text-on-surface font-label-md">Dr. Roberto Sampaio</strong>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-outline font-label-sm">Conselho / Registro:</span>
+<span class="font-mono text-on-surface font-semibold">CREA-SP nº 506941 / ART #99210</span>
+</div>
+<div class="flex justify-between items-center pt-space-xs">
+<span class="text-outline font-label-sm">RPA / NF-e:</span>
+<span class="font-mono text-label-sm text-on-surface font-semibold">RPA-e nº 2026/08492</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs text-outline font-label-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-secondary">verified</span> Liquidado à Conta Técnica</span>
+<span class="font-label-sm text-on-surface-variant">Split Fee 50/50</span>
+</div>
+</div>
+</div>
+</section>
+<!-- VISUALIZADOR DO TERMO FORMAL E CERTIDÃO DE TÍTULO EXTRAJUDICIAL -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- DOCUMENTO CERTIFICADO (Lado Esquerdo - 8 Colunas) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">description</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Certidão do Termo de Transação &amp; Conciliação</h3>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm bg-surface-container px-space-sm py-1 rounded text-on-surface-variant font-mono">Folha 01/02</span>
+<span class="font-label-sm text-label-sm bg-secondary-container px-space-sm py-1 rounded text-on-secondary-container font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">lock</span> Assinado Digitalmente
+            </span>
+</div>
+</div>
+<!-- Folha A4 Simulação Visual Rica -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-md relative overflow-hidden">
+<!-- Marca D'água Transparente Oficial -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
+<span class="font-headline-xl text-[120px] font-black uppercase rotate-[-25deg] text-primary">HOMOLOGADO</span>
+</div>
+<!-- Cabeçalho do Laudo / Termo -->
+<div class="flex flex-wrap items-center justify-between pb-space-lg mb-space-lg bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-primary text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-2xl">balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Câmara Privada de Conciliação e Arbitragem B2B</span>
+<span class="font-headline-md text-headline-md text-on-surface font-extrabold tracking-tight">CERTIDÃO HOMOLOGATÓRIA DE ACORDO PLENO</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Livro Eletrônico Reg. nº 14.892 • Fls. 44v • Comarca de São Paulo/SP</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-outline block">Protocolo Homologatório:</span>
+<span class="font-label-md text-label-md font-mono text-primary font-bold">#HOM-2026-084-SPLIT</span>
+</div>
+</div>
+<!-- Quadro Resumo do SKU Avariado -->
+<div class="bg-surface-container-low p-space-md rounded-lg mb-space-lg flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-lg bg-surface-container-highest overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Imagem fotográfica de alta qualidade em ângulo fechado de lote industrial de queijo mussarela em barras embaladas a vácuo sobre pallet logístico com etiquetas de controle de temperatura e controle sanitário da Anvisa em ambiente fabril refrigerado" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXtmrd4Zr_Sl_4qYUtCIjWtNtWExwb-cAlScZUSIJsDpu9CysVWgMbiABsPn0vRvsv44IC6mkdFsWvin1CGZ9ReFttf8soihFV87SF_NnXBv0h6NefpB8J_6vx2KPnM1G80Bl6f7dsXR1wPpDrwwjyMCz2StHw9fQWL_wXF2TDu8yoXcvcXfQVaP4HrNI-V1fuO5I4QJyXj5zn9nOlMX-fVbDnrWG6UZJavM9cP8vV"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-bold uppercase">Lote Inspecionado: #LT-8819-QUEIJO</span>
+<h4 class="font-headline-md text-headline-md text-on-surface font-bold">Queijo Mussarela Peça 4kg Industrial (Total 2.000 kg)</h4>
+<span class="font-body-sm text-body-sm text-on-surface-variant">NF-e Origem nº 004.912 • Emissão Laticínios Serra Bella Ltda • Doca de Recepção 03A</span>
+</div>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline">Deságio Aplicado:</span>
+<span class="font-headline-md text-headline-md text-tertiary font-extrabold">-35,85%</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Aceite de Ambas as Partes</span>
+</div>
+</div>
+<!-- Cláusulas do Acordo -->
+<div class="space-y-space-md text-on-surface font-body-md leading-relaxed">
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-1">
+<span class="font-label-md text-label-md text-primary font-bold block">CLÁUSULA 1ª — DA CONSTATAÇÃO FÁTICA E DESÁGIO CONSENSUAL</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                O Mediador Imparcial e o perito técnico atestaram temperatura no ato do recebimento de <strong class="text-on-surface">+9.8°C</strong> (excedendo tolerância de +8.0°C) e avaria externa nos lacres perimétricos do lote. Em comum acordo, as partes estabelecem o deságio comercial compensatório de <strong>-35,85%</strong> sobre o valor facial original da carga (R$ 65.050,00), fixando o valor final retido pela vendedora em R$ 40.880,00 e a restituição à compradora em R$ 23.320,00.
+              </p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-1">
+<span class="font-label-md text-label-md text-primary font-bold block">CLÁUSULA 2ª — DA DESTINAÇÃO SANITÁRIA E CONSUMO IMEDIATO</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Com base no Laudo Bromatológico de Liberação Condicional nº LB-2026/901, as 500 barras de Queijo Mussarela permanecem aptas para consumo humano mediante fatiamento imediato e comercialização sob atmosfera controlada em prazo impreterível de <strong>15 (quinze) dias corridos</strong>, vedada a recristalização ou congelamento posterior.
+              </p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-1">
+<span class="font-label-md text-label-md text-primary font-bold block">CLÁUSULA 3ª — DA REGULARIZAÇÃO FISCAL &amp; SPED</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Fica o fornecedor Laticínios Serra Bella obrigado a emitir e escriturar em até <strong>24 horas</strong> a Nota Fiscal Eletrônica Complementar/Ajuste no CFOP 5.202 / 1.202, no valor exato de <strong>R$ 22.470,00</strong> a título de devolução simbólica parcial com cancelamento de ICMS proporcional, sob pena de multa diária de R$ 500,00.
+              </p>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-1">
+<span class="font-label-md text-label-md text-primary font-bold block">CLÁUSULA 4ª — DA QUITAÇÃO INTEGRAL, IRREVOGÁVEL E TÍTULO EXECUTIVO</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Mediante a confirmação da liberação e split da conta garantia Santander Escrow, as partes dão-se mútua, geral e irrestrita quitação com relação ao Lote #LT-8819-QUEIJO, reconhecendo expressamente a presente certidão como Título Executivo Extrajudicial conforme art. 515, II do CPC, renunciando a qualquer ação rescisória perante juízos estatais ordinários.
+              </p>
+</div>
+</div>
+<!-- Rodapé de Autenticação da Folha -->
+<div class="mt-space-lg pt-space-md flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low px-space-md py-space-sm rounded-lg">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-xl">qr_code_2</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">Validação Pública Permanente:</span>
+<span class="font-mono text-label-sm text-primary font-bold">portal.varejista.b2b/validar/HOM-2026-084-SPLIT</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-outline">Chave de Registro Imutável WORM:</span>
+<span class="font-mono text-label-sm text-on-surface font-semibold">0x7FA8...B882</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PAINEL AUDIT TRAIL TRIPARTITE & DETALHES CRIPTOGRÁFICOS (Lado Direito - 4 Colunas) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary">security</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Trilha Criptográfica</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">3/3 Válidas</span>
+</div>
+<!-- Card de Assinatura 1: Mediador Pericial -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Mediador Oficial Conducente</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold bg-secondary-container px-space-xs py-0.5 rounded">ICP-Brasil A3</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold flex-shrink-0">
+<span class="material-symbols-outlined text-lg">verified_user</span>
+</div>
+<div class="flex flex-col min-w-0">
+<strong class="font-label-md text-label-md text-on-surface truncate">Dr. Roberto Sampaio</strong>
+<span class="font-label-sm text-label-sm text-outline">Perito Técnico • CREA-SP 506941</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg font-mono text-label-sm text-on-surface-variant space-y-0.5">
+<div class="flex justify-between">
+<span class="text-outline">Autoridade:</span>
+<span class="text-on-surface font-semibold">AC Certisign G7</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Timestamp:</span>
+<span>24/03/2026 11:28:44</span>
+</div>
+<div class="truncate text-outline" title="SHA256: 4e91c78...d842">
+              Hash: <span class="text-primary font-bold">4e91c78...d842</span>
+</div>
+</div>
+</div>
+<!-- Card de Assinatura 2: Diretoria da Indústria -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Vendedora (Indústria)</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold bg-secondary-container px-space-xs py-0.5 rounded">e-CNPJ A3</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold flex-shrink-0">
+<span class="material-symbols-outlined text-lg">factory</span>
+</div>
+<div class="flex flex-col min-w-0">
+<strong class="font-label-md text-label-md text-on-surface truncate">Helena Guimarães</strong>
+<span class="font-label-sm text-label-sm text-outline truncate">Diretora Industrial • Laticínios Serra Bella Ltda</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg font-mono text-label-sm text-on-surface-variant space-y-0.5">
+<div class="flex justify-between">
+<span class="text-outline">CNPJ Vendedor:</span>
+<span class="text-on-surface font-semibold">18.492.001/0002-88</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Timestamp:</span>
+<span>24/03/2026 11:30:12</span>
+</div>
+<div class="truncate text-outline" title="SHA256: 8fa091b...c190">
+              Hash: <span class="text-primary font-bold">8fa091b...c190</span>
+</div>
+</div>
+</div>
+<!-- Card de Assinatura 3: Gerência de Suprimentos Varejo -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Comprador (Varejo)</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold bg-secondary-container px-space-xs py-0.5 rounded">e-CNPJ A1</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold flex-shrink-0">
+<span class="material-symbols-outlined text-lg">store</span>
+</div>
+<div class="flex flex-col min-w-0">
+<strong class="font-label-md text-label-md text-on-surface truncate">Carlos Eduardo M.</strong>
+<span class="font-label-sm text-label-sm text-outline truncate">Gerente de Suprimentos • Central do Vale S.A.</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg font-mono text-label-sm text-on-surface-variant space-y-0.5">
+<div class="flex justify-between">
+<span class="text-outline">CNPJ Comprador:</span>
+<span class="text-on-surface font-semibold">04.112.809/0001-40</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Timestamp:</span>
+<span>24/03/2026 11:31:50</span>
+</div>
+<div class="truncate text-outline" title="SHA256: 3c490a1...aa72">
+              Hash: <span class="text-primary font-bold">3c490a1...aa72</span>
+</div>
+</div>
+</div>
+<!-- Merkle Tree e Imutabilidade Bancária -->
+<div class="bg-surface-container p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline font-bold uppercase">Merkle Root Consensus</span>
+<span class="material-symbols-outlined text-primary text-base">hub</span>
+</div>
+<div class="font-mono text-label-sm text-on-surface bg-surface-container-lowest p-space-xs rounded select-all break-all">
+            a7f93c8b420f18839210deab91283c4892e921d4
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">
+            Transação registrada sob infraestrutura WORM com redundância e custódia síncrona no Banco Santander S.A.
+          </p>
+</div>
+</div>
+</section>
+<!-- PAINEL DE AÇÕES OPERACIONAIS & PRÓXIMOS PASSOS -->
+<section class="bg-surface-container-lowest p-space-xl rounded-xl shadow-md flex flex-col gap-space-lg">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Workflow de Execução Imediata</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Próximos Passos de Descarga e Escrituração Contábil</h3>
+</div>
+<div class="flex items-center gap-space-xs bg-secondary-container px-space-md py-1 rounded-full text-on-secondary-container font-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>Tempo Restante de SLA de Descarga: 03h 45min</span>
+</div>
+</div>
+<!-- BOTÕES DE AÇÃO RICA -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Ação 1: Download PDF Homologado -->
+<button class="flex flex-col items-start justify-between p-space-md rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-all shadow-sm group text-left" onclick="alert('Iniciando download criptografado do arquivo: Termo_Homologado_ARB-2026-084-SEC.pdf (Chancela ICP-Brasil).')" type="button">
+<div class="flex items-center justify-between w-full pb-space-md">
+<span class="material-symbols-outlined text-2xl group-hover:translate-y-0.5 transition-transform">download</span>
+<span class="font-label-sm text-label-sm bg-surface-container-lowest/20 px-space-xs py-0.5 rounded font-mono">PDF 4.2 MB</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg font-bold block leading-snug">Baixar Termo (.PDF)</span>
+<span class="font-body-sm text-body-sm text-on-primary-container">Com certidões digitais e ART pericial</span>
+</div>
+</button>
+<!-- Ação 2: Espelho Fiscal SPED -->
+<button class="flex flex-col items-start justify-between p-space-md rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface transition-all text-left shadow-sm group" onclick="alert('Espelho gerado para XML/SPED Fiscal (CFOP 5.202 / 1.202). Envio efetuado para a contabilidade.')" type="button">
+<div class="flex items-center justify-between w-full pb-space-md">
+<span class="material-symbols-outlined text-2xl text-primary group-hover:scale-105 transition-transform">receipt_long</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest px-space-xs py-0.5 rounded font-mono">CFOP 5.202</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg font-bold block leading-snug">Espelho Fiscal SPED</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Nota de ajuste parcial de R$ 22.470,00</span>
+</div>
+</button>
+<!-- Ação 3: Liberar Doca Logística (Crítico) -->
+<button class="flex flex-col items-start justify-between p-space-md rounded-xl bg-secondary text-on-secondary hover:bg-secondary/90 transition-all shadow-sm group text-left" onclick="alert('Portaria e WMS da Doca 03A notificados! Descarregamento prioritário de 500 barras autorizado.')" type="button">
+<div class="flex items-center justify-between w-full pb-space-md">
+<span class="material-symbols-outlined text-2xl group-hover:translate-x-0.5 transition-transform">local_shipping</span>
+<span class="font-label-sm text-label-sm bg-surface-container-lowest/20 px-space-xs py-0.5 rounded font-bold">DOCA 03A</span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg font-bold block leading-snug">Liberar Descarga Doca 03A</span>
+<span class="font-body-sm text-body-sm text-on-secondary/80">Protocolo de descarregamento rápido</span>
+</div>
+</button>
+<!-- Ação 4: Retorno à Central ou Painel -->
+<div class="flex flex-col justify-between p-space-md rounded-xl bg-surface-container-low text-on-surface">
+<span class="font-label-sm text-label-sm text-outline font-bold uppercase">Navegação Rápida</span>
+<div class="flex flex-col gap-space-xs pt-space-sm">
+<a class="inline-flex items-center justify-between font-label-md text-label-md text-primary font-bold hover:underline py-1" href="#">
+<span>Central de Arbitragem</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-between font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-1" href="#">
+<span>Painel Geral do Varejista</span>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- FAIXA DE SEGURANÇA E AUDITORIA COMPLIANCE -->
+<footer class="bg-surface-container-low p-space-lg rounded-xl flex flex-wrap items-center justify-between gap-space-md text-outline">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-secondary text-3xl">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Varejista Online • Liquidação de Custódia em Tempo Real</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Conformidade com a Resolução BACEN nº 1 / 2020 (Pix SPI) e Marco Legal da Mediação (Lei 13.140/15)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md text-label-sm">
+<span class="font-mono">ID Operação: 2026-SP-004128-BC</span>
+<div class="h-4 w-px bg-outline-variant/40"></div>
+<span class="text-secondary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">lock</span> Canal Criptografado TLS 1.3
+        </span>
+</div>
+</footer>
+</div>
+</div></main></div></body></html>

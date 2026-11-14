@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-secondary-fixed":"#002204","on-primary-container":"#a1bbff","error":"#ba1a1a","secondary-fixed":"#a3f69c","surface-container":"#eceef0","on-error-container":"#93000a","on-error":"#ffffff","surface-variant":"#e0e3e5","tertiary-fixed":"#ffdad6","surface-dim":"#d8dadc","surface-container-lowest":"#ffffff","primary-fixed":"#d9e2ff","surface-tint":"#2b5bb5","inverse-primary":"#b0c6ff","primary-fixed-dim":"#b0c6ff","error-container":"#ffdad6","on-tertiary-container":"#ffa59d","secondary":"#1b6d24","secondary-fixed-dim":"#88d982","outline-variant":"#c3c6d4","on-tertiary-fixed":"#410003","background":"#f7f9fb","primary-container":"#0d47a1","on-tertiary":"#ffffff","surface-bright":"#f7f9fb","on-secondary-container":"#217128","tertiary-container":"#9d0011","on-tertiary-fixed-variant":"#930010","tertiary":"#720009","on-secondary-fixed-variant":"#005312","surface":"#f7f9fb","surface-container-high":"#e6e8ea","secondary-container":"#a0f399","on-primary-fixed":"#001945","tertiary-fixed-dim":"#ffb3ac","on-primary":"#ffffff","primary":"#003178","inverse-surface":"#2d3133","on-secondary":"#ffffff","on-background":"#191c1e","on-primary-fixed-variant":"#00429c","surface-container-low":"#f2f4f6","outline":"#737783","inverse-on-surface":"#eff1f3","surface-container-highest":"#e0e3e5","on-surface":"#191c1e","on-surface-variant":"#434652"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{gutter:"1rem",margin:"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"2rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-md":"0.75rem","space-lg":"1.25rem"},fontFamily:{"body-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},fontSize:{"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"numeric-timer":["20px",{lineHeight:"24px",fontWeight:"800"}],"headline-lg-mobile":["20px",{lineHeight:"28px",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"headline-md":["18px",{lineHeight:"24px",fontWeight:"700"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.05em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}],"headline-xl-mobile":["24px",{lineHeight:"32px",fontWeight:"800"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-xl":["32px",{lineHeight:"40px",fontWeight:"800"}],"headline-lg":["24px",{lineHeight:"32px",fontWeight:"700"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between select-none"><div class="flex flex-col h-full"><div class="h-16 flex items-center px-6 bg-surface-container-low"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-2xl">storefront</span><div class="flex flex-col"><span class="font-headline-md text-headline-md text-primary tracking-tight">Varejista Online</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">B2B Master Admin</span></div></div></div><div class="flex-1 overflow-y-auto px-4 py-4 space-y-6"><nav class="space-y-4" data-active-classes="bg-primary text-on-primary font-bold shadow-sm"><div class="space-y-1"><p class="px-3 font-label-sm text-label-sm uppercase text-outline tracking-wider">GESTÃO MASTER</p><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="visao-geral-kpis-master" href="#"><span class="material-symbols-outlined text-lg">dashboard</span><span class="font-label-md text-label-md">Visão Geral &amp; KPIs Master</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="usuarios-permissoes" href="#"><span class="material-symbols-outlined text-lg">admin_panel_settings</span><span class="font-label-md text-label-md">Usuários &amp; Permissões</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="empresas-cnpjs" href="#"><span class="material-symbols-outlined text-lg">corporate_fare</span><span class="font-label-md text-label-md">Empresas &amp; CNPJs</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="produtos-categorias" href="#"><span class="material-symbols-outlined text-lg">inventory_2</span><span class="font-label-md text-label-md">Produtos &amp; Categorias</span></a></div><div class="space-y-1"><p class="px-3 font-label-sm text-label-sm uppercase text-outline tracking-wider">PREGÕES &amp; AUDITORIA</p><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="leiloes-lotes-ativos" href="#"><span class="material-symbols-outlined text-lg">gavel</span><span class="font-label-md text-label-md">Leilões &amp; Lotes Ativos</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="lances-pregoes-ao-vivo" href="#"><span class="material-symbols-outlined text-lg">sensors</span><span class="font-label-md text-label-md">Lances &amp; Pregões ao Vivo</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="auditoria-de-lances-anti-cartel" href="#"><span class="material-symbols-outlined text-lg">policy</span><span class="font-label-md text-label-md">Auditoria de Lances &amp; Anti-Cartel</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="vendas-pedidos-comissoes" href="#"><span class="material-symbols-outlined text-lg">receipt_long</span><span class="font-label-md text-label-md">Vendas, Pedidos &amp; Comissões</span></a></div><div class="space-y-1"><p class="px-3 font-label-sm text-label-sm uppercase text-outline tracking-wider">REGULATÓRIO &amp; FINANCEIRO</p><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="modulo-spb-santander" href="#"><span class="material-symbols-outlined text-lg">account_balance</span><span class="font-label-md text-label-md">Módulo SPB Santander</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="faturamento-repasses-b2b" href="#"><span class="material-symbols-outlined text-lg">payments</span><span class="font-label-md text-label-md">Faturamento &amp; Repasses B2B</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="moderacao-ouvidoria" href="#"><span class="material-symbols-outlined text-lg">support_agent</span><span class="font-label-md text-label-md">Moderação &amp; Ouvidoria</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="bloqueios-blacklist-ativa" href="#"><span class="material-symbols-outlined text-lg">block</span><span class="font-label-md text-label-md">Bloqueios &amp; Blacklist Ativa</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="auditoria-de-logs-trilha-worm" href="#"><span class="material-symbols-outlined text-lg">verified_user</span><span class="font-label-md text-label-md">Auditoria de Logs &amp; Trilha WORM</span></a></div><div class="space-y-1"><p class="px-3 font-label-sm text-label-sm uppercase text-outline tracking-wider">CONFIGURAÇÃO DO SISTEMA</p><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="banners-midia" href="#"><span class="material-symbols-outlined text-lg">perm_media</span><span class="font-label-md text-label-md">Banners &amp; Mídia</span></a><a class="flex items-center px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all gap-space-sm" data-path="configuracoes-globais" href="#"><span class="material-symbols-outlined text-lg">settings</span><span class="font-label-md text-label-md">Configurações Globais</span></a></div></nav></div><div class="p-4 bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary text-lg">lock</span><span class="font-label-sm text-label-sm text-on-surface-variant">WORM Audit Protocol v4.2</span></div><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container">SECURE</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin"><div class="flex-1 max-w-xl pr-6"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-3 text-outline text-lg">search</span><input class="w-full pl-10 pr-4 py-1.5 bg-surface-container-low rounded-lg text-on-surface placeholder-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Pesquisar por CNPJ, SKU, Lote ou Hash WORM..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden xl:flex items-center gap-2"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">RSFN/BACEN Conectado</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">SIEM SOC-2 Ativo</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">HSM Luna Online</span></div></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-1"><button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-xl">security</span></button><button class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors relative" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button></div><div class="h-6 w-px bg-surface-container-high"></div><div class="flex items-center gap-3 pl-1"><div class="flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface leading-tight">Dr. Eduardo Sampaio</span><span class="font-label-sm text-label-sm text-primary uppercase font-bold">Super Admin &amp; Auditor Master</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Command & Breadcrumb Banner -->
+<div class="bg-surface-container-low px-margin py- space-y-4">
+<!-- Breadcrumb & Regulatory Compliance Badges -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-3 pt-2">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Painel Master</span>
+<span class="material-symbols-outlined text-outline text-xs">chevron_right</span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Segurança &amp; Auditoria Técnica</span>
+<span class="material-symbols-outlined text-outline text-xs">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Trilha Forense WORM &amp; Logs SIEM</span>
+</div>
+<div class="flex items-center gap-2 flex-wrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-secondary text-sm">lock_clock</span>
+<span>WORM GLACIER VAULT LOCK</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-secondary text-sm">verified</span>
+<span>SHA-256 ÍNTEGRO</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-sm">gavel</span>
+<span>BACEN RES. 4.656</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-primary text-sm">memory</span>
+<span>HSM LUNA FIPS 140-2 LEVEL 3</span>
+</div>
+</div>
+</div>
+<!-- Title & Action Console -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-2">
+<div class="space-y-1">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-2xl">verified_user</span>
+</div>
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-background tracking-tight">Auditoria Forense de Logs &amp; Trilha Imutável WORM</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+              Supervisão e monitoramento em tempo real de eventos operacionais, acessos privilegiados, assinaturas digitais ICP-Brasil e trilha probatória WORM (Write Once, Read Many) inviolável.
+            </p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap lg:justify-end">
+<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-all shadow-sm font-label-md text-label-md" id="btn-merkle" type="button">
+<span class="material-symbols-outlined text-lg text-primary">account_tree</span>
+<span>Validar Merkle Tree</span>
+</button>
+<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-all shadow-sm font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-lg text-on-surface-variant">tune</span>
+<span>Regras SIEM</span>
+</button>
+<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-surface-container-lowest text-tertiary hover:bg-tertiary-fixed transition-all shadow-sm font-label-md text-label-md" type="button">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+<span>Laudo Pericial</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container transition-all shadow-sm font-label-md text-label-md font-bold" type="button">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Exportar Lote (.TAR.GZ Assinado)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- KPI Metrics Quartet -->
+<div class="px-margin py-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter">
+<!-- KPI 1 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Eventos Registrados Hoje</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">2.841.920</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-xl">dataset</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low -mx-5 -mb-5 px-5 py-2.5 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-base">trending_up</span>
+<b>+12.4%</b> vs média diária
+        </span>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">100% Ingestão Kafka</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Vault Lock &amp; Hash Imutável</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-headline-xl text-headline-xl text-primary font-extrabold tracking-tight">#8.492.110</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-xl">enhanced_encryption</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low -mx-5 -mb-5 px-5 py-2.5 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-[180px]">Root: 0x4f89d31...c0228</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span> Selado HSM
+        </span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Tentativas Bloqueadas (SIEM/WAF)</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-headline-xl text-headline-xl text-tertiary font-extrabold tracking-tight">184</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Anomalias</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-tertiary-fixed text-tertiary">
+<span class="material-symbols-outlined text-xl">shield_locked</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low -mx-5 -mb-5 px-5 py-2.5 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">14 Brute-force • 6 mTLS</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Zero Impacto</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Certificações &amp; Auditoria</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">SOC 2 Type II</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined text-xl">approval_delegation</span>
+</div>
+</div>
+<div class="mt-4 pt-3 bg-surface-container-low -mx-5 -mb-5 px-5 py-2.5 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">BACEN 4.656 • PCI-DSS</span>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">KPMG / CertiSign</span>
+</div>
+</div>
+</div>
+<!-- Main Split Architecture View -->
+<div class="px-margin pb-6 grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Real-Time Forensics Stream (7 / 12) -->
+<div class="lg:col-span-7 flex flex-col space-y-4">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Terminal Header -->
+<div class="p-4 bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold">Stream Síncrono Forense</span>
+<p class="font-body-sm text-body-sm text-outline">1.250 logs/segundo • Taxa buffer: 0ms • TLS 1.3</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm" id="toggle-stream" type="button">
+<span class="material-symbols-outlined text-base">pause</span>
+<span>Pausar Stream</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-surface-container text-on-surface-variant hover:text-tertiary font-label-sm text-label-sm" id="clear-stream" type="button">
+<span class="material-symbols-outlined text-base">delete_sweep</span>
+</button>
+</div>
+</div>
+<!-- Filter Pill Tabs -->
+<div class="px-4 py-2.5 bg-surface-container-lowest flex items-center gap-2 overflow-x-auto">
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold whitespace-nowrap">Todos (2.84M)</button>
+<button class="px-3 py-1 rounded bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm whitespace-nowrap">Autenticações Master</button>
+<button class="px-3 py-1 rounded bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm whitespace-nowrap">Transações SPB/Escrow</button>
+<button class="px-3 py-1 rounded bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm whitespace-nowrap">Alterações Cadastrais</button>
+<button class="px-3 py-1 rounded bg-surface-container-low text-on-surface-variant hover:bg-surface-container font-label-sm text-label-sm whitespace-nowrap">Comandos DDL/SQL</button>
+<button class="px-3 py-1 rounded bg-surface-container-low text-tertiary hover:bg-tertiary-fixed font-label-sm text-label-sm font-bold whitespace-nowrap">Erros/Alertas (184)</button>
+</div>
+<!-- Real-Time Filter Bar -->
+<div class="px-4 py-2 bg-surface-container-low">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-base">filter_alt</span>
+<input class="w-full pl-9 pr-4 py-1.5 bg-surface-container-lowest rounded text-on-surface font-body-sm text-body-sm placeholder-outline focus:outline-none focus:bg-surface-container-lowest" placeholder="Filtrar por trace_id, user_id, CNPJ, IP, endpoint ou hash SHA-256..." type="text"/>
+</div>
+</div>
+<!-- High-Density Forensic Log Stream -->
+<div class="p-4 space-y-3 max-h-[620px] overflow-y-auto" id="logs-container">
+<!-- Log 1: AUDIT -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all flex flex-col space-y-2">
+<div class="flex items-center justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-primary text-on-primary">AUDIT MASTER</span>
+<span class="font-numeric-timer text-label-md text-on-surface font-mono">14:15:32.402 UTC</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-body-sm text-primary font-bold">Dr. Eduardo Sampaio (Super Admin)</span>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">verified</span>
+                HOMOLOGADO HSM
+              </span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">
+              DECRETO DE MEDIDA CAUTELAR: BLOQUEIO TOTAL
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Alvo: CNPJ 22.910.844/0003-88 (Café Triângulo de Minas Ltda) • Ação preventiva de contenção de risco de crédito B2B e suspensão de sala de lances ativos.
+            </p>
+<div class="pt-2 flex flex-wrap items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
+<div class="flex items-center gap-3 font-mono text-xs">
+<span>trace_id: <strong class="text-on-surface">tr-89fa2109</strong></span>
+<span>token: <strong class="text-on-surface">#8841-FIPS</strong></span>
+<span class="truncate max-w-[200px]">hash: <strong class="text-primary font-mono">sha256:d8f3a9e102f...</strong></span>
+</div>
+<button class="font-label-sm text-label-sm text-primary font-bold hover:underline flex items-center gap-1">
+<span>Detalhes Forenses</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Log 2: CRITICAL -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all flex flex-col space-y-2">
+<div class="flex items-center justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-tertiary text-on-tertiary">CRÍTICO / WAF</span>
+<span class="font-numeric-timer text-label-md text-on-surface font-mono">14:14:10.119 UTC</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">Cloudflare Edge Gateway</span>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary font-bold">
+<span class="material-symbols-outlined text-sm">block</span>
+                ISOLADO NA BORDA
+              </span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">
+              RATE LIMIT EXCEEDED &amp; BLOCKED PROXY (ATTACK ATTEMPT)
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Alvo: IP 177.18.204.12 • Flooding anômalo de 2.400 requisições/s no pregão ao vivo #LOTE-418 (Açúcar Cristal). Invasão mitigada antes do buffer de matching.
+            </p>
+<div class="pt-2 flex flex-wrap items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
+<div class="flex items-center gap-3 font-mono text-xs">
+<span>trace_id: <strong class="text-on-surface">tr-77c01422</strong></span>
+<span>asn: <strong class="text-on-surface">AS28573</strong></span>
+<span class="truncate max-w-[200px]">hash: <strong class="text-tertiary font-mono">sha256:4a02bb4109e...</strong></span>
+</div>
+<button class="font-label-sm text-label-sm text-tertiary font-bold hover:underline flex items-center gap-1">
+<span>Trilha de Bloqueio</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Log 3: INFO SPB ESCROW -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all flex flex-col space-y-2">
+<div class="flex items-center justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-secondary text-on-secondary">SPB ESCROW</span>
+<span class="font-numeric-timer text-label-md text-on-surface font-mono">14:12:45.890 UTC</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">Robô Santander SPB SPI</span>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">paid</span>
+                QUITADO D+0
+              </span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">
+              LIQUIDAÇÃO FIDUCIÁRIA EFETIVADA (PIX BACEN SPI)
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Alvo: Lote #SBE-2026-09 • R$ 36.556,00 líquido transferido para custódia de liquidação fiduciária. Assinatura de pacote SPB autorizada com chave BACEN RSFN.
+            </p>
+<div class="pt-2 flex flex-wrap items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
+<div class="flex items-center gap-3 font-mono text-xs">
+<span>trace_id: <strong class="text-on-surface">tr-99b82143</strong></span>
+<span>id_trans: <strong class="text-on-surface">E00038166...</strong></span>
+<span class="truncate max-w-[200px]">hash: <strong class="text-secondary font-mono">sha256:c189ef02ff1...</strong></span>
+</div>
+<button class="font-label-sm text-label-sm text-secondary font-bold hover:underline flex items-center gap-1">
+<span>Comprovante SPB</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Log 4: AUDIT SEFAZ -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all flex flex-col space-y-2">
+<div class="flex items-center justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-surface-container-high text-on-surface">SEFAZ COMPLIANCE</span>
+<span class="font-numeric-timer text-label-md text-on-surface font-mono">14:08:22.014 UTC</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">API SEFAZ CCE Automática</span>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-outline font-bold">
+<span class="material-symbols-outlined text-sm">sync</span>
+                SINCRONIZADO
+              </span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">
+              CONSULTA SÍNCRONA DE CADASTRO CCE (STATUS: INAPTA)
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Alvo: Inscrição Estadual 062.911.450.009 • CNPJ marcado para bloqueio automático de emissão de NF-e e restrição em compras de arremate direto.
+            </p>
+<div class="pt-2 flex flex-wrap items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
+<div class="flex items-center gap-3 font-mono text-xs">
+<span>trace_id: <strong class="text-on-surface">tr-33a71092</strong></span>
+<span>cce_code: <strong class="text-on-surface">RET-402</strong></span>
+<span class="truncate max-w-[200px]">hash: <strong class="text-outline font-mono">sha256:ff0923184ab...</strong></span>
+</div>
+<button class="font-label-sm text-label-sm text-primary font-bold hover:underline flex items-center gap-1">
+<span>Ver Payload CCE</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Log 5: WARN TOKEN DIVERGENCE -->
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-all flex flex-col space-y-2">
+<div class="flex items-center justify-between gap-2 flex-wrap">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-extrabold bg-secondary-fixed text-on-secondary-fixed">WARN / CRYPTO</span>
+<span class="font-numeric-timer text-label-md text-on-surface font-mono">14:01:50.772 UTC</span>
+<span class="text-outline text-xs">•</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold">API /api/v1/bids/submit</span>
+</div>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-tertiary font-bold">
+<span class="material-symbols-outlined text-sm">cancel</span>
+                REJEIÇÃO IMEDIATA
+              </span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">
+              ASSINATURA ICP-BRASIL DIVERGENTE DO TOKEN
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Alvo: Usuário operador #OP-4491 • Assinatura PKCS#7 transmitida divergiu do par de chaves públicas cadastrado no HSM de arremate. Lance descartado.
+            </p>
+<div class="pt-2 flex flex-wrap items-center justify-between text-on-surface-variant font-body-sm text-body-sm gap-2">
+<div class="flex items-center gap-3 font-mono text-xs">
+<span>trace_id: <strong class="text-on-surface">tr-66e41981</strong></span>
+<span>serial: <strong class="text-on-surface">#4491-B2B</strong></span>
+<span class="truncate max-w-[200px]">hash: <strong class="text-on-surface-variant font-mono">sha256:e7710a39aa0...</strong></span>
+</div>
+<button class="font-label-sm text-label-sm text-primary font-bold hover:underline flex items-center gap-1">
+<span>Auditoria Cripto</span>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: WORM Cryptography, PAM & Severity Mix (5 / 12) -->
+<div class="lg:col-span-5 flex flex-col space-y-4">
+<!-- Cryptographic Verification of Current Block -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">token</span>
+<span class="font-headline-md text-headline-md text-on-surface">Cofre de Gravação WORM</span>
+</div>
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm font-bold bg-secondary-container text-on-secondary-container uppercase">
+            BLOCO ATIVO
+          </span>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold">Bloco Atual em Selagem</span>
+<span class="font-label-md text-label-md text-primary font-mono font-bold">#8.492.110</span>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-outline">Janela Temporal (BRT)</span>
+<div class="font-body-sm text-body-sm text-on-surface font-semibold flex items-center justify-between">
+<span>14:00:00 BRT</span>
+<span class="material-symbols-outlined text-xs text-outline">arrow_forward</span>
+<span>14:59:59 BRT (Fecha em 44min)</span>
+</div>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-outline">Hash do Bloco Anterior (Parent)</span>
+<div class="p-2 rounded bg-surface-container-lowest font-mono text-xs text-on-surface truncate">
+              0x98f4bb3410298a09cf90123efb4908...228a
+            </div>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-outline">Merkle Root Calculada</span>
+<div class="p-2 rounded bg-surface-container-lowest font-mono text-xs text-primary font-bold truncate">
+              0x4f89d31a78e4c0228d90f23ba56ef192...c0228
+            </div>
+</div>
+<div class="pt-2 flex items-center justify-between text-xs text-on-surface-variant border-t border-surface-container">
+<span>Validador: <strong>ICP-Brasil A3 #88192</strong></span>
+<span>Retenção Legal: <strong>5 Anos (BACEN)</strong></span>
+</div>
+</div>
+<button class="w-full py-2.5 px-4 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-bold hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-sm" id="btn-merkle-sim" type="button">
+<span class="material-symbols-outlined text-lg">schema</span>
+<span>Simular Prova de Inclusão (Merkle Proof)</span>
+</button>
+</div>
+<!-- Privileged Access Management (PAM) Live Sessions -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-xl">admin_panel_settings</span>
+<span class="font-headline-md text-headline-md text-on-surface">Acessos Privilegiados (PAM)</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-bold">
+            3 SESSÕES ATIVAS
+          </span>
+</div>
+<div class="space-y-2.5">
+<!-- User 1 -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs">
+                ES
+              </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Dr. Eduardo Sampaio</span>
+<span class="font-body-sm text-body-sm text-outline">Super Admin Master • 201.86.12.90</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Yubikey FIPS</span>
+<span class="font-numeric-timer text-label-sm text-outline mt-0.5">Sessão: 48m</span>
+</div>
+</div>
+<!-- User 2 -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs">
+                LP
+              </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Dra. Luciana Prado</span>
+<span class="font-body-sm text-body-sm text-outline">Auditora BACEN Convidada • Sala de Inspeção</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold">Token Temp.</span>
+<span class="font-numeric-timer text-label-sm text-outline mt-0.5">Expira: 1h12</span>
+</div>
+</div>
+<!-- User 3 -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Robô Gateway Santander</span>
+<span class="font-body-sm text-body-sm text-outline">Service Account SPB • SPI Dedicated VPN</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">mTLS A3</span>
+<span class="font-numeric-timer text-label-sm text-outline mt-0.5">Automático</span>
+</div>
+</div>
+</div>
+<div class="p-2.5 rounded bg-secondary-fixed/30 flex items-center gap-2 text-on-secondary-fixed">
+<span class="material-symbols-outlined text-secondary text-base">verified_user</span>
+<span class="font-label-sm text-label-sm font-medium">Nenhuma elevação de privilégio não autorizada nas últimas 72 horas.</span>
+</div>
+</div>
+<!-- Severity Distribution Inline Chart Card -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">pie_chart</span>
+<span class="font-headline-md text-headline-md text-on-surface">Distribuição de Eventos SIEM</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Hoje</span>
+</div>
+<!-- Progress Bar Mix -->
+<div class="w-full h-3 rounded-full bg-surface-container flex overflow-hidden">
+<div class="bg-primary h-full" style="width: 88.5%" title="Info / Transacional (88.5%)"></div>
+<div class="bg-primary-fixed-dim h-full" style="width: 8.2%" title="Auditoria (8.2%)"></div>
+<div class="bg-secondary-fixed h-full" style="width: 2.7%" title="Avisos (2.7%)"></div>
+<div class="bg-tertiary h-full" style="width: 0.6%" title="Críticos (0.6%)"></div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">Transacional / Info</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">88.5% (2.51M)</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">Auditoria Compliance</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">8.2% (233K)</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-fixed"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">Avisos (Warnings)</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">2.7% (76.7K)</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline">Críticos / Bloqueios</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">0.6% (184)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Data Grid: Closed WORM Batches Directory -->
+<div class="px-margin pb-6">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-4 bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">folder_zip</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Diretório de Pacotes WORM Fechados &amp; Arquivados</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lotes consolidados com carimbo de tempo estratificado e selagem em cofre físico óptico inviolável.</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-lowest text-on-surface shadow-sm font-label-sm text-label-sm font-bold" type="button">
+<span class="material-symbols-outlined text-base">cloud_sync</span>
+<span>Sincronizar Glacier Vault</span>
+</button>
+</div>
+</div>
+<!-- Dense Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4">ID do Pacote</th>
+<th class="py-3 px-4">Período de Apuração</th>
+<th class="py-3 px-4">Total de Eventos</th>
+<th class="py-3 px-4">Tamanho</th>
+<th class="py-3 px-4">Hash Criptográfico SHA-256</th>
+<th class="py-3 px-4">Carimbo NTP.br</th>
+<th class="py-3 px-4">Status WORM</th>
+<th class="py-3 px-4 text-right">Ações Forenses</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm text-on-surface">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 font-mono font-bold text-primary">#LOG-2026-10-18</td>
+<td class="py-3.5 px-4 font-semibold">18/10/2026 (00:00:00 - 23:59:59)</td>
+<td class="py-3.5 px-4 font-mono">18.420.910</td>
+<td class="py-3.5 px-4 font-mono text-outline">4.82 GB</td>
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant truncate max-w-[180px]">
+                sha256:e3b0c44298fc1c149afbf4c8996fb92427...
+              </td>
+<td class="py-3.5 px-4 text-xs font-mono">18/10/2026 23:59:59 BRT</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded font-label-sm text-label-sm font-bold bg-secondary-container text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  SELADO &amp; ARQUIVADO
+                </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1.5 justify-end">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Baixar Pacote .tar.gz" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface transition-colors" title="Verificar Hash SHA-256" type="button">
+<span class="material-symbols-outlined text-base">verified</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-tertiary transition-colors" title="Gerar Laudo Pericial" type="button">
+<span class="material-symbols-outlined text-base">description</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 font-mono font-bold text-primary">#LOG-2026-10-17</td>
+<td class="py-3.5 px-4 font-semibold">17/10/2026 (00:00:00 - 23:59:59)</td>
+<td class="py-3.5 px-4 font-mono">17.890.120</td>
+<td class="py-3.5 px-4 font-mono text-outline">4.65 GB</td>
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant truncate max-w-[180px]">
+                sha256:88a719c2394bc901a1820498b31d0449...
+              </td>
+<td class="py-3.5 px-4 text-xs font-mono">17/10/2026 23:59:59 BRT</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded font-label-sm text-label-sm font-bold bg-secondary-container text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  SELADO &amp; ARQUIVADO
+                </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1.5 justify-end">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Baixar Pacote .tar.gz" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface transition-colors" title="Verificar Hash SHA-256" type="button">
+<span class="material-symbols-outlined text-base">verified</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-tertiary transition-colors" title="Gerar Laudo Pericial" type="button">
+<span class="material-symbols-outlined text-base">description</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-3.5 px-4 font-mono font-bold text-primary">#LOG-2026-10-16</td>
+<td class="py-3.5 px-4 font-semibold">16/10/2026 (00:00:00 - 23:59:59)</td>
+<td class="py-3.5 px-4 font-mono">19.120.450</td>
+<td class="py-3.5 px-4 font-mono text-outline">5.10 GB</td>
+<td class="py-3.5 px-4 font-mono text-xs text-on-surface-variant truncate max-w-[180px]">
+                sha256:f7190ca1839db001184716298acdd810...
+              </td>
+<td class="py-3.5 px-4 text-xs font-mono">16/10/2026 23:59:59 BRT</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded font-label-sm text-label-sm font-bold bg-secondary-container text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  SELADO &amp; ARQUIVADO
+                </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1.5 justify-end">
+<button class="p-1.5 rounded hover:bg-surface-container text-primary transition-colors" title="Baixar Pacote .tar.gz" type="button">
+<span class="material-symbols-outlined text-base">download</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-on-surface transition-colors" title="Verificar Hash SHA-256" type="button">
+<span class="material-symbols-outlined text-base">verified</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-tertiary transition-colors" title="Gerar Laudo Pericial" type="button">
+<span class="material-symbols-outlined text-base">description</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Regulatory & Legal Seals Footer -->
+<div class="px-margin pb-8">
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-2xl">verified</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Amparo Legal &amp; Integridade Forense WORM Garantida</span>
+<span class="font-body-sm text-body-sm text-outline">Esta trilha possui fé pública digital nos termos da MP nº 2.200-2/2001 e Resolução BACEN nº 4.656/2018.</span>
+</div>
+</div>
+<div class="flex items-center gap-3 flex-wrap">
+<span class="px-3 py-1 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-bold shadow-sm">ISO/IEC 27001:2022</span>
+<span class="px-3 py-1 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-bold shadow-sm">BACEN Res. 4.656</span>
+<span class="px-3 py-1 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-bold shadow-sm">ITI / ICP-Brasil</span>
+<span class="px-3 py-1 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-bold shadow-sm">NTP.br Stratum 1</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interactions for Forensics console
+  (function() {
+    const toggleBtn = document.getElementById('toggle-stream');
+    const container = document.getElementById('logs-container');
+    let isStreaming = true;
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function() {
+        isStreaming = !isStreaming;
+        if (!isStreaming) {
+          toggleBtn.innerHTML = '<span class="material-symbols-outlined text-base">play_arrow</span><span>Retomar Stream</span>';
+          toggleBtn.classList.replace('text-on-surface-variant', 'text-secondary');
+        } else {
+          toggleBtn.innerHTML = '<span class="material-symbols-outlined text-base">pause</span><span>Pausar Stream</span>';
+          toggleBtn.classList.replace('text-secondary', 'text-on-surface-variant');
+        }
+      });
+    }
+
+    const simBtn = document.getElementById('btn-merkle-sim');
+    if (simBtn) {
+      simBtn.addEventListener('click', function() {
+        const originalText = simBtn.innerHTML;
+        simBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">refresh</span><span>Verificando 2.84M hashes na Árvore...</span>';
+        simBtn.disabled = true;
+        setTimeout(function() {
+          simBtn.innerHTML = '<span class="material-symbols-outlined text-base text-secondary">check_circle</span><span>Árvore de Merkle Válida (0x4f89d... Íntegro)</span>';
+          setTimeout(function() {
+            simBtn.innerHTML = originalText;
+            simBtn.disabled = false;
+          }, 3000);
+        }, 1200);
+      });
+    }
+  })();
+</script></main></div></body></html>

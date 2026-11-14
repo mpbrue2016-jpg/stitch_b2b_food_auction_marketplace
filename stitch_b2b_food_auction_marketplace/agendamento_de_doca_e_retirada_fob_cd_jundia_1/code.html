@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-fixed-dim": "#88d982", "primary-fixed": "#d9e2ff", "surface-container-highest": "#e0e3e5", "on-error": "#ffffff", "on-primary": "#ffffff", "primary": "#003178", "surface-variant": "#e0e3e5", "on-tertiary-fixed": "#410003", "on-secondary-container": "#217128", "on-primary-fixed": "#001945", "tertiary-fixed": "#ffdad6", "on-primary-container": "#a1bbff", "outline-variant": "#c3c6d4", "surface-container": "#eceef0", "surface-dim": "#d8dadc", "surface-tint": "#2b5bb5", "on-tertiary": "#ffffff", "on-surface-variant": "#434652", "inverse-surface": "#2d3133", "primary-container": "#0d47a1", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#b0c6ff", "secondary": "#1b6d24", "surface-container-high": "#e6e8ea", "on-background": "#191c1e", "surface": "#f7f9fb", "inverse-on-surface": "#eff1f3", "on-secondary-fixed-variant": "#005312", "secondary-container": "#a0f399", "secondary-fixed": "#a3f69c", "surface-bright": "#f7f9fb", "surface-container-low": "#f2f4f6", "tertiary-container": "#9d0011", "error": "#ba1a1a", "on-secondary": "#ffffff", "on-error-container": "#93000a", "tertiary": "#720009", "background": "#f7f9fb", "on-tertiary-fixed-variant": "#930010", "outline": "#737783", "on-secondary-fixed": "#002204", "on-primary-fixed-variant": "#00429c", "on-surface": "#191c1e", "tertiary-fixed-dim": "#ffb3ac", "error-container": "#ffdad6", "on-tertiary-container": "#ffa59d", "inverse-primary": "#b0c6ff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-lg": "1.25rem", "space-sm": "0.5rem", "gutter-mobile": "0.75rem", "space-md": "0.75rem", "gutter": "1rem", "space-xs": "0.25rem", "margin-mobile": "1rem", "margin": "1.5rem", "space-xl": "2rem" }, "fontFamily": { "headline-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"] }, "fontSize": { "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }] } } } };</script><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><button aria-label="Voltar" class="min-w-[44px] min-h-[44px] -ml-2 flex items-center justify-center text-on-surface hover:text-primary transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-headline-md">arrow_back</span></button><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[14px]">lock</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold truncate">TLS 1.3 · Escrow Bacen</span></div><h1 class="font-headline-md text-headline-md text-on-surface truncate">Upload De Comprovante Bancario</h1></div></div><div class="flex items-center gap-space-sm shrink-0"><div class="hidden sm:flex flex-col items-end"><span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Varejista B2B</span><span class="font-label-sm text-label-sm text-secondary font-semibold">Liquidação Segura</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-container-highest" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface"><div class="flex flex-col w-full">
+<!-- Status Chip Strip -->
+<div class="px-margin-mobile pt-space-md pb-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-xs bg-secondary-container/30 px-space-sm py-1 rounded-full">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-secondary-container uppercase">Retirada FOB Autorizada</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Lote #399 • M. Dias Branco</span>
+</div>
+<!-- Stepper (Etapa 4 de 4) -->
+<div class="px-margin-mobile py-space-sm">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-primary font-bold tracking-tight">Etapa 4 de 4: Agendamento de Doca</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold bg-secondary/10 px-2 py-0.5 rounded-full">100% Concluído</span>
+</div>
+<div class="grid grid-cols-4 gap-1.5 mt-2">
+<div class="h-1.5 rounded-full bg-secondary"></div>
+<div class="h-1.5 rounded-full bg-secondary"></div>
+<div class="h-1.5 rounded-full bg-secondary"></div>
+<div class="h-1.5 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="grid grid-cols-4 gap-1 mt-2 text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">1. Checkout</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">2. Comprovante</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">3. Escrow</span>
+<span class="font-label-sm text-label-sm text-primary font-bold truncate">4. Doca FOB</span>
+</div>
+</div>
+</div>
+<!-- Hero Visual / CD Info Card -->
+<div class="px-margin-mobile py-space-xs">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary-container to-primary text-on-primary p-space-md shadow-md">
+<div class="relative z-10 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary-fixed text-body-lg">warehouse</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed font-bold">Ponto de Coleta Autorizado</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-lowest/15 backdrop-blur-sm px-2 py-0.5 rounded text-surface font-semibold">Portaria 04B</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary font-extrabold mt-1">Centro Logístico Jundiaí/SP</h2>
+<p class="font-body-sm text-body-sm text-on-primary/80">Rodovia Anhanguera, km 58 • Galpão 03, Portão C • CEP 13214-000</p>
+<div class="flex items-center gap-space-md pt-space-xs mt-1 border-t-0">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">timer</span>
+<span class="font-label-sm text-label-sm text-on-primary/90">Tempo médio: <strong>25 min</strong></span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">forklift</span>
+<span class="font-label-sm text-label-sm text-on-primary/90">Doca Nível 2 / Empilhadeira</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- NF-e & Fiscal Clearance Banner -->
+<div class="px-margin-mobile py-space-xs">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-secondary text-body-lg">receipt_long</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">NF-e Emitida</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Série 1</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface truncate">NF-e nº 004.892.110</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Emitente: M. Dias Branco Alimentos S/A</p>
+</div>
+</div>
+<button class="shrink-0 flex items-center gap-1 bg-surface-container text-primary px-space-sm py-1.5 rounded-lg active:scale-95 transition-transform" id="btnDanfe" onclick="downloadFiscalDoc()">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span class="font-label-sm text-label-sm font-bold">DANFE</span>
+</button>
+</div>
+<!-- Access Key Copy Strip -->
+<div class="mt-space-sm bg-surface-container-low p-space-xs rounded-lg flex items-center justify-between gap-space-xs">
+<div class="flex flex-col min-w-0 px-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Chave de Acesso SEFAZ</span>
+<span class="font-label-sm text-label-sm text-on-surface font-mono font-bold truncate">3524 1007 8921 1000 0144 5500 1004 8921 1018</span>
+</div>
+<button aria-label="Copiar chave" class="p-2 text-primary hover:bg-surface-container rounded transition-colors" id="copyKeyBtn" onclick="copyAccessKey()">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Cargo Specs Bento Grid -->
+<div class="px-margin-mobile py-space-xs">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-body-lg">inventory_2</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Especificação de Carga</h3>
+</div>
+<span class="font-label-sm text-label-sm bg-secondary/15 text-secondary px-2 py-0.5 rounded font-bold">Pallet PBR Fechado</span>
+</div>
+<div class="flex items-center gap-space-sm py-space-xs">
+<img class="w-16 h-16 rounded-lg object-cover shrink-0" data-alt="A professional warehouse shot of two secure PBR wooden pallets stacked with Master Boxes of chocolate sandwich cookies, wrapped in glossy industrial stretch film with safety certification seal ribbons, ambient neutral lighting, high-contrast B2B commercial aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHVha05GV3DaA2w8VCswUTO-29D-1R7tSSuH1efG5ucxm8O1gv-319sRfhqG5TyvxqYsDACUyioW7xnFrmpLs6SZKWdmc_JXzNAa3SPLetf8yxaPPaicK1pAZW9IAiPtQbPVKN7Mdz_TDprJ3wcApWds43i65-7_BvG0IPyHe6yo9D5g9dbryD6uclal0yLmkP7m8tfIajV0FgmbJTQDXTE1QmJm3hi_dv2KdiELox"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase">Lote Industrial #399</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">Biscoito Recheado Chocolate 130g</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">EAN/GTIN: 7891000315502 • Validade: 04/2026</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-space-xs mt-space-xs pt-space-xs">
+<div class="bg-surface-container-low p-space-xs rounded flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Volume</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-0.5">600 Cxs</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">18.000 un</span>
+</div>
+<div class="bg-surface-container-low p-space-xs rounded flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Estrutura</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-0.5">2 Paletes</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">PBR 1,00x1,20m</span>
+</div>
+<div class="bg-surface-container-low p-space-xs rounded flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Peso Bruto</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-0.5">2.160 kg</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Carga Seca</span>
+</div>
+</div>
+<!-- Vehicle Recommendation alert -->
+<div class="mt-space-sm bg-surface-container p-space-xs rounded flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-body-lg">local_shipping</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Veículo Homologado para Doca 04B:</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">VUC, 3/4, Toco ou Baú Fechado Sider/Alumínio limpo.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Dock Slot Selector (Date & Time Window) -->
+<div class="px-margin-mobile py-space-xs">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-body-lg">event_available</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Agendar Janela de Doca</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Sem Fila de Espera</span>
+</div>
+<!-- Date Pills -->
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-space-xs">Selecione o Dia:</label>
+<div class="grid grid-cols-3 gap-space-xs mb-space-md" id="dateSelectorGroup">
+<button class="date-chip bg-primary text-on-primary p-space-sm rounded-lg flex flex-col items-center text-center shadow-sm" data-date="18/10" type="button">
+<span class="font-label-sm text-label-sm uppercase">Hoje</span>
+<span class="font-headline-md text-headline-md">18 Out</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed font-bold mt-0.5">3 slots</span>
+</button>
+<button class="date-chip bg-surface-container text-on-surface p-space-sm rounded-lg flex flex-col items-center text-center" data-date="19/10" type="button">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Amanhã</span>
+<span class="font-headline-md text-headline-md">19 Out</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold mt-0.5">Alta Vaga</span>
+</button>
+<button class="date-chip bg-surface-container text-on-surface p-space-sm rounded-lg flex flex-col items-center text-center" data-date="20/10" type="button">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Quinta</span>
+<span class="font-headline-md text-headline-md">20 Out</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium mt-0.5">Livre</span>
+</button>
+</div>
+<!-- Time Window Slots -->
+<div class="flex items-center justify-between mb-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Janelas Disponíveis (1 hora):</label>
+<span class="font-label-sm text-label-sm text-primary font-bold">Doca 04B Express</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs" id="timeSlotGroup">
+<button class="slot-pill bg-surface-container text-on-surface p-space-sm rounded-lg flex flex-col items-start active:scale-98 transition-transform" data-slot="08:00 - 09:00" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-headline-md text-headline-md">08:00 - 09:00</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Portaria aberta às 07:45</span>
+</button>
+<!-- Recommended Slot (Active Default) -->
+<button class="slot-pill bg-primary-container text-on-primary p-space-sm rounded-lg flex flex-col items-start shadow-sm" data-slot="09:30 - 10:30" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-headline-md text-headline-md">09:30 - 10:30</span>
+<span class="font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded font-extrabold uppercase">Top</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary-fixed font-semibold">Menor tempo de pátio</span>
+</button>
+<button class="slot-pill bg-surface-container text-on-surface p-space-sm rounded-lg flex flex-col items-start active:scale-98 transition-transform" data-slot="11:00 - 12:00" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-headline-md text-headline-md">11:00 - 12:00</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Antes do almoço</span>
+</button>
+<button class="slot-pill bg-surface-container text-on-surface p-space-sm rounded-lg flex flex-col items-start active:scale-98 transition-transform" data-slot="14:00 - 15:00" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-headline-md text-headline-md">14:00 - 15:00</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Turno vespertino</span>
+</button>
+<button class="slot-pill col-span-2 bg-surface-container text-on-surface p-space-sm rounded-lg flex items-center justify-between" data-slot="15:30 - 16:30" type="button">
+<div class="flex flex-col items-start">
+<span class="font-headline-md text-headline-md">15:30 - 16:30</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Último horário de faturamento do dia</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary-container bg-error-container/40 px-2 py-0.5 rounded font-bold">2 vagas</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Carrier & Driver Gate Check-in Form -->
+<div class="px-margin-mobile py-space-xs">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-body-lg">badge</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Dados do Transporte</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Portaria Digital</span>
+</div>
+<!-- Mode Selector (Pills) -->
+<div class="grid grid-cols-2 gap-space-xs p-1 bg-surface-container rounded-lg mb-space-md">
+<button class="py-1.5 px-3 rounded-md bg-surface-container-lowest text-primary font-bold font-label-md text-label-md shadow-sm transition-all" id="typeFrota" onclick="selectFleetType('frota')" type="button">
+          Frota Própria
+        </button>
+<button class="py-1.5 px-3 rounded-md text-on-surface-variant font-label-md text-label-md transition-all" id="typeTerceiro" onclick="selectFleetType('terceiro')" type="button">
+          Transportadora / Frete
+        </button>
+</div>
+<!-- Input fields -->
+<div class="flex flex-col gap-space-sm">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-1">Razão Social / Transportadora</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">business</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none font-medium" type="text" value="Supermercados Alvorada Ltda (Frota 02)"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-1">Placa Veículo (Cavalo)</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">directions_car</span>
+<input class="w-full bg-transparent font-headline-md text-headline-md text-on-surface font-mono uppercase outline-none font-bold" type="text" value="BRA2E19"/>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-1">Placa Carreta (Opcional)</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">rv_hookup</span>
+<input class="w-full bg-transparent font-headline-md text-headline-md text-on-surface font-mono uppercase outline-none" placeholder="Sem carreta" type="text"/>
+</div>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-1">Nome Completo do Motorista</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">person</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none font-medium" type="text" value="Carlos Eduardo de Oliveira Santos"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-1">CPF do Motorista</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-2">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none font-medium" type="text" value="312.894.208-44"/>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-1">CNH / Categoria</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-2">
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none font-medium" type="text" value="04982138920 (Cat C)"/>
+</div>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold block mb-1">WhatsApp Motorista (Chamada de Doca por SMS/WA)</label>
+<div class="bg-surface-container-low px-space-sm py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">chat</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none font-semibold" type="tel" value="(11) 98741-2099"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 block">O motorista receberá aviso em tempo real quando a Doca 04B for liberada.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mandatory Safety & Sanitary Checklist (ANVISA Food Standards) -->
+<div class="px-margin-mobile py-space-xs">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center gap-space-xs mb-space-sm">
+<span class="material-symbols-outlined text-tertiary-container text-body-lg">health_and_safety</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Requisitos Obrigatórios no CD</h3>
+</div>
+<div class="space-y-space-xs">
+<div class="p-space-xs bg-surface-container-low rounded flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">verified</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">EPI Completo: Calçado com biqueira e Colete Refletivo</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Entrada na área de transbordo proibida sem EPI normatizado NR-06.</span>
+</div>
+</div>
+<div class="p-space-xs bg-surface-container-low rounded flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">sanitizer</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Vistoria Sanitária ANVISA (Carga de Alimentos)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Baú 100% seco, higienizado, livre de odores e sem produtos químicos.</span>
+</div>
+</div>
+<div class="p-space-xs bg-surface-container-low rounded flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">document_scanner</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Documentos Originais na Guarita</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Apresentar CNH física ou no app CNH Digital + CRLV do caminhão.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Digital Gate Pass QR Code (Fast Pass) -->
+<div class="px-margin-mobile py-space-xs">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm border-0">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-body-lg">qr_code_2</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Passe Rápido de Cancela</h3>
+</div>
+<span class="font-label-sm text-label-sm font-mono text-primary font-bold">#FOB-2026-0399-JND</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col items-center justify-center my-space-xs">
+<!-- SVG Generated QR Code for CD Scanner -->
+<div class="w-40 h-40 bg-surface-container-lowest p-2 rounded-lg flex items-center justify-center shadow-inner">
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewbox="0 0 100 100">
+<!-- QR Corner Squares -->
+<rect fill="currentColor" height="28" rx="2" width="28" x="5" y="5"></rect>
+<rect fill="#FFFFFF" height="20" rx="1" width="20" x="9" y="9"></rect>
+<rect fill="currentColor" height="12" rx="1" width="12" x="13" y="13"></rect>
+<rect fill="currentColor" height="28" rx="2" width="28" x="67" y="5"></rect>
+<rect fill="#FFFFFF" height="20" rx="1" width="20" x="71" y="9"></rect>
+<rect fill="currentColor" height="12" rx="1" width="12" x="75" y="13"></rect>
+<rect fill="currentColor" height="28" rx="2" width="28" x="5" y="67"></rect>
+<rect fill="#FFFFFF" height="20" rx="1" width="20" x="9" y="71"></rect>
+<rect fill="currentColor" height="12" rx="1" width="12" x="13" y="75"></rect>
+<!-- Pattern Dots -->
+<rect fill="currentColor" height="6" rx="1" width="6" x="38" y="10"></rect>
+<rect fill="currentColor" height="6" rx="1" width="6" x="48" y="15"></rect>
+<rect fill="currentColor" height="12" rx="1" width="5" x="58" y="8"></rect>
+<rect fill="currentColor" height="6" rx="1" width="16" x="38" y="24"></rect>
+<rect fill="currentColor" height="6" rx="1" width="6" x="10" y="38"></rect>
+<rect fill="currentColor" height="6" rx="1" width="8" x="20" y="44"></rect>
+<rect fill="#0D47A1" height="24" rx="2" width="24" x="38" y="38"></rect>
+<circle cx="50" cy="50" fill="#FFFFFF" r="6"></circle>
+<rect fill="currentColor" height="6" rx="1" width="8" x="68" y="38"></rect>
+<rect fill="currentColor" height="6" rx="1" width="10" x="80" y="44"></rect>
+<rect fill="currentColor" height="6" rx="1" width="14" x="68" y="54"></rect>
+<rect fill="currentColor" height="14" rx="1" width="8" x="38" y="68"></rect>
+<rect fill="currentColor" height="6" rx="1" width="12" x="50" y="74"></rect>
+<rect fill="currentColor" height="12" rx="1" width="6" x="68" y="68"></rect>
+<rect fill="currentColor" height="12" rx="1" width="12" x="78" y="78"></rect>
+<rect fill="currentColor" height="6" rx="1" width="14" x="48" y="86"></rect>
+</svg>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-bold mt-space-sm">Apresente na Cancela Norte (Portão C)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-center">Leitura automática por câmera OCR e liberação direta à Doca 04B</span>
+</div>
+</div>
+</div>
+<!-- CD Map Integration Point -->
+<div class="px-margin-mobile py-space-xs">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Localização Exata da Doca</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Waze &amp; Google Maps</span>
+</div>
+<div class="w-full h-36 bg-cover bg-center rounded-lg relative overflow-hidden flex items-end p-space-sm shadow-sm" data-location="Rodovia Anhanguera km 58 Jundiai SP" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXDUiaY-qWfBkLJ_MM3Rbdjw_vowUv1YzSTFhP-QydwP42MPW2kLkeoXfe2DKltY-46iJvYRT9k0W3eCnHdY_RtYuRccHmxaGSeGJ4KyIf5m6F3ZnCRqn35atQxtWGcsyE2HeqKM5SJKm3K3YdUlUbumfNKmWRfH4qj5DLRfl9QCwurniMx5ZAT5PRSiiUibo580YUcte-NvhZ1WXP5-7ZY9ZhlyNNiiwFtAzRq1rV')">
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-inverse-surface/30 to-transparent"></div>
+<div class="relative z-10 flex items-center justify-between w-full">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-inverse-on-surface font-bold">Portaria 04B - Complexo Jundiaí</span>
+<span class="font-body-sm text-body-sm text-inverse-on-surface/80">Acesso direto pela marginal da Anhanguera</span>
+</div>
+<button class="bg-surface-container-lowest text-primary px-3 py-1 rounded-md font-label-sm text-label-sm font-bold shadow-sm flex items-center gap-1" onclick="openGpsRoute()">
+<span class="material-symbols-outlined text-[14px]">navigation</span>
+            Rotas
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary & Secondary Action CTAs -->
+<div class="px-margin-mobile pt-space-sm pb-space-lg flex flex-col gap-space-xs">
+<!-- Primary Green Button for FOB Confirmation -->
+<button class="w-full h-14 bg-secondary hover:bg-on-secondary-container active:scale-[0.99] text-on-secondary rounded-xl font-headline-md text-headline-md flex items-center justify-center gap-space-sm shadow-md transition-all" id="btnConfirmDoca" onclick="confirmAppointment()" type="button">
+<span class="material-symbols-outlined text-headline-md">check_circle</span>
+<span>Confirmar Agendamento de Doca</span>
+</button>
+<!-- Secondary Navigation / Collection Order -->
+<button class="w-full h-12 bg-surface-container text-primary hover:bg-surface-container-high active:scale-[0.99] rounded-xl font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors" onclick="generateCollectionOrder()" type="button">
+<span class="material-symbols-outlined text-body-lg">print</span>
+<span>Gerar Ordem de Coleta em PDF</span>
+</button>
+<!-- Support Help Button -->
+<a class="w-full py-2 flex items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-center" href="https://wa.me/5511999990000?text=Preciso%20de%20apoio%20na%20Doca%2004B%20Lote%20399" target="_blank">
+<span class="material-symbols-outlined text-secondary text-[16px]">support_agent</span>
+<span class="font-label-sm text-label-sm font-semibold">Falar com o Supervisor Logístico da Doca</span>
+</a>
+</div>
+<!-- Escrow and Legal Audit Footer -->
+<div class="px-margin-mobile py-space-md bg-surface-container-low text-center">
+<div class="flex items-center justify-center gap-space-xs mb-1">
+<span class="material-symbols-outlined text-secondary text-[15px]">security</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Custódia Blindada • BACEN Escrow Protocol #2026-ESC-9921</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80 max-w-xs mx-auto">
+      O valor arrematado permanece retido na conta gráfica protegida até que a vistoria de saída do CD Jundiaí e termo de entrega física sejam assinados pelo motorista.
+    </p>
+</div>
+</div>
+<script>
+  function selectFleetType(type) {
+    const btnFrota = document.getElementById('typeFrota');
+    const btnTerceiro = document.getElementById('typeTerceiro');
+    if (!btnFrota || !btnTerceiro) return;
+
+    if (type === 'frota') {
+      btnFrota.className = 'py-1.5 px-3 rounded-md bg-surface-container-lowest text-primary font-bold font-label-md text-label-md shadow-sm transition-all';
+      btnTerceiro.className = 'py-1.5 px-3 rounded-md text-on-surface-variant font-label-md text-label-md transition-all';
+    } else {
+      btnTerceiro.className = 'py-1.5 px-3 rounded-md bg-surface-container-lowest text-primary font-bold font-label-md text-label-md shadow-sm transition-all';
+      btnFrota.className = 'py-1.5 px-3 rounded-md text-on-surface-variant font-label-md text-label-md transition-all';
+    }
+  }
+
+  // Interactive slot selection
+  document.querySelectorAll('.date-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.date-chip').forEach(b => {
+        b.className = 'date-chip bg-surface-container text-on-surface p-space-sm rounded-lg flex flex-col items-center text-center';
+      });
+      btn.className = 'date-chip bg-primary text-on-primary p-space-sm rounded-lg flex flex-col items-center text-center shadow-sm';
+    });
+  });
+
+  document.querySelectorAll('.slot-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.slot-pill').forEach(b => {
+        if(b.classList.contains('col-span-2')) {
+          b.className = 'slot-pill col-span-2 bg-surface-container text-on-surface p-space-sm rounded-lg flex items-center justify-between';
+        } else {
+          b.className = 'slot-pill bg-surface-container text-on-surface p-space-sm rounded-lg flex flex-col items-start active:scale-98 transition-transform';
+        }
+      });
+      btn.className = 'slot-pill bg-primary-container text-on-primary p-space-sm rounded-lg flex flex-col items-start shadow-sm';
+    });
+  });
+
+  function copyAccessKey() {
+    const key = '352410078921100001445500100489211018';
+    navigator.clipboard?.writeText(key);
+    const copyBtn = document.getElementById('copyKeyBtn');
+    if (copyBtn) {
+      const original = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-secondary">check</span>';
+      setTimeout(() => {
+        copyBtn.innerHTML = original;
+      }, 2000);
+    }
+  }
+
+  function downloadFiscalDoc() {
+    alert('Download do DANFE da NF-e 004.892.110 iniciado.');
+  }
+
+  function openGpsRoute() {
+    window.open('https://maps.google.com/?q=Rodovia+Anhanguera+km+58+Jundiai+SP', '_blank');
+  }
+
+  function generateCollectionOrder() {
+    alert('Ordem de Coleta FOB gerada com sucesso! Código de despacho enviado para o WhatsApp do motorista.');
+  }
+
+  function confirmAppointment() {
+    const btn = document.getElementById('btnConfirmDoca');
+    if (btn) {
+      btn.innerHTML = '<span class="material-symbols-outlined text-headline-md animate-spin">sync</span><span>Agendando Doca 04B...</span>';
+      setTimeout(() => {
+        btn.className = 'w-full h-14 bg-secondary text-on-secondary rounded-xl font-headline-md text-headline-md flex items-center justify-center gap-space-sm shadow-md';
+        btn.innerHTML = '<span class="material-symbols-outlined text-headline-md">task_alt</span><span>Doca Agendada com Sucesso!</span>';
+      }, 1000);
+    }
+  }
+</script></main></body></html>

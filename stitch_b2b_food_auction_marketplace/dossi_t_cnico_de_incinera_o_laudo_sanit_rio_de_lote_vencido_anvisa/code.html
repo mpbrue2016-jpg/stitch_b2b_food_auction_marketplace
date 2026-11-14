@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline-variant": "#c3c6d4", "on-secondary": "#ffffff", "surface-container-highest": "#e0e3e5", "primary-fixed-dim": "#b0c6ff", "on-tertiary-fixed-variant": "#930010", "tertiary-container": "#9d0011", "on-tertiary": "#ffffff", "primary": "#003178", "surface-container": "#eceef0", "secondary-fixed-dim": "#88d982", "outline": "#737783", "on-secondary-fixed-variant": "#005312", "on-secondary-container": "#217128", "secondary": "#1b6d24", "surface-bright": "#f7f9fb", "tertiary-fixed": "#ffdad6", "tertiary-fixed-dim": "#ffb3ac", "surface": "#f7f9fb", "tertiary": "#720009", "surface-container-high": "#e6e8ea", "on-surface": "#191c1e", "surface-container-lowest": "#ffffff", "background": "#f7f9fb", "on-primary-container": "#a1bbff", "on-tertiary-container": "#ffa59d", "inverse-on-surface": "#eff1f3", "on-error-container": "#93000a", "secondary-fixed": "#a3f69c", "error": "#ba1a1a", "on-tertiary-fixed": "#410003", "error-container": "#ffdad6", "on-secondary-fixed": "#002204", "on-surface-variant": "#434652", "inverse-primary": "#b0c6ff", "primary-container": "#0d47a1", "on-primary-fixed": "#001945", "on-primary-fixed-variant": "#00429c", "surface-tint": "#2b5bb5", "surface-dim": "#d8dadc", "on-background": "#191c1e", "surface-container-low": "#f2f4f6", "on-primary": "#ffffff", "secondary-container": "#a0f399", "inverse-surface": "#2d3133", "on-error": "#ffffff", "surface-variant": "#e0e3e5", "primary-fixed": "#d9e2ff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1rem", "space-lg": "1.25rem", "space-xs": "0.25rem", "margin": "1.5rem", "gutter-mobile": "0.75rem", "space-xl": "2rem", "margin-mobile": "1rem", "space-md": "0.75rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }] } } } };</script></head><body class="bg-background font-body-md text-on-surface min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><span class="material-symbols-outlined text-primary text-headline-xl">storefront</span><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight font-bold text-primary">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">B2B Marketplace &amp; Compliance</span></div></div><div class="flex-1 overflow-y-auto px-space-md py-space-md"><div class="space-y-space-md"><div class="px-space-sm pt-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Operacional</span></div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-headline-md">dashboard</span><span>Visão Geral</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="controle-de-validade-fefo" href="#"><span class="material-symbols-outlined text-headline-md">hourglass_bottom</span><span>Controle Validade &amp; FEFO</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="tipos-de-leilao-pregoes" href="#"><span class="material-symbols-outlined text-headline-md">gavel</span><span>Tipos de Leilão &amp; Pregões</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="oportunidades-validade-giro-rapido-ponta-de-estoque" href="#"><span class="material-symbols-outlined text-headline-md">bolt</span><span>Oportunidades &amp; Ponta Estoque</span></a></nav><div class="px-space-sm pt-space-sm"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Catálogo &amp; Categorias</span></div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="arvore-de-categorias-b2b" href="#"><span class="material-symbols-outlined text-headline-md">account_tree</span><span>Árvore de Categorias B2B</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="produtos-lotes" href="#"><span class="material-symbols-outlined text-headline-md">inventory_2</span><span>Produtos &amp; Lotes</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="homologacao-gs1" href="#"><span class="material-symbols-outlined text-headline-md">qr_code_2</span><span>Homologação GS1</span></a></nav><div class="px-space-sm pt-space-sm"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Logística &amp; Governança</span></div><nav class="space-y-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="armazens-wms" href="#"><span class="material-symbols-outlined text-headline-md">warehouse</span><span>Armazéns &amp; WMS</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="bloqueio-sanitario-auto" href="#"><span class="material-symbols-outlined text-headline-md">shield_with_heart</span><span>Bloqueio Sanitário Auto</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="arbitragem-escrow" href="#"><span class="material-symbols-outlined text-headline-md">account_balance</span><span>Arbitragem &amp; Escrow</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="auditoria-worm" href="#"><span class="material-symbols-outlined text-headline-md">verified_user</span><span>Auditoria WORM</span></a></nav></div></div><div class="p-space-md bg-surface-container-low"><div class="flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm text-outline font-bold uppercase">ANVISA / MAPA Ativo</span><span class="material-symbols-outlined text-secondary text-headline-md">check_circle</span></div><div class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Sincronização Fiscal: 100% Ok</div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded"><span class="material-symbols-outlined text-secondary text-headline-md">lock</span><span class="font-label-sm text-label-sm font-bold text-on-surface">WORM Conexão Segura</span></div><div class="hidden xl:flex items-center gap-space-sm bg-surface-container px-space-md py-space-xs rounded"><span class="material-symbols-outlined text-primary text-headline-md">account_balance_wallet</span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline uppercase font-bold">Custódia Santander Escrow</span><span class="font-label-md text-label-md font-bold text-secondary">R$ 4.890.350,00</span></div></div></div><div class="flex items-center gap-space-md"><button class="relative p-space-xs rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Notificações e Alertas Sanitários" type="button"><span class="material-symbols-outlined text-headline-md">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container"></span></button><div class="h-8 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-bold text-on-surface">Dr. Roberto C. Vasconcelos</span><span class="font-label-sm text-label-sm text-outline">Gestor de Compliance Sanitário</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 w-full min-h-screen px-space-xl py-space-lg bg-background"><div class="flex flex-col w-full space-y-space-lg">
+<!-- TOP BAR & STATUS HEADER -->
+<div class="flex flex-col gap-space-sm">
+<!-- Breadcrumb -->
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span class="hover:text-primary cursor-pointer transition-colors">Logística &amp; Governança</span>
+<span class="material-symbols-outlined text-outline text-label-sm">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Bloqueio Sanitário Automático</span>
+<span class="material-symbols-outlined text-outline text-label-sm">chevron_right</span>
+<span class="text-on-surface font-bold">Dossiê de Incineração &amp; Descarte #INC-2026-088</span>
+</div>
+<!-- Header Actions & Critical Badge -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md pt-space-xs">
+<div class="flex flex-wrap items-center gap-space-md">
+<!-- Critical Lock Badge -->
+<div class="flex items-center gap-space-xs bg-tertiary-container text-on-tertiary px-space-md py-space-xs rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+<span class="font-label-lg text-label-lg tracking-wide uppercase font-bold">QUARENTENA SANITÁRIA ATIVA • TRAVA IMUTÁVEL WMS</span>
+</div>
+<div class="flex items-center gap-space-xs text-tertiary font-label-sm text-label-sm font-bold bg-tertiary-fixed px-space-sm py-space-xs rounded">
+<span class="material-symbols-outlined text-body-md">gavel</span>
+<span>ANVISA RDC 275 / MAPA DEC. 9.013/17</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-md py-space-xs rounded-lg font-label-md text-label-md transition-all shadow-sm" id="btn-export-pdf" type="button">
+<span class="material-symbols-outlined text-primary text-body-lg">picture_as_pdf</span>
+<span>Exportar PDF/A Oficial (ICP-Brasil)</span>
+</button>
+<button class="flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-md py-space-xs rounded-lg font-label-md text-label-md transition-all shadow-sm" id="btn-print-zebra" type="button">
+<span class="material-symbols-outlined text-outline text-body-lg">print</span>
+<span>Etiqueta Risco Biológico (Zebra ZPL)</span>
+</button>
+<button class="flex items-center gap-space-xs bg-primary text-on-primary hover:bg-primary-container px-space-md py-space-xs rounded-lg font-label-lg text-label-lg transition-all shadow-sm" id="btn-homologar-trigger" type="button">
+<span class="material-symbols-outlined text-body-lg">verified</span>
+<span>Homologar com Assinatura Digital</span>
+</button>
+</div>
+</div>
+</div>
+<!-- BENTO GRID SECTION: SKU DETAILS & LOCATION / ESCROW -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- Card Principal: Resumo do Lote Bloqueado (8 colunas) -->
+<div class="xl:col-span-8 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden">
+<!-- Watermark Background Alert -->
+<div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none select-none text-tertiary">
+<span class="material-symbols-outlined" style="font-size: 260px;">warning</span>
+</div>
+<div class="space-y-space-md">
+<!-- Title & Sub-header -->
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-sm pb-space-sm">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="bg-tertiary text-on-tertiary font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold uppercase">Lote Inapto para Consumo</span>
+<span class="text-outline font-label-md text-label-md font-bold">LOTE #IOG-2026</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">Iogurte Grego Tradicional 100g</h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-md text-primary">domain</span>
+<span class="font-bold text-on-surface">Laticínios Alvorada S/A</span> • CNPJ 14.890.112/0001-90 • SIF/DIPOA nº 1092
+            </p>
+</div>
+<!-- Shelf Life Expiration Counter Callout -->
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-space-md rounded-lg flex flex-col items-end min-w-48 shadow-sm">
+<span class="font-label-sm text-label-sm font-bold uppercase text-on-tertiary-fixed-variant">Dias de Vencimento</span>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-headline-xl">crisis_alert</span>
+<span class="font-numeric-timer text-headline-xl text-tertiary font-black">+2 DIAS</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">EXPIRADO EM 10/05/2026</span>
+</div>
+</div>
+<!-- Technical Specification Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm bg-surface-container-low p-space-md rounded-lg">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-outline font-bold">Código EAN / GTIN</span>
+<span class="font-label-md text-label-md font-bold text-on-surface tracking-wider">7891000315482</span>
+<span class="font-body-sm text-body-sm text-outline">GS1 Databar Certificado</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-outline font-bold">Volume Retido</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">1 Palete PBR</span>
+<span class="font-body-sm text-body-sm text-outline">120 Cxs / 1.200 Unidades</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-outline font-bold">Data Fabricação</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">10/03/2026</span>
+<span class="font-body-sm text-body-sm text-outline">Shelf-life: 60 dias</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-outline font-bold">Data Validade</span>
+<span class="font-label-md text-label-md font-bold text-tertiary">10/05/2026</span>
+<span class="font-body-sm text-body-sm text-tertiary font-bold">Bloqueio Automático WMS</span>
+</div>
+</div>
+<!-- Visual Progress of Shelf Life Cycle -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex justify-between font-label-sm text-label-sm font-bold">
+<span class="text-secondary font-bold">Ciclo Produtivo &amp; Shelf Life: 100% Esgotado</span>
+<span class="text-tertiary font-bold">Zona de Risco Sanitário RDC 275</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full bg-secondary" style="width: 80%;" title="Período Útil Comercial"></div>
+<div class="h-full bg-outline" style="width: 15%;" title="Giro Rápido Crítico"></div>
+<div class="h-full bg-tertiary-container animate-pulse" style="width: 5%;" title="Excedido - Quarentena Obrigatória"></div>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-outline">
+<span>Fabricação: 10/03/2026</span>
+<span>Limite Seguro: 09/05/2026</span>
+<span class="text-tertiary font-bold">Hoje: 12/05/2026 (+2 dias)</span>
+</div>
+</div>
+</div>
+<!-- Footer Bar inside card -->
+<div class="mt-space-md pt-space-md bg-surface-container-low px-space-md py-space-sm rounded-lg flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-body-lg">verified_user</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">Protocolo Sanitário ANVISA: SIS-SP-8829104</span>
+</div>
+<div class="font-label-sm text-label-sm text-outline">Hash de Integridade WORM: <span class="font-mono text-on-surface font-bold">0x8f2d...4a19</span></div>
+</div>
+</div>
+<!-- Card Secundário: Custódia Fiduciária & Localização Física (4 colunas) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Localização Física & RFID -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-outline font-bold tracking-wider">Localização Física / WMS</span>
+<span class="flex items-center gap-space-xs text-tertiary font-label-sm text-label-sm font-bold bg-tertiary-fixed px-space-xs py-0.5 rounded">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+            Gaiola Trancada
+          </span>
+</div>
+<div class="flex items-center gap-space-md p-space-sm bg-surface-container-low rounded-lg">
+<div class="p-space-sm bg-surface-container-highest rounded-lg text-primary">
+<span class="material-symbols-outlined text-headline-lg">warehouse</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">CD Campinas • Hub Sudeste</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">Endereço: G02-Q01-C03</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-space-xs mt-0.5">
+<span class="material-symbols-outlined text-body-sm">sensors</span> RFID Ativo: #LCK-9902
+            </span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Acesso eletrônico restrito com dupla custódia. Liberação somente com autorização de descarte e token ICP-Brasil.</p>
+</div>
+<!-- Escrow & Liquidação Financeira -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm flex-1 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-outline font-bold tracking-wider">Custódia Financeira Santander Escrow</span>
+<span class="material-symbols-outlined text-primary text-headline-md">account_balance</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-space-xs">
+<div class="flex items-baseline justify-between">
+<span class="font-label-sm text-label-sm text-outline">Valor Paralisado do Lote:</span>
+<span class="font-headline-md text-headline-md font-extrabold text-tertiary">R$ 4.200,00</span>
+</div>
+<div class="flex justify-between text-body-sm text-body-sm text-on-surface-variant">
+<span>Preço Unitário Faturado:</span>
+<span class="font-bold">R$ 3,50 / unidade</span>
+</div>
+<div class="flex justify-between text-body-sm text-body-sm text-on-surface-variant">
+<span>Taxa de Incineração e MTR:</span>
+<span class="font-bold">R$ 480,00 (Débito Fabricante)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-secondary-fixed text-on-secondary-fixed p-space-sm rounded-lg">
+<span class="material-symbols-outlined text-headline-md">sync_alt</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold">Estorno Automático Homologado</span>
+<span class="font-body-sm text-body-sm text-on-secondary-fixed-variant">Liquidação de estorno ao comprador em D+0 após lavratura do laudo.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TIMELINE DE AUDITORIA WORM & LAUDO PERICIAL -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- Audit Trail Imutável (5 colunas) -->
+<div class="xl:col-span-5 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md">history_toggle_off</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Audit Trail WORM Imutável</h2>
+</div>
+<span class="bg-surface-container text-on-surface-variant font-mono text-label-sm px-space-xs py-0.5 rounded font-bold">Write-Once</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Registros forenses criptografados com timestamp de relógio atômico (NTP.br) e assinatura em bloco imodificável.</p>
+<!-- Events List -->
+<div class="relative pl-6 space-y-space-lg">
+<!-- Continuous line behind events -->
+<div class="absolute left-2.5 top-2 bottom-2 w-0.5 bg-surface-container-highest"></div>
+<!-- Event 1 -->
+<div class="relative">
+<div class="absolute -left-6 top-0.5 w-4 h-4 rounded-full bg-outline flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-surface rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-mono text-label-sm font-bold text-outline">09/05/2026 23:59:59</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Alerta Crítico: Lote atinge 0 dias de validade</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sinal de disparo automático enviado pelo sensor FEFO do WMS.</span>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="relative">
+<div class="absolute -left-6 top-0.5 w-4 h-4 rounded-full bg-tertiary flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-on-tertiary rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-mono text-label-sm font-bold text-tertiary">10/05/2026 00:00:01</span>
+<span class="font-label-md text-label-md font-bold text-tertiary">Daemon WMS aciona Trava Imutável ANVISA</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Latência: 0ms. Lote instantaneamente expurgado da vitrine de pregões, leilões e catálogo B2B.</span>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="relative">
+<div class="absolute -left-6 top-0.5 w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-on-primary rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-mono text-label-sm font-bold text-primary">10/05/2026 00:02:15</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Movimentação Compulsória para Gaiola</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Convocação automática de empilhadeira #EMP-04. Transferência da Rua 04 para Doca de Quarentena Trancada (RFID #LCK-9902).</span>
+</div>
+</div>
+<!-- Event 4 -->
+<div class="relative">
+<div class="absolute -left-6 top-0.5 w-4 h-4 rounded-full bg-secondary flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-on-secondary rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-mono text-label-sm font-bold text-secondary">10/05/2026 08:30:00</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Notificação Compulsória Expedida</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Notificação eletrônica com AR digital enviada ao fabricante Laticínios Alvorada e protocolada na VISA Campinas.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between text-body-sm text-outline">
+<span>Sincronização Blockchain de Auditoria</span>
+<span class="text-secondary font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-body-md">cloud_done</span> 100% Auditável
+        </span>
+</div>
+</div>
+<!-- Laudo Pericial & Checklist Sanitário (7 colunas) -->
+<div class="xl:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold">Inspeção Técnica Oficial</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Laudo Pericial &amp; Check-list Sanitário</h2>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container px-space-sm py-space-xs rounded text-on-surface-variant font-mono">Norma RDC ANVISA 275/02</span>
+</div>
+<!-- Checklist Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<!-- Item 1: Integridade da Embalagem -->
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">1. Integridade da Embalagem</span>
+<span class="material-symbols-outlined text-secondary text-body-lg">task_alt</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Potes plásticos de polipropileno lacrados com selo de folha de alumínio termosselado. Sem violação mecânica externa.</p>
+<div class="pt-space-xs flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-body-sm text-secondary">check</span> Lacres inviolados
+            </div>
+</div>
+<!-- Item 2: Avaliação Organoléptica -->
+<div class="p-space-md bg-tertiary-fixed rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-tertiary-fixed">2. Avaliação Organoléptica</span>
+<span class="material-symbols-outlined text-tertiary text-body-lg">dangerous</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed-variant font-bold">Início de estufamento perceptível por fermentação láctica secundária e proliferação microbiológica pós-validade.</p>
+<div class="pt-space-xs flex items-center gap-space-xs text-tertiary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-body-sm">block</span> Inapto para consumo humano ou animal
+            </div>
+</div>
+<!-- Item 3: Destinação Obrigatória -->
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">3. Destinação Compulsória</span>
+<span class="material-symbols-outlined text-primary text-body-lg">local_fire_department</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Incineração Térmica Controlada em Forno Industrial Classe II (&gt; 1.100°C) conforme legislação ambiental.</p>
+<div class="pt-space-xs flex items-center gap-space-xs text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-body-sm text-primary">eco</span> Usina EcoResíduos (Licença CETESB)
+            </div>
+</div>
+<!-- Item 4: MTR SINIR MMA -->
+<div class="p-space-md bg-surface-container-low rounded-lg space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">4. Manifesto MTR SINIR / MMA</span>
+<span class="material-symbols-outlined text-secondary text-body-lg">receipt_long</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manifesto de Transporte de Resíduos Perigosos emitido eletronicamente junto ao Ministério do Meio Ambiente.</p>
+<div class="pt-space-xs font-mono font-bold text-label-sm text-label-sm text-secondary">
+              MTR Nº 2026-SP-99120-INC
+            </div>
+</div>
+</div>
+<!-- Evidências Fotográficas da Não Conformidade -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Evidências Fotográficas do Lote no CD Campinas</span>
+<span class="font-label-sm text-label-sm text-outline">Capturas em alta resolução com carimbo de hora</span>
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="relative group rounded-lg overflow-hidden bg-surface-container aspect-video">
+<img class="w-full h-full object-cover" data-alt="Close up photography showing expired yogurt packaging with visible bulging foil lids due to secondary fermentation in a sterile laboratory setting with industrial warehouse lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKrXR8NIba9VFRqLo8ds1P2qsi_zN6ZU4axnyz5AScQCZnF0F___jr5DQB2uwmf47HZMfugXi8DyMJZHJiLjjN2VthbFxNXA0Fkmx120ezoAKMwjcJZ5v6kMUAf7xD8O4Youu1hq-b_KddVy8oBthyGYb8zqPvg5hFOGbUz4aeMim8fXYhWYIH6Ff5UUVcsUwx3JnfARFM7HbJqv1Rj94kmAmMlr09hwwy2L8lK7q0"/>
+<div class="absolute bottom-0 inset-x-0 bg-surface-container-lowest/90 px-space-xs py-1 text-on-surface font-label-sm text-label-sm font-bold flex justify-between items-center">
+<span>Foto 01: Estufamento do Selo</span>
+<span class="material-symbols-outlined text-body-sm text-tertiary">zoom_in</span>
+</div>
+</div>
+<div class="relative group rounded-lg overflow-hidden bg-surface-container aspect-video">
+<img class="w-full h-full object-cover" data-alt="Industrial pallet of packaged yogurt stored behind heavy metallic security quarantine cage with yellow biological hazard signs and RFID tracking tags." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOD7SUZshDSCowSHQQtbpJgtxSli9Rll0ZsYwbsZwYg9Fe9jBAUbB7l4SxXkdvgG4jUf3wMozvX4bluFNaEzwq3NJ0l3nnnW1vMapUKFOdnUqQfVoS_R3VG_0fOQZATTrcHhrQQm854onx8u6TtBuSvvraM5YbSqBKEKmxrvSySW2elMUNx_n-pVCgqI79n96gnZPNX5gvnPGgaYfu-MwPTH5Bn9pGkBE6h8TTr1Bu"/>
+<div class="absolute bottom-0 inset-x-0 bg-surface-container-lowest/90 px-space-xs py-1 text-on-surface font-label-sm text-label-sm font-bold flex justify-between items-center">
+<span>Foto 02: Gaiola Q01 Trancada</span>
+<span class="material-symbols-outlined text-body-sm text-primary">zoom_in</span>
+</div>
+</div>
+<div class="relative group rounded-lg overflow-hidden bg-surface-container aspect-video">
+<img class="w-full h-full object-cover" data-alt="Macro photo of GS1 Databar barcode label and printed expiration date on cardboard dairy box showing expired date May 10 2026." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhRdSwGhYHdL-Oc4f6PbYq_s928sZZXtMnGyJH8blFlgKc1Oq_Q9AwK-raHVQmoj7um8HiJqIVsys2PWz3J7JXzT_jCuM9Hwa1mlhvBXURDek0cTQw8VNK9Z6ofkUGWON54rtL5foXaGq7A4e6KmWJvLLmEC8Fz6O9mLXdS-DqRmjAH7UnmL66azh6p9gBAAChJogw-kF7HalZzcyMM0lAsHNDcYSpndnTUVsJbrFo"/>
+<div class="absolute bottom-0 inset-x-0 bg-surface-container-lowest/90 px-space-xs py-1 text-on-surface font-label-sm text-label-sm font-bold flex justify-between items-center">
+<span>Foto 03: Rótulo de Validade</span>
+<span class="material-symbols-outlined text-body-sm text-outline">zoom_in</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Compliance Summary Bar -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-body-lg">verified</span>
+<span class="font-body-sm text-body-sm">Laudo emitido por Perito Sanitarista Responsável: <strong class="text-on-surface">Dra. Camila M. Fagundes (CRQ IV 0418290)</strong></span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-highest px-space-sm py-0.5 rounded font-bold text-on-surface">Parecer: INAPTO</span>
+</div>
+</div>
+</div>
+<!-- PAINEL DE EXECUÇÃO DO DESCARTE, REGISTRO FISCAL & ASSINATURAS HSM -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-headline-md">assignment_turned_in</span>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Execução do Descarte, Baixa Fiscal &amp; Homologação A3</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Conformidade com a legislação tributária SEFAZ-SP e regulamentação sanitária para descarte seguro sem risco de extravio ao mercado.</p>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-sm rounded-lg">
+<span class="material-symbols-outlined text-secondary text-headline-md">shield</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold uppercase text-on-surface">Módulo Fiscal SEFAZ-SP</span>
+<span class="font-body-sm text-body-sm text-outline">Ambiente de Produção Homologado</span>
+</div>
+</div>
+</div>
+<!-- 3 Steps Interactive / Data Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Etapa 1: Emissão de Nota Fiscal de Perda -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-sm flex flex-col justify-between">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="bg-primary text-on-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">ETAPA 01</span>
+<span class="material-symbols-outlined text-secondary text-body-lg">check_circle</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Nota Fiscal de Perda / Descarte</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Emissão obrigatória para cancelamento de créditos de PIS/COFINS e ICMS de acordo com o Regulamento do ICMS (RICMS/SP).</p>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg space-y-space-xs font-mono text-label-sm">
+<div class="flex justify-between">
+<span class="text-outline">Natureza Operação:</span>
+<span class="font-bold text-on-surface">Baixa de Deterioração</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">CFOP Fiscal:</span>
+<span class="font-bold text-tertiary">5.927 (Lançamento Perda)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">NF-e Vinculada:</span>
+<span class="font-bold text-primary">NFe 000.892.102-SP</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Chave SEFAZ:</span>
+<span class="font-bold text-on-surface truncate" title="35260514890112000190550000008921021982736182">35260514890112...736182</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-space-sm py-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded font-label-md text-label-md font-bold flex items-center justify-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-body-md text-primary">download</span>
+<span>Visualizar DANFE (CFOP 5.927)</span>
+</button>
+</div>
+<!-- Etapa 2: Comprovação de Pesagem e Usina -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-sm flex flex-col justify-between">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="bg-primary text-on-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">ETAPA 02</span>
+<span class="text-outline font-label-sm text-label-sm font-bold uppercase">Aguardando Coleta</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Pesagem &amp; Destruição Térmica</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Conferência na balança rodoviária na saída do armazém e na entrada do forno incinerador com foto do ticket de pesagem.</p>
+<div class="space-y-space-xs">
+<!-- Upload Ticket Area -->
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-space-sm flex flex-col items-center justify-center text-center bg-surface-container-lowest hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary text-headline-lg">scale</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface mt-1">Anexar Ticket da Balança Rodoviária</span>
+<span class="font-body-sm text-body-sm text-outline">Tolerância aceita: ±1,5% (Peso est.: 135 kg)</span>
+</div>
+<!-- Upload Usina Certificado -->
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-space-sm flex flex-col items-center justify-center text-center bg-surface-container-lowest hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary text-headline-lg">upload_file</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface mt-1">Certificado de Destruição Térmica (CDF)</span>
+<span class="font-body-sm text-body-sm text-outline">Emitido pela usina EcoResíduos pós-queima</span>
+</div>
+</div>
+</div>
+<div class="text-body-sm text-body-sm text-outline flex items-center gap-space-xs pt-space-xs">
+<span class="material-symbols-outlined text-body-md text-secondary">info</span>
+<span>Transportador Credenciado: TransAmbiental SP</span>
+</div>
+</div>
+<!-- Etapa 3: Homologação e Assinatura Digital ICP-Brasil A3 -->
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-sm flex flex-col justify-between">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="bg-primary text-on-primary font-label-sm text-label-sm px-space-sm py-0.5 rounded font-bold">ETAPA 03</span>
+<span class="material-symbols-outlined text-primary text-body-lg">lock_person</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">Assinaturas Qualificadas A3</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Validação jurídica plena do laudo pelo Responsável Técnico Sanitário e pelo Diretor de Compliance Operacional.</p>
+<div class="space-y-space-sm">
+<!-- Signature Box 1 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Dra. Camila M. Fagundes</span>
+<span class="font-body-sm text-body-sm text-outline">Resp. Técnica Sanitária • CRQ IV</span>
+</div>
+<span class="flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold bg-secondary-fixed px-space-xs py-0.5 rounded">
+<span class="material-symbols-outlined text-body-sm">done_all</span> Assinado
+              </span>
+</div>
+<!-- Signature Box 2 -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between" id="signature-agent-box">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Dr. Roberto C. Vasconcelos</span>
+<span class="font-body-sm text-body-sm text-outline">Gestor de Compliance Sanitário</span>
+</div>
+<span class="flex items-center gap-1 text-on-tertiary-fixed-variant font-label-sm text-label-sm font-bold bg-tertiary-fixed px-space-xs py-0.5 rounded" id="signature-agent-badge">
+<span class="material-symbols-outlined text-body-sm">pending</span> Pendente
+              </span>
+</div>
+</div>
+</div>
+<button class="w-full mt-space-sm py-space-sm bg-primary hover:bg-primary-container text-on-primary rounded font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow transition-all" id="btn-sign-a3" type="button">
+<span class="material-symbols-outlined text-body-lg">vpn_key</span>
+<span>Assinar com Token / Cartão A3 HSM</span>
+</button>
+</div>
+</div>
+</div>
+<!-- RODAPÉ LEGAL & EMBASAMENTO JURÍDICO VINCULANTE -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm border-l-4 border-primary space-y-space-sm">
+<div class="flex items-center gap-space-xs text-primary font-label-lg text-label-lg font-bold">
+<span class="material-symbols-outlined text-headline-md">balance</span>
+<span>EMBASAMENTO JURÍDICO &amp; CONFORMIDADE REGULATÓRIA OBRIGATÓRIA</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md text-body-sm text-body-sm text-on-surface-variant pt-space-xs">
+<div class="space-y-1">
+<strong class="text-on-surface font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-body-md">rule</span>
+          Código de Defesa do Consumidor (Art. 18, § 6º, I)
+        </strong>
+<p>São impróprios ao uso e consumo os produtos cujos prazos de validade estejam vencidos. A comercialização, transporte para venda ou distribuição constitui infração sanitária e ilícito penal inafiançável com responsabilidade solidária da cadeia.</p>
+</div>
+<div class="space-y-1">
+<strong class="text-on-surface font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-body-md">verified_user</span>
+          Resolução ANVISA RDC nº 275/2002 &amp; Boas Práticas
+        </strong>
+<p>Determina a segregação física compulsória imediata e identificação inequívoca de lotes não conformes ou avariados, vedando qualquer reaproveitamento em linhas industriais ou desvio para canais de liquidação secundária.</p>
+</div>
+<div class="space-y-1">
+<strong class="text-on-surface font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-body-md">shield</span>
+          Decreto MAPA 9.013/2017 (RIISPOA) &amp; ISO 22000
+        </strong>
+<p>Regulamenta a inspeção industrial e sanitária de produtos de origem animal (Lácteos - SIF). O descarte via incineração ou desnaturação garante rastreabilidade total (WORM) auditável por órgãos fiscalizadores em nível federal.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- INTERACTIVE SCRIPTS -->
+<script>
+  // Simple micro-interactions for simulation of Compliance actions
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnSignA3 = document.getElementById('btn-sign-a3');
+    const btnHomologar = document.getElementById('btn-homologar-trigger');
+    const signatureBadge = document.getElementById('signature-agent-badge');
+    const btnExportPdf = document.getElementById('btn-export-pdf');
+    const btnPrintZebra = document.getElementById('btn-print-zebra');
+
+    function executeSignWorkflow() {
+      if (!btnSignA3) return;
+      btnSignA3.disabled = true;
+      btnSignA3.innerHTML = `<span class="material-symbols-outlined text-body-lg animate-spin">refresh</span> Autenticando Certificado A3...`;
+
+      setTimeout(() => {
+        btnSignA3.classList.remove('bg-primary', 'hover:bg-primary-container');
+        btnSignA3.classList.add('bg-secondary', 'text-on-secondary');
+        btnSignA3.innerHTML = `<span class="material-symbols-outlined text-body-lg">check_circle</span> Assinado com Sucesso (ICP-Brasil)`;
+
+        if (signatureBadge) {
+          signatureBadge.className = 'flex items-center gap-1 text-secondary font-label-sm text-label-sm font-bold bg-secondary-fixed px-space-xs py-0.5 rounded';
+          signatureBadge.innerHTML = `<span class="material-symbols-outlined text-body-sm">done_all</span> Assinado (ICP-Brasil)`;
+        }
+      }, 1200);
+    }
+
+    if (btnSignA3) {
+      btnSignA3.addEventListener('click', executeSignWorkflow);
+    }
+    if (btnHomologar) {
+      btnHomologar.addEventListener('click', executeSignWorkflow);
+    }
+
+    if (btnExportPdf) {
+      btnExportPdf.addEventListener('click', () => {
+        const originalText = btnExportPdf.innerHTML;
+        btnExportPdf.innerHTML = `<span class="material-symbols-outlined text-primary text-body-lg animate-spin">sync</span> Gerando PDF/A Criptografado...`;
+        setTimeout(() => {
+          btnExportPdf.innerHTML = `<span class="material-symbols-outlined text-secondary text-body-lg">file_download_done</span> Laudo Baixado (#INC-2026-088.pdf)`;
+          setTimeout(() => {
+            btnExportPdf.innerHTML = originalText;
+          }, 3000);
+        }, 1500);
+      });
+    }
+
+    if (btnPrintZebra) {
+      btnPrintZebra.addEventListener('click', () => {
+        const originalText = btnPrintZebra.innerHTML;
+        btnPrintZebra.innerHTML = `<span class="material-symbols-outlined text-body-lg animate-pulse">print</span> Enviando para Zebra CD-CPN-01...`;
+        setTimeout(() => {
+          btnPrintZebra.innerHTML = `<span class="material-symbols-outlined text-secondary text-body-lg">check</span> 120 Etiquetas ZPL Impressas`;
+          setTimeout(() => {
+            btnPrintZebra.innerHTML = originalText;
+          }, 3000);
+        }, 1200);
+      });
+    }
+  });
+</script></main></div></body></html>

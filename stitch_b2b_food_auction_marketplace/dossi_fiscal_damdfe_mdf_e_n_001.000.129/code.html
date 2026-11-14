@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "background": "#f7f9fb", "secondary-fixed": "#a3f69c", "primary-container": "#0d47a1", "on-surface-variant": "#434652", "secondary-container": "#a0f399", "on-primary": "#ffffff", "inverse-primary": "#b0c6ff", "tertiary": "#720009", "surface-dim": "#d8dadc", "secondary": "#1b6d24", "on-secondary-fixed": "#002204", "on-tertiary-fixed-variant": "#930010", "secondary-fixed-dim": "#88d982", "outline": "#737783", "primary": "#003178", "error": "#ba1a1a", "surface": "#f7f9fb", "tertiary-container": "#9d0011", "on-secondary": "#ffffff", "on-tertiary": "#ffffff", "outline-variant": "#c3c6d4", "surface-container-low": "#f2f4f6", "surface-container-lowest": "#ffffff", "on-primary-fixed": "#001945", "on-tertiary-container": "#ffa59d", "tertiary-fixed": "#ffdad6", "on-primary-container": "#a1bbff", "inverse-surface": "#2d3133", "on-background": "#191c1e", "surface-tint": "#2b5bb5", "surface-variant": "#e0e3e5", "on-tertiary-fixed": "#410003", "surface-container": "#eceef0", "on-surface": "#191c1e", "on-secondary-fixed-variant": "#005312", "on-secondary-container": "#217128", "on-error-container": "#93000a", "on-primary-fixed-variant": "#00429c", "primary-fixed": "#d9e2ff", "error-container": "#ffdad6", "surface-bright": "#f7f9fb", "tertiary-fixed-dim": "#ffb3ac", "on-error": "#ffffff", "primary-fixed-dim": "#b0c6ff", "surface-container-highest": "#e0e3e5", "surface-container-high": "#e6e8ea", "inverse-on-surface": "#eff1f3" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "space-md": "0.75rem", "space-xl": "2rem", "gutter": "1rem", "space-lg": "1.25rem", "gutter-mobile": "0.75rem", "margin": "1.5rem", "margin-mobile": "1rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-xl-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "numeric-timer": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"] }, "fontSize": { "headline-xl-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "800" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "numeric-timer": ["20px", { "lineHeight": "24px", "fontWeight": "800" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-xl": ["32px", { "lineHeight": "40px", "fontWeight": "800" }], "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-md": ["18px", { "lineHeight": "24px", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><button aria-label="Voltar" class="w-11 h-11 flex items-center justify-center rounded-xl text-on-surface hover:bg-surface-container transition-colors shrink-0" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><div class="flex flex-col min-w-0"><h1 class="font-headline-md text-headline-md text-on-surface truncate">Dossie Mdfe 129</h1><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[14px]">verified</span><span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">Autorizado SEFAZ</span></div></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Compartilhar DAMDFE" class="w-11 h-11 flex items-center justify-center rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[22px]">share</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-background px-margin-mobile min-h-screen"><div class="flex flex-col w-full pb-8">
+<!-- Status Fiscal SEFAZ Banner -->
+<section class="flex flex-col gap-space-sm pt-space-md mb-space-md">
+<div class="bg-secondary-container/30 rounded-xl p-space-md flex flex-col gap-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs bg-secondary-container px-space-sm py-1 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md font-bold text-on-secondary-container tracking-wide uppercase">AUTORIZADO USO SEFAZ-SP</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">MOD. 58</span>
+</div>
+<div class="flex flex-col mt-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase tracking-wider">Documento Auxiliar</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-extrabold tracking-tight">DAMDFE Nº 001.000.129</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Série 1 • Emissão Própria (FOB Arrematante)</p>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-space-sm flex flex-col gap-1 mt-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Protocolo SEFAZ:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface tracking-wider">135260192849903</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Homologação:</span>
+<span class="font-body-sm text-body-sm text-on-surface">25/10/2026 às 11:45:30</span>
+</div>
+<div class="flex items-center gap-space-xs mt-1 pt-1">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-bold text-secondary uppercase tracking-wide">Em Trânsito Autorizado • Carga Liberada CD Jundiaí</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Chave de Acesso & Código de Barras (ANTT / PRF) -->
+<section class="flex flex-col gap-space-sm mb-space-md bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider text-on-surface">Chave de Acesso MDF-e</span>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">44 DÍGITOS</span>
+</div>
+<!-- 44 Dígitos Formatados -->
+<div class="bg-surface-container-low rounded-lg p-space-sm">
+<p class="font-numeric-timer text-[13px] leading-relaxed text-center font-extrabold text-on-surface tracking-widest break-all select-all font-mono" id="chave-mdfe">
+        3526 1014 4190 0100 0182 5800 1000 0012 9119 4820 1834
+      </p>
+</div>
+<!-- Código de Barras Padrão Code 128 (SVG Alto Contraste) -->
+<div class="flex flex-col items-center bg-white rounded-lg p-space-sm">
+<div class="w-full flex justify-center py-1 overflow-hidden">
+<svg class="w-full h-14" preserveaspectratio="none" viewbox="0 0 340 50" xmlns="http://www.w3.org/2000/svg">
+<g fill="#191c1e">
+<!-- Quiet zone -->
+<rect height="42" width="3" x="0" y="0"></rect>
+<rect height="42" width="1" x="5" y="0"></rect>
+<rect height="42" width="4" x="8" y="0"></rect>
+<rect height="42" width="2" x="15" y="0"></rect>
+<rect height="42" width="1" x="19" y="0"></rect>
+<rect height="42" width="3" x="22" y="0"></rect>
+<rect height="42" width="2" x="28" y="0"></rect>
+<rect height="42" width="5" x="33" y="0"></rect>
+<rect height="42" width="1" x="41" y="0"></rect>
+<rect height="42" width="3" x="44" y="0"></rect>
+<rect height="42" width="2" x="49" y="0"></rect>
+<rect height="42" width="4" x="54" y="0"></rect>
+<rect height="42" width="1" x="61" y="0"></rect>
+<rect height="42" width="3" x="65" y="0"></rect>
+<rect height="42" width="5" x="71" y="0"></rect>
+<rect height="42" width="2" x="79" y="0"></rect>
+<rect height="42" width="1" x="84" y="0"></rect>
+<rect height="42" width="4" x="88" y="0"></rect>
+<rect height="42" width="2" x="94" y="0"></rect>
+<rect height="42" width="3" x="99" y="0"></rect>
+<rect height="42" width="1" x="105" y="0"></rect>
+<rect height="42" width="4" x="108" y="0"></rect>
+<rect height="42" width="2" x="115" y="0"></rect>
+<rect height="42" width="1" x="120" y="0"></rect>
+<rect height="42" width="5" x="124" y="0"></rect>
+<rect height="42" width="2" x="132" y="0"></rect>
+<rect height="42" width="3" x="137" y="0"></rect>
+<rect height="42" width="1" x="143" y="0"></rect>
+<rect height="42" width="4" x="147" y="0"></rect>
+<rect height="42" width="2" x="154" y="0"></rect>
+<rect height="42" width="2" x="159" y="0"></rect>
+<rect height="42" width="5" x="164" y="0"></rect>
+<rect height="42" width="1" x="172" y="0"></rect>
+<rect height="42" width="3" x="176" y="0"></rect>
+<rect height="42" width="4" x="182" y="0"></rect>
+<rect height="42" width="1" x="189" y="0"></rect>
+<rect height="42" width="2" x="193" y="0"></rect>
+<rect height="42" width="5" x="198" y="0"></rect>
+<rect height="42" width="2" x="206" y="0"></rect>
+<rect height="42" width="3" x="211" y="0"></rect>
+<rect height="42" width="1" x="217" y="0"></rect>
+<rect height="42" width="4" x="221" y="0"></rect>
+<rect height="42" width="2" x="228" y="0"></rect>
+<rect height="42" width="1" x="233" y="0"></rect>
+<rect height="42" width="5" x="237" y="0"></rect>
+<rect height="42" width="3" x="245" y="0"></rect>
+<rect height="42" width="1" x="251" y="0"></rect>
+<rect height="42" width="4" x="255" y="0"></rect>
+<rect height="42" width="2" x="262" y="0"></rect>
+<rect height="42" width="3" x="267" y="0"></rect>
+<rect height="42" width="1" x="273" y="0"></rect>
+<rect height="42" width="4" x="277" y="0"></rect>
+<rect height="42" width="5" x="284" y="0"></rect>
+<rect height="42" width="2" x="292" y="0"></rect>
+<rect height="42" width="1" x="297" y="0"></rect>
+<rect height="42" width="3" x="301" y="0"></rect>
+<rect height="42" width="4" x="307" y="0"></rect>
+<rect height="42" width="1" x="314" y="0"></rect>
+<rect height="42" width="3" x="318" y="0"></rect>
+<rect height="42" width="2" x="324" y="0"></rect>
+<rect height="42" width="4" x="329" y="0"></rect>
+<rect height="42" width="2" x="336" y="0"></rect>
+</g>
+</svg>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold tracking-widest mt-1">LEITURA ÓTICA POLÍCIA RODOVIÁRIA FEDERAL</span>
+</div>
+<!-- Botões Utilitários Rápidos -->
+<div class="grid grid-cols-2 gap-space-sm pt-1">
+<button class="h-11 flex items-center justify-center gap-space-xs bg-surface-container hover:bg-surface-container-high rounded-xl text-primary font-label-md text-label-md font-bold transition-all active:scale-[0.98]" id="btn-copiar" onclick="copiarChave()">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+<span id="btn-copiar-txt">Copiar Chave</span>
+</button>
+<a class="h-11 flex items-center justify-center gap-space-xs bg-surface-container hover:bg-surface-container-high rounded-xl text-primary font-label-md text-label-md font-bold transition-all active:scale-[0.98]" href="https://dfe-portal.svrs.rs.gov.br/Mdfe" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+<span>Portal SVRS</span>
+</a>
+</div>
+</section>
+<!-- Visual do Veículo e Percurso Rodoviário -->
+<section class="flex flex-col gap-space-sm mb-space-md bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<div class="h-36 relative w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up detailed photograph of a clean white Mercedes-Benz medium distribution truck parked at a modern industrial distribution center loading bay dock. Daylight, sharp focus, Brazilian freight logistics aesthetic, professional enterprise logistics scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj0932ldK3YVjw8GgAU5g0S5yxWryDFn6ws8QIPScRyEyv6lTQ26FG5f0hQz5kI0ue25MirsyiK_hqCAzIrkA7IYZFX_98hHp8a0NgRx3tl-0NKWvLUosgDpFUMYe-xRBJ0sZBiq5eM0rBa1oskJLJP9a1-Stmkea6mGmbQqvhe5mMqu22AChthQycR4Yp9I3nVn0LSUIQzMz5AwAQRtDliUFY7Q-C3DMQMxa8D74W"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-inverse-surface/20 to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-end justify-between text-on-primary">
+<div class="flex flex-col">
+<span class="bg-primary/90 px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider text-on-primary inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span> Modalidade FOB Próprio
+          </span>
+<span class="font-headline-md text-headline-md font-bold mt-1">Caminhão Toco Baú</span>
+</div>
+<div class="bg-surface-container-lowest text-on-surface px-2.5 py-1 rounded-lg text-center shadow">
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase font-bold block">Placa Mercosul</span>
+<span class="font-numeric-timer text-[16px] leading-tight font-extrabold text-primary">BRA2E19</span>
+</div>
+</div>
+</div>
+<!-- Informações do Emitente / Transportador -->
+<div class="p-space-md flex flex-col gap-space-sm">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase">Emitente &amp; Arrematante</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">Lote #SBE-2026-09</span>
+</div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Supermercados Estrela do Vale Ltda</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">CNPJ: 28.914.502/0001-33 • IE: 388.204.912.115</p>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="material-symbols-outlined text-primary text-[16px]">badge</span>
+<span class="font-label-sm text-label-sm font-bold text-primary">RNTRC (ANTT): 4920185-9 (Carga Própria)</span>
+</div>
+</div>
+<!-- Rota do Percurso Logístico -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-space-xs mt-1">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">alt_route</span>
+<span class="font-label-md text-label-md font-bold text-on-surface uppercase">Percurso Rodoviário Autorizado</span>
+</div>
+<div class="grid grid-cols-1 gap-2 mt-1">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">trip_origin</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Origem (Carregamento)</span>
+<span class="font-body-sm text-body-sm font-bold text-on-surface">CD Jundiaí / SP • Rod. Anhanguera, Km 58</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-error text-[18px] shrink-0 mt-0.5">location_on</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Destino (Descarregamento)</span>
+<span class="font-body-sm text-body-sm font-bold text-on-surface">CD Central Estrela do Vale • Bragança Paulista / SP</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container rounded p-space-xs flex items-center justify-between text-on-surface-variant mt-1">
+<span class="font-label-sm text-label-sm font-bold">Trajeto Rodoviário:</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">SP-330 (Anhanguera) → SP-065 (D. Pedro I)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Dados Técnicos: Veículo & Condutor Credenciado -->
+<section class="flex flex-col gap-space-sm mb-space-md bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">id_card</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface uppercase">Veículo Tracionador &amp; Condutor</h3>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">RENAVAM</span>
+<span class="font-body-sm text-body-sm font-bold text-on-surface mt-0.5">01298491023</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tara / Cap. PBT</span>
+<span class="font-body-sm text-body-sm font-bold text-on-surface mt-0.5">6.440 kg / 16.000 kg</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-fixed text-[22px]">airline_seat_recline_normal</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Motorista Habilitado</span>
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Carlos Eduardo Mendes</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CPF: 329.841.058-22 • CNH Cat. D Digital</span>
+</div>
+</div>
+</section>
+<!-- Dados da Carga & Documentos Vinculados (NF-e #3991) -->
+<section class="flex flex-col gap-space-sm mb-space-md bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface uppercase">Carga &amp; Documentos Fiscais</h3>
+</div>
+<span class="bg-primary-container text-on-primary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">1 NF-e Vinculada</span>
+</div>
+<!-- Card Detalhado da NF-e #3991 Vinculada -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">receipt_long</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">NF-e Nº 000.003.991 (Série 1)</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-secondary">Averbada</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Emissor: Fábrica São Bento Alimentos S/A</p>
+<div class="bg-surface-container-lowest rounded p-2 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase font-bold">Chave NF-e:</span>
+<span class="font-numeric-timer text-[11px] font-bold text-on-surface truncate">3526 0914 4190 ... 2018</span>
+</div>
+<button class="bg-surface-container px-2 py-1 rounded text-primary font-label-sm text-label-sm font-bold flex items-center gap-0.5">
+<span>Abrir NF-e</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Tabela Resumo de Pesos e Valores B2B -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Peso Bruto Total</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">5.120 kg</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Peso Líq: 4.800 kg (01-KG)</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Valor da Carga</span>
+<span class="font-headline-md text-headline-md font-bold text-secondary">R$ 30.800,00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">500 Caixas • 2 Paletes PBR</span>
+</div>
+</div>
+<!-- Especificação do Produto -->
+<div class="bg-surface-container p-space-sm rounded-lg flex items-center gap-space-sm">
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Packaging box pallet of wholesale salt cream cracker biscuits for commercial retail supermarket inventory. Clean, studio lighting, commercial packaged food product mockup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALNMRjuEJdVeL7nzJNdqL9YtTOeFc2IrKUFaHVN5-M8DqC-A1ac80AYfEIPJNiuWTc9O_b0PHIRGvATwMW-1vqS-u5qJgEg5vM5fjkOtrVz9QrYvnZPWFqCy7aDPWhfd5Q8zL3sua1lxqmxqQSDc8bv1_XQAANgTfWXLQIA2SJyHyvFHdTXKdepQw4Wh-310kxAn-mEzfH5yVX5kS7AjisrZA7eXY01jCzepeY7wJq"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-primary font-bold">SKU Biscoito Cream Cracker Especial 400g</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">Lote Fabricação: #L-CR2608 • EAN 7891000291048</span>
+</div>
+</div>
+</section>
+<!-- Lacres Auditados & Apólice de Seguro de Carga -->
+<section class="flex flex-col gap-space-sm mb-space-md bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">security</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface uppercase">Lacres Auditados &amp; Seguro (RCTR-C)</h3>
+</div>
+<!-- Lacres da Doca -->
+<div class="flex flex-col gap-1 bg-surface-container-low p-space-sm rounded-lg">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Lacres Conferidos de Saída (Doca 03A)</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+</div>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="bg-surface-container-lowest px-2.5 py-1 rounded text-primary font-label-md text-label-md font-bold">#LACRE-SBE-9941-A</span>
+<span class="bg-surface-container-lowest px-2.5 py-1 rounded text-primary font-label-md text-label-md font-bold">#LACRE-SBE-9942-B</span>
+</div>
+</div>
+<!-- Seguro RCTR-C / Averbação -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Porto Seguro Cia de Seguros Gerais</span>
+<span class="font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded font-bold">RCTR-C Ativo</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">CNPJ: 61.198.164/0001-60 • Resp: Contratante (FOB)</p>
+<div class="grid grid-cols-2 gap-2 mt-1 pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase">Apólice nº</span>
+<span class="font-body-sm text-body-sm font-bold text-on-surface">AP-2026-99412-TR</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-on-surface-variant uppercase">Averbação Eletrônica</span>
+<span class="font-body-sm text-body-sm font-bold text-on-surface">AVB-MDFE-129-94819</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Informações Complementares & Ajuste SINIEF -->
+<section class="flex flex-col gap-space-xs mb-space-lg bg-surface-container-low rounded-xl p-space-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider">Informações Complementares MDF-e</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+      MDF-e emitido em conformidade com o <strong>Ajuste SINIEF 21/10</strong>. Carga arrematada via pregão eletrônico no marketplace <strong>Varejista Online B2B (Lote #SBE-2026-09)</strong>. Liquidação financeira irretratável garantida por custódia escrow BTG Pactual (Protocolo #ESC-8920-BTG). Pesagem na balança de saída CD Jundiaí: <strong>11.240 kg</strong>.
+    </p>
+</section>
+<!-- Ações Fiscais e Compartilhamento Operacional -->
+<section class="flex flex-col gap-space-sm mb-space-md">
+<!-- Visualizar PDF Oficial -->
+<button class="w-full h-13 py-3.5 px-4 bg-primary text-on-primary rounded-xl font-label-lg text-label-lg font-bold flex items-center justify-center gap-space-xs shadow-md transition-all active:scale-[0.99] hover:bg-primary-container" onclick="simularDownloadPDF()">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+<span>Visualizar DAMDFE Oficial em PDF (A4)</span>
+</button>
+<!-- Enviar ao Motorista no WhatsApp -->
+<a class="w-full h-12 py-3 px-4 bg-secondary text-on-secondary rounded-xl font-label-md text-label-md font-bold flex items-center justify-center gap-space-xs transition-all active:scale-[0.99] hover:bg-on-secondary-fixed-variant" href="https://api.whatsapp.com/send?text=Segue%20o%20MDF-e%20Nº%20001.000.129%20autorizado%20para%20o%20transporte%20do%20Lote%20SBE-2026-09:%2035261014419001000182580010000012911948201834" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Enviar DAMDFE ao Motorista no WhatsApp</span>
+</a>
+<!-- Exportar XML para TMS/Contabilidade -->
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="h-11 bg-surface-container hover:bg-surface-container-high rounded-xl text-on-surface font-label-md text-label-md font-bold flex items-center justify-center gap-space-xs transition-colors" onclick="simularExportXML()">
+<span class="material-symbols-outlined text-primary text-[18px]">code</span>
+<span>Exportar XML</span>
+</button>
+<button class="h-11 bg-surface-container hover:bg-surface-container-high rounded-xl text-on-surface font-label-md text-label-md font-bold flex items-center justify-center gap-space-xs transition-colors" onclick="window.print()">
+<span class="material-symbols-outlined text-primary text-[18px]">print</span>
+<span>Imprimir Termo</span>
+</button>
+</div>
+</section>
+<!-- Navegação de Retorno & Suporte de Barreira Fiscal PRF/SEFAZ -->
+<footer class="flex flex-col gap-space-md pt-space-sm border-t-0">
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Plantão Fiscal de Barreira 24h</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Divergência em postos PRF / SEFAZ</span>
+</div>
+</div>
+<a class="bg-surface-container px-3 py-1.5 rounded-lg text-primary font-label-sm text-label-sm font-bold" href="tel:08007709920">
+        0800 770 9920
+      </a>
+</div>
+<!-- Links de retorno operacional -->
+<div class="flex items-center justify-center gap-space-lg text-on-surface-variant">
+<button class="font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1" onclick="history.back()">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Retornar à NF-e #3991</span>
+</button>
+<span class="text-outline-variant">•</span>
+<button class="font-label-md text-label-md hover:text-primary transition-colors flex items-center gap-1" onclick="history.back()">
+<span>Passe de Saída CD</span>
+<span class="material-symbols-outlined text-[16px]">logout</span>
+</button>
+</div>
+</footer>
+</div>
+<script>
+  function copiarChave() {
+    const chave = "35261014419001000182580010000012911948201834";
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(chave).then(() => {
+        const btnTxt = document.getElementById("btn-copiar-txt");
+        if (btnTxt) {
+          const original = btnTxt.innerText;
+          btnTxt.innerText = "Copiado!";
+          setTimeout(() => {
+            btnTxt.innerText = original;
+          }, 2000);
+        }
+      });
+    }
+  }
+
+  function simularDownloadPDF() {
+    alert("Gerando DAMDFE Oficial em PDF (Modelo A4 homologado SEFAZ)... O download iniciará em instantes.");
+  }
+
+  function simularExportXML() {
+    alert("Download do XML assinado do MDF-e 001.000.129 iniciado com sucesso.");
+  }
+</script></main></body></html>

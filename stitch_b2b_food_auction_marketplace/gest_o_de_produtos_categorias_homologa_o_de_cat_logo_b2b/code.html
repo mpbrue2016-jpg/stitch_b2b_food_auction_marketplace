@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"outline-variant":"#c3c6d4","on-tertiary-fixed-variant":"#930010","primary":"#003178","on-error":"#ffffff","surface-dim":"#d8dadc","surface":"#f7f9fb","surface-tint":"#2b5bb5","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#88d982","on-tertiary-container":"#ffa59d","on-background":"#191c1e","inverse-primary":"#b0c6ff","on-primary":"#ffffff","on-primary-container":"#a1bbff","tertiary-container":"#9d0011","error":"#ba1a1a","outline":"#737783","surface-variant":"#e0e3e5","secondary-fixed":"#a3f69c","primary-container":"#0d47a1","surface-container":"#eceef0","on-secondary-fixed":"#002204","on-tertiary-fixed":"#410003","error-container":"#ffdad6","on-primary-fixed-variant":"#00429c","tertiary":"#720009","on-secondary-container":"#217128","surface-container-highest":"#e0e3e5","secondary-container":"#a0f399","inverse-surface":"#2d3133","tertiary-fixed-dim":"#ffb3ac","inverse-on-surface":"#eff1f3","on-secondary-fixed-variant":"#005312","primary-fixed":"#d9e2ff","primary-fixed-dim":"#b0c6ff","on-primary-fixed":"#001945","secondary":"#1b6d24","surface-container-low":"#f2f4f6","on-surface-variant":"#434652","on-surface":"#191c1e","surface-container-high":"#e6e8ea","tertiary-fixed":"#ffdad6","on-error-container":"#93000a","on-secondary":"#ffffff","surface-bright":"#f7f9fb","background":"#f7f9fb","on-tertiary":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter-mobile":"0.75rem","margin-mobile":"1rem","space-lg":"1.25rem","margin":"1.5rem","gutter":"1rem","space-xl":"2rem","space-xs":"0.25rem","space-md":"0.75rem","space-sm":"0.5rem"},"fontFamily":{"label-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"]},"fontSize":{"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 h-16 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-max"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-xl">storefront</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md font-bold tracking-tight text-primary leading-tight">Varejista Online</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Plataforma B2B Master</span></div></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-space-xs rounded-xl bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase tracking-wider"><span class="material-symbols-outlined text-sm text-on-primary-container">verified_user</span><span>ADMINISTRADOR MASTER • CONTROLE TOTAL</span></div></div><div class="flex-1 max-w-xl mx-space-md hidden md:block"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-md text-outline pointer-events-none text-lg">search</span><input class="w-full h-10 pl-10 pr-space-md rounded-xl bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Pesquisa global de lotes, pregões, empresas CNPJ, auditoria WORM..." type="text"/></div></div><div class="flex items-center gap-space-md min-w-max"><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-space-xs rounded-xl bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-bold">RSFN/BACEN: Conectado</span></div><div class="h-6 w-px bg-surface-variant hidden sm:block"></div><div class="flex items-center gap-space-sm"><div class="text-right hidden sm:flex flex-col"><span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Dr. Eduardo Sampaio</span><span class="font-label-sm text-label-sm text-on-surface-variant">Super Admin &amp; Auditor</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 overflow-y-auto"><div class="p-space-md"><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-md rounded-xl shadow-sm"><div class="pt-space-xs pb-space-xs px-space-sm"><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-bold">GESTÃO MASTER</span></div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="visao-geral-kpis-master" href="#"><span class="material-symbols-outlined text-lg">monitoring</span><span>Visão Geral &amp; KPIs Master</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="usuarios-permissoes" href="#"><span class="material-symbols-outlined text-lg">manage_accounts</span><span>Usuários &amp; Permissões</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="empresas-cnpjs-aprovacoes" href="#"><span class="material-symbols-outlined text-lg">domain_verification</span><span>Empresas &amp; CNPJs (Aprovações)</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="produtos-categorias" href="#"><span class="material-symbols-outlined text-lg">category</span><span>Produtos &amp; Categorias</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="leiloes-lotes-ativos" href="#"><span class="material-symbols-outlined text-lg">gavel</span><span>Leilões &amp; Lotes Ativos</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="lances-pregoes-ao-vivo" href="#"><span class="material-symbols-outlined text-lg">podium</span><span>Lances &amp; Pregões ao Vivo</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="vendas-pedidos-comissoes" href="#"><span class="material-symbols-outlined text-lg">point_of_sale</span><span>Vendas, Pedidos &amp; Comissões</span></a><div class="mt-space-sm pt-space-xs pb-space-xs px-space-sm"><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-bold">FINANCEIRO &amp; TESOURARIA SPB</span></div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="gestao-de-pagamentos-taxas" href="#"><span class="material-symbols-outlined text-lg">receipt_long</span><span>Gestão de Pagamentos &amp; Taxas</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="contas-escrow-custodia-santander" href="#"><span class="material-symbols-outlined text-lg">account_balance</span><span>Contas Escrow &amp; Custódia Santander</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="fechamento-spb-cnab-240" href="#"><span class="material-symbols-outlined text-lg">currency_exchange</span><span>Fechamento SPB &amp; CNAB 240</span></a><div class="mt-space-sm pt-space-xs pb-space-xs px-space-sm"><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-bold">COMPLIANCE, RISCO &amp; MKT</span></div><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="central-de-moderacao-denuncias" href="#"><span class="material-symbols-outlined text-lg">flag</span><span>Central de Moderação &amp; Denúncias</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="bloqueios-blacklist" href="#"><span class="material-symbols-outlined text-lg">block</span><span>Bloqueios &amp; Blacklist</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="banners-vitrines-publicidade" href="#"><span class="material-symbols-outlined text-lg">campaign</span><span>Banners, Vitrines &amp; Publicidade</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="trilha-de-auditoria-dossies-worm" href="#"><span class="material-symbols-outlined text-lg">security</span><span>Trilha de Auditoria &amp; Dossiês WORM</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="configuracoes-do-sistema" href="#"><span class="material-symbols-outlined text-lg">settings</span><span>Configurações do Sistema</span></a></nav></div></aside><div class="pl-72"><main class="relative pt-16 w-full px-gutter min-h-screen bg-surface"><div class="flex flex-col w-full pb-16">
+<!-- 1. CABEÇALHO EXECUTIVO -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">verified</span> Governança Regulatória &amp; Cadastral
+        </span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> GS1 Brasil Sync v4.12
+        </span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">
+        Gestão de Produtos, Categorias &amp; Esteira de Homologação Sanitária
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+        Catálogo unificado com <span class="font-bold text-on-surface">14.820 SKUs indexados</span> • 
+        <span class="font-bold text-on-surface">28 categorias ativas</span> • 
+        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-semibold">9 produtos aguardando parecer técnico da Anvisa/MAPA</span>
+</p>
+</div>
+<!-- Ações do Topo -->
+<div class="flex items-center gap-space-sm flex-wrap shrink-0">
+<button class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-lg text-label-lg transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">create_new_folder</span>
+<span>+ Nova Categoria</span>
+</button>
+<button class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-lg text-label-lg transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">upload_file</span>
+<span>Importar GS1 / EAN</span>
+</button>
+<button class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-lg text-label-lg transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">health_and_safety</span>
+<span>Regras Sanitárias</span>
+</button>
+<button class="inline-flex items-center gap-2 px-space-lg py-2.5 rounded-xl bg-primary text-on-primary hover:bg-primary-container font-label-lg text-label-lg transition-all shadow-md" type="button">
+<span class="material-symbols-outlined text-lg">add_box</span>
+<span>+ Novo Produto Global</span>
+</button>
+</div>
+</section>
+<!-- 2. CARDS DE MÉTRICAS E KPIS DO CATÁLOGO -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1 -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Produtos Ativos</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">inventory_2</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl font-extrabold text-on-surface">14.820</span>
+<span class="font-label-md text-label-md text-secondary font-bold flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> +340 m/m
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+<span class="font-bold text-on-surface">98.4%</span> certificados via GS1 Brasil (EAN-13 unívoco).
+        </p>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-space-md">
+<div class="bg-primary h-1.5 rounded-full" style="width: 98.4%"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Triagem Regulatória</span>
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-lg">gavel</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl font-extrabold text-tertiary">09</span>
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm uppercase">Ação Crítica</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          4 exigem registro MAPA/SIF ativo • 5 pendem tabela RDC 429.
+        </p>
+</div>
+<div class="flex items-center gap-2 mt-space-md text-error font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-sm">schedule</span> SLA Médio: 4h 12m p/ liberação
+      </div>
+</div>
+<!-- Card 3 -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Estrutura Mercadológica</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-lg">account_tree</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl font-extrabold text-on-surface">28</span>
+<span class="font-label-sm text-label-sm text-outline font-semibold">Macrocategorias</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          142 subfamílias ativas com regras fiscais (NCM) vinculadas.
+        </p>
+</div>
+<div class="flex items-center gap-1.5 mt-space-md">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Take-rate médio ponderado: <strong class="text-on-surface">3.85%</strong></span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Benchmark de Preço Médio</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">price_change</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl font-extrabold text-on-surface">R$ 142,50</span>
+<span class="font-label-sm text-label-sm text-outline">/cx master</span>
+</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary font-semibold mt-1">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span>-2.4% vs índice CEPEA / FIPE semanal</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm mt-space-md">
+<span>Amostragem: 1.2M fardos</span>
+<span class="text-primary font-bold">Alta Liquidez</span>
+</div>
+</div>
+</section>
+<!-- 3. SEÇÃO PRINCIPAL (2 COLUNAS ASYMMÉTRICAS) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- COLUNA ESQUERDA (35% = 4 ou 5 colunas no grid de 12, usamos 5) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md h-full">
+<!-- Header da Coluna -->
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Árvore de Categorias</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Parâmetros de comissão &amp; conformidade</p>
+</div>
+<span class="px-2 py-0.5 rounded-lg bg-surface-container font-label-sm text-label-sm font-bold text-primary">28 Ativas</span>
+</div>
+<!-- Filtro Rápido de Categorias -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-lg">filter_alt</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Filtrar categoria, NCM ou taxa..." type="text"/>
+</div>
+<!-- Lista de Categorias Parametrizadas -->
+<div class="flex flex-col gap-space-sm overflow-y-auto max-h-[520px] pr-1">
+<!-- Categoria 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">grain</span>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Mercearia Seca &amp; Grãos</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">8.420 SKUs indexados</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                Take-rate 3.5%
+              </span>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm mt-1 pt-1 border-t-0">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">sanitizer</span> RDC 275 • Validade Mín: 90d
+              </span>
+<button class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5" type="button">
+                Regras <span class="material-symbols-outlined text-xs">tune</span>
+</button>
+</div>
+</div>
+<!-- Categoria 2 (Crítica Sanitária) -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-xl">egg</span>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Laticínios &amp; Derivados</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2.150 SKUs indexados</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                Take-rate 4.0%
+              </span>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm mt-1 pt-1">
+<span class="flex items-center gap-1 text-tertiary font-bold">
+<span class="material-symbols-outlined text-xs">verified</span> Exige SIF / MAPA Obrigatório
+              </span>
+<button class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5" type="button">
+                Regras <span class="material-symbols-outlined text-xs">tune</span>
+</button>
+</div>
+</div>
+<!-- Categoria 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">coffee</span>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Café &amp; Matinais</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">1.340 SKUs indexados</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                Take-rate 3.8%
+              </span>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm mt-1 pt-1">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">event</span> Selo ABIC • Validade Mín: 120d
+              </span>
+<button class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5" type="button">
+                Regras <span class="material-symbols-outlined text-xs">tune</span>
+</button>
+</div>
+</div>
+<!-- Categoria 4 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">cookie</span>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Biscoitos &amp; Snacks</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">1.890 SKUs indexados</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                Take-rate 4.2%
+              </span>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm mt-1 pt-1">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">nutrition</span> RDC 429 • Validade Mín: 60d
+              </span>
+<button class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5" type="button">
+                Regras <span class="material-symbols-outlined text-xs">tune</span>
+</button>
+</div>
+</div>
+<!-- Categoria 5 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">liquor</span>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Óleos, Gorduras &amp; Molhos</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">620 SKUs indexados</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                Take-rate 3.0%
+              </span>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm mt-1 pt-1">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">local_shipping</span> Validade Mín: 180d
+              </span>
+<button class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5" type="button">
+                Regras <span class="material-symbols-outlined text-xs">tune</span>
+</button>
+</div>
+</div>
+<!-- Categoria 6 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col gap-space-xs">
+<div class="flex items-start justify-between gap-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">water_bottle</span>
+<div>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-tight">Bebidas &amp; Sucos</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">400 SKUs indexados</span>
+</div>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                Take-rate 4.5%
+              </span>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm mt-1 pt-1">
+<span class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-xs">verified</span> MAPA Registro Obrigatório
+              </span>
+<button class="text-primary hover:text-primary-container font-bold flex items-center gap-0.5" type="button">
+                Regras <span class="material-symbols-outlined text-xs">tune</span>
+</button>
+</div>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-surface-container hover:bg-surface-dim font-label-sm text-label-sm font-bold text-primary flex items-center justify-center gap-1 transition-colors mt-auto" type="button">
+          Ver todas as 28 categorias e alíquotas <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- COLUNA DIREITA (65% = 8 colunas no grid de 12) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- Card Master de Triagem Homologatória em Destaque -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+<!-- Header da Triagem -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">policy</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Esteira de Homologação Master</h2>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm uppercase font-bold animate-pulse">Item 1 de 9 em Análise</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Validação técnica documental de compliance fiscal e sanitário</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-outline">Submissão: <strong>Hoje, 09:14</strong></span>
+</div>
+</div>
+<!-- Bloco Principal do Produto Sob Análise -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md bg-surface-container-low rounded-xl p-space-md">
+<!-- Imagem e Códigos -->
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-surface-dim shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Caixa de papelão industrial kraft empilhada em palete com logo de biscoito cream cracker tradicional 400g e fita de segurança amarela, fotografia comercial em iluminação de estúdio profissional com alta fidelidade de cor e detalhes de código de barras GS1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj2nAfBUW-2H_A9O32hwpQ2yxhHkRGt6mwQlK0aLcd3oP8BGx6qu6yEimOBCNwwAAOdvjfHhP9Wy0k_4Efom1TPj4hcEi_xIu77aOMqMB-99hK0ELJVj-rEXoK3ISVCC4kvn6JGAcVumOEixUnJPmSa0YD5SMjQj3QcJM7QeOwuKaHfTTWXl6XbpTtff7LCRwARb9KRFZYWuPiWLPQtp2k3C3waiRphNGqd9ARRJ8r"/>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold uppercase">
+                Amostra Digital
+              </span>
+<span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-surface/90 text-on-surface font-label-sm text-label-sm font-bold">
+                DUN-14 Válido
+              </span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-lowest text-center">
+<span class="font-label-sm text-label-sm text-outline block">EAN-13 Master</span>
+<span class="font-numeric-timer text-label-md text-on-surface font-bold tracking-wider">7891000315507</span>
+</div>
+</div>
+<!-- Informações Cadastrais e Sanitárias -->
+<div class="md:col-span-8 flex flex-col justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-sm text-label-sm font-bold text-primary uppercase">Biscoitos &amp; Snacks</span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Marca: Laticínios Serra Bella / Fabr. Alvorada S.A.</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-extrabold text-on-surface mt-1">
+                Biscoito Cream Cracker Especial 400g - Caixa Master com 20 un
+              </h3>
+<!-- Grid de Atributos Fiscais & Técnicos -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-space-xs mt-space-sm">
+<div class="p-2 rounded bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-outline block">NCM / CEST</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">1905.31.00 / 17.031.00</span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-outline block">Shelf-Life Mínimo</span>
+<span class="font-label-md text-label-md font-bold text-secondary">60 dias restantes</span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-outline block">Preço Sugerido</span>
+<span class="font-label-md text-label-md font-bold text-primary">R$ 76,00 <span class="text-outline font-normal text-xs">/cx</span></span>
+</div>
+</div>
+<!-- Dossiê de Documentos Anexados -->
+<div class="mt-space-sm flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Dossiê Sanitário &amp; Ficha Técnica</span>
+<div class="flex items-center gap-space-xs flex-wrap">
+<a class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface font-label-sm text-label-sm shadow-xs transition-colors" href="#">
+<span class="material-symbols-outlined text-sm text-primary">picture_as_pdf</span> Ficha_Tecnica_v2.pdf (1.8MB)
+                  </a>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">check_circle</span> Alvará Sanitário Estadual: OK
+                  </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">check_circle</span> RDC 429 (Lupa de Açúcar/Gordura): Em Conformidade
+                  </span>
+</div>
+</div>
+</div>
+<!-- Preço de Mercado vs Sugerido -->
+<div class="p-space-xs rounded-lg bg-surface-container flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Faixa de Mercado Monitorada: <strong>R$ 72,00 a R$ 81,00</strong></span>
+<span class="text-secondary font-bold">Preço do Lote: Alinhado à Média Histórica</span>
+</div>
+</div>
+</div>
+<!-- Botões de Decisão Master -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded-xl bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+<span>Aprovar SKU &amp; Liberar p/ Leilão</span>
+</button>
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-lg">edit_note</span>
+<span>Solicitar Correção</span>
+</button>
+</div>
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded-xl bg-surface-container-lowest text-tertiary hover:bg-tertiary-fixed font-label-lg text-label-lg flex items-center justify-center gap-1 transition-all" type="button">
+<span class="material-symbols-outlined text-lg">cancel</span>
+<span>Rejeitar Sanitariamente</span>
+</button>
+</div>
+<!-- Fila Rápida dos Próximos 8 Itens da Esteira -->
+<div class="pt-space-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Próximos 8 SKUs na Fila de Triagem</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Visualização Expressa</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-xs">
+<!-- Mini SKU 1 -->
+<div class="p-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container flex items-center gap-2 cursor-pointer transition-colors">
+<div class="w-8 h-8 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-base">nutrition</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm font-bold text-on-surface truncate">Queijo Mussarela Peça 4kg</p>
+<span class="font-body-sm text-body-sm text-tertiary block truncate text-[10px]">Pendente SIF 0041/SP</span>
+</div>
+</div>
+<!-- Mini SKU 2 -->
+<div class="p-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container flex items-center gap-2 cursor-pointer transition-colors">
+<div class="w-8 h-8 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-base">liquor</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm font-bold text-on-surface truncate">Suco de Laranja Integral 1L</p>
+<span class="font-body-sm text-body-sm text-outline block truncate text-[10px]">Análise Rótulo MAPA</span>
+</div>
+</div>
+<!-- Mini SKU 3 -->
+<div class="p-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container flex items-center gap-2 cursor-pointer transition-colors">
+<div class="w-8 h-8 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-base">grain</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm font-bold text-on-surface truncate">Arroz Parboilizado Tipo 1</p>
+<span class="font-body-sm text-body-sm text-secondary block truncate text-[10px]">Tabela Nutricional OK</span>
+</div>
+</div>
+<!-- Mini SKU 4 -->
+<div class="p-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container flex items-center gap-2 cursor-pointer transition-colors">
+<div class="w-8 h-8 rounded bg-surface-container-highest shrink-0 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-base">breakfast_dining</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-sm text-label-sm font-bold text-on-surface truncate">Margarina Vegetal 500g</p>
+<span class="font-body-sm text-body-sm text-outline block truncate text-[10px]">Validando Shelf-life</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. TABELA MASTER DE CATÁLOGO DE PRODUTOS -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col mb-space-xl">
+<!-- Filtros Superiores da Tabela -->
+<div class="p-space-lg flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Base Master de Produtos Registrados</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Consulta e auditoria global de SKUs homologados para negociação e leilão</p>
+</div>
+<!-- Filtros em Barra -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<!-- Campo Busca -->
+<div class="relative min-w-[260px]">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-lg">search</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="SKU, EAN-13, Produto ou Marca..." type="text"/>
+</div>
+<!-- Filtro Categoria -->
+<select class="h-9 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none">
+<option>Todas as Categorias</option>
+<option>Mercearia Seca &amp; Grãos</option>
+<option>Laticínios &amp; Derivados</option>
+<option>Café &amp; Matinais</option>
+<option>Biscoitos &amp; Snacks</option>
+<option>Óleos &amp; Gorduras</option>
+</select>
+<!-- Filtro Status -->
+<select class="h-9 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none">
+<option>Status: Todos</option>
+<option>Homologado / Ativo</option>
+<option>Em Homologação</option>
+<option>Interditado / Bloqueado</option>
+<option>Desativado</option>
+</select>
+<!-- Exportar -->
+<button class="h-9 px-3 rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-base">download</span> Exportar .CSV
+        </button>
+</div>
+</div>
+<!-- Tabela de Alta Densidade -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm uppercase tracking-wider text-outline">
+<th class="py-3 px-4 font-bold">SKU / Produto</th>
+<th class="py-3 px-4 font-bold">Identificadores GS1</th>
+<th class="py-3 px-4 font-bold">Categoria &amp; Subcat.</th>
+<th class="py-3 px-4 font-bold">Fabricante / Marca</th>
+<th class="py-3 px-4 font-bold">NCM / ICMS Base</th>
+<th class="py-3 px-4 font-bold">Take-Rate</th>
+<th class="py-3 px-4 font-bold">Lotes Ativos</th>
+<th class="py-3 px-4 font-bold">Status</th>
+<th class="py-3 px-4 font-bold text-right">Ações Master</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface font-body-sm text-body-sm">
+<!-- Linha 1: Café Tradicional -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Embalagem a vácuo vermelha e dourada de café torrado e moído tradicional 500g sobre fundo neutro de estúdio, foco nítido nas especificações do produto industrial alimentício" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjAYKPMPh2U-2YlcAiIkTzDVN6l0Pjwtww-vDC47MAafvCb3OIgWxY6hiqlG2NyMTUA17c390xTN9LanINybDLe_SVdzkJgH-y4BA27BnI9hBVFMrOtINHI8KH5IXpeyxnBlOsYZEaJg9tBeiUQXrWxdB7meHsbodC4XXWbmcE0IW1y_jsVQDPeoiDsotRjOOEI4pPiEM_UvO8wTM_7DXkwXTwy3GWkrIBa8ePi6Tu"/>
+</div>
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-outline block">#SKU-90214</span>
+<a class="font-label-lg text-label-lg font-bold text-on-surface hover:text-primary leading-snug truncate block" href="#">
+                    Café Torrado e Moído Tradicional 500g
+                  </a>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">Fardo c/ 20 almofadas</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 font-numeric-timer text-xs">
+<div class="font-bold text-on-surface">EAN: 7891000100103</div>
+<div class="text-outline">DUN: 17891000100100</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Café &amp; Matinais</span>
+<span class="text-outline text-xs">Torrado &amp; Moído</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Café do Povo S/A</span>
+<span class="text-outline text-xs">CNPJ Matriz MG</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-bold text-on-surface block">0901.21.00</span>
+<span class="text-secondary font-semibold text-xs">ICMS: 7.00% (Cesta)</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-bold text-primary text-xs">3.80%</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-bold text-on-surface">18 Pregões</span>
+</div>
+<span class="text-outline text-xs">14.200 Fardos</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">check</span> Homologado
+              </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors" title="Editar Ficha Master" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors" title="Histórico de Preços &amp; Spread" type="button">
+<span class="material-symbols-outlined text-base">monitoring</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-primary transition-colors" title="Dossiê WORM Imutável" type="button">
+<span class="material-symbols-outlined text-base">verified_user</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Linha 2: Farinha de Trigo Especial -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Pacote de farinha de trigo especial tipo 1 pacote de 1kg papel craft claro com selo de qualidade alimentar e tipografia rústica de moinho tradicional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoYRUefgr7pebBkJ0NeDvy0TFRPz2vjjJPyFm94YzfyHNQi91vMF_RuE8GSARQu9nljLjWr5S5lJGXacJgpDQL4Z52N-SAVdgyePP9ePkIM_SY_rp_NYDu5r6-cAQcjqmR4z4Gk1dW4y9lra2-uh0Tq0Z-ypzr9Vyt6-w2z6ot85Mo1j4CVNx9gaF_rzfF1v8OI5o1HQKa3aRj9nF_b6vHQ8Y1n2QmTc_ij4PMgAfH"/>
+</div>
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-outline block">#SKU-77401</span>
+<a class="font-label-lg text-label-lg font-bold text-on-surface hover:text-primary leading-snug truncate block" href="#">
+                    Farinha de Trigo Especial Tipo 1 - 1kg
+                  </a>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">Fardo c/ 10 pacotes</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 font-numeric-timer text-xs">
+<div class="font-bold text-on-surface">EAN: 7893321456012</div>
+<div class="text-outline">DUN: 17893321456019</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Mercearia Seca &amp; Grãos</span>
+<span class="text-outline text-xs">Derivados de Trigo</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Moinho Central PR</span>
+<span class="text-outline text-xs">Grupo Alimentos S/A</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-bold text-on-surface block">1101.00.10</span>
+<span class="text-secondary font-semibold text-xs">ICMS: 0.00% (Isenção ST)</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-bold text-primary text-xs">3.50%</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-bold text-on-surface">32 Pregões</span>
+</div>
+<span class="text-outline text-xs">48.000 Fardos</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">check</span> Homologado
+              </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors" title="Editar Ficha Master" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors" title="Histórico de Preços &amp; Spread" type="button">
+<span class="material-symbols-outlined text-base">monitoring</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-primary transition-colors" title="Dossiê WORM Imutável" type="button">
+<span class="material-symbols-outlined text-base">verified_user</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Linha 3: Óleo de Soja 900ml -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Garrafa pet transparente de óleo de soja refinado 900ml com rótulo amarelo brilhante, tampa plástica amarela em perspectiva de atacado com caixas ao fundo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChtrFMhOuxsMeOXu3HCupdqRoR5YujzfINcMd4t0CnCREgbVHmihEJlJlu9ZR3qn7izhxTJW1a8ze0HZCpxuZAWP5HWPZB7YmapKE8KvpGd2SjrS8DABD9jt_4krwyo0Qn4O_BpVtpid85dF2tM5iaWDeRwww7VbPxjgHuvMPr_ofXNtO8bolCD3LNciMZgFUrr6iwQ6OS5hTXggc34miytgmujJe3WNpHbF6n0mkc"/>
+</div>
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-outline block">#SKU-55198</span>
+<a class="font-label-lg text-label-lg font-bold text-on-surface hover:text-primary leading-snug truncate block" href="#">
+                    Óleo de Soja Refinado 900ml Pet
+                  </a>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">Caixa c/ 20 unidades</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 font-numeric-timer text-xs">
+<div class="font-bold text-on-surface">EAN: 7894900011502</div>
+<div class="text-outline">DUN: 17894900011509</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Óleos &amp; Gorduras</span>
+<span class="text-outline text-xs">Óleos Vegetais</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">AgroBrasil Óleos</span>
+<span class="text-outline text-xs">Filial Rio Verde GO</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-bold text-on-surface block">1507.90.11</span>
+<span class="text-secondary font-semibold text-xs">ICMS: 12.00%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-bold text-primary text-xs">3.00%</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-bold text-on-surface">45 Pregões</span>
+</div>
+<span class="text-outline text-xs">92.000 Caixas</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">check</span> Homologado
+              </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors" title="Editar Ficha Master" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors" title="Histórico de Preços &amp; Spread" type="button">
+<span class="material-symbols-outlined text-base">monitoring</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-primary transition-colors" title="Dossiê WORM Imutável" type="button">
+<span class="material-symbols-outlined text-base">verified_user</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Linha 4: Leite UHT Integral 1L -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Embalagem cartonada tetra pak de leite UHT integral 1 litro com design azul e branco com imagem de pastagem e selo de inspeção federal SIF visível" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmr8P5cSJydCI-wYuWIn6DeEDm7cOpR3oj-rCoDr6bYQrVN5MXWwdeTwimn2W9D7AkeeNcSODgud1aOhMW-O50kbFDpUT93TCiKfepf-winfX6vvQKyCxQGYDlbFkm3-CjwMsC7DyOBiANr_SS1SGh29FeEJgDHcrNIoLMiIrzisbuVgHyzX3bK1Y_KM3gvKq4NJFIzHJJ_NHnAXLwQWbsNDL4SGr07WEuB_niMCM2"/>
+</div>
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-outline block">#SKU-31209</span>
+<a class="font-label-lg text-label-lg font-bold text-on-surface hover:text-primary leading-snug truncate block" href="#">
+                    Leite Longa Vida UHT Integral 1L
+                  </a>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">Caixa c/ 12 unidades (SIF 1044)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 font-numeric-timer text-xs">
+<div class="font-bold text-on-surface">EAN: 7898012341209</div>
+<div class="text-outline">DUN: 17898012341206</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Laticínios &amp; Derivados</span>
+<span class="text-tertiary font-bold text-xs">SIF / MAPA Ativo</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Cooperativa Láctea Sul</span>
+<span class="text-outline text-xs">Planta Chapecó SC</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-bold text-on-surface block">0401.20.10</span>
+<span class="text-secondary font-semibold text-xs">ICMS: 7.00% (Reduzido)</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-bold text-primary text-xs">4.00%</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-bold text-on-surface">11 Pregões</span>
+</div>
+<span class="text-outline text-xs">22.500 Caixas</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">check</span> Homologado
+              </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors" title="Editar Ficha Master" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-on-surface transition-colors" title="Histórico de Preços &amp; Spread" type="button">
+<span class="material-symbols-outlined text-base">monitoring</span>
+</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-outline hover:text-primary transition-colors" title="Dossiê WORM Imutável" type="button">
+<span class="material-symbols-outlined text-base">verified_user</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Linha 5: Biscoito Cream Cracker (Sob Homologação) -->
+<tr class="hover:bg-surface-container transition-colors bg-tertiary-fixed/10">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Biscoito cracker crocante em pacote individual de 400g com apresentação frontal para varejo alimentar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdl6pHK7Nb5x9hJ6gi4dYv5AsDMYSSybbhs2SBywA2Oe_vTJNXNzqYWPaGUeDNu_RLTuhjjyv6o-qPMf4ExebUyb71Hp4iUjZlGMMLdqbZ2o0jvLxaruJF-NFVrs6q5b2FbKjxwVGrbrXiXbA-RZ5-_duAHAcIDuw5hP2wBBIF7G5HTxQbB8MAMrSYzxN7-D1U7J4yr6tOoA037-rnftfSmHFG7hN3DNlRJeSndyvq"/>
+</div>
+<div class="min-w-0">
+<span class="font-label-sm text-label-sm text-tertiary block font-bold">#SKU-PENDENTE-09</span>
+<a class="font-label-lg text-label-lg font-bold text-on-surface hover:text-primary leading-snug truncate block" href="#">
+                    Biscoito Cream Cracker Especial 400g
+                  </a>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-xs">Caixa Master c/ 20 pacotes</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 font-numeric-timer text-xs">
+<div class="font-bold text-on-surface">EAN: 7891000315507</div>
+<div class="text-outline">DUN: 17891000315504</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Biscoitos &amp; Snacks</span>
+<span class="text-outline text-xs">Crackers Salgados</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-semibold block text-on-surface">Fabr. Alvorada S.A.</span>
+<span class="text-outline text-xs">Serra Bella Brands</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="font-bold text-on-surface block">1905.31.00</span>
+<span class="text-secondary font-semibold text-xs">ICMS: 12.00%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-bold text-primary text-xs">4.20%</span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-bold text-outline">0 Pregões</span>
+</div>
+<span class="text-outline text-xs">Aguardando Aval</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-xs">pending</span> Em Homologação
+              </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2 py-1 rounded bg-secondary text-on-secondary font-label-sm text-label-sm font-bold flex items-center gap-1" title="Julgar Homologação" type="button">
+<span>Julgar</span> <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Paginação e Métricas do Catálogo -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-2">
+<span>Exibindo <strong>1 a 5</strong> de <strong>14.820</strong> SKUs cadastrados</span>
+<span>•</span>
+<span class="text-secondary font-bold">Zero inconsistências fiscais de NCM detectadas pelo robô</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-outline opacity-50 cursor-not-allowed" disabled="" type="button">Anterior</button>
+<button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-bold" type="button">1</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface" type="button">2</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface" type="button">3</button>
+<span class="px-2">...</span>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface" type="button">2.964</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-variant text-on-surface" type="button">Próximo</button>
+</div>
+</div>
+</section>
+<!-- 5. RODAPÉ INFORMATIVO E CONEXÕES DO ECOSSISTEMA -->
+<section class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<!-- Selos de Compliance -->
+<div class="flex items-center gap-space-lg flex-wrap">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl text-primary">verified</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Padrão GS1 Brasil GDSN</span>
+<span class="font-body-sm text-body-sm text-xs">Sincronismo Global de Atributos</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl text-secondary">health_and_safety</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">ANVISA RDC 429 &amp; MAPA/SIF</span>
+<span class="font-body-sm text-body-sm text-xs">Validação de Rotulagem Nutricional</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-xl text-tertiary">receipt_long</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Receita Federal NCM / CEST</span>
+<span class="font-body-sm text-body-sm text-xs">Tabela IBPT Atualizada Diariamente</span>
+</div>
+</div>
+</div>
+<!-- Atalhos Rápidos da Governança Master -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<a class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-dim text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">domain_verification</span> Empresas &amp; CNPJs
+      </a>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-dim text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">gavel</span> Leilões &amp; Lotes
+      </a>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-dim text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">account_balance</span> Custódia Santander SPB
+      </a>
+</div>
+</section>
+</div>
+<script>
+  // Micro-interações do Console Master de Homologação
+  document.addEventListener('DOMContentLoaded', () => {
+    // Feedback tátil simples para os botões de ação do produto
+    const approveBtn = document.querySelector('button:has(.material-symbols-outlined:contains("check_circle"))');
+    if (approveBtn) {
+      approveBtn.addEventListener('click', () => {
+        alert('SKU #7891000315507 homologado com sucesso! Lote liberado para publicação em leilão.');
+      });
+    }
+  });
+</script></main></div></body></html>

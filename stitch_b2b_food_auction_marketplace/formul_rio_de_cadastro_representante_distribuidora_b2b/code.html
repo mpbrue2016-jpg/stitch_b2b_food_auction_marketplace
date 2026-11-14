@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-surface":"#2d3133","on-primary-container":"#a1bbff","tertiary":"#720009","surface-container":"#eceef0","primary":"#003178","surface-container-high":"#e6e8ea","surface-bright":"#f7f9fb","surface-variant":"#e0e3e5","on-primary-fixed-variant":"#00429c","tertiary-fixed-dim":"#ffb3ac","secondary-container":"#a0f399","surface-dim":"#d8dadc","background":"#f7f9fb","outline-variant":"#c3c6d4","on-tertiary":"#ffffff","on-secondary-container":"#217128","on-secondary-fixed":"#002204","on-surface-variant":"#434652","tertiary-fixed":"#ffdad6","primary-fixed":"#d9e2ff","surface-container-low":"#f2f4f6","inverse-on-surface":"#eff1f3","secondary-fixed":"#a3f69c","on-error-container":"#93000a","primary-container":"#0d47a1","secondary":"#1b6d24","on-primary-fixed":"#001945","on-tertiary-fixed-variant":"#930010","on-background":"#191c1e","error":"#ba1a1a","surface":"#f7f9fb","on-secondary-fixed-variant":"#005312","on-secondary":"#ffffff","surface-container-lowest":"#ffffff","surface-tint":"#2b5bb5","on-primary":"#ffffff","on-tertiary-fixed":"#410003","on-tertiary-container":"#ffa59d","primary-fixed-dim":"#b0c6ff","surface-container-highest":"#e0e3e5","error-container":"#ffdad6","on-surface":"#191c1e","on-error":"#ffffff","secondary-fixed-dim":"#88d982","inverse-primary":"#b0c6ff","outline":"#737783","tertiary-container":"#9d0011"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin-mobile":"1rem","gutter-mobile":"0.75rem","space-xl":"2rem","space-md":"0.75rem","gutter":"1rem","space-xs":"0.25rem","margin":"1.5rem","space-lg":"1.25rem","space-sm":"0.5rem"},"fontFamily":{"headline-xl-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"]},"fontSize":{"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}]}}}};</script><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-surface-container-low px-margin py-space-xs"><div class="w-full flex items-center justify-between font-label-sm text-label-sm"><div class="flex items-center gap-space-lg"><span class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-sm">verified_user</span> RFB / SINTEGRA 100% Homologado</span><span class="flex items-center gap-space-xs text-primary"><span class="material-symbols-outlined text-sm">lock</span> ICP-Brasil Criptoativo</span><span class="flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-sm">account_balance</span> Custódia Escrow BACEN Ativa</span></div><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-sm text-secondary">radio_button_checked</span> Esteira Transacional Operando Normal</span><span class="text-outline-variant">|</span><span class="text-on-surface-variant">Central Corporativa: 0800 900 8200</span></div></div></div><div class="h-20 w-full px-margin flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md font-bold">VO</div><div><span class="font-headline-md text-headline-md text-primary tracking-tight font-extrabold block">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest block">Rede B2B de Alta Rotação</span></div></div><nav class="hidden xl:flex items-center gap-space-xs bg-surface-container-low p-space-xs rounded-xl" data-active-classes="bg-primary-container text-on-primary-container font-label-md rounded-lg"><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="portal-comprador" href="#">Comprador Varejista</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="portal-vendedor" href="#">Vendedor Geral</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="portal-industria" href="#">Indústria / Fabricante</a><a aria-current="page" class="px-space-md py-space-xs transition-colors bg-primary-container text-on-primary-container font-label-md rounded-lg" data-path="portal-distribuidora" href="#">Representante &amp; Distribuidora</a><a class="px-space-md py-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors rounded-lg" data-path="portal-transportador" href="#">Transportador 3PL</a></nav></div><div class="flex items-center gap-space-md"><a class="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface px-space-md py-space-xs rounded-lg transition-colors" data-path="central-ajuda" href="#"><span class="material-symbols-outlined text-lg">help_center</span>Central de Ajuda</a><div class="flex items-center gap-space-sm pl-space-md"><div class="text-right hidden md:block"><span class="font-label-md text-label-md text-on-surface block font-bold leading-tight">Distribuidora Nova Aliança S/A</span><span class="font-label-sm text-label-sm text-secondary block font-semibold">CNPJ Verificado • Grau AAA</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJn-H3GUP7sZZ8J_2Ia7BTGtKsCuknzWSq6lJzfc8STX1kWfhirAZIMIcxmWIE4UaDQoQA16eOaSCcIRz_5w2X6r9SOTE9TKYaURanqxSwcN6KWKqg5L879lQzy-xlOtwltyqHQQ06rIHwNQb62WRXNPS6c84TYnUOFJq2d4A14lil9NtgY_4Ke0UNBoF_LruDF9zOUXWa81-Y5idpP3vgoAA6B_artCvq0BLsXSpa"/></div></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Progress & Escrow Protocol Hero Strip -->
+<section class="w-full bg-surface-container-low py-space-lg px-margin">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-bold">CORE</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest font-bold">Módulo Corporativo B2B • Homologação Nacional</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary font-extrabold tracking-tight">Credenciamento de Representação &amp; Distribuição</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Habilitação na esteira de arremate, intermediação fiduciária e liquidação em D+0 para Atacadistas com estoque e Agentes Comerciais autônomos/PJ.
+        </p>
+</div>
+<!-- Real-time Settlement Metric Card -->
+<div class="flex items-center gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase block">Split Fiduciário Escrow</span>
+<span class="font-headline-md text-headline-md text-secondary font-extrabold block">Liquidação D+0</span>
+<span class="font-label-sm text-label-sm text-outline block">Regulamentação BACEN 3.952</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Multi-Step Form Workspace -->
+<main class="w-full max-w-7xl mx-auto px-margin py-space-xl">
+<form class="space-y-space-xl" id="credenciamentoForm" onsubmit="event.preventDefault(); submitCredenciamento();">
+<!-- 1. Perfil de Atuação (Smart Selector with Dynamic Field Reveals) -->
+<section class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-md text-label-md font-bold">1</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Perfil de Atuação B2B</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Defina a estrutura operacional do parceiro para ativação de esteira adequada</p>
+</div>
+</div>
+<span class="px-space-sm py-space-xs rounded-lg bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Obrigatório</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<!-- Option A: Distribuidora Atacadista -->
+<label class="cursor-pointer relative flex flex-col p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group has-[:checked]:bg-primary-fixed/30 has-[:checked]:shadow-md">
+<input checked="" class="sr-only" name="perfilAtuacao" onchange="togglePerfilModules()" type="radio" value="distribuidora"/>
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">warehouse</span>
+</div>
+<span class="radio-check w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center group-has-[:checked]:bg-primary">
+<span class="w-2 h-2 rounded-full bg-surface-container-lowest"></span>
+</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold mt-space-md block">Distribuidora Atacadista com Estoque Físico</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs block">
+              Possui Centro de Distribuição (CD), frota logística urbana (VUC/Toco), faturamento próprio com substituição tributária (ST) e estocagem.
+            </span>
+<div class="mt-space-md pt-space-sm flex items-center gap-space-xs text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-sm">local_shipping</span> Habilita Módulo Logístico &amp; Cross-docking
+            </div>
+</label>
+<!-- Option B: Representação Comercial Autorizada -->
+<label class="cursor-pointer relative flex flex-col p-space-lg rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group has-[:checked]:bg-primary-fixed/30 has-[:checked]:shadow-md">
+<input class="sr-only" name="perfilAtuacao" onchange="togglePerfilModules()" type="radio" value="representante"/>
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">handshake</span>
+</div>
+<span class="radio-check w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center group-has-[:checked]:bg-primary">
+<span class="w-2 h-2 rounded-full bg-surface-container-lowest"></span>
+</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface font-bold mt-space-md block">Representação Comercial Autorizada CORE (PJ/Autônomo)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs block">
+              Venda direta da indústria para o varejo faturado na origem. Remuneração baseada em comissão direta (Take Rate) com registro ativo.
+            </span>
+<div class="mt-space-md pt-space-sm flex items-center gap-space-xs text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-sm">badge</span> Exige Registro CORE Regional Ativo
+            </div>
+</label>
+</div>
+</section>
+<!-- 2. Dados Cadastrais e Fiscais da Empresa / Agente -->
+<section class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-md text-label-md font-bold">2</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Dados Fiscais &amp; Registro Regulatório</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Conectado em tempo real com SINTEGRA, Receita Federal e Conselho Regional</p>
+</div>
+</div>
+<span class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">bolt</span> Validação Criptografada ICP
+          </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="space-y-space-xs md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Razão Social / Nome Comercial Completo *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: Distribuidora Continental de Bebidas e Alimentos Ltda." required="" type="text"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Nome Fantasia *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: Aliança Distribuidora" required="" type="text"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">CNPJ / CPF do Titular *</label>
+<div class="relative">
+<input class="w-full h-11 px-space-md pr-10 bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="00.000.000/0001-00" required="" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-secondary text-lg">verified</span>
+</div>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Inscrição Estadual (IE) *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: 110.245.980.112 ou ISENTO" required="" type="text"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">CNAE Principal de Atuação *</label>
+<select class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner">
+<option value="4639">4639-7/01 - Comércio atacadista de produtos alimentícios em geral</option>
+<option value="4635">4635-4/99 - Comércio atacadista de bebidas não alcoólicas</option>
+<option value="4637">4637-1/99 - Comércio atacadista de outros produtos alimentícios</option>
+<option value="4617">4617-6/00 - Representantes comerciais e agentes do comércio de gêneros alimentícios e bebidas</option>
+<option value="4619">4619-2/00 - Representantes comerciais e agentes de mercadorias em geral</option>
+</select>
+</div>
+<!-- Dynamic CORE Box -->
+<div class="space-y-space-xs bg-primary-fixed/20 p-space-sm rounded-lg md:col-span-3" id="coreFieldWrapper">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md items-center">
+<div>
+<label class="font-label-md text-label-md text-primary font-bold block">Número de Registro CORE *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: CORE-SP 009214/PJ" type="text"/>
+</div>
+<div>
+<label class="font-label-md text-label-md text-primary font-bold block">UF de Registro do Conselho</label>
+<select class="w-full h-11 px-space-md bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-inner">
+<option value="SP">CORE-SP (São Paulo)</option>
+<option value="RJ">CORE-RJ (Rio de Janeiro)</option>
+<option value="MG">CORE-MG (Minas Gerais)</option>
+<option value="PR">CORE-PR (Paraná)</option>
+<option value="RS">CORE-RS (Rio Grande do Sul)</option>
+<option value="GO">CORE-GO (Goiás / Centro-Oeste)</option>
+<option value="BA">CORE-BA (Bahia)</option>
+<option value="OUTROS">Outros Estados da Federação</option>
+</select>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm pt-4">
+<span class="material-symbols-outlined text-secondary text-lg">check_circle</span>
+<span>Validação automatizada de regularidade perante a Confederação Nacional (CONFERE).</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Carteira de Indústrias & Território Geográfico -->
+<section class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-md text-label-md font-bold">3</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Carteira de Indústrias Representadas &amp; Território</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Linhas de produtos credenciadas e mapeamento de mesorregiões de exclusividade comercial</p>
+</div>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold rounded-lg hover:bg-primary-fixed-dim transition-colors" onclick="adicionarLinhaIndustria()" type="button">
+<span class="material-symbols-outlined text-base">add</span> Adicionar Indústria
+          </button>
+</div>
+<!-- Dynamic Fabricantes Table -->
+<div class="w-full overflow-x-auto rounded-lg bg-surface-container-low p-space-xs">
+<table class="w-full text-left font-body-sm text-body-sm" id="tabelaIndustrias">
+<thead>
+<tr class="text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-space-sm px-space-md">Indústria / Fabricante</th>
+<th class="py-space-sm px-space-md">Categorias de SKUs</th>
+<th class="py-space-sm px-space-md">Exclusividade</th>
+<th class="py-space-sm px-space-md">Volume Mensal Médio</th>
+<th class="py-space-sm px-space-md text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="space-y-space-xs">
+<tr class="bg-surface-container-lowest rounded-lg">
+<td class="py-space-sm px-space-md">
+<input class="w-full bg-transparent font-label-md text-label-md font-bold text-on-surface focus:outline-none" type="text" value="Cervejaria e Destilaria Imperial S/A"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CNPJ: 01.442.981/0001-44</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm">Bebidas Alcoólicas / RTD</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Exclusiva Regional</span>
+</td>
+<td class="py-space-sm px-space-md font-label-md text-label-md font-bold text-primary">R$ 680.000 / mês</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-error hover:text-tertiary-container" type="button"><span class="material-symbols-outlined text-lg">delete</span></button>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest rounded-lg">
+<td class="py-space-sm px-space-md">
+<input class="w-full bg-transparent font-label-md text-label-md font-bold text-on-surface focus:outline-none" type="text" value="Laticínios &amp; Embutidos Vale Verde"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CNPJ: 14.890.312/0002-89</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm">Frios, Queijos &amp; Perecíveis</span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant font-bold">Não Exclusiva</span>
+</td>
+<td class="py-space-sm px-space-md font-label-md text-label-md font-bold text-primary">R$ 410.000 / mês</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="text-error hover:text-tertiary-container" type="button"><span class="material-symbols-outlined text-lg">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Geographic Coverage Selector -->
+<div class="space-y-space-xs pt-space-sm">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Região Geográfica / Mesorregiões de Atendimento Homologadas *</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-space-sm">
+<label class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer">
+<input checked="" class="rounded text-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-semibold">Grande SP &amp; ABCD</span>
+</label>
+<label class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer">
+<input checked="" class="rounded text-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-semibold">Interior SP (Campinas/Ribeirão)</span>
+</label>
+<label class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer">
+<input checked="" class="rounded text-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-semibold">Vale do Paraíba &amp; Litoral</span>
+</label>
+<label class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer">
+<input class="rounded text-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-semibold">Sul de Minas Gerais</span>
+</label>
+<label class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer">
+<input class="rounded text-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-semibold">Região Metropolitana RJ</span>
+</label>
+<label class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer">
+<input class="rounded text-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm font-semibold">Paraná / Curitiba</span>
+</label>
+</div>
+</div>
+</section>
+<!-- 4. Infraestrutura Operacional & Logística (Específico Distribuidoras) -->
+<section class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl shadow-sm space-y-space-md transition-all" id="moduloLogistica">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-md text-label-md font-bold">4</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Infraestrutura Operacional, Armazenagem &amp; Frota</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Capacidade estática e dinâmica para consolidação e escoamento rápido de lotes</p>
+</div>
+</div>
+<span class="px-space-sm py-space-xs rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">Distribuidora Atacadista</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Área de Armazenagem Útil (m²)</label>
+<div class="relative">
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: 3500" type="number"/>
+<span class="absolute right-3 top-3 font-label-sm text-label-sm text-on-surface-variant font-bold">m²</span>
+</div>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Posições Palete (Capacidade)</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: 2.400 paletes" type="number"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Câmaras Frias Disponíveis</label>
+<select class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner">
+<option value="seca">Apenas Carga Seca / Climatizada</option>
+<option value="resfriada">Câmara Resfriada (0°C a 10°C)</option>
+<option value="congelada">Câmara Congelada (-18°C)</option>
+<option value="ambas">Mista: Resfriados + Congelados + Seca</option>
+</select>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Docas para Carga/Descarga</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Qtd de docas (ex.: 8)" type="number"/>
+</div>
+</div>
+<!-- Fleet Grid -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm">
+<div class="font-label-md text-label-md text-on-surface font-bold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-base text-primary">local_shipping</span> Frota Própria de Distribuição Capilar
+          </div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Caminhões Urbanos (VUC)</span>
+<input class="w-full h-10 px-space-sm bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface focus:outline-none shadow-inner" type="number" value="12"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Caminhões Toco (2 Eixos)</span>
+<input class="w-full h-10 px-space-sm bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface focus:outline-none shadow-inner" type="number" value="6"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Caminhões Truck (3 Eixos)</span>
+<input class="w-full h-10 px-space-sm bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface focus:outline-none shadow-inner" type="number" value="4"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Carretas / Semirreboques</span>
+<input class="w-full h-10 px-space-sm bg-surface-container-lowest rounded-lg font-body-md text-body-md text-on-surface focus:outline-none shadow-inner" type="number" value="2"/>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Condições Comerciais, Comissões & Split de Pagamento D+0 -->
+<section class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-md text-label-md font-bold">5</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Condições Comerciais, Comissões &amp; Split Fiduciário</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Parametrização do Take Rate acordado e conta homologada para repasse instantâneo via BACEN</p>
+</div>
+</div>
+<span class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary font-bold">
+<span class="material-symbols-outlined text-sm">lock_clock</span> Custódia Escrow Ativa
+          </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Taxa de Comissão / Spread Médio Acordado (%) *</label>
+<div class="relative">
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-primary font-extrabold focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" step="0.1" type="number" value="5.5"/>
+<span class="absolute right-3 top-3 font-label-md text-label-md text-primary font-bold">%</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Retido ou creditado automaticamente por pedido faturado</span>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Banco Homologado para Split *</label>
+<select class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner">
+<option value="001">001 - Banco do Brasil S.A.</option>
+<option value="237">237 - Banco Bradesco S.A.</option>
+<option value="341">341 - Itaú Unibanco S.A.</option>
+<option value="033">033 - Banco Santander Brasil</option>
+<option value="104">104 - Caixa Econômica Federal</option>
+<option value="260">260 - Nu Pagamentos (Nubank PJ)</option>
+<option value="077">077 - Banco Inter S.A.</option>
+</select>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Tipo de Chave PIX Fiduciária *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="CNPJ da Empresa Titular" type="text"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Agência com Dígito *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: 1842-0" type="text"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Conta Corrente PJ com Dígito *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: 0034918-2" type="text"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Frequência de Split da Câmara</label>
+<select class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-secondary font-bold focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner">
+<option value="d0">D+0 (Liquidação Automática Imediata no Arremate)</option>
+<option value="d1">D+1 (Consolidado Diário no Fechamento Noturno)</option>
+<option value="semanal">Semanal (Toda Sexta-feira útil)</option>
+</select>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-secondary text-xl">account_balance_wallet</span>
+<span>A titularidade bancária deve coincidir rigorosamente com o CNPJ/CPF cadastrado no passo 2 para liberação automática do Token ICP-Brasil.</span>
+</div>
+</section>
+<!-- 6. Equipe Comercial & Gestor de Contas Responsável -->
+<section class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-md text-label-md font-bold">6</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Equipe Comercial &amp; Gestor de Contas Direto</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ponto de contato para despacho de pedidos urgentes e liquidação de lotes</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Nome do Gestor de Contas / Representante Titular *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Ex.: Rodrigo Mendes Guimarães" required="" type="text"/>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">Canal WhatsApp Corporativo (Notificações de Ordens) *</label>
+<div class="relative">
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="(11) 98842-9900" required="" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-secondary text-lg">chat</span>
+</div>
+</div>
+<div class="space-y-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-bold block">E-mail de Despacho &amp; Pedidos Faturados *</label>
+<input class="w-full h-11 px-space-md bg-surface-container-low rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="pedidos@aliancadistribuidora.com.br" required="" type="email"/>
+</div>
+</div>
+</section>
+<!-- 7. Documentação Obrigatória & Compliance Jurídico -->
+<section class="bg-surface-container-lowest p-space-lg md:p-space-xl rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-md text-label-md font-bold">7</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Documentação Obrigatória &amp; Anexos Digitais</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Envio de documentos criptografados para emissão da chave de custódia</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Formatos: PDF, JPG, PNG (máx. 15MB cada)</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Document 1: Contrato Social -->
+<div class="border-2 border-dashed border-outline-variant hover:border-primary p-space-md rounded-xl bg-surface-container-low text-center flex flex-col items-center justify-center space-y-space-xs transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary transition-colors">description</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Contrato Social / MEI Atualizado</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Última alteração consolidada</span>
+<span class="px-space-sm py-space-xs bg-surface-container-lowest rounded font-label-sm text-label-sm text-primary font-bold shadow-sm">Selecionar Arquivo</span>
+</div>
+<!-- Document 2: Certidão CORE / Regularidade Fiscal -->
+<div class="border-2 border-dashed border-outline-variant hover:border-primary p-space-md rounded-xl bg-surface-container-low text-center flex flex-col items-center justify-center space-y-space-xs transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary transition-colors">verified_user</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Certidão CORE / CND Federal</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Quitação e regularidade com validade</span>
+<span class="px-space-sm py-space-xs bg-surface-container-lowest rounded font-label-sm text-label-sm text-primary font-bold shadow-sm">Selecionar Arquivo</span>
+</div>
+<!-- Document 3: Contratos com Indústrias -->
+<div class="border-2 border-dashed border-outline-variant hover:border-primary p-space-md rounded-xl bg-surface-container-low text-center flex flex-col items-center justify-center space-y-space-xs transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant group-hover:text-primary transition-colors">folder_shared</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Contratos de Representação / Distribuição</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Carta de autorização das indústrias</span>
+<span class="px-space-sm py-space-xs bg-surface-container-lowest rounded font-label-sm text-label-sm text-primary font-bold shadow-sm">Selecionar Arquivo</span>
+</div>
+</div>
+<!-- Termo de Consentimento e Regras de Liquidação -->
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-space-sm">
+<label class="flex items-start gap-space-sm cursor-pointer">
+<input class="mt-1 rounded text-primary" required="" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">
+              Declaro sob as penas da lei que as informações cadastrais prestadas, vínculos com as indústrias e certidões apresentadas são autênticas e vigentes. Concordo com a retenção automática da taxa de tecnologia do marketplace e autorizo o processamento de liquidação fiduciária na conta declarada em consonância com as normas do Banco Central do Brasil e Termos Gerais de Arremate B2B da <strong>Varejista Online S.A.</strong>
+</span>
+</label>
+</div>
+</section>
+<!-- Action Panel & Submission Bar -->
+<section class="flex flex-col sm:flex-row items-center justify-between gap-space-md p-space-lg rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-xl">shield</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface font-bold block">Análise de Crédito &amp; Homologação Sintegra</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Tempo estimado para liberação da esteira de negociação: até 2 horas úteis.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<button class="w-1/2 sm:w-auto px-space-lg py-space-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface bg-surface-container-high transition-colors font-bold" type="button">
+            Salvar Rascunho
+          </button>
+<button class="w-1/2 sm:w-auto px-space-xl py-space-md rounded-lg font-label-md text-label-md text-on-primary bg-primary hover:bg-on-primary-fixed-variant transition-all font-extrabold shadow-md flex items-center justify-center gap-space-xs" type="submit">
+<span class="material-symbols-outlined text-lg">how_to_reg</span> Finalizar Credenciamento de Representante &amp; Distribuidora
+          </button>
+</div>
+</section>
+<!-- Feedback Confirmation Modal / Banner State (Hidden by default) -->
+<div class="hidden p-space-lg rounded-xl bg-secondary-container text-on-secondary-container" id="confirmacaoCredenciamento">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-3xl">task_alt</span>
+<div>
+<h3 class="font-headline-md text-headline-md font-bold">Dossiê de Credenciamento Enviado com Sucesso!</h3>
+<p class="font-body-md text-body-md">O protocolo <strong>VO-REP-2025-8849</strong> foi aberto na mesa de compliance. Um e-mail com a chave temporária de integração foi despachado para o gestor cadastrado.</p>
+</div>
+</div>
+</div>
+</form>
+</main>
+</div>
+<script>
+  function togglePerfilModules() {
+    const perfilSelecionado = document.querySelector('input[name="perfilAtuacao"]:checked').value;
+    const moduloLogistica = document.getElementById('moduloLogistica');
+    const coreFieldWrapper = document.getElementById('coreFieldWrapper');
+
+    if (perfilSelecionado === 'representante') {
+      moduloLogistica.classList.add('opacity-40');
+      coreFieldWrapper.classList.remove('bg-surface-container-low');
+      coreFieldWrapper.classList.add('bg-primary-fixed/40');
+    } else {
+      moduloLogistica.classList.remove('opacity-40');
+      coreFieldWrapper.classList.remove('bg-primary-fixed/40');
+      coreFieldWrapper.classList.add('bg-primary-fixed/20');
+    }
+  }
+
+  function adicionarLinhaIndustria() {
+    const tbody = document.querySelector('#tabelaIndustrias tbody');
+    const novaLinha = document.createElement('tr');
+    novaLinha.className = 'bg-surface-container-lowest rounded-lg';
+    novaLinha.innerHTML = `
+      <td class="py-space-sm px-space-md">
+        <input type="text" placeholder="Nome da Nova Indústria Parceira" class="w-full bg-transparent font-label-md text-label-md font-bold text-on-surface focus:outline-none">
+        <span class="font-label-sm text-label-sm text-on-surface-variant">CNPJ: Em validação</span>
+      </td>
+      <td class="py-space-sm px-space-md">
+        <span class="px-space-xs py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm">Alimentos / Mercearia</span>
+      </td>
+      <td class="py-space-sm px-space-md">
+        <span class="px-space-xs py-0.5 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant font-bold">Autorizada</span>
+      </td>
+      <td class="py-space-sm px-space-md font-label-md text-label-md font-bold text-primary">A definir</td>
+      <td class="py-space-sm px-space-md text-right">
+        <button type="button" onclick="this.closest('tr').remove()" class="text-error hover:text-tertiary-container"><span class="material-symbols-outlined text-lg">delete</span></button>
+      </td>
+    `;
+    tbody.appendChild(novaLinha);
+  }
+
+  function submitCredenciamento() {
+    const feedback = document.getElementById('confirmacaoCredenciamento');
+    feedback.classList.remove('hidden');
+    window.scrollTo({ top: feedback.offsetTop - 100, behavior: 'smooth' });
+  }
+</script></main><footer class="w-full bg-surface-container-low mt-space-xl"><div class="w-full px-margin py-space-xl grid grid-cols-1 md:grid-cols-4 gap-space-lg text-on-surface-variant"><div class="space-y-space-sm"><div class="font-headline-md text-headline-md text-primary font-extrabold">VAREJISTA ONLINE</div><p class="font-body-sm text-body-sm">Infraestrutura financeira e transacional de atacado e liquidação industrial homologada por órgãos reguladores nacionais.</p><div class="flex items-center gap-space-sm text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-base">verified</span> Infraestrutura Certificada Bacen &amp; RFB</div></div><div><div class="font-label-lg text-label-lg text-on-surface font-bold mb-space-sm">Perfis Institucionais</div><ul class="space-y-space-xs font-body-sm text-body-sm"><li><a class="hover:text-primary transition-colors" data-path="portal-comprador" href="#">Módulo Comprador Varejista</a></li><li><a class="hover:text-primary transition-colors" data-path="portal-vendedor" href="#">Módulo Vendedor Geral</a></li><li><a class="hover:text-primary transition-colors" data-path="portal-industria" href="#">Console Indústria &amp; Fabricante</a></li><li><a class="hover:text-primary transition-colors" data-path="portal-distribuidora" href="#">Módulo Distribuidora &amp; Representação</a></li><li><a class="hover:text-primary transition-colors" data-path="portal-transportador" href="#">Gestão Logística Transportador 3PL</a></li></ul></div><div><div class="font-label-lg text-label-lg text-on-surface font-bold mb-space-sm">Compliance &amp; Segurança</div><ul class="space-y-space-xs font-body-sm text-body-sm"><li><span class="hover:text-primary cursor-pointer">Auditoria Sintegra / Sped Fiscal</span></li><li><span class="hover:text-primary cursor-pointer">Câmara de Liquidação Escrow BACEN</span></li><li><span class="hover:text-primary cursor-pointer">Protocolo Criptográfico ICP-Brasil</span></li><li><span class="hover:text-primary cursor-pointer">Termos Gerais de Arremate e Contratos</span></li></ul></div><div><div class="font-label-lg text-label-lg text-on-surface font-bold mb-space-sm">Central de Suporte B2B</div><ul class="space-y-space-xs font-body-sm text-body-sm"><li><a class="hover:text-primary transition-colors" data-path="status-esteira" href="#">Status da Esteira Operacional</a></li><li><a class="hover:text-primary transition-colors" data-path="central-ajuda" href="#">Base de Conhecimento e Chamados</a></li><li><span>Mesa de Operações: 0800 900 8200</span></li><li><span>Plantão 24/7 p/ Cargas em Trânsito</span></li></ul></div></div><div class="w-full px-margin py-space-md bg-surface-container flex flex-col md:flex-row items-center justify-between font-label-sm text-label-sm text-on-surface-variant"><p>© 2025 Varejista Online S.A. Plataforma Corporativa B2B. Todos os direitos reservados.</p><div class="flex items-center gap-space-md mt-space-xs md:mt-0"><span>Segurança Bancária SSL 256-bit</span><span>•</span><span>Conformidade LGPD &amp; Marco Civil</span></div></div></footer></body></html>

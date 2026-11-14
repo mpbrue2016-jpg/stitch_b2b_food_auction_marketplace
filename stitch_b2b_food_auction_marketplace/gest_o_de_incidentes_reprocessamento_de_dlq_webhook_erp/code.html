@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"outline-variant":"#c3c6d4","surface-bright":"#f7f9fb","surface-variant":"#e0e3e5","surface-container":"#eceef0","on-secondary":"#ffffff","tertiary":"#720009","inverse-on-surface":"#eff1f3","secondary-container":"#a0f399","on-tertiary-fixed-variant":"#930010","secondary-fixed":"#a3f69c","on-tertiary-fixed":"#410003","on-tertiary":"#ffffff","on-primary-container":"#a1bbff","on-secondary-fixed-variant":"#005312","surface-container-lowest":"#ffffff","primary":"#003178","tertiary-fixed":"#ffdad6","on-primary":"#ffffff","on-secondary-fixed":"#002204","error-container":"#ffdad6","secondary-fixed-dim":"#88d982","on-primary-fixed-variant":"#00429c","background":"#f7f9fb","surface":"#f7f9fb","secondary":"#1b6d24","on-surface":"#191c1e","on-secondary-container":"#217128","primary-fixed-dim":"#b0c6ff","inverse-primary":"#b0c6ff","on-tertiary-container":"#ffa59d","inverse-surface":"#2d3133","primary-container":"#0d47a1","on-background":"#191c1e","surface-container-low":"#f2f4f6","on-surface-variant":"#434652","surface-container-highest":"#e0e3e5","primary-fixed":"#d9e2ff","tertiary-container":"#9d0011","surface-container-high":"#e6e8ea","outline":"#737783","on-error-container":"#93000a","on-primary-fixed":"#001945","on-error":"#ffffff","surface-dim":"#d8dadc","tertiary-fixed-dim":"#ffb3ac","error":"#ba1a1a","surface-tint":"#2b5bb5"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-sm":"0.5rem","space-xs":"0.25rem","space-xl":"2rem","margin":"1.5rem","space-lg":"1.25rem","gutter-mobile":"0.75rem","gutter":"1rem","space-md":"0.75rem","margin-mobile":"1rem"},"fontFamily":{"headline-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"numeric-timer":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"]},"fontSize":{"headline-lg":["24px",{"lineHeight":"32px","fontWeight":"700"}],"label-lg":["14px",{"lineHeight":"20px","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"24px","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","fontWeight":"800"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"numeric-timer":["20px",{"lineHeight":"24px","fontWeight":"800"}],"headline-xl":["32px",{"lineHeight":"40px","fontWeight":"800"}],"headline-lg-mobile":["20px",{"lineHeight":"28px","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[20px]">account_balance</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary leading-none">NEXUS B2B</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase leading-none mt-1">Wholesale Settlement</span></div></div><span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">v3.4</span></div><div class="px-space-md py-space-sm"><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded shadow-sm"><div class="px-space-sm pt-space-md pb-space-xs"><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase font-bold">Operação & Negociação</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="visao-geral" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span>Visão Geral</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="leiloes-lotes" href="#"><span class="material-symbols-outlined text-[18px]">gavel</span><span>Leilões & Lotes</span><span class="ml-auto px-1.5 py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm font-bold">12 Ativos</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="esteira-cnpj-homologacao" href="#"><span class="material-symbols-outlined text-[18px]">verified_user</span><span>Esteira CNPJ & Homologação</span></a><div class="px-space-sm pt-space-lg pb-space-xs"><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase font-bold">Liquidação & Integrações</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="gestao-financeira-meios" href="#"><span class="material-symbols-outlined text-[18px]">payments</span><span>Gestão Financeira & Meios</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="remessas-retornos-cnab-240" href="#"><span class="material-symbols-outlined text-[18px]">swap_horiz</span><span>Remessas & Retornos CNAB 240</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="webhooks-erp" href="#"><span class="material-symbols-outlined text-[18px]">webhook</span><span>Webhooks & ERP</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="auditoria-logs" href="#"><span class="material-symbols-outlined text-[18px]">shield_with_heart</span><span>Auditoria & Logs</span></a></nav></div></div><div class="p-space-md bg-surface-container m-space-sm rounded"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-outline font-bold">Canal H2H Santander</span><span class="flex h-2 w-2 rounded-full bg-secondary animate-pulse"></span></div><div class="mt-space-xs flex items-center justify-between text-on-surface"><span class="font-body-sm text-body-sm text-on-surface-variant">SLA Conexão:</span><span class="font-label-md text-label-md text-secondary font-bold">99.98% OK</span></div><div class="mt-0.5 flex items-center justify-between text-on-surface"><span class="font-body-sm text-body-sm text-on-surface-variant">Protocolo SPI:</span><span class="font-label-md text-label-md text-primary font-bold">Ativo (mTLS)</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1.5 rounded"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface font-bold tracking-wide">SANTANDER H2H / CIP</span><span class="text-outline text-body-sm">|</span><span class="font-body-sm text-body-sm text-secondary font-bold">ONLINE</span></div><div class="flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-high text-on-surface"><span class="font-label-sm text-label-sm uppercase font-bold text-outline">ENV:</span><span class="font-label-sm text-label-sm text-primary font-bold">PROD-CORE-01</span></div><div class="hidden xl:flex items-center gap-space-xs text-outline text-body-sm"><span class="material-symbols-outlined text-[16px]">lock</span><span class="font-body-sm text-body-sm text-on-surface-variant">Certificado ICP-Brasil A3 válido (exp. em 284d)</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><button aria-label="Auditoria e Alertas" class="relative p-2 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button><button aria-label="Sincronização ERP" class="p-2 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">sync</span></button></div><div class="h-6 w-[1px] bg-outline-variant"></div><div class="flex items-center gap-space-sm"><div class="text-right"><div class="font-label-lg text-label-lg text-on-surface leading-tight">Carlos Eduardo Brandão</div><div class="font-label-sm text-label-sm text-outline leading-tight">Master • Fiduciário & Risco</div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/></div></div></header><main class="relative pt-16 bg-background w-full min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Context Breadcrumbs & Incident Bar -->
+<div class="px-space-xl pt-space-lg pb-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[14px]">home</span> Início
+      </a>
+<span class="text-outline">/</span>
+<a class="hover:text-primary transition-colors" href="#">Liquidação & Integrações</a>
+<span class="text-outline">/</span>
+<a class="hover:text-primary transition-colors" href="#">Webhooks & ERP</a>
+<span class="text-outline">/</span>
+<span class="text-primary font-bold">Fila de Exceções & DLQ</span>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mt-1">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+            Gestão de Incidentes & Reprocessamento Manual de DLQ
+          </h1>
+<span class="px-2 py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm font-bold flex items-center gap-1 animate-pulse">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary"></span> 3 ITENS CRÍTICOS
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl mt-0.5">
+          Tratamento de exceções com análise forense de falhas, replay com chave de idempotência preservada e reconciliação com a grade Santander H2H / CIP / SPB.
+        </p>
+</div>
+<!-- Header Action Toolbar -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="px-3 py-2 rounded bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors shadow-sm" id="btn-export-dossier" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+          Exportar Dossiê Forense (NDJSON)
+        </button>
+<button class="px-3 py-2 rounded bg-surface-container hover:bg-error-container hover:text-on-error-container text-on-surface-variant font-label-md text-label-md flex items-center gap-1.5 transition-colors" id="btn-dead-letter-ack" type="button">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+          Descartar Inconciliáveis
+        </button>
+<button class="px-4 py-2 rounded bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-label-md text-label-md font-bold flex items-center gap-1.5 shadow-sm transition-all" id="btn-mass-replay" type="button">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+          Reprocessar Selecionados (Replay Idempotente)
+        </button>
+</div>
+</div>
+</div>
+<!-- Incident KPI Metric Banners -->
+<div class="px-space-xl py-space-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="p-space-md rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Fila em Quarentena / DLQ</span>
+<div class="mt-1 flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-tertiary">3</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">eventos retidos</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[22px]">emergency_home</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low p-2 rounded flex flex-col gap-1">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> SAP S/4HANA (mTLS):
+            </span>
+<span class="font-bold text-on-surface">2 eventos</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> TOTVS Protheus (504):
+            </span>
+<span class="font-bold text-on-surface">1 evento</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-md rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Custódia Fiduciária Represada</span>
+<div class="mt-1 flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-on-surface">R$ 138.450<span class="text-headline-md font-headline-md">,00</span></span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">lock_clock</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>3 lotes industriais aguardando ACK contábil</span>
+<span class="font-bold text-secondary">Escrow Ativo</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-space-md rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Taxa de Sucesso no Replay</span>
+<div class="mt-1 flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-secondary">98,2%</span>
+<span class="font-label-md text-label-md text-secondary font-bold">30 dias</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 98.2%"></div>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 block">112 de 114 incidentes restabelecidos sem intervenção manual de código</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="p-space-md rounded bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">PagerDuty & SRE Alerting</span>
+<div class="mt-1 flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-tertiary">P2 • FIN-891</span>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold">ABERTO</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[22px]">campaign</span>
+</div>
+</div>
+<div class="mt-space-sm flex flex-col gap-0.5 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">notifications_active</span>
+<span>Slack: <strong>#eng-finops-alerts</strong></span>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">On-call SRE: <strong>R. Fontes</strong></span>
+<span class="text-tertiary font-bold">SLA: 28min rest.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Work Surface: Table + Deep Inspection Split Layout -->
+<div class="px-space-xl py-space-sm flex flex-col xl:flex-row gap-space-lg items-start">
+<!-- Left Column: Filterable DLQ Table (Flex 1) -->
+<div class="w-full xl:w-7/12 flex flex-col gap-space-sm">
+<!-- Filters bar -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs flex-1 min-w-[240px]">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-outline">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 rounded bg-surface-container-low font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-inner" placeholder="Buscar por Protocolo, Lote, CNPJ ou Hash..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+              Filtros Avançados
+            </button>
+<button class="px-2.5 py-1.5 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+              Atualizar (5s)
+            </button>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 pt-1 font-label-sm text-label-sm">
+<span class="text-outline uppercase font-bold tracking-wider mr-1">Filtrar Causa:</span>
+<button class="px-2.5 py-1 rounded-full bg-primary text-on-primary font-bold">Todos (3)</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high">HTTP 504 Timeout (2)</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high">Erro TLS / Handshake (1)</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high">Schema 422 (0)</button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high">Auth 401 (0)</button>
+</div>
+</div>
+<!-- Incident Queue Table -->
+<div class="bg-surface-container-lowest rounded shadow-sm overflow-hidden">
+<div class="px-space-md py-space-sm bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Fila de Dead Letter Ativa</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">3 registros</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline">Selecione para inspeção comparativa detalhada</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-2.5 px-3 w-8">
+<input checked="" class="rounded text-primary focus:ring-0" type="checkbox"/>
+</th>
+<th class="py-2.5 px-3">Protocolo / Data</th>
+<th class="py-2.5 px-3">ERP Parceiro & CNPJ</th>
+<th class="py-2.5 px-3">Evento & Valor</th>
+<th class="py-2.5 px-3">Causa Raiz & Status</th>
+<th class="py-2.5 px-3 text-center">Tentativas</th>
+<th class="py-2.5 px-3 text-right">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high text-on-surface">
+<!-- Row 1: Selected Item -->
+<tr class="bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer group">
+<td class="py-3 px-3">
+<input checked="" class="rounded text-primary focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-primary font-bold">INC-2026-9041</div>
+<div class="text-outline text-body-sm">25/Out 19:21 BRT</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-on-surface font-bold">SAP S/4HANA CPI</div>
+<div class="text-outline text-body-sm">Laticínios Serra Bella (18.239.112/0001-90)</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-secondary font-bold">R$ 54.200,00</div>
+<div class="text-outline text-body-sm">Lote #SBE-2026-09 • 14 Paletes</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm font-bold">HTTP 504</span>
+<span class="font-body-sm text-body-sm text-tertiary font-bold">Gateway Timeout</span>
+</div>
+<div class="text-outline text-body-sm truncate max-w-[200px]" title="RFC BAPI_ACC_DOCUMENT_POST limit 15000ms exceeded">
+                    RFC BAPI_ACC_DOCUMENT_POST limit 15000ms
+                  </div>
+</td>
+<td class="py-3 px-3 text-center">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-tertiary font-label-md text-label-md font-bold">
+                    5 / 5
+                  </span>
+<div class="text-outline text-[10px]">Backoff Jitter Exaurido</div>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant transition-colors" title="Disparo Imediato" type="button">
+<span class="material-symbols-outlined text-[16px]">replay</span>
+</button>
+<button class="p-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" title="Inspecionar Detalhes" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<input checked="" class="rounded text-primary focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-on-surface font-bold">INC-2026-9040</div>
+<div class="text-outline text-body-sm">25/Out 18:45 BRT</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-on-surface font-bold">SAP S/4HANA CPI</div>
+<div class="text-outline text-body-sm">Distribuidora Minas-Goiás (04.118.992/0002-14)</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-secondary font-bold">R$ 62.750,00</div>
+<div class="text-outline text-body-sm">Lote #MG-OLEO-44 • 28 Paletes</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm font-bold">TLS ERR</span>
+<span class="font-body-sm text-body-sm text-tertiary font-bold">mTLS Handshake</span>
+</div>
+<div class="text-outline text-body-sm truncate max-w-[200px]" title="Peer certificate chain verification expired">
+                    SSLHandshakeException: Cert chain revogada
+                  </div>
+</td>
+<td class="py-3 px-3 text-center">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-tertiary font-label-md text-label-md font-bold">
+                    5 / 5
+                  </span>
+<div class="text-outline text-[10px]">Aguardando novo mTLS</div>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded bg-surface-container text-outline hover:text-on-surface transition-colors" title="Bloqueado até novo Certificado" type="button">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+</button>
+<button class="p-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="py-3 px-3">
+<input class="rounded text-primary focus:ring-0" type="checkbox"/>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-on-surface font-bold">INC-2026-9038</div>
+<div class="text-outline text-body-sm">25/Out 17:12 BRT</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-on-surface font-bold">TOTVS Protheus ADVPL</div>
+<div class="text-outline text-body-sm">Moinho Alvorada S.A. (61.993.411/0001-08)</div>
+</td>
+<td class="py-3 px-3">
+<div class="font-label-md text-label-md text-secondary font-bold">R$ 21.500,00</div>
+<div class="text-outline text-body-sm">Lote #FAR-TRIGO-102 • 10 Paletes</div>
+</td>
+<td class="py-3 px-3">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm font-bold">HTTP 504</span>
+<span class="font-body-sm text-body-sm text-tertiary font-bold">Socket Timeout</span>
+</div>
+<div class="text-outline text-body-sm truncate max-w-[200px]" title="TOTVS Rest Server não respondeu na porta 8443">
+                    Rest Server unresponsive port 8443
+                  </div>
+</td>
+<td class="py-3 px-3 text-center">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-tertiary font-label-md text-label-md font-bold">
+                    5 / 5
+                  </span>
+<div class="text-outline text-[10px]">Backoff Jitter Exaurido</div>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant transition-colors" title="Disparo Imediato" type="button">
+<span class="material-symbols-outlined text-[16px]">replay</span>
+</button>
+<button class="p-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Batch Selection Indicator -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary font-bold">2 itens selecionados para Replay</span>
+<span class="text-outline">•</span>
+<span class="text-on-surface-variant">Valor Fiduciário Selecionado: <strong>R$ 116.950,00</strong></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-outline">Página 1 de 1</span>
+<button class="px-2 py-1 rounded bg-surface-container-high text-outline cursor-not-allowed">Anterior</button>
+<button class="px-2 py-1 rounded bg-surface-container-high text-outline cursor-not-allowed">Próxima</button>
+</div>
+</div>
+</div>
+<!-- Live Replay Telemetry Simulator -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Monitor de Conectividade com Gateways Remotos</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Checagem Health-check ativa a cada 10s</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">SAP CPI - Serra Bella</div>
+<div class="text-body-sm text-outline">https://cpi-sb.varejista.b2b</div>
+</div>
+<span class="px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> RECUPERADO
+            </span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">SAP CPI - Minas-Goiás</div>
+<div class="text-body-sm text-outline">https://cpi-mg.varejista.b2b</div>
+</div>
+<span class="px-2 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">close</span> mTLS INVÁLIDO
+            </span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="font-label-md text-label-md text-on-surface font-bold">TOTVS - Alvorada</div>
+<div class="text-body-sm text-outline">https://totvs.alvorada.ind.br:8443</div>
+</div>
+<span class="px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> RECUPERADO
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Deep Forensic Inspection Drawer / Panel (Flex 2) -->
+<div class="w-full xl:w-5/12 flex flex-col gap-space-sm">
+<div class="bg-surface-container-lowest p-space-md rounded shadow-md flex flex-col gap-space-md">
+<!-- Header of Inspector -->
+<div class="flex items-start justify-between pb-space-sm bg-surface-container-low -m-space-md p-space-md rounded-t">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm font-bold">DLQ FORENSIC AUDIT</span>
+<span class="font-label-sm text-label-sm text-outline">UUID: f81d4fae-7dec-11d0-a765-00a0c91e6bf6</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-1">
+              Mensagem #MSG-DLQ-84912 <span class="text-outline font-normal">• Lote #SBE-2026-09</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Evento fiduciário: <strong>settlement.liquidated</strong> • Destino: SAP CPI / RFC S/4HANA
+            </p>
+</div>
+<button class="p-1 rounded text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">fullscreen</span>
+</button>
+</div>
+<!-- Failure Timeline (5 Attempts Retried with Exponential Backoff) -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Histórico de Disparos & Backoff Exaurido</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">5 de 5 esgotadas</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-2">
+<!-- Timeline Item 1 -->
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-[10px]">1</span>
+<span>18:00:12 BRT</span>
+<span class="text-outline">• Initial Dispatch</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-tertiary text-on-tertiary text-label-sm font-bold">504</span>
+<span class="text-outline text-body-sm">15.002ms</span>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-[10px]">2</span>
+<span>18:01:14 BRT</span>
+<span class="text-outline">• Retry +1m</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-tertiary text-on-tertiary text-label-sm font-bold">504</span>
+<span class="text-outline text-body-sm">15.001ms</span>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-[10px]">3</span>
+<span>18:06:15 BRT</span>
+<span class="text-outline">• Retry +5m</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-tertiary text-label-sm font-bold">502</span>
+<span class="text-outline text-body-sm">820ms</span>
+</div>
+</div>
+<!-- Timeline Item 4 -->
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-error-container text-on-error-container flex items-center justify-center font-bold text-[10px]">4</span>
+<span>18:21:18 BRT</span>
+<span class="text-outline">• Retry +15m</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-tertiary text-on-tertiary text-label-sm font-bold">504</span>
+<span class="text-outline text-body-sm">15.004ms</span>
+</div>
+</div>
+<!-- Timeline Item 5 (Final) -->
+<div class="flex items-center justify-between text-body-sm font-body-sm bg-tertiary-fixed p-1.5 rounded">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-[10px]">5</span>
+<span class="font-bold text-on-tertiary-fixed">19:21:20 BRT</span>
+<span class="text-on-tertiary-fixed font-medium">• Retry Final (+60m)</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 rounded bg-tertiary text-on-tertiary text-label-sm font-bold">504</span>
+<span class="font-bold text-tertiary text-label-sm">MOVIDO PARA DLQ</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Remote Stack Trace from Partner ERP -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-bold tracking-wider">Stack Trace do Host Remoto (SAP CPI Gateway)</span>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">RFC Lock Timeout</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container font-mono text-[11px] leading-relaxed text-on-surface overflow-x-auto select-all max-h-24">
+            com.sap.it.rt.adapter.http.api.exception.HttpAdapterException: Read timed out after 15000ms while invoking RFC BAPI_ACC_DOCUMENT_POST
+            at com.sap.gateway.rfc.connection.RfcConnectionPool.borrowObject(RfcConnectionPool.java:184)
+            at com.sap.s4hana.fi.gl.AccountingDocumentPostServlet.service(AccountingDocumentPostServlet.java:92)
+            Caused by: java.net.SocketTimeoutException: Read timed out (remote target IP: 187.94.12.8:44300)
+          </div>
+</div>
+<!-- Tabs: Payload JSON vs Headers Audit -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-bold">Payload JSON Imutável</button>
+<button class="px-3 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high">Headers & mTLS (CIP)</button>
+<button class="px-3 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high">Auditoria WORM</button>
+</div>
+<button class="text-primary hover:underline font-label-sm text-label-sm flex items-center gap-0.5" title="Copiar JSON Bruto">
+<span class="material-symbols-outlined text-[14px]">content_copy</span> Copiar
+            </button>
+</div>
+<!-- JSON Viewer with Syntax Highlighting Simulation -->
+<div class="p-space-md rounded bg-surface-container-highest font-mono text-[12px] leading-relaxed text-on-surface overflow-x-auto max-h-56">
+<pre><code>{
+  <span class="text-primary font-bold">"event_id"</span>: <span class="text-secondary">"evt_dlq_980182410a"</span>,
+  <span class="text-primary font-bold">"event_type"</span>: <span class="text-secondary">"settlement.liquidated"</span>,
+  <span class="text-primary font-bold">"timestamp"</span>: <span class="text-secondary">"2026-10-25T18:00:12.441-03:00"</span>,
+  <span class="text-primary font-bold">"idempotency_key"</span>: <span class="text-tertiary font-bold">"IDEMP-SBE-2026-09-LIQ-FINAL"</span>,
+  <span class="text-primary font-bold">"sha256_hash"</span>: <span class="text-outline">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span>,
+  <span class="text-primary font-bold">"settlement_data"</span>: {
+    <span class="text-primary font-bold">"lot_reference"</span>: <span class="text-secondary">"#SBE-2026-09"</span>,
+    <span class="text-primary font-bold">"buyer_cnpj"</span>: <span class="text-secondary">"18.239.112/0001-90"</span>,
+    <span class="text-primary font-bold">"beneficiary_bank"</span>: <span class="text-secondary">"033 - BANCO SANTANDER (BRASIL) S.A."</span>,
+    <span class="text-primary font-bold">"clearing_protocol"</span>: <span class="text-secondary">"CIP-SPB-20261025-0098412"</span>,
+    <span class="text-primary font-bold">"gross_amount"</span>: <span class="text-secondary font-bold">54200.00</span>,
+    <span class="text-primary font-bold">"currency"</span>: <span class="text-secondary">"BRL"</span>,
+    <span class="text-primary font-bold">"escrow_released"</span>: <span class="text-secondary">true</span>
+  }
+}</code></pre>
+</div>
+</div>
+<!-- Safe Replay Controls & Guardrails -->
+<div class="pt-space-sm bg-surface-container-low p-space-md rounded flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">verified_user</span>
+              Parâmetros de Execução Segura
+            </span>
+<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+              IDEMPOTÊNCIA ESTRITA ATIVA
+            </span>
+</div>
+<div class="flex flex-col gap-2">
+<label class="flex items-start gap-2 cursor-pointer">
+<input checked="" class="mt-0.5 rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">
+<strong>Preservar Chave de Idempotência Original:</strong> Impede que o SAP parceiro gere duplicação de lançamento no Razão Contábil (RFC BAPI ACC_DOC).
+              </span>
+</label>
+<label class="flex items-start gap-2 cursor-pointer">
+<input class="mt-0.5 rounded text-primary focus:ring-0" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">
+<strong>Elevar Timeout para 30.000ms:</strong> Ajusta temporariamente o socket HTTP para absorver lentidão de carga no gateway parceiro.
+              </span>
+</label>
+</div>
+<!-- Audit justification note (Mandatory for WORM logs) -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-outline font-bold uppercase tracking-wider">
+              Anotação de Auditoria Fiduciária (Obrigatório BACEN / WORM):
+            </label>
+<textarea class="w-full p-2 rounded bg-surface-container-lowest font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" placeholder="Ex: Chamado #TI-9021 junto ao fornecedor encerrado; serviço SAP restabelecido às 19:15 BRT. Autorizado replay manual." rows="2"></textarea>
+</div>
+<!-- Primary Trigger Button -->
+<div class="flex items-center gap-space-sm pt-1">
+<button class="w-full py-2.5 rounded bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow transition-colors" id="btn-execute-replay-now" type="button">
+<span class="material-symbols-outlined text-[20px]">send_time_extension</span>
+              Executar Replay Agora (Disparo Supervisionado)
+            </button>
+<button class="p-2.5 rounded bg-surface-container-high hover:bg-surface-variant text-on-surface" title="Simular Payload Editado" type="button">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Regulatory Compliance & Security Footer Bar -->
+<div class="px-space-xl py-space-md mt-space-lg bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-space-md text-body-sm font-body-sm text-outline">
+<div class="flex flex-wrap items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">gavel</span>
+<span>Auditoria WORM BACEN Resolução 4.656/2018</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">security</span>
+<span>RFC 7396 Idempotent JSON Merge Patch</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">vpn_key</span>
+<span>mTLS Cipher: TLS_AES_256_GCM_SHA384 (ICP-Brasil A3)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md font-label-md text-label-md">
+<a class="text-primary hover:underline flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">terminal</span> Simulador de Webhooks
+      </a>
+<a class="text-primary hover:underline flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">list_alt</span> Auditoria de Logs
+      </a>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const replayBtn = document.getElementById('btn-execute-replay-now');
+    const massReplayBtn = document.getElementById('btn-mass-replay');
+    const exportBtn = document.getElementById('btn-export-dossier');
+
+    if (replayBtn) {
+      replayBtn.addEventListener('click', function() {
+        const originalText = replayBtn.innerHTML;
+        replayBtn.disabled = true;
+        replayBtn.classList.remove('bg-primary');
+        replayBtn.classList.add('bg-secondary');
+        replayBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[20px] animate-spin">refresh</span>
+          Transmitindo via Canal Seguro Santander H2H...
+        `;
+        setTimeout(() => {
+          replayBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+            200 OK • Replay Idempotente Aceito pelo SAP CPI
+          `;
+          setTimeout(() => {
+            replayBtn.innerHTML = originalText;
+            replayBtn.disabled = false;
+            replayBtn.classList.remove('bg-secondary');
+            replayBtn.classList.add('bg-primary');
+          }, 4000);
+        }, 1800);
+      });
+    }
+
+    if (massReplayBtn) {
+      massReplayBtn.addEventListener('click', function() {
+        const confirmed = confirm('Deseja iniciar o reprocessamento em lote com preservação de chaves de idempotência para os 2 itens selecionados?');
+        if (confirmed) {
+          massReplayBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">sync</span> Despachando Fila...';
+          setTimeout(() => {
+            alert('Replay finalizado com sucesso! Protocolos reconciliados junto à grade CIP/SPB.');
+            massReplayBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span> Reprocessado';
+          }, 1500);
+        }
+      });
+    }
+
+    if (exportBtn) {
+      exportBtn.addEventListener('click', function() {
+        exportBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">downloading</span> Gerando NDJSON...';
+        setTimeout(() => {
+          exportBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span> Dossiê Forense Baixado';
+          setTimeout(() => {
+            exportBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">download</span> Exportar Dossiê Forense (NDJSON)';
+          }, 3000);
+        }, 1200);
+      });
+    }
+  })();
+</script></main></div></body></html>

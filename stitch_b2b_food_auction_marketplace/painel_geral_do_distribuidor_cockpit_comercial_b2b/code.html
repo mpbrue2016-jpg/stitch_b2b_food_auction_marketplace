@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "outline-variant": "#c3c6d4",
+          "tertiary": "#720009",
+          "secondary": "#1b6d24",
+          "on-tertiary-fixed-variant": "#930010",
+          "surface-bright": "#f7f9fb",
+          "secondary-fixed": "#a3f69c",
+          "surface-tint": "#2b5bb5",
+          "on-primary": "#ffffff",
+          "on-secondary-fixed": "#002204",
+          "on-background": "#191c1e",
+          "on-tertiary-container": "#ffa59d",
+          "surface": "#f7f9fb",
+          "on-secondary-container": "#217128",
+          "on-primary-container": "#a1bbff",
+          "on-error": "#ffffff",
+          "on-error-container": "#93000a",
+          "secondary-fixed-dim": "#88d982",
+          "surface-container-highest": "#e0e3e5",
+          "inverse-primary": "#b0c6ff",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#d8dadc",
+          "error": "#ba1a1a",
+          "on-tertiary": "#ffffff",
+          "primary-container": "#0d47a1",
+          "error-container": "#ffdad6",
+          "tertiary-fixed-dim": "#ffb3ac",
+          "background": "#f7f9fb",
+          "on-surface-variant": "#434652",
+          "on-secondary-fixed-variant": "#005312",
+          "primary-fixed": "#d9e2ff",
+          "inverse-surface": "#2d3133",
+          "on-secondary": "#ffffff",
+          "on-primary-fixed-variant": "#00429c",
+          "surface-variant": "#e0e3e5",
+          "primary-fixed-dim": "#b0c6ff",
+          "inverse-on-surface": "#eff1f3",
+          "on-surface": "#191c1e",
+          "secondary-container": "#a0f399",
+          "tertiary-container": "#9d0011",
+          "surface-container-low": "#f2f4f6",
+          "outline": "#737783",
+          "surface-container": "#eceef0",
+          "surface-container-high": "#e6e8ea",
+          "on-primary-fixed": "#001945",
+          "tertiary-fixed": "#ffdad6",
+          "primary": "#003178",
+          "on-tertiary-fixed": "#410003"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "gutter-mobile": "0.75rem",
+          "space-sm": "0.5rem",
+          "margin": "1.5rem",
+          "space-lg": "1.25rem",
+          "space-xs": "0.25rem",
+          "space-md": "0.75rem",
+          "gutter": "1rem",
+          "margin-mobile": "1rem",
+          "space-xl": "2rem"
+        },
+        "fontFamily": {
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-md": [
+            "Plus Jakarta Sans"
+          ],
+          "numeric-timer": [
+            "Plus Jakarta Sans"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl-mobile": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-xl": [
+            "Plus Jakarta Sans"
+          ],
+          "label-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-lg-mobile": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-md": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "700"
+            }
+          ],
+          "numeric-timer": [
+            "20px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "800"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-xl-mobile": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "fontWeight": "800"
+            }
+          ],
+          "headline-xl": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "fontWeight": "800"
+            }
+          ],
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col overflow-y-auto"><div class="p-space-lg flex items-center gap-space-md"><div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-md text-headline-md font-bold">VA</div><div><span class="block font-headline-md text-headline-md text-primary tracking-tight">VarejoB2B</span><span class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Portal Distribuidor</span></div></div><div class="px-space-lg py-space-sm"><div class="bg-surface-container-low p-space-md rounded-lg"><span class="block font-label-sm text-label-sm text-on-surface-variant uppercase">CD Central Ativo</span><span class="font-label-md text-label-md text-on-surface font-bold">CD-01 Campinas SP</span></div></div><nav class="flex-1 px-space-md py-space-sm space-y-space-md" data-active-classes="bg-primary-container text-on-primary font-bold rounded-lg shadow-sm"><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Visão Geral</span><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm transition-colors bg-primary-container text-on-primary font-bold rounded-lg shadow-sm" data-path="painel-do-distribuidor" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span>Painel do Distribuidor</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="kpis-comerciais" href="#"><span class="material-symbols-outlined text-[20px]">query_stats</span>KPIs &amp; Desempenho</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Catálogo &amp; Estoque</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="produtos-e-skus" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span>Produtos &amp; SKUs</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="lotes-e-shelf-life" href="#"><span class="material-symbols-outlined text-[20px]">hourglass_top</span>Lotes &amp; Shelf Life</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="controle-de-armazem-e-cds" href="#"><span class="material-symbols-outlined text-[20px]">warehouse</span>Armazéns &amp; CDs</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Operação Comercial</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="criar-leilao-e-pregao" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span>Criar Leilão/Pregão</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="criar-promocoes-e-venda-direta" href="#"><span class="material-symbols-outlined text-[20px]">sell</span>Promoções &amp; Venda Direta</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="central-de-lances-ao-vivo" href="#"><span class="material-symbols-outlined text-[20px]">stream</span>Central de Lances Ao Vivo</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="gestao-de-clientes-varejistas" href="#"><span class="material-symbols-outlined text-[20px]">storefront</span>Clientes Varejistas</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Gestão de Pedidos &amp; Logística</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="pedidos-faturados" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span>Pedidos Faturados</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="expedicao-e-docas" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span>Expedição &amp; Docas</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="nfe-e-mdfe" href="#"><span class="material-symbols-outlined text-[20px]">description</span>NF-e &amp; MDF-e Fiscal</a></div><div class="space-y-space-xs"><span class="px-space-md font-label-sm text-label-sm text-outline uppercase tracking-wider block">Financeiro &amp; Comissões</span><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="faturamento-e-d0" href="#"><span class="material-symbols-outlined text-[20px]">payments</span>Faturamento &amp; D+0</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="comissoes-da-plataforma" href="#"><span class="material-symbols-outlined text-[20px]">percent</span>Taxas &amp; Comissões</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="extrato-escrow" href="#"><span class="material-symbols-outlined text-[20px]">account_balance</span>Extrato Escrow</a></div></nav><div class="p-space-md bg-surface-container"><div class="flex items-center justify-between text-on-surface-variant"><span class="font-label-sm text-label-sm">Status da Conexão</span><span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold"><span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>Online</span></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40"><div class="h-16 w-full px-space-xl flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-0"><div class="min-w-0"><div class="flex items-center gap-space-sm"><span class="font-label-lg text-label-lg text-on-surface font-bold truncate">Distribuidora Aliança de Alimentos Ltda</span><span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm"><span class="material-symbols-outlined text-[14px]">verified</span>Distribuidor Certificado B2B</span></div><span class="block font-body-sm text-body-sm text-on-surface-variant">CNPJ 08.319.442/0001-50</span></div></div><div class="flex items-center gap-space-lg flex-shrink-0"><div class="hidden xl:flex items-center gap-space-md bg-surface-container-lowest px-space-md py-space-xs rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col text-right"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Saldo a Receber (D+0)</span><span class="font-headline-md text-headline-md text-secondary font-bold">R$ 384.920,00</span></div><a class="p-1.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-on-secondary transition-colors" data-path="faturamento-e-d0" href="#" title="Antecipar D+0"><span class="material-symbols-outlined text-[18px]">currency_exchange</span></a></div><div class="flex items-center gap-space-xs"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Notificações de Pregão"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-tertiary-container"></span></button><button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="Configurações"><span class="material-symbols-outlined text-[20px]">tune</span></button></div><div class="h-6 w-[1px] bg-outline-variant"></div><div class="flex items-center gap-space-sm"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><div class="hidden sm:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-bold">Carlos Mendonça</span><span class="font-label-sm text-label-sm text-on-surface-variant">Mesa de Operações</span></div></div></div></div></header><main class="w-full pt-16 bg-surface"><div class="flex flex-col w-full">
+<div class="p-space-lg space-y-space-lg max-w-[1720px] mx-auto w-full">
+<!-- CABEÇALHO DO COCKPIT & AÇÕES ESTRATÉGICAS -->
+<section class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+            Distribuidor Master SP/MG
+          </span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            Canal Escrow SPI Ativo
+          </span>
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">sync_alt</span>
+            Sincronização ERP TOTVS/SAP Ativa
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          Cockpit do Distribuidor &amp; Centro Operacional de Abastecimento B2B
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Visão consolidada de estoques em CDs, pregões ativos, pedidos expedidos, carteira de clientes varejistas e repasses escrow D+0.
+        </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm flex-shrink-0">
+<button class="inline-flex items-center gap-1.5 px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+          Exportar Dossiê
+        </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+          Cadastrar Produto
+        </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-space-sm rounded-lg bg-tertiary-container hover:bg-tertiary text-on-primary font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+          Promoção Relâmpago
+        </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">gavel</span>
+          Criar Pregão / Leilão
+        </button>
+</div>
+</section>
+<!-- GRID DE KPIS ESTRATÉGICOS CORPORATIVOS (5 CARDS) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Faturamento Mensal</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+</span>
+</div>
+<div>
+<span class="font-headline-lg text-headline-lg text-on-surface block leading-tight font-extrabold">R$ 1.842.900,00</span>
+<div class="flex items-center gap-1.5 mt-1 font-label-sm text-label-sm">
+<span class="inline-flex items-center text-secondary font-bold">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +14,2%
+            </span>
+<span class="text-on-surface-variant">vs mês anterior (384 pedidos)</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Custódia Escrow Ativa</span>
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</span>
+</div>
+<div>
+<span class="font-headline-lg text-headline-lg text-secondary block leading-tight font-extrabold">R$ 386.450,00</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">
+            Payout D+0 garantido após aceite em doca
+          </p>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm pt-1">
+<span class="text-on-surface-variant">Liquidez média:</span>
+<span class="font-bold text-on-surface">Sob demanda (24h)</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Estoque Disponível</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">warehouse</span>
+</span>
+</div>
+<div>
+<span class="font-headline-lg text-headline-lg text-on-surface block leading-tight font-extrabold">142,8 Toneladas</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">
+            28 SKUs ativos em CD Jundiaí e Betim
+          </p>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm pt-1">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">CD-SP: 98,2t</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-semibold">CD-MG: 44,6t</span>
+</div>
+</div>
+<!-- KPI 4 (Alerta) -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary-container uppercase tracking-wider font-bold">Shelf Life Crítico</span>
+<span class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[18px]">hourglass_bottom</span>
+</span>
+</div>
+<div>
+<span class="font-headline-lg text-headline-lg text-tertiary-container block leading-tight font-extrabold">4 Lotes &lt; 45d</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">
+            Ação sugerida: Liquidação / Pregão FEFO
+          </p>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+<!-- KPI 5 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between space-y-space-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Taxa B2B Efetiva</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">percent</span>
+</span>
+</div>
+<div>
+<span class="font-headline-lg text-headline-lg text-on-surface block leading-tight font-extrabold">3,8% Médio</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">
+            Economia de escala (Faixa Platinum)
+          </p>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm pt-1">
+<span class="text-on-surface-variant">Comissão mês:</span>
+<span class="font-bold text-on-surface">R$ 70.030,20</span>
+</div>
+</div>
+</section>
+<!-- SEÇÃO PRINCIPAL ASYMMETRIC (68% / 32%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- COLUNA ESQUERDA (68% -> 8 de 12 colunas) -->
+<div class="lg:col-span-8 space-y-space-lg">
+<!-- 1. MONITOR DE PREGÕES E VENDAS DIRETAS AO VIVO -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary-container"></span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Monitor de Pregões e Vendas Diretas Ao Vivo</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lances em tempo real transmitidos via WebSocket B2B</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container-highest">Todos (12)</button>
+<button class="px-space-sm py-1 rounded bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold">Em Pregão (5)</button>
+<button class="px-space-sm py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container-highest">Venda Direta (7)</button>
+</div>
+</div>
+<!-- LISTAGEM DE DISPUTAS / LOTES -->
+<div class="space-y-space-sm">
+<!-- LOTE 1: PREGÃO AQUECIDO -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm hover:bg-surface-container transition-colors">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-start gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-container-high flex-shrink-0 flex items-center justify-center text-primary font-bold">
+<img class="w-full h-full object-cover rounded-lg" data-alt="Fardos industriais de arroz tipo 1 embalados em plástico resistente empilhados em paletes de madeira dentro de um centro de distribuição logístico limpo e bem iluminado em tons de azul e cinza." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdgGkMp_aU1muzx9oMzjcqJwAi_g4jU7TtYoXcMvVjnI1drYh1NAVUTuRxh5eN1rKq_OLVw0jVg8v-ck9jopliocEuE8BfvIC1ZcRBtiGPc1q_vIh28akffTYumS4Jl8GhNqcBS6Oi_PjYoLPVHOVVZaajR2T7jQSFCgxslIZIh4sv17WLRgTol_Esja1SM0d-YOhaTfDdQXEDqc6v_3GPDg2UzoVrs8H5AMwD0F0m"/>
+</div>
+<div class="min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">Lote #DIST-882</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold uppercase">Pregão Aberto</span>
+<span class="px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">18 lances computados</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold truncate mt-0.5">Arroz Tipo 1 Longo Fino 5kg - Fardo c/ 6 unidades</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Volume: 800 Fardos (24.000 kg • 20 Paletes) • Origem: CD Jundiaí/SP • EAN: 7891000249114</p>
+</div>
+</div>
+<!-- Temporizador e Lance -->
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-space-xs bg-surface-container-lowest md:bg-transparent p-space-sm md:p-0 rounded-lg">
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded bg-tertiary-container text-on-primary">
+<span class="material-symbols-outlined text-[16px] animate-pulse">timer</span>
+<span class="font-numeric-timer text-numeric-timer tabular-nums tracking-wide">04:12</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Maior Lance Atual</span>
+<span class="font-headline-md text-headline-md text-secondary font-extrabold block">R$ 41.200,00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block truncate">Por: Supermercado Sol Poente (A+)</span>
+</div>
+</div>
+</div>
+<!-- Barra de Progresso do Lance vs Preço de Reserva -->
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Preço Mínimo Reserva: <strong class="text-on-surface">R$ 38.000,00</strong></span>
+<span class="text-secondary font-bold">+8,4% acima da meta</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 86%;"></div>
+</div>
+</div>
+<!-- Ações Rápidas -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+<span>Frete FOB indicado pelo comprador • Retirada agendada D+1</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-colors">
+                    Pausar Pregão
+                  </button>
+<button class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-colors">
+                    +5 min (Prorrogar)
+                  </button>
+<button class="px-space-md py-1 rounded bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-md text-label-md font-bold transition-colors shadow-sm">
+                    Aceitar &amp; Homologar
+                  </button>
+</div>
+</div>
+</div>
+<!-- LOTE 2: PREGÃO COM LANCE VENCEDOR PROVISÓRIO -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm hover:bg-surface-container transition-colors">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-start gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-container-high flex-shrink-0 flex items-center justify-center text-primary font-bold">
+<img class="w-full h-full object-cover rounded-lg" data-alt="Caixas industriais de óleo de soja empilhadas com segurança sobre paletes higienizados em ambiente de armazém atacadista corporativo com tons de azul e aço." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcaRQTC7JnTscswjQ2AuT5oiNcnTSkqtshbmlnDGuHBvSrsRBXud7BRW6IVMd86YtYTfT_H6DP9mAOGc4sbNXjKy1ZVnAooaD11dpNwjKQAZCCvHVQJ0ioO0KAor--vHGOAZzA7hWuIm03jrNUnE5h_FihEFvIx6EIPscKM2Z4fF_NdF7YN9P96w_xOlhYXbgKboGLZCK4RL8yfsS1-RLTzJ9EDgXy-ZSAwl-0whir"/>
+</div>
+<div class="min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">Lote #DIST-885</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold uppercase">Pregão Normal</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">9 lances ativos</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold truncate mt-0.5">Óleo de Soja Refinado 900ml - Caixa com 20 unidades</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Volume: 1.200 Caixas (24.000 un • 24 Paletes) • Origem: CD Betim/MG • EAN: 7891000109203</p>
+</div>
+</div>
+<!-- Temporizador e Lance -->
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-space-xs bg-surface-container-lowest md:bg-transparent p-space-sm md:p-0 rounded-lg">
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-numeric-timer text-numeric-timer tabular-nums tracking-wide">18:40</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Lance Vencedor Provisório</span>
+<span class="font-headline-md text-headline-md text-secondary font-extrabold block">R$ 89.400,00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block truncate">Por: Atacado Bom Preço Ltda</span>
+</div>
+</div>
+</div>
+<!-- Ações Rápidas -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">price_check</span>
+<span>Unitário equivalente: <strong class="text-on-surface">R$ 3,72 / garrafa</strong> (Margem líquida est.: 11,4%)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-colors">
+                    Histórico de Lances
+                  </button>
+<button class="px-space-md py-1 rounded bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold transition-colors shadow-sm">
+                    Gerenciar Lote
+                  </button>
+</div>
+</div>
+</div>
+<!-- PROMOÇÃO 3: VENDA DIRETA B2B -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm hover:bg-surface-container transition-colors">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex items-start gap-space-md min-w-0">
+<div class="w-14 h-14 rounded-lg bg-surface-container-high flex-shrink-0 flex items-center justify-center text-primary font-bold">
+<img class="w-full h-full object-cover rounded-lg" data-alt="Embalagens industriais a vácuo de café torrado e moído organizadas sobre paletes no estoque de um grande atacadista de alimentos." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPDDGXyurB_Fa-iIRGGkItcnKTsNn7q9ydqZCJX_9fCSYCXPO7gTdcYQwUgAbU62qzcLYDg3gK0VXiYOhcqOrTrHNY-hEx1ioD2GdJ4ygDgy3lh0YZfwhu7tH7JrnkiIhxsjW-NustxhUdKakGcp77VEAMKKlYp4eWmyZJz6G2x-_0AbAyD5thlqRRPfcYntuGcj1JGt7uxxQUNeW_ws2A0XGXnfBHrVF_xSC_pDKT"/>
+</div>
+<div class="min-w-0">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">Oferta #PROMO-44</span>
+<span class="px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold uppercase">-18% OFF B2B</span>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">Venda Direta Instantânea</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold truncate mt-0.5">Café Torrado Tradicional 500g Almofada - Palete c/ 480 un</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lote fechado por palete fracionável • CD Jundiaí/SP • Validade estendida</p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-space-xs bg-surface-container-lowest md:bg-transparent p-space-sm md:p-0 rounded-lg">
+<span class="px-space-sm py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">6/10 Paletes Reservados</span>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Preço / Palete</span>
+<span class="font-headline-md text-headline-md text-primary font-extrabold block">R$ 6.240,00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">R$ 13,00 / un</span>
+</div>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 60%;"></div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm pt-space-xs">
+<span class="text-on-surface-variant">Restam 4 paletes para esgotar o lote promocional</span>
+<button class="px-space-md py-1 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-bold transition-colors">
+                  Ajustar Estoque Promocional
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. GESTÃO DE ESTOQUE CRÍTICO & VALIDADE (MATRIZ FEFO / SHELF LIFE) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary-container text-[22px]">warning</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Gestão de Estoque Crítico &amp; Shelf Life (FEFO)</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Produtos com curva de vencimento acelerada exigindo rotação prioritária</p>
+</div>
+<button class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-lg bg-surface-container-high text-on-surface font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[16px]">sort</span>
+              Ordenar por Vencimento Próximo
+            </button>
+</div>
+<div class="space-y-space-sm">
+<!-- ITEM 1: CRÍTICO (ALERTA VERMELHO) -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-extrabold uppercase">Alerta Vermelho: 22 dias restantes</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lote #M-312 • Venc: 08/05/2026</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold">Molho de Tomate Tradicional Sachê 300g (Caixa c/ 24un)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Quantidade: 350 caixas (8.400 un) • CD Jundiaí Doca 04 • Custo imobilizado: R$ 14.700,00</p>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between gap-space-xs">
+<button class="px-space-md py-1.5 rounded-lg bg-tertiary-container hover:bg-tertiary text-on-primary font-label-md text-label-md font-bold transition-colors shadow-sm inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">flash_on</span>
+                    Liquidação Imediata (Flash Auction)
+                  </button>
+</div>
+</div>
+<div class="space-y-1">
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 90%;"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Início de ciclo (180d)</span>
+<span class="text-tertiary-container font-bold">Restam 10% do Shelf Life útil</span>
+</div>
+</div>
+</div>
+<!-- ITEM 2: ATENÇÃO (ALERTA AMARELO) -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold uppercase">Atenção Moderada: 42 dias restantes</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lote #L-904 • Venc: 28/05/2026</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold">Leite UHT Integral 1 Litro - Caixa com 12 unidades</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Quantidade: 620 caixas (7.440 un • 10 Paletes) • CD Betim/MG • Custo imobilizado: R$ 33.480,00</p>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between gap-space-xs">
+<button class="px-space-md py-1.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold transition-colors shadow-sm inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">percent</span>
+                    Criar Pregão Deságio 25%
+                  </button>
+</div>
+</div>
+<div class="space-y-1">
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 72%;"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Giro planejado: 60 dias</span>
+<span class="text-primary font-semibold">Janela comercial recomendada para varejo regional</span>
+</div>
+</div>
+</div>
+<!-- ITEM 3: SAUDÁVEL (GIRO NORMAL) -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-xs">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="space-y-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold uppercase">Status Saudável</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lote #F-102 • Venc: 14/10/2026 (Restam 180 dias)</span>
+</div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold">Feijão Carioca Especial 1kg - Fardo com 10 unidades</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Quantidade: 1.500 fardos (15.000 un) • CD Jundiaí • Giro padrão em catálogo ativo</p>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-bold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Giro Regular
+                  </span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 25%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUNA DIREITA (32% -> 4 de 12 colunas) -->
+<div class="lg:col-span-4 space-y-space-lg">
+<!-- 1. RESUMO FINANCEIRO & REPASSES D+0 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Liquidação Fiduciária</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Extrato D+0 Escrow</h3>
+</div>
+<div class="w-9 h-9 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-xl space-y-space-sm">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Recebidos Hoje (Pix SPI)
+              </span>
+<span class="font-label-md text-label-md text-secondary font-bold">R$ 114.280,00</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+                Em Trânsito / Doca Aberta
+              </span>
+<span class="font-label-md text-label-md text-on-surface font-bold">R$ 84.150,00</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+                Taxas Retidas Plataforma
+              </span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">- R$ 4.342,00</span>
+</div>
+<div class="pt-space-xs border-t-0 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">NF-e de Serviço Automática</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Sincronizada</span>
+</div>
+</div>
+<button class="w-full py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md font-bold transition-colors flex items-center justify-center gap-1">
+<span>Ver Extrato Fiduciário Completo</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- 2. CARTEIRA DE CLIENTES VAREJISTAS MAIS ATIVOS -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Relacionamento B2B</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Varejistas Parceiros</h3>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-bold">64 ativos</span>
+</div>
+<div class="space-y-space-sm">
+<!-- CLIENTE 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors space-y-space-xs">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Rede Supermercados Central</h4>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">São José dos Campos/SP • 48 compras</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">Score A+</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Faturamento: <strong class="text-on-surface">R$ 340.000,00</strong></span>
+<span class="text-secondary font-semibold">Crédito Escrow OK</span>
+</div>
+</div>
+<!-- CLIENTE 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors space-y-space-xs">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Hipermercado Estrela do Sul</h4>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Campinas/SP • 32 compras</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">Score A</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Faturamento: <strong class="text-on-surface">R$ 220.000,00</strong></span>
+<span class="text-on-surface-variant">Limite R$ 250k</span>
+</div>
+</div>
+<!-- CLIENTE 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors space-y-space-xs">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Rede MiniBox Conveniência</h4>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Belo Horizonte/MG • 19 compras</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">Score B+</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Faturamento: <strong class="text-on-surface">R$ 96.500,00</strong></span>
+<span class="text-secondary font-semibold">Giro Semanal</span>
+</div>
+</div>
+</div>
+<button class="w-full py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-bold transition-colors shadow-sm">
+            Enviar Tabela Exclusiva / Oferta Direta
+          </button>
+</div>
+<!-- 3. ALERTAS LOGÍSTICOS & EXPEDIÇÃO -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Expedição &amp; Docas</h3>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+</div>
+<div class="space-y-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low space-y-1">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-bold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">local_shipping</span>
+                  Coletas FOB Agendadas
+                </span>
+<span class="px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold font-label-sm text-label-sm">3 Caminhões</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                CD Jundiaí (Docas 02 e 04) das 14h às 17h. Checklist e lacres prontos.
+              </p>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low space-y-1">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-bold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container">receipt_long</span>
+                  MDF-e em Trânsito
+                </span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface font-bold font-label-sm text-label-sm">1 Pendente</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Carga #TR-4402 com destino a Contagem/MG. Aguardando baixa de entrega na SEFAZ.
+              </p>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>SLA de expedição médio:</span>
+<strong class="text-secondary font-bold">4,2 Horas (Excelente)</strong>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

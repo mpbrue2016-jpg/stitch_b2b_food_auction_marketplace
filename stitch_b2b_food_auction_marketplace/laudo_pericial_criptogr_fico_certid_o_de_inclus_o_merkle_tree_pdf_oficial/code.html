@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "background": "#f7f9fb", "secondary-fixed-dim": "#88d982", "surface-container-high": "#e6e8ea", "surface-tint": "#2b5bb5", "on-surface-variant": "#434652", "on-primary-fixed": "#001945", "primary-container": "#0d47a1", "tertiary": "#720009", "surface-container-lowest": "#ffffff", "outline-variant": "#c3c6d4", "on-primary-container": "#a1bbff", "outline": "#737783", "on-tertiary-fixed-variant": "#930010", "tertiary-fixed": "#ffdad6", "on-secondary-fixed": "#002204", "on-tertiary": "#ffffff", "on-error-container": "#93000a", "secondary-container": "#a0f399", "on-primary-fixed-variant": "#00429c", "primary-fixed": "#d9e2ff", "on-secondary": "#ffffff", "on-error": "#ffffff", "surface-container-highest": "#e0e3e5", "on-background": "#191c1e", "error": "#ba1a1a", "on-surface": "#191c1e", "error-container": "#ffdad6", "tertiary-container": "#9d0011", "primary-fixed-dim": "#b0c6ff", "on-secondary-container": "#217128", "surface-container": "#eceef0", "inverse-primary": "#b0c6ff", "surface-container-low": "#f2f4f6", "surface-dim": "#d8dadc", "surface": "#f7f9fb", "tertiary-fixed-dim": "#ffb3ac", "on-secondary-fixed-variant": "#005312", "on-tertiary-fixed": "#410003", "primary": "#003178", "on-tertiary-container": "#ffa59d", "surface-bright": "#f7f9fb", "secondary": "#1b6d24", "inverse-on-surface": "eff1f3", "inverse-surface": "#2d3133", "on-primary": "#ffffff", "secondary-fixed": "#a3f69c", "surface-variant": "#e0e3e5" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "margin": "1.5rem", "gutter": "1rem", "space-md": "0.75rem", "space-xl": "2rem", "space-sm": "0.5rem", "space-lg": "1.25rem", "space-xs": "0.25rem" }, "fontFamily": { "label-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "numeric-timer": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "700" } ], "headline-md": [ "18px", { "lineHeight": "24px", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "fontWeight": "800" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "numeric-timer": [ "20px", { "lineHeight": "24px", "fontWeight": "800" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "fontWeight": "800" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "fontWeight": "700" } ] } } } };</script></head><body class="bg-background text-on-surface font-body-md text-body-md antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin flex items-center gap-space-sm bg-surface-container-lowest"><span class="material-symbols-outlined text-primary text-headline-lg">account_balance</span><div class="flex flex-col"><span class="font-label-lg text-label-lg text-primary tracking-tight">VAREJISTA ONLINE</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Tesouraria &amp; SPB</span></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Módulos SPB / Tesouraria</div><nav class="flex flex-col gap-space-xs mb-space-lg" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="painel-geral-de-liquidacao" href="#"><span class="material-symbols-outlined text-headline-md">payments</span><span>Painel Geral de Liquidação</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="fechamento-noturno-spb" href="#"><span class="material-symbols-outlined text-headline-md">schedule_send</span><span>Fechamento Noturno SPB</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="contas-escrow-e-garantias" href="#"><span class="material-symbols-outlined text-headline-md">shield_with_heart</span><span>Contas Escrow &amp; Garantias</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="remessas-e-retornos-cnab" href="#"><span class="material-symbols-outlined text-headline-md">sync_alt</span><span>Remessas &amp; Retornos CNAB</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="webhooks-e-erp" href="#"><span class="material-symbols-outlined text-headline-md">hub</span><span>Webhooks &amp; ERP</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="fila-dead-letter-queue" href="#"><span class="material-symbols-outlined text-headline-md">mark_email_unread</span><span>Fila Dead Letter Queue</span></a></nav><div class="px-space-sm pb-space-xs font-label-sm text-label-sm uppercase text-outline tracking-wider">Compliance &amp; Auditoria</div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="dossies-bacen" href="#"><span class="material-symbols-outlined text-headline-md">folder_special</span><span>Dossiês BACEN</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="certidoes-oficiais-e-worm" href="#"><span class="material-symbols-outlined text-headline-md">verified</span><span>Certidões Oficiais &amp; WORM</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="sala-virtual-de-inspecao-bacen" href="#"><span class="material-symbols-outlined text-headline-md">meeting_room</span><span>Sala Virtual de Inspeção BACEN</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="trilha-criptografica-e-merkle" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-headline-md">enhanced_encryption</span><span>Trilha Criptográfica &amp; Merkle</span></div><span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-space-xs py-0.5 rounded-lg">Ativo</span></a></nav></div><div class="p-space-md bg-surface-container-lowest m-space-sm rounded-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline uppercase">Segurança Fiduciária</span><span class="font-label-md text-label-md text-on-surface">HSM Dedicado v3.4</span></div><span class="material-symbols-outlined text-secondary text-headline-md">lock</span></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between px-margin"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface font-bold">RSFN/BACEN:</span><span class="font-label-sm text-label-sm text-secondary font-bold">Conectado</span></div><div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-xs rounded-lg"><span class="material-symbols-outlined text-on-surface-variant text-body-md">alarm</span><span class="font-label-sm text-label-sm text-on-surface-variant">Janela SPB:</span><span class="font-label-sm text-label-sm text-error font-bold">Fechada</span><span class="font-label-sm text-label-sm text-outline">/ Grade 26/10 às 07:00 BRT</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-xs text-right"><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface">Dr. Eduardo Sampaio</span><span class="font-label-sm text-label-sm text-on-surface-variant">Auditor e Gestor Fiduciário</span></div></div><div class="flex items-center gap-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAci8SNNF2uqQYmL4lWtB7tHpCXLBYSt-0s893onot-48bQ2CPXsH6ieLn4oUvnEvP03_VO4NIgwBNuMAqqqisVaLDlkctIIRX6qctj9GS3oLbgrhchdMbNBA1lmB4zVJA_rxWM-3kZvHWMrKGnjL7Yz_Ss2kVMpxvlfoBcUe13KRPzm0TXAO6JBOweRe6wMPdktXdIfCJT7Lg5DL0_gBNrRPt7knV7c6rYZnEENofBVOHnGGcn3iXLGaCd"/><span class="material-symbols-outlined text-on-surface-variant text-body-md">expand_more</span></div></div></header><main class="w-full pt-16 bg-background min-h-screen px-margin"><div class="flex flex-col w-full">
+<!-- Top Navigation & Context Bar -->
+<div class="w-full bg-surface-container-lowest px-margin py-space-sm mb-space-md shadow-sm">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<nav class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">Início</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Liquidação SPB &amp; Tesouraria</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Compliance &amp; Auditoria</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Trilha Criptográfica</a>
+<span>/</span>
+<span class="text-primary font-bold">Laudo Pericial Criptográfico</span>
+</nav>
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded text-on-surface font-label-sm text-label-sm uppercase font-bold tracking-tight">
+<span class="material-symbols-outlined text-secondary text-base">verified</span>
+            LAUDO PERICIAL HOMOLOGADO • PADRÃO PAdES LTV
+          </span>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded text-on-surface font-label-sm text-label-sm uppercase font-bold tracking-tight">
+<span class="material-symbols-outlined text-primary text-base">memory</span>
+            HSM NÍVEL 3 VALIDADO
+          </span>
+<span class="inline-flex items-center gap-1 bg-secondary-container px-2 py-0.5 rounded text-on-secondary-container font-label-sm text-label-sm uppercase font-bold tracking-tight">
+<span class="material-symbols-outlined text-secondary text-base">gavel</span>
+            RECONHECIMENTO JURÍDICO PLENO (LEI 14.063/2020)
+          </span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md rounded transition-colors shadow-sm cursor-pointer" onclick="window.print()">
+<span class="material-symbols-outlined text-base">print</span>
+<span>Imprimir Certidão</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md rounded transition-colors shadow-sm cursor-pointer" id="btnExportJson">
+<span class="material-symbols-outlined text-base">code</span>
+<span>Exportar Hashes (JSON)</span>
+</button>
+<a class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md rounded transition-colors shadow-sm cursor-pointer" href="https://validar.iti.gov.br" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-base">open_in_new</span>
+<span>Validador ITI Oficial</span>
+</a>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md rounded transition-colors shadow-md cursor-pointer font-bold">
+<span class="material-symbols-outlined text-base">download</span>
+<span>Baixar Laudo Oficial (.PDF Assinado)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Audit Metrics Header -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-sm mb-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Lote Periciado</span>
+<span class="material-symbols-outlined text-primary text-xl">inventory_2</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface tracking-tight">#SBE-2026-09</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">Biscoito Cream Cracker 400g (500 Cxs)</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-2 py-1 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Posição Merkle:</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Folha 0 de 84 • R$ 38.000,00</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Raiz do Bloco SPB</span>
+<span class="material-symbols-outlined text-primary text-xl">account_tree</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-mono text-primary truncate tracking-tight" title="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855">
+          e3b0c442...7852b855
+        </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Bloco #BLK-2026-9042 • 85 Lotes Conciliados</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-2 py-1 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Volume Total Bloco:</span>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">R$ 4.852.150,00</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Profundidade da Prova</span>
+<span class="material-symbols-outlined text-secondary text-xl">psychology</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface tracking-tight">7 Hashes Concatenados</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Complexidade Algorítmica: O(log₂ 85)</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-secondary-container px-2 py-1 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-secondary-container font-bold">Zero-Knowledge Proof:</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container font-bold">Preservado 100%</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Carimbo do Tempo (ACT)</span>
+<span class="material-symbols-outlined text-primary text-xl">nest_clock_farsight_analog</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-on-surface tracking-tight">25/10/2026 19:48:33 BRT</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Observatório Nacional • NTP Stratum 1</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-2 py-1 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Deriva Máxima:</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">±0.002s (Cripto-auditado)</span>
+</div>
+</div>
+</div>
+<!-- Main Grid: Document Sheet (Left 8 cols) + Side Authority Panel (Right 4 cols) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- LEFT: Official Pericial Sheet (8 cols) -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<article class="bg-surface-container-lowest p-8 md:p-12 rounded shadow-md relative overflow-hidden flex flex-col">
+<!-- Document Watermark Background (Security Pattern) -->
+<div aria-hidden="true" class="absolute inset-0 pointer-events-none opacity-[0.025] flex items-center justify-center select-none">
+<div class="rotate-[-35deg] text-center">
+<span class="text-8xl font-black text-on-surface tracking-widest block uppercase">ICP-BRASIL</span>
+<span class="text-5xl font-black text-on-surface tracking-widest block uppercase">LAUDO HOMOLOGADO BACEN</span>
+<span class="text-6xl font-black text-on-surface tracking-widest block uppercase">VAREJISTA ONLINE SA</span>
+</div>
+</div>
+<!-- Sheet Header with Crest / Pericial Insignia -->
+<header class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md pb-space-lg bg-surface-container-low p-6 rounded mb-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-16 h-16 rounded bg-primary text-on-primary flex items-center justify-center shadow-sm shrink-0">
+<span class="material-symbols-outlined text-4xl">policy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">
+                REPÚBLICA FEDERATIVA DO BRASIL • SISTEMA FINANCEIRO NACIONAL
+              </span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-extrabold">
+                INSTITUTO DE PERÍCIAS DIGITAIS &amp; AUDITORIA CRIPTOGRÁFICA
+              </h1>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+                Câmara Técnica Forense em Consórcio com Varejista Online S.A. • Registro BACEN #SPB-9941
+              </span>
+</div>
+</div>
+<div class="text-left md:text-right shrink-0">
+<div class="bg-surface-container-lowest px-3 py-1.5 rounded shadow-sm inline-block">
+<span class="font-label-sm text-label-sm text-outline block uppercase">Protocolo Pericial Único</span>
+<span class="font-mono font-bold text-body-md text-primary tracking-tight">LAUDO-CRIPTO-2026-9042-SBE</span>
+</div>
+</div>
+</header>
+<!-- Document Body Title -->
+<div class="relative z-10 text-center my-space-md py-space-sm bg-surface-container-high/40 rounded">
+<h2 class="font-headline-md text-headline-md text-primary tracking-tight uppercase px-4 font-extrabold">
+            LAUDO TÉCNICO PERICIAL DE VERIFICAÇÃO DE INCLUSÃO MATEMÁTICA EM ÁRVORE DE MERKLE
+          </h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+            (CRYPTOGRAPHIC PROOF OF INCLUSION • RFC 6962 &amp; RFC 8785)
+          </span>
+</div>
+<!-- Section 1: Object & Scientific Methodology -->
+<section class="relative z-10 mb-space-lg">
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="w-2.5 h-2.5 bg-primary rounded-full"></span>
+<h3 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">
+              1. DO OBJETO E METODOLOGIA CIENTÍFICA APLICADA
+            </h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-justify leading-relaxed mb-space-sm">
+            Trata-se de exame técnico-forense pericial realizado sobre o acervo computacional do fechamento da Grade Noturna de Liquidação SPB do Varejista Online S.A. no dia <strong>25 de outubro de 2026 às 19:48:33 BRT</strong>. O objetivo do presente laudo consiste em atestar formalmente, para fins de submissão ao Banco Central do Brasil (BACEN) e órgãos reguladores, que a transação correspondente ao <strong>Lote #SBE-2026-09</strong> (Biscoito Cream Cracker 400g - 500 Caixas, no montante nominal de R$ 38.000,00) integra irrefutavelmente o <strong>Bloco Consolidado #BLK-2026-9042</strong>.
+          </p>
+<p class="font-body-md text-body-md text-on-surface-variant text-justify leading-relaxed">
+            A perícia aplicou os padrões científicos internacionais formalizados no documento <strong>RFC 6962</strong> (Certificate Transparency) combinado com a <strong>RFC 8785 (JSON Canonicalization Scheme - JCS)</strong>, utilizando funções criptográficas de dispersão unidirecional <strong>SHA-256 (FIPS 180-4)</strong>. A prova matemática de inclusão (<em>Merkle Inclusion Path</em>) garante, em regime de <em>Zero-Knowledge</em>, que a integridade do lote está vinculada à Raiz Mestra sem requerer a descriptografia dos outros 84 lotes concorrentes, preservando integralmente o sigilo fiduciário e bancário.
+          </p>
+</section>
+<!-- Section 2: Mathematical Computation & Siblings Hash Table -->
+<section class="relative z-10 mb-space-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 bg-primary rounded-full"></span>
+<h3 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">
+                2. DA COMPUTAÇÃO MATEMÁTICA E TABELA DE CONCATENAÇÃO DOS NÓS IRMÃOS (SIBLINGS)
+              </h3>
+</div>
+<span class="font-label-sm text-label-sm bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded font-bold">
+              CONVERGÊNCIA 100%
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm text-justify">
+            Abaixo, demonstra-se a computação estrita dos 7 saltos algorítmicos. O algoritmo executa sucessivas operações <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-mono text-body-sm">SHA256(Node_Left || Node_Right)</code>, provando a rota ascendente até a Raiz do Bloco:
+          </p>
+<!-- Formal Pericial Table -->
+<div class="w-full overflow-x-auto rounded bg-surface-container-low p-2">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-high text-on-surface font-label-sm text-label-sm uppercase">
+<th class="p-2 rounded-l">Nível</th>
+<th class="p-2">Operação de Hash Canônico (SHA-256)</th>
+<th class="p-2">Nó Irmão Fornecido (Sibling)</th>
+<th class="p-2 text-right rounded-r">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Level 1 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="p-2 font-bold font-mono text-primary">N1</td>
+<td class="p-2">
+<div class="font-mono text-body-sm text-on-surface">H(Folha L0 + Sibling L1)</div>
+<div class="font-mono text-xs text-outline">0x7c2a11b9... + 0x4e918c01...</div>
+</td>
+<td class="p-2 font-mono text-xs text-on-surface-variant">4e918c01824a612501e7492193b0df</td>
+<td class="p-2 text-right">
+<span class="inline-flex items-center gap-1 text-secondary font-bold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span> OK
+                    </span>
+</td>
+</tr>
+<!-- Level 2 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="p-2 font-bold font-mono text-primary">N2</td>
+<td class="p-2">
+<div class="font-mono text-body-sm text-on-surface">H(Hash N1_2 + Sibling N3_4)</div>
+<div class="font-mono text-xs text-outline">0x992b4510... + 0x3d0fca88...</div>
+</td>
+<td class="p-2 font-mono text-xs text-on-surface-variant">3d0fca8820c7419ef0052ba6381204</td>
+<td class="p-2 text-right">
+<span class="inline-flex items-center gap-1 text-secondary font-bold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span> OK
+                    </span>
+</td>
+</tr>
+<!-- Level 3 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="p-2 font-bold font-mono text-primary">N3</td>
+<td class="p-2">
+<div class="font-mono text-body-sm text-on-surface">H(Hash N1_4 + Sibling N5_8)</div>
+<div class="font-mono text-xs text-outline">0x14ea807c... + 0xa87154eb...</div>
+</td>
+<td class="p-2 font-mono text-xs text-on-surface-variant">a87154ebdca09301fec695420176d1</td>
+<td class="p-2 text-right">
+<span class="inline-flex items-center gap-1 text-secondary font-bold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span> OK
+                    </span>
+</td>
+</tr>
+<!-- Level 4 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="p-2 font-bold font-mono text-primary">N4</td>
+<td class="p-2">
+<div class="font-mono text-body-sm text-on-surface">H(Hash N1_8 + Sibling N9_16)</div>
+<div class="font-mono text-xs text-outline">0x88c4b127... + 0x51c72019...</div>
+</td>
+<td class="p-2 font-mono text-xs text-on-surface-variant">51c72019fe8260a92cd840131498fa</td>
+<td class="p-2 text-right">
+<span class="inline-flex items-center gap-1 text-secondary font-bold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span> OK
+                    </span>
+</td>
+</tr>
+<!-- Level 5 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="p-2 font-bold font-mono text-primary">N5</td>
+<td class="p-2">
+<div class="font-mono text-body-sm text-on-surface">H(Hash N1_16 + Sibling N17_32)</div>
+<div class="font-mono text-xs text-outline">0x0d3f9e8a... + 0x76b41290...</div>
+</td>
+<td class="p-2 font-mono text-xs text-on-surface-variant">76b41290ab5d321049c0018f3a55e2</td>
+<td class="p-2 text-right">
+<span class="inline-flex items-center gap-1 text-secondary font-bold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span> OK
+                    </span>
+</td>
+</tr>
+<!-- Level 6 -->
+<tr class="hover:bg-surface-container-lowest/80 transition-colors">
+<td class="p-2 font-bold font-mono text-primary">N6</td>
+<td class="p-2">
+<div class="font-mono text-body-sm text-on-surface">H(Hash N1_32 + Sibling N33_64)</div>
+<div class="font-mono text-xs text-outline">0x6e2410a0... + 0xd118fa30...</div>
+</td>
+<td class="p-2 font-mono text-xs text-on-surface-variant">d118fa30c9e7821469b82145e128cc</td>
+<td class="p-2 text-right">
+<span class="inline-flex items-center gap-1 text-secondary font-bold font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span> OK
+                    </span>
+</td>
+</tr>
+<!-- Level 7: Root Convergence -->
+<tr class="bg-secondary-container/30">
+<td class="p-2 font-bold font-mono text-secondary">N7</td>
+<td class="p-2" colspan="2">
+<div class="font-mono font-bold text-body-sm text-on-surface">
+                      H(Hash N1_64 + Sibling N65_85) → <span class="text-primary">RAIZ EXATA DO BLOCO</span>
+</div>
+<div class="font-mono text-xs text-secondary font-bold break-all">
+                      e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                    </div>
+</td>
+<td class="p-2 text-right">
+<span class="inline-flex items-center gap-1 text-secondary font-bold font-label-sm text-label-sm uppercase bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm">
+<span class="material-symbols-outlined text-sm">verified_user</span> 100% EXATO
+                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Section 3: Conclusive Opinion & Legal Weight -->
+<section class="relative z-10 mb-space-xl">
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="w-2.5 h-2.5 bg-primary rounded-full"></span>
+<h3 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface font-bold">
+              3. DO PARECER CONCLUSIVO E EFICÁCIA PROBATÓRIA
+            </h3>
+</div>
+<div class="bg-surface-container-low p-space-md rounded text-justify">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed mb-space-sm font-medium">
+              À vista da perfeita conciliação matemática obtida, o Perito e os subscritores atestam, sob as penas da lei, com certeza probabilística formal absoluta (probabilidade de colisão fortuita ou adulteração fraudulenta inferior a <strong>1 em 10<sup>77</sup></strong> no espaço de busca SHA-256), que:
+            </p>
+<ol class="list-decimal list-inside font-body-sm text-body-sm text-on-surface-variant space-y-1 mb-space-sm pl-2">
+<li>O <strong>Lote #SBE-2026-09</strong> integrou estritamente a remessa financeira enviada ao Sistema de Pagamentos Brasileiro (SPB);</li>
+<li>Nenhum bit de metadados fiduciários (volume, EAN, shelf-life ou destinatário) foi modificado posteriormente ao carimbo temporal;</li>
+<li>O presente laudo goza de presunção legal de veracidade conforme Art. 10, § 1º da MP 2.200-2/2001 e Art. 5º da Lei Federal nº 14.063/2020.</li>
+</ol>
+<div class="flex items-center gap-2 text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-base">gavel</span>
+              CONCLUSÃO: LAUDO FAVORÁVEL COM EFICÁCIA EXECUTIVA EXTRAJUDICIAL PLENA.
+            </div>
+</div>
+</section>
+<!-- Qualified Signatures Block -->
+<section class="relative z-10 mt-auto pt-space-lg bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Signer 1: Perito -->
+<div class="bg-surface-container-low p-4 rounded flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">fingerprint</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">ICP-Brasil A3 Válido</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline-md text-body-md text-on-surface font-bold">Dr. Matheus Resende Silveira</div>
+<div class="font-body-sm text-body-sm text-outline">Perito Forense Computacional</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">CREA-SP #506.291 • Apejesp #1.402</div>
+</div>
+<div class="mt-3 pt-2 bg-surface-container px-2 py-1 rounded font-mono text-[10px] text-outline truncate" title="Assinatura CAdES-BES Hash: 9918abf803c48192e401">
+                SHA: 9918abf803c48192e401...
+              </div>
+</div>
+<!-- Signer 2: CCO -->
+<div class="bg-surface-container-low p-4 rounded flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">verified</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">ICP-Brasil A3 Válido</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline-md text-body-md text-on-surface font-bold">Dra. Mariana Vasconcellos</div>
+<div class="font-body-sm text-body-sm text-outline">Chief Compliance Officer</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">OAB/SP #312.809 • Varejista Online S.A.</div>
+</div>
+<div class="mt-3 pt-2 bg-surface-container px-2 py-1 rounded font-mono text-[10px] text-outline truncate" title="Assinatura CAdES-BES Hash: 4018cf822180bd925a">
+                SHA: 4018cf822180bd925a...
+              </div>
+</div>
+<!-- Hardware Signer: HSM -->
+<div class="bg-surface-container-low p-4 rounded flex flex-col justify-between">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">lock_open_right</span>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Hardware HSM Luna</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline-md text-body-md text-on-surface font-bold">Chave Notarial de Hardware</div>
+<div class="font-body-sm text-body-sm text-outline">FIPS 140-2 Level 3 Validated</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Serial #HSM-SANT-9801-R3</div>
+</div>
+<div class="mt-3 pt-2 bg-surface-container px-2 py-1 rounded font-mono text-[10px] text-outline truncate" title="Chave Pública RSA-4096: 0x9fa812048bcefa40">
+                PUB: 0x9fa812048bcefa40...
+              </div>
+</div>
+</div>
+</section>
+</article>
+</div>
+<!-- RIGHT: Side Authority Panel (4 cols) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Card: QR Code & ITI Verification -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col items-center text-center">
+<div class="w-full flex items-center justify-between pb-space-xs mb-space-sm bg-surface-container-low px-3 py-1.5 rounded">
+<span class="font-label-sm text-label-sm uppercase font-bold text-on-surface">Chancela Digital ITI</span>
+<span class="material-symbols-outlined text-secondary text-base">verified</span>
+</div>
+<!-- SVG Generated QR Code -->
+<div class="w-44 h-44 p-2 bg-surface-container-lowest rounded shadow-inner flex items-center justify-center my-2">
+<svg class="w-full h-full text-on-surface" fill="currentColor" viewbox="0 0 100 100">
+<!-- QR Pattern Simulation -->
+<path d="M5,5 h30 v30 h-30 z M10,10 v20 h20 v-20 z M15,15 h10 v10 h-10 z"></path>
+<path d="M65,5 h30 v30 h-30 z M70,10 v20 h20 v-20 z M75,15 h10 v10 h-10 z"></path>
+<path d="M5,65 h30 v30 h-30 z M10,70 v20 h20 v-20 z M15,75 h10 v10 h-10 z"></path>
+<rect height="8" width="8" x="42" y="8"></rect>
+<rect height="14" width="6" x="54" y="8"></rect>
+<rect height="6" width="14" x="42" y="24"></rect>
+<rect height="8" width="10" x="8" y="42"></rect>
+<rect height="12" width="6" x="24" y="42"></rect>
+<rect height="6" width="14" x="8" y="54"></rect>
+<rect height="16" width="16" x="42" y="42"></rect>
+<rect height="6" width="10" x="65" y="42"></rect>
+<rect height="10" width="12" x="82" y="42"></rect>
+<rect height="14" width="8" x="65" y="54"></rect>
+<rect height="6" width="14" x="80" y="58"></rect>
+<rect height="12" width="8" x="42" y="65"></rect>
+<rect height="8" width="6" x="54" y="65"></rect>
+<rect height="12" width="14" x="42" y="82"></rect>
+<rect height="8" width="28" x="65" y="75"></rect>
+<rect height="6" width="18" x="75" y="88"></rect>
+<!-- Center Pericial Badge -->
+<circle class="text-primary fill-current" cx="50" cy="50" r="8"></circle>
+<path d="M47,50 l2,2 l4,-4" fill="none" stroke="#ffffff" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-1">Código de Autenticação ITI</div>
+<div class="font-mono font-bold text-body-sm text-on-surface mb-2">VERIF-BACEN-2026-9042-SBE</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm leading-tight">
+          Aponte a câmera para auditar a cadeia criptográfica completa na infraestrutura de Chaves Públicas Brasileira (ICP-Brasil).
+        </p>
+<button class="w-full py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded font-bold transition-colors">
+          Copiar Link de Verificação Pública
+        </button>
+</div>
+<!-- Card: WORM S3 Vault Proof -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm">
+<div class="flex items-center gap-space-xs mb-space-sm">
+<span class="material-symbols-outlined text-primary text-xl">enhanced_encryption</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Cofre de Custódia WORM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+          Arquivo imutável gravado sob a política Write Once, Read Many (WORM) com bloqueio legal estrito.
+        </p>
+<div class="space-y-2 bg-surface-container-low p-space-sm rounded">
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-outline font-label-sm text-label-sm uppercase">Modo de Bloqueio:</span>
+<span class="font-bold text-on-surface font-mono">Object Lock Compliance</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-outline font-label-sm text-label-sm uppercase">Retenção Obrigatória:</span>
+<span class="font-bold text-secondary font-mono">Até 25/10/2031 (5 Anos)</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-outline font-label-sm text-label-sm uppercase">S3 Bucket ARN:</span>
+<span class="font-bold text-on-surface font-mono text-xs">arn:aws:s3:::spb-audit-worm</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="text-outline font-label-sm text-label-sm uppercase">Versão do Objeto:</span>
+<span class="font-bold text-primary font-mono text-xs">v3.91.4-LTV</span>
+</div>
+</div>
+</div>
+<!-- Card: 3 Levels of Cryptographic Validation -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm">
+<div class="font-label-lg text-label-lg text-on-surface font-bold mb-space-sm flex items-center justify-between">
+<span>Tripla Validação Automática</span>
+<span class="material-symbols-outlined text-secondary text-xl">fact_check</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Step 1 -->
+<div class="flex items-start gap-space-sm p-space-xs bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-secondary text-xl mt-0.5">task_alt</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">1. Sintaxe RFC 8785 (JCS)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Canonicalização de payload JSON livre de variações de espaço ou encoding.</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-space-sm p-space-xs bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-secondary text-xl mt-0.5">task_alt</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">2. Rigor Matemático SHA-256</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Conferência dos 7 hashes irmãos sem detecção de colisões ou anomalias.</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-space-sm p-space-xs bg-surface-container-low rounded">
+<span class="material-symbols-outlined text-secondary text-xl mt-0.5">task_alt</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">3. Root Hash Matching</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Convergência idêntica com a Raiz Merkle registrada no fechamento noturno SPB.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card: Quick Hash Copy -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Extrato Hexadecimal da Folha</span>
+<button class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary hover:underline font-bold cursor-pointer" id="btnCopyLeaf">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copiar
+          </button>
+</div>
+<div class="bg-surface-container p-space-xs rounded font-mono text-xs text-on-surface break-all select-all">
+          7c2a11b9845012e845c110294812ffcb09148201948512847120481230182410
+        </div>
+</div>
+</div>
+</div>
+<!-- Operational Footer & Quick Navigation -->
+<footer class="w-full bg-surface-container-lowest p-space-lg rounded shadow-sm mb-space-xl flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row items-center justify-between gap-space-md pb-space-md bg-surface-container-low p-4 rounded">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-2xl">arrow_back</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Retornar ao Monitor de Auditoria</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Navegação entre módulos correlacionados do SPB / BACEN</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs">
+<a class="px-3 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded font-bold transition-colors" href="#">
+          ← Trilha Criptográfica &amp; Merkle Tree
+        </a>
+<a class="px-3 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded font-bold transition-colors" href="#">
+          Central de Dossiês BACEN
+        </a>
+<a class="px-3 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded font-bold transition-colors" href="#">
+          Termo de Fiscalização Homologado
+        </a>
+<a class="px-3 py-2 bg-primary text-on-primary font-label-md text-label-md rounded font-bold transition-colors" href="#">
+          Painel Geral SPB
+        </a>
+</div>
+</div>
+<!-- Security Badges & Formal Seals -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex flex-wrap items-center gap-space-md text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">security</span> SHA-256 (FIPS 180-4)</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">verified</span> RFC 6962 AUDITED</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">approval</span> PAdES LTV ICP-BRASIL</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">shield</span> ISO/IEC 27001 CUSTODY</span>
+</div>
+<div class="font-body-sm text-body-sm text-outline text-right">
+        Varejista Online S.A. • CNPJ 12.345.678/0001-90 • Sistema de Pagamentos Brasileiro (BACEN)
+      </div>
+</div>
+</footer>
+</div>
+<script>
+  // Quick Copy Feedback micro-interaction
+  document.getElementById('btnCopyLeaf')?.addEventListener('click', function() {
+    const textToCopy = "7c2a11b9845012e845c110294812ffcb09148201948512847120481230182410";
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      const originalHTML = this.innerHTML;
+      this.innerHTML = '<span class="material-symbols-outlined text-sm">done</span> Copiado!';
+      setTimeout(() => {
+        this.innerHTML = originalHTML;
+      }, 2000);
+    });
+  });
+
+  // Export JSON Micro-interaction
+  document.getElementById('btnExportJson')?.addEventListener('click', function() {
+    const merkleEvidence = {
+      protocolo: "LAUDO-CRIPTO-2026-9042-SBE",
+      loteAuditado: {
+        id: "#SBE-2026-09",
+        descricao: "Biscoito Cream Cracker 400g - 500 Cx",
+        valor: 38000.00,
+        folhaHash: "7c2a11b9845012e845c110294812ffcb09148201948512847120481230182410",
+        indice: 0
+      },
+      bloco: {
+        id: "#BLK-2026-9042",
+        totalLotes: 85,
+        valorTotal: 4852150.00,
+        merkleRoot: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      caminhoInclusao: [
+        { nivel: 1, sibling: "4e918c01824a612501e7492193b0df" },
+        { nivel: 2, sibling: "3d0fca8820c7419ef0052ba6381204" },
+        { nivel: 3, sibling: "a87154ebdca09301fec695420176d1" },
+        { nivel: 4, sibling: "51c72019fe8260a92cd840131498fa" },
+        { nivel: 5, sibling: "76b41290ab5d321049c0018f3a55e2" },
+        { nivel: 6, sibling: "d118fa30c9e7821469b82145e128cc" },
+        { nivel: 7, sibling: "Raiz_Calculada_100%_Match" }
+      ],
+      carimboDoTempo: {
+        fonte: "Observatorio Nacional (NTP Stratum 1)",
+        timestamp: "2026-10-25T19:48:33-03:00"
+      },
+      assinaturas: [
+        { perito: "Dr. Matheus Resende Silveira", tipo: "ICP-Brasil A3" },
+        { cco: "Dra. Mariana Vasconcellos", tipo: "ICP-Brasil A3" },
+        { hsm: "HSM Luna FIPS 140-2 Level 3", serial: "HSM-SANT-9801-R3" }
+      ]
+    };
+
+    const blob = new Blob([JSON.stringify(merkleEvidence, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "PROVA_MERKLE_SBE_2026_09.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+</script></main></div></body></html>

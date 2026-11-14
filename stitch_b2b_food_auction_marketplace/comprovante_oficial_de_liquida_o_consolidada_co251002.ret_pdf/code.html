@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-container": "#a1bbff", "primary-fixed": "#d9e2ff", "on-primary-fixed-variant": "#00429c", "tertiary-container": "#9d0011", "secondary": "#1b6d24", "on-error-container": "#93000a", "tertiary-fixed-dim": "#ffb3ac", "on-tertiary-container": "#ffa59d", "surface-container-highest": "#e0e3e5", "surface-container-lowest": "#ffffff", "on-tertiary": "#ffffff", "on-secondary-fixed": "#002204", "primary-container": "#0d47a1", "outline": "#737783", "surface-bright": "#f7f9fb", "inverse-surface": "#2d3133", "outline-variant": "#c3c6d4", "on-error": "#ffffff", "inverse-primary": "#b0c6ff", "surface-tint": "#2b5bb5", "on-background": "#191c1e", "background": "#f7f9fb", "inverse-on-surface": "#eff1f3", "on-tertiary-fixed-variant": "#930010", "on-surface": "#191c1e", "on-secondary-container": "#217128", "primary": "#003178", "on-primary": "#ffffff", "surface-container-low": "#f2f4f6", "on-tertiary-fixed": "#410003", "on-secondary-fixed-variant": "#005312", "error-container": "#ffdad6", "secondary-fixed": "#a3f69c", "tertiary-fixed": "#ffdad6", "secondary-fixed-dim": "#88d982", "error": "#ba1a1a", "surface-container": "#eceef0", "primary-fixed-dim": "#b0c6ff", "surface-dim": "#d8dadc", "surface-container-high": "#e6e8ea", "surface": "#f7f9fb", "tertiary": "#720009", "surface-variant": "#e0e3e5", "secondary-container": "#a0f399", "on-primary-fixed": "#001945", "on-secondary": "#ffffff", "on-surface-variant": "#434652" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-mobile": "1rem", "space-lg": "1.25rem", "gutter": "1rem", "space-md": "0.75rem", "space-sm": "0.5rem", "space-xl": "2rem", "gutter-mobile": "0.75rem", "margin": "1.5rem", "space-xs": "0.25rem" }, "fontFamily": { "headline-lg-mobile": [ "Plus Jakarta Sans" ], "label-sm": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "numeric-timer": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-xl": [ "Plus Jakarta Sans" ], "label-md": [ "Plus Jakarta Sans" ], "label-lg": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ] }, "fontSize": { "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "700" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "fontWeight": "700" } ], "numeric-timer": [ "20px", { "lineHeight": "24px", "fontWeight": "800" } ], "headline-md": [ "18px", { "lineHeight": "24px", "fontWeight": "700" } ], "headline-xl": [ "32px", { "lineHeight": "40px", "fontWeight": "800" } ], "label-md": [ "12px", { "lineHeight": "16px", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "600" } ], "headline-xl-mobile": [ "24px", { "lineHeight": "32px", "fontWeight": "800" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><main class="w-full min-h-screen bg-surface flex items-center justify-center p-space-md"><div class="flex flex-col w-full">
+<!-- Top Navigation & Action Deck -->
+<div class="w-full bg-surface-container-low px-space-lg py-space-md mb-space-lg shadow-sm">
+<div class="max-w-[1240px] mx-auto flex flex-col gap-space-sm">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-space-xs text-body-sm font-body-sm text-outline flex-wrap">
+<span class="hover:text-primary cursor-pointer transition-colors">PAINEL MASTER</span>
+<span class="material-symbols-outlined text-outline-variant text-[14px]">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">FINANCEIRO &amp; ESCROW</span>
+<span class="material-symbols-outlined text-outline-variant text-[14px]">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">REPASSES &amp; CONCILIAÇÃO</span>
+<span class="material-symbols-outlined text-outline-variant text-[14px]">chevron_right</span>
+<span class="font-label-md text-body-sm text-on-surface-variant">RETORNO CO251002.RET</span>
+<span class="material-symbols-outlined text-outline-variant text-[14px]">chevron_right</span>
+<span class="font-label-md text-body-sm text-primary font-bold">COMPROVANTE OFICIAL DE LIQUIDAÇÃO CONSOLIDADA</span>
+</nav>
+<!-- Page Header & Action Controls -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pt-space-xs">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+              Comprovante Oficial de Liquidação Fiduciária Bancária • Lote Consolidado CO251002.RET
+            </h1>
+</div>
+<!-- Validation Badges -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="inline-flex items-center gap-1 bg-surface-container-lowest text-primary px-2.5 py-0.5 rounded text-label-sm font-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[13px] text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+              DOCUMENTO AUTENTICADO EM LEDGER
+            </span>
+<span class="inline-flex items-center gap-1 bg-primary-fixed text-on-primary-fixed px-2.5 py-0.5 rounded text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[13px]">picture_as_pdf</span>
+              PADRÃO PDF/A-1b
+            </span>
+<span class="inline-flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed px-2.5 py-0.5 rounded text-label-sm font-label-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+              ASSINATURA DIGITAL ICP-BRASIL A3 VÁLIDA
+            </span>
+<span class="inline-flex items-center gap-1 bg-error-container text-tertiary px-2.5 py-0.5 rounded text-label-sm font-label-sm font-bold">
+<span class="material-symbols-outlined text-[13px]">account_balance</span>
+              CHANCELA SANTANDER (033)
+            </span>
+</div>
+</div>
+<!-- Toolbar Buttons -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest text-on-surface text-label-md font-label-md rounded shadow-sm hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            Voltar ao Retorno CO251002.RET
+          </button>
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest text-on-surface text-label-md font-label-md rounded shadow-sm hover:bg-surface-container transition-colors" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[16px]">print</span>
+            Imprimir / Salvar PDF
+          </button>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary text-on-primary text-label-md font-label-md rounded shadow-sm hover:bg-primary-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">download</span>
+            Download Arquivo .PDF (PDF/A-1b Assinado)
+          </button>
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest text-on-surface text-label-md font-label-md rounded shadow-sm hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">security</span>
+            Validar Hash no ITI / Assinador Digital
+          </button>
+<button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest text-on-surface text-label-md font-label-md rounded shadow-sm hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">outgoing_mail</span>
+            Enviar Cópia p/ Auditoria
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Document Container: Emulating High-Fidelity A4 Regulatory Paper -->
+<div class="w-full flex justify-center px-space-sm sm:px-space-md pb-space-xl">
+<div class="w-full max-w-[1020px] bg-surface-container-lowest shadow-xl rounded-sm p-6 sm:p-10 relative overflow-hidden">
+<!-- Antifraud Security Guilloche Texture Bar -->
+<div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary via-primary-container to-secondary"></div>
+<!-- Watermark Background Layer -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.035] -rotate-45 z-0">
+<span class="text-[52px] font-black uppercase tracking-widest text-primary text-center leading-tight">
+          DOCUMENTO OFICIAL DE LIQUIDAÇÃO FIDUCIÁRIA BACEN / SANTANDER
+        </span>
+</div>
+<div class="relative z-10 flex flex-col gap-space-lg">
+<!-- 1. Institutional Header of PDF -->
+<div class="flex flex-col md:flex-row items-start justify-between gap-space-md pb-space-md bg-surface-container-lowest">
+<div class="flex flex-col gap-space-xs max-w-xl">
+<div class="flex items-center gap-space-md">
+<img alt="Logotipo Corporativo Varejista Online" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzH1NtmiaU_5p1iil984tVJ9ST0cLaujyJHjBP-8HtO4_ogVILTWoDTOhblqWvDDwJ2mbOyAcOmavNPcdCFEzhw1jPIfr_kJNatU34xvqrKxYAPlwHd49WpoVEcs3qOlcANx3zDyOYi2ZfCbILFV-8yQxqpJGgulJyETNN6lYX0QYp7tkLZ6_o6dx9byxQpbrDF_FwliPPiXgCuC3SJ6pGeJ7oVDnnd0CDlcahN1gbgczeyJ_nP2RK5Q"/>
+<div class="h-8 w-px bg-surface-container-highest"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider">Varejista Online S.A.</span>
+<span class="text-body-sm font-body-sm text-outline">Marketplace B2B • CNPJ 22.784.918/0001-09</span>
+</div>
+</div>
+<div class="mt-2 flex flex-col gap-0.5 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="font-semibold text-primary">Instituição Custodiante &amp; Liquidante:</span>
+<span>Banco Santander (Brasil) S.A. (Código 033)</span>
+</div>
+<div>Agência Central de Câmbio e Custódia 0001 • Conta Escrow Fiduciária Vinculada: <strong class="text-on-surface font-mono">99281-0</strong></div>
+<div class="text-[11px] text-outline font-mono">Chancela Host-to-Host FEBRABAN CNAB 240 / Convênio de Cobrança e Repasses #SAN-88319-C</div>
+</div>
+</div>
+<!-- Document Code & Fast Verification QR Box -->
+<div class="flex md:flex-col items-center md:items-end justify-between w-full md:w-auto bg-surface-container-low p-space-sm rounded">
+<div class="flex items-center gap-space-sm">
+<div class="text-right">
+<span class="block text-label-sm font-label-sm text-outline uppercase tracking-wider font-bold">Protocolo BACEN / Santander</span>
+<span class="block font-mono text-[11px] font-bold text-primary">LIQ-CONSOL-SAN-20261025-CO251002</span>
+<span class="block text-[10px] text-outline mt-0.5">ACT: 25/10/2026 18:01:04 BRT (ON / ICP-Brasil)</span>
+</div>
+<!-- Generated High-Density Verification QR Code Inline SVG -->
+<div class="w-16 h-16 bg-surface-container-lowest p-1 rounded shadow-sm flex items-center justify-center">
+<svg class="w-full h-full text-primary" fill="currentColor" viewbox="0 0 100 100">
+<path d="M0,0 h30 v30 h-30 z M10,10 h10 v10 h-10 z M70,0 h30 v30 h-30 z M80,10 h10 v10 h-10 z M0,70 h30 v30 h-30 z M10,80 h10 v10 h-10 z M40,10 h10 v10 h-10 z M55,0 h10 v10 h-10 z M40,35 h20 v10 h-20 z M10,40 h15 v20 h-15 z M70,40 h25 v10 h-25 z M70,60 h10 v20 h-10 z M45,70 h20 v10 h-20 z M85,75 h15 v25 h-15 z M35,85 h10 v15 h-10 z M55,90 h20 v10 h-20 z"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Document Formal Classification Box -->
+<div class="bg-primary text-on-primary px-space-md py-space-sm rounded flex flex-col md:flex-row md:items-center justify-between gap-space-xs">
+<div>
+<h2 class="font-headline-md text-headline-md tracking-tight uppercase text-on-primary">
+              Termo &amp; Comprovante Oficial de Liquidação Fiduciária, Batimento CNAB 240 e Desbloqueio D+0
+            </h2>
+<p class="text-body-sm font-body-sm text-on-primary-container">
+              Efetivação de transferência interbancária definitiva sob Regime Especial de Conta Escrow Vinculada e Patrimônio de Afetação.
+            </p>
+</div>
+<span class="bg-secondary text-on-secondary px-3 py-1 rounded text-label-md font-label-md font-bold tracking-wider self-start md:self-center whitespace-nowrap">
+            LIQUIDAÇÃO CONCLUÍDA D+0
+          </span>
+</div>
+<!-- 2. Financial Summary KPIs Ribbon -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-xs bg-surface-container-low p-space-xs rounded">
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold block mb-1">Volume Bruto Liquidado</span>
+<span class="font-numeric-timer text-numeric-timer text-primary font-bold block">R$ 4.852.150,00</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5">85 Lotes / Baixa Integral</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold block mb-1">Retenção Plataforma (6,5%)</span>
+<span class="font-numeric-timer text-numeric-timer text-on-surface font-bold block">R$ 315.389,75</span>
+<span class="text-[11px] text-outline block mt-0.5">Taxa de intermediação</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm bg-gradient-to-br from-surface-container-lowest to-secondary-fixed/20">
+<span class="text-label-sm font-label-sm uppercase text-secondary font-bold block mb-1">Líquido Repassado (93,5%)</span>
+<span class="font-numeric-timer text-numeric-timer text-secondary font-bold block">R$ 4.536.760,25</span>
+<span class="text-[11px] text-secondary font-semibold block mt-0.5">Transferido aos Cedentes</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold block mb-1">Eficiência de Conciliação</span>
+<span class="font-numeric-timer text-numeric-timer text-primary font-bold block">100,00%</span>
+<span class="text-[11px] text-secondary font-medium block mt-0.5">Zero rejeição bancária</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold block mb-1">Tempo de Processamento</span>
+<span class="font-numeric-timer text-numeric-timer text-on-surface font-bold block">842 ms</span>
+<span class="text-[11px] text-outline block mt-0.5">Host-to-Host Host SFTP</span>
+</div>
+</div>
+<!-- 3. Legal Framing & Regulatory Clearance Details -->
+<div class="bg-surface-container p-space-md rounded text-body-sm font-body-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div>
+<span class="font-label-md text-label-md text-outline block mb-0.5">Arquivo de Retorno Bancário:</span>
+<span class="font-mono font-bold text-primary">CO251002.RET</span>
+<span class="text-[11px] text-outline block mt-0.5">Tamanho: 21.360 bytes • 85 Registros G</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-outline block mb-0.5">Remessa Homóloga Vinculada:</span>
+<span class="font-mono font-bold text-on-surface">CB251001.REM</span>
+<span class="text-[11px] text-outline block mt-0.5">Transmissão SFTP: 17:46:12 BRT</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-outline block mb-0.5">Protocolo Santander H2H:</span>
+<span class="font-mono font-bold text-on-surface">#SAN-RET-2026-9912850</span>
+<span class="text-[11px] text-secondary font-semibold block mt-0.5">Status: Lote Homologado</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-outline block mb-0.5">Proteção Fiduciária / Bacen:</span>
+<span class="font-bold text-on-surface">Lei nº 12.865/13 • Res. 4.656</span>
+<span class="text-[11px] text-outline block mt-0.5">Patrimônio de Afetação Escrow</span>
+</div>
+</div>
+<p class="mt-space-sm pt-space-xs text-[11px] text-outline leading-relaxed">
+            Certificamos para fins de direito, auditoria externa independente e fiscalização do Banco Central do Brasil (BACEN) que todos os montantes expressos neste demonstrativo foram creditados sem ônus residual, compondo quitação líquida e certa entre os adquirentes e cedentes cadastrados no ecossistema Varejista Online S.A.
+          </p>
+</div>
+<!-- 4. Channel Distribution Breakdown -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-primary uppercase tracking-wide">
+              Distribuição da Liquidação por Canal Interbancário
+            </h3>
+<span class="text-body-sm font-body-sm text-outline">Total: 3 Vias de Compensação Integradas</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<!-- Pix SPI -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+                    Pix SPI BACEN Instantâneo
+                  </span>
+<span class="bg-secondary text-on-secondary text-[10px] px-1.5 py-0.2 rounded font-bold">D+0</span>
+</div>
+<div class="text-body-sm font-body-sm text-outline">52 Lotes Comerciais</div>
+</div>
+<div class="mt-2 pt-2 bg-surface-container-lowest p-2 rounded">
+<div class="flex justify-between text-body-sm">
+<span class="text-outline">Volume Bruto:</span>
+<span class="font-mono font-semibold">R$ 2.955.000,00</span>
+</div>
+<div class="flex justify-between text-body-sm font-bold text-secondary">
+<span>Líquido Cedentes:</span>
+<span class="font-mono">R$ 2.762.925,00</span>
+</div>
+<span class="block text-[10px] text-outline mt-1 font-mono">100% Mensagens pmes.001 SPI Homologadas</span>
+</div>
+</div>
+<!-- TED / STR -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+                    TED / STR CIP Interbancária
+                  </span>
+<span class="bg-surface-container-highest text-on-surface text-[10px] px-1.5 py-0.2 rounded font-bold">STR 18:00</span>
+</div>
+<div class="text-body-sm font-body-sm text-outline">18 Lotes Industriais</div>
+</div>
+<div class="mt-2 pt-2 bg-surface-container-lowest p-2 rounded">
+<div class="flex justify-between text-body-sm">
+<span class="text-outline">Volume Bruto:</span>
+<span class="font-mono font-semibold">R$ 1.280.000,00</span>
+</div>
+<div class="flex justify-between text-body-sm font-bold text-secondary">
+<span>Líquido Cedentes:</span>
+<span class="font-mono">R$ 1.196.800,00</span>
+</div>
+<span class="block text-[10px] text-outline mt-1 font-mono">Grade CIP Final 18:00 BRT Autenticada</span>
+</div>
+</div>
+<!-- Split PJ -->
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">credit_card</span>
+                    Split Cartão PJ Corporativo
+                  </span>
+<span class="bg-surface-container-highest text-on-surface text-[10px] px-1.5 py-0.2 rounded font-bold">Getnet</span>
+</div>
+<div class="text-body-sm font-body-sm text-outline">15 Lotes de Giro Rápido</div>
+</div>
+<div class="mt-2 pt-2 bg-surface-container-lowest p-2 rounded">
+<div class="flex justify-between text-body-sm">
+<span class="text-outline">Volume Bruto:</span>
+<span class="font-mono font-semibold">R$ 617.150,00</span>
+</div>
+<div class="flex justify-between text-body-sm font-bold text-secondary">
+<span>Líquido Cedentes:</span>
+<span class="font-mono">R$ 577.035,25</span>
+</div>
+<span class="block text-[10px] text-outline mt-1 font-mono">Baixa Regular na Credenciadora Santander</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Analytical Statement of Main Lots -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">table_chart</span>
+<h3 class="font-label-lg text-label-lg font-bold text-primary uppercase tracking-wide">
+                Extrato Analítico dos Principais Lotes da Remessa Consolidada
+              </h3>
+</div>
+<span class="text-[11px] font-mono text-outline">Amostragem de Representatividade (Audit Trail)</span>
+</div>
+<div class="overflow-x-auto rounded">
+<table class="w-full text-left bg-surface-container-lowest">
+<thead>
+<tr class="bg-surface-container text-outline text-[11px] uppercase tracking-wider font-bold">
+<th class="py-2.5 px-3">Lote / SKU</th>
+<th class="py-2.5 px-3">Cedente Favorecido / CNPJ</th>
+<th class="py-2.5 px-3">Canal &amp; Domicílio</th>
+<th class="py-2.5 px-3 text-right">Valor Bruto</th>
+<th class="py-2.5 px-3 text-right">Taxa (6,5%)</th>
+<th class="py-2.5 px-3 text-right">Líquido Efetivado</th>
+<th class="py-2.5 px-3">Autenticação</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3">
+<span class="font-mono font-bold text-primary block">#SBE-2026-09</span>
+<span class="text-on-surface text-[12px]">Biscoito Cream Cracker 400g (1.400 Cxs)</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="font-medium text-on-surface block">Laticínios Serra Bella Ltda</span>
+<span class="text-outline text-[11px] font-mono">19.824.112/0001-44</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center gap-1 font-medium text-secondary">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Pix SPI
+                    </span>
+<span class="text-outline text-[11px] font-mono block">Bradesco Ag 1420 CC 49102-3</span>
+</td>
+<td class="py-2.5 px-3 text-right font-mono">R$ 38.000,00</td>
+<td class="py-2.5 px-3 text-right font-mono text-tertiary font-medium">-R$ 2.470,00</td>
+<td class="py-2.5 px-3 text-right font-mono font-bold text-secondary">R$ 35.530,00</td>
+<td class="py-2.5 px-3 font-mono text-[11px] text-outline font-semibold">E2E-SAN-99820-A1</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3">
+<span class="font-mono font-bold text-primary block">#IND-2026-88</span>
+<span class="text-on-surface text-[12px]">Óleo de Soja 900ml (1.400 Cxs)</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="font-medium text-on-surface block">Bunge Alimentos S.A.</span>
+<span class="text-outline text-[11px] font-mono">84.093.221/0004-90</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center gap-1 font-medium text-primary">
+<span class="material-symbols-outlined text-[14px]">account_balance</span> TED STR CIP
+                    </span>
+<span class="text-outline text-[11px] font-mono block">Itaú Ag 0050 CC 11200-8</span>
+</td>
+<td class="py-2.5 px-3 text-right font-mono">R$ 145.000,00</td>
+<td class="py-2.5 px-3 text-right font-mono text-tertiary font-medium">-R$ 9.425,00</td>
+<td class="py-2.5 px-3 text-right font-mono font-bold text-secondary">R$ 135.575,00</td>
+<td class="py-2.5 px-3 font-mono text-[11px] text-outline font-semibold">STR-033-88192-09</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3">
+<span class="font-mono font-bold text-primary block">#CAF-2026-14</span>
+<span class="text-on-surface text-[12px]">Café Torrado e Moído 500g</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="font-medium text-on-surface block">Café Tradicional Mineiro Ltda</span>
+<span class="text-outline text-[11px] font-mono">02.941.555/0001-12</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center gap-1 font-medium text-secondary">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Pix SPI
+                    </span>
+<span class="text-outline text-[11px] font-mono block">Santander Ag 0001 CC 81220-4</span>
+</td>
+<td class="py-2.5 px-3 text-right font-mono">R$ 18.900,00</td>
+<td class="py-2.5 px-3 text-right font-mono text-tertiary font-medium">-R$ 1.228,50</td>
+<td class="py-2.5 px-3 text-right font-mono font-bold text-secondary">R$ 17.671,50</td>
+<td class="py-2.5 px-3 font-mono text-[11px] text-outline font-semibold">E2E-SAN-99820-C4</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3">
+<span class="font-mono font-bold text-primary block">#GRA-2026-31</span>
+<span class="text-on-surface text-[12px]">Feijão Carioca Tipo 1 (600 Sacas)</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="font-medium text-on-surface block">Grãos &amp; Cia Distribuidora</span>
+<span class="text-outline text-[11px] font-mono">12.339.840/0002-30</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center gap-1 font-medium text-on-surface">
+<span class="material-symbols-outlined text-[14px]">credit_card</span> Split Cartão PJ
+                    </span>
+<span class="text-outline text-[11px] font-mono block">Getnet / Santander Adq</span>
+</td>
+<td class="py-2.5 px-3 text-right font-mono">R$ 41.200,00</td>
+<td class="py-2.5 px-3 text-right font-mono text-tertiary font-medium">-R$ 2.678,00</td>
+<td class="py-2.5 px-3 text-right font-mono font-bold text-secondary">R$ 38.522,00</td>
+<td class="py-2.5 px-3 font-mono text-[11px] text-outline font-semibold">CIP-ADJ-2026-44</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3">
+<span class="font-mono font-bold text-primary block">#LAC-2026-05</span>
+<span class="text-on-surface text-[12px]">Leite UHT Integral 1L (22 Paletes)</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="font-medium text-on-surface block">Cooperativa Central Lácteos</span>
+<span class="text-outline text-[11px] font-mono">05.882.100/0001-09</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center gap-1 font-medium text-secondary">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Pix SPI
+                    </span>
+<span class="text-outline text-[11px] font-mono block">Banco do Brasil Ag 0880 CC 9918-1</span>
+</td>
+<td class="py-2.5 px-3 text-right font-mono">R$ 92.400,00</td>
+<td class="py-2.5 px-3 text-right font-mono text-tertiary font-medium">-R$ 6.006,00</td>
+<td class="py-2.5 px-3 text-right font-mono font-bold text-secondary">R$ 86.394,00</td>
+<td class="py-2.5 px-3 font-mono text-[11px] text-outline font-semibold">E2E-SAN-99820-F7</td>
+</tr>
+<!-- Row 6 -->
+<tr class="bg-surface-container-low/40 hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3">
+<span class="font-mono font-bold text-primary block">#MASS-2026-42</span>
+<span class="text-on-surface text-[12px]">Macarrão Espaguete 500g (300 Fardos)</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="font-medium text-on-surface block">Moinho Aliança S.A.</span>
+<span class="text-outline text-[11px] font-mono">33.109.472/0003-88</span>
+</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center gap-1 font-medium text-secondary">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Pix SPI
+                    </span>
+<span class="text-outline text-[11px] font-mono block">Santander Ag 0001 CC 77310-9</span>
+</td>
+<td class="py-2.5 px-3 text-right font-mono">R$ 27.500,00</td>
+<td class="py-2.5 px-3 text-right font-mono text-tertiary font-medium">-R$ 1.787,50</td>
+<td class="py-2.5 px-3 text-right font-mono font-bold text-secondary">R$ 25.712,50</td>
+<td class="py-2.5 px-3 font-mono text-[11px] text-outline font-semibold">E2E-SAN-99820-K9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-outline px-1 pt-1">
+<span class="italic text-[12px]">
+              • Consolidando outros 79 lotes homologados e discriminados no anexo digital e livro razão do convênio.
+            </span>
+<span class="font-mono text-[11px] font-bold text-primary">Subtotal Amostrado: R$ 363.000,00 (7,48% do volume)</span>
+</div>
+</div>
+<!-- 6. Cryptographic Signatures, Chancelas & Verification Footer -->
+<div class="mt-space-sm pt-space-md bg-surface-container-low p-space-md rounded">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md mb-space-md">
+<!-- Corporate ICP-Brasil Signature Card -->
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Assinador Digital ICP-Brasil A3</span>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-2 py-0.5 rounded">VÁLIDA</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+<strong>VAREJISTA ONLINE S.A.</strong> (CNPJ 22.784.918/0001-09)
+                </p>
+<div class="text-[11px] text-outline font-mono mt-1 space-y-0.5">
+<div>Autoridade Certificadora: AC Certisign Multipla G5</div>
+<div>Validade do Certificado: Dezembro/2028 • Hardware HSM Luna PCI-e</div>
+<div>Representante Fiduciário: Dr. Marcos Vinicius de Alencar (OAB/SP 382.119)</div>
+<div class="text-on-surface-variant font-sans text-[11px]">Diretor Jurídico e de Compliance Financeiro</div>
+</div>
+</div>
+</div>
+<!-- Santander Bank Institutional Chancela -->
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Chancela Institucional Santander</span>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed text-[10px] font-bold px-2 py-0.5 rounded">AUTHENTICATED</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+<strong>BANCO SANTANDER (BRASIL) S.A.</strong> (Código 033)
+                </p>
+<div class="text-[11px] text-outline font-mono mt-1 space-y-0.5">
+<div>Gerência de Cash Management • Host-to-Host Corporate</div>
+<div>Operador de Compensação: ID #SAN-44012</div>
+<div>Sessão Criptográfica: TLS 1.3 / mTLS SHA-384 Enforced</div>
+<div class="text-secondary font-sans text-[11px] font-semibold">Débito em Conta Escrow Vinculada 99281-0 Efetivado</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Canonical Hash SHA-256 Block -->
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-col gap-0.5">
+<span class="text-label-sm font-label-sm uppercase text-outline font-bold">
+                Hash Canônico SHA-256 de Integridade Imutável (Arquivo de Retorno CO251002.RET)
+              </span>
+<code class="font-mono text-[11px] sm:text-[12px] font-bold text-primary break-all">
+                4f981ca2b083c07e2b10a273bcf89110294e77da810f29302bfca8892198ef1
+              </code>
+</div>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-highest transition-colors whitespace-nowrap self-start sm:self-center" onclick="navigator.clipboard.writeText('4f981ca2b083c07e2b10a273bcf89110294e77da810f29302bfca8892198ef1'); this.innerText='Copiado!';" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+              Copiar Hash
+            </button>
+</div>
+<!-- Legal & Compliance Footnote -->
+<div class="mt-space-sm text-center text-[10px] text-outline">
+            Este comprovante tem validade jurídica de documento público original conforme Medida Provisória nº 2.200-2/2001 e Circular BACEN nº 3.978/2020.
+            Documento gerado em conformidade com o formato internacional PDF/A-1b para preservação digital perene.
+          </div>
+</div>
+</div>
+</div>
+</div>
+</div></main></body></html>

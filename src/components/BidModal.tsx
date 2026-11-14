@@ -1,0 +1,182 @@
+'use client';
+
+import React, { useState } from 'react';
+import { AuctionLot } from '@/lib/types';
+
+interface BidModalProps {
+  lot: AuctionLot;
+  isOpen: boolean;
+  onClose: () => void;
+  onBidSuccess: (newBidAmount: number) => void;
+}
+
+export const BidModal: React.FC<BidModalProps> = ({
+  lot,
+  isOpen,
+  onClose,
+  onBidSuccess,
+}) => {
+  const minNextBid = lot.lanceAtual + lot.incrementoMinimo;
+  const [bidAmount, setBidAmount] = useState<number>(minNextBid);
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleIncrement = (inc: number) => {
+    setBidAmount((prev) => prev + inc);
+  };
+
+  const calculatedUnitPrice =
+    lot.produto.totalUnidades > 0
+      ? (bidAmount / lot.produto.totalUnidades).toFixed(2)
+      : '0.00';
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (bidAmount < minNextBid) {
+      alert(`O valor mínimo para o próximo lance é R$ ${minNextBid.toLocaleString('pt-BR')}`);
+      return;
+    }
+
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+      setSuccess(true);
+      onBidSuccess(bidAmount);
+      setTimeout(() => {
+        setSuccess(false);
+        onClose();
+      }, 1500);
+    }, 700);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <div className="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-outline-variant/30 space-y-5 animate-in fade-in zoom-in-95 duration-200">
+        {/* Header */}
+        <div className="flex items-center justify-between pb-3 border-b border-surface-container">
+          <div className="flex items-center gap-2">
+            <span className="material-symbols-outlined text-primary text-[24px]">gavel</span>
+            <div>
+              <h3 className="font-extrabold text-base text-on-surface">Confirmar Lance no Pregão</h3>
+              <p className="text-xs text-on-surface-variant font-bold">{lot.codigoLote} • {lot.produto.titulo}</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container text-on-surface-variant"
+          >
+            <span className="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+
+        {success ? (
+          <div className="p-8 text-center space-y-3 bg-secondary-container/20 rounded-xl border border-secondary/30">
+            <span className="material-symbols-outlined text-secondary text-5xl">check_circle</span>
+            <h4 className="font-bold text-lg text-secondary">Lance Registrado com Sucesso!</h4>
+            <p className="text-xs text-on-surface-variant">
+              Seu lance de <strong>R$ {bidAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi registrado no livro de ofertas sob custódia BACEN.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Informações Atuais */}
+            <div className="grid grid-cols-2 gap-3 bg-surface-container-low p-3.5 rounded-xl text-xs">
+              <div>
+                <span className="text-on-surface-variant block">Lance Atual:</span>
+                <span className="text-sm font-extrabold text-primary">
+                  R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                </span>
+              </div>
+              <div>
+                <span className="text-on-surface-variant block">Próximo Lance Mínimo:</span>
+                <span className="text-sm font-extrabold text-secondary">
+                  R$ {minNextBid.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                </span>
+              </div>
+            </div>
+
+            {/* Input de Lance com botões de incremento rápido */}
+            <div className="space-y-2">
+              <label className="block text-xs font-bold text-on-surface uppercase tracking-wide">
+                Seu Lance no Lote Fechado (R$):
+              </label>
+              <div className="flex items-center bg-surface-container rounded-xl px-3 py-2 border-2 border-primary/20 focus-within:border-primary">
+                <span className="text-base font-bold text-primary mr-2">R$</span>
+                <input
+                  type="number"
+                  step="50"
+                  min={minNextBid}
+                  value={bidAmount}
+                  onChange={(e) => setBidAmount(Number(e.target.value))}
+                  className="w-full bg-transparent text-xl font-extrabold text-on-surface focus:outline-none"
+                  required
+                />
+              </div>
+
+              {/* Botões de incremento rápido */}
+              <div className="flex items-center gap-2 pt-1">
+                <span className="text-[10px] text-outline font-bold uppercase">Incrementos:</span>
+                {[500, 1000, 2500, 5000].map((inc) => (
+                  <button
+                    key={inc}
+                    type="button"
+                    onClick={() => handleIncrement(inc)}
+                    className="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-xs font-bold text-primary transition-colors"
+                  >
+                    + R$ {inc.toLocaleString('pt-BR')}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Resumo da Valoração e Custo Unitário */}
+            <div className="bg-surface-container p-3 rounded-lg text-xs space-y-1.5">
+              <div className="flex justify-between">
+                <span className="text-on-surface-variant">Custo Unitário Calculado:</span>
+                <span className="font-bold text-secondary">R$ {calculatedUnitPrice} / un</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-on-surface-variant">Volume Total:</span>
+                <span className="font-medium text-on-surface">
+                  {lot.produto.totalCaixas} caixas ({lot.produto.totalUnidades.toLocaleString('pt-BR')} unidades)
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-on-surface-variant">Custódia Fiduciária:</span>
+                <span className="text-[10px] text-secondary font-bold">100% Garantida via Escrow D+0</span>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                type="button"
+                onClick={onClose}
+                className="flex-1 py-2.5 px-4 rounded-xl border border-outline-variant text-xs font-bold text-on-surface hover:bg-surface-container transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                disabled={submitting || bidAmount < minNextBid}
+                className="flex-1 py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 disabled:opacity-50"
+              >
+                {submitting ? (
+                  <span>Registrando...</span>
+                ) : (
+                  <>
+                    <span className="material-symbols-outlined text-[16px]">gavel</span>
+                    <span>Confirmar Lance</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+};
