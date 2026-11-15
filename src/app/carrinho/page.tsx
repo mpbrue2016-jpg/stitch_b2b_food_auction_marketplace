@@ -1,14 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
-import { calculateSplit } from '@/lib/commission-engine';
+import {
+  CART_UPDATED_EVENT,
+  CartItem,
+  clearCart,
+  getCartItems,
+  removeLotFromCart,
+} from '@/lib/cart-store';
+import { calculateSplit, SplitCalculationResult } from '@/lib/commission-engine';
 
 export default function CarrinhoPage() {
   const router = useRouter();
-  const [cartItems, setCartItems] = useState([
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => [
     {
       lot: MOCK_AUCTION_LOTS[0],
       quantidade: 1,
@@ -16,8 +24,28 @@ export default function CarrinhoPage() {
     },
   ]);
 
+  useEffect(() => {
+    const sync = () => setCartItems(getCartItems());
+    sync();
+    window.addEventListener(CART_UPDATED_EVENT, sync);
+    return () => window.removeEventListener(CART_UPDATED_EVENT, sync);
+  }, []);
+
   const subtotal = cartItems.reduce((acc, item) => acc + item.precoTotal, 0);
-  const split = calculateSplit(subtotal, 'leilao');
+  const modalidade = cartItems[0]?.lot.tipoVenda || 'leilao';
+  const [split, setSplit] = useState<SplitCalculationResult>(() =>
+    calculateSplit(subtotal, modalidade)
+  );
+
+  useEffect(() => {
+    if (subtotal <= 0) return;
+    fetch(`/api/comissoes?amount=${encodeURIComponent(subtotal)}&modalidade=${encodeURIComponent(modalidade)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.split) setSplit(data.split);
+      })
+      .catch(() => {});
+  }, [subtotal, modalidade]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
@@ -53,11 +81,17 @@ export default function CarrinhoPage() {
                 key={idx}
                 className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col sm:flex-row items-center gap-4"
               >
-                <img
-                  src={item.lot.produto.imagemUrl}
-                  alt={item.lot.produto.titulo}
-                  className="w-24 h-24 rounded-xl object-cover shrink-0"
-                />
+                <div className="relative w-24 h-24 rounded-xl overflow-hidden bg-surface-container shrink-0">
+                  <Image
+                    src={item.lot.produto.imagemUrl}
+                    alt={item.lot.produto.titulo}
+                    fill
+                    sizes="96px"
+                    quality={92}
+                    referrerPolicy="no-referrer"
+                    className="object-cover img-sharp"
+                  />
+                </div>
 
                 <div className="flex-1 space-y-1 text-xs">
                   <span className="text-[10px] text-on-surface-variant font-bold uppercase">
@@ -74,14 +108,14 @@ export default function CarrinhoPage() {
 
                 <div className="text-right sm:border-l sm:border-surface-container sm:pl-4">
                   <span className="text-[10px] text-on-surface-variant uppercase font-bold block">
-                    Valor do Lote:
+                    Valor do Lote ({item.quantidade}x):
                   </span>
                   <span className="text-lg font-extrabold text-primary block">
                     R$ {item.precoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </span>
                   <button
                     type="button"
-                    onClick={() => setCartItems([])}
+                    onClick={() => setCartItems(removeLotFromCart(item.lot.id))}
                     className="text-[11px] text-error hover:underline font-semibold mt-1"
                   >
                     Remover
@@ -89,6 +123,18 @@ export default function CarrinhoPage() {
                 </div>
               </div>
             ))}
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() => {
+                  clearCart();
+                  setCartItems([]);
+                }}
+                className="text-xs text-outline hover:text-error font-semibold"
+              >
+                Limpar carrinho
+              </button>
+            </div>
           </div>
 
           {/* Summary Box */}

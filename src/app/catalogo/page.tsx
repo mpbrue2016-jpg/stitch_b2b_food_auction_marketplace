@@ -1,20 +1,63 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { BidModal } from '@/components/BidModal';
-import { AuctionLot, ShelfLifeStatus } from '@/lib/types';
+import { AuctionLot } from '@/lib/types';
 
-export default function CatalogoPage() {
+function CatalogoContent() {
+  const searchParams = useSearchParams();
+  const qParam = searchParams.get('q') || '';
+  const categoriaSlugParam = searchParams.get('categoria') || '';
+  const filtroParam = searchParams.get('filtro') || '';
+
   const [lots, setLots] = useState<AuctionLot[]>(MOCK_AUCTION_LOTS);
   const [selectedLotForBid, setSelectedLotForBid] = useState<AuctionLot | null>(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(qParam);
   const [categoryFilter, setCategoryFilter] = useState('todas');
   const [shelfFilter, setShelfFilter] = useState<string>('todas');
   const [sortBy, setSortBy] = useState<'margem' | 'preco' | 'validade'>('margem');
+
+  useEffect(() => {
+    fetch('/api/lotes')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.lots?.length) setLots(data.lots);
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    setSearch(qParam);
+  }, [qParam]);
+
+  useEffect(() => {
+    if (categoriaSlugParam) {
+      const matched = MOCK_CATEGORIES.find(
+        (c) => c.slug === categoriaSlugParam || c.id === categoriaSlugParam
+      );
+      setCategoryFilter(matched ? matched.id : 'todas');
+    } else {
+      setCategoryFilter('todas');
+    }
+  }, [categoriaSlugParam]);
+
+  useEffect(() => {
+    if (filtroParam === 'validade_proxima') {
+      setShelfFilter('atencao_ou_curta');
+      setSortBy('validade');
+    } else if (filtroParam === 'giro_rapido') {
+      setShelfFilter('giro_rapido');
+      setSortBy('margem');
+    } else {
+      setShelfFilter('todas');
+    }
+  }, [filtroParam]);
 
   const filteredLots = lots
     .filter((lot) => {
@@ -25,7 +68,12 @@ export default function CatalogoPage() {
         lot.produto.marca.toLowerCase().includes(search.toLowerCase());
 
       const matchCat = categoryFilter === 'todas' || lot.produto.categoriaId === categoryFilter;
-      const matchShelf = shelfFilter === 'todas' || lot.produto.statusShelfLife === shelfFilter;
+      const matchShelf =
+        shelfFilter === 'todas' ||
+        (shelfFilter === 'atencao_ou_curta'
+          ? ['atencao', 'giro_rapido', 'critica'].includes(lot.produto.statusShelfLife)
+          : lot.produto.statusShelfLife === shelfFilter ||
+            (shelfFilter === 'giro_rapido' && lot.tipoVenda === 'giro_rapido'));
 
       return matchSearch && matchCat && matchShelf;
     })
@@ -104,6 +152,7 @@ export default function CatalogoPage() {
             >
               <option value="todas">Todos os Shelf Lifes</option>
               <option value="longa">Validade Longa (&gt; 90 dias)</option>
+              <option value="atencao_ou_curta">Validade Próxima (&lt; 90 dias)</option>
               <option value="atencao">Atenção FEFO (60-90 dias)</option>
               <option value="giro_rapido">Giro Rápido (30-60 dias)</option>
               <option value="critica">Crítico (&lt; 30 dias)</option>
@@ -156,11 +205,15 @@ export default function CatalogoPage() {
             </div>
 
             {/* Image */}
-            <div className="relative h-44 w-full bg-surface-container overflow-hidden">
-              <img
+            <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
+              <Image
                 src={lot.produto.imagemUrl}
                 alt={lot.produto.titulo}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                quality={92}
+                referrerPolicy="no-referrer"
+                className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
               />
               <span className="absolute top-2 right-2 bg-secondary text-white text-[11px] font-extrabold px-2 py-0.5 rounded shadow-sm">
                 Margem: {lot.margemEstimadaRevenda}%
@@ -261,5 +314,13 @@ export default function CatalogoPage() {
         />
       )}
     </div>
+  );
+}
+
+export default function CatalogoPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-xs">Carregando catálogo B2B...</div>}>
+      <CatalogoContent />
+    </Suspense>
   );
 }

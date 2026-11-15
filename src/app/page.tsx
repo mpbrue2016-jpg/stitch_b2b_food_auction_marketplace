@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
@@ -16,6 +16,17 @@ export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRadius, setSelectedRadius] = useState('300');
   const [selectedMode, setSelectedMode] = useState('todos');
+
+  useEffect(() => {
+    fetch('/api/lotes')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.lots?.length) {
+          setLots(data.lots);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleBidSuccess = (lotId: string, newBidAmount: number) => {
     setLots((prev) =>
@@ -51,12 +62,27 @@ export default function HomePage() {
       (selectedMode === 'imediata' && lot.tipoVenda === 'giro_rapido') ||
       (selectedMode === 'palete' && lot.tipoVenda === 'venda_direta');
 
-    return matchesSearch && matchesMode;
+    const matchesRadius =
+      selectedRadius === 'br' || lot.raioKm <= Number(selectedRadius);
+
+    return matchesSearch && matchesMode && matchesRadius;
   });
 
-  const liveAuctions = filteredLots.filter(
-    (l) => l.status === 'reta_final' || l.status === 'ativo'
+  const isFiltering =
+    Boolean(searchTerm.trim()) || selectedMode !== 'todos' || selectedRadius !== '300';
+
+  const liveAuctions = isFiltering
+    ? filteredLots.slice(0, 6)
+    : filteredLots.filter((l) => l.status === 'reta_final' || l.id === 'lote-8512').slice(0, 3);
+
+  const flashDeals = lots.filter((l) =>
+    ['lote-arroz-5kg', 'lote-guarana-2l', 'lote-detergente-500ml', 'lote-bombons-250g'].includes(l.id)
   );
+
+  const fefoLots = [...lots]
+    .filter((l) => l.produto.diasRestantesValidade <= 120 || l.produto.statusShelfLife !== 'longa')
+    .sort((a, b) => a.produto.diasRestantesValidade - b.produto.diasRestantesValidade)
+    .slice(0, 4);
 
   return (
     <div className="w-full flex flex-col space-y-8 pb-16">
@@ -186,6 +212,10 @@ export default function HomePage() {
               <div className="md:col-span-2">
                 <button
                   type="button"
+                  onClick={() => {
+                    const el = document.getElementById('pregoes-ao-vivo');
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
                   className="w-full h-full min-h-[46px] bg-primary hover:bg-primary-container text-white text-xs font-bold rounded-xl shadow-sm flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <span className="material-symbols-outlined text-[18px]">search</span>
@@ -223,6 +253,7 @@ export default function HomePage() {
                 onClick={() => {
                   setSearchTerm('');
                   setSelectedMode('todos');
+                  setSelectedRadius('300');
                 }}
                 className="text-primary hover:underline text-[11px] font-bold ml-2"
               >
@@ -287,7 +318,7 @@ export default function HomePage() {
       </section>
 
       {/* SEÇÃO 1: 🔥 Leilões ao Vivo Terminando Hoje */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-5">
+      <section id="pregoes-ao-vivo" className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-5 scroll-mt-40">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-container pb-3">
           <div>
             <div className="flex items-center gap-1.5 text-tertiary text-xs uppercase tracking-widest font-extrabold">
@@ -313,6 +344,28 @@ export default function HomePage() {
         </div>
 
         {/* Live Grid */}
+        {liveAuctions.length === 0 ? (
+          <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 text-center space-y-3">
+            <span className="material-symbols-outlined text-outline text-4xl">search_off</span>
+            <h3 className="font-bold text-base text-on-surface">
+              Nenhum lote encontrado para os filtros aplicados
+            </h3>
+            <p className="text-xs text-on-surface-variant">
+              Tente ampliar o raio logístico ou limpar a busca por EAN/produto.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setSearchTerm('');
+                setSelectedMode('todos');
+                setSelectedRadius('300');
+              }}
+              className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-xl"
+            >
+              Limpar Filtros
+            </button>
+          </div>
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {liveAuctions.map((lot) => (
             <article
@@ -333,12 +386,17 @@ export default function HomePage() {
                 <AuctionCountdown terminaEm={lot.terminaEm} size="sm" />
               </div>
 
-              {/* Product Media Placeholder */}
-              <div className="relative h-44 w-full bg-surface-container overflow-hidden">
-                <img
+              {/* Product Media */}
+              <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
+                <Image
                   src={lot.produto.imagemUrl}
                   alt={lot.produto.titulo}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  quality={92}
+                  priority={lot.id === 'lote-418' || lot.id === 'lote-8492' || lot.id === 'lote-8501'}
+                  referrerPolicy="no-referrer"
+                  className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
                 />
                 <div className="absolute bottom-2 left-2 bg-inverse-surface/80 backdrop-blur text-inverse-on-surface text-[10px] font-semibold px-2 py-0.5 rounded">
                   GTIN: {lot.produto.gtinEan}
@@ -420,6 +478,268 @@ export default function HomePage() {
             </article>
           ))}
         </div>
+        )}
+      </section>
+
+      {/* SEÇÃO 2: ⏰ Oportunidades • Validade Próxima (Stitch) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <span className="text-[11px] uppercase tracking-wider font-extrabold text-tertiary flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[15px]">verified_user</span>
+              COMPLIANCE ANVISA • SHELF LIFE AUDITADO POR LAUDO
+            </span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
+              ⏰ Oportunidades • Validade Próxima
+            </h2>
+            <p className="text-xs text-on-surface-variant">
+              Lotes negociados diretamente por grandes redes e centros de distribuição com deságios de até 70% para giro ultra-rápido no varejo de vizinhança.
+            </p>
+          </div>
+          <div className="self-start sm:self-auto px-3 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-xs flex items-center gap-2 shadow-sm">
+            <span className="material-symbols-outlined text-secondary text-[18px]">health_and_safety</span>
+            <div>
+              <span className="font-bold text-on-surface block leading-tight">Risco Sanitário Zero</span>
+              <span className="text-[10px] text-on-surface-variant block">Laudos rastreáveis no CNPJ</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm overflow-x-auto">
+          <table className="w-full text-left text-xs min-w-[760px]">
+            <thead className="bg-surface-container-low text-on-surface-variant uppercase font-bold text-[10px] border-b border-surface-container">
+              <tr>
+                <th className="p-3.5">Produto &amp; GTIN/EAN</th>
+                <th className="p-3.5">Fabricante / Origem</th>
+                <th className="p-3.5">Volume Total</th>
+                <th className="p-3.5">Data de Validade</th>
+                <th className="p-3.5">Preço Sugerido</th>
+                <th className="p-3.5">Preço B2B Lote</th>
+                <th className="p-3.5">Desconto</th>
+                <th className="p-3.5 text-right">Ação</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-surface-container">
+              {fefoLots.map((lot) => {
+                const refUnit =
+                  lot.produto.totalUnidades > 0
+                    ? lot.produto.precoReferenciaMercado / lot.produto.totalUnidades
+                    : lot.precoUnitarioAtual * 1.4;
+                const discountPct =
+                  lot.produto.precoReferenciaMercado > 0
+                    ? Math.max(
+                        10,
+                        Math.round(
+                          ((lot.produto.precoReferenciaMercado - lot.lanceAtual) /
+                            lot.produto.precoReferenciaMercado) *
+                            100
+                        )
+                      )
+                    : 40;
+                const days = lot.produto.diasRestantesValidade;
+                const urgencyClass =
+                  days <= 40
+                    ? 'bg-[#FFEBEE] text-[#C62828] border-[#EF9A9A]'
+                    : days <= 75
+                    ? 'bg-[#FFF3E0] text-[#E65100] border-[#FFCC80]'
+                    : 'bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]';
+
+                return (
+                  <tr key={lot.id} className="hover:bg-surface-container-low/50">
+                    <td className="p-3.5">
+                      <Link href={`/leiloes/${lot.id}`} className="hover:text-primary transition-colors">
+                        <strong className="text-on-surface block">{lot.produto.titulo.split('•')[0].trim()}</strong>
+                      </Link>
+                      <span className="text-[10px] font-mono text-outline">
+                        EAN: {lot.produto.gtinEan} • {lot.produto.embalagem}
+                      </span>
+                    </td>
+                    <td className="p-3.5">
+                      <strong className="text-on-surface block">{lot.produto.marca}</strong>
+                      <span className="text-[10px] text-on-surface-variant">{lot.produto.origem}</span>
+                    </td>
+                    <td className="p-3.5">
+                      <strong className="text-on-surface block">{lot.produto.totalCaixas} Caixas</strong>
+                      <span className="text-[10px] text-on-surface-variant">
+                        {lot.produto.totalUnidades.toLocaleString('pt-BR')} un
+                      </span>
+                    </td>
+                    <td className="p-3.5">
+                      <span
+                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border font-bold text-[11px] ${urgencyClass}`}
+                      >
+                        {days} dias restantes
+                      </span>
+                    </td>
+                    <td className="p-3.5 line-through text-outline">
+                      R$ {refUnit.toFixed(2).replace('.', ',')} / un
+                    </td>
+                    <td className="p-3.5">
+                      <strong className="text-secondary text-sm block">
+                        R$ {lot.precoUnitarioAtual.toFixed(2).replace('.', ',')} / un
+                      </strong>
+                      <span className="text-[10px] text-on-surface-variant">
+                        Lote: R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </span>
+                    </td>
+                    <td className="p-3.5">
+                      <span
+                        className={`px-2 py-0.5 rounded text-white font-extrabold text-[10px] ${
+                          discountPct >= 50 ? 'bg-tertiary' : 'bg-secondary'
+                        }`}
+                      >
+                        {discountPct}% OFF
+                      </span>
+                    </td>
+                    <td className="p-3.5 text-right">
+                      <Link
+                        href={`/checkout?loteId=${lot.id}&valor=${lot.lanceAtual}`}
+                        className="px-3 py-1.5 rounded-lg bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-bold text-[11px] inline-block transition-colors"
+                      >
+                        Arrematar Lote
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* SEÇÃO 3: ⚡ Ofertas Relâmpago & Giro Rápido (Stitch 4-col WebP) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-container pb-3">
+          <div>
+            <span className="text-[11px] uppercase tracking-widest font-extrabold text-secondary">
+              VENDA DIRETA • SEM LEILÃO • PRONTA ENTREGA
+            </span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
+              ⚡ Ofertas Relâmpago &amp; Giro Rápido
+            </h2>
+          </div>
+          <Link
+            href="/catalogo"
+            className="text-primary hover:underline text-xs font-bold flex items-center gap-1"
+          >
+            <span>Explorar catálogo completo de pronta-entrega</span>
+            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {flashDeals.map((deal) => (
+            <article
+              key={deal.id}
+              className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col"
+            >
+              <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
+                <Image
+                  src={deal.produto.imagemUrl}
+                  alt={deal.produto.titulo}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  quality={92}
+                  referrerPolicy="no-referrer"
+                  className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
+                />
+                <span className="absolute top-2 left-2 bg-primary text-white text-[10px] font-extrabold px-2 py-0.5 rounded shadow-sm">
+                  {deal.tipoVenda === 'venda_direta' ? 'Pallet Fechado' : 'Pronta Entrega'}
+                </span>
+              </div>
+
+              <div className="p-4 flex-1 flex flex-col justify-between space-y-3 text-xs">
+                <div>
+                  <span className="text-[10px] text-outline font-mono uppercase block">
+                    {deal.produto.marca} • EAN {deal.produto.gtinEan}
+                  </span>
+                  <h3 className="font-bold text-sm text-on-surface mt-0.5 leading-snug">
+                    <Link href={`/leiloes/${deal.id}`} className="hover:text-primary transition-colors">
+                      {deal.produto.titulo.split('•')[0].trim()}
+                    </Link>
+                  </h3>
+                  <p className="text-[11px] text-on-surface-variant mt-1 line-clamp-2">
+                    {deal.produto.descricao}
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-surface-container space-y-2">
+                  <div className="flex items-baseline justify-between">
+                    <div>
+                      <span className="text-[10px] line-through text-outline block">
+                        R$ {(deal.precoUnitarioAtual * 1.38).toFixed(2)} / un
+                      </span>
+                      <span className="text-lg font-extrabold text-primary">
+                        R$ {deal.precoUnitarioAtual.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[11px] font-extrabold text-secondary block">
+                        Margem Varejo {deal.margemEstimadaRevenda}%
+                      </span>
+                      <span className="text-[10px] text-on-surface-variant">
+                        Lote: R$ {deal.lanceAtual.toLocaleString('pt-BR')}
+                      </span>
+                    </div>
+                  </div>
+
+                  <Link
+                    href={`/checkout?loteId=${deal.id}&valor=${deal.lanceAtual}`}
+                    className="w-full py-2 rounded-xl bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-bold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">shopping_cart</span>
+                    <span>Comprar Lote</span>
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* SEÇÃO 4: 🏭 Direto da Indústria • Lotes Fechados de Fábrica (Stitch) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span className="text-[11px] uppercase tracking-widest font-extrabold text-primary">
+              ECOSSISTEMA HOMOLOGADO
+            </span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
+              🏭 Direto da Indústria • Lotes Fechados de Fábrica
+            </h2>
+          </div>
+          <span className="text-xs text-on-surface-variant">
+            Acesso prioritário a pontas de lote e rebalanceamentos fabris oficiais.
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { code: 'NT', name: 'Nestlé Brasil', query: 'Nestlé', lots: '24 Pregões', desc: 'Lácteos, Chocolates & Cereais • Até 48% abaixo da tabela' },
+            { code: 'AB', name: 'Ambev', query: 'Ambev', lots: '18 Pregões', desc: 'Cervejas, Refrigerantes & Sucos • Frete dedicado FOB / CIF' },
+            { code: 'PJ', name: 'Piracanjuba', query: 'Piracanjuba', lots: '14 Pregões', desc: 'Lácteos UHT & Derivados • Oportunidades FEFO homologadas' },
+            { code: 'CM', name: 'Camil Alimentos', query: 'Camil', lots: '15 Pregões', desc: 'Arroz, Feijão & Grãos • Cargas fechadas padrão carreta' },
+          ].map((ind) => (
+            <Link
+              key={ind.code}
+              href={`/catalogo?q=${encodeURIComponent(ind.query)}`}
+              className="p-4 bg-surface-container-lowest rounded-2xl border border-outline-variant/30 hover:border-primary shadow-sm hover:shadow-md transition-all flex items-start gap-3"
+            >
+              <div className="w-10 h-10 rounded-xl bg-surface-container-low text-primary font-extrabold text-xs flex items-center justify-center shrink-0">
+                {ind.code}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-1">
+                  <strong className="text-sm text-on-surface truncate">{ind.name}</strong>
+                  <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold shrink-0">
+                    {ind.lots}
+                  </span>
+                </div>
+                <p className="text-[11px] text-on-surface-variant mt-1 leading-snug">{ind.desc}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* Categorias em Destaque */}
@@ -445,6 +765,88 @@ export default function HomePage() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* SEÇÃO 5: Como Funciona (Stitch) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-6 pt-2">
+        <div className="text-center space-y-1 max-w-2xl mx-auto">
+          <span className="text-[10px] uppercase tracking-widest font-extrabold text-primary">
+            TRANSPARÊNCIA E CONFORMIDADE TOTAL
+          </span>
+          <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface">
+            Como Funciona para Vender e Comprar com o Mesmo CNPJ
+          </h2>
+          <p className="text-xs text-on-surface-variant">
+            Sem mensalidades ou taxas de adesão. A plataforma cobra comissão apenas sobre o êxito da transação, garantindo custódia fiduciária e liquidez imediata.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {[
+            {
+              step: '01',
+              badge: 'Receita Federal + Sintegra',
+              title: 'Cadastro & Validação Fiscal',
+              desc: 'Validação automatizada de Inscrição Estadual, CNAE supermercadista/atacadista e situação cadastral para atuar como comprador e vendedor.',
+              footer: 'Homologação em menos de 15 minutos',
+            },
+            {
+              step: '02',
+              badge: 'Pregão / Venda Direta',
+              title: 'Anúncio ou Disputa de Lotes',
+              desc: 'Vendedores cadastram lotes com data de validade, GTIN e fotos reais. Compradores dão lances ou arrematam imediatamente com escrow seguro.',
+              footer: 'Custódia financeira até o aceite físico',
+            },
+            {
+              step: '03',
+              badge: 'NF-e & Logística Integrada',
+              title: 'Faturamento e Coleta',
+              desc: 'Emissão automatizada do espelho de NF-e, cálculo de ICMS-ST e coleta agendada FOB na doca do CD ou frete CIF com rastreio digital.',
+              footer: 'Rastreio de frete e entrega digital',
+            },
+          ].map((item) => (
+            <div key={item.step} className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-1 rounded-lg bg-primary text-white text-xs font-extrabold">{item.step}</span>
+                <span className="text-[10px] font-bold text-primary bg-surface-container-low px-2.5 py-1 rounded-full">{item.badge}</span>
+              </div>
+              <h3 className="font-extrabold text-sm text-on-surface">{item.title}</h3>
+              <p className="text-xs text-on-surface-variant leading-relaxed">{item.desc}</p>
+              <div className="pt-2 border-t border-surface-container text-[11px] font-semibold text-secondary">
+                {item.footer}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Banner CTA Liquidez */}
+        <div className="bg-primary text-white p-6 sm:p-8 rounded-2xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="space-y-1">
+            <span className="text-[10px] uppercase tracking-widest font-bold text-primary-fixed">
+              LIQUIDEZ COM 1 CLIQUE
+            </span>
+            <h3 className="text-xl sm:text-2xl font-extrabold">
+              Possui estoque parado ou perto da validade?
+            </h3>
+            <p className="text-xs text-primary-fixed max-w-xl">
+              Monetize agora mesmo antes de gerar perda contábil. Nossa mesa de negociação conecta seu estoque a mais de 3.000 supermercados prontos para arrematar.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <Link
+              href="/produtos/novo"
+              className="px-5 py-2.5 rounded-xl bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container text-xs font-extrabold transition-colors shadow-sm"
+            >
+              Cadastrar Meu Estoque
+            </Link>
+            <Link
+              href="/negociacoes"
+              className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-colors border border-white/20"
+            >
+              Mesa de Negociação B2B
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,21 +12,36 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setAuthError(null);
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      if (role === 'comprador') {
-        router.push('/painel/comprador');
-      } else if (role === 'fornecedor') {
-        router.push('/painel/fornecedor');
-      } else {
-        router.push('/painel/admin');
+    if (isSupabaseConfigured) {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        setAuthError(error.message || 'Credenciais inválidas. Verifique e-mail e senha.');
+        setLoading(false);
+        return;
       }
-    }, 600);
+    } else {
+      await new Promise((r) => setTimeout(r, 450));
+    }
+
+    if (role === 'comprador' || role === 'fornecedor') {
+      window.localStorage.setItem('varejista_active_role', role);
+    }
+
+    setLoading(false);
+    if (role === 'comprador') {
+      router.push('/painel/comprador');
+    } else if (role === 'fornecedor') {
+      router.push('/painel/fornecedor');
+    } else {
+      router.push('/painel/admin');
+    }
   };
 
   return (
@@ -125,6 +141,12 @@ export default function LoginPage() {
               required
             />
           </div>
+
+          {authError && (
+            <div className="p-2.5 bg-error-container text-on-error-container rounded-xl text-xs font-bold">
+              {authError}
+            </div>
+          )}
 
           <button
             type="submit"

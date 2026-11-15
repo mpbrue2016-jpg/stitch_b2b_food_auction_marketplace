@@ -1,11 +1,21 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
+import { AuctionLot } from '@/lib/types';
 
 export default function PainelFornecedorPage() {
-  const supplierLots = MOCK_AUCTION_LOTS;
+  const [supplierLots, setSupplierLots] = useState<AuctionLot[]>(MOCK_AUCTION_LOTS);
+
+  useEffect(() => {
+    fetch('/api/lotes')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.lots?.length) setSupplierLots(data.lots);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">

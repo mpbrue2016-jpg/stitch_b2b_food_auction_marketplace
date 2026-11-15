@@ -1,13 +1,49 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { CART_UPDATED_EVENT, getCartItems } from '@/lib/cart-store';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeRole, setActiveRole] = useState<'comprador' | 'fornecedor'>('comprador');
+  const [cartCount, setCartCount] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchCategory, setSearchCategory] = useState('todas');
+
+  useEffect(() => {
+    const savedRole = window.localStorage.getItem('varejista_active_role');
+    if (savedRole === 'comprador' || savedRole === 'fornecedor') {
+      setActiveRole(savedRole);
+    }
+
+    const syncCartCount = () => {
+      const items = getCartItems();
+      setCartCount(items.reduce((acc, item) => acc + item.quantidade, 0));
+    };
+
+    syncCartCount();
+    window.addEventListener(CART_UPDATED_EVENT, syncCartCount);
+    return () => window.removeEventListener(CART_UPDATED_EVENT, syncCartCount);
+  }, []);
+
+  const handleRoleChange = (role: 'comprador' | 'fornecedor') => {
+    setActiveRole(role);
+    window.localStorage.setItem('varejista_active_role', role);
+  };
+
+  const handleSearch = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const params = new URLSearchParams();
+    if (searchQuery.trim()) params.set('q', searchQuery.trim());
+    if (searchCategory !== 'todas') params.set('categoria', searchCategory);
+    const qs = params.toString();
+    setMobileMenuOpen(false);
+    router.push(qs ? `/catalogo?${qs}` : '/catalogo');
+  };
 
   const navLinks = [
     { label: 'Todos os Lotes', href: '/catalogo' },
@@ -44,10 +80,13 @@ export const Header: React.FC = () => {
             <Link href="/pedidos" className="hover:text-primary transition-colors hidden sm:inline">
               Histórico de Pedidos
             </Link>
+            <Link href="/login" className="hover:text-primary font-semibold transition-colors hidden sm:inline">
+              Acesso B2B
+            </Link>
             <div className="flex items-center bg-surface-container rounded-full p-0.5">
               <button
                 type="button"
-                onClick={() => setActiveRole('comprador')}
+                onClick={() => handleRoleChange('comprador')}
                 className={`text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full transition-all ${
                   activeRole === 'comprador'
                     ? 'bg-surface-container-lowest text-primary font-bold shadow-sm'
@@ -58,7 +97,7 @@ export const Header: React.FC = () => {
               </button>
               <button
                 type="button"
-                onClick={() => setActiveRole('fornecedor')}
+                onClick={() => handleRoleChange('fornecedor')}
                 className={`text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full transition-all ${
                   activeRole === 'fornecedor'
                     ? 'bg-surface-container-lowest text-secondary font-bold shadow-sm'
@@ -91,16 +130,22 @@ export const Header: React.FC = () => {
           </Link>
 
           {/* Search Bar - Desktop */}
-          <div className="flex-1 max-w-2xl hidden md:flex items-center">
+          <form onSubmit={handleSearch} className="flex-1 max-w-2xl hidden md:flex items-center">
             <div className="w-full flex items-center bg-surface-container-low rounded-xl px-3 py-1.5 focus-within:ring-2 focus-within:ring-primary border border-outline-variant/30">
               <div className="flex items-center gap-1 pr-3 text-on-surface-variant border-r border-outline-variant/40">
                 <span className="material-symbols-outlined text-[18px]">category</span>
-                <select className="bg-transparent text-xs font-semibold text-on-surface focus:outline-none cursor-pointer">
-                  <option>Todos os Lotes</option>
-                  <option>Alimentos Secos</option>
-                  <option>Laticínios & Frios</option>
-                  <option>Bebidas & Sucos</option>
-                  <option>Mercearia Doce</option>
+                <select
+                  value={searchCategory}
+                  onChange={(e) => setSearchCategory(e.target.value)}
+                  className="bg-transparent text-xs font-semibold text-on-surface focus:outline-none cursor-pointer"
+                >
+                  <option value="todas">Todos os Lotes</option>
+                  <option value="alimentos-secos">Alimentos Secos</option>
+                  <option value="laticinios-frios">Laticínios &amp; Frios</option>
+                  <option value="bebidas-sucos">Bebidas &amp; Sucos</option>
+                  <option value="mercearia-basica">Mercearia Básica</option>
+                  <option value="mercearia-doce">Mercearia Doce</option>
+                  <option value="higiene-limpeza">Higiene &amp; Conservação</option>
                 </select>
               </div>
 
@@ -108,19 +153,21 @@ export const Header: React.FC = () => {
                 <span className="material-symbols-outlined text-outline text-[20px]">search</span>
                 <input
                   type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Digite produto, marca, lote ou EAN/GTIN (ex: 7891000...)"
                   className="w-full bg-transparent text-sm text-on-surface placeholder:text-outline focus:outline-none"
                 />
               </div>
 
-              <Link
-                href="/catalogo"
+              <button
+                type="submit"
                 className="bg-primary hover:bg-primary-container text-on-primary text-xs font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-1 shrink-0 shadow-sm"
               >
                 <span>Buscar</span>
-              </Link>
+              </button>
             </div>
-          </div>
+          </form>
 
           {/* CTAs & Profile */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -138,9 +185,11 @@ export const Header: React.FC = () => {
               title="Carrinho de Compras / Lotes Arrematados"
             >
               <span className="material-symbols-outlined text-[22px]">shopping_cart</span>
-              <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-primary text-white text-[10px] font-bold flex items-center justify-center">
-                1
-              </span>
+              {cartCount > 0 && (
+                <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-primary text-white text-[10px] font-bold flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </Link>
 
             <Link
@@ -154,14 +203,16 @@ export const Header: React.FC = () => {
 
             {/* User Profile Pill */}
             <Link
-              href="/painel/comprador"
+              href={activeRole === 'comprador' ? '/painel/comprador' : '/painel/fornecedor'}
               className="flex items-center gap-2 pl-2 border-l border-surface-container-high hover:opacity-90 transition-opacity"
             >
               <div className="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-xs">
-                SC
+                {activeRole === 'comprador' ? 'SC' : 'IN'}
               </div>
               <div className="hidden xl:block text-left text-xs">
-                <span className="font-bold text-on-surface block leading-tight">Supermercado Central</span>
+                <span className="font-bold text-on-surface block leading-tight">
+                  {activeRole === 'comprador' ? 'Supermercado Central' : 'Indústria Nacional'}
+                </span>
                 <span className="text-[10px] text-secondary font-bold block leading-tight">CNPJ Validado</span>
               </div>
             </Link>
@@ -209,14 +260,16 @@ export const Header: React.FC = () => {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-surface-container-lowest border-b border-surface-container p-4 space-y-3">
-          <div className="flex items-center bg-surface-container-low rounded-lg px-3 py-2">
+          <form onSubmit={handleSearch} className="flex items-center bg-surface-container-low rounded-lg px-3 py-2">
             <span className="material-symbols-outlined text-outline text-[18px] mr-2">search</span>
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Buscar produtos, EAN ou lotes..."
               className="w-full bg-transparent text-xs text-on-surface focus:outline-none"
             />
-          </div>
+          </form>
           <div className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <Link

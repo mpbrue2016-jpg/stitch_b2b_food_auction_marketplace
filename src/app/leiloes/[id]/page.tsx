@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
+import { addLotToCart } from '@/lib/cart-store';
 import { AuctionBid } from '@/lib/types';
 
 export default function SalaLeilaoAoVivoPage() {
@@ -20,86 +22,166 @@ export default function SalaLeilaoAoVivoPage() {
   const [bids, setBids] = useState<AuctionBid[]>([
     {
       id: 'bid-3',
-      loteId: lot.id,
+      loteId: initialLot.id,
       compradorId: 'comp-1',
       empresaNome: 'Supermercado Vila Real Ltda',
       cnpjAnonimizado: '14.***.***/0001-22',
-      valorLance: lot.lanceAtual,
-      valorUnitario: lot.precoUnitarioAtual,
+      valorLance: initialLot.lanceAtual,
+      valorUnitario: initialLot.precoUnitarioAtual,
       criadoEm: 'Há 1 minuto',
       ehVencedor: true,
     },
     {
       id: 'bid-2',
-      loteId: lot.id,
+      loteId: initialLot.id,
       compradorId: 'comp-2',
       empresaNome: 'Rede Econômica de Alimentos',
       cnpjAnonimizado: '09.***.***/0001-87',
-      valorLance: lot.lanceAtual - lot.incrementoMinimo,
-      valorUnitario: Number((lot.precoUnitarioAtual - 0.20).toFixed(2)),
+      valorLance: initialLot.lanceAtual - initialLot.incrementoMinimo,
+      valorUnitario: Number((initialLot.precoUnitarioAtual - 0.20).toFixed(2)),
       criadoEm: 'Há 3 minutos',
       ehVencedor: false,
     },
     {
       id: 'bid-1',
-      loteId: lot.id,
+      loteId: initialLot.id,
       compradorId: 'comp-3',
       empresaNome: 'Supermercado Central Ltda (Você)',
       cnpjAnonimizado: '12.***.***/0001-90',
-      valorLance: lot.lanceAtual - lot.incrementoMinimo * 2,
-      valorUnitario: Number((lot.precoUnitarioAtual - 0.40).toFixed(2)),
+      valorLance: initialLot.lanceAtual - initialLot.incrementoMinimo * 2,
+      valorUnitario: Number((initialLot.precoUnitarioAtual - 0.40).toFixed(2)),
       criadoEm: 'Há 6 minutos',
       ehVencedor: false,
     },
   ]);
 
-  const [bidInput, setBidInput] = useState<number>(lot.lanceAtual + lot.incrementoMinimo);
+  const [bidInput, setBidInput] = useState<number>(initialLot.lanceAtual + initialLot.incrementoMinimo);
   const [submittingBid, setSubmittingBid] = useState(false);
   const [lastBidFeedback, setLastBidFeedback] = useState<string | null>(null);
+  const [bidError, setBidError] = useState<string | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [showProposalForm, setShowProposalForm] = useState(false);
+  const [proposalBoxes, setProposalBoxes] = useState<number>(Math.max(10, Math.round(initialLot.produto.totalCaixas / 2)));
+  const [proposalUnitPrice, setProposalUnitPrice] = useState<number>(Number((initialLot.precoUnitarioAtual * 0.95).toFixed(2)));
+  const [proposalMessage, setProposalMessage] = useState('');
+  const [submittingProposal, setSubmittingProposal] = useState(false);
+  const [proposalFeedback, setProposalFeedback] = useState<string | null>(null);
+  const [addedToCart, setAddedToCart] = useState(false);
 
-  const handlePlaceBid = (e?: React.FormEvent) => {
+  useEffect(() => {
+    fetch(`/api/lances?loteId=${encodeURIComponent(lotId)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.lot) {
+          setLot(data.lot);
+          setBidInput(data.lot.lanceAtual + data.lot.incrementoMinimo);
+          setProposalBoxes(Math.max(10, Math.round(data.lot.produto.totalCaixas / 2)));
+          setProposalUnitPrice(Number((data.lot.precoUnitarioAtual * 0.95).toFixed(2)));
+        }
+        if (data?.bids?.length) {
+          setBids((prev) => {
+            const existingIds = new Set(data.bids.map((b: AuctionBid) => b.id));
+            return [...data.bids, ...prev.filter((b) => !existingIds.has(b.id)).map((b) => ({ ...b, ehVencedor: false }))];
+          });
+        }
+      })
+      .catch(() => {});
+  }, [lotId]);
+
+  const galleryItems = [
+    { label: 'Foto do Lote', src: lot.produto.imagemUrl },
+    { label: 'Paletes PBR', src: '/images/lotes/inspecao-palete-pbr.webp' },
+    { label: 'Etiqueta GS1', src: '/images/lotes/inspecao-etiqueta-gs1.webp' },
+    { label: 'Laudo SIF', src: '/images/lotes/inspecao-laudo-sif.webp' },
+  ];
+
+  const handlePlaceBid = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (bidInput <= lot.lanceAtual) {
-      alert('Seu lance deve ser maior que o lance atual.');
+      setBidError('Seu lance deve ser maior que o lance atual.');
       return;
     }
-
+    setBidError(null);
     setSubmittingBid(true);
-    setTimeout(() => {
+
+    try {
+      const res = await fetch('/api/lances', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          loteId: lot.id,
+          valorLance: bidInput,
+          compradorId: 'user-varejista-01',
+          empresaNome: 'Supermercado Central Ltda (Você)',
+          cnpj: '12.***.***/0001-90',
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setBidError(data?.error || 'Lance não aceito pelo motor do pregão.');
+        setSubmittingBid(false);
+        return;
+      }
+
+      const registeredBid: AuctionBid = data.bid;
+      const updatedLot = data.lot;
+
+      setBids((prev) => [registeredBid, ...prev.map((b) => ({ ...b, ehVencedor: false }))]);
+      if (updatedLot) {
+        setLot(updatedLot);
+      }
+      setBidInput(bidInput + (updatedLot?.incrementoMinimo || lot.incrementoMinimo));
+
+      const antiSnipingNote = data.extendedDueToAntiSniping
+        ? ' • Regra Anti-Sniping: +3 min adicionados'
+        : '';
+      const hashNote = data.transactionHash ? ` (${data.transactionHash.slice(0, 22)}...)` : '';
+      setLastBidFeedback(
+        `Lance de R$ ${bidInput.toLocaleString('pt-BR')} homologado!${hashNote}${antiSnipingNote}`
+      );
+      setTimeout(() => setLastBidFeedback(null), 4500);
+    } catch {
+      setBidError('Erro de conexão ao enviar lance ao pregão.');
+    } finally {
       setSubmittingBid(false);
-      const newUnitPrice =
-        lot.produto.totalUnidades > 0
-          ? Number((bidInput / lot.produto.totalUnidades).toFixed(2))
-          : lot.precoUnitarioAtual;
-
-      const newBid: AuctionBid = {
-        id: `bid-${Date.now()}`,
-        loteId: lot.id,
-        compradorId: 'user-varejista-01',
-        empresaNome: 'Supermercado Central Ltda (Você)',
-        cnpjAnonimizado: '12.***.***/0001-90',
-        valorLance: bidInput,
-        valorUnitario: newUnitPrice,
-        criadoEm: 'Agora mesmo',
-        ehVencedor: true,
-      };
-
-      setBids((prev) => [newBid, ...prev.map((b) => ({ ...b, ehVencedor: false }))]);
-      setLot((prev) => ({
-        ...prev,
-        lanceAtual: bidInput,
-        precoUnitarioAtual: newUnitPrice,
-        totalLances: prev.totalLances + 1,
-        ultimoLanceEmpresa: 'Supermercado Central Ltda (Você)',
-      }));
-      setBidInput(bidInput + lot.incrementoMinimo);
-      setLastBidFeedback('Lance de R$ ' + bidInput.toLocaleString('pt-BR') + ' registrado com sucesso!');
-      setTimeout(() => setLastBidFeedback(null), 3000);
-    }, 500);
+    }
   };
 
   const handleArrematarImediato = () => {
     router.push(`/checkout?loteId=${lot.id}&valor=${lot.precoArremateImediato || lot.lanceAtual}`);
+  };
+
+  const handleSendProposal = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (proposalBoxes <= 0 || proposalUnitPrice <= 0) return;
+    setSubmittingProposal(true);
+    try {
+      const res = await fetch('/api/propostas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          newProposal: {
+            loteId: lot.id,
+            tituloProduto: lot.produto.titulo,
+            fornecedorNome: lot.produto.fabricante,
+            quantidadeCaixas: proposalBoxes,
+            precoUnitarioOfertado: proposalUnitPrice,
+            unidadesPorCaixa: lot.produto.unidadesPorEmbalagem,
+            mensagem:
+              proposalMessage.trim() ||
+              `Proposta direta para ${proposalBoxes} caixas com retirada FOB em ${lot.produto.origem}.`,
+          },
+        }),
+      });
+      if (res.ok) {
+        setProposalFeedback('Proposta enviada à indústria! Acompanhe na Mesa de Negociações.');
+        setShowProposalForm(false);
+        setProposalMessage('');
+      }
+    } finally {
+      setSubmittingProposal(false);
+    }
   };
 
   return (
@@ -142,11 +224,16 @@ export default function SalaLeilaoAoVivoPage() {
         <div className="lg:col-span-7 space-y-6">
           {/* Main Photo */}
           <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 overflow-hidden shadow-sm">
-            <div className="relative h-72 sm:h-96 w-full bg-surface-container">
-              <img
-                src={lot.produto.imagemUrl}
-                alt={lot.produto.titulo}
-                className="w-full h-full object-cover"
+            <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
+              <Image
+                src={galleryItems[activeImageIndex]?.src || lot.produto.imagemUrl}
+                alt={`${lot.produto.titulo} - ${galleryItems[activeImageIndex]?.label}`}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                quality={95}
+                referrerPolicy="no-referrer"
+                className="object-cover img-sharp"
               />
               <div className="absolute top-3 left-3 bg-inverse-surface/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-lg font-mono">
                 GTIN/EAN: {lot.produto.gtinEan}
@@ -154,6 +241,35 @@ export default function SalaLeilaoAoVivoPage() {
               <div className="absolute top-3 right-3 bg-secondary text-white text-xs font-extrabold px-3 py-1 rounded-lg shadow-sm">
                 Margem Est. Revenda: {lot.margemEstimadaRevenda}%
               </div>
+            </div>
+
+            {/* Galeria de Inspeção Técnica (Stitch) */}
+            <div className="p-3 grid grid-cols-4 gap-2.5 bg-surface-container-lowest border-t border-surface-container">
+              {galleryItems.map((item, idx) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`relative aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all ${
+                    activeImageIndex === idx
+                      ? 'border-primary ring-2 ring-primary/20'
+                      : 'border-outline-variant/40 opacity-80 hover:opacity-100'
+                  }`}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.label}
+                    fill
+                    sizes="(max-width: 1024px) 25vw, 14vw"
+                    quality={92}
+                    referrerPolicy="no-referrer"
+                    className="object-cover img-sharp"
+                  />
+                  <span className="absolute bottom-1 inset-x-1 bg-black/70 text-white text-[10px] font-bold py-0.5 rounded text-center">
+                    {item.label}
+                  </span>
+                </button>
+              ))}
             </div>
 
             {/* Spec Highlights Ribbon */}
@@ -257,6 +373,12 @@ export default function SalaLeilaoAoVivoPage() {
               </div>
             )}
 
+            {bidError && (
+              <div className="p-2.5 bg-error-container text-on-error-container font-bold text-xs rounded-xl">
+                {bidError}
+              </div>
+            )}
+
             {/* Fast Bid Buttons */}
             <form onSubmit={handlePlaceBid} className="space-y-3">
               <label className="block text-xs font-bold text-on-surface uppercase">
@@ -307,7 +429,7 @@ export default function SalaLeilaoAoVivoPage() {
               </button>
             </form>
 
-            {/* Buy Now Option */}
+            {/* Buy Now & Add to Cart Options */}
             {lot.precoArremateImediato && (
               <div className="pt-2 border-t border-surface-container space-y-2">
                 <div className="flex justify-between items-center text-xs">
@@ -326,6 +448,91 @@ export default function SalaLeilaoAoVivoPage() {
                 </button>
               </div>
             )}
+
+            <button
+              type="button"
+              onClick={() => {
+                addLotToCart(lot, lot.precoArremateImediato || lot.lanceAtual);
+                setAddedToCart(true);
+                setTimeout(() => setAddedToCart(false), 3000);
+              }}
+              className="w-full py-2 bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5"
+            >
+              <span className="material-symbols-outlined text-[16px]">
+                {addedToCart ? 'check_circle' : 'add_shopping_cart'}
+              </span>
+              <span>{addedToCart ? 'Adicionado ao Carrinho B2B!' : 'Adicionar Lote ao Carrinho'}</span>
+            </button>
+
+            {/* Direct Negotiation Proposal */}
+            <div className="pt-3 border-t border-surface-container space-y-2.5">
+              <button
+                type="button"
+                onClick={() => setShowProposalForm((prev) => !prev)}
+                className="w-full py-2 bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5"
+              >
+                <span className="material-symbols-outlined text-[16px]">handshake</span>
+                <span>{showProposalForm ? 'Fechar Proposta Direta' : 'Fazer Proposta Fracionada à Indústria'}</span>
+              </button>
+
+              {proposalFeedback && (
+                <div className="p-2.5 bg-secondary-container/30 border border-secondary/40 rounded-xl text-xs text-secondary font-bold flex items-center justify-between gap-2">
+                  <span>{proposalFeedback}</span>
+                  <Link href="/negociacoes" className="underline shrink-0">
+                    Ver Mesa
+                  </Link>
+                </div>
+              )}
+
+              {showProposalForm && (
+                <form onSubmit={handleSendProposal} className="p-3 bg-surface-container-low rounded-xl border border-outline-variant/30 space-y-2.5 text-xs">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase text-on-surface-variant mb-1">
+                        Qtd. Caixas
+                      </label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={lot.produto.totalCaixas}
+                        value={proposalBoxes}
+                        onChange={(e) => setProposalBoxes(Number(e.target.value))}
+                        className="w-full bg-white px-2.5 py-1.5 rounded-lg border border-outline-variant/40 font-bold"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase text-on-surface-variant mb-1">
+                        Preço/Un (R$)
+                      </label>
+                      <input
+                        type="number"
+                        step="0.05"
+                        min="0.10"
+                        value={proposalUnitPrice}
+                        onChange={(e) => setProposalUnitPrice(Number(e.target.value))}
+                        className="w-full bg-white px-2.5 py-1.5 rounded-lg border border-outline-variant/40 font-bold text-primary"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    value={proposalMessage}
+                    onChange={(e) => setProposalMessage(e.target.value)}
+                    placeholder="Condição comercial / janela FOB..."
+                    className="w-full bg-white px-2.5 py-1.5 rounded-lg border border-outline-variant/40"
+                  />
+                  <button
+                    type="submit"
+                    disabled={submittingProposal}
+                    className="w-full py-2 bg-primary hover:bg-primary-container text-white font-bold rounded-lg transition-colors disabled:opacity-50"
+                  >
+                    {submittingProposal ? 'Enviando...' : 'Enviar Oferta Comercial'}
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
 
           {/* Real-time Bid History Feed */}
@@ -342,7 +549,7 @@ export default function SalaLeilaoAoVivoPage() {
             </div>
 
             <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
-              {bids.map((bid, i) => (
+              {bids.map((bid) => (
                 <div
                   key={bid.id}
                   className={`p-3 rounded-xl border flex items-center justify-between text-xs transition-all ${

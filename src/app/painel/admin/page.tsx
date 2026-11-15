@@ -1,10 +1,50 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CommissionCalculator } from '@/components/CommissionCalculator';
+import { MOCK_ORDERS } from '@/lib/mock-data';
+import { generateFinancialSummary } from '@/lib/commission-engine';
+import { EscrowOrder } from '@/lib/types';
 
 export default function PainelAdminPage() {
+  const [wormNotice, setWormNotice] = useState<string | null>(null);
+  const [orders, setOrders] = useState<EscrowOrder[]>(MOCK_ORDERS);
+  const [releasingId, setReleasingId] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('/api/pedidos')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.orders?.length) setOrders(data.orders);
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleReleaseEscrow = async (order: EscrowOrder) => {
+    setReleasingId(order.id);
+    try {
+      const res = await fetch('/api/pedidos', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId: order.id, action: 'release_escrow' }),
+      });
+      const data = await res.json();
+      if (res.ok && data?.order) {
+        setOrders((prev) => prev.map((o) => (o.id === order.id ? data.order : o)));
+        setWormNotice(
+          `Liquidação D+0 executada para ${order.codigoPedido} via SPI Bancário. Repasse líquido de R$ ${order.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} liberado com selo ${data.order.termoArremateHash}.`
+        );
+      }
+    } catch {
+      setWormNotice('Erro ao executar liquidação D+0 no motor Escrow.');
+    } finally {
+      setReleasingId(null);
+    }
+  };
+
+  const summary = generateFinancialSummary(orders);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
       {/* Header */}
@@ -42,8 +82,12 @@ export default function PainelAdminPage() {
             <span className="text-xs font-bold uppercase">GMV Total Transacionado</span>
             <span className="material-symbols-outlined text-primary text-[22px]">account_balance</span>
           </div>
-          <span className="text-2xl font-extrabold text-primary block">R$ 4.280.950,00</span>
-          <span className="text-[11px] text-secondary font-bold block">↑ +24.8% vs mês anterior</span>
+          <span className="text-2xl font-extrabold text-primary block">
+            R$ {summary.gmvTotalTransacionado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
+          <span className="text-[11px] text-secondary font-bold block">
+            {summary.quantidadeTransacoes} transações auditadas
+          </span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -51,8 +95,12 @@ export default function PainelAdminPage() {
             <span className="text-xs font-bold uppercase">Receita da Plataforma (Take Rate)</span>
             <span className="material-symbols-outlined text-secondary text-[22px]">monetization_on</span>
           </div>
-          <span className="text-2xl font-extrabold text-secondary block">R$ 274.980,80</span>
-          <span className="text-[11px] text-outline block">Take rate médio efetivo: 6.42%</span>
+          <span className="text-2xl font-extrabold text-secondary block">
+            R$ {summary.receitaTotalComissoes.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
+          <span className="text-[11px] text-outline block">
+            Take rate médio efetivo: {summary.takeRateMedioEfetivo}%
+          </span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -60,7 +108,9 @@ export default function PainelAdminPage() {
             <span className="text-xs font-bold uppercase">Saldo em Custódia Escrow</span>
             <span className="material-symbols-outlined text-primary text-[22px]">lock</span>
           </div>
-          <span className="text-2xl font-extrabold text-on-surface block">R$ 894.200,00</span>
+          <span className="text-2xl font-extrabold text-on-surface block">
+            R$ {summary.totalEmCustodiaEscrow.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
           <span className="text-[11px] text-secondary font-bold block">100% segregado no STR</span>
         </div>
 
@@ -103,36 +153,68 @@ export default function PainelAdminPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-surface-container">
-              <tr className="hover:bg-surface-container-low/50">
-                <td className="p-3 font-mono font-bold text-primary">REC-2026-9041</td>
-                <td className="p-3 font-bold">Lote #418 (Café Alvorada)</td>
-                <td className="p-3 text-on-surface-variant">
-                  Supermercado Central ↔ Moinho Alvorada
-                </td>
-                <td className="p-3 font-extrabold text-primary">R$ 38.500,00</td>
-                <td className="p-3">
-                  <span className="px-2 py-0.5 rounded bg-surface-container font-semibold">
-                    Conferência de Doca (Palete 03)
-                  </span>
-                </td>
-                <td className="p-3">
-                  <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold text-[10px]">
-                    CONCILIADO D+0
-                  </span>
-                </td>
-                <td className="p-3">
-                  <button
-                    type="button"
-                    onClick={() => alert('Dossiê forense WORM validado com sucesso.')}
-                    className="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high rounded text-[11px] font-bold text-primary"
-                  >
-                    Ver Dossiê
-                  </button>
-                </td>
-              </tr>
+              {orders.map((order) => (
+                <tr key={order.id} className="hover:bg-surface-container-low/50">
+                  <td className="p-3 font-mono font-bold text-primary">{order.codigoPedido}</td>
+                  <td className="p-3 font-bold">{order.tituloLote}</td>
+                  <td className="p-3 text-on-surface-variant">
+                    {order.compradorNome} ↔ {order.fornecedorNome}
+                  </td>
+                  <td className="p-3 font-extrabold text-primary">
+                    R$ {order.valorTotalArremate.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  </td>
+                  <td className="p-3">
+                    <span className="px-2 py-0.5 rounded bg-surface-container font-semibold">
+                      {order.docaAgendada || 'Conferência de Custódia Escrow'}
+                    </span>
+                  </td>
+                  <td className="p-3">
+                    <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold text-[10px]">
+                      {order.statusPagamento === 'em_custodia_escrow' ? 'ESCROW ATIVO' : 'CONCILIADO D+0'}
+                    </span>
+                  </td>
+                  <td className="p-3">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setWormNotice(
+                            `Dossiê forense WORM (${order.codigoPedido}) validado com integridade criptográfica ${order.termoArremateHash || 'SHA-256'}.`
+                          )
+                        }
+                        className="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high rounded text-[11px] font-bold text-primary"
+                      >
+                        Ver Dossiê
+                      </button>
+                      {order.statusPagamento === 'em_custodia_escrow' && (
+                        <button
+                          type="button"
+                          disabled={releasingId === order.id}
+                          onClick={() => handleReleaseEscrow(order)}
+                          className="px-2.5 py-1 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container rounded text-[11px] font-bold disabled:opacity-50"
+                        >
+                          {releasingId === order.id ? 'Liquidando...' : 'Liquidar D+0'}
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
+        {wormNotice && (
+          <div className="p-3 bg-secondary-container/30 border border-secondary text-secondary font-bold text-xs rounded-xl flex items-center justify-between gap-2">
+            <span>{wormNotice}</span>
+            <button
+              type="button"
+              onClick={() => setWormNotice(null)}
+              className="text-secondary hover:underline text-[11px]"
+            >
+              Fechar
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

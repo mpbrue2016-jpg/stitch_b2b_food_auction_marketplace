@@ -32,7 +32,7 @@ export default function RootLayout({
       </head>
       <body className="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-sans">
         <Header />
-        <main className="flex-1 pt-[156px] w-full">{children}</main>
+        <main className="flex-1 pt-[162px] w-full">{children}</main>
         <Footer />
       </body>
     </html>

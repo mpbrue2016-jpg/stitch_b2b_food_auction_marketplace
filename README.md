@@ -9,7 +9,7 @@ Plataforma profissional de compra, venda, ofertas, leilões eletrônicos industr
 - **Frontend & Full-stack Framework:** Next.js 14+ (App Router) com React 18 e TypeScript.
 - **Estilização & Design System:** Tailwind CSS compilado nativamente, preservando rigorosamente a identidade visual corporativa do Stitch (`DESIGN.md`), fontes Google (*Plus Jakarta Sans*) e ícones vetoriais (*Material Symbols Outlined*).
 - **Banco de Dados & Autenticação:** Supabase PostgreSQL com Row Level Security (RLS), triggers e tipagem de enums.
-- **Inteligência Artificial:** Google AI Studio (Gemini 1.5 Flash) via Route Handlers no backend seguro (`/api/ai`), protegendo credenciais.
+- **Inteligência Artificial:** Google AI Studio (`@google/genai`) via Route Handlers no backend seguro (`/api/ai`), protegendo credenciais.
 - **Motor de Comissões:** Cálculo de Take-Rate dinâmico (6%, 20%, regras customizadas) com liquidação D+0 via SPI/PIX.
 - **Hospedagem & Deploy:** Preparado para Vercel e versionamento Git/GitHub.
 
@@ -36,6 +36,8 @@ Plataforma profissional de compra, venda, ofertas, leilões eletrônicos industr
 | `/painel/admin` | Painel Administrativo Master com auditoria forense WORM e prevenção a fraudes |
 | `/painel/comissoes` | Central de gestão de comissões e simulador de split fiduciário |
 | `/api/ai` | Endpoint backend para o Assistente Comercial Gemini (Google AI Studio) |
+| `/api/lotes` | API de listagem e publicação de novos lotes e pregões B2B |
+| `/api/pedidos` | API de homologação de pedidos escrow e consolidação financeira |
 | `/api/comissoes` | API para parametrização dinâmica de regras e cálculo de comissões |
 | `/api/lances` | API do pregão eletrônico com cálculo de preço unitário e anti-sniping |
 | `/api/propostas` | API de negociação comercial direta (propostas e contrapropostas) |

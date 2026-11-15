@@ -2,13 +2,31 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 export default function RecuperarSenhaPage() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMsg(null);
+    setLoading(true);
+
+    if (isSupabaseConfigured) {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/login`,
+      });
+      if (error) {
+        setErrorMsg(error.message || 'Não foi possível enviar o e-mail de recuperação.');
+        setLoading(false);
+        return;
+      }
+    }
+
+    setLoading(false);
     setSubmitted(true);
   };
 
@@ -57,11 +75,18 @@ export default function RecuperarSenhaPage() {
               />
             </div>
 
+            {errorMsg && (
+              <div className="p-2.5 bg-error-container text-on-error-container rounded-xl text-xs font-bold">
+                {errorMsg}
+              </div>
+            )}
+
             <button
               type="submit"
-              className="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+              disabled={loading}
+              className="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
             >
-              <span>Enviar Link de Recuperação</span>
+              <span>{loading ? 'Enviando...' : 'Enviar Link de Recuperação'}</span>
             </button>
           </form>
         )}

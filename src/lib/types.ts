@@ -134,4 +134,5 @@ export interface EscrowOrder {
   docaAgendada?: string;
   criadoEm: string;
   termoArremateHash?: string;
+  comprovantePix?: string;
 }

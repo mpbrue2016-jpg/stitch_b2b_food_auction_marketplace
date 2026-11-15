@@ -1,43 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-interface DockAppointment {
-  id: string;
-  pedidoId: string;
-  cdOrigem: string;
-  docaNumero: string;
-  janelaHoraria: string;
-  dataAgendada: string;
-  placaVeiculo: string;
-  motoristaNome: string;
-  status: 'agendado' | 'em_doca' | 'conferido_cega' | 'liberado';
-  passeEntradaHash: string;
-}
-
-let appointments: DockAppointment[] = [
-  {
-    id: 'apt-101',
-    pedidoId: 'PED-2026-9041',
-    cdOrigem: 'CD Jundiaí - SP (Rod. Anhanguera, km 58)',
-    docaNumero: 'Doca 03A',
-    janelaHoraria: '10:00 - 11:00',
-    dataAgendada: '2026-11-17',
-    placaVeiculo: 'BRA2E19',
-    motoristaNome: 'Carlos Eduardo Silva',
-    status: 'agendado',
-    passeEntradaHash: 'PASSE-JND-2026-9041-A3',
-  },
-];
+import { DockAppointment, marketplaceStore } from '@/lib/marketplace-store';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const pedidoId = searchParams.get('pedidoId');
 
   if (pedidoId) {
-    const apt = appointments.find((a) => a.pedidoId === pedidoId);
+    const apt = marketplaceStore.dockAppointments.find((a) => a.pedidoId === pedidoId);
     return NextResponse.json({ appointment: apt || null });
   }
 
-  return NextResponse.json({ appointments });
+  return NextResponse.json({ appointments: marketplaceStore.dockAppointments });
 }
 
 export async function POST(req: NextRequest) {
@@ -73,7 +46,16 @@ export async function POST(req: NextRequest) {
       passeEntradaHash: `PASSE-JND-${pedidoId}-${cleanPlaca}`,
     };
 
-    appointments.unshift(newApt);
+    marketplaceStore.dockAppointments.unshift(newApt);
+
+    const orderIdx = marketplaceStore.orders.findIndex((o) => o.codigoPedido === pedidoId);
+    if (orderIdx !== -1) {
+      marketplaceStore.orders[orderIdx] = {
+        ...marketplaceStore.orders[orderIdx],
+        docaAgendada: `${newApt.docaNumero} • ${newApt.cdOrigem} (${newApt.dataAgendada} às ${newApt.janelaHoraria} • Placa ${newApt.placaVeiculo} • ${newApt.passeEntradaHash})`,
+        statusLogistica: 'em_transito_fob',
+      };
+    }
 
     return NextResponse.json({
       message: 'Agendamento de Doca FOB homologado com sucesso no WMS',

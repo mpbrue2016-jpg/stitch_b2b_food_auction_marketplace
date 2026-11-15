@@ -1,25 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
+import { marketplaceStore } from '@/lib/marketplace-store';
 import { AuctionBid } from '@/lib/types';
-
-// Livro de ofertas mantido em memória no backend (e sincronizável com Supabase)
-let currentAuctions = [...MOCK_AUCTION_LOTS];
-let allBids: AuctionBid[] = [];
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const loteId = searchParams.get('loteId');
 
   if (loteId) {
-    const lot = currentAuctions.find((l) => l.id === loteId);
+    const lot = marketplaceStore.auctions.find((l) => l.id === loteId);
     if (!lot) {
       return NextResponse.json({ error: 'Lote não encontrado' }, { status: 404 });
     }
-    const lotBids = allBids.filter((b) => b.loteId === loteId);
+    const lotBids = marketplaceStore.bids.filter((b) => b.loteId === loteId);
     return NextResponse.json({ lot, bids: lotBids });
   }
 
-  return NextResponse.json({ auctions: currentAuctions });
+  return NextResponse.json({ auctions: marketplaceStore.auctions });
 }
 
 export async function POST(req: NextRequest) {
@@ -34,12 +30,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const lotIndex = currentAuctions.findIndex((l) => l.id === loteId);
+    const lotIndex = marketplaceStore.auctions.findIndex((l) => l.id === loteId);
     if (lotIndex === -1) {
       return NextResponse.json({ error: 'Lote de pregão não localizado' }, { status: 404 });
     }
 
-    const lot = currentAuctions[lotIndex];
+    const lot = marketplaceStore.auctions[lotIndex];
 
     // 1. Verificação se o leilão expirou
     const now = new Date().getTime();
@@ -93,11 +89,13 @@ export async function POST(req: NextRequest) {
     };
 
     // Atualiza status dos lances anteriores
-    allBids = allBids.map((b) => (b.loteId === loteId ? { ...b, ehVencedor: false } : b));
-    allBids.unshift(newBid);
+    marketplaceStore.bids = marketplaceStore.bids.map((b) =>
+      b.loteId === loteId ? { ...b, ehVencedor: false } : b
+    );
+    marketplaceStore.bids.unshift(newBid);
 
     // Atualiza lote
-    currentAuctions[lotIndex] = {
+    marketplaceStore.auctions[lotIndex] = {
       ...lot,
       lanceAtual: Number(valorLance),
       precoUnitarioAtual: unitPrice,
@@ -110,7 +108,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       message: 'Lance homologado com sucesso no livro de ofertas do pregão',
       bid: newBid,
-      lot: currentAuctions[lotIndex],
+      lot: marketplaceStore.auctions[lotIndex],
       transactionHash,
       extendedDueToAntiSniping: diffMinutes <= 3,
     });

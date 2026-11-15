@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { calculateSplit, getCommissionRules, updateCommissionRule } from '@/lib/commission-engine';
 
 export const CommissionCalculator: React.FC = () => {
@@ -10,15 +10,47 @@ export const CommissionCalculator: React.FC = () => {
   const [gmvAmount, setGmvAmount] = useState<number>(100000);
   const [editingRuleId, setEditingRuleId] = useState<string | null>(null);
   const [newRateInput, setNewRateInput] = useState<number>(6.0);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/comissoes')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.rules?.length) {
+          setRules(data.rules);
+          const current = data.rules.find((r: { slug: string }) => r.slug === 'leilao');
+          if (current) setCustomRate(current.percentualPadrao);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const selectedRule = rules.find((r) => r.slug === selectedRuleSlug);
   const activeRate = customRate !== undefined ? customRate : (selectedRule?.percentualPadrao ?? 6.0);
   const splitResult = calculateSplit(gmvAmount, selectedRuleSlug, activeRate);
 
-  const handleSaveRule = (ruleId: string) => {
+  const handleSaveRule = async (ruleId: string) => {
+    setSaving(true);
     updateCommissionRule(ruleId, newRateInput);
-    setRules([...getCommissionRules()]);
-    setEditingRuleId(null);
+    try {
+      const res = await fetch('/api/comissoes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ruleId, newPercentage: newRateInput }),
+      });
+      if (res.ok) {
+        const refreshed = await fetch('/api/comissoes').then((r) => r.json());
+        if (refreshed?.rules) setRules(refreshed.rules);
+      } else {
+        setRules([...getCommissionRules()]);
+      }
+    } catch {
+      setRules([...getCommissionRules()]);
+    } finally {
+      setSaving(false);
+      setEditingRuleId(null);
+      if (selectedRule?.id === ruleId) setCustomRate(newRateInput);
+    }
   };
 
   return (
@@ -90,10 +122,11 @@ export const CommissionCalculator: React.FC = () => {
                       <span className="text-xs font-bold">%</span>
                       <button
                         type="button"
+                        disabled={saving}
                         onClick={() => handleSaveRule(rule.id)}
-                        className="px-2 py-0.5 bg-secondary text-white text-[10px] font-bold rounded"
+                        className="px-2 py-0.5 bg-secondary text-white text-[10px] font-bold rounded disabled:opacity-50"
                       >
-                        Salvar
+                        {saving ? 'Salvando...' : 'Salvar'}
                       </button>
                     </div>
                   ) : (

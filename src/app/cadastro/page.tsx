@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 export default function CadastroPage() {
   const router = useRouter();
@@ -12,40 +13,84 @@ export default function CadastroPage() {
   const [nomeFantasia, setNomeFantasia] = useState('');
   const [cnae, setCnae] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [telefone, setTelefone] = useState('');
   const [cidade, setCidade] = useState('São Paulo');
   const [uf, setUf] = useState('SP');
   const [validatingCnpj, setValidatingCnpj] = useState(false);
   const [cnpjVerified, setCnpjVerified] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [approvedModal, setApprovedModal] = useState(false);
+  const [selectedDocs, setSelectedDocs] = useState<string[]>([]);
+  const docInputRef = React.useRef<HTMLInputElement | null>(null);
 
-  const handleConsultCnpj = () => {
+  const [cnpjError, setCnpjError] = useState<string | null>(null);
+  const [situacaoReceita, setSituacaoReceita] = useState<string | null>(null);
+
+  const handleConsultCnpj = async () => {
     if (!cnpj.trim()) return;
     setValidatingCnpj(true);
+    setCnpjError(null);
+    setCnpjVerified(false);
 
-    setTimeout(() => {
-      setValidatingCnpj(false);
-      setCnpjVerified(true);
-      if (userType === 'comprador') {
-        setRazaoSocial('Supermercados Alvorada do Vale Ltda');
-        setNomeFantasia('Rede Alvorada Supermercados');
-        setCnae('47.11-3-02 - Comércio varejista de mercadorias em geral, com predominância de produtos alimentícios');
-      } else {
-        setRazaoSocial('Moinho Alvorada Alimentos & Farinhas S/A');
-        setNomeFantasia('Alvorada Alimentos');
-        setCnae('10.61-9-01 - Beneficiamento de arroz e moagem de trigo e grãos alimentícios');
+    try {
+      const res = await fetch(
+        `/api/cnpj?cnpj=${encodeURIComponent(cnpj)}&role=${encodeURIComponent(userType)}`
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        setCnpjError(data?.error || 'Não foi possível validar o CNPJ informado.');
+        return;
       }
-    }, 800);
+
+      setRazaoSocial(data.razaoSocial || '');
+      setNomeFantasia(data.nomeFantasia || '');
+      setCnae(data.cnae || '');
+      if (data.cidade) setCidade(data.cidade);
+      if (data.uf) setUf(data.uf);
+      setSituacaoReceita(data.situacaoCadastral || 'ATIVA');
+      setCnpjVerified(true);
+    } catch {
+      setCnpjError('Falha de comunicação ao consultar Receita Federal. Tente novamente.');
+    } finally {
+      setValidatingCnpj(false);
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      setApprovedModal(true);
-    }, 900);
+
+    if (isSupabaseConfigured) {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password: password || 'B2BMarketplace@2026',
+        options: {
+          data: {
+            role: userType,
+            cnpj,
+            razao_social: razaoSocial,
+            nome_fantasia: nomeFantasia,
+            telefone,
+            cidade,
+            uf,
+          },
+        },
+      });
+      if (error) {
+        setSubmitError(error.message || 'Erro ao criar conta corporativa.');
+        setSubmitting(false);
+        return;
+      }
+    } else {
+      await new Promise((r) => setTimeout(r, 600));
+    }
+
+    window.localStorage.setItem('varejista_active_role', userType);
+    setSubmitting(false);
+    setApprovedModal(true);
   };
 
   return (
@@ -138,11 +183,19 @@ export default function CadastroPage() {
             </div>
           </div>
 
+          {cnpjError && (
+            <div className="p-3 bg-error-container text-on-error-container rounded-xl text-xs font-bold">
+              {cnpjError}
+            </div>
+          )}
+
           {/* Verification Badge */}
           {cnpjVerified && (
             <div className="p-3 bg-secondary-container/20 rounded-xl border border-secondary/30 flex items-center gap-2 text-secondary font-bold">
               <span className="material-symbols-outlined text-[20px]">check_circle</span>
-              <span>CNPJ Regularizado • Ativo na Receita Federal • CNAE Alimentício Compatível</span>
+              <span>
+                CNPJ Regularizado ({situacaoReceita || 'ATIVA'}) • Receita Federal • CNAE Compatível
+              </span>
             </div>
           )}
 
@@ -231,6 +284,19 @@ export default function CadastroPage() {
             </div>
           </div>
 
+          <div>
+            <label className="block font-bold text-on-surface uppercase mb-1">Senha de Acesso B2B (mínimo 6 caracteres):</label>
+            <input
+              type="password"
+              minLength={6}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Crie uma senha corporativa segura"
+              className="w-full sm:w-1/2 bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs"
+              required
+            />
+          </div>
+
           {/* Document Upload Simulation */}
           <div className="p-4 bg-surface-container-low rounded-xl border border-dashed border-outline-variant space-y-2">
             <span className="font-bold text-on-surface block uppercase">
@@ -239,16 +305,38 @@ export default function CadastroPage() {
             <p className="text-[11px] text-on-surface-variant">
               Anexe cópia do Contrato Social e Licença Sanitária (ANVISA ou MAPA) para acelerar liberação de limite escrow acima de R$ 200.000,00.
             </p>
-            <div className="flex items-center gap-3 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <input
+                ref={docInputRef}
+                type="file"
+                multiple
+                accept=".pdf,.png,.jpg,.jpeg"
+                onChange={(e) => {
+                  const names = Array.from(e.target.files || []).map((f) => f.name);
+                  setSelectedDocs(names);
+                }}
+                className="hidden"
+              />
               <button
                 type="button"
+                onClick={() => docInputRef.current?.click()}
                 className="px-3 py-1.5 bg-white border border-outline-variant rounded-lg text-xs font-semibold text-primary hover:bg-surface-container transition-colors"
               >
                 + Selecionar Arquivos (.PDF ou .PNG)
               </button>
-              <span className="text-[10px] text-outline">Nenhum arquivo enviado ainda</span>
+              <span className="text-[10px] text-outline">
+                {selectedDocs.length > 0
+                  ? `${selectedDocs.length} arquivo(s): ${selectedDocs.join(', ')}`
+                  : 'Nenhum arquivo enviado ainda'}
+              </span>
             </div>
           </div>
+
+          {submitError && (
+            <div className="p-3 bg-error-container text-on-error-container rounded-xl text-xs font-bold">
+              {submitError}
+            </div>
+          )}
 
           {/* Submit CTA */}
           <div className="pt-2">

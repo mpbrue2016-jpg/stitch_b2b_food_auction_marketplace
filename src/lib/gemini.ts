@@ -1,25 +1,36 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 
 const apiKey = process.env.GEMINI_API_KEY || '';
 
-export const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
+export const genAI = apiKey
+  ? new GoogleGenAI({
+      apiKey,
+      httpOptions: {
+        headers: {
+          'User-Agent': 'aistudio-build',
+        },
+      },
+    })
+  : null;
 
 export async function askGeminiB2B(prompt: string): Promise<string> {
   if (genAI) {
     try {
-      const model = genAI.getGenerativeModel({
-        model: 'gemini-1.5-flash',
-        systemInstruction: `Você é o Assistente Especialista B2B em Alimentos e Leilões do Varejista Online.
+      const response = await genAI.models.generateContent({
+        model: 'gemini-4-hydrogen',
+        contents: prompt,
+        config: {
+          systemInstruction: `Você é o Assistente Especialista B2B em Alimentos e Leilões do Varejista Online.
 Sua função é orientar compradores (supermercados, atacadistas) e indústrias sobre:
 - Análise de margem de lucro de revenda (preço por unidade vs preço de gôndola).
 - Avaliação de risco de Shelf Life e curva FEFO (validade longa >90d, atenção 60-90d, giro rápido 30-60d, crítico <30d).
 - Sugestão de lances e estratégia de disputa em pregões.
 - Recomendações fiscais (ICMS-ST, PIS/COFINS monofásico) e conformidade sanitária ANVISA/MAPA.
 Responda sempre em Português do Brasil com dados objetivos, tom executivo e profissional.`,
+        },
       });
 
-      const result = await model.generateContent(prompt);
-      const text = result.response.text();
+      const text = response.text;
       if (text) return text;
     } catch (err) {
       console.warn('Erro ao chamar Google AI Studio:', err);
@@ -28,6 +39,11 @@ Responda sempre em Português do Brasil com dados objetivos, tom executivo e pro
 
   // Fallback inteligente baseado nas regras de negócio e dados do Stitch
   const pLower = prompt.toLowerCase();
+  if (pLower.includes('descrição') || pLower.includes('descricao') || pLower.includes('especificações de paletização')) {
+    const titleMatch = prompt.match(/Produto\s+"([^"]+)"/i) || prompt.match(/produto:\s*"([^"]+)"/i);
+    const productName = titleMatch?.[1] || 'Lote Industrial Alimentício';
+    return `${productName} acondicionado em paletização padrão PBR com lacre de origem, laudo sanitário ANVISA/MAPA e rastreabilidade GS1 integral. Estoque armazenado sob controle térmico e documental para retirada imediata ou faturamento direto para redes varejistas e atacadistas.`;
+  }
   if (pLower.includes('margem') || pLower.includes('lucro')) {
     return 'Análise Preditiva de Margem: O lote com maior lucratividade no momento é o L-8501 (Leite UHT Integral Piracanjuba), com 64% de desconto em relação ao mercado e margem projetada de 52% na revenda de ponta de gôndola.';
   }

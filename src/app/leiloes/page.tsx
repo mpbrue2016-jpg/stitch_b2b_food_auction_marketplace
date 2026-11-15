@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
@@ -12,6 +13,17 @@ export default function LeiloesPage() {
   const [lots, setLots] = useState<AuctionLot[]>(MOCK_AUCTION_LOTS);
   const [selectedLotForBid, setSelectedLotForBid] = useState<AuctionLot | null>(null);
   const [activeTab, setActiveTab] = useState<'ao_vivo' | 'todos' | 'finalizados'>('ao_vivo');
+
+  useEffect(() => {
+    fetch('/api/lances')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.auctions?.length) {
+          setLots(data.auctions);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const displayedLots = lots.filter((lot) => {
     if (activeTab === 'ao_vivo') return lot.status === 'reta_final' || lot.status === 'ativo';
@@ -81,11 +93,15 @@ export default function LeiloesPage() {
             </div>
 
             {/* Imagem */}
-            <div className="relative h-44 w-full bg-surface-container">
-              <img
+            <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
+              <Image
                 src={lot.produto.imagemUrl}
                 alt={lot.produto.titulo}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                quality={92}
+                referrerPolicy="no-referrer"
+                className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
               />
               <span className="absolute bottom-2 left-2 bg-black/75 backdrop-blur text-white text-[10px] font-mono px-2 py-0.5 rounded">
                 EAN: {lot.produto.gtinEan}

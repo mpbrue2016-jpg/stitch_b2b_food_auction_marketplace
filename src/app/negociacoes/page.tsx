@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { MOCK_PROPOSALS } from '@/lib/mock-data';
@@ -12,28 +12,73 @@ export default function NegociacoesPage() {
   const [counterPriceInput, setCounterPriceInput] = useState<{ [id: string]: number }>({});
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const handleAccept = (prop: NegotiationProposal) => {
+  useEffect(() => {
+    fetch('/api/propostas')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.proposals?.length) {
+          setProposals(data.proposals);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleAccept = async (prop: NegotiationProposal) => {
     const finalUnitPrice = prop.contrapropostaPrecoUnitario || prop.precoUnitarioOfertado;
-    const finalTotal = finalUnitPrice * prop.quantidadeCaixas * 10; // 10 unidades por caixa aprox
-    router.push(`/checkout?loteId=${prop.loteId}&valor=${prop.valorTotalProposta}`);
+    const ratio = prop.precoUnitarioOfertado > 0 ? finalUnitPrice / prop.precoUnitarioOfertado : 1;
+    const finalTotal = Number((prop.valorTotalProposta * ratio).toFixed(2));
+
+    try {
+      await fetch('/api/propostas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'accept', proposalId: prop.id }),
+      });
+    } catch {
+      // fallback: segue para checkout mesmo se offline
+    }
+
+    router.push(`/checkout?loteId=${prop.loteId}&valor=${finalTotal}`);
   };
 
-  const handleSendCounter = (propId: string) => {
+  const handleSendCounter = async (propId: string) => {
     const newPrice = counterPriceInput[propId];
-    if (!newPrice) return;
+    if (!newPrice || newPrice <= 0) return;
 
-    setProposals((prev) =>
-      prev.map((p) =>
-        p.id === propId
-          ? {
-              ...p,
-              status: 'contraproposta',
-              contrapropostaPrecoUnitario: newPrice,
-            }
-          : p
-      )
-    );
-    setFeedback('Contraproposta de R$ ' + newPrice.toFixed(2) + '/un enviada com sucesso ao fornecedor!');
+    try {
+      const res = await fetch('/api/propostas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'counter', proposalId: propId, counterPrice: newPrice }),
+      });
+      const data = res.ok ? await res.json() : null;
+
+      setProposals((prev) =>
+        prev.map((p) =>
+          p.id === propId
+            ? data?.proposal || {
+                ...p,
+                status: 'contraproposta',
+                contrapropostaPrecoUnitario: newPrice,
+              }
+            : p
+        )
+      );
+      setFeedback(`Contraproposta de R$ ${newPrice.toFixed(2)}/un enviada com sucesso ao fornecedor!`);
+    } catch {
+      setProposals((prev) =>
+        prev.map((p) =>
+          p.id === propId
+            ? {
+                ...p,
+                status: 'contraproposta',
+                contrapropostaPrecoUnitario: newPrice,
+              }
+            : p
+        )
+      );
+      setFeedback(`Contraproposta de R$ ${newPrice.toFixed(2)}/un registrada!`);
+    }
     setTimeout(() => setFeedback(null), 3000);
   };
 

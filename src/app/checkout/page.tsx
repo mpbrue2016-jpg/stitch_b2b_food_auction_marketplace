@@ -2,26 +2,63 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { useSearchParams, useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
-import { calculateSplit } from '@/lib/commission-engine';
+import { removeLotFromCart } from '@/lib/cart-store';
+import { calculateSplit, SplitCalculationResult } from '@/lib/commission-engine';
+import { PixQrScanner } from '@/components/PixQrScanner';
 
 function CheckoutContent() {
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const loteId = searchParams.get('loteId') || 'lote-418';
   const valorParam = searchParams.get('valor');
 
-  const lot = MOCK_AUCTION_LOTS.find((l) => l.id === loteId) || MOCK_AUCTION_LOTS[0];
-  const totalAmount = valorParam ? Number(valorParam) : lot.lanceAtual;
+  const [lot, setLot] = useState(
+    () => MOCK_AUCTION_LOTS.find((l) => l.id === loteId) || MOCK_AUCTION_LOTS[0]
+  );
 
-  const split = calculateSplit(totalAmount, 'leilao');
+  useEffect(() => {
+    fetch('/api/lotes')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        const matched = data?.lots?.find((l: { id: string }) => l.id === loteId);
+        if (matched) setLot(matched);
+      })
+      .catch(() => {});
+  }, [loteId]);
+
+  const totalAmount = valorParam ? Number(valorParam) : lot.lanceAtual;
+  const modalidade = lot.tipoVenda || 'leilao';
+
+  const [split, setSplit] = useState<SplitCalculationResult>(() =>
+    calculateSplit(totalAmount, modalidade)
+  );
+
+  useEffect(() => {
+    let active = true;
+    fetch(`/api/comissoes?amount=${encodeURIComponent(totalAmount)}&modalidade=${encodeURIComponent(modalidade)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (active && data?.split) {
+          setSplit(data.split);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [totalAmount, modalidade]);
 
   const [paymentMethod, setPaymentMethod] = useState<'pix' | 'ted'>('pix');
   const [pixCopied, setPixCopied] = useState(false);
+  const [showQrScanner, setShowQrScanner] = useState(false);
+  const [scannedReceiptCode, setScannedReceiptCode] = useState<string | null>(null);
   const [confirming, setConfirming] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [orderHash, setOrderHash] = useState<string>('SHA256:e3b0c44298fc1c149afbf4c8996fb92427ae');
+  const [orderCode, setOrderCode] = useState<string | null>(null);
 
   const mockPixKey =
     '00020101021226880014br.gov.bcb.pix2566spi.varejistaonline.com.br/qr/v2/escrow_9041_88325204000053039865802BR5925VAREJISTA ONLINE ESCROW6009SAO PAULO62070503***6304E8A1';
@@ -32,12 +69,40 @@ function CheckoutContent() {
     setTimeout(() => setPixCopied(false), 3000);
   };
 
-  const handleConfirmPayment = () => {
+  const handleConfirmPayment = async (pixComprovanteCodigo?: string) => {
+    if (confirming || confirmed) return;
     setConfirming(true);
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/pedidos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          loteId: lot.id,
+          valorTotalArremate: totalAmount,
+          compradorNome: 'Supermercado Central Ltda',
+          pixComprovanteCodigo,
+        }),
+      });
+      const data = res.ok ? await res.json() : null;
+      if (data?.order?.termoArremateHash) {
+        setOrderHash(data.order.termoArremateHash);
+      }
+      if (data?.order?.codigoPedido) {
+        setOrderCode(data.order.codigoPedido);
+      }
+    } catch {
+      // mantém confirmação visual em caso de offline
+    } finally {
+      removeLotFromCart(lot.id);
       setConfirming(false);
       setConfirmed(true);
-    }, 1000);
+    }
+  };
+
+  const handleQrReceiptScanned = (decodedPayload: string) => {
+    setScannedReceiptCode(decodedPayload);
+    setShowQrScanner(false);
+    handleConfirmPayment(decodedPayload);
   };
 
   return (
@@ -64,7 +129,9 @@ function CheckoutContent() {
 
           <div className="space-y-1">
             <span className="text-xs font-bold text-secondary uppercase tracking-widest">
-              PAGAMENTO CONFIRMADO EM CUSTÓDIA ESCROW
+              {orderCode
+                ? `PEDIDO ${orderCode} • PAGAMENTO CONFIRMADO EM CUSTÓDIA ESCROW`
+                : 'PAGAMENTO CONFIRMADO EM CUSTÓDIA ESCROW'}
             </span>
             <h2 className="text-2xl font-extrabold text-on-surface">Arremate Homologado com Sucesso!</h2>
             <p className="text-xs text-on-surface-variant max-w-lg mx-auto">
@@ -76,12 +143,20 @@ function CheckoutContent() {
             <div className="flex justify-between">
               <span className="text-on-surface-variant">Hash do Termo:</span>
               <span className="font-mono text-[10px] text-primary truncate max-w-[200px]">
-                SHA256:e3b0c44298fc1c149afbf4c8996fb92427ae
+                {orderHash}
               </span>
             </div>
+            {scannedReceiptCode && (
+              <div className="flex justify-between items-center gap-2">
+                <span className="text-on-surface-variant shrink-0">Comprovante QR Lido:</span>
+                <span className="font-mono text-[10px] text-secondary font-bold truncate max-w-[200px]">
+                  {scannedReceiptCode}
+                </span>
+              </div>
+            )}
             <div className="flex justify-between">
               <span className="text-on-surface-variant">Retirada FOB:</span>
-              <strong className="text-on-surface">CD Jundiaí - SP (Doca 03A)</strong>
+              <strong className="text-on-surface">{lot.produto.origem} (Doca 03A)</strong>
             </div>
             <div className="flex justify-between">
               <span className="text-on-surface-variant">Janela de Agendamento:</span>
@@ -117,11 +192,17 @@ function CheckoutContent() {
               </h3>
 
               <div className="flex items-center gap-4 text-xs">
-                <img
-                  src={lot.produto.imagemUrl}
-                  alt={lot.produto.titulo}
-                  className="w-20 h-20 rounded-xl object-cover shrink-0"
-                />
+                <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-surface-container shrink-0">
+                  <Image
+                    src={lot.produto.imagemUrl}
+                    alt={lot.produto.titulo}
+                    fill
+                    sizes="80px"
+                    quality={92}
+                    referrerPolicy="no-referrer"
+                    className="object-cover img-sharp"
+                  />
+                </div>
                 <div className="space-y-1">
                   <span className="text-[10px] uppercase font-bold text-on-surface-variant">
                     {lot.codigoLote} • {lot.produto.marca}
@@ -225,29 +306,55 @@ function CheckoutContent() {
             {/* PIX Details */}
             {paymentMethod === 'pix' && (
               <div className="space-y-3 bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 text-center">
-                <div className="w-36 h-36 mx-auto bg-white p-2 rounded-xl border border-outline-variant/40 flex items-center justify-center shadow-sm">
-                  <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://varejistaonline.com.br/escrow"
-                    alt="QR Code PIX Escrow"
-                    className="w-full h-full object-contain"
+                {!showQrScanner ? (
+                  <>
+                    <div className="w-36 h-36 mx-auto bg-white p-2 rounded-xl border border-outline-variant/40 flex items-center justify-center shadow-sm">
+                      <Image
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(
+                          `https://varejistaonline.com.br/escrow?lote=${lot.id}&valor=${totalAmount}`
+                        )}`}
+                        alt="QR Code PIX Escrow"
+                        width={140}
+                        height={140}
+                        quality={100}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-contain img-crisp-qr"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-on-surface-variant font-bold uppercase block">
+                        Valor a Transferir para Conta Escrow:
+                      </span>
+                      <span className="text-xl font-extrabold text-primary">
+                        R$ {totalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleCopyPix}
+                      className="w-full py-2 bg-white hover:bg-surface-container border border-outline-variant text-on-surface font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">content_copy</span>
+                      <span>{pixCopied ? 'Chave PIX Copiada!' : 'Copiar Código PIX Copia e Cola'}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowQrScanner(true)}
+                      disabled={confirming}
+                      className="w-full py-2.5 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary font-extrabold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5"
+                    >
+                      <span className="material-symbols-outlined text-[17px]">qr_code_scanner</span>
+                      <span>Escanear Comprovante PIX (Confirmação Automática)</span>
+                    </button>
+                  </>
+                ) : (
+                  <PixQrScanner
+                    onScanSuccess={handleQrReceiptScanned}
+                    onClose={() => setShowQrScanner(false)}
+                    disabled={confirming}
                   />
-                </div>
-                <div>
-                  <span className="text-[10px] text-on-surface-variant font-bold uppercase block">
-                    Valor a Transferir para Conta Escrow:
-                  </span>
-                  <span className="text-xl font-extrabold text-primary">
-                    R$ {totalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleCopyPix}
-                  className="w-full py-2 bg-white hover:bg-surface-container border border-outline-variant text-on-surface font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1"
-                >
-                  <span className="material-symbols-outlined text-[16px]">content_copy</span>
-                  <span>{pixCopied ? 'Chave PIX Copiada!' : 'Copiar Código PIX Copia e Cola'}</span>
-                </button>
+                )}
               </div>
             )}
 
@@ -276,7 +383,7 @@ function CheckoutContent() {
             {/* Confirm Payment CTA */}
             <button
               type="button"
-              onClick={handleConfirmPayment}
+              onClick={() => handleConfirmPayment()}
               disabled={confirming}
               className="w-full py-3.5 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
             >

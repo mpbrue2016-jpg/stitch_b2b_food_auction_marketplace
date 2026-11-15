@@ -1,13 +1,62 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CommissionCalculator } from '@/components/CommissionCalculator';
 import { MOCK_ORDERS } from '@/lib/mock-data';
 import { generateFinancialSummary } from '@/lib/commission-engine';
+import { EscrowOrder } from '@/lib/types';
 
 export default function PainelComissoesPage() {
-  const summary = generateFinancialSummary(MOCK_ORDERS);
+  const [orders, setOrders] = useState<EscrowOrder[]>(MOCK_ORDERS);
+
+  useEffect(() => {
+    fetch('/api/pedidos')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.orders?.length) setOrders(data.orders);
+      })
+      .catch(() => {});
+  }, []);
+
+  const summary = generateFinancialSummary(orders);
+
+  const handleExportCsv = () => {
+    const header = [
+      'Pedido',
+      'Lote',
+      'Comprador',
+      'Fornecedor',
+      'ValorBruto',
+      'TaxaPercentual',
+      'ComissaoPlataforma',
+      'RepasseLiquido',
+      'StatusPagamento',
+      'SeloWORM',
+    ];
+    const rows = orders.map((o) => [
+      o.codigoPedido,
+      `"${o.tituloLote.replace(/"/g, '""')}"`,
+      `"${o.compradorNome.replace(/"/g, '""')}"`,
+      `"${o.fornecedorNome.replace(/"/g, '""')}"`,
+      o.valorTotalArremate.toFixed(2),
+      o.percentualComissao.toFixed(2),
+      o.valorComissaoPlataforma.toFixed(2),
+      o.valorRepasseLiquidoFornecedor.toFixed(2),
+      o.statusPagamento,
+      o.termoArremateHash || '',
+    ]);
+    const csvContent = '\uFEFF' + [header.join(';'), ...rows.map((r) => r.join(';'))].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `conciliacao-escrow-varejista-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
@@ -78,11 +127,21 @@ export default function PainelComissoesPage() {
 
       {/* Financial Transactions & Commission Audit Table */}
       <div className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4 text-xs">
-        <div className="flex items-center justify-between border-b border-surface-container pb-3">
-          <h3 className="font-extrabold text-base text-on-surface">
-            Relatório Analítico de Comissões por Transação
-          </h3>
-          <span className="text-outline text-xs">Auditoria Fiduciária em Tempo Real</span>
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-surface-container pb-3">
+          <div>
+            <h3 className="font-extrabold text-base text-on-surface">
+              Relatório Analítico de Comissões por Transação
+            </h3>
+            <span className="text-outline text-[11px]">Auditoria Fiduciária em Tempo Real</span>
+          </div>
+          <button
+            type="button"
+            onClick={handleExportCsv}
+            className="px-3.5 py-2 bg-primary hover:bg-primary-container text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors shadow-sm"
+          >
+            <span className="material-symbols-outlined text-[16px]">download</span>
+            <span>Exportar Conciliação (.CSV)</span>
+          </button>
         </div>
 
         <div className="overflow-x-auto">
@@ -101,7 +160,7 @@ export default function PainelComissoesPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-surface-container">
-              {MOCK_ORDERS.map((order) => (
+              {orders.map((order) => (
                 <tr key={order.id} className="hover:bg-surface-container-low/50">
                   <td className="p-3 font-mono font-bold text-primary">{order.codigoPedido}</td>
                   <td className="p-3 font-medium text-on-surface">{order.tituloLote}</td>

@@ -9,9 +9,13 @@ export default function NovoProdutoPage() {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [createdLotCode, setCreatedLotCode] = useState<string | null>(null);
 
   // Form states
   const [titulo, setTitulo] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [generatingAI, setGeneratingAI] = useState(false);
   const [marca, setMarca] = useState('');
   const [fabricante, setFabricante] = useState('');
   const [categoriaId, setCategoriaId] = useState(MOCK_CATEGORIES[0].id);
@@ -32,17 +36,82 @@ export default function NovoProdutoPage() {
   const totalUnidades = unidadesPorEmbalagem * totalCaixas;
   const precoUnitarioEstimado = totalUnidades > 0 ? (lanceInicial / totalUnidades).toFixed(2) : '0.00';
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleGenerateDescription = async () => {
+    if (!titulo.trim()) return;
+    setGeneratingAI(true);
+    try {
+      const res = await fetch('/api/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: `Gere uma descrição técnica B2B objetiva (máximo 3 frases, sem markdown) para um lote atacadista: Produto "${titulo}", Marca "${marca || 'Industrial'}", Fabricante "${fabricante || 'Indústria Nacional'}", ${totalCaixas} caixas (${paletes} paletes PBR), GTIN "${gtinEan || '7890000000000'}", validade até ${dataValidade}, frete ${tipoFrete} em ${origem}.`,
+        }),
+      });
+      const data = res.ok ? await res.json() : null;
+      if (data?.reply && !String(data.reply).includes('não configurada')) {
+        setDescricao(data.reply);
+      } else {
+        setDescricao(
+          `Lote fechado de ${titulo} (${marca || 'linha industrial'}) com ${totalCaixas} caixas (${totalUnidades.toLocaleString('pt-BR')} unidades) em ${paletes} paletes PBR. Validade até ${dataValidade}, rastreabilidade GS1 (EAN ${gtinEan || 'homologado'}) e retirada ${tipoFrete} em ${origem}.`
+        );
+      }
+    } catch {
+      setDescricao(
+        `Lote fechado de ${titulo} com ${totalCaixas} caixas (${totalUnidades.toLocaleString('pt-BR')} unidades), validade ${dataValidade} e disponibilidade ${tipoFrete} em ${origem}.`
+      );
+    } finally {
+      setGeneratingAI(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     setSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/lotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          titulo,
+          descricao,
+          marca,
+          fabricante,
+          categoriaId,
+          gtinEan,
+          dun14,
+          origem,
+          unidadesPorEmbalagem,
+          totalCaixas,
+          paletes,
+          dataValidade,
+          lanceInicial,
+          incrementoMinimo,
+          precoArremateImediato: precoArremate,
+          tipoVenda,
+          tipoFrete,
+          laudoSanitarioAnvisa: laudoAnvisa,
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setSubmitError(data?.error || 'Erro ao publicar lote no marketplace.');
+        setSubmitting(false);
+        return;
+      }
+
+      setCreatedLotCode(data?.lot?.codigoLote || null);
       setSubmitting(false);
       setSuccess(true);
       setTimeout(() => {
         router.push('/leiloes');
       }, 1500);
-    }, 800);
+    } catch {
+      setSubmitError('Falha de comunicação ao cadastrar o lote. Tente novamente.');
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -69,7 +138,9 @@ export default function NovoProdutoPage() {
       {success ? (
         <div className="p-8 bg-secondary-container/20 rounded-2xl border border-secondary/30 text-center space-y-3">
           <span className="material-symbols-outlined text-secondary text-5xl">check_circle</span>
-          <h3 className="font-bold text-xl text-secondary">Lote Cadastrado e Pregão Ativado!</h3>
+          <h3 className="font-bold text-xl text-secondary">
+            {createdLotCode ? `${createdLotCode} Cadastrado e Pregão Ativado!` : 'Lote Cadastrado e Pregão Ativado!'}
+          </h3>
           <p className="text-xs text-on-surface-variant">
             O lote foi homologado e já está visível para os compradores cadastrados com custódia fiduciária garantida. Redirecionando...
           </p>
@@ -92,6 +163,28 @@ export default function NovoProdutoPage() {
                 placeholder="Ex: Arroz Branco Tipo 1 5kg • Lote 1.500 Fardos (30.000 kg)"
                 className="w-full bg-surface-container-low px-3 py-2.5 rounded-xl border border-outline-variant/30 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 required
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block font-bold text-on-surface uppercase">Descrição Técnica do Lote:</label>
+                <button
+                  type="button"
+                  disabled={!titulo.trim() || generatingAI}
+                  onClick={handleGenerateDescription}
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary-fixed/60 hover:bg-primary-fixed text-primary font-bold text-[11px] transition-colors disabled:opacity-50"
+                >
+                  <span className="material-symbols-outlined text-[14px]">auto_awesome</span>
+                  <span>{generatingAI ? 'Gerando com IA...' : 'Gerar Descrição com IA'}</span>
+                </button>
+              </div>
+              <textarea
+                rows={3}
+                value={descricao}
+                onChange={(e) => setDescricao(e.target.value)}
+                placeholder="Especificações sanitárias, condições de armazenagem, embalagem e faturamento..."
+                className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
@@ -338,6 +431,12 @@ export default function NovoProdutoPage() {
               </div>
             </div>
           </div>
+
+          {submitError && (
+            <div className="p-3 bg-error-container text-on-error-container rounded-xl text-xs font-bold">
+              {submitError}
+            </div>
+          )}
 
           {/* Submit CTA */}
           <div className="pt-4 border-t border-surface-container flex items-center justify-end gap-3">

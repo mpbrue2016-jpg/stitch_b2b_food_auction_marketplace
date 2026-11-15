@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AuctionLot } from '@/lib/types';
 
 interface BidModalProps {
@@ -20,6 +20,17 @@ export const BidModal: React.FC<BidModalProps> = ({
   const [bidAmount, setBidAmount] = useState<number>(minNextBid);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [txHash, setTxHash] = useState<string | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setBidAmount(lot.lanceAtual + lot.incrementoMinimo);
+      setErrorMsg(null);
+      setTxHash(null);
+      setSuccess(false);
+    }
+  }, [isOpen, lot.lanceAtual, lot.incrementoMinimo]);
 
   if (!isOpen) return null;
 
@@ -32,23 +43,48 @@ export const BidModal: React.FC<BidModalProps> = ({
       ? (bidAmount / lot.produto.totalUnidades).toFixed(2)
       : '0.00';
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (bidAmount < minNextBid) {
-      alert(`O valor mínimo para o próximo lance é R$ ${minNextBid.toLocaleString('pt-BR')}`);
+      setErrorMsg(`O valor mínimo para o próximo lance é R$ ${minNextBid.toLocaleString('pt-BR')}`);
       return;
     }
-
+    setErrorMsg(null);
     setSubmitting(true);
-    setTimeout(() => {
+
+    try {
+      const res = await fetch('/api/lances', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          loteId: lot.id,
+          valorLance: bidAmount,
+          compradorId: 'user-varejista-01',
+          empresaNome: 'Supermercado Central Ltda',
+          cnpj: '12.***.***/0001-90',
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(data?.error || 'Não foi possível homologar o lance no pregão.');
+        setSubmitting(false);
+        return;
+      }
+
+      setTxHash(data.transactionHash || null);
       setSubmitting(false);
       setSuccess(true);
       onBidSuccess(bidAmount);
       setTimeout(() => {
         setSuccess(false);
+        setTxHash(null);
         onClose();
-      }, 1500);
-    }, 700);
+      }, 1600);
+    } catch {
+      setErrorMsg('Erro de comunicação com o livro de ofertas. Tente novamente.');
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -79,6 +115,11 @@ export const BidModal: React.FC<BidModalProps> = ({
             <p className="text-xs text-on-surface-variant">
               Seu lance de <strong>R$ {bidAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi registrado no livro de ofertas sob custódia BACEN.
             </p>
+            {txHash && (
+              <p className="text-[11px] font-mono text-primary bg-white/80 px-3 py-1 rounded-lg inline-block border border-outline-variant/40">
+                Auditoria WORM: {txHash}
+              </p>
+            )}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -149,6 +190,12 @@ export const BidModal: React.FC<BidModalProps> = ({
                 <span className="text-[10px] text-secondary font-bold">100% Garantida via Escrow D+0</span>
               </div>
             </div>
+
+            {errorMsg && (
+              <div className="p-2.5 bg-error-container text-on-error-container rounded-lg text-xs font-bold">
+                {errorMsg}
+              </div>
+            )}
 
             {/* CTA Buttons */}
             <div className="flex items-center gap-3 pt-2">

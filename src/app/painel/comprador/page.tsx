@@ -1,11 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { MOCK_USER_PROFILE, MOCK_AUCTION_LOTS, MOCK_ORDERS } from '@/lib/mock-data';
+import { AuctionLot, EscrowOrder } from '@/lib/types';
 
 export default function PainelCompradorPage() {
   const user = MOCK_USER_PROFILE;
+  const [lots, setLots] = useState<AuctionLot[]>(MOCK_AUCTION_LOTS);
+  const [orders, setOrders] = useState<EscrowOrder[]>(MOCK_ORDERS);
+
+  useEffect(() => {
+    Promise.all([
+      fetch('/api/lotes').then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/pedidos').then((res) => (res.ok ? res.json() : null)),
+    ])
+      .then(([lotesData, pedidosData]) => {
+        if (lotesData?.lots?.length) setLots(lotesData.lots);
+        if (pedidosData?.orders?.length) setOrders(pedidosData.orders);
+      })
+      .catch(() => {});
+  }, []);
+
+  const totalVolumeArrematado = orders.reduce((acc, o) => acc + o.valorTotalArremate, 0);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
@@ -61,8 +78,10 @@ export default function PainelCompradorPage() {
             <span className="text-xs font-bold uppercase">Pregões em Disputa</span>
             <span className="material-symbols-outlined text-tertiary text-[22px]">timer</span>
           </div>
-          <span className="text-2xl font-extrabold text-primary block">3 lotes</span>
-          <span className="text-[11px] text-tertiary font-bold block">1 lote em Reta Final</span>
+          <span className="text-2xl font-extrabold text-primary block">{lots.length} lotes</span>
+          <span className="text-[11px] text-tertiary font-bold block">
+            {lots.filter((l) => l.status === 'reta_final').length} lotes em Reta Final
+          </span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -70,8 +89,10 @@ export default function PainelCompradorPage() {
             <span className="text-xs font-bold uppercase">Volume Total Arrematado</span>
             <span className="material-symbols-outlined text-primary text-[22px]">payments</span>
           </div>
-          <span className="text-2xl font-extrabold text-on-surface block">R$ 122.500,00</span>
-          <span className="text-[11px] text-on-surface-variant block">Mês Atual (Novembro/2026)</span>
+          <span className="text-2xl font-extrabold text-on-surface block">
+            R$ {totalVolumeArrematado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
+          <span className="text-[11px] text-on-surface-variant block">{orders.length} pedidos homologados</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -99,7 +120,7 @@ export default function PainelCompradorPage() {
           </div>
 
           <div className="space-y-3">
-            {MOCK_AUCTION_LOTS.slice(0, 3).map((lot) => (
+            {lots.slice(0, 3).map((lot) => (
               <div
                 key={lot.id}
                 className="p-4 rounded-xl bg-surface-container-low border border-surface-container flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
@@ -140,7 +161,7 @@ export default function PainelCompradorPage() {
           </div>
 
           <div className="space-y-3 text-xs">
-            {MOCK_ORDERS.map((order) => (
+            {orders.map((order) => (
               <div
                 key={order.id}
                 className="p-3.5 rounded-xl bg-surface-container-low border border-surface-container space-y-2"

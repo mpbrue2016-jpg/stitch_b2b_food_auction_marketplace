@@ -19,6 +19,18 @@
   }
 }
 
+/* Nitidez de imagens WebP em displays HiDPI e transições de escala */
+.img-sharp {
+  image-rendering: -webkit-optimize-contrast;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.img-crisp-qr {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 /* Scrollbar estilizada */
 ::-webkit-scrollbar {
   width: 6px;

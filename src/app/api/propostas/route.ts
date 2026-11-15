@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { MOCK_PROPOSALS } from '@/lib/mock-data';
+import { marketplaceStore } from '@/lib/marketplace-store';
 import { NegotiationProposal } from '@/lib/types';
-
-let currentProposals: NegotiationProposal[] = [...MOCK_PROPOSALS];
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -10,11 +8,11 @@ export async function GET(req: NextRequest) {
 
   if (loteId) {
     return NextResponse.json({
-      proposals: currentProposals.filter((p) => p.loteId === loteId),
+      proposals: marketplaceStore.proposals.filter((p) => p.loteId === loteId),
     });
   }
 
-  return NextResponse.json({ proposals: currentProposals });
+  return NextResponse.json({ proposals: marketplaceStore.proposals });
 }
 
 export async function POST(req: NextRequest) {
@@ -24,34 +22,34 @@ export async function POST(req: NextRequest) {
 
     // Ação 1: Enviar contraproposta
     if (action === 'counter') {
-      const idx = currentProposals.findIndex((p) => p.id === proposalId);
+      const idx = marketplaceStore.proposals.findIndex((p) => p.id === proposalId);
       if (idx === -1) {
         return NextResponse.json({ error: 'Proposta não encontrada' }, { status: 404 });
       }
-      currentProposals[idx] = {
-        ...currentProposals[idx],
+      marketplaceStore.proposals[idx] = {
+        ...marketplaceStore.proposals[idx],
         status: 'contraproposta',
         contrapropostaPrecoUnitario: Number(counterPrice),
       };
       return NextResponse.json({
         message: 'Contraproposta enviada com sucesso',
-        proposal: currentProposals[idx],
+        proposal: marketplaceStore.proposals[idx],
       });
     }
 
     // Ação 2: Aceitar proposta
     if (action === 'accept') {
-      const idx = currentProposals.findIndex((p) => p.id === proposalId);
+      const idx = marketplaceStore.proposals.findIndex((p) => p.id === proposalId);
       if (idx === -1) {
         return NextResponse.json({ error: 'Proposta não encontrada' }, { status: 404 });
       }
-      currentProposals[idx] = {
-        ...currentProposals[idx],
+      marketplaceStore.proposals[idx] = {
+        ...marketplaceStore.proposals[idx],
         status: 'aceita',
       };
       return NextResponse.json({
         message: 'Proposta aceita! O lote foi reservado para checkout escrow.',
-        proposal: currentProposals[idx],
+        proposal: marketplaceStore.proposals[idx],
       });
     }
 
@@ -75,7 +73,7 @@ export async function POST(req: NextRequest) {
         mensagem: newProposal.mensagem || 'Proposta de compra com retirada FOB agendada.',
         criadaEm: new Date().toISOString(),
       };
-      currentProposals.unshift(created);
+      marketplaceStore.proposals.unshift(created);
       return NextResponse.json({
         message: 'Proposta comercial enviada à indústria',
         proposal: created,
