@@ -81,6 +81,7 @@ O projeto possui migrations SQL completas, stored procedures e dados iniciais na
 | `supabase/migrations/20261114000001_complete_database.sql` | Tabelas complementares (subcategories, webhooks_logs, fiscal_documents, system_settings, carts, cart_items), triggers de `updated_at` e RLS |
 | `supabase/migrations/20261114000002_advanced_features.sql` | Stored procedures: `calculate_bid_value`, `place_bid`, `finalize_auction`, `check_product_availability`, `get_categories_with_subcategories` |
 | `supabase/migrations/20261114000003_auditoria_worm.sql` | Triggers WORM (BACEN 4.656), view `v_dashboard_executivo`, função `calcular_take_rate_dinamico` |
+| `supabase/migrations/20261114000004_demo_data.sql` | Dados de demonstração: 3 usuários, 8 produtos, 5 leilões, 6 lances, 1 pedido escrow, 3 notificações |
 | `supabase/seed.sql` | 10 categorias, 40 subcategorias, 21 configurações do sistema, 6 regras de comissão |
 | `supabase/config.toml` | Configuração do Supabase CLI para desenvolvimento local |
 | `supabase/README.md` | Documentação completa do banco de dados |
@@ -100,6 +101,8 @@ O projeto possui migrations SQL completas, stored procedures e dados iniciais na
    \i supabase/migrations/20261114000003_auditoria_worm.sql
    -- 5. Dados iniciais
    \i supabase/seed.sql
+   -- 6. Dados de demonstração (opcional)
+   \i supabase/migrations/20261114000004_demo_data.sql
    ```
 4. Copie a **URL do Projeto** e a **chave Anon** em *Project Settings > API*.
 5. Cole as variáveis no seu `.env.local`:

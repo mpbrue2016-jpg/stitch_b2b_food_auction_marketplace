@@ -59,7 +59,8 @@ $MigrationFiles = @(
     "20261114000000_initial_schema.sql",
     "20261114000001_complete_database.sql",
     "20261114000002_advanced_features.sql",
-    "20261114000003_auditoria_worm.sql"
+    "20261114000003_auditoria_worm.sql",
+    "20261114000004_demo_data.sql"
 )
 
 foreach ($migration in $MigrationFiles) {

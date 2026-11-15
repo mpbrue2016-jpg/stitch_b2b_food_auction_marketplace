@@ -10,7 +10,8 @@ supabase/
 │   ├── 20261114000000_initial_schema.sql    # Schema base (tabelas, enums, índices, RLS)
 │   ├── 20261114000001_complete_database.sql  # Tabelas complementares + triggers
 │   ├── 20261114000002_advanced_features.sql  # Stored procedures e funções
-│   └── 20261114000003_auditoria_worm.sql     # Auditoria WORM, dashboard view, take-rate
+│   ├── 20261114000003_auditoria_worm.sql     # Auditoria WORM, dashboard view, take-rate
+│   └── 20261114000004_demo_data.sql         # Dados de demonstração (usuários, produtos, leilões)
 └── seed.sql                                  # Dados iniciais (categorias, configurações, comissões)
 ```
 
@@ -33,7 +34,29 @@ Execute as migrações nesta ordem exata no **Supabase SQL Editor**:
 
 # 5. Dados iniciais
 \i supabase/seed.sql
+
+# 6. Dados de demonstração (opcional - ambiente de homologação)
+\i supabase/migrations/20261114000004_demo_data.sql
 ```
+
+### Dados de demonstração (migration 000004)
+
+Cria um ambiente completo para testes com:
+- **3 usuários** (admin, comprador, fornecedor) com senhas de teste
+- **8 produtos** reais em 4 categorias
+- **5 leilões** em diferentes status (ativo, reta_final, homologado)
+- **6 lances** com histórico completo
+- **1 pedido** em custódia escrow D+0
+- **3 notificações** multicanal
+
+**Credenciais de acesso:**
+| Perfil | Email | Senha |
+|--------|-------|-------|
+| Admin | admin@varejistaonline.com.br | Admin@123 |
+| Comprador | comprador@varejistaonline.com.br | Comprador@123 |
+| Fornecedor | fornecedor@varejistaonline.com.br | Fornecedor@123 |
+
+> ⚠️ **ATENÇÃO:** Senhas de demonstração - NÃO usar em produção!
 
 ## Tabelas Principais
 
