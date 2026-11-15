@@ -73,21 +73,53 @@ npm start
 
 ## 🗄️ 4. Integração com Supabase
 
-O projeto possui migrations SQL completas e dados iniciais na pasta `supabase/`:
-- `supabase/migrations/20261114000000_initial_schema.sql` (Estrutura, tabelas, enums, triggers e RLS)
-- `supabase/seed.sql` (Categorias oficiais de alimentos e regras de comissão parametrizáveis)
+O projeto possui migrations SQL completas, stored procedures e dados iniciais na pasta `supabase/`:
+
+| Arquivo | Descrição |
+| :--- | :--- |
+| `supabase/migrations/20261114000000_initial_schema.sql` | Schema base: enums, tabelas (profiles, categories, products, auctions, bids, commission_rules, orders, notifications, audit_worm_logs), índices e RLS |
+| `supabase/migrations/20261114000001_complete_database.sql` | Tabelas complementares (subcategories, webhooks_logs, fiscal_documents, system_settings, carts, cart_items), triggers de `updated_at` e RLS |
+| `supabase/migrations/20261114000002_advanced_features.sql` | Stored procedures: `calculate_bid_value`, `place_bid`, `finalize_auction`, `check_product_availability`, `get_categories_with_subcategories` |
+| `supabase/migrations/20261114000003_auditoria_worm.sql` | Triggers WORM (BACEN 4.656), view `v_dashboard_executivo`, função `calcular_take_rate_dinamico` |
+| `supabase/seed.sql` | 10 categorias, 40 subcategorias, 21 configurações do sistema, 6 regras de comissão |
+| `supabase/config.toml` | Configuração do Supabase CLI para desenvolvimento local |
+| `supabase/README.md` | Documentação completa do banco de dados |
 
 ### Como aplicar no Supabase:
 1. Acesse o [Supabase Dashboard](https://supabase.com).
-2. Crie ou selecione seu projeto.
-3. Vá em **SQL Editor** e execute primeiro o conteúdo do arquivo `supabase/migrations/20261114000000_initial_schema.sql`.
-4. Em seguida, execute o script de sementes `supabase/seed.sql` para carregar as categorias de alimentos e as alíquotas de comissão.
+2. Crie ou selecione seu projeto (região recomendada: `sa-east-1`).
+3. Vá em **SQL Editor** e execute as migrações **nesta ordem**:
+   ```sql
+   -- 1. Schema base
+   \i supabase/migrations/20261114000000_initial_schema.sql
+   -- 2. Tabelas complementares
+   \i supabase/migrations/20261114000001_complete_database.sql
+   -- 3. Stored procedures
+   \i supabase/migrations/20261114000002_advanced_features.sql
+   -- 4. Auditoria WORM e dashboard
+   \i supabase/migrations/20261114000003_auditoria_worm.sql
+   -- 5. Dados iniciais
+   \i supabase/seed.sql
+   ```
 4. Copie a **URL do Projeto** e a **chave Anon** em *Project Settings > API*.
 5. Cole as variáveis no seu `.env.local`:
    ```env
    NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
    NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima
+   SUPABASE_SERVICE_ROLE_KEY=sua-chave-service-role
    ```
+
+### Setup automatizado (recomendado):
+```bash
+# Linux/Mac
+chmod +x scripts/setup-supabase.sh
+./scripts/setup-supabase.sh
+
+# Windows
+powershell -ExecutionPolicy Bypass -File scripts/setup-supabase.ps1
+```
+
+O script verifica a Supabase CLI, inicia o banco local, aplica todas as migrações, o seed e habilita RLS em todas as 13 tabelas automaticamente.
 
 ---
 
