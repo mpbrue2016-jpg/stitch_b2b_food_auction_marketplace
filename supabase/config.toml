@@ -1,0 +1,114 @@
+[project]
+
+# ID do projeto (obtido em https://supabase.com/dashboard/project/_/settings/api)
+# Deixe vazio para usar variável de ambiente SUPABASE_PROJECT_ID
+id = ""
+
+# Nome do projeto
+name = "stitch-b2b-food-auction-marketplace"
+
+# Região do projeto (ex: sa-east-1 para São Paulo)
+region = "sa-east-1"
+
+[api]
+
+# Porta da API local (Padrão: 54321)
+port = 54321
+
+# Habilitar RLS no schema local
+enable_rack = false
+
+# Esquema a ser carregado (por padrão: public)
+db_schema = "public"
+
+# Timeout da API local (ms)
+db_timeout = 10000
+
+# Habilitar CORS para desenvolvimento
+enable_cors = true
+
+# JWT secret local (para desenvolvimento apenas - NÃO usar em produção)
+# Em produção, use sempre o valor real do Supabase Dashboard
+jwt_secret = "your-local-jwt-secret-change-me-in-production"
+
+[db]
+
+# Porta do PostgreSQL local (Padrão: 5432)
+port = 5432
+
+# Host do banco local
+host = "127.0.0.1"
+
+# Nome do banco local
+name = "postgres"
+
+# Schema search path
+search_path = "public"
+
+[studio]
+
+# Porta do Supabase Studio local
+port = 54323
+
+# Habilitar Studio em desenvolvimento
+enabled = true
+
+[inbucket]
+
+# Porta do Inbucket (emulador de email)
+port = 54324
+
+# Habilitar Inbucket
+enabled = true
+
+[functions]
+
+# Diretório das Edge Functions
+# verify_jwt = true
+
+[storage]
+
+# Porta do Storage local
+port = 54325
+
+# Habilitar Storage local
+enabled = true
+
+[auth]
+
+# Habilitar autenticação local
+enabled = true
+
+# URL de redirect padrão
+site_url = "http://localhost:3000"
+
+# URL de redirect adicionais
+additional_redirect_urls = [
+  "http://localhost:3000/**",
+  "https://stitch-b2b-food-auction-marketplace.vercel.app/**"
+]
+
+# JWT expiry time (segundos) - 1 hora
+jwt_expiry = 3600
+
+# Habilitar signup
+enable_signup = true
+
+# Habilitar confirmação de email
+enable_confirmations = true
+
+# Habilitar recuperação de senha
+enable_recovery = true
+
+# Habilitar MFA
+enable_mfa = false
+
+[experimental]
+
+# Habilitar websocket local
+websocket = true
+
+[ui]
+
+# Tema do Studio
+theme = "dark"
