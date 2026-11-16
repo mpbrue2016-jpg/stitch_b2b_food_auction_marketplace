@@ -8,6 +8,7 @@ import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
 import { BidModal } from '@/components/BidModal';
 import { AIAssistantWidget } from '@/components/AIAssistantWidget';
+import { HomeBannerCarousel } from '@/components/HomeBannerCarousel';
 import { AuctionLot } from '@/lib/types';
 
 export default function HomePage() {
@@ -50,11 +51,16 @@ export default function HomePage() {
   };
 
   const filteredLots = lots.filter((lot) => {
+    const q = searchTerm.trim().toLowerCase();
     const matchesSearch =
-      !searchTerm ||
-      lot.produto.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      lot.produto.gtinEan.includes(searchTerm) ||
-      lot.produto.marca.toLowerCase().includes(searchTerm.toLowerCase());
+      !q ||
+      lot.produto.titulo.toLowerCase().includes(q) ||
+      lot.produto.gtinEan.includes(q) ||
+      lot.produto.dun14.includes(q) ||
+      lot.produto.sku.toLowerCase().includes(q) ||
+      lot.codigoLote.toLowerCase().includes(q) ||
+      lot.produto.marca.toLowerCase().includes(q) ||
+      lot.produto.fabricante.toLowerCase().includes(q);
 
     const matchesMode =
       selectedMode === 'todos' ||
@@ -75,9 +81,19 @@ export default function HomePage() {
     ? filteredLots.slice(0, 6)
     : filteredLots.filter((l) => l.status === 'reta_final' || l.id === 'lote-8512').slice(0, 3);
 
-  const flashDeals = lots.filter((l) =>
-    ['lote-arroz-5kg', 'lote-guarana-2l', 'lote-detergente-500ml', 'lote-bombons-250g'].includes(l.id)
-  );
+  const flashDeals = lots
+    .filter(
+      (l) =>
+        (l.tipoVenda === 'venda_direta' || l.tipoVenda === 'giro_rapido') &&
+        l.id !== 'lote-8501' &&
+        l.id !== 'lote-sbe-2026'
+    )
+    .slice(0, 4);
+
+  const closingSoonCount = lots.filter((l) => {
+    const diff = new Date(l.terminaEm).getTime() - Date.now();
+    return diff > 0 && diff <= 4 * 3600 * 1000;
+  }).length;
 
   const fefoLots = [...lots]
     .filter((l) => l.produto.diasRestantesValidade <= 120 || l.produto.statusShelfLife !== 'longa')
@@ -85,9 +101,12 @@ export default function HomePage() {
     .slice(0, 4);
 
   return (
-    <div className="w-full flex flex-col space-y-8 pb-16">
+    <div className="w-full flex flex-col space-y-6 pb-16">
+      {/* Rotating Responsive Campaign Banner Carousel */}
+      <HomeBannerCarousel />
+
       {/* Dynamic Operational B2B Hero Ribbon */}
-      <section className="relative w-full bg-surface-container-low px-4 sm:px-6 py-8 sm:py-12 border-b border-surface-container shadow-sm">
+      <section className="relative w-full bg-surface-container-low px-4 sm:px-6 py-8 sm:py-10 border-y border-surface-container shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-col gap-6 relative z-10">
           {/* Operational Badges & Urgência */}
           <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
@@ -101,7 +120,7 @@ export default function HomePage() {
             </span>
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed">
               <span className="material-symbols-outlined text-[15px]">timer</span>
-              68 lotes encerram nas próximas 4 horas
+              {closingSoonCount} {closingSoonCount === 1 ? 'lote encerra' : 'lotes encerram'} nas próximas 4 horas
             </span>
           </div>
 
@@ -667,7 +686,12 @@ export default function HomePage() {
                   <div className="flex items-baseline justify-between">
                     <div>
                       <span className="text-[10px] line-through text-outline block">
-                        R$ {(deal.precoUnitarioAtual * 1.38).toFixed(2)} / un
+                        R${' '}
+                        {(deal.produto.totalUnidades > 0
+                          ? deal.produto.precoReferenciaMercado / deal.produto.totalUnidades
+                          : deal.precoUnitarioAtual * 1.38
+                        ).toFixed(2)}{' '}
+                        / un
                       </span>
                       <span className="text-lg font-extrabold text-primary">
                         R$ {deal.precoUnitarioAtual.toFixed(2)}
@@ -715,30 +739,37 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { code: 'NT', name: 'Nestlé Brasil', query: 'Nestlé', lots: '24 Pregões', desc: 'Lácteos, Chocolates & Cereais • Até 48% abaixo da tabela' },
-            { code: 'AB', name: 'Ambev', query: 'Ambev', lots: '18 Pregões', desc: 'Cervejas, Refrigerantes & Sucos • Frete dedicado FOB / CIF' },
-            { code: 'PJ', name: 'Piracanjuba', query: 'Piracanjuba', lots: '14 Pregões', desc: 'Lácteos UHT & Derivados • Oportunidades FEFO homologadas' },
-            { code: 'CM', name: 'Camil Alimentos', query: 'Camil', lots: '15 Pregões', desc: 'Arroz, Feijão & Grãos • Cargas fechadas padrão carreta' },
-          ].map((ind) => (
-            <Link
-              key={ind.code}
-              href={`/catalogo?q=${encodeURIComponent(ind.query)}`}
-              className="p-4 bg-surface-container-lowest rounded-2xl border border-outline-variant/30 hover:border-primary shadow-sm hover:shadow-md transition-all flex items-start gap-3"
-            >
-              <div className="w-10 h-10 rounded-xl bg-surface-container-low text-primary font-extrabold text-xs flex items-center justify-center shrink-0">
-                {ind.code}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-1">
-                  <strong className="text-sm text-on-surface truncate">{ind.name}</strong>
-                  <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold shrink-0">
-                    {ind.lots}
-                  </span>
+            { code: 'NT', name: 'Nestlé Brasil', query: 'Nestlé', desc: 'Lácteos, Chocolates & Cereais • Até 48% abaixo da tabela' },
+            { code: 'AB', name: 'Ambev', query: 'Ambev', desc: 'Cervejas, Refrigerantes & Sucos • Frete dedicado FOB / CIF' },
+            { code: 'PJ', name: 'Piracanjuba', query: 'Piracanjuba', desc: 'Lácteos UHT & Derivados • Oportunidades FEFO homologadas' },
+            { code: 'CM', name: 'Camil Alimentos', query: 'Camil', desc: 'Arroz, Feijão & Grãos • Cargas fechadas padrão carreta' },
+          ].map((ind) => {
+            const brandCount = lots.filter(
+              (l) =>
+                l.produto.marca.toLowerCase().includes(ind.query.toLowerCase()) ||
+                l.produto.fabricante.toLowerCase().includes(ind.query.toLowerCase())
+            ).length;
+            return (
+              <Link
+                key={ind.code}
+                href={`/catalogo?q=${encodeURIComponent(ind.query)}`}
+                className="p-4 bg-surface-container-lowest rounded-2xl border border-outline-variant/30 hover:border-primary shadow-sm hover:shadow-md transition-all flex items-start gap-3"
+              >
+                <div className="w-10 h-10 rounded-xl bg-surface-container-low text-primary font-extrabold text-xs flex items-center justify-center shrink-0">
+                  {ind.code}
                 </div>
-                <p className="text-[11px] text-on-surface-variant mt-1 leading-snug">{ind.desc}</p>
-              </div>
-            </Link>
-          ))}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <strong className="text-sm text-on-surface truncate">{ind.name}</strong>
+                    <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold shrink-0">
+                      {brandCount} {brandCount === 1 ? 'Lote' : 'Lotes'}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-on-surface-variant mt-1 leading-snug">{ind.desc}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -748,23 +779,28 @@ export default function HomePage() {
           Navegue por Categorias de Alimentos
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {MOCK_CATEGORIES.map((cat) => (
-            <Link
-              key={cat.id}
-              href={`/catalogo?categoria=${cat.slug}`}
-              className="p-3 bg-surface-container-lowest rounded-xl border border-outline-variant/30 hover:border-primary transition-all text-center flex flex-col items-center gap-2 group shadow-sm hover:shadow-md"
-            >
-              <div className="w-10 h-10 rounded-lg bg-surface-container group-hover:bg-primary-fixed text-primary flex items-center justify-center transition-colors">
-                <span className="material-symbols-outlined text-[22px]">{cat.icone}</span>
-              </div>
-              <div>
-                <span className="text-xs font-bold text-on-surface block leading-tight">
-                  {cat.nome}
-                </span>
-                <span className="text-[10px] text-on-surface-variant">{cat.totalLotes} lotes</span>
-              </div>
-            </Link>
-          ))}
+          {MOCK_CATEGORIES.map((cat) => {
+            const catCount = lots.filter((l) => l.produto.categoriaId === cat.id).length;
+            return (
+              <Link
+                key={cat.id}
+                href={`/catalogo?categoria=${cat.slug}`}
+                className="p-3 bg-surface-container-lowest rounded-xl border border-outline-variant/30 hover:border-primary transition-all text-center flex flex-col items-center gap-2 group shadow-sm hover:shadow-md"
+              >
+                <div className="w-10 h-10 rounded-lg bg-surface-container group-hover:bg-primary-fixed text-primary flex items-center justify-center transition-colors">
+                  <span className="material-symbols-outlined text-[22px]">{cat.icone}</span>
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-on-surface block leading-tight">
+                    {cat.nome}
+                  </span>
+                  <span className="text-[10px] text-on-surface-variant">
+                    {catCount} {catCount === 1 ? 'lote' : 'lotes'}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

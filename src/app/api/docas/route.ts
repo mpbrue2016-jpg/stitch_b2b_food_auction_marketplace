@@ -46,7 +46,14 @@ export async function POST(req: NextRequest) {
       passeEntradaHash: `PASSE-JND-${pedidoId}-${cleanPlaca}`,
     };
 
-    marketplaceStore.dockAppointments.unshift(newApt);
+    const existingIdx = marketplaceStore.dockAppointments.findIndex(
+      (a) => a.pedidoId === pedidoId
+    );
+    if (existingIdx !== -1) {
+      marketplaceStore.dockAppointments[existingIdx] = newApt;
+    } else {
+      marketplaceStore.dockAppointments.unshift(newApt);
+    }
 
     const orderIdx = marketplaceStore.orders.findIndex((o) => o.codigoPedido === pedidoId);
     if (orderIdx !== -1) {

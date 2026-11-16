@@ -78,7 +78,13 @@ export default function PainelComissoesPage() {
               Parametrização dinâmica das alíquotas administrativas da plataforma (6%, 20% ou taxas customizadas).
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              href="/painel/admin#gestao-banners"
+              className="px-3.5 py-1.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-colors"
+            >
+              Gerenciar Banners &amp; Admin Master
+            </Link>
             <span className="text-xs font-bold text-secondary bg-secondary-fixed/50 px-3 py-1.5 rounded-full flex items-center gap-1">
               <span className="material-symbols-outlined text-[16px]">verified</span>
               Motor BACEN Regulado
@@ -181,10 +187,20 @@ export default function PainelComissoesPage() {
                       className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
                         order.statusPagamento === 'em_custodia_escrow'
                           ? 'bg-primary-fixed text-on-primary-fixed'
+                          : order.statusPagamento === 'em_disputa'
+                          ? 'bg-tertiary-fixed text-on-tertiary-fixed'
+                          : order.statusPagamento === 'estornado'
+                          ? 'bg-error-container text-on-error-container'
                           : 'bg-secondary-fixed text-on-secondary-fixed'
                       }`}
                     >
-                      {order.statusPagamento === 'em_custodia_escrow' ? 'Retido Escrow' : 'Liquidado D+0'}
+                      {order.statusPagamento === 'em_custodia_escrow'
+                        ? 'Retido Escrow'
+                        : order.statusPagamento === 'em_disputa'
+                        ? 'Em Disputa'
+                        : order.statusPagamento === 'estornado'
+                        ? 'Estornado'
+                        : 'Liquidado D+0'}
                     </span>
                   </td>
                 </tr>

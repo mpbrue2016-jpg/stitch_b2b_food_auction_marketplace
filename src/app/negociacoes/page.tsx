@@ -11,6 +11,7 @@ export default function NegociacoesPage() {
   const [proposals, setProposals] = useState<NegotiationProposal[]>(MOCK_PROPOSALS);
   const [counterPriceInput, setCounterPriceInput] = useState<{ [id: string]: number }>({});
   const [feedback, setFeedback] = useState<string | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/propostas')
@@ -43,7 +44,11 @@ export default function NegociacoesPage() {
 
   const handleSendCounter = async (propId: string) => {
     const newPrice = counterPriceInput[propId];
-    if (!newPrice || newPrice <= 0) return;
+    if (!newPrice || newPrice <= 0) {
+      setErrorMsg('Informe um preço unitário positivo para a contraproposta.');
+      return;
+    }
+    setErrorMsg(null);
 
     try {
       const res = await fetch('/api/propostas', {
@@ -51,7 +56,12 @@ export default function NegociacoesPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'counter', proposalId: propId, counterPrice: newPrice }),
       });
-      const data = res.ok ? await res.json() : null;
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(data?.error || 'Não foi possível registrar a contraproposta.');
+        return;
+      }
 
       setProposals((prev) =>
         prev.map((p) =>
@@ -66,18 +76,31 @@ export default function NegociacoesPage() {
       );
       setFeedback(`Contraproposta de R$ ${newPrice.toFixed(2)}/un enviada com sucesso ao fornecedor!`);
     } catch {
+      setErrorMsg('Falha de comunicação ao enviar a contraproposta. Tente novamente.');
+      return;
+    }
+    setTimeout(() => setFeedback(null), 3000);
+  };
+
+  const handleReject = async (propId: string) => {
+    try {
+      const res = await fetch('/api/propostas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'reject', proposalId: propId }),
+      });
+      const data = res.ok ? await res.json() : null;
       setProposals((prev) =>
         prev.map((p) =>
-          p.id === propId
-            ? {
-                ...p,
-                status: 'contraproposta',
-                contrapropostaPrecoUnitario: newPrice,
-              }
-            : p
+          p.id === propId ? data?.proposal || { ...p, status: 'recusada' } : p
         )
       );
-      setFeedback(`Contraproposta de R$ ${newPrice.toFixed(2)}/un registrada!`);
+      setFeedback(`Proposta #${propId} recusada e encerrada na mesa de negociação.`);
+    } catch {
+      setProposals((prev) =>
+        prev.map((p) => (p.id === propId ? { ...p, status: 'recusada' } : p))
+      );
+      setFeedback(`Proposta #${propId} marcada como recusada.`);
     }
     setTimeout(() => setFeedback(null), 3000);
   };
@@ -117,6 +140,19 @@ export default function NegociacoesPage() {
         </div>
       )}
 
+      {errorMsg && (
+        <div className="p-3 bg-error-container text-on-error-container font-bold text-xs rounded-xl flex items-center justify-between gap-2">
+          <span>{errorMsg}</span>
+          <button
+            type="button"
+            onClick={() => setErrorMsg(null)}
+            className="text-[11px] underline"
+          >
+            Fechar
+          </button>
+        </div>
+      )}
+
       {/* Proposals List */}
       <div className="space-y-4">
         {proposals.map((prop) => (
@@ -137,6 +173,8 @@ export default function NegociacoesPage() {
                     ? 'bg-primary-fixed text-on-primary-fixed'
                     : prop.status === 'aceita'
                     ? 'bg-secondary-fixed text-on-secondary-fixed'
+                    : prop.status === 'recusada'
+                    ? 'bg-error-container text-on-error-container'
                     : 'bg-surface-container text-on-surface-variant'
                 }`}
               >
@@ -197,6 +235,8 @@ export default function NegociacoesPage() {
                 <input
                   type="number"
                   step="0.10"
+                  min="0.01"
+                  disabled={prop.status === 'recusada' || prop.status === 'aceita'}
                   placeholder="Novo preço unitário..."
                   value={counterPriceInput[prop.id] || ''}
                   onChange={(e) =>
@@ -205,22 +245,38 @@ export default function NegociacoesPage() {
                       [prop.id]: Number(e.target.value),
                     })
                   }
-                  className="w-36 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/30 text-xs font-bold"
+                  className="w-36 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant/30 text-xs font-bold disabled:opacity-50"
                 />
                 <button
                   type="button"
+                  disabled={
+                    prop.status === 'recusada' ||
+                    prop.status === 'aceita' ||
+                    !counterPriceInput[prop.id] ||
+                    counterPriceInput[prop.id] <= 0
+                  }
                   onClick={() => handleSendCounter(prop.id)}
-                  className="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs rounded-lg transition-colors"
+                  className="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs rounded-lg transition-colors disabled:opacity-45"
                 >
                   Enviar Contraproposta
                 </button>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                {prop.status !== 'recusada' && prop.status !== 'aceita' && (
+                  <button
+                    type="button"
+                    onClick={() => handleReject(prop.id)}
+                    className="px-4 py-2 bg-error-container/70 hover:bg-error-container text-on-error-container font-bold text-xs rounded-xl transition-colors"
+                  >
+                    Recusar
+                  </button>
+                )}
                 <button
                   type="button"
+                  disabled={prop.status === 'recusada'}
                   onClick={() => handleAccept(prop)}
-                  className="px-5 py-2 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5"
+                  className="px-5 py-2 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 disabled:opacity-40"
                 >
                   <span className="material-symbols-outlined text-[16px]">check_circle</span>
                   <span>Aceitar e Ir para Custódia Escrow</span>

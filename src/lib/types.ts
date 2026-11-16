@@ -129,10 +129,30 @@ export interface EscrowOrder {
   percentualComissao: number;
   valorComissaoPlataforma: number;
   valorRepasseLiquidoFornecedor: number;
-  statusPagamento: 'aguardando_pagamento' | 'em_custodia_escrow' | 'repasse_liquidado_d0';
+  statusPagamento:
+    | 'aguardando_pagamento'
+    | 'em_custodia_escrow'
+    | 'repasse_liquidado_d0'
+    | 'em_disputa'
+    | 'estornado';
   statusLogistica: 'agendamento_doca' | 'em_transito_fob' | 'conferido_doca' | 'entregue';
   docaAgendada?: string;
   criadoEm: string;
   termoArremateHash?: string;
   comprovantePix?: string;
+  motivoDisputa?: string;
+}
+
+export interface HomeBanner {
+  id: string;
+  titulo: string;
+  subtitulo: string;
+  eyebrow: string;
+  ctaLabel: string;
+  ctaHref: string;
+  imagemUrl: string;
+  ordem: number;
+  ativo: boolean;
+  intervaloSegundos: number;
+  criadoEm: string;
 }

@@ -58,7 +58,11 @@ export async function POST(req: NextRequest) {
     const totalUnidades = unitsPerBox * boxes;
     const baseBid = Math.max(100, Number(lanceInicial));
     const unitPrice = Number((baseBid / totalUnidades).toFixed(2));
-    const refMarketPrice = Number((baseBid * 1.45).toFixed(2));
+    const refMarketPrice = Number((baseBid * 1.65).toFixed(2));
+    const estimatedMargin = Math.max(
+      1,
+      Math.round(((refMarketPrice - baseBid) / refMarketPrice) * 100)
+    );
 
     const validadeDate = dataValidade ? new Date(dataValidade) : new Date(Date.now() + 90 * 86400000);
     const diasRestantes = Math.max(
@@ -79,7 +83,7 @@ export async function POST(req: NextRequest) {
       incrementoMinimo: Math.max(50, Number(incrementoMinimo) || 500),
       precoArremateImediato: precoArremateImediato ? Number(precoArremateImediato) : undefined,
       precoUnitarioAtual: unitPrice,
-      margemEstimadaRevenda: 42,
+      margemEstimadaRevenda: estimatedMargin,
       totalLances: 0,
       ultimoLanceEmpresa: 'Aguardando primeiro lance',
       terminaEm: new Date(Date.now() + 6 * 3600 * 1000).toISOString(),

@@ -75,11 +75,38 @@ export default function LeiloesPage() {
             >
               Todos os Lotes ({lots.length})
             </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('finalizados')}
+              className={`px-3 py-1.5 rounded-lg transition-all ${
+                activeTab === 'finalizados'
+                  ? 'bg-surface-container-lowest text-secondary shadow-sm'
+                  : 'text-on-surface-variant hover:text-on-surface'
+              }`}
+            >
+              Finalizados ({lots.filter((l) => l.status === 'encerrado' || l.status === 'homologado').length})
+            </button>
           </div>
         </div>
       </div>
 
       {/* Grid */}
+      {displayedLots.length === 0 ? (
+        <div className="bg-surface-container-lowest p-10 rounded-2xl border border-outline-variant/30 text-center space-y-3">
+          <span className="material-symbols-outlined text-outline text-4xl">gavel</span>
+          <h3 className="font-bold text-base text-on-surface">Nenhum pregão finalizado no momento</h3>
+          <p className="text-xs text-on-surface-variant">
+            Todos os lotes da rodada atual estão em disputa aberta ou disponíveis no catálogo.
+          </p>
+          <button
+            type="button"
+            onClick={() => setActiveTab('ao_vivo')}
+            className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-xl"
+          >
+            Ver Pregões ao Vivo
+          </button>
+        </div>
+      ) : (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayedLots.map((lot) => (
           <article
@@ -89,7 +116,19 @@ export default function LeiloesPage() {
             {/* Top Bar */}
             <div className="p-3 bg-surface-container-low flex items-center justify-between border-b border-surface-container">
               <span className="text-xs font-bold text-on-surface-variant">{lot.codigoLote}</span>
-              <AuctionCountdown terminaEm={lot.terminaEm} size="sm" />
+              <AuctionCountdown
+                terminaEm={lot.terminaEm}
+                size="sm"
+                onExpire={() =>
+                  setLots((prev) =>
+                    prev.map((item) =>
+                      item.id === lot.id && item.status !== 'encerrado' && item.status !== 'homologado'
+                        ? { ...item, status: 'encerrado' }
+                        : item
+                    )
+                  )
+                }
+              />
             </div>
 
             {/* Imagem */}
@@ -162,17 +201,23 @@ export default function LeiloesPage() {
                 </Link>
                 <button
                   type="button"
+                  disabled={lot.status === 'encerrado' || lot.status === 'homologado'}
                   onClick={() => setSelectedLotForBid(lot)}
-                  className="flex-1 py-2 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1"
+                  className="flex-1 py-2 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1 disabled:opacity-45"
                 >
                   <span className="material-symbols-outlined text-[16px]">gavel</span>
-                  <span>Dar Lance</span>
+                  <span>
+                    {lot.status === 'encerrado' || lot.status === 'homologado'
+                      ? 'Encerrado'
+                      : 'Dar Lance'}
+                  </span>
                 </button>
               </div>
             </div>
           </article>
         ))}
       </div>
+      )}
 
       {/* Bid Modal */}
       {selectedLotForBid && (
@@ -180,7 +225,7 @@ export default function LeiloesPage() {
           lot={selectedLotForBid}
           isOpen={true}
           onClose={() => setSelectedLotForBid(null)}
-          onBidSuccess={(amount) => {
+          onBidSuccess={(amount, updatedTerminaEm) => {
             setLots((prev) =>
               prev.map((l) =>
                 l.id === selectedLotForBid.id
@@ -193,6 +238,8 @@ export default function LeiloesPage() {
                           : l.precoUnitarioAtual,
                       totalLances: l.totalLances + 1,
                       ultimoLanceEmpresa: 'Supermercado Central Ltda (Você)',
+                      terminaEm: updatedTerminaEm || l.terminaEm,
+                      status: 'reta_final',
                     }
                   : l
               )

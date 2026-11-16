@@ -27,7 +27,10 @@ export const AuctionCountdown: React.FC<AuctionCountdownProps> = ({
     isExpired: false,
   });
 
+  const firedExpireRef = React.useRef(false);
+
   useEffect(() => {
+    firedExpireRef.current = false;
     function calculate() {
       const difference = new Date(terminaEm).getTime() - new Date().getTime();
 
@@ -39,7 +42,10 @@ export const AuctionCountdown: React.FC<AuctionCountdownProps> = ({
           isCritical: true,
           isExpired: true,
         });
-        if (onExpire) onExpire();
+        if (onExpire && !firedExpireRef.current) {
+          firedExpireRef.current = true;
+          onExpire();
+        }
         return;
       }
 

@@ -1,4 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
+import { marketplaceStore } from '@/lib/marketplace-store';
+import { getCommissionRules } from '@/lib/commission-engine';
 
 const apiKey = process.env.GEMINI_API_KEY || '';
 
@@ -54,7 +56,13 @@ Responda sempre em Português do Brasil com dados objetivos, tom executivo e pro
     return 'Recomendação de Lance: No Lote L-418, o valor atual de R$ 38.500 representa R$ 14,80/un. Sugerimos lance limite de R$ 41.000 para assegurar 35% de margem líquida com frete FOB.';
   }
 
-  return 'Assistente Gemini B2B: Analisei as ofertas ativas. Atualmente há 142 pregões abertos na região Sudeste, com take-rate padrão da plataforma parametrizado em 6% sobre arremates e liquidação D+0 via custódia segregada.';
+  const openCount = marketplaceStore.auctions.filter(
+    (l) => new Date(l.terminaEm).getTime() > Date.now()
+  ).length;
+  const defaultRule = getCommissionRules().find((r) => r.slug === 'leilao');
+  const ratePct = defaultRule?.percentualPadrao ?? 6;
+
+  return `Assistente Comercial B2B: Analisei as ofertas ativas. Atualmente há ${openCount} pregões abertos no painel, com take-rate padrão da plataforma parametrizado em ${ratePct}% sobre arremates e liquidação D+0 via custódia segregada.`;
 }
 
 export async function analyzeLotPricing(lotTitle: string, currentBid: number, marketRef: number): Promise<string> {

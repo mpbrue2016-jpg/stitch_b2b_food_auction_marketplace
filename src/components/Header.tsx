@@ -10,7 +10,8 @@ export const Header: React.FC = () => {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeRole, setActiveRole] = useState<'comprador' | 'fornecedor'>('comprador');
-  const [cartCount, setCartCount] = useState(1);
+  const [cartCount, setCartCount] = useState(0);
+  const [activeLotsCount, setActiveLotsCount] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchCategory, setSearchCategory] = useState('todas');
 
@@ -27,6 +28,19 @@ export const Header: React.FC = () => {
 
     syncCartCount();
     window.addEventListener(CART_UPDATED_EVENT, syncCartCount);
+
+    fetch('/api/lotes')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (Array.isArray(data?.lots)) {
+          const openLots = data.lots.filter(
+            (l: { terminaEm: string }) => new Date(l.terminaEm).getTime() > Date.now()
+          );
+          setActiveLotsCount(openLots.length);
+        }
+      })
+      .catch(() => {});
+
     return () => window.removeEventListener(CART_UPDATED_EVENT, syncCartCount);
   }, []);
 
@@ -53,7 +67,8 @@ export const Header: React.FC = () => {
     { label: 'Giro Rápido', href: '/catalogo?filtro=giro_rapido' },
     { label: 'Painel Comprador', href: '/painel/comprador' },
     { label: 'Painel Indústria', href: '/painel/fornecedor' },
-    { label: 'Painel Admin & Comissões', href: '/painel/comissoes' },
+    { label: 'Painel Admin', href: '/painel/admin' },
+    { label: 'Comissões & Split', href: '/painel/comissoes' },
   ];
 
   return (
@@ -68,7 +83,10 @@ export const Header: React.FC = () => {
             </div>
             <div className="hidden md:flex items-center gap-1.5 text-on-surface-variant">
               <span className="material-symbols-outlined text-[16px]">trending_up</span>
-              <span>Pregões Ativos: <strong>142 lotes hoje</strong></span>
+              <span>
+                Pregões Ativos:{' '}
+                <strong>{activeLotsCount !== null ? `${activeLotsCount} lotes abertos` : 'Pregão em tempo real'}</strong>
+              </span>
             </div>
             <div className="hidden lg:flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[16px]">location_on</span>

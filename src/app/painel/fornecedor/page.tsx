@@ -2,20 +2,32 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
-import { AuctionLot } from '@/lib/types';
+import { MOCK_AUCTION_LOTS, MOCK_ORDERS } from '@/lib/mock-data';
+import { AuctionLot, EscrowOrder } from '@/lib/types';
 
 export default function PainelFornecedorPage() {
   const [supplierLots, setSupplierLots] = useState<AuctionLot[]>(MOCK_AUCTION_LOTS);
+  const [orders, setOrders] = useState<EscrowOrder[]>(MOCK_ORDERS);
 
   useEffect(() => {
-    fetch('/api/lotes')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data?.lots?.length) setSupplierLots(data.lots);
+    Promise.all([
+      fetch('/api/lotes').then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/pedidos').then((res) => (res.ok ? res.json() : null)),
+    ])
+      .then(([lotesData, pedidosData]) => {
+        if (lotesData?.lots?.length) setSupplierLots(lotesData.lots);
+        if (pedidosData?.orders?.length) setOrders(pedidosData.orders);
       })
       .catch(() => {});
   }, []);
+
+  const activeOrders = orders.filter((o) => o.statusPagamento !== 'estornado');
+  const totalRepassesLiquidados = activeOrders.reduce((acc, o) => acc + o.valorRepasseLiquidoFornecedor, 0);
+  const totalCaixasOfertadas = supplierLots.reduce((acc, l) => acc + l.produto.totalCaixas, 0);
+  const avgDiasValidade =
+    supplierLots.length > 0
+      ? Math.round(supplierLots.reduce((acc, l) => acc + l.produto.diasRestantesValidade, 0) / supplierLots.length)
+      : 0;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
@@ -57,11 +69,13 @@ export default function PainelFornecedorPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
           <div className="flex items-center justify-between text-on-surface-variant">
-            <span className="text-xs font-bold uppercase">Repasses Liquidados D+0</span>
+            <span className="text-xs font-bold uppercase">Repasses Líquidos D+0</span>
             <span className="material-symbols-outlined text-secondary text-[22px]">payments</span>
           </div>
-          <span className="text-2xl font-extrabold text-secondary block">R$ 840.000,00</span>
-          <span className="text-[11px] text-outline block">100% recebido via SPI Bancário</span>
+          <span className="text-2xl font-extrabold text-secondary block">
+            R$ {totalRepassesLiquidados.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          </span>
+          <span className="text-[11px] text-outline block">{activeOrders.length} pedidos em custódia/SPI</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -75,19 +89,21 @@ export default function PainelFornecedorPage() {
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
           <div className="flex items-center justify-between text-on-surface-variant">
-            <span className="text-xs font-bold uppercase">Caixas Despachadas</span>
+            <span className="text-xs font-bold uppercase">Volume em Oferta</span>
             <span className="material-symbols-outlined text-primary text-[22px]">inventory_2</span>
           </div>
-          <span className="text-2xl font-extrabold text-on-surface block">14.200 cxs</span>
-          <span className="text-[11px] text-on-surface-variant block">Mês de Novembro/2026</span>
+          <span className="text-2xl font-extrabold text-on-surface block">
+            {totalCaixasOfertadas.toLocaleString('pt-BR')} cxs
+          </span>
+          <span className="text-[11px] text-on-surface-variant block">Estoque paletizado homologado</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
           <div className="flex items-center justify-between text-on-surface-variant">
-            <span className="text-xs font-bold uppercase">Giro Médio FEFO</span>
+            <span className="text-xs font-bold uppercase">Shelf Life Médio</span>
             <span className="material-symbols-outlined text-secondary text-[22px]">speed</span>
           </div>
-          <span className="text-2xl font-extrabold text-secondary block">18 dias</span>
+          <span className="text-2xl font-extrabold text-secondary block">{avgDiasValidade} dias</span>
           <span className="text-[11px] text-on-surface-variant block">Zero perda por vencimento</span>
         </div>
       </div>

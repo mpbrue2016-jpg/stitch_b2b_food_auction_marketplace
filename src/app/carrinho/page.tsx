@@ -11,6 +11,7 @@ import {
   clearCart,
   getCartItems,
   removeLotFromCart,
+  updateLotQuantity,
 } from '@/lib/cart-store';
 import { calculateSplit, SplitCalculationResult } from '@/lib/commission-engine';
 
@@ -33,6 +34,13 @@ export default function CarrinhoPage() {
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.precoTotal, 0);
   const modalidade = cartItems[0]?.lot.tipoVenda || 'leilao';
+  const freightTypes = Array.from(new Set(cartItems.map((item) => item.lot.tipoFrete || 'FOB')));
+  const freightLabel =
+    freightTypes.length > 1
+      ? 'Misto (FOB / CIF)'
+      : freightTypes[0] === 'CIF'
+      ? 'CIF (Entrega pela Indústria)'
+      : 'FOB (A retirar no CD)';
   const [split, setSplit] = useState<SplitCalculationResult>(() =>
     calculateSplit(subtotal, modalidade)
   );
@@ -106,20 +114,50 @@ export default function CarrinhoPage() {
                   </p>
                 </div>
 
-                <div className="text-right sm:border-l sm:border-surface-container sm:pl-4">
+                <div className="flex flex-col items-end gap-1.5 sm:border-l sm:border-surface-container sm:pl-4">
                   <span className="text-[10px] text-on-surface-variant uppercase font-bold block">
                     Valor do Lote ({item.quantidade}x):
                   </span>
                   <span className="text-lg font-extrabold text-primary block">
                     R$ {item.precoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </span>
-                  <button
-                    type="button"
-                    onClick={() => setCartItems(removeLotFromCart(item.lot.id))}
-                    className="text-[11px] text-error hover:underline font-semibold mt-1"
-                  >
-                    Remover
-                  </button>
+                  <div className="flex items-center gap-1 bg-surface-container-low rounded-lg p-0.5 border border-outline-variant/30">
+                    <button
+                      type="button"
+                      onClick={() => setCartItems(updateLotQuantity(item.lot.id, -1))}
+                      disabled={item.quantidade <= 1}
+                      className="w-6 h-6 rounded flex items-center justify-center font-bold text-xs hover:bg-white disabled:opacity-40"
+                      aria-label="Diminuir quantidade"
+                    >
+                      −
+                    </button>
+                    <span className="px-2 text-xs font-extrabold">{item.quantidade}</span>
+                    <button
+                      type="button"
+                      onClick={() => setCartItems(updateLotQuantity(item.lot.id, 1))}
+                      className="w-6 h-6 rounded flex items-center justify-center font-bold text-xs hover:bg-white"
+                      aria-label="Aumentar quantidade"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-3 mt-0.5">
+                    {cartItems.length > 1 && (
+                      <Link
+                        href={`/checkout?loteId=${item.lot.id}&valor=${item.precoTotal}`}
+                        className="text-[11px] text-primary hover:underline font-bold"
+                      >
+                        Pagar só este
+                      </Link>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setCartItems(removeLotFromCart(item.lot.id))}
+                      className="text-[11px] text-error hover:underline font-semibold"
+                    >
+                      Remover
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -152,7 +190,7 @@ export default function CarrinhoPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Frete Logístico:</span>
-                <span className="font-bold text-primary">FOB (A retirar no CD)</span>
+                <span className="font-bold text-primary">{freightLabel}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Taxa Administrativa ({split.percentualComissao}%):</span>
@@ -177,11 +215,21 @@ export default function CarrinhoPage() {
 
             <button
               type="button"
-              onClick={() => router.push(`/checkout?loteId=${cartItems[0].lot.id}&valor=${subtotal}`)}
+              onClick={() =>
+                router.push(
+                  cartItems.length > 1
+                    ? '/checkout?fromCart=1'
+                    : `/checkout?fromCart=1&loteId=${cartItems[0].lot.id}&valor=${subtotal}`
+                )
+              }
               className="w-full py-3 bg-primary hover:bg-primary-container text-white font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
             >
               <span className="material-symbols-outlined text-[18px]">lock</span>
-              <span>Prosseguir para Checkout Escrow</span>
+              <span>
+                {cartItems.length > 1
+                  ? `Prosseguir para Checkout (${cartItems.length} lotes)`
+                  : 'Prosseguir para Checkout Escrow'}
+              </span>
             </button>
           </div>
         </div>

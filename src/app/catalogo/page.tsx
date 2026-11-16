@@ -8,6 +8,7 @@ import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { BidModal } from '@/components/BidModal';
+import { addLotToCart } from '@/lib/cart-store';
 import { AuctionLot } from '@/lib/types';
 
 function CatalogoContent() {
@@ -22,6 +23,7 @@ function CatalogoContent() {
   const [categoryFilter, setCategoryFilter] = useState('todas');
   const [shelfFilter, setShelfFilter] = useState<string>('todas');
   const [sortBy, setSortBy] = useState<'margem' | 'preco' | 'validade'>('margem');
+  const [addedLotId, setAddedLotId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/lotes')
@@ -61,11 +63,16 @@ function CatalogoContent() {
 
   const filteredLots = lots
     .filter((lot) => {
+      const q = search.trim().toLowerCase();
       const matchSearch =
-        !search ||
-        lot.produto.titulo.toLowerCase().includes(search.toLowerCase()) ||
-        lot.produto.gtinEan.includes(search) ||
-        lot.produto.marca.toLowerCase().includes(search.toLowerCase());
+        !q ||
+        lot.produto.titulo.toLowerCase().includes(q) ||
+        lot.produto.gtinEan.includes(q) ||
+        lot.produto.dun14.includes(q) ||
+        lot.produto.sku.toLowerCase().includes(q) ||
+        lot.codigoLote.toLowerCase().includes(q) ||
+        lot.produto.marca.toLowerCase().includes(q) ||
+        lot.produto.fabricante.toLowerCase().includes(q);
 
       const matchCat = categoryFilter === 'todas' || lot.produto.categoriaId === categoryFilter;
       const matchShelf =
@@ -164,7 +171,7 @@ function CatalogoContent() {
             <span className="material-symbols-outlined text-outline text-[18px] mr-2">sort</span>
             <select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as 'margem' | 'preco' | 'validade')}
               className="w-full bg-transparent focus:outline-none text-xs text-on-surface cursor-pointer"
             >
               <option value="margem">Maior Margem de Lucro (%)</option>
@@ -192,6 +199,26 @@ function CatalogoContent() {
       </div>
 
       {/* Product Lots Grid */}
+      {filteredLots.length === 0 ? (
+        <div className="bg-surface-container-lowest p-10 rounded-2xl border border-outline-variant/30 text-center space-y-3">
+          <span className="material-symbols-outlined text-outline text-4xl">inventory_2</span>
+          <h3 className="font-bold text-base text-on-surface">Nenhum lote encontrado</h3>
+          <p className="text-xs text-on-surface-variant">
+            Ajuste os filtros de categoria, validade FEFO ou busca por EAN para visualizar ofertas disponíveis.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setSearch('');
+              setCategoryFilter('todas');
+              setShelfFilter('todas');
+            }}
+            className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-xl"
+          >
+            Limpar Filtros
+          </button>
+        </div>
+      ) : (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredLots.map((lot) => (
           <article
@@ -230,7 +257,9 @@ function CatalogoContent() {
                   {lot.produto.marca} • {lot.produto.origem}
                 </span>
                 <h3 className="font-bold text-sm text-on-surface leading-snug">
-                  {lot.produto.titulo}
+                  <Link href={`/leiloes/${lot.id}`} className="hover:text-primary transition-colors">
+                    {lot.produto.titulo}
+                  </Link>
                 </h3>
                 <p className="text-xs text-on-surface-variant mt-1 line-clamp-2">
                   {lot.produto.descricao}
@@ -272,7 +301,7 @@ function CatalogoContent() {
                   href={`/leiloes/${lot.id}`}
                   className="flex-1 py-2 text-center rounded-xl bg-surface-container hover:bg-surface-container-high text-xs font-bold text-on-surface transition-colors"
                 >
-                  Ver Sala do Pregão
+                  Ver Sala
                 </Link>
                 <button
                   type="button"
@@ -282,11 +311,31 @@ function CatalogoContent() {
                   <span className="material-symbols-outlined text-[16px]">gavel</span>
                   <span>Dar Lance</span>
                 </button>
+                <button
+                  type="button"
+                  title="Adicionar ao Carrinho B2B"
+                  aria-label="Adicionar lote ao carrinho"
+                  onClick={() => {
+                    addLotToCart(lot, lot.precoArremateImediato || lot.lanceAtual);
+                    setAddedLotId(lot.id);
+                    setTimeout(() => setAddedLotId((cur) => (cur === lot.id ? null : cur)), 2000);
+                  }}
+                  className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-colors shrink-0 ${
+                    addedLotId === lot.id
+                      ? 'bg-secondary border-secondary text-white'
+                      : 'bg-surface-container-low hover:bg-surface-container border-outline-variant/40 text-primary'
+                  }`}
+                >
+                  <span className="material-symbols-outlined text-[18px]">
+                    {addedLotId === lot.id ? 'check' : 'add_shopping_cart'}
+                  </span>
+                </button>
               </div>
             </div>
           </article>
         ))}
       </div>
+      )}
 
       {/* Bid Modal */}
       {selectedLotForBid && (

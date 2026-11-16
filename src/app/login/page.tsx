@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
+import { formatCnpj } from '@/lib/format';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,6 +18,12 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError(null);
+
+    if (cnpj.replace(/\D/g, '').length !== 14) {
+      setAuthError('Informe um CNPJ completo com 14 dígitos (00.000.000/0001-00).');
+      return;
+    }
+
     setLoading(true);
 
     if (isSupabaseConfigured) {
@@ -103,10 +110,12 @@ export default function LoginPage() {
             </label>
             <input
               type="text"
+              inputMode="numeric"
+              maxLength={18}
               placeholder="00.000.000/0001-00"
               value={cnpj}
-              onChange={(e) => setCnpj(e.target.value)}
-              className="w-full bg-surface-container-low px-3 py-2.5 rounded-xl border border-outline-variant/40 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+              onChange={(e) => setCnpj(formatCnpj(e.target.value))}
+              className="w-full bg-surface-container-low px-3 py-2.5 rounded-xl border border-outline-variant/40 focus:outline-none focus:ring-2 focus:ring-primary text-sm font-mono"
               required
             />
           </div>

@@ -5,31 +5,47 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
-import { removeLotFromCart } from '@/lib/cart-store';
+import { CartItem, clearCart, getCartItems, removeLotFromCart } from '@/lib/cart-store';
 import { calculateSplit, SplitCalculationResult } from '@/lib/commission-engine';
 import { PixQrScanner } from '@/components/PixQrScanner';
 
 function CheckoutContent() {
   const searchParams = useSearchParams();
 
+  const fromCart = searchParams.get('fromCart') === '1';
   const loteId = searchParams.get('loteId') || 'lote-418';
   const valorParam = searchParams.get('valor');
 
+  const [cartCheckoutItems, setCartCheckoutItems] = useState<CartItem[]>([]);
   const [lot, setLot] = useState(
     () => MOCK_AUCTION_LOTS.find((l) => l.id === loteId) || MOCK_AUCTION_LOTS[0]
   );
 
   useEffect(() => {
+    if (fromCart) {
+      const items = getCartItems();
+      if (items.length > 0) {
+        setCartCheckoutItems(items);
+        setLot(items[0].lot);
+      }
+    }
     fetch('/api/lotes')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         const matched = data?.lots?.find((l: { id: string }) => l.id === loteId);
-        if (matched) setLot(matched);
+        if (matched && !fromCart) setLot(matched);
       })
       .catch(() => {});
-  }, [loteId]);
+  }, [loteId, fromCart]);
 
-  const totalAmount = valorParam ? Number(valorParam) : lot.lanceAtual;
+  const isMultiLotCart = fromCart && cartCheckoutItems.length > 1;
+  const totalAmount = isMultiLotCart
+    ? cartCheckoutItems.reduce((acc, item) => acc + item.precoTotal, 0)
+    : valorParam
+    ? Number(valorParam)
+    : fromCart && cartCheckoutItems[0]
+    ? cartCheckoutItems[0].precoTotal
+    : lot.lanceAtual;
   const modalidade = lot.tipoVenda || 'leilao';
 
   const [split, setSplit] = useState<SplitCalculationResult>(() =>
@@ -53,6 +69,8 @@ function CheckoutContent() {
 
   const [paymentMethod, setPaymentMethod] = useState<'pix' | 'ted'>('pix');
   const [pixCopied, setPixCopied] = useState(false);
+  const [downloadingQr, setDownloadingQr] = useState(false);
+  const [qrDownloadStatus, setQrDownloadStatus] = useState<string | null>(null);
   const [showQrScanner, setShowQrScanner] = useState(false);
   const [scannedReceiptCode, setScannedReceiptCode] = useState<string | null>(null);
   const [confirming, setConfirming] = useState(false);
@@ -63,37 +81,86 @@ function CheckoutContent() {
   const mockPixKey =
     '00020101021226880014br.gov.bcb.pix2566spi.varejistaonline.com.br/qr/v2/escrow_9041_88325204000053039865802BR5925VAREJISTA ONLINE ESCROW6009SAO PAULO62070503***6304E8A1';
 
-  const handleCopyPix = () => {
-    navigator.clipboard.writeText(mockPixKey);
-    setPixCopied(true);
-    setTimeout(() => setPixCopied(false), 3000);
+  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(
+    `https://varejistaonline.com.br/escrow?lote=${lot.id}&valor=${totalAmount}`
+  )}`;
+
+  const handleCopyPix = async () => {
+    try {
+      await navigator.clipboard.writeText(mockPixKey);
+      setPixCopied(true);
+      setTimeout(() => setPixCopied(false), 3000);
+    } catch {
+      setPixCopied(false);
+    }
+  };
+
+  const handleDownloadQrCode = async () => {
+    if (downloadingQr) return;
+    setDownloadingQr(true);
+    setQrDownloadStatus(null);
+    try {
+      const response = await fetch(qrImageUrl);
+      if (!response.ok) throw new Error('Falha ao baixar QR');
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = objectUrl;
+      link.download = `comprovante-pix-${lot.id}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(objectUrl);
+      setQrDownloadStatus('QR Code salvo! Envie este PNG no leitor abaixo para testar.');
+      setTimeout(() => setQrDownloadStatus(null), 4000);
+    } catch {
+      setQrDownloadStatus('Não foi possível baixar o PNG do QR Code agora.');
+    } finally {
+      setDownloadingQr(false);
+    }
   };
 
   const handleConfirmPayment = async (pixComprovanteCodigo?: string) => {
     if (confirming || confirmed) return;
     setConfirming(true);
     try {
-      const res = await fetch('/api/pedidos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          loteId: lot.id,
-          valorTotalArremate: totalAmount,
-          compradorNome: 'Supermercado Central Ltda',
-          pixComprovanteCodigo,
-        }),
-      });
-      const data = res.ok ? await res.json() : null;
-      if (data?.order?.termoArremateHash) {
-        setOrderHash(data.order.termoArremateHash);
+      const itemsToOrder = isMultiLotCart
+        ? cartCheckoutItems.map((i) => ({ loteId: i.lot.id, valorTotalArremate: i.precoTotal }))
+        : [{ loteId: lot.id, valorTotalArremate: totalAmount }];
+
+      const createdCodes: string[] = [];
+      let lastHash: string | null = null;
+
+      for (const item of itemsToOrder) {
+        const res = await fetch('/api/pedidos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            loteId: item.loteId,
+            valorTotalArremate: item.valorTotalArremate,
+            compradorNome: 'Supermercado Central Ltda',
+            pixComprovanteCodigo,
+          }),
+        });
+        const data = res.ok ? await res.json() : null;
+        if (data?.order?.termoArremateHash) {
+          lastHash = data.order.termoArremateHash;
+        }
+        if (data?.order?.codigoPedido) {
+          createdCodes.push(data.order.codigoPedido);
+        }
       }
-      if (data?.order?.codigoPedido) {
-        setOrderCode(data.order.codigoPedido);
-      }
+
+      if (lastHash) setOrderHash(lastHash);
+      if (createdCodes.length > 0) setOrderCode(createdCodes.join(' • '));
     } catch {
       // mantém confirmação visual em caso de offline
     } finally {
-      removeLotFromCart(lot.id);
+      if (isMultiLotCart) {
+        clearCart();
+      } else {
+        removeLotFromCart(lot.id);
+      }
       setConfirming(false);
       setConfirmed(true);
     }
@@ -188,34 +255,73 @@ function CheckoutContent() {
             <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4">
               <h3 className="font-extrabold text-sm text-on-surface uppercase border-b border-surface-container pb-2 flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary text-[18px]">receipt_long</span>
-                Dados do Lote Homologado
+                {isMultiLotCart
+                  ? `Lotes Consolidados do Carrinho (${cartCheckoutItems.length})`
+                  : 'Dados do Lote Homologado'}
               </h3>
 
-              <div className="flex items-center gap-4 text-xs">
-                <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-surface-container shrink-0">
-                  <Image
-                    src={lot.produto.imagemUrl}
-                    alt={lot.produto.titulo}
-                    fill
-                    sizes="80px"
-                    quality={92}
-                    referrerPolicy="no-referrer"
-                    className="object-cover img-sharp"
-                  />
+              {isMultiLotCart ? (
+                <div className="space-y-3">
+                  {cartCheckoutItems.map((item) => (
+                    <div
+                      key={item.lot.id}
+                      className="flex items-center justify-between gap-3 text-xs p-2.5 rounded-xl bg-surface-container-low border border-surface-container"
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-surface-container shrink-0">
+                          <Image
+                            src={item.lot.produto.imagemUrl}
+                            alt={item.lot.produto.titulo}
+                            fill
+                            sizes="56px"
+                            quality={92}
+                            referrerPolicy="no-referrer"
+                            className="object-cover img-sharp"
+                          />
+                        </div>
+                        <div className="min-w-0">
+                          <span className="text-[10px] font-bold text-on-surface-variant block">
+                            {item.lot.codigoLote} • {item.quantidade}x
+                          </span>
+                          <h4 className="font-bold text-on-surface truncate">{item.lot.produto.titulo}</h4>
+                        </div>
+                      </div>
+                      <strong className="text-primary font-extrabold shrink-0">
+                        R$ {item.precoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </strong>
+                    </div>
+                  ))}
                 </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] uppercase font-bold text-on-surface-variant">
-                    {lot.codigoLote} • {lot.produto.marca}
-                  </span>
-                  <h4 className="font-bold text-sm text-on-surface">{lot.produto.titulo}</h4>
-                  <p className="text-on-surface-variant">
-                    Volume: {lot.produto.totalCaixas} caixas ({lot.produto.totalUnidades.toLocaleString('pt-BR')} unidades)
-                  </p>
-                  <p className="text-secondary font-bold">
-                    Origem: {lot.produto.origem} (Frete FOB)
-                  </p>
+              ) : (
+                <div className="flex items-center gap-4 text-xs">
+                  <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-surface-container shrink-0">
+                    <Image
+                      src={lot.produto.imagemUrl}
+                      alt={lot.produto.titulo}
+                      fill
+                      sizes="80px"
+                      quality={92}
+                      referrerPolicy="no-referrer"
+                      className="object-cover img-sharp"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-[10px] uppercase font-bold text-on-surface-variant">
+                      {lot.codigoLote} • {lot.produto.marca}
+                      {fromCart && cartCheckoutItems[0]?.quantidade
+                        ? ` • ${cartCheckoutItems[0].quantidade}x no lote`
+                        : ''}
+                    </span>
+                    <h4 className="font-bold text-sm text-on-surface">{lot.produto.titulo}</h4>
+                    <p className="text-on-surface-variant">
+                      Volume: {lot.produto.totalCaixas} caixas ({lot.produto.totalUnidades.toLocaleString('pt-BR')} unidades)
+                    </p>
+                    <p className="text-secondary font-bold">
+                      Origem: {lot.produto.origem} (Frete {lot.tipoFrete})
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Split Breakdown Table */}
@@ -310,9 +416,7 @@ function CheckoutContent() {
                   <>
                     <div className="w-36 h-36 mx-auto bg-white p-2 rounded-xl border border-outline-variant/40 flex items-center justify-center shadow-sm">
                       <Image
-                        src={`https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(
-                          `https://varejistaonline.com.br/escrow?lote=${lot.id}&valor=${totalAmount}`
-                        )}`}
+                        src={qrImageUrl}
                         alt="QR Code PIX Escrow"
                         width={140}
                         height={140}
@@ -337,6 +441,20 @@ function CheckoutContent() {
                       <span className="material-symbols-outlined text-[16px]">content_copy</span>
                       <span>{pixCopied ? 'Chave PIX Copiada!' : 'Copiar Código PIX Copia e Cola'}</span>
                     </button>
+
+                    <button
+                      type="button"
+                      onClick={handleDownloadQrCode}
+                      disabled={downloadingQr}
+                      className="w-full py-2 bg-white hover:bg-surface-container border border-outline-variant/70 text-on-surface-variant font-bold text-[11px] rounded-lg transition-colors flex items-center justify-center gap-1 disabled:opacity-50"
+                    >
+                      <span className="material-symbols-outlined text-[15px]">download</span>
+                      <span>{downloadingQr ? 'Gerando PNG...' : 'Baixar QR Code PIX (PNG para Teste)'}</span>
+                    </button>
+
+                    {qrDownloadStatus && (
+                      <p className="text-[11px] font-semibold text-secondary">{qrDownloadStatus}</p>
+                    )}
 
                     <button
                       type="button"

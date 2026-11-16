@@ -365,7 +365,7 @@ export default function NovoProdutoPage() {
                 <label className="block font-bold text-on-surface uppercase mb-1">Modalidade de Venda:</label>
                 <select
                   value={tipoVenda}
-                  onChange={(e) => setTipoVenda(e.target.value as any)}
+                  onChange={(e) => setTipoVenda(e.target.value as 'leilao' | 'venda_direta' | 'giro_rapido')}
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs cursor-pointer"
                 >
                   <option value="leilao">Leilão Aberto (Pregão)</option>
@@ -378,7 +378,7 @@ export default function NovoProdutoPage() {
                 <label className="block font-bold text-on-surface uppercase mb-1">Tipo de Frete:</label>
                 <select
                   value={tipoFrete}
-                  onChange={(e) => setTipoFrete(e.target.value as any)}
+                  onChange={(e) => setTipoFrete(e.target.value as 'FOB' | 'CIF')}
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs cursor-pointer"
                 >
                   <option value="FOB">FOB (Comprador retira na Doca do CD)</option>

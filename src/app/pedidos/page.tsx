@@ -18,6 +18,9 @@ export default function PedidosPage() {
   const [releasingOrderId, setReleasingOrderId] = useState<string | null>(null);
   const [selectedOrderForTermo, setSelectedOrderForTermo] = useState<EscrowOrder | null>(null);
   const [orderNotice, setOrderNotice] = useState<string | null>(null);
+  const [disputeOrder, setDisputeOrder] = useState<EscrowOrder | null>(null);
+  const [disputeReason, setDisputeReason] = useState('');
+  const [disputeSubmitting, setDisputeSubmitting] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -120,6 +123,38 @@ export default function PedidosPage() {
     }
   };
 
+  const handleOpenDispute = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!disputeOrder || disputeReason.trim().length < 5) return;
+    setDisputeSubmitting(true);
+    try {
+      const res = await fetch('/api/pedidos', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderId: disputeOrder.id,
+          action: 'open_dispute',
+          reason: disputeReason.trim(),
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data?.order) {
+        setOrders((prev) => prev.map((o) => (o.id === disputeOrder.id ? data.order : o)));
+        setOrderNotice(
+          `Divergência protocolada para ${disputeOrder.codigoPedido}. O saldo Escrow foi bloqueado preventivamente para mediação.`
+        );
+        setDisputeOrder(null);
+        setDisputeReason('');
+      } else {
+        setOrderNotice(data?.error || 'Não foi possível registrar a divergência.');
+      }
+    } catch {
+      setOrderNotice('Falha de comunicação ao registrar divergência Escrow.');
+    } finally {
+      setDisputeSubmitting(false);
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
       {/* Header */}
@@ -177,16 +212,24 @@ export default function PedidosPage() {
                 <h3 className="font-extrabold text-base text-on-surface">{order.tituloLote}</h3>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
                     order.statusPagamento === 'em_custodia_escrow'
                       ? 'bg-primary-fixed text-on-primary-fixed'
+                      : order.statusPagamento === 'em_disputa'
+                      ? 'bg-tertiary-fixed text-on-tertiary-fixed'
+                      : order.statusPagamento === 'estornado'
+                      ? 'bg-error-container text-on-error-container'
                       : 'bg-secondary-fixed text-on-secondary-fixed'
                   }`}
                 >
                   {order.statusPagamento === 'em_custodia_escrow'
                     ? 'Custódia Escrow Ativa'
+                    : order.statusPagamento === 'em_disputa'
+                    ? 'Em Disputa / Bloqueado'
+                    : order.statusPagamento === 'estornado'
+                    ? 'Estornado ao Comprador'
                     : 'Liquidado D+0'}
                 </span>
                 <span
@@ -242,16 +285,17 @@ export default function PedidosPage() {
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
-                {order.statusLogistica === 'agendamento_doca' && (
-                  <button
-                    type="button"
-                    onClick={() => setSelectedOrderForDoca(order)}
-                    className="px-4 py-2 bg-primary hover:bg-primary-container text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5"
-                  >
-                    <span className="material-symbols-outlined text-[16px]">schedule</span>
-                    <span>Agendar Doca de Retirada</span>
-                  </button>
-                )}
+                {order.statusLogistica === 'agendamento_doca' &&
+                  order.statusPagamento !== 'estornado' && (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedOrderForDoca(order)}
+                      className="px-4 py-2 bg-primary hover:bg-primary-container text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5"
+                    >
+                      <span className="material-symbols-outlined text-[16px]">schedule</span>
+                      <span>Agendar Doca de Retirada</span>
+                    </button>
+                  )}
 
                 {order.statusLogistica !== 'entregue' &&
                   order.statusPagamento === 'em_custodia_escrow' &&
@@ -271,6 +315,20 @@ export default function PedidosPage() {
                     </button>
                   )}
 
+                {order.statusPagamento === 'em_custodia_escrow' && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setDisputeOrder(order);
+                      setDisputeReason('');
+                    }}
+                    className="px-3.5 py-2 bg-error-container/70 hover:bg-error-container text-on-error-container font-bold text-xs rounded-xl transition-all flex items-center gap-1.5"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">report_problem</span>
+                    <span>Abrir Divergência</span>
+                  </button>
+                )}
+
                 <button
                   type="button"
                   onClick={() => setSelectedOrderForTermo(order)}
@@ -281,6 +339,12 @@ export default function PedidosPage() {
                 </button>
               </div>
             </div>
+
+            {order.motivoDisputa && (
+              <div className="p-3 bg-error-container/30 border border-error/30 rounded-xl text-xs text-on-error-container">
+                <strong>Registro de Mediação Escrow:</strong> {order.motivoDisputa}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -465,6 +529,22 @@ export default function PedidosPage() {
                   {selectedOrderForTermo.termoArremateHash || `SHA256:${selectedOrderForTermo.codigoPedido}`}
                 </code>
               </div>
+              {selectedOrderForTermo.comprovantePix && (
+                <div className="pt-2 border-t border-surface-container">
+                  <span className="text-on-surface-variant block mb-1">Comprovante PIX Validado via QR Scanner:</span>
+                  <code className="block bg-secondary-container/20 px-2.5 py-1.5 rounded border border-secondary/30 font-mono text-[11px] text-secondary break-all">
+                    {selectedOrderForTermo.comprovantePix}
+                  </code>
+                </div>
+              )}
+              {selectedOrderForTermo.motivoDisputa && (
+                <div className="pt-2 border-t border-surface-container">
+                  <span className="text-on-surface-variant block mb-1">Ocorrência / Mediação Escrow:</span>
+                  <p className="bg-error-container/30 px-2.5 py-1.5 rounded border border-error/30 text-[11px] text-on-error-container">
+                    {selectedOrderForTermo.motivoDisputa}
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="flex items-center justify-end gap-2 pt-1">
@@ -484,6 +564,66 @@ export default function PedidosPage() {
                 Fechar
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      {/* Modal de Abertura de Divergência / Disputa Escrow */}
+      {disputeOrder && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-surface-container-lowest rounded-2xl max-w-md w-full p-6 shadow-2xl border border-outline-variant/30 space-y-4">
+            <div className="flex items-center justify-between border-b border-surface-container pb-3">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-error text-[22px]">gavel</span>
+                <div>
+                  <h3 className="font-extrabold text-base text-on-surface">
+                    Bloqueio Preventivo Escrow
+                  </h3>
+                  <p className="text-xs text-on-surface-variant font-mono">
+                    {disputeOrder.codigoPedido}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setDisputeOrder(null)}
+                className="text-on-surface-variant hover:text-on-surface"
+              >
+                <span className="material-symbols-outlined text-[20px]">close</span>
+              </button>
+            </div>
+
+            <form onSubmit={handleOpenDispute} className="space-y-4 text-xs">
+              <div>
+                <label className="block font-bold text-on-surface uppercase mb-1">
+                  Descreva a divergência na conferência / carga:
+                </label>
+                <textarea
+                  rows={3}
+                  required
+                  minLength={5}
+                  value={disputeReason}
+                  onChange={(e) => setDisputeReason(e.target.value)}
+                  placeholder="Ex: Divergência de quantidade na doca, avaria em 2 paletes ou data de validade abaixo do anunciado..."
+                  className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/40 text-xs focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setDisputeOrder(null)}
+                  className="px-4 py-2 border border-outline-variant/40 rounded-xl font-bold"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  disabled={disputeSubmitting || disputeReason.trim().length < 5}
+                  className="px-4 py-2 bg-error text-white font-bold rounded-xl shadow-sm disabled:opacity-50"
+                >
+                  {disputeSubmitting ? 'Registrando...' : 'Bloquear Custódia & Abrir Disputa'}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

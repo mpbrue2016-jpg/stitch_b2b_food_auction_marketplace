@@ -7,7 +7,11 @@ interface BidModalProps {
   lot: AuctionLot;
   isOpen: boolean;
   onClose: () => void;
-  onBidSuccess: (newBidAmount: number) => void;
+  onBidSuccess: (
+    newBidAmount: number,
+    updatedTerminaEm?: string,
+    extendedDueToAntiSniping?: boolean
+  ) => void;
 }
 
 export const BidModal: React.FC<BidModalProps> = ({
@@ -21,14 +25,25 @@ export const BidModal: React.FC<BidModalProps> = ({
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
+  const [antiSnipingExtended, setAntiSnipingExtended] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [nowMs, setNowMs] = useState<number>(() => Date.now());
+
+  const isExpired =
+    lot.status === 'encerrado' ||
+    lot.status === 'homologado' ||
+    new Date(lot.terminaEm).getTime() <= nowMs;
 
   useEffect(() => {
     if (isOpen) {
       setBidAmount(lot.lanceAtual + lot.incrementoMinimo);
       setErrorMsg(null);
       setTxHash(null);
+      setAntiSnipingExtended(false);
       setSuccess(false);
+      setNowMs(Date.now());
+      const timer = setInterval(() => setNowMs(Date.now()), 1000);
+      return () => clearInterval(timer);
     }
   }, [isOpen, lot.lanceAtual, lot.incrementoMinimo]);
 
@@ -45,6 +60,10 @@ export const BidModal: React.FC<BidModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isExpired) {
+      setErrorMsg('Pregão eletrônico encerrado. Não são aceitos novos lances.');
+      return;
+    }
     if (bidAmount < minNextBid) {
       setErrorMsg(`O valor mínimo para o próximo lance é R$ ${minNextBid.toLocaleString('pt-BR')}`);
       return;
@@ -72,15 +91,18 @@ export const BidModal: React.FC<BidModalProps> = ({
         return;
       }
 
+      const isExtended = Boolean(data.extendedDueToAntiSniping);
       setTxHash(data.transactionHash || null);
+      setAntiSnipingExtended(isExtended);
       setSubmitting(false);
       setSuccess(true);
-      onBidSuccess(bidAmount);
+      onBidSuccess(bidAmount, data.lot?.terminaEm, isExtended);
       setTimeout(() => {
         setSuccess(false);
         setTxHash(null);
+        setAntiSnipingExtended(false);
         onClose();
-      }, 1600);
+      }, 1900);
     } catch {
       setErrorMsg('Erro de comunicação com o livro de ofertas. Tente novamente.');
       setSubmitting(false);
@@ -115,6 +137,11 @@ export const BidModal: React.FC<BidModalProps> = ({
             <p className="text-xs text-on-surface-variant">
               Seu lance de <strong>R$ {bidAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi registrado no livro de ofertas sob custódia BACEN.
             </p>
+            {antiSnipingExtended && (
+              <p className="text-[11px] font-bold text-tertiary bg-tertiary-container/30 px-3 py-1.5 rounded-lg border border-tertiary/30">
+                Regra Anti-Sniping ativada: cronômetro estendido em +3 minutos!
+              </p>
+            )}
             {txHash && (
               <p className="text-[11px] font-mono text-primary bg-white/80 px-3 py-1 rounded-lg inline-block border border-outline-variant/40">
                 Auditoria WORM: {txHash}
@@ -139,6 +166,12 @@ export const BidModal: React.FC<BidModalProps> = ({
               </div>
             </div>
 
+            {isExpired && (
+              <div className="p-2.5 bg-error-container text-on-error-container rounded-lg text-xs font-bold">
+                Pregão eletrônico encerrado para novos lances.
+              </div>
+            )}
+
             {/* Input de Lance com botões de incremento rápido */}
             <div className="space-y-2">
               <label className="block text-xs font-bold text-on-surface uppercase tracking-wide">
@@ -151,8 +184,9 @@ export const BidModal: React.FC<BidModalProps> = ({
                   step="50"
                   min={minNextBid}
                   value={bidAmount}
+                  disabled={isExpired}
                   onChange={(e) => setBidAmount(Number(e.target.value))}
-                  className="w-full bg-transparent text-xl font-extrabold text-on-surface focus:outline-none"
+                  className="w-full bg-transparent text-xl font-extrabold text-on-surface focus:outline-none disabled:opacity-50"
                   required
                 />
               </div>
@@ -164,8 +198,9 @@ export const BidModal: React.FC<BidModalProps> = ({
                   <button
                     key={inc}
                     type="button"
+                    disabled={isExpired}
                     onClick={() => handleIncrement(inc)}
-                    className="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-xs font-bold text-primary transition-colors"
+                    className="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-xs font-bold text-primary transition-colors disabled:opacity-45"
                   >
                     + R$ {inc.toLocaleString('pt-BR')}
                   </button>
@@ -208,10 +243,12 @@ export const BidModal: React.FC<BidModalProps> = ({
               </button>
               <button
                 type="submit"
-                disabled={submitting || bidAmount < minNextBid}
+                disabled={submitting || isExpired || bidAmount < minNextBid}
                 className="flex-1 py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 disabled:opacity-50"
               >
-                {submitting ? (
+                {isExpired ? (
+                  <span>Pregão Encerrado</span>
+                ) : submitting ? (
                   <span>Registrando...</span>
                 ) : (
                   <>

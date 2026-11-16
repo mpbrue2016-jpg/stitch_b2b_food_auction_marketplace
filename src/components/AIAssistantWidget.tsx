@@ -9,7 +9,7 @@ export const AIAssistantWidget: React.FC = () => {
   const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant'; text: string }>>([
     {
       role: 'assistant',
-      text: 'Olá! Sou o Assistente Inteligente B2B alimentado por Gemini. Como posso ajudar com análise de margem de revenda, avaliação de shelf life FEFO ou sugestão de contraproposta para lotes hoje?',
+      text: 'Olá! Sou o Assistente Comercial B2B da Varejista Online. Como posso ajudar com análise de margem de revenda, avaliação de shelf life FEFO ou sugestão de contraproposta para lotes hoje?',
     },
   ]);
 
@@ -65,7 +65,7 @@ export const AIAssistantWidget: React.FC = () => {
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-40 bg-primary hover:bg-primary-container text-white px-4 py-3 rounded-full shadow-2xl flex items-center gap-2 font-bold text-xs transition-all hover:scale-105 border border-primary-container/40"
-        title="Assistente IA B2B (Google Gemini)"
+        title="Assistente Comercial B2B"
       >
         <span className="material-symbols-outlined text-[20px] text-primary-fixed">psychology</span>
         <span>Assistente IA B2B</span>
@@ -82,8 +82,8 @@ export const AIAssistantWidget: React.FC = () => {
                 <span className="material-symbols-outlined text-[20px]">smart_toy</span>
               </div>
               <div>
-                <h4 className="font-extrabold text-sm">Assistente Comercial Gemini</h4>
-                <p className="text-[10px] text-primary-fixed opacity-90">Google AI Studio • Análise Preditiva B2B</p>
+                <h4 className="font-extrabold text-sm">Assistente Comercial B2B</h4>
+                <p className="text-[10px] text-primary-fixed opacity-90">Varejista Online • Análise de Margem &amp; FEFO</p>
               </div>
             </div>
             <button

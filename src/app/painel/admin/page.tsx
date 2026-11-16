@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CommissionCalculator } from '@/components/CommissionCalculator';
+import { AdminBannerManager } from '@/components/AdminBannerManager';
 import { MOCK_ORDERS } from '@/lib/mock-data';
 import { generateFinancialSummary } from '@/lib/commission-engine';
 import { EscrowOrder } from '@/lib/types';
@@ -11,6 +12,7 @@ export default function PainelAdminPage() {
   const [wormNotice, setWormNotice] = useState<string | null>(null);
   const [orders, setOrders] = useState<EscrowOrder[]>(MOCK_ORDERS);
   const [releasingId, setReleasingId] = useState<string | null>(null);
+  const [refundingId, setRefundingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/pedidos')
@@ -43,6 +45,28 @@ export default function PainelAdminPage() {
     }
   };
 
+  const handleRefundEscrow = async (order: EscrowOrder) => {
+    setRefundingId(order.id);
+    try {
+      const res = await fetch('/api/pedidos', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId: order.id, action: 'refund_escrow' }),
+      });
+      const data = await res.json();
+      if (res.ok && data?.order) {
+        setOrders((prev) => prev.map((o) => (o.id === order.id ? data.order : o)));
+        setWormNotice(
+          `Custódia de ${order.codigoPedido} estornada integralmente ao comprador via PIX SPI.`
+        );
+      }
+    } catch {
+      setWormNotice('Erro ao executar estorno no motor Escrow.');
+    } finally {
+      setRefundingId(null);
+    }
+  };
+
   const summary = generateFinancialSummary(orders);
 
   return (
@@ -64,10 +88,17 @@ export default function PainelAdminPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href="#gestao-banners"
+            className="bg-surface-container-lowest hover:bg-surface-container text-primary border border-outline-variant/50 px-4 py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap"
+          >
+            <span className="material-symbols-outlined text-[18px]">view_carousel</span>
+            <span>Gerenciar Banners da Home</span>
+          </a>
           <Link
             href="/painel/comissoes"
-            className="bg-primary hover:bg-primary-container text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5"
+            className="bg-primary hover:bg-primary-container text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap"
           >
             <span className="material-symbols-outlined text-[18px]">tune</span>
             <span>Ajustar Taxas de Comissão</span>
@@ -124,6 +155,9 @@ export default function PainelAdminPage() {
         </div>
       </div>
 
+      {/* Embedded Home Rotating Banners Manager */}
+      <AdminBannerManager />
+
       {/* Embedded Commission Calculator & Split Engine */}
       <CommissionCalculator />
 
@@ -164,13 +198,34 @@ export default function PainelAdminPage() {
                     R$ {order.valorTotalArremate.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </td>
                   <td className="p-3">
-                    <span className="px-2 py-0.5 rounded bg-surface-container font-semibold">
+                    <span className="px-2 py-0.5 rounded bg-surface-container font-semibold block">
                       {order.docaAgendada || 'Conferência de Custódia Escrow'}
                     </span>
+                    {order.motivoDisputa && (
+                      <span className="text-[10px] text-error font-semibold block mt-1">
+                        {order.motivoDisputa}
+                      </span>
+                    )}
                   </td>
                   <td className="p-3">
-                    <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold text-[10px]">
-                      {order.statusPagamento === 'em_custodia_escrow' ? 'ESCROW ATIVO' : 'CONCILIADO D+0'}
+                    <span
+                      className={`px-2 py-0.5 rounded font-bold text-[10px] ${
+                        order.statusPagamento === 'em_custodia_escrow'
+                          ? 'bg-primary-fixed text-on-primary-fixed'
+                          : order.statusPagamento === 'em_disputa'
+                          ? 'bg-tertiary-fixed text-on-tertiary-fixed'
+                          : order.statusPagamento === 'estornado'
+                          ? 'bg-error-container text-on-error-container'
+                          : 'bg-secondary-fixed text-on-secondary-fixed'
+                      }`}
+                    >
+                      {order.statusPagamento === 'em_custodia_escrow'
+                        ? 'ESCROW ATIVO'
+                        : order.statusPagamento === 'em_disputa'
+                        ? 'EM DISPUTA'
+                        : order.statusPagamento === 'estornado'
+                        ? 'ESTORNADO'
+                        : 'CONCILIADO D+0'}
                     </span>
                   </td>
                   <td className="p-3">
@@ -186,15 +241,26 @@ export default function PainelAdminPage() {
                       >
                         Ver Dossiê
                       </button>
-                      {order.statusPagamento === 'em_custodia_escrow' && (
-                        <button
-                          type="button"
-                          disabled={releasingId === order.id}
-                          onClick={() => handleReleaseEscrow(order)}
-                          className="px-2.5 py-1 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container rounded text-[11px] font-bold disabled:opacity-50"
-                        >
-                          {releasingId === order.id ? 'Liquidando...' : 'Liquidar D+0'}
-                        </button>
+                      {(order.statusPagamento === 'em_custodia_escrow' ||
+                        order.statusPagamento === 'em_disputa') && (
+                        <>
+                          <button
+                            type="button"
+                            disabled={releasingId === order.id || refundingId === order.id}
+                            onClick={() => handleReleaseEscrow(order)}
+                            className="px-2.5 py-1 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container rounded text-[11px] font-bold disabled:opacity-50"
+                          >
+                            {releasingId === order.id ? 'Liquidando...' : 'Liquidar D+0'}
+                          </button>
+                          <button
+                            type="button"
+                            disabled={refundingId === order.id || releasingId === order.id}
+                            onClick={() => handleRefundEscrow(order)}
+                            className="px-2.5 py-1 bg-error-container hover:bg-error text-on-error-container hover:text-white rounded text-[11px] font-bold disabled:opacity-50"
+                          >
+                            {refundingId === order.id ? 'Estornando...' : 'Estornar'}
+                          </button>
+                        </>
                       )}
                     </div>
                   </td>

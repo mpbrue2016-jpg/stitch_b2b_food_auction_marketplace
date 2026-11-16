@@ -67,6 +67,7 @@ export default function SalaLeilaoAoVivoPage() {
   const [submittingProposal, setSubmittingProposal] = useState(false);
   const [proposalFeedback, setProposalFeedback] = useState<string | null>(null);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [isExpired, setIsExpired] = useState(() => new Date(initialLot.terminaEm).getTime() <= Date.now());
 
   useEffect(() => {
     fetch(`/api/lances?loteId=${encodeURIComponent(lotId)}`)
@@ -74,6 +75,7 @@ export default function SalaLeilaoAoVivoPage() {
       .then((data) => {
         if (data?.lot) {
           setLot(data.lot);
+          setIsExpired(new Date(data.lot.terminaEm).getTime() <= Date.now());
           setBidInput(data.lot.lanceAtual + data.lot.incrementoMinimo);
           setProposalBoxes(Math.max(10, Math.round(data.lot.produto.totalCaixas / 2)));
           setProposalUnitPrice(Number((data.lot.precoUnitarioAtual * 0.95).toFixed(2)));
@@ -97,6 +99,10 @@ export default function SalaLeilaoAoVivoPage() {
 
   const handlePlaceBid = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+    if (isExpired) {
+      setBidError('Pregão eletrônico encerrado. Não são aceitos novos lances.');
+      return;
+    }
     if (bidInput <= lot.lanceAtual) {
       setBidError('Seu lance deve ser maior que o lance atual.');
       return;
@@ -130,6 +136,7 @@ export default function SalaLeilaoAoVivoPage() {
       setBids((prev) => [registeredBid, ...prev.map((b) => ({ ...b, ehVencedor: false }))]);
       if (updatedLot) {
         setLot(updatedLot);
+        setIsExpired(new Date(updatedLot.terminaEm).getTime() <= Date.now());
       }
       setBidInput(bidInput + (updatedLot?.incrementoMinimo || lot.incrementoMinimo));
 
@@ -197,10 +204,16 @@ export default function SalaLeilaoAoVivoPage() {
             <span className="font-bold text-primary">{lot.codigoLote}</span>
           </nav>
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-tertiary text-white text-[10px] font-extrabold flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-              PREGÃO AO VIVO
-            </span>
+            {isExpired ? (
+              <span className="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-[10px] font-extrabold">
+                ENCERRADO
+              </span>
+            ) : (
+              <span className="px-2 py-0.5 rounded bg-tertiary text-white text-[10px] font-extrabold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                PREGÃO AO VIVO
+              </span>
+            )}
             <h1 className="text-xl sm:text-2xl font-extrabold text-on-surface">
               {lot.codigoLote} • {lot.produto.titulo}
             </h1>
@@ -213,7 +226,11 @@ export default function SalaLeilaoAoVivoPage() {
             <span className="text-[10px] text-on-surface-variant uppercase font-bold block">
               Encerramento Previsto:
             </span>
-            <AuctionCountdown terminaEm={lot.terminaEm} size="md" />
+            <AuctionCountdown
+              terminaEm={lot.terminaEm}
+              size="md"
+              onExpire={() => setIsExpired(true)}
+            />
           </div>
         </div>
       </div>
@@ -321,9 +338,19 @@ export default function SalaLeilaoAoVivoPage() {
               </div>
 
               <div className="p-3 bg-surface-container-low rounded-xl space-y-1">
-                <span className="font-bold text-on-surface block">Logística & Retirada:</span>
-                <p className="text-on-surface-variant">Modalidade: <strong className="text-primary font-bold">FOB (Retirada em CD)</strong></p>
-                <p className="text-on-surface-variant">Agendamento de Doca: <strong className="text-secondary font-bold">Livre em até 48h</strong></p>
+                <span className="font-bold text-on-surface block">Logística &amp; Retirada:</span>
+                <p className="text-on-surface-variant">
+                  Modalidade:{' '}
+                  <strong className="text-primary font-bold">
+                    {lot.tipoFrete === 'CIF'
+                      ? 'CIF (Entrega pela Indústria)'
+                      : 'FOB (Retirada em CD)'}
+                  </strong>
+                </p>
+                <p className="text-on-surface-variant">
+                  {lot.tipoFrete === 'CIF' ? 'Prazo de Despacho:' : 'Agendamento de Doca:'}{' '}
+                  <strong className="text-secondary font-bold">Livre em até 48h</strong>
+                </p>
               </div>
             </div>
 
@@ -415,10 +442,12 @@ export default function SalaLeilaoAoVivoPage() {
               {/* Submit Bid Button */}
               <button
                 type="submit"
-                disabled={submittingBid}
+                disabled={submittingBid || isExpired}
                 className="w-full py-3.5 bg-primary hover:bg-primary-container text-white font-extrabold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
-                {submittingBid ? (
+                {isExpired ? (
+                  <span>Pregão Encerrado para Novos Lances</span>
+                ) : submittingBid ? (
                   <span>Registrando Lance no Livro de Ofertas...</span>
                 ) : (
                   <>
@@ -568,7 +597,14 @@ export default function SalaLeilaoAoVivoPage() {
                       )}
                     </div>
                     <span className="text-[10px] text-on-surface-variant font-mono">
-                      CNPJ: {bid.cnpjAnonimizado} • {bid.criadoEm}
+                      CNPJ: {bid.cnpjAnonimizado} •{' '}
+                      {bid.criadoEm.includes('T')
+                        ? new Date(bid.criadoEm).toLocaleTimeString('pt-BR', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit',
+                          })
+                        : bid.criadoEm}
                     </span>
                   </div>
 

@@ -113,11 +113,12 @@ export interface FinancialReportSummary {
 }
 
 export function generateFinancialSummary(orders: EscrowOrder[]): FinancialReportSummary {
-  const gmv = orders.reduce((acc, o) => acc + o.valorTotalArremate, 0);
-  const receita = orders.reduce((acc, o) => acc + o.valorComissaoPlataforma, 0);
-  const repasses = orders.reduce((acc, o) => acc + o.valorRepasseLiquidoFornecedor, 0);
-  const emCustodia = orders
-    .filter((o) => o.statusPagamento === 'em_custodia_escrow')
+  const activeOrders = orders.filter((o) => o.statusPagamento !== 'estornado');
+  const gmv = activeOrders.reduce((acc, o) => acc + o.valorTotalArremate, 0);
+  const receita = activeOrders.reduce((acc, o) => acc + o.valorComissaoPlataforma, 0);
+  const repasses = activeOrders.reduce((acc, o) => acc + o.valorRepasseLiquidoFornecedor, 0);
+  const emCustodia = activeOrders
+    .filter((o) => o.statusPagamento === 'em_custodia_escrow' || o.statusPagamento === 'em_disputa')
     .reduce((acc, o) => acc + o.valorTotalArremate, 0);
 
   const takeRateMedio = gmv > 0 ? Number(((receita / gmv) * 100).toFixed(2)) : 0;
@@ -128,6 +129,6 @@ export function generateFinancialSummary(orders: EscrowOrder[]): FinancialReport
     totalRepassesFornecedores: repasses,
     totalEmCustodiaEscrow: emCustodia,
     takeRateMedioEfetivo: takeRateMedio,
-    quantidadeTransacoes: orders.length,
+    quantidadeTransacoes: activeOrders.length,
   };
 }

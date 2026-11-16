@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
+import { formatCnpj, formatPhoneBr } from '@/lib/format';
 
 export default function CadastroPage() {
   const router = useRouter();
@@ -159,10 +160,16 @@ export default function CadastroPage() {
             <div className="flex items-center gap-2">
               <input
                 type="text"
-                placeholder="Digite apenas números ou CNPJ formatado (ex: 12.345.678/0001-90)"
+                inputMode="numeric"
+                maxLength={18}
+                placeholder="00.000.000/0001-00"
                 value={cnpj}
-                onChange={(e) => setCnpj(e.target.value)}
-                className="flex-1 bg-surface-container-low px-4 py-2.5 rounded-xl border border-outline-variant/40 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                onChange={(e) => {
+                  setCnpj(formatCnpj(e.target.value));
+                  setCnpjVerified(false);
+                  setCnpjError(null);
+                }}
+                className="flex-1 bg-surface-container-low px-4 py-2.5 rounded-xl border border-outline-variant/40 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary"
                 required
               />
               <button
@@ -255,8 +262,10 @@ export default function CadastroPage() {
               <label className="block font-bold text-on-surface uppercase mb-1">Telefone / WhatsApp B2B:</label>
               <input
                 type="tel"
+                inputMode="tel"
+                maxLength={15}
                 value={telefone}
-                onChange={(e) => setTelefone(e.target.value)}
+                onChange={(e) => setTelefone(formatPhoneBr(e.target.value))}
                 placeholder="(11) 99999-0000"
                 className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs"
                 required
@@ -275,8 +284,9 @@ export default function CadastroPage() {
                 />
                 <input
                   type="text"
+                  maxLength={2}
                   value={uf}
-                  onChange={(e) => setUf(e.target.value)}
+                  onChange={(e) => setUf(e.target.value.toUpperCase().replace(/[^A-Z]/g, ''))}
                   className="w-14 bg-surface-container-low px-2 py-2 rounded-xl border border-outline-variant/30 text-xs uppercase text-center"
                   required
                 />

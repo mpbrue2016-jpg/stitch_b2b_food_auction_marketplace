@@ -86,6 +86,25 @@ export function removeLotFromCart(lotId: string): CartItem[] {
   return updated;
 }
 
+export function updateLotQuantity(lotId: string, delta: number): CartItem[] {
+  const updated = getCartItems()
+    .map((item) => {
+      if (item.lot.id !== lotId) return item;
+      const unitLotPrice =
+        item.quantidade > 0
+          ? item.precoTotal / item.quantidade
+          : item.lot.precoArremateImediato ?? item.lot.lanceAtual;
+      const nextQty = Math.max(1, item.quantidade + delta);
+      return {
+        ...item,
+        quantidade: nextQty,
+        precoTotal: Number((nextQty * unitLotPrice).toFixed(2)),
+      };
+    });
+  saveCartItems(updated);
+  return updated;
+}
+
 export function clearCart(): void {
   saveCartItems([]);
 }

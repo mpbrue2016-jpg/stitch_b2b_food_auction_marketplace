@@ -94,10 +94,18 @@ export async function PATCH(req: NextRequest) {
     const current = marketplaceStore.orders[idx];
 
     if (action === 'confirm_delivery' || action === 'release_escrow') {
+      if (current.statusPagamento === 'estornado') {
+        return NextResponse.json(
+          { error: 'Pedido já estornado não pode ser liquidado.' },
+          { status: 400 }
+        );
+      }
+
       const updated: EscrowOrder = {
         ...current,
         statusPagamento: 'repasse_liquidado_d0',
         statusLogistica: action === 'confirm_delivery' ? 'entregue' : current.statusLogistica,
+        motivoDisputa: undefined,
         termoArremateHash:
           current.termoArremateHash || `SHA256:${current.codigoPedido}-${Date.now().toString(36)}`,
       };
@@ -115,6 +123,66 @@ export async function PATCH(req: NextRequest) {
 
       return NextResponse.json({
         message: 'Custódia Escrow liquidada D+0 com sucesso via SPI Bancário',
+        order: updated,
+        summary: generateFinancialSummary(marketplaceStore.orders),
+      });
+    }
+
+    if (action === 'open_dispute') {
+      if (current.statusPagamento !== 'em_custodia_escrow') {
+        return NextResponse.json(
+          { error: 'Apenas pedidos em custódia Escrow ativa podem abrir divergência.' },
+          { status: 400 }
+        );
+      }
+      const motivo =
+        typeof body.reason === 'string' && body.reason.trim().length >= 5
+          ? body.reason.trim().slice(0, 220)
+          : 'Divergência de conferência na doca FOB (bloqueio preventivo de custódia)';
+
+      const updated: EscrowOrder = {
+        ...current,
+        statusPagamento: 'em_disputa',
+        motivoDisputa: motivo,
+      };
+      marketplaceStore.orders[idx] = updated;
+
+      return NextResponse.json({
+        message: 'Divergência registrada e saldo Escrow bloqueado para mediação',
+        order: updated,
+        summary: generateFinancialSummary(marketplaceStore.orders),
+      });
+    }
+
+    if (action === 'refund_escrow') {
+      if (current.statusPagamento === 'repasse_liquidado_d0') {
+        return NextResponse.json(
+          { error: 'Repasse já liquidado D+0 não pode ser estornado automaticamente.' },
+          { status: 400 }
+        );
+      }
+      const updated: EscrowOrder = {
+        ...current,
+        statusPagamento: 'estornado',
+        motivoDisputa:
+          typeof body.reason === 'string' && body.reason.trim()
+            ? body.reason.trim().slice(0, 220)
+            : current.motivoDisputa || 'Custódia estornada ao comprador via moderação Escrow',
+      };
+      marketplaceStore.orders[idx] = updated;
+
+      const aptIdx = marketplaceStore.dockAppointments.findIndex(
+        (a) => a.pedidoId === current.codigoPedido
+      );
+      if (aptIdx !== -1) {
+        marketplaceStore.dockAppointments[aptIdx] = {
+          ...marketplaceStore.dockAppointments[aptIdx],
+          status: 'liberado',
+        };
+      }
+
+      return NextResponse.json({
+        message: 'Custódia Escrow estornada integralmente ao comprador via PIX SPI',
         order: updated,
         summary: generateFinancialSummary(marketplaceStore.orders),
       });

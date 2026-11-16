@@ -22,7 +22,17 @@ export default function PainelCompradorPage() {
       .catch(() => {});
   }, []);
 
-  const totalVolumeArrematado = orders.reduce((acc, o) => acc + o.valorTotalArremate, 0);
+  const activeOrders = orders.filter((o) => o.statusPagamento !== 'estornado');
+  const totalVolumeArrematado = activeOrders.reduce((acc, o) => acc + o.valorTotalArremate, 0);
+  const avgEconomy =
+    lots.length > 0
+      ? (
+          lots.reduce((acc, l) => {
+            const ref = l.produto.precoReferenciaMercado || l.lanceAtual;
+            return acc + Math.max(0, ((ref - l.lanceAtual) / ref) * 100);
+          }, 0) / lots.length
+        ).toFixed(1)
+      : '0.0';
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
@@ -92,7 +102,7 @@ export default function PainelCompradorPage() {
           <span className="text-2xl font-extrabold text-on-surface block">
             R$ {totalVolumeArrematado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-on-surface-variant block">{orders.length} pedidos homologados</span>
+          <span className="text-[11px] text-on-surface-variant block">{activeOrders.length} pedidos homologados</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -100,7 +110,7 @@ export default function PainelCompradorPage() {
             <span className="text-xs font-bold uppercase">Economia Média Obtida</span>
             <span className="material-symbols-outlined text-secondary text-[22px]">trending_up</span>
           </div>
-          <span className="text-2xl font-extrabold text-secondary block">48.2%</span>
+          <span className="text-2xl font-extrabold text-secondary block">{avgEconomy}%</span>
           <span className="text-[11px] text-on-surface-variant block">Em relação à tabela industrial</span>
         </div>
       </div>
@@ -128,9 +138,15 @@ export default function PainelCompradorPage() {
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-on-surface">{lot.codigoLote} • {lot.produto.titulo}</span>
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">
-                      SEU LANCE LÍDER
-                    </span>
+                    {lot.ultimoLanceEmpresa?.includes('Supermercado Central') ? (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">
+                        SEU LANCE LÍDER
+                      </span>
+                    ) : (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">
+                        EM DISPUTA
+                      </span>
+                    )}
                   </div>
                   <span className="text-on-surface-variant block">
                     Lance Atual: <strong>R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> (R$ {lot.precoUnitarioAtual.toFixed(2)}/un)
@@ -168,8 +184,24 @@ export default function PainelCompradorPage() {
               >
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-on-surface">{order.codigoPedido}</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">
-                    {order.statusPagamento === 'em_custodia_escrow' ? 'Escrow Retido' : 'Liquidado'}
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded font-bold ${
+                      order.statusPagamento === 'em_custodia_escrow'
+                        ? 'bg-primary-fixed text-on-primary-fixed'
+                        : order.statusPagamento === 'em_disputa'
+                        ? 'bg-tertiary-fixed text-on-tertiary-fixed'
+                        : order.statusPagamento === 'estornado'
+                        ? 'bg-error-container text-on-error-container'
+                        : 'bg-secondary-fixed text-on-secondary-fixed'
+                    }`}
+                  >
+                    {order.statusPagamento === 'em_custodia_escrow'
+                      ? 'Escrow Retido'
+                      : order.statusPagamento === 'em_disputa'
+                      ? 'Em Disputa'
+                      : order.statusPagamento === 'estornado'
+                      ? 'Estornado'
+                      : 'Liquidado D+0'}
                   </span>
                 </div>
                 <p className="text-on-surface-variant font-medium">{order.tituloLote}</p>

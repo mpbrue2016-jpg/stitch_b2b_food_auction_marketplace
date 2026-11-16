@@ -11,6 +11,7 @@ export const CommissionCalculator: React.FC = () => {
   const [editingRuleId, setEditingRuleId] = useState<string | null>(null);
   const [newRateInput, setNewRateInput] = useState<number>(6.0);
   const [saving, setSaving] = useState(false);
+  const [saveNotice, setSaveNotice] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/comissoes')
@@ -30,17 +31,20 @@ export const CommissionCalculator: React.FC = () => {
   const splitResult = calculateSplit(gmvAmount, selectedRuleSlug, activeRate);
 
   const handleSaveRule = async (ruleId: string) => {
+    const boundedRate = Math.max(0, Math.min(100, Number(newRateInput) || 0));
     setSaving(true);
-    updateCommissionRule(ruleId, newRateInput);
+    setSaveNotice(null);
+    updateCommissionRule(ruleId, boundedRate);
     try {
       const res = await fetch('/api/comissoes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ruleId, newPercentage: newRateInput }),
+        body: JSON.stringify({ ruleId, newPercentage: boundedRate }),
       });
       if (res.ok) {
         const refreshed = await fetch('/api/comissoes').then((r) => r.json());
         if (refreshed?.rules) setRules(refreshed.rules);
+        setSaveNotice(`Regra atualizada para ${boundedRate}% e aplicada imediatamente aos próximos splits Escrow.`);
       } else {
         setRules([...getCommissionRules()]);
       }
@@ -49,7 +53,7 @@ export const CommissionCalculator: React.FC = () => {
     } finally {
       setSaving(false);
       setEditingRuleId(null);
-      if (selectedRule?.id === ruleId) setCustomRate(newRateInput);
+      if (selectedRule?.id === ruleId) setCustomRate(boundedRate);
     }
   };
 
@@ -74,9 +78,16 @@ export const CommissionCalculator: React.FC = () => {
 
       {/* Tabela de Regras Configuráveis */}
       <div className="space-y-3">
-        <h4 className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">
-          Modalidades & Comissões Parametrizadas
-        </h4>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">
+            Modalidades & Comissões Parametrizadas
+          </h4>
+          {saveNotice && (
+            <span className="text-xs font-bold text-secondary bg-secondary-container/30 px-3 py-1 rounded-lg">
+              {saveNotice}
+            </span>
+          )}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {rules.map((rule) => {
             const isEditing = editingRuleId === rule.id;
