@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MOCK_USER_PROFILE, MOCK_AUCTION_LOTS, MOCK_ORDERS } from '@/lib/mock-data';
+import { MOCK_USER_PROFILE, MOCK_AUCTION_LOTS, MOCK_ORDERS, MOCK_CATEGORIES } from '@/lib/mock-data';
+import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { AuctionLot, EscrowOrder } from '@/lib/types';
 
 export default function PainelCompradorPage() {
@@ -130,37 +131,64 @@ export default function PainelCompradorPage() {
           </div>
 
           <div className="space-y-3">
-            {lots.slice(0, 3).map((lot) => (
-              <div
-                key={lot.id}
-                className="p-4 rounded-xl bg-surface-container-low border border-surface-container flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
-              >
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold text-on-surface">{lot.codigoLote} • {lot.produto.titulo}</span>
-                    {lot.ultimoLanceEmpresa?.includes('Supermercado Central') ? (
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">
-                        SEU LANCE LÍDER
-                      </span>
-                    ) : (
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">
-                        EM DISPUTA
-                      </span>
-                    )}
-                  </div>
-                  <span className="text-on-surface-variant block">
-                    Lance Atual: <strong>R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> (R$ {lot.precoUnitarioAtual.toFixed(2)}/un)
-                  </span>
-                </div>
-
-                <Link
-                  href={`/leiloes/${lot.id}`}
-                  className="px-4 py-2 bg-primary hover:bg-primary-container text-white font-bold rounded-lg text-xs transition-colors shrink-0"
+            {lots.slice(0, 6).map((lot) => {
+              const catName =
+                MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
+              const isLotClosed = lot.status === 'encerrado' || lot.status === 'homologado';
+              return (
+                <div
+                  key={lot.id}
+                  className="p-4 rounded-xl bg-surface-container-low border border-surface-container flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                 >
-                  Sala do Pregão
-                </Link>
-              </div>
-            ))}
+                  <div className="space-y-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-bold text-on-surface">{lot.codigoLote} • {lot.produto.titulo}</span>
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface-container font-bold text-on-surface-variant">
+                        {catName}
+                      </span>
+                      {isLotClosed ? (
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface-container-high text-outline font-bold">
+                          ENCERRADO
+                        </span>
+                      ) : lot.ultimoLanceEmpresa?.includes('Supermercado Central') ? (
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold">
+                          SEU LANCE LÍDER
+                        </span>
+                      ) : (
+                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold">
+                          EM DISPUTA
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3 text-on-surface-variant">
+                      <span>
+                        Lance Atual: <strong className="text-primary">R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> (R$ {lot.precoUnitarioAtual.toFixed(2)}/un)
+                      </span>
+                      <AuctionCountdown
+                        terminaEm={lot.terminaEm}
+                        size="sm"
+                        onExpire={() =>
+                          setLots((prev) =>
+                            prev.map((item) =>
+                              item.id === lot.id && item.status !== 'encerrado' && item.status !== 'homologado'
+                                ? { ...item, status: 'encerrado' }
+                                : item
+                            )
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <Link
+                    href={`/leiloes/${lot.id}`}
+                    className="px-4 py-2 bg-primary hover:bg-primary-container text-white font-bold rounded-lg text-xs transition-colors shrink-0 text-center"
+                  >
+                    Sala do Pregão
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
 

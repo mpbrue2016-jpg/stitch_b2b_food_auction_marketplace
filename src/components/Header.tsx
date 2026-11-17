@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { CART_UPDATED_EVENT, getCartItems } from '@/lib/cart-store';
+import { MOCK_CATEGORIES } from '@/lib/mock-data';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
@@ -29,20 +30,27 @@ export const Header: React.FC = () => {
     syncCartCount();
     window.addEventListener(CART_UPDATED_EVENT, syncCartCount);
 
-    fetch('/api/lotes')
+    let active = true;
+    fetch('/api/lotes', { cache: 'no-store' })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (Array.isArray(data?.lots)) {
+        if (active && Array.isArray(data?.lots)) {
           const openLots = data.lots.filter(
-            (l: { terminaEm: string }) => new Date(l.terminaEm).getTime() > Date.now()
+            (l: { terminaEm: string; status: string }) =>
+              l.status !== 'encerrado' &&
+              l.status !== 'homologado' &&
+              new Date(l.terminaEm).getTime() > Date.now()
           );
           setActiveLotsCount(openLots.length);
         }
       })
       .catch(() => {});
 
-    return () => window.removeEventListener(CART_UPDATED_EVENT, syncCartCount);
-  }, []);
+    return () => {
+      active = false;
+      window.removeEventListener(CART_UPDATED_EVENT, syncCartCount);
+    };
+  }, [pathname]);
 
   const handleRoleChange = (role: 'comprador' | 'fornecedor') => {
     setActiveRole(role);
@@ -62,6 +70,9 @@ export const Header: React.FC = () => {
   const navLinks = [
     { label: 'Todos os Lotes', href: '/catalogo' },
     { label: 'Leilões ao Vivo', href: '/leiloes', isLive: true },
+    { label: 'Cerealista & Grãos', href: '/catalogo?categoria=cerealista' },
+    { label: 'Hortifruti', href: '/catalogo?categoria=hortifruti' },
+    { label: 'Higiene & Limpeza', href: '/catalogo?categoria=higiene-limpeza' },
     { label: 'Ofertas & Negociação', href: '/negociacoes' },
     { label: 'Validade Próxima (FEFO)', href: '/catalogo?filtro=validade_proxima' },
     { label: 'Giro Rápido', href: '/catalogo?filtro=giro_rapido' },
@@ -142,7 +153,7 @@ export const Header: React.FC = () => {
                 Varejista<span className="text-secondary">Online</span>
               </span>
               <span className="text-[10px] text-on-surface-variant tracking-wider uppercase font-semibold block mt-1">
-                Marketplace B2B Alimentício
+                Alimentos · Cerealista · Hortifruti · Higiene
               </span>
             </div>
           </Link>
@@ -158,12 +169,11 @@ export const Header: React.FC = () => {
                   className="bg-transparent text-xs font-semibold text-on-surface focus:outline-none cursor-pointer"
                 >
                   <option value="todas">Todos os Lotes</option>
-                  <option value="alimentos-secos">Alimentos Secos</option>
-                  <option value="laticinios-frios">Laticínios &amp; Frios</option>
-                  <option value="bebidas-sucos">Bebidas &amp; Sucos</option>
-                  <option value="mercearia-basica">Mercearia Básica</option>
-                  <option value="mercearia-doce">Mercearia Doce</option>
-                  <option value="higiene-limpeza">Higiene &amp; Conservação</option>
+                  {MOCK_CATEGORIES.map((cat) => (
+                    <option key={cat.id} value={cat.slug}>
+                      {cat.nome}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -173,7 +183,7 @@ export const Header: React.FC = () => {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Digite produto, marca, lote ou EAN/GTIN (ex: 7891000...)"
+                  placeholder="Buscar grãos, hortifruti, higiene, marca ou EAN..."
                   className="w-full bg-transparent text-sm text-on-surface placeholder:text-outline focus:outline-none"
                 />
               </div>

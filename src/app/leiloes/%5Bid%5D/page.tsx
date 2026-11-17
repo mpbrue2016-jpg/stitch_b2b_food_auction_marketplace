@@ -1,0 +1,677 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useParams, useRouter } from 'next/navigation';
+import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
+import { AuctionCountdown } from '@/components/AuctionCountdown';
+import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
+import { addLotToCart } from '@/lib/cart-store';
+import { AuctionBid } from '@/lib/types';
+
+function createInitialMockBids(lot: typeof MOCK_AUCTION_LOTS[number]): AuctionBid[] {
+  return [
+    {
+      id: 'bid-3',
+      loteId: lot.id,
+      compradorId: 'comp-1',
+      empresaNome: 'Supermercado Vila Real Ltda',
+      cnpjAnonimizado: '14.***.***/0001-22',
+      valorLance: lot.lanceAtual,
+      valorUnitario: lot.precoUnitarioAtual,
+      criadoEm: 'Há 1 minuto',
+      ehVencedor: true,
+    },
+    {
+      id: 'bid-2',
+      loteId: lot.id,
+      compradorId: 'comp-2',
+      empresaNome: 'Rede Econômica de Alimentos',
+      cnpjAnonimizado: '09.***.***/0001-87',
+      valorLance: lot.lanceAtual - lot.incrementoMinimo,
+      valorUnitario: Number(Math.max(0.01, lot.precoUnitarioAtual - 0.2).toFixed(2)),
+      criadoEm: 'Há 3 minutos',
+      ehVencedor: false,
+    },
+    {
+      id: 'bid-1',
+      loteId: lot.id,
+      compradorId: 'comp-3',
+      empresaNome: 'Supermercado Central Ltda (Você)',
+      cnpjAnonimizado: '12.***.***/0001-90',
+      valorLance: lot.lanceAtual - lot.incrementoMinimo * 2,
+      valorUnitario: Number(Math.max(0.01, lot.precoUnitarioAtual - 0.4).toFixed(2)),
+      criadoEm: 'Há 6 minutos',
+      ehVencedor: false,
+    },
+  ];
+}
+
+export default function SalaLeilaoAoVivoPage() {
+  const params = useParams();
+  const router = useRouter();
+  const lotId = params.id as string;
+
+  const matchedMockLot = MOCK_AUCTION_LOTS.find((l) => l.id === lotId);
+  const initialLot = matchedMockLot || MOCK_AUCTION_LOTS[0];
+
+  const [lot, setLot] = useState(initialLot);
+  const [bids, setBids] = useState<AuctionBid[]>(() =>
+    matchedMockLot && matchedMockLot.totalLances > 0 ? createInitialMockBids(matchedMockLot) : []
+  );
+
+  const [bidInput, setBidInput] = useState<number>(initialLot.lanceAtual + initialLot.incrementoMinimo);
+  const [submittingBid, setSubmittingBid] = useState(false);
+  const [lastBidFeedback, setLastBidFeedback] = useState<string | null>(null);
+  const [bidError, setBidError] = useState<string | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [showProposalForm, setShowProposalForm] = useState(false);
+  const [proposalBoxes, setProposalBoxes] = useState<number>(Math.max(1, Math.round(initialLot.produto.totalCaixas / 2)));
+  const [proposalUnitPrice, setProposalUnitPrice] = useState<number>(Number((initialLot.precoUnitarioAtual * 0.95).toFixed(2)));
+  const [proposalMessage, setProposalMessage] = useState('');
+  const [submittingProposal, setSubmittingProposal] = useState(false);
+  const [proposalFeedback, setProposalFeedback] = useState<string | null>(null);
+  const [proposalError, setProposalError] = useState<string | null>(null);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const [isExpired, setIsExpired] = useState(() => new Date(initialLot.terminaEm).getTime() <= Date.now());
+
+  useEffect(() => {
+    fetch(`/api/lances?loteId=${encodeURIComponent(lotId)}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.lot) {
+          setLot(data.lot);
+          setIsExpired(new Date(data.lot.terminaEm).getTime() <= Date.now());
+          setBidInput(data.lot.lanceAtual + data.lot.incrementoMinimo);
+          setProposalBoxes(Math.max(1, Math.round(data.lot.produto.totalCaixas / 2)));
+          setProposalUnitPrice(Number((data.lot.precoUnitarioAtual * 0.95).toFixed(2)));
+          if (Array.isArray(data.bids) && data.bids.length > 0) {
+            setBids((prev) => {
+              const existingIds = new Set(data.bids.map((b: AuctionBid) => b.id));
+              const fallback = prev.filter((b) => b.loteId === data.lot.id && !existingIds.has(b.id));
+              return [...data.bids, ...fallback.map((b) => ({ ...b, ehVencedor: false }))];
+            });
+          } else if (data.lot.totalLances === 0) {
+            setBids([]);
+          }
+        }
+      })
+      .catch(() => {});
+  }, [lotId]);
+
+  const categoryObj = MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId);
+
+  const galleryItems = [
+    { label: 'Foto do Lote', src: lot.produto.imagemUrl },
+    { label: 'Paletes PBR', src: '/images/lotes/inspecao-palete-pbr.webp' },
+    { label: 'Etiqueta GS1', src: '/images/lotes/inspecao-etiqueta-gs1.webp' },
+    { label: 'Laudo SIF', src: '/images/lotes/inspecao-laudo-sif.webp' },
+  ];
+
+  const handlePlaceBid = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (isExpired) {
+      setBidError('Pregão eletrônico encerrado. Não são aceitos novos lances.');
+      return;
+    }
+    if (bidInput <= lot.lanceAtual) {
+      setBidError('Seu lance deve ser maior que o lance atual.');
+      return;
+    }
+    setBidError(null);
+    setSubmittingBid(true);
+
+    try {
+      const res = await fetch('/api/lances', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          loteId: lot.id,
+          valorLance: bidInput,
+          compradorId: 'user-varejista-01',
+          empresaNome: 'Supermercado Central Ltda (Você)',
+          cnpj: '12.***.***/0001-90',
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setBidError(data?.error || 'Lance não aceito pelo motor do pregão.');
+        setSubmittingBid(false);
+        return;
+      }
+
+      const registeredBid: AuctionBid = data.bid;
+      const updatedLot = data.lot;
+
+      setBids((prev) => [registeredBid, ...prev.map((b) => ({ ...b, ehVencedor: false }))]);
+      if (updatedLot) {
+        setLot(updatedLot);
+        setIsExpired(new Date(updatedLot.terminaEm).getTime() <= Date.now());
+      }
+      setBidInput(bidInput + (updatedLot?.incrementoMinimo || lot.incrementoMinimo));
+
+      const antiSnipingNote = data.extendedDueToAntiSniping
+        ? ' • Regra Anti-Sniping: +3 min adicionados'
+        : '';
+      const hashNote = data.transactionHash ? ` (${data.transactionHash.slice(0, 22)}...)` : '';
+      setLastBidFeedback(
+        `Lance de R$ ${bidInput.toLocaleString('pt-BR')} homologado!${hashNote}${antiSnipingNote}`
+      );
+      setTimeout(() => setLastBidFeedback(null), 4500);
+    } catch {
+      setBidError('Erro de conexão ao enviar lance ao pregão.');
+    } finally {
+      setSubmittingBid(false);
+    }
+  };
+
+  const handleArrematarImediato = () => {
+    router.push(`/checkout?loteId=${lot.id}&valor=${lot.precoArremateImediato || lot.lanceAtual}`);
+  };
+
+  const handleSendProposal = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setProposalError(null);
+    if (proposalBoxes <= 0 || proposalBoxes > lot.produto.totalCaixas) {
+      setProposalError(`Informe entre 1 e ${lot.produto.totalCaixas} caixas para a proposta.`);
+      return;
+    }
+    if (proposalUnitPrice <= 0) {
+      setProposalError('Informe um preço unitário positivo.');
+      return;
+    }
+    setSubmittingProposal(true);
+    try {
+      const res = await fetch('/api/propostas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          newProposal: {
+            loteId: lot.id,
+            tituloProduto: lot.produto.titulo,
+            fornecedorNome: lot.produto.fabricante,
+            quantidadeCaixas: proposalBoxes,
+            precoUnitarioOfertado: proposalUnitPrice,
+            unidadesPorCaixa: lot.produto.unidadesPorEmbalagem,
+            mensagem:
+              proposalMessage.trim() ||
+              `Proposta direta para ${proposalBoxes} caixas com retirada FOB em ${lot.produto.origem}.`,
+          },
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setProposalError(data?.error || 'Não foi possível enviar a proposta.');
+        return;
+      }
+      setProposalFeedback('Proposta enviada ao vendedor! Acompanhe na Mesa de Negociações.');
+      setShowProposalForm(false);
+      setProposalMessage('');
+    } catch {
+      setProposalError('Erro de conexão ao registrar proposta comercial.');
+    } finally {
+      setSubmittingProposal(false);
+    }
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+      {/* Top Header & Breadcrumb */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-surface-container pb-4">
+        <div>
+          <nav className="text-xs text-on-surface-variant flex flex-wrap items-center gap-1.5 mb-1">
+            <Link href="/" className="hover:text-primary">Início</Link>
+            <span>/</span>
+            <Link href="/leiloes" className="hover:text-primary">Leilões</Link>
+            {categoryObj && (
+              <>
+                <span>/</span>
+                <Link href={`/leiloes?categoria=${categoryObj.slug}`} className="hover:text-primary">
+                  {categoryObj.nome}
+                </Link>
+              </>
+            )}
+            <span>/</span>
+            <span className="font-bold text-primary">{lot.codigoLote}</span>
+          </nav>
+          <div className="flex items-center gap-2">
+            {isExpired ? (
+              <span className="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-[10px] font-extrabold">
+                ENCERRADO
+              </span>
+            ) : (
+              <span className="px-2 py-0.5 rounded bg-tertiary text-white text-[10px] font-extrabold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                PREGÃO AO VIVO
+              </span>
+            )}
+            <h1 className="text-xl sm:text-2xl font-extrabold text-on-surface">
+              {lot.codigoLote} • {lot.produto.titulo}
+            </h1>
+          </div>
+        </div>
+
+        {/* Live Timer */}
+        <div className="flex items-center gap-3 bg-surface-container-low p-2 rounded-xl border border-outline-variant/30">
+          <div className="text-right">
+            <span className="text-[10px] text-on-surface-variant uppercase font-bold block">
+              Encerramento Previsto:
+            </span>
+            <AuctionCountdown
+              terminaEm={lot.terminaEm}
+              size="md"
+              onExpire={() => setIsExpired(true)}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Main Grid: 2 Columns */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Left Column: Product Photos & Technical Specifications */}
+        <div className="lg:col-span-7 space-y-6">
+          {/* Main Photo */}
+          <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 overflow-hidden shadow-sm">
+            <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
+              <Image
+                src={galleryItems[activeImageIndex]?.src || lot.produto.imagemUrl}
+                alt={`${lot.produto.titulo} - ${galleryItems[activeImageIndex]?.label}`}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                quality={95}
+                referrerPolicy="no-referrer"
+                className="object-cover img-sharp"
+              />
+              <div className="absolute top-3 left-3 bg-inverse-surface/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-lg font-mono">
+                GTIN/EAN: {lot.produto.gtinEan}
+              </div>
+              <div className="absolute top-3 right-3 bg-secondary text-white text-xs font-extrabold px-3 py-1 rounded-lg shadow-sm">
+                Margem Est. Revenda: {lot.margemEstimadaRevenda}%
+              </div>
+            </div>
+
+            {/* Galeria de Inspeção Técnica (Stitch) */}
+            <div className="p-3 grid grid-cols-4 gap-2.5 bg-surface-container-lowest border-t border-surface-container">
+              {galleryItems.map((item, idx) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`relative aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all ${
+                    activeImageIndex === idx
+                      ? 'border-primary ring-2 ring-primary/20'
+                      : 'border-outline-variant/40 opacity-80 hover:opacity-100'
+                  }`}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.label}
+                    fill
+                    sizes="(max-width: 1024px) 25vw, 14vw"
+                    quality={92}
+                    referrerPolicy="no-referrer"
+                    className="object-cover img-sharp"
+                  />
+                  <span className="absolute bottom-1 inset-x-1 bg-black/70 text-white text-[10px] font-bold py-0.5 rounded text-center">
+                    {item.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Spec Highlights Ribbon */}
+            <div className="p-4 grid grid-cols-2 sm:grid-cols-4 gap-3 bg-surface-container-low border-t border-surface-container text-xs">
+              <div>
+                <span className="text-[10px] text-on-surface-variant font-bold uppercase block">Segmento / Marca:</span>
+                <span className="font-bold text-on-surface">
+                  {categoryObj ? `${categoryObj.nome} · ${lot.produto.marca}` : lot.produto.marca}
+                </span>
+              </div>
+              <div>
+                <span className="text-[10px] text-on-surface-variant font-bold uppercase block">Origem:</span>
+                <span className="font-bold text-on-surface">{lot.produto.origem}</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-on-surface-variant font-bold uppercase block">Volume Total:</span>
+                <span className="font-bold text-primary">
+                  {lot.produto.totalCaixas} cxs ({lot.produto.totalUnidades.toLocaleString('pt-BR')} un)
+                </span>
+              </div>
+              <div>
+                <span className="text-[10px] text-on-surface-variant font-bold uppercase block">Paletes PBR:</span>
+                <span className="font-bold text-on-surface">{lot.produto.paletes} paletes</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Technical Specs & Compliance */}
+          <div className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4">
+            <h3 className="text-sm font-extrabold text-on-surface uppercase tracking-wide border-b border-surface-container pb-2 flex items-center gap-2">
+              <span className="material-symbols-outlined text-primary text-[18px]">fact_check</span>
+              Ficha Técnica de Homologação Sanitária e Logística
+            </h3>
+
+            <div className="space-y-2">
+              <ShelfLifeBadge
+                status={lot.produto.statusShelfLife}
+                diasRestantes={lot.produto.diasRestantesValidade}
+                dataValidade={lot.produto.dataValidade}
+              />
+              <p className="text-xs text-on-surface-variant leading-relaxed">
+                {lot.produto.descricao}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
+              <div className="p-3 bg-surface-container-low rounded-xl space-y-1">
+                <span className="font-bold text-on-surface block">Códigos Oficiais GS1:</span>
+                <p className="text-on-surface-variant">EAN-13: <strong className="font-mono text-on-surface">{lot.produto.gtinEan}</strong></p>
+                <p className="text-on-surface-variant">DUN-14: <strong className="font-mono text-on-surface">{lot.produto.dun14}</strong></p>
+              </div>
+
+              <div className="p-3 bg-surface-container-low rounded-xl space-y-1">
+                <span className="font-bold text-on-surface block">Logística &amp; Retirada:</span>
+                <p className="text-on-surface-variant">
+                  Modalidade:{' '}
+                  <strong className="text-primary font-bold">
+                    {lot.tipoFrete === 'CIF'
+                      ? 'CIF (Entrega pela Indústria)'
+                      : 'FOB (Retirada em CD)'}
+                  </strong>
+                </p>
+                <p className="text-on-surface-variant">
+                  {lot.tipoFrete === 'CIF' ? 'Prazo de Despacho:' : 'Agendamento de Doca:'}{' '}
+                  <strong className="text-secondary font-bold">Livre em até 48h</strong>
+                </p>
+              </div>
+            </div>
+
+            <div className="p-3 bg-secondary-container/20 rounded-xl border border-secondary/30 flex items-center gap-2 text-xs text-secondary font-bold">
+              <span className="material-symbols-outlined text-[18px]">verified</span>
+              <span>100% Homologado ANVISA / MAPA com custódia fiduciária auditada pelo BACEN.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Live Bidding Console & Offer History */}
+        <div className="lg:col-span-5 space-y-6">
+          {/* Bidding Console */}
+          <div className="bg-surface-container-lowest p-6 rounded-2xl border-2 border-primary/20 shadow-md space-y-5">
+            {/* Current Bid Display */}
+            <div className="bg-surface-container-low p-4 rounded-xl space-y-2 border border-outline-variant/30">
+              <div className="flex justify-between items-baseline text-xs text-on-surface-variant">
+                <span className="font-semibold">Maior Lance Registrado:</span>
+                <span className="line-through text-outline">
+                  Ref Mercado: R$ {lot.produto.precoReferenciaMercado.toLocaleString('pt-BR')}
+                </span>
+              </div>
+              <div className="flex justify-between items-baseline">
+                <span className="text-2xl sm:text-3xl font-extrabold text-primary">
+                  R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                </span>
+                <div className="text-right">
+                  <span className="text-base font-extrabold text-secondary block">
+                    R$ {lot.precoUnitarioAtual.toFixed(2)} / un
+                  </span>
+                  <span className="text-[10px] text-on-surface-variant">
+                    {lot.totalLances} lances na disputa
+                  </span>
+                </div>
+              </div>
+              <div className="text-[11px] text-on-surface-variant flex items-center gap-1 pt-1 border-t border-surface-container">
+                <span className="material-symbols-outlined text-secondary text-[16px]">military_tech</span>
+                <span>Líder Atual: <strong>{lot.ultimoLanceEmpresa}</strong></span>
+              </div>
+            </div>
+
+            {/* Feedback notification */}
+            {lastBidFeedback && (
+              <div className="p-2.5 bg-secondary-container/30 border border-secondary text-secondary font-bold text-xs rounded-xl flex items-center gap-2 animate-in fade-in">
+                <span className="material-symbols-outlined text-[18px]">check_circle</span>
+                <span>{lastBidFeedback}</span>
+              </div>
+            )}
+
+            {bidError && (
+              <div className="p-2.5 bg-error-container text-on-error-container font-bold text-xs rounded-xl">
+                {bidError}
+              </div>
+            )}
+
+            {/* Fast Bid Buttons */}
+            <form onSubmit={handlePlaceBid} className="space-y-3">
+              <label className="block text-xs font-bold text-on-surface uppercase">
+                Incrementar Lance no Pregão:
+              </label>
+
+              <div className="flex items-center bg-surface-container rounded-xl px-3 py-2 border-2 border-primary/30 focus-within:border-primary">
+                <span className="text-base font-extrabold text-primary mr-2">R$</span>
+                <input
+                  type="number"
+                  step="50"
+                  min={lot.lanceAtual + lot.incrementoMinimo}
+                  value={bidInput}
+                  disabled={isExpired}
+                  onChange={(e) => setBidInput(Number(e.target.value))}
+                  className="w-full bg-transparent text-xl font-extrabold text-on-surface focus:outline-none disabled:opacity-50"
+                  required
+                />
+              </div>
+
+              {/* Fast Increment Pills */}
+              <div className="flex items-center gap-2">
+                {[500, 1000, 2500].map((inc) => (
+                  <button
+                    key={inc}
+                    type="button"
+                    disabled={isExpired}
+                    onClick={() => setBidInput((prev) => prev + inc)}
+                    className="flex-1 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs transition-colors disabled:opacity-45"
+                  >
+                    + R$ {inc}
+                  </button>
+                ))}
+              </div>
+
+              {/* Submit Bid Button */}
+              <button
+                type="submit"
+                disabled={submittingBid || isExpired}
+                className="w-full py-3.5 bg-primary hover:bg-primary-container text-white font-extrabold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                {isExpired ? (
+                  <span>Pregão Encerrado para Novos Lances</span>
+                ) : submittingBid ? (
+                  <span>Registrando Lance no Livro de Ofertas...</span>
+                ) : (
+                  <>
+                    <span className="material-symbols-outlined text-[20px]">gavel</span>
+                    <span>Confirmar Lance de R$ {bidInput.toLocaleString('pt-BR')}</span>
+                  </>
+                )}
+              </button>
+            </form>
+
+            {/* Buy Now & Add to Cart Options */}
+            {lot.precoArremateImediato && (
+              <div className="pt-2 border-t border-surface-container space-y-2">
+                <div className="flex justify-between items-center text-xs">
+                  <span className="font-bold text-on-surface uppercase">Arremate Imediato (Buy-Now):</span>
+                  <span className="font-extrabold text-secondary text-sm">
+                    R$ {lot.precoArremateImediato.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  disabled={isExpired}
+                  onClick={handleArrematarImediato}
+                  className="w-full py-2.5 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 disabled:opacity-45"
+                >
+                  <span className="material-symbols-outlined text-[18px]">bolt</span>
+                  <span>Arrematar Imediatamente com Custódia Escrow</span>
+                </button>
+              </div>
+            )}
+
+            <button
+              type="button"
+              disabled={isExpired}
+              onClick={() => {
+                addLotToCart(lot, lot.precoArremateImediato || lot.lanceAtual);
+                setAddedToCart(true);
+                setTimeout(() => setAddedToCart(false), 3000);
+              }}
+              className="w-full py-2 bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5 disabled:opacity-45"
+            >
+              <span className="material-symbols-outlined text-[16px]">
+                {addedToCart ? 'check_circle' : 'add_shopping_cart'}
+              </span>
+              <span>{addedToCart ? 'Adicionado ao Carrinho B2B!' : 'Adicionar Lote ao Carrinho'}</span>
+            </button>
+
+            {/* Direct Negotiation Proposal */}
+            <div className="pt-3 border-t border-surface-container space-y-2.5">
+              <button
+                type="button"
+                onClick={() => setShowProposalForm((prev) => !prev)}
+                className="w-full py-2 bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5"
+              >
+                <span className="material-symbols-outlined text-[16px]">handshake</span>
+                <span>{showProposalForm ? 'Fechar Proposta Direta' : 'Fazer Proposta Fracionada ao Vendedor'}</span>
+              </button>
+
+              {proposalFeedback && (
+                <div className="p-2.5 bg-secondary-container/30 border border-secondary/40 rounded-xl text-xs text-secondary font-bold flex items-center justify-between gap-2">
+                  <span>{proposalFeedback}</span>
+                  <Link href="/negociacoes" className="underline shrink-0">
+                    Ver Mesa
+                  </Link>
+                </div>
+              )}
+
+              {showProposalForm && (
+                <form onSubmit={handleSendProposal} className="p-3 bg-surface-container-low rounded-xl border border-outline-variant/30 space-y-2.5 text-xs">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase text-on-surface-variant mb-1">
+                        Qtd. Caixas
+                      </label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={lot.produto.totalCaixas}
+                        value={proposalBoxes}
+                        onChange={(e) => setProposalBoxes(Number(e.target.value))}
+                        className="w-full bg-white px-2.5 py-1.5 rounded-lg border border-outline-variant/40 font-bold"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[10px] font-bold uppercase text-on-surface-variant mb-1">
+                        Preço/Un (R$)
+                      </label>
+                      <input
+                        type="number"
+                        step="0.05"
+                        min="0.10"
+                        value={proposalUnitPrice}
+                        onChange={(e) => setProposalUnitPrice(Number(e.target.value))}
+                        className="w-full bg-white px-2.5 py-1.5 rounded-lg border border-outline-variant/40 font-bold text-primary"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    value={proposalMessage}
+                    onChange={(e) => setProposalMessage(e.target.value)}
+                    placeholder="Condição comercial / janela FOB..."
+                    className="w-full bg-white px-2.5 py-1.5 rounded-lg border border-outline-variant/40"
+                  />
+                  {proposalError && (
+                    <div className="p-2 bg-error-container text-on-error-container rounded-lg text-[11px] font-bold">
+                      {proposalError}
+                    </div>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={submittingProposal}
+                    className="w-full py-2 bg-primary hover:bg-primary-container text-white font-bold rounded-lg transition-colors disabled:opacity-50"
+                  >
+                    {submittingProposal ? 'Enviando...' : 'Enviar Oferta Comercial'}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+
+          {/* Real-time Bid History Feed */}
+          <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-3">
+            <div className="flex items-center justify-between border-b border-surface-container pb-2">
+              <h4 className="text-xs font-extrabold text-on-surface uppercase tracking-wide flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-primary text-[16px]">history</span>
+                Trilha de Lances do Pregão
+              </h4>
+              <span className="text-[10px] text-secondary font-bold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+                Auditado BACEN
+              </span>
+            </div>
+
+            <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+              {bids.length === 0 ? (
+                <div className="p-4 text-center text-xs text-on-surface-variant bg-surface-container-low rounded-xl border border-surface-container">
+                  Nenhum lance registrado ainda neste pregão. Envie o primeiro lance acima!
+                </div>
+              ) : (
+                bids.map((bid) => (
+                  <div
+                    key={bid.id}
+                    className={`p-3 rounded-xl border flex items-center justify-between text-xs transition-all ${
+                      bid.ehVencedor
+                        ? 'bg-secondary-container/20 border-secondary/40 shadow-sm'
+                        : 'bg-surface-container-low border-surface-container'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-bold text-on-surface">{bid.empresaNome}</span>
+                        {bid.ehVencedor && (
+                          <span className="text-[9px] bg-secondary text-white font-extrabold px-1.5 py-0.2 rounded">
+                            LÍDER
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[10px] text-on-surface-variant font-mono">
+                        CNPJ: {bid.cnpjAnonimizado} •{' '}
+                        {bid.criadoEm.includes('T')
+                          ? new Date(bid.criadoEm).toLocaleTimeString('pt-BR', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              second: '2-digit',
+                            })
+                          : bid.criadoEm}
+                      </span>
+                    </div>
+
+                    <div className="text-right">
+                      <span className="font-extrabold text-sm text-primary block">
+                        R$ {bid.valorLance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </span>
+                      <span className="text-[10px] text-secondary font-bold">
+                        R$ {bid.valorUnitario.toFixed(2)}/un
+                      </span>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

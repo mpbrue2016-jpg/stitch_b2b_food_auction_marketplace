@@ -103,10 +103,10 @@ function CatalogoContent() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
-              Catálogo Geral & Validação EAN/GTIN
+              Catálogo Geral &amp; Validação EAN/GTIN
             </h1>
             <p className="text-xs sm:text-sm text-on-surface-variant">
-              Lotes fechados e fracionados direto da indústria com laudo sanitário ANVISA/MAPA.
+              Lotes fechados e fracionados de alimentos, cerealista, hortifruti e higiene e limpeza com laudo sanitário ANVISA/MAPA.
             </p>
           </div>
           <Link
@@ -228,7 +228,19 @@ function CatalogoContent() {
             {/* Header */}
             <div className="p-3 bg-surface-container-low flex items-center justify-between border-b border-surface-container">
               <span className="text-xs font-bold text-on-surface-variant">{lot.codigoLote}</span>
-              <AuctionCountdown terminaEm={lot.terminaEm} size="sm" />
+              <AuctionCountdown
+                terminaEm={lot.terminaEm}
+                size="sm"
+                onExpire={() =>
+                  setLots((prev) =>
+                    prev.map((item) =>
+                      item.id === lot.id && item.status !== 'encerrado' && item.status !== 'homologado'
+                        ? { ...item, status: 'encerrado' }
+                        : item
+                    )
+                  )
+                }
+              />
             </div>
 
             {/* Image */}
@@ -254,7 +266,7 @@ function CatalogoContent() {
             <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
               <div>
                 <span className="text-[11px] text-on-surface-variant font-bold block mb-1">
-                  {lot.produto.marca} • {lot.produto.origem}
+                  {MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B'} · {lot.produto.marca} • {lot.produto.origem}
                 </span>
                 <h3 className="font-bold text-sm text-on-surface leading-snug">
                   <Link href={`/leiloes/${lot.id}`} className="hover:text-primary transition-colors">
@@ -305,22 +317,28 @@ function CatalogoContent() {
                 </Link>
                 <button
                   type="button"
+                  disabled={lot.status === 'encerrado' || lot.status === 'homologado'}
                   onClick={() => setSelectedLotForBid(lot)}
-                  className="flex-1 py-2 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1"
+                  className="flex-1 py-2 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1 disabled:opacity-45"
                 >
                   <span className="material-symbols-outlined text-[16px]">gavel</span>
-                  <span>Dar Lance</span>
+                  <span>
+                    {lot.status === 'encerrado' || lot.status === 'homologado'
+                      ? 'Encerrado'
+                      : 'Dar Lance'}
+                  </span>
                 </button>
                 <button
                   type="button"
                   title="Adicionar ao Carrinho B2B"
                   aria-label="Adicionar lote ao carrinho"
+                  disabled={lot.status === 'encerrado' || lot.status === 'homologado'}
                   onClick={() => {
                     addLotToCart(lot, lot.precoArremateImediato || lot.lanceAtual);
                     setAddedLotId(lot.id);
                     setTimeout(() => setAddedLotId((cur) => (cur === lot.id ? null : cur)), 2000);
                   }}
-                  className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-colors shrink-0 ${
+                  className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-colors shrink-0 disabled:opacity-45 ${
                     addedLotId === lot.id
                       ? 'bg-secondary border-secondary text-white'
                       : 'bg-surface-container-low hover:bg-surface-container border-outline-variant/40 text-primary'
@@ -343,7 +361,7 @@ function CatalogoContent() {
           lot={selectedLotForBid}
           isOpen={true}
           onClose={() => setSelectedLotForBid(null)}
-          onBidSuccess={(amount) => {
+          onBidSuccess={(amount, updatedTerminaEm) => {
             setLots((prev) =>
               prev.map((l) =>
                 l.id === selectedLotForBid.id
@@ -355,6 +373,8 @@ function CatalogoContent() {
                           ? Number((amount / l.produto.totalUnidades).toFixed(2))
                           : l.precoUnitarioAtual,
                       totalLances: l.totalLances + 1,
+                      terminaEm: updatedTerminaEm || l.terminaEm,
+                      status: 'reta_final',
                     }
                   : l
               )

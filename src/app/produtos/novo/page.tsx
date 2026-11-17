@@ -1,21 +1,91 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
+import {
+  CheckCircle2,
+  Factory,
+  ImagePlus,
+  Sparkles,
+  Store,
+  Upload,
+} from 'lucide-react';
 import { MOCK_CATEGORIES } from '@/lib/mock-data';
 
-export default function NovoProdutoPage() {
+type LotPresetType = 'industria' | 'pequeno_mercado' | 'cerealista' | 'hortifruti' | 'higiene_limpeza';
+
+const LOT_IMAGE_PRESETS = [
+  { label: 'Mercado & Estoque Parado', url: '/images/banners/banner-pequenos-mercados.jpg' },
+  { label: 'Cerealista & Grãos (Sacaria)', url: '/images/lotes/lote-cerealista-feijao.jpg' },
+  { label: 'Hortifruti CEASA (Caixas)', url: '/images/lotes/lote-hortifruti-caixas.jpg' },
+  { label: 'Higiene e Limpeza (Combo)', url: '/images/lotes/lote-higiene-limpeza.jpg' },
+  { label: 'Arroz & Grãos (Fardos)', url: '/images/lotes/lote-arroz-5kg.webp' },
+  { label: 'Cafés & Mercearia Seca', url: '/images/lotes/lote-418-cafe.webp' },
+  { label: 'Óleos & Condimentos', url: '/images/lotes/lote-8492-oleo.webp' },
+  { label: 'Detergentes & Conservação', url: '/images/lotes/lote-detergente-500ml.webp' },
+];
+
+async function resizeFileTo4x3Webp(file: File): Promise<string> {
+  const objectUrl = URL.createObjectURL(file);
+  try {
+    const img = new window.Image();
+    await new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = () => reject(new Error('Falha ao ler imagem'));
+      img.src = objectUrl;
+    });
+
+    const targetWidth = 800;
+    const targetHeight = 600;
+    const canvas = document.createElement('canvas');
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Canvas indisponível');
+
+    const imgRatio = img.naturalWidth / Math.max(1, img.naturalHeight);
+    const targetRatio = targetWidth / targetHeight;
+    let sx = 0;
+    let sy = 0;
+    let sw = img.naturalWidth;
+    let sh = img.naturalHeight;
+
+    if (imgRatio > targetRatio) {
+      sw = img.naturalHeight * targetRatio;
+      sx = (img.naturalWidth - sw) / 2;
+    } else {
+      sh = img.naturalWidth / targetRatio;
+      sy = (img.naturalHeight - sh) / 2;
+    }
+
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, targetWidth, targetHeight);
+    return canvas.toDataURL('image/webp', 0.85);
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+  }
+}
+
+function NovoProdutoContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const modeloParam = searchParams.get('modelo');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const [presetMode, setPresetMode] = useState<LotPresetType>(
+    modeloParam === 'pequeno_mercado' ? 'pequeno_mercado' : 'industria'
+  );
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
   const [createdLotCode, setCreatedLotCode] = useState<string | null>(null);
 
   // Form states
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [generatingAI, setGeneratingAI] = useState(false);
+  const [generatingDesc, setGeneratingDesc] = useState(false);
   const [marca, setMarca] = useState('');
   const [fabricante, setFabricante] = useState('');
   const [categoriaId, setCategoriaId] = useState(MOCK_CATEGORIES[0].id);
@@ -32,19 +102,159 @@ export default function NovoProdutoPage() {
   const [tipoVenda, setTipoVenda] = useState<'leilao' | 'venda_direta' | 'giro_rapido'>('leilao');
   const [tipoFrete, setTipoFrete] = useState<'FOB' | 'CIF'>('FOB');
   const [laudoAnvisa, setLaudoAnvisa] = useState(true);
+  const [imagemUrl, setImagemUrl] = useState('/images/lotes/lote-arroz-5kg.webp');
 
-  const totalUnidades = unidadesPorEmbalagem * totalCaixas;
+  const applyPreset = (mode: LotPresetType) => {
+    setPresetMode(mode);
+    setSubmitError(null);
+    if (mode === 'pequeno_mercado') {
+      setTitulo('Sobra de Estoque · Café Torrado e Moído 500g (25 Caixas Fechadas)');
+      setMarca('Pilão / Três Corações');
+      setFabricante('Minimercado Central Bairro (Liquidação)');
+      setCategoriaId('cat-1');
+      setGtinEan('7896089011358');
+      setDun14('17896089011355');
+      setOrigem('Depósito Local · Zona Leste - SP');
+      setUnidadesPorEmbalagem(12);
+      setTotalCaixas(25);
+      setPaletes(1);
+      setDataValidade('2027-02-28');
+      setLanceInicial(1800);
+      setIncrementoMinimo(100);
+      setPrecoArremate(2400);
+      setTipoVenda('giro_rapido');
+      setTipoFrete('FOB');
+      setLaudoAnvisa(true);
+      setImagemUrl('/images/banners/banner-pequenos-mercados.jpg');
+      setDescricao(
+        'Lote excedente de loja física em caixas lacradas de fábrica, armazenadas em depósito seco e ventilado. Ideal para mercados de bairro e mercearias com retirada rápida no local e nota fiscal garantida.'
+      );
+    } else if (mode === 'cerealista') {
+      setTitulo('Feijão Carioca Tipo 1 Extra · 200 Fardos (6.000 kg)');
+      setMarca('Cerealista Sul / Kicaldo');
+      setFabricante('Beneficiadora Cerealista Sul Ltda');
+      setCategoriaId('cat-7');
+      setGtinEan('7896292001014');
+      setDun14('17896292001011');
+      setOrigem('Armazém Cerealista Campinas - SP');
+      setUnidadesPorEmbalagem(30);
+      setTotalCaixas(200);
+      setPaletes(5);
+      setDataValidade('2027-05-25');
+      setLanceInicial(22000);
+      setIncrementoMinimo(400);
+      setPrecoArremate(29500);
+      setTipoVenda('leilao');
+      setTipoFrete('FOB');
+      setLaudoAnvisa(true);
+      setImagemUrl('/images/lotes/lote-cerealista-feijao.jpg');
+      setDescricao(
+        'Lote cerealista safra nova em fardos de 30x1kg sobre paletes PBR. Umidade controlada e classificação Tipo 1 oficial para atacado e redes supermercadistas.'
+      );
+    } else if (mode === 'hortifruti') {
+      setTitulo('Hortifruti CEAGESP Mix · Tomate, Cebola & Batata (120 Caixas 20kg)');
+      setMarca('AgroVale Hortifruti');
+      setFabricante('Cooperativa Agrícola Vale Verde');
+      setCategoriaId('cat-8');
+      setGtinEan('7898990021048');
+      setDun14('17898990021045');
+      setOrigem('CEAGESP Vila Leopoldina - SP (Box 14)');
+      setUnidadesPorEmbalagem(20);
+      setTotalCaixas(120);
+      setPaletes(2);
+      setDataValidade('2026-12-03');
+      setLanceInicial(5800);
+      setIncrementoMinimo(200);
+      setPrecoArremate(7900);
+      setTipoVenda('giro_rapido');
+      setTipoFrete('FOB');
+      setLaudoAnvisa(true);
+      setImagemUrl('/images/lotes/lote-hortifruti-caixas.jpg');
+      setDescricao(
+        'Caixas plásticas higienizadas de 20kg com colheita selecionada do dia. Retirada imediata em doca refrigerada para sacolões, hortifrutis e supermercados.'
+      );
+    } else if (mode === 'higiene_limpeza') {
+      setTitulo('Combo Higiene e Limpeza · Sabão em Pó, Desinfetante & Papel (200 Fardos)');
+      setMarca('LimpMais / Ypê');
+      setFabricante('Distribuidora LimpMais Brasil Ltda');
+      setCategoriaId('cat-6');
+      setGtinEan('7891150054127');
+      setDun14('17891150054124');
+      setOrigem('CD Osasco - SP (Galpão Higiene)');
+      setUnidadesPorEmbalagem(12);
+      setTotalCaixas(200);
+      setPaletes(4);
+      setDataValidade('2028-05-10');
+      setLanceInicial(16400);
+      setIncrementoMinimo(300);
+      setPrecoArremate(21900);
+      setTipoVenda('leilao');
+      setTipoFrete('FOB');
+      setLaudoAnvisa(true);
+      setImagemUrl('/images/lotes/lote-higiene-limpeza.jpg');
+      setDescricao(
+        'Carga fechada de produtos de higiene e limpeza com embalagens originais termoencolhidas. Alta margem de revenda para varejo alimentar e perfumarias.'
+      );
+    } else {
+      setTitulo('');
+      setMarca('');
+      setFabricante('');
+      setCategoriaId(MOCK_CATEGORIES[0].id);
+      setGtinEan('');
+      setDun14('');
+      setOrigem('CD Jundiaí - SP');
+      setUnidadesPorEmbalagem(20);
+      setTotalCaixas(100);
+      setPaletes(4);
+      setDataValidade('2026-12-31');
+      setLanceInicial(25000);
+      setIncrementoMinimo(500);
+      setPrecoArremate(32000);
+      setTipoVenda('leilao');
+      setTipoFrete('FOB');
+      setLaudoAnvisa(true);
+      setImagemUrl('/images/lotes/lote-arroz-5kg.webp');
+      setDescricao('');
+    }
+  };
+
+  useEffect(() => {
+    if (
+      modeloParam === 'pequeno_mercado' ||
+      modeloParam === 'cerealista' ||
+      modeloParam === 'hortifruti' ||
+      modeloParam === 'higiene_limpeza'
+    ) {
+      applyPreset(modeloParam);
+    }
+  }, [modeloParam]);
+
+  const totalUnidades = Math.max(0, unidadesPorEmbalagem) * Math.max(0, totalCaixas);
   const precoUnitarioEstimado = totalUnidades > 0 ? (lanceInicial / totalUnidades).toFixed(2) : '0.00';
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImageError(null);
+    try {
+      const dataUrl = await resizeFileTo4x3Webp(file);
+      setImagemUrl(dataUrl);
+    } catch {
+      setImageError('Não foi possível processar a imagem. Use PNG, JPG ou WEBP.');
+    } finally {
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
 
   const handleGenerateDescription = async () => {
     if (!titulo.trim()) return;
-    setGeneratingAI(true);
+    setGeneratingDesc(true);
     try {
       const res = await fetch('/api/ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          prompt: `Gere uma descrição técnica B2B objetiva (máximo 3 frases, sem markdown) para um lote atacadista: Produto "${titulo}", Marca "${marca || 'Industrial'}", Fabricante "${fabricante || 'Indústria Nacional'}", ${totalCaixas} caixas (${paletes} paletes PBR), GTIN "${gtinEan || '7890000000000'}", validade até ${dataValidade}, frete ${tipoFrete} em ${origem}.`,
+          prompt: `Gere uma descrição técnica B2B objetiva (máximo 3 frases, sem markdown) para um lote atacadista: Produto "${titulo}", Marca "${marca || 'Linha Comercial'}", Vendedor "${fabricante || 'Estabelecimento Homologado'}", ${totalCaixas} caixas (${paletes} paletes), GTIN "${gtinEan || '7890000000000'}", validade até ${dataValidade}, frete ${tipoFrete} em ${origem}.`,
         }),
       });
       const data = res.ok ? await res.json() : null;
@@ -52,7 +262,7 @@ export default function NovoProdutoPage() {
         setDescricao(data.reply);
       } else {
         setDescricao(
-          `Lote fechado de ${titulo} (${marca || 'linha industrial'}) com ${totalCaixas} caixas (${totalUnidades.toLocaleString('pt-BR')} unidades) em ${paletes} paletes PBR. Validade até ${dataValidade}, rastreabilidade GS1 (EAN ${gtinEan || 'homologado'}) e retirada ${tipoFrete} em ${origem}.`
+          `Lote fechado de ${titulo} (${marca || 'linha comercial'}) com ${totalCaixas} caixas (${totalUnidades.toLocaleString('pt-BR')} unidades) em ${paletes} palete(s). Validade até ${dataValidade}, rastreabilidade GS1 (EAN ${gtinEan || 'homologado'}) e retirada ${tipoFrete} em ${origem}.`
         );
       }
     } catch {
@@ -60,13 +270,27 @@ export default function NovoProdutoPage() {
         `Lote fechado de ${titulo} com ${totalCaixas} caixas (${totalUnidades.toLocaleString('pt-BR')} unidades), validade ${dataValidade} e disponibilidade ${tipoFrete} em ${origem}.`
       );
     } finally {
-      setGeneratingAI(false);
+      setGeneratingDesc(false);
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitError(null);
+
+    if (lanceInicial < 100) {
+      setSubmitError('O lance inicial deve ser de no mínimo R$ 100,00.');
+      return;
+    }
+    if (incrementoMinimo < 50) {
+      setSubmitError('O incremento mínimo deve ser de no mínimo R$ 50,00.');
+      return;
+    }
+    if (precoArremate > 0 && precoArremate <= lanceInicial) {
+      setSubmitError('O preço de arremate imediato deve ser superior ao lance inicial (ou deixe 0 para desativar).');
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -88,10 +312,11 @@ export default function NovoProdutoPage() {
           dataValidade,
           lanceInicial,
           incrementoMinimo,
-          precoArremateImediato: precoArremate,
+          precoArremateImediato: precoArremate > 0 ? precoArremate : undefined,
           tipoVenda,
           tipoFrete,
           laudoSanitarioAnvisa: laudoAnvisa,
+          imagemUrl,
         }),
       });
       const data = await res.json();
@@ -120,24 +345,112 @@ export default function NovoProdutoPage() {
       <nav className="text-xs text-on-surface-variant flex items-center gap-1.5">
         <Link href="/" className="hover:text-primary">Início</Link>
         <span>/</span>
-        <Link href="/painel/fornecedor" className="hover:text-primary">Painel da Indústria</Link>
+        <Link href="/painel/fornecedor" className="hover:text-primary">Painel do Vendedor</Link>
         <span>/</span>
-        <span className="font-bold text-primary">Cadastro Técnico de Produtos & Lotes B2B</span>
+        <span className="font-bold text-primary">Cadastro de Produtos & Liquidação de Estoque</span>
       </nav>
 
       {/* Title */}
       <div className="space-y-1">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
-          Cadastro de Lote & Parametrização de Pregão
+          Publicar Lote ou Liquidar Estoque Parado
         </h1>
         <p className="text-xs sm:text-sm text-on-surface-variant">
-          Cadastre produtos com códigos GS1 oficiais (EAN/DUN-14), controle de shelf life e regras de arremate.
+          Para indústrias, distribuidores e pequenos mercados: cadastre lotes fechados ou pontas de estoque com validação GS1 e custódia Escrow.
         </p>
       </div>
 
+      {/* Quick Preset Switcher */}
+      {!success && (
+        <div className="space-y-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => applyPreset('pequeno_mercado')}
+              className={`text-left p-4 rounded-2xl border transition-all flex items-start gap-3 ${
+                presetMode === 'pequeno_mercado'
+                  ? 'bg-secondary-container/20 border-secondary shadow-sm ring-1 ring-secondary/30'
+                  : 'bg-surface-container-lowest border-outline-variant/30 hover:border-secondary/50'
+              }`}
+            >
+              <div className="w-10 h-10 rounded-xl bg-secondary text-white flex items-center justify-center shrink-0">
+                <Store className="w-5 h-5" />
+              </div>
+              <div className="space-y-0.5">
+                <span className="text-xs font-extrabold text-on-surface block">
+                  Modelo: Pequeno Mercado (Estoque Parado)
+                </span>
+                <span className="text-[11px] text-on-surface-variant block leading-snug">
+                  Ideal para fardos encalhados ou sobras de compra (a partir de R$ 100 e 1 palete / poucas caixas).
+                </span>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => applyPreset('industria')}
+              className={`text-left p-4 rounded-2xl border transition-all flex items-start gap-3 ${
+                presetMode === 'industria'
+                  ? 'bg-primary-fixed/40 border-primary shadow-sm ring-1 ring-primary/30'
+                  : 'bg-surface-container-lowest border-outline-variant/30 hover:border-primary/50'
+              }`}
+            >
+              <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
+                <Factory className="w-5 h-5" />
+              </div>
+              <div className="space-y-0.5">
+                <span className="text-xs font-extrabold text-on-surface block">
+                  Modelo: Indústria / Atacado (Paletizado)
+                </span>
+                <span className="text-[11px] text-on-surface-variant block leading-snug">
+                  Parametrização para cargas fechadas, múltiplos paletes PBR e pregão aberto no CD.
+                </span>
+              </div>
+            </button>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 text-[11px]">
+            <span className="font-bold text-on-surface-variant uppercase">Modelos por segmento:</span>
+            <button
+              type="button"
+              onClick={() => applyPreset('cerealista')}
+              className={`px-3 py-1.5 rounded-lg border font-bold transition-colors ${
+                presetMode === 'cerealista'
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-surface-container-lowest border-outline-variant/30 text-on-surface hover:border-primary'
+              }`}
+            >
+              Cerealista &amp; Grãos
+            </button>
+            <button
+              type="button"
+              onClick={() => applyPreset('hortifruti')}
+              className={`px-3 py-1.5 rounded-lg border font-bold transition-colors ${
+                presetMode === 'hortifruti'
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-surface-container-lowest border-outline-variant/30 text-on-surface hover:border-primary'
+              }`}
+            >
+              Hortifruti &amp; CEASA
+            </button>
+            <button
+              type="button"
+              onClick={() => applyPreset('higiene_limpeza')}
+              className={`px-3 py-1.5 rounded-lg border font-bold transition-colors ${
+                presetMode === 'higiene_limpeza'
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-surface-container-lowest border-outline-variant/30 text-on-surface hover:border-primary'
+              }`}
+            >
+              Higiene e Limpeza
+            </button>
+          </div>
+        </div>
+      )}
+
       {success ? (
         <div className="p-8 bg-secondary-container/20 rounded-2xl border border-secondary/30 text-center space-y-3">
-          <span className="material-symbols-outlined text-secondary text-5xl">check_circle</span>
+          <CheckCircle2 className="w-12 h-12 text-secondary mx-auto" />
           <h3 className="font-bold text-xl text-secondary">
             {createdLotCode ? `${createdLotCode} Cadastrado e Pregão Ativado!` : 'Lote Cadastrado e Pregão Ativado!'}
           </h3>
@@ -151,7 +464,7 @@ export default function NovoProdutoPage() {
           <div className="space-y-4">
             <h3 className="text-sm font-extrabold text-primary uppercase tracking-wider flex items-center gap-1.5 border-b border-surface-container pb-2">
               <span className="material-symbols-outlined text-[18px]">inventory</span>
-              1. Identificação Técnica do Produto
+              1. Identificação do Produto & Foto do Lote
             </h3>
 
             <div>
@@ -160,30 +473,110 @@ export default function NovoProdutoPage() {
                 type="text"
                 value={titulo}
                 onChange={(e) => setTitulo(e.target.value)}
-                placeholder="Ex: Arroz Branco Tipo 1 5kg • Lote 1.500 Fardos (30.000 kg)"
+                placeholder="Ex: Sobra de Estoque · Café 500g (25 Caixas) ou Arroz 5kg (1.500 Fardos)"
                 className="w-full bg-surface-container-low px-3 py-2.5 rounded-xl border border-outline-variant/30 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 required
               />
             </div>
 
+            {/* Foto do Lote */}
+            <div className="p-4 bg-surface-container-low rounded-xl border border-outline-variant/20 space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <label className="font-bold text-on-surface uppercase flex items-center gap-1.5">
+                  <ImagePlus className="w-4 h-4 text-primary" />
+                  <span>Foto Real ou Modelo do Lote:</span>
+                </label>
+                <div className="flex items-center gap-2">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-surface-container border border-outline-variant/40 text-primary font-bold text-[11px] transition-colors"
+                  >
+                    <Upload className="w-3.5 h-3.5" />
+                    <span>Enviar Foto do Depósito</span>
+                  </button>
+                </div>
+              </div>
+
+              {imageError && (
+                <p className="text-[11px] font-bold text-error">{imageError}</p>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden border border-outline-variant/30 bg-surface-container">
+                  <Image
+                    src={imagemUrl}
+                    alt={titulo || 'Prévia do lote'}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 280px"
+                    referrerPolicy="no-referrer"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="sm:col-span-2 space-y-2">
+                  <span className="text-[11px] font-bold text-on-surface-variant block">
+                    Ou selecione uma imagem rápida da categoria:
+                  </span>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {LOT_IMAGE_PRESETS.map((preset) => (
+                      <button
+                        key={preset.url}
+                        type="button"
+                        onClick={() => {
+                          setImagemUrl(preset.url);
+                          setImageError(null);
+                        }}
+                        className={`p-1.5 rounded-lg border text-left transition-all ${
+                          imagemUrl === preset.url
+                            ? 'border-primary bg-primary-fixed/40 ring-1 ring-primary'
+                            : 'border-outline-variant/30 bg-white hover:border-primary/50'
+                        }`}
+                      >
+                        <div className="relative aspect-[4/3] w-full rounded overflow-hidden mb-1">
+                          <Image
+                            src={preset.url}
+                            alt={preset.label}
+                            fill
+                            sizes="120px"
+                            referrerPolicy="no-referrer"
+                            className="object-cover"
+                          />
+                        </div>
+                        <span className="text-[10px] font-bold text-on-surface line-clamp-1 block">
+                          {preset.label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label className="block font-bold text-on-surface uppercase">Descrição Técnica do Lote:</label>
+                <label className="block font-bold text-on-surface uppercase">Descrição Comercial / Técnica:</label>
                 <button
                   type="button"
-                  disabled={!titulo.trim() || generatingAI}
+                  disabled={!titulo.trim() || generatingDesc}
                   onClick={handleGenerateDescription}
                   className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary-fixed/60 hover:bg-primary-fixed text-primary font-bold text-[11px] transition-colors disabled:opacity-50"
                 >
-                  <span className="material-symbols-outlined text-[14px]">auto_awesome</span>
-                  <span>{generatingAI ? 'Gerando com IA...' : 'Gerar Descrição com IA'}</span>
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>{generatingDesc ? 'Redigindo...' : 'Sugerir Descrição'}</span>
                 </button>
               </div>
               <textarea
                 rows={3}
                 value={descricao}
                 onChange={(e) => setDescricao(e.target.value)}
-                placeholder="Especificações sanitárias, condições de armazenagem, embalagem e faturamento..."
+                placeholder="Condições de armazenagem, estado das caixas, embalagem e faturamento..."
                 className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
@@ -195,19 +588,21 @@ export default function NovoProdutoPage() {
                   type="text"
                   value={marca}
                   onChange={(e) => setMarca(e.target.value)}
-                  placeholder="Ex: Camil, Tio João..."
+                  placeholder="Ex: Camil, Pilão, Liza..."
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-on-surface uppercase mb-1">Indústria Fabricante:</label>
+                <label className="block font-bold text-on-surface uppercase mb-1">
+                  {presetMode === 'pequeno_mercado' ? 'Mercado / Razão Social Vendedora:' : 'Indústria / Fabricante:'}
+                </label>
                 <input
                   type="text"
                   value={fabricante}
                   onChange={(e) => setFabricante(e.target.value)}
-                  placeholder="Razão Social ou Fábrica"
+                  placeholder={presetMode === 'pequeno_mercado' ? 'Nome do Mercado ou CNPJ' : 'Razão Social ou Fábrica'}
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs"
                   required
                 />
@@ -230,7 +625,7 @@ export default function NovoProdutoPage() {
             {/* GS1 Barcodes */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant/20">
               <div>
-                <label className="block font-bold text-on-surface uppercase mb-1">GTIN / EAN-13 (Unidade):</label>
+                <label className="block font-bold text-on-surface uppercase mb-1">GTIN / EAN-13 (Código de Barras):</label>
                 <input
                   type="text"
                   value={gtinEan}
@@ -242,7 +637,7 @@ export default function NovoProdutoPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-on-surface uppercase mb-1">DUN-14 (Caixa Coletiva):</label>
+                <label className="block font-bold text-on-surface uppercase mb-1">DUN-14 (Caixa Coletiva - Opcional):</label>
                 <input
                   type="text"
                   value={dun14}
@@ -253,12 +648,12 @@ export default function NovoProdutoPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-on-surface uppercase mb-1">Hub Logístico de Origem:</label>
+                <label className="block font-bold text-on-surface uppercase mb-1">Local de Retirada / Origem:</label>
                 <input
                   type="text"
                   value={origem}
                   onChange={(e) => setOrigem(e.target.value)}
-                  placeholder="Ex: CD Jundiaí - SP"
+                  placeholder="Ex: Minimercado / CD Local - SP"
                   className="w-full bg-white px-3 py-2 rounded-lg border border-outline-variant/40 text-xs"
                   required
                 />
@@ -270,7 +665,7 @@ export default function NovoProdutoPage() {
           <div className="space-y-4">
             <h3 className="text-sm font-extrabold text-primary uppercase tracking-wider flex items-center gap-1.5 border-b border-surface-container pb-2">
               <span className="material-symbols-outlined text-[18px]">package_2</span>
-              2. Especificações de Paletização e Volume
+              2. Especificações de Embalagem e Volume
             </h3>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -287,7 +682,7 @@ export default function NovoProdutoPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-on-surface uppercase mb-1">Total de Caixas:</label>
+                <label className="block font-bold text-on-surface uppercase mb-1">Total de Caixas / Fardos:</label>
                 <input
                   type="number"
                   min="1"
@@ -299,7 +694,7 @@ export default function NovoProdutoPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-on-surface uppercase mb-1">Paletes PBR:</label>
+                <label className="block font-bold text-on-surface uppercase mb-1">Paletes (ou Volumes):</label>
                 <input
                   type="number"
                   min="1"
@@ -347,7 +742,7 @@ export default function NovoProdutoPage() {
                   className="w-4 h-4 text-primary rounded cursor-pointer"
                 />
                 <label htmlFor="anvisa" className="font-bold text-on-surface cursor-pointer">
-                  Atesto conformidade sanitária ANVISA / MAPA com laudo de qualidade emitido.
+                  Atesto embalagens íntegras, dentro da validade e conformidade sanitária ANVISA / MAPA.
                 </label>
               </div>
             </div>
@@ -369,7 +764,7 @@ export default function NovoProdutoPage() {
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs cursor-pointer"
                 >
                   <option value="leilao">Leilão Aberto (Pregão)</option>
-                  <option value="giro_rapido">Giro Rápido FEFO (Desconto Agressivo)</option>
+                  <option value="giro_rapido">Giro Rápido FEFO (Liquidação)</option>
                   <option value="venda_direta">Venda Direta / Preço Fixo</option>
                 </select>
               </div>
@@ -381,8 +776,8 @@ export default function NovoProdutoPage() {
                   onChange={(e) => setTipoFrete(e.target.value as 'FOB' | 'CIF')}
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs cursor-pointer"
                 >
-                  <option value="FOB">FOB (Comprador retira na Doca do CD)</option>
-                  <option value="CIF">CIF (Indústria entrega no destino)</option>
+                  <option value="FOB">FOB (Comprador retira no local)</option>
+                  <option value="CIF">CIF (Vendedor entrega no destino)</option>
                 </select>
               </div>
 
@@ -390,7 +785,8 @@ export default function NovoProdutoPage() {
                 <label className="block font-bold text-on-surface uppercase mb-1">Lance Inicial (R$):</label>
                 <input
                   type="number"
-                  step="500"
+                  min="100"
+                  step="10"
                   value={lanceInicial}
                   onChange={(e) => setLanceInicial(Number(e.target.value))}
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs font-bold text-primary"
@@ -404,7 +800,8 @@ export default function NovoProdutoPage() {
                 <label className="block font-bold text-on-surface uppercase mb-1">Incremento Mínimo (R$):</label>
                 <input
                   type="number"
-                  step="100"
+                  min="50"
+                  step="10"
                   value={incrementoMinimo}
                   onChange={(e) => setIncrementoMinimo(Number(e.target.value))}
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs"
@@ -413,10 +810,11 @@ export default function NovoProdutoPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-on-surface uppercase mb-1">Preço de Arremate Imediato (R$):</label>
+                <label className="block font-bold text-on-surface uppercase mb-1">Arremate Imediato (R$ · opcional):</label>
                 <input
                   type="number"
-                  step="500"
+                  min="0"
+                  step="10"
                   value={precoArremate}
                   onChange={(e) => setPrecoArremate(Number(e.target.value))}
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs font-bold text-secondary"
@@ -464,5 +862,13 @@ export default function NovoProdutoPage() {
         </form>
       )}
     </div>
+  );
+}
+
+export default function NovoProdutoPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-xs">Carregando formulário de lotes B2B...</div>}>
+      <NovoProdutoContent />
+    </Suspense>
   );
 }

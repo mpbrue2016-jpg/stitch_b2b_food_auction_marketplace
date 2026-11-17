@@ -10,6 +10,7 @@ export default function NegociacoesPage() {
   const router = useRouter();
   const [proposals, setProposals] = useState<NegotiationProposal[]>(MOCK_PROPOSALS);
   const [counterPriceInput, setCounterPriceInput] = useState<{ [id: string]: number }>({});
+  const [statusFilter, setStatusFilter] = useState<'todas' | 'pendente' | 'contraproposta' | 'aceita' | 'recusada'>('todas');
   const [feedback, setFeedback] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -28,15 +29,30 @@ export default function NegociacoesPage() {
     const finalUnitPrice = prop.contrapropostaPrecoUnitario || prop.precoUnitarioOfertado;
     const ratio = prop.precoUnitarioOfertado > 0 ? finalUnitPrice / prop.precoUnitarioOfertado : 1;
     const finalTotal = Number((prop.valorTotalProposta * ratio).toFixed(2));
+    setErrorMsg(null);
+
+    if (prop.status === 'aceita') {
+      router.push(`/checkout?loteId=${prop.loteId}&valor=${finalTotal}`);
+      return;
+    }
 
     try {
-      await fetch('/api/propostas', {
+      const res = await fetch('/api/propostas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'accept', proposalId: prop.id }),
       });
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMsg(data?.error || 'Não foi possível aceitar a proposta.');
+        return;
+      }
+      if (data?.proposal) {
+        setProposals((prev) => prev.map((p) => (p.id === prop.id ? data.proposal : p)));
+      }
     } catch {
-      // fallback: segue para checkout mesmo se offline
+      setErrorMsg('Falha de comunicação ao homologar a proposta. Tente novamente.');
+      return;
     }
 
     router.push(`/checkout?loteId=${prop.loteId}&valor=${finalTotal}`);
@@ -83,13 +99,18 @@ export default function NegociacoesPage() {
   };
 
   const handleReject = async (propId: string) => {
+    setErrorMsg(null);
     try {
       const res = await fetch('/api/propostas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'reject', proposalId: propId }),
       });
-      const data = res.ok ? await res.json() : null;
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMsg(data?.error || 'Não foi possível recusar a proposta.');
+        return;
+      }
       setProposals((prev) =>
         prev.map((p) =>
           p.id === propId ? data?.proposal || { ...p, status: 'recusada' } : p
@@ -97,13 +118,15 @@ export default function NegociacoesPage() {
       );
       setFeedback(`Proposta #${propId} recusada e encerrada na mesa de negociação.`);
     } catch {
-      setProposals((prev) =>
-        prev.map((p) => (p.id === propId ? { ...p, status: 'recusada' } : p))
-      );
-      setFeedback(`Proposta #${propId} marcada como recusada.`);
+      setErrorMsg('Falha de comunicação ao recusar a proposta. Tente novamente.');
+      return;
     }
     setTimeout(() => setFeedback(null), 3000);
   };
+
+  const filteredProposals = proposals.filter((p) =>
+    statusFilter === 'todas' ? true : p.status === statusFilter
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
@@ -153,9 +176,57 @@ export default function NegociacoesPage() {
         </div>
       )}
 
+      {/* Status Filter Strip */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+        {(
+          [
+            { id: 'todas', label: 'Todas' },
+            { id: 'pendente', label: 'Pendentes' },
+            { id: 'contraproposta', label: 'Contrapropostas' },
+            { id: 'aceita', label: 'Aceitas' },
+            { id: 'recusada', label: 'Recusadas' },
+          ] as const
+        ).map((tab) => {
+          const count =
+            tab.id === 'todas'
+              ? proposals.length
+              : proposals.filter((p) => p.status === tab.id).length;
+          const active = statusFilter === tab.id;
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setStatusFilter(tab.id)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors whitespace-nowrap ${
+                active
+                  ? 'bg-primary text-white border-primary shadow-sm'
+                  : 'bg-surface-container-lowest text-on-surface-variant border-outline-variant/30 hover:text-on-surface'
+              }`}
+            >
+              {tab.label} ({count})
+            </button>
+          );
+        })}
+      </div>
+
       {/* Proposals List */}
       <div className="space-y-4">
-        {proposals.map((prop) => (
+        {filteredProposals.length === 0 ? (
+          <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 text-center space-y-2">
+            <span className="material-symbols-outlined text-outline text-3xl">handshake</span>
+            <p className="text-sm font-bold text-on-surface">
+              Nenhuma proposta encontrada neste status.
+            </p>
+            <button
+              type="button"
+              onClick={() => setStatusFilter('todas')}
+              className="text-xs font-bold text-primary hover:underline"
+            >
+              Ver todas as propostas
+            </button>
+          </div>
+        ) : (
+        filteredProposals.map((prop) => (
           <div
             key={prop.id}
             className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4"
@@ -279,12 +350,17 @@ export default function NegociacoesPage() {
                   className="px-5 py-2 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 disabled:opacity-40"
                 >
                   <span className="material-symbols-outlined text-[16px]">check_circle</span>
-                  <span>Aceitar e Ir para Custódia Escrow</span>
+                  <span>
+                    {prop.status === 'aceita'
+                      ? 'Ir para Checkout Escrow'
+                      : 'Aceitar e Ir para Custódia Escrow'}
+                  </span>
                 </button>
               </div>
             </div>
           </div>
-        ))}
+        ))
+        )}
       </div>
     </div>
   );

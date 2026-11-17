@@ -9,6 +9,7 @@ import { EscrowOrder } from '@/lib/types';
 
 export default function PainelComissoesPage() {
   const [orders, setOrders] = useState<EscrowOrder[]>(MOCK_ORDERS);
+  const [exportNotice, setExportNotice] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/pedidos')
@@ -56,6 +57,8 @@ export default function PainelComissoesPage() {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    setExportNotice(`Conciliação exportada (${orders.length} registros) em formato CSV.`);
+    setTimeout(() => setExportNotice(null), 3500);
   };
 
   return (
@@ -140,14 +143,21 @@ export default function PainelComissoesPage() {
             </h3>
             <span className="text-outline text-[11px]">Auditoria Fiduciária em Tempo Real</span>
           </div>
-          <button
-            type="button"
-            onClick={handleExportCsv}
-            className="px-3.5 py-2 bg-primary hover:bg-primary-container text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors shadow-sm"
-          >
-            <span className="material-symbols-outlined text-[16px]">download</span>
-            <span>Exportar Conciliação (.CSV)</span>
-          </button>
+          <div className="flex items-center gap-2">
+            {exportNotice && (
+              <span className="text-[11px] font-bold text-secondary bg-secondary-container/30 px-2.5 py-1 rounded-lg">
+                {exportNotice}
+              </span>
+            )}
+            <button
+              type="button"
+              onClick={handleExportCsv}
+              className="px-3.5 py-2 bg-primary hover:bg-primary-container text-white rounded-xl font-bold text-xs flex items-center gap-1.5 transition-colors shadow-sm"
+            >
+              <span className="material-symbols-outlined text-[16px]">download</span>
+              <span>Exportar Conciliação (.CSV)</span>
+            </button>
+          </div>
         </div>
 
         <div className="overflow-x-auto">
@@ -169,7 +179,11 @@ export default function PainelComissoesPage() {
               {orders.map((order) => (
                 <tr key={order.id} className="hover:bg-surface-container-low/50">
                   <td className="p-3 font-mono font-bold text-primary">{order.codigoPedido}</td>
-                  <td className="p-3 font-medium text-on-surface">{order.tituloLote}</td>
+                  <td className="p-3 font-medium text-on-surface">
+                    <Link href={`/leiloes/${order.loteId}`} className="hover:text-primary transition-colors">
+                      {order.tituloLote}
+                    </Link>
+                  </td>
                   <td className="p-3 text-on-surface-variant">{order.compradorNome}</td>
                   <td className="p-3 text-on-surface-variant">{order.fornecedorNome}</td>
                   <td className="p-3 font-extrabold text-on-surface">

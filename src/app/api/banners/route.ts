@@ -16,9 +16,14 @@ function normalizeOrders(): void {
 
 function isValidImageUrl(url: string): boolean {
   const trimmed = url.trim();
+  if (trimmed.startsWith('data:image/')) {
+    return (
+      trimmed.length <= 600_000 &&
+      /^data:image\/(webp|png|jpeg|jpg);base64,[A-Za-z0-9+/=]+$/.test(trimmed)
+    );
+  }
   return (
     trimmed.startsWith('/images/') ||
-    trimmed.startsWith('data:image/') ||
     trimmed.startsWith('https://lh3.googleusercontent.com/') ||
     trimmed.startsWith('https://images.unsplash.com/')
   );

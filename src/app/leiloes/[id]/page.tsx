@@ -4,56 +4,77 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
-import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
+import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
 import { addLotToCart } from '@/lib/cart-store';
-import { AuctionBid } from '@/lib/types';
+import { AuctionBid, AuctionLot } from '@/lib/types';
+
+function buildSeedBidsForLot(targetLot: AuctionLot): AuctionBid[] {
+  if (targetLot.totalLances <= 0) {
+    return [];
+  }
+  const units = Math.max(1, targetLot.produto.totalUnidades);
+  const b1Amount = targetLot.lanceAtual;
+  const b2Amount = Math.max(targetLot.lanceInicial, b1Amount - targetLot.incrementoMinimo);
+  const b3Amount = Math.max(targetLot.lanceInicial, b2Amount - targetLot.incrementoMinimo);
+
+  const seed: AuctionBid[] = [
+    {
+      id: `seed-${targetLot.id}-3`,
+      loteId: targetLot.id,
+      compradorId: 'comp-1',
+      empresaNome: targetLot.ultimoLanceEmpresa || 'Supermercado Vila Real Ltda',
+      cnpjAnonimizado: '14.***.***/0001-22',
+      valorLance: b1Amount,
+      valorUnitario: Number((b1Amount / units).toFixed(2)),
+      criadoEm: 'Há 1 minuto',
+      ehVencedor: true,
+    },
+  ];
+  if (targetLot.totalLances >= 2 && b2Amount < b1Amount) {
+    seed.push({
+      id: `seed-${targetLot.id}-2`,
+      loteId: targetLot.id,
+      compradorId: 'comp-2',
+      empresaNome: 'Rede Econômica de Alimentos',
+      cnpjAnonimizado: '09.***.***/0001-87',
+      valorLance: b2Amount,
+      valorUnitario: Number((b2Amount / units).toFixed(2)),
+      criadoEm: 'Há 4 minutos',
+      ehVencedor: false,
+    });
+  }
+  if (targetLot.totalLances >= 3 && b3Amount < b2Amount) {
+    seed.push({
+      id: `seed-${targetLot.id}-1`,
+      loteId: targetLot.id,
+      compradorId: 'comp-3',
+      empresaNome: 'Supermercado Central Ltda',
+      cnpjAnonimizado: '12.***.***/0001-90',
+      valorLance: b3Amount,
+      valorUnitario: Number((b3Amount / units).toFixed(2)),
+      criadoEm: 'Há 8 minutos',
+      ehVencedor: false,
+    });
+  }
+  return seed;
+}
 
 export default function SalaLeilaoAoVivoPage() {
   const params = useParams();
   const router = useRouter();
   const lotId = params.id as string;
 
-  const initialLot =
-    MOCK_AUCTION_LOTS.find((l) => l.id === lotId) || MOCK_AUCTION_LOTS[0];
+  const matchedMockLot = MOCK_AUCTION_LOTS.find((l) => l.id === lotId);
+  const initialLot = matchedMockLot || MOCK_AUCTION_LOTS[0];
 
-  const [lot, setLot] = useState(initialLot);
-  const [bids, setBids] = useState<AuctionBid[]>([
-    {
-      id: 'bid-3',
-      loteId: initialLot.id,
-      compradorId: 'comp-1',
-      empresaNome: 'Supermercado Vila Real Ltda',
-      cnpjAnonimizado: '14.***.***/0001-22',
-      valorLance: initialLot.lanceAtual,
-      valorUnitario: initialLot.precoUnitarioAtual,
-      criadoEm: 'Há 1 minuto',
-      ehVencedor: true,
-    },
-    {
-      id: 'bid-2',
-      loteId: initialLot.id,
-      compradorId: 'comp-2',
-      empresaNome: 'Rede Econômica de Alimentos',
-      cnpjAnonimizado: '09.***.***/0001-87',
-      valorLance: initialLot.lanceAtual - initialLot.incrementoMinimo,
-      valorUnitario: Number((initialLot.precoUnitarioAtual - 0.20).toFixed(2)),
-      criadoEm: 'Há 3 minutos',
-      ehVencedor: false,
-    },
-    {
-      id: 'bid-1',
-      loteId: initialLot.id,
-      compradorId: 'comp-3',
-      empresaNome: 'Supermercado Central Ltda (Você)',
-      cnpjAnonimizado: '12.***.***/0001-90',
-      valorLance: initialLot.lanceAtual - initialLot.incrementoMinimo * 2,
-      valorUnitario: Number((initialLot.precoUnitarioAtual - 0.40).toFixed(2)),
-      criadoEm: 'Há 6 minutos',
-      ehVencedor: false,
-    },
-  ]);
+  const [lot, setLot] = useState<AuctionLot>(initialLot);
+  const [loadingLot, setLoadingLot] = useState<boolean>(!matchedMockLot);
+  const [notFoundLot, setNotFoundLot] = useState<boolean>(false);
+  const [bids, setBids] = useState<AuctionBid[]>(() =>
+    matchedMockLot ? buildSeedBidsForLot(matchedMockLot) : []
+  );
 
   const [bidInput, setBidInput] = useState<number>(initialLot.lanceAtual + initialLot.incrementoMinimo);
   const [submittingBid, setSubmittingBid] = useState(false);
@@ -61,33 +82,66 @@ export default function SalaLeilaoAoVivoPage() {
   const [bidError, setBidError] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [showProposalForm, setShowProposalForm] = useState(false);
-  const [proposalBoxes, setProposalBoxes] = useState<number>(Math.max(10, Math.round(initialLot.produto.totalCaixas / 2)));
+  const [proposalBoxes, setProposalBoxes] = useState<number>(Math.max(1, Math.round(initialLot.produto.totalCaixas / 2)));
   const [proposalUnitPrice, setProposalUnitPrice] = useState<number>(Number((initialLot.precoUnitarioAtual * 0.95).toFixed(2)));
   const [proposalMessage, setProposalMessage] = useState('');
   const [submittingProposal, setSubmittingProposal] = useState(false);
   const [proposalFeedback, setProposalFeedback] = useState<string | null>(null);
+  const [proposalError, setProposalError] = useState<string | null>(null);
   const [addedToCart, setAddedToCart] = useState(false);
-  const [isExpired, setIsExpired] = useState(() => new Date(initialLot.terminaEm).getTime() <= Date.now());
+  const [isExpired, setIsExpired] = useState(() =>
+    initialLot.status === 'encerrado' ||
+    initialLot.status === 'homologado' ||
+    new Date(initialLot.terminaEm).getTime() <= Date.now()
+  );
 
   useEffect(() => {
-    fetch(`/api/lances?loteId=${encodeURIComponent(lotId)}`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data?.lot) {
-          setLot(data.lot);
-          setIsExpired(new Date(data.lot.terminaEm).getTime() <= Date.now());
-          setBidInput(data.lot.lanceAtual + data.lot.incrementoMinimo);
-          setProposalBoxes(Math.max(10, Math.round(data.lot.produto.totalCaixas / 2)));
-          setProposalUnitPrice(Number((data.lot.precoUnitarioAtual * 0.95).toFixed(2)));
+    let active = true;
+    fetch(`/api/lances?loteId=${encodeURIComponent(lotId)}`, { cache: 'no-store' })
+      .then(async (res) => {
+        if (res.status === 404) {
+          if (active) {
+            setNotFoundLot(true);
+            setLoadingLot(false);
+          }
+          return null;
         }
-        if (data?.bids?.length) {
-          setBids((prev) => {
-            const existingIds = new Set(data.bids.map((b: AuctionBid) => b.id));
-            return [...data.bids, ...prev.filter((b) => !existingIds.has(b.id)).map((b) => ({ ...b, ehVencedor: false }))];
-          });
+        return res.ok ? res.json() : null;
+      })
+      .then((data) => {
+        if (!active || !data?.lot) return;
+        const fetchedLot: AuctionLot = data.lot;
+        setNotFoundLot(false);
+        setLoadingLot(false);
+        setLot(fetchedLot);
+        setIsExpired(
+          fetchedLot.status === 'encerrado' ||
+            fetchedLot.status === 'homologado' ||
+            new Date(fetchedLot.terminaEm).getTime() <= Date.now()
+        );
+        setBidInput(fetchedLot.lanceAtual + fetchedLot.incrementoMinimo);
+        setProposalBoxes(Math.max(1, Math.min(fetchedLot.produto.totalCaixas, Math.round(fetchedLot.produto.totalCaixas / 2))));
+        setProposalUnitPrice(Math.max(0.1, Number((fetchedLot.precoUnitarioAtual * 0.95).toFixed(2))));
+
+        if (fetchedLot.totalLances === 0) {
+          setBids([]);
+        } else if (Array.isArray(data.bids) && data.bids.length > 0) {
+          const seeded = buildSeedBidsForLot(fetchedLot);
+          const apiBidIds = new Set(data.bids.map((b: AuctionBid) => b.id));
+          const remainingSeed = seeded
+            .filter((b) => !apiBidIds.has(b.id) && b.valorLance < data.bids[0].valorLance)
+            .map((b) => ({ ...b, ehVencedor: false }));
+          setBids([...data.bids, ...remainingSeed]);
+        } else {
+          setBids(buildSeedBidsForLot(fetchedLot));
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) setLoadingLot(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [lotId]);
 
   const galleryItems = [
@@ -156,12 +210,29 @@ export default function SalaLeilaoAoVivoPage() {
   };
 
   const handleArrematarImediato = () => {
+    if (isExpired) return;
     router.push(`/checkout?loteId=${lot.id}&valor=${lot.precoArremateImediato || lot.lanceAtual}`);
   };
 
   const handleSendProposal = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (proposalBoxes <= 0 || proposalUnitPrice <= 0) return;
+    setProposalError(null);
+    if (isExpired) {
+      setProposalError('Este pregão já foi encerrado e não aceita novas propostas.');
+      return;
+    }
+    if (
+      !Number.isFinite(proposalBoxes) ||
+      proposalBoxes < 1 ||
+      proposalBoxes > lot.produto.totalCaixas
+    ) {
+      setProposalError(`Informe entre 1 e ${lot.produto.totalCaixas} caixas para sua proposta.`);
+      return;
+    }
+    if (!Number.isFinite(proposalUnitPrice) || proposalUnitPrice < 0.1) {
+      setProposalError('Informe um preço unitário ofertado de no mínimo R$ 0,10.');
+      return;
+    }
     setSubmittingProposal(true);
     try {
       const res = await fetch('/api/propostas', {
@@ -181,25 +252,71 @@ export default function SalaLeilaoAoVivoPage() {
           },
         }),
       });
+      const data = await res.json().catch(() => null);
       if (res.ok) {
-        setProposalFeedback('Proposta enviada à indústria! Acompanhe na Mesa de Negociações.');
+        setProposalFeedback('Proposta enviada! Acompanhe na Mesa de Negociações.');
         setShowProposalForm(false);
         setProposalMessage('');
+      } else {
+        setProposalError(data?.error || 'Não foi possível registrar a proposta.');
       }
+    } catch {
+      setProposalError('Falha de comunicação ao enviar a oferta comercial.');
     } finally {
       setSubmittingProposal(false);
     }
   };
+
+  if (loadingLot) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 text-center space-y-3">
+        <div className="w-10 h-10 rounded-full border-4 border-primary/20 border-t-primary animate-spin mx-auto" />
+        <p className="text-xs font-bold text-on-surface-variant">
+          Carregando livro de ofertas e ficha sanitária do lote...
+        </p>
+      </div>
+    );
+  }
+
+  if (notFoundLot) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center space-y-4">
+        <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-sm space-y-3">
+          <span className="material-symbols-outlined text-outline text-4xl">inventory_2</span>
+          <h1 className="text-xl font-extrabold text-on-surface">Lote não encontrado no pregão</h1>
+          <p className="text-xs text-on-surface-variant">
+            O código de lote solicitado não está disponível ou já foi removido da rodada atual.
+          </p>
+          <Link
+            href="/leiloes"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-colors"
+          >
+            Ver Todos os Pregões ao Vivo
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const categoryInfo = MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
       {/* Top Header & Breadcrumb */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-surface-container pb-4">
         <div>
-          <nav className="text-xs text-on-surface-variant flex items-center gap-1.5 mb-1">
+          <nav className="text-xs text-on-surface-variant flex flex-wrap items-center gap-1.5 mb-1">
             <Link href="/" className="hover:text-primary">Início</Link>
             <span>/</span>
             <Link href="/leiloes" className="hover:text-primary">Leilões</Link>
+            {categoryInfo && (
+              <>
+                <span>/</span>
+                <Link href={`/leiloes?categoria=${categoryInfo.slug}`} className="hover:text-primary">
+                  {categoryInfo.nome}
+                </Link>
+              </>
+            )}
             <span>/</span>
             <span className="font-bold text-primary">{lot.codigoLote}</span>
           </nav>
@@ -419,20 +536,25 @@ export default function SalaLeilaoAoVivoPage() {
                   step="50"
                   min={lot.lanceAtual + lot.incrementoMinimo}
                   value={bidInput}
-                  onChange={(e) => setBidInput(Number(e.target.value))}
-                  className="w-full bg-transparent text-xl font-extrabold text-on-surface focus:outline-none"
+                  disabled={isExpired}
+                  onChange={(e) => {
+                    const parsed = Number(e.target.value);
+                    setBidInput(Number.isFinite(parsed) ? parsed : 0);
+                  }}
+                  className="w-full bg-transparent text-xl font-extrabold text-on-surface focus:outline-none disabled:opacity-50"
                   required
                 />
               </div>
 
-              {/* Fast Increment Pills */}
+              {/* Fast Increment Buttons */}
               <div className="flex items-center gap-2">
                 {[500, 1000, 2500].map((inc) => (
                   <button
                     key={inc}
                     type="button"
+                    disabled={isExpired}
                     onClick={() => setBidInput((prev) => prev + inc)}
-                    className="flex-1 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs transition-colors"
+                    className="flex-1 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs transition-colors disabled:opacity-45"
                   >
                     + R$ {inc}
                   </button>
@@ -469,23 +591,25 @@ export default function SalaLeilaoAoVivoPage() {
                 </div>
                 <button
                   type="button"
+                  disabled={isExpired}
                   onClick={handleArrematarImediato}
-                  className="w-full py-2.5 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5"
+                  className="w-full py-2.5 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5 disabled:opacity-45"
                 >
                   <span className="material-symbols-outlined text-[18px]">bolt</span>
-                  <span>Arrematar Imediatamente com Custódia Escrow</span>
+                  <span>{isExpired ? 'Pregão Encerrado' : 'Arrematar Imediatamente com Custódia Escrow'}</span>
                 </button>
               </div>
             )}
 
             <button
               type="button"
+              disabled={isExpired}
               onClick={() => {
                 addLotToCart(lot, lot.precoArremateImediato || lot.lanceAtual);
                 setAddedToCart(true);
                 setTimeout(() => setAddedToCart(false), 3000);
               }}
-              className="w-full py-2 bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5"
+              className="w-full py-2 bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 text-on-surface font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5 disabled:opacity-45"
             >
               <span className="material-symbols-outlined text-[16px]">
                 {addedToCart ? 'check_circle' : 'add_shopping_cart'}
@@ -497,11 +621,15 @@ export default function SalaLeilaoAoVivoPage() {
             <div className="pt-3 border-t border-surface-container space-y-2.5">
               <button
                 type="button"
-                onClick={() => setShowProposalForm((prev) => !prev)}
-                className="w-full py-2 bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5"
+                disabled={isExpired}
+                onClick={() => {
+                  setProposalError(null);
+                  setShowProposalForm((prev) => !prev);
+                }}
+                className="w-full py-2 bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-1.5 disabled:opacity-45"
               >
                 <span className="material-symbols-outlined text-[16px]">handshake</span>
-                <span>{showProposalForm ? 'Fechar Proposta Direta' : 'Fazer Proposta Fracionada à Indústria'}</span>
+                <span>{showProposalForm ? 'Fechar Proposta Direta' : 'Fazer Proposta Fracionada ao Vendedor'}</span>
               </button>
 
               {proposalFeedback && (
@@ -510,6 +638,12 @@ export default function SalaLeilaoAoVivoPage() {
                   <Link href="/negociacoes" className="underline shrink-0">
                     Ver Mesa
                   </Link>
+                </div>
+              )}
+
+              {proposalError && (
+                <div className="p-2.5 bg-error-container text-on-error-container rounded-xl text-xs font-bold">
+                  {proposalError}
                 </div>
               )}
 
@@ -525,7 +659,10 @@ export default function SalaLeilaoAoVivoPage() {
                         min={1}
                         max={lot.produto.totalCaixas}
                         value={proposalBoxes}
-                        onChange={(e) => setProposalBoxes(Number(e.target.value))}
+                        onChange={(e) => {
+                          const v = Number(e.target.value);
+                          setProposalBoxes(Number.isFinite(v) ? v : 1);
+                        }}
                         className="w-full bg-white px-2.5 py-1.5 rounded-lg border border-outline-variant/40 font-bold"
                         required
                       />
@@ -539,7 +676,10 @@ export default function SalaLeilaoAoVivoPage() {
                         step="0.05"
                         min="0.10"
                         value={proposalUnitPrice}
-                        onChange={(e) => setProposalUnitPrice(Number(e.target.value))}
+                        onChange={(e) => {
+                          const v = Number(e.target.value);
+                          setProposalUnitPrice(Number.isFinite(v) ? v : 0);
+                        }}
                         className="w-full bg-white px-2.5 py-1.5 rounded-lg border border-outline-variant/40 font-bold text-primary"
                         required
                       />
@@ -577,48 +717,60 @@ export default function SalaLeilaoAoVivoPage() {
               </span>
             </div>
 
-            <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
-              {bids.map((bid) => (
-                <div
-                  key={bid.id}
-                  className={`p-3 rounded-xl border flex items-center justify-between text-xs transition-all ${
-                    bid.ehVencedor
-                      ? 'bg-secondary-container/20 border-secondary/40 shadow-sm'
-                      : 'bg-surface-container-low border-surface-container'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-on-surface">{bid.empresaNome}</span>
-                      {bid.ehVencedor && (
-                        <span className="text-[9px] bg-secondary text-white font-extrabold px-1.5 py-0.2 rounded">
-                          LÍDER
-                        </span>
-                      )}
+            {bids.length === 0 ? (
+              <div className="p-5 rounded-xl bg-surface-container-low border border-outline-variant/20 text-center space-y-1.5">
+                <span className="material-symbols-outlined text-outline text-2xl">gavel</span>
+                <p className="text-xs font-bold text-on-surface">
+                  Nenhum lance registrado neste lote ainda
+                </p>
+                <p className="text-[11px] text-on-surface-variant">
+                  Envie o primeiro lance acima para abrir o livro de ofertas deste pregão.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+                {bids.map((bid) => (
+                  <div
+                    key={bid.id}
+                    className={`p-3 rounded-xl border flex items-center justify-between text-xs transition-all ${
+                      bid.ehVencedor
+                        ? 'bg-secondary-container/20 border-secondary/40 shadow-sm'
+                        : 'bg-surface-container-low border-surface-container'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-bold text-on-surface">{bid.empresaNome}</span>
+                        {bid.ehVencedor && (
+                          <span className="text-[9px] bg-secondary text-white font-extrabold px-1.5 py-0.2 rounded">
+                            LÍDER
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[10px] text-on-surface-variant font-mono">
+                        CNPJ: {bid.cnpjAnonimizado} •{' '}
+                        {bid.criadoEm.includes('T')
+                          ? new Date(bid.criadoEm).toLocaleTimeString('pt-BR', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              second: '2-digit',
+                            })
+                          : bid.criadoEm}
+                      </span>
                     </div>
-                    <span className="text-[10px] text-on-surface-variant font-mono">
-                      CNPJ: {bid.cnpjAnonimizado} •{' '}
-                      {bid.criadoEm.includes('T')
-                        ? new Date(bid.criadoEm).toLocaleTimeString('pt-BR', {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            second: '2-digit',
-                          })
-                        : bid.criadoEm}
-                    </span>
-                  </div>
 
-                  <div className="text-right">
-                    <span className="font-extrabold text-sm text-primary block">
-                      R$ {bid.valorLance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                    </span>
-                    <span className="text-[10px] text-secondary font-bold">
-                      R$ {bid.valorUnitario.toFixed(2)}/un
-                    </span>
+                    <div className="text-right">
+                      <span className="font-extrabold text-sm text-primary block">
+                        R$ {bid.valorLance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </span>
+                      <span className="text-[10px] text-secondary font-bold">
+                        R$ {bid.valorUnitario.toFixed(2)}/un
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

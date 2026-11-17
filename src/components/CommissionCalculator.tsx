@@ -12,6 +12,7 @@ export const CommissionCalculator: React.FC = () => {
   const [newRateInput, setNewRateInput] = useState<number>(6.0);
   const [saving, setSaving] = useState(false);
   const [saveNotice, setSaveNotice] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/comissoes')
@@ -31,29 +32,34 @@ export const CommissionCalculator: React.FC = () => {
   const splitResult = calculateSplit(gmvAmount, selectedRuleSlug, activeRate);
 
   const handleSaveRule = async (ruleId: string) => {
-    const boundedRate = Math.max(0, Math.min(100, Number(newRateInput) || 0));
+    const parsedInput = Number(newRateInput);
+    const boundedRate = Math.max(0, Math.min(100, Number.isFinite(parsedInput) ? parsedInput : 0));
     setSaving(true);
     setSaveNotice(null);
-    updateCommissionRule(ruleId, boundedRate);
+    setSaveError(null);
     try {
       const res = await fetch('/api/comissoes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ruleId, newPercentage: boundedRate }),
       });
+      const data = await res.json().catch(() => null);
       if (res.ok) {
-        const refreshed = await fetch('/api/comissoes').then((r) => r.json());
+        updateCommissionRule(ruleId, boundedRate);
+        const refreshed = await fetch('/api/comissoes').then((r) => (r.ok ? r.json() : null));
         if (refreshed?.rules) setRules(refreshed.rules);
         setSaveNotice(`Regra atualizada para ${boundedRate}% e aplicada imediatamente aos próximos splits Escrow.`);
+        if (selectedRule?.id === ruleId) setCustomRate(boundedRate);
       } else {
+        setSaveError(data?.error || 'Não foi possível salvar a nova alíquota.');
         setRules([...getCommissionRules()]);
       }
     } catch {
+      setSaveError('Erro de conexão ao atualizar regra de comissão.');
       setRules([...getCommissionRules()]);
     } finally {
       setSaving(false);
       setEditingRuleId(null);
-      if (selectedRule?.id === ruleId) setCustomRate(boundedRate);
     }
   };
 
@@ -85,6 +91,11 @@ export const CommissionCalculator: React.FC = () => {
           {saveNotice && (
             <span className="text-xs font-bold text-secondary bg-secondary-container/30 px-3 py-1 rounded-lg">
               {saveNotice}
+            </span>
+          )}
+          {saveError && (
+            <span className="text-xs font-bold text-on-error-container bg-error-container px-3 py-1 rounded-lg">
+              {saveError}
             </span>
           )}
         </div>
@@ -186,7 +197,10 @@ export const CommissionCalculator: React.FC = () => {
                 step="1000"
                 min="1000"
                 value={gmvAmount}
-                onChange={(e) => setGmvAmount(Number(e.target.value))}
+                onChange={(e) => {
+                  const v = Number(e.target.value);
+                  setGmvAmount(Number.isFinite(v) && v >= 0 ? v : 0);
+                }}
                 className="w-full bg-transparent text-base font-extrabold text-on-surface focus:outline-none"
               />
             </div>
@@ -205,7 +219,10 @@ export const CommissionCalculator: React.FC = () => {
                   min="0"
                   max="100"
                   value={activeRate}
-                  onChange={(e) => setCustomRate(Number(e.target.value))}
+                  onChange={(e) => {
+                    const v = Number(e.target.value);
+                    setCustomRate(Number.isFinite(v) ? Math.max(0, Math.min(100, v)) : 0);
+                  }}
                   className="w-full bg-transparent text-base font-extrabold text-primary focus:outline-none"
                 />
                 <span className="text-sm font-bold text-outline">%</span>

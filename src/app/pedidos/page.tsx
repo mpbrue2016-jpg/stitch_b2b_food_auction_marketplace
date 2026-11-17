@@ -21,6 +21,9 @@ export default function PedidosPage() {
   const [disputeOrder, setDisputeOrder] = useState<EscrowOrder | null>(null);
   const [disputeReason, setDisputeReason] = useState('');
   const [disputeSubmitting, setDisputeSubmitting] = useState(false);
+  const [statusFilter, setStatusFilter] = useState<
+    'todos' | 'em_custodia_escrow' | 'em_disputa' | 'repasse_liquidado_d0' | 'estornado'
+  >('todos');
 
   useEffect(() => {
     Promise.all([
@@ -115,6 +118,8 @@ export default function PedidosPage() {
         setOrderNotice(
           `Recebimento FOB confirmado para ${order.codigoPedido}. Custódia Escrow liquidada D+0 ao fornecedor!`
         );
+      } else {
+        setOrderNotice(data?.error || 'Não foi possível liquidar a custódia Escrow neste pedido.');
       }
     } catch {
       setOrderNotice('Não foi possível confirmar a liberação D+0. Tente novamente.');
@@ -196,9 +201,44 @@ export default function PedidosPage() {
         </div>
       )}
 
+      {/* Status Filter Tabs */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+        {(
+          [
+            { id: 'todos', label: 'Todos' },
+            { id: 'em_custodia_escrow', label: 'Custódia Ativa' },
+            { id: 'em_disputa', label: 'Em Disputa' },
+            { id: 'repasse_liquidado_d0', label: 'Liquidados D+0' },
+            { id: 'estornado', label: 'Estornados' },
+          ] as const
+        ).map((tab) => {
+          const count =
+            tab.id === 'todos'
+              ? orders.length
+              : orders.filter((o) => o.statusPagamento === tab.id).length;
+          const active = statusFilter === tab.id;
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setStatusFilter(tab.id)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors whitespace-nowrap ${
+                active
+                  ? 'bg-primary text-white border-primary shadow-sm'
+                  : 'bg-surface-container-lowest text-on-surface-variant border-outline-variant/30 hover:text-on-surface'
+              }`}
+            >
+              {tab.label} ({count})
+            </button>
+          );
+        })}
+      </div>
+
       {/* Orders List */}
       <div className="space-y-4">
-        {orders.map((order) => (
+        {orders
+          .filter((o) => (statusFilter === 'todos' ? true : o.statusPagamento === statusFilter))
+          .map((order) => (
           <div
             key={order.id}
             className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4"
@@ -209,7 +249,11 @@ export default function PedidosPage() {
                 <span className="text-[10px] uppercase font-bold text-on-surface-variant">
                   {order.codigoPedido} • Arrematado em {new Date(order.criadoEm).toLocaleDateString('pt-BR')}
                 </span>
-                <h3 className="font-extrabold text-base text-on-surface">{order.tituloLote}</h3>
+                <h3 className="font-extrabold text-base text-on-surface">
+                  <Link href={`/leiloes/${order.loteId}`} className="hover:text-primary transition-colors">
+                    {order.tituloLote}
+                  </Link>
+                </h3>
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
@@ -286,7 +330,7 @@ export default function PedidosPage() {
 
               <div className="flex flex-wrap items-center gap-2">
                 {order.statusLogistica === 'agendamento_doca' &&
-                  order.statusPagamento !== 'estornado' && (
+                  order.statusPagamento === 'em_custodia_escrow' && (
                     <button
                       type="button"
                       onClick={() => setSelectedOrderForDoca(order)}

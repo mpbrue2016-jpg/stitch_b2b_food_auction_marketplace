@@ -29,7 +29,7 @@ export default function HomePage() {
       .catch(() => {});
   }, []);
 
-  const handleBidSuccess = (lotId: string, newBidAmount: number) => {
+  const handleBidSuccess = (lotId: string, newBidAmount: number, updatedTerminaEm?: string) => {
     setLots((prev) =>
       prev.map((lot) => {
         if (lot.id === lotId) {
@@ -43,6 +43,8 @@ export default function HomePage() {
             precoUnitarioAtual: newUnitPrice,
             totalLances: lot.totalLances + 1,
             ultimoLanceEmpresa: 'Supermercado Central Ltda (Você)',
+            terminaEm: updatedTerminaEm || lot.terminaEm,
+            status: 'reta_final',
           };
         }
         return lot;
@@ -52,9 +54,12 @@ export default function HomePage() {
 
   const filteredLots = lots.filter((lot) => {
     const q = searchTerm.trim().toLowerCase();
+    const catName =
+      MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId)?.nome.toLowerCase() || '';
     const matchesSearch =
       !q ||
       lot.produto.titulo.toLowerCase().includes(q) ||
+      catName.includes(q) ||
       lot.produto.gtinEan.includes(q) ||
       lot.produto.dun14.includes(q) ||
       lot.produto.sku.toLowerCase().includes(q) ||
@@ -79,7 +84,9 @@ export default function HomePage() {
 
   const liveAuctions = isFiltering
     ? filteredLots.slice(0, 6)
-    : filteredLots.filter((l) => l.status === 'reta_final' || l.id === 'lote-8512').slice(0, 3);
+    : filteredLots
+        .filter((l) => /^lote-86\d+$/.test(l.id) || l.status === 'reta_final' || l.id === 'lote-8512')
+        .slice(0, 6);
 
   const flashDeals = lots
     .filter(
@@ -128,15 +135,15 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-3">
               <h1 className="font-extrabold text-2xl sm:text-4xl lg:text-5xl text-on-surface tracking-tight leading-tight">
-                O Maior Marketplace B2B de Estoque,{' '}
+                O Maior Marketplace B2B de{' '}
                 <span className="text-primary underline decoration-secondary decoration-4 underline-offset-4">
-                  Giro Rápido
-                </span>{' '}
-                e Leilões de Alimentos
+                  Pregões Atacadistas
+                </span>
+                , Cerealista, Hortifruti &amp; Higiene
               </h1>
               <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl leading-relaxed">
-                Conectamos indústrias, atacadistas e redes de varejo. Compre lotes fracionados ou fechados com até{' '}
-                <strong className="text-secondary font-extrabold">70% de desconto</strong> ou liquide estoques excedentes de validade próxima com 100% de compliance fiscal e sanitário ANVISA/MAPA.
+                Conectamos indústrias, cerealistas, produtores de hortifruti, atacadistas e redes de varejo. Compre lotes de alimentos, bebidas e higiene e limpeza com até{' '}
+                <strong className="text-secondary font-extrabold">70% de desconto</strong> ou liquide estoques excedentes com 100% de compliance fiscal e sanitário ANVISA/MAPA.
               </p>
             </div>
 
@@ -248,24 +255,31 @@ export default function HomePage() {
               <span className="text-[10px] uppercase font-bold text-outline">Atalhos rápidos:</span>
               <button
                 type="button"
+                onClick={() => setSearchTerm('Cerealista')}
+                className="bg-surface-container hover:bg-surface-container-high px-2.5 py-1 rounded-lg text-on-surface text-[11px] font-semibold transition-colors"
+              >
+                Cerealista &amp; Grãos
+              </button>
+              <button
+                type="button"
+                onClick={() => setSearchTerm('Hortifruti')}
+                className="bg-surface-container hover:bg-surface-container-high px-2.5 py-1 rounded-lg text-on-surface text-[11px] font-semibold transition-colors"
+              >
+                Hortifruti Fresco
+              </button>
+              <button
+                type="button"
+                onClick={() => setSearchTerm('Higiene')}
+                className="bg-surface-container hover:bg-surface-container-high px-2.5 py-1 rounded-lg text-on-surface text-[11px] font-semibold transition-colors"
+              >
+                Higiene e Limpeza
+              </button>
+              <button
+                type="button"
                 onClick={() => setSearchTerm('Café')}
                 className="bg-surface-container hover:bg-surface-container-high px-2.5 py-1 rounded-lg text-on-surface text-[11px] font-semibold transition-colors"
               >
-                Cafés & Mercearia
-              </button>
-              <button
-                type="button"
-                onClick={() => setSearchTerm('Óleo')}
-                className="bg-surface-container hover:bg-surface-container-high px-2.5 py-1 rounded-lg text-on-surface text-[11px] font-semibold transition-colors"
-              >
-                Óleo & Mercearia Básica
-              </button>
-              <button
-                type="button"
-                onClick={() => setSearchTerm('Leite')}
-                className="bg-surface-container hover:bg-surface-container-high px-2.5 py-1 rounded-lg text-on-surface text-[11px] font-semibold transition-colors"
-              >
-                Laticínios &lt; 60 dias
+                Cafés &amp; Mercearia
               </button>
               <button
                 type="button"
@@ -386,7 +400,11 @@ export default function HomePage() {
           </div>
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {liveAuctions.map((lot) => (
+          {liveAuctions.map((lot) => {
+            const isLotClosed = lot.status === 'encerrado' || lot.status === 'homologado';
+            const catName =
+              MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
+            return (
             <article
               key={lot.id}
               className="bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-xl border border-outline-variant/30 overflow-hidden flex flex-col transition-all duration-200"
@@ -394,15 +412,37 @@ export default function HomePage() {
               {/* Card Top Badges Bar */}
               <div className="p-3 bg-surface-container-low flex items-center justify-between border-b border-surface-container">
                 <div className="flex items-center gap-1.5">
-                  <span className="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-extrabold flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[13px]">local_fire_department</span>
-                    RETA FINAL
+                  <span
+                    className={`px-2 py-0.5 rounded text-[10px] font-extrabold flex items-center gap-1 ${
+                      isLotClosed
+                        ? 'bg-surface-container text-outline'
+                        : lot.status === 'reta_final'
+                        ? 'bg-tertiary-fixed text-on-tertiary-fixed'
+                        : 'bg-secondary-fixed text-on-secondary-fixed'
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-[13px]">
+                      {isLotClosed ? 'lock_clock' : lot.status === 'reta_final' ? 'local_fire_department' : 'gavel'}
+                    </span>
+                    {isLotClosed ? 'ENCERRADO' : lot.status === 'reta_final' ? 'RETA FINAL' : 'AO VIVO'}
                   </span>
                   <span className="text-[11px] font-extrabold text-on-surface-variant">
                     {lot.codigoLote}
                   </span>
                 </div>
-                <AuctionCountdown terminaEm={lot.terminaEm} size="sm" />
+                <AuctionCountdown
+                  terminaEm={lot.terminaEm}
+                  size="sm"
+                  onExpire={() =>
+                    setLots((prev) =>
+                      prev.map((item) =>
+                        item.id === lot.id && item.status !== 'encerrado' && item.status !== 'homologado'
+                          ? { ...item, status: 'encerrado' }
+                          : item
+                      )
+                    )
+                  }
+                />
               </div>
 
               {/* Product Media */}
@@ -428,9 +468,11 @@ export default function HomePage() {
               {/* Specs & Title */}
               <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                 <div>
-                  <div className="flex items-center justify-between text-[11px] text-on-surface-variant mb-1">
-                    <span>Indústria: <strong>{lot.produto.marca}</strong></span>
-                    <span>Origem: <strong>{lot.produto.origem}</strong></span>
+                  <div className="flex items-center justify-between gap-2 text-[11px] text-on-surface-variant mb-1">
+                    <span className="truncate">
+                      <strong>{catName}</strong> • {lot.produto.marca}
+                    </span>
+                    <span className="shrink-0">Origem: <strong>{lot.produto.origem}</strong></span>
                   </div>
                   <h3 className="font-bold text-sm sm:text-base text-on-surface leading-snug">
                     <Link href={`/leiloes/${lot.id}`} className="hover:text-primary transition-colors">
@@ -486,16 +528,18 @@ export default function HomePage() {
                   </Link>
                   <button
                     type="button"
+                    disabled={isLotClosed}
                     onClick={() => setSelectedLotForBid(lot)}
-                    className="flex-1 py-2 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1"
+                    className="flex-1 py-2 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1 disabled:opacity-45"
                   >
                     <span className="material-symbols-outlined text-[16px]">gavel</span>
-                    <span>Dar Lance</span>
+                    <span>{isLotClosed ? 'Encerrado' : 'Dar Lance'}</span>
                   </button>
                 </div>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
         )}
       </section>
@@ -721,7 +765,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SEÇÃO 4: 🏭 Direto da Indústria • Lotes Fechados de Fábrica (Stitch) */}
+      {/* SEÇÃO 4: 🏭 Direto da Indústria, Cerealistas & Produtores (Stitch) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
@@ -729,30 +773,34 @@ export default function HomePage() {
               ECOSSISTEMA HOMOLOGADO
             </span>
             <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
-              🏭 Direto da Indústria • Lotes Fechados de Fábrica
+              Direto da Indústria, Cerealistas &amp; Produtores
             </h2>
           </div>
           <span className="text-xs text-on-surface-variant">
-            Acesso prioritário a pontas de lote e rebalanceamentos fabris oficiais.
+            Acesso prioritário a pontas de lote, beneficiadoras de grãos, CEASA e higiene &amp; limpeza.
           </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { code: 'NT', name: 'Nestlé Brasil', query: 'Nestlé', desc: 'Lácteos, Chocolates & Cereais • Até 48% abaixo da tabela' },
-            { code: 'AB', name: 'Ambev', query: 'Ambev', desc: 'Cervejas, Refrigerantes & Sucos • Frete dedicado FOB / CIF' },
-            { code: 'PJ', name: 'Piracanjuba', query: 'Piracanjuba', desc: 'Lácteos UHT & Derivados • Oportunidades FEFO homologadas' },
-            { code: 'CM', name: 'Camil Alimentos', query: 'Camil', desc: 'Arroz, Feijão & Grãos • Cargas fechadas padrão carreta' },
+            { code: 'CR', name: 'Cerealista Sul & Camil', query: 'cerealista', isCat: true, desc: 'Arroz, Feijão Carioca & Grãos • Sacaria e fardos em leilão' },
+            { code: 'HF', name: 'AgroVale Hortifruti', query: 'hortifruti', isCat: true, desc: 'Tomate, Batata, Cebola & Frutas • Giro rápido CEAGESP' },
+            { code: 'HL', name: 'LimpMais & Ypê', query: 'higiene-limpeza', isCat: true, desc: 'Sabão em Pó, Detergentes & Papel • Paletes fechados FOB/CIF' },
+            { code: 'NT', name: 'Nestlé & Piracanjuba', query: 'Nestlé', isCat: false, desc: 'Lácteos, Chocolates & Mercearia • Até 48% abaixo da tabela' },
           ].map((ind) => {
-            const brandCount = lots.filter(
-              (l) =>
-                l.produto.marca.toLowerCase().includes(ind.query.toLowerCase()) ||
-                l.produto.fabricante.toLowerCase().includes(ind.query.toLowerCase())
+            const brandCount = lots.filter((l) =>
+              ind.isCat
+                ? MOCK_CATEGORIES.find((c) => c.id === l.produto.categoriaId)?.slug === ind.query
+                : l.produto.marca.toLowerCase().includes(ind.query.toLowerCase()) ||
+                  l.produto.fabricante.toLowerCase().includes(ind.query.toLowerCase())
             ).length;
+            const targetHref = ind.isCat
+              ? `/catalogo?categoria=${encodeURIComponent(ind.query)}`
+              : `/catalogo?q=${encodeURIComponent(ind.query)}`;
             return (
               <Link
                 key={ind.code}
-                href={`/catalogo?q=${encodeURIComponent(ind.query)}`}
+                href={targetHref}
                 className="p-4 bg-surface-container-lowest rounded-2xl border border-outline-variant/30 hover:border-primary shadow-sm hover:shadow-md transition-all flex items-start gap-3"
               >
                 <div className="w-10 h-10 rounded-xl bg-surface-container-low text-primary font-extrabold text-xs flex items-center justify-center shrink-0">
@@ -761,7 +809,7 @@ export default function HomePage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-1">
                     <strong className="text-sm text-on-surface truncate">{ind.name}</strong>
-                    <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold shrink-0">
+                    <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold shrink-0 tabular-nums">
                       {brandCount} {brandCount === 1 ? 'Lote' : 'Lotes'}
                     </span>
                   </div>
@@ -775,17 +823,22 @@ export default function HomePage() {
 
       {/* Categorias em Destaque */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
-        <h2 className="text-lg font-bold text-on-surface tracking-tight">
-          Navegue por Categorias de Alimentos
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-bold text-on-surface tracking-tight">
+            Navegue por Segmentos de Pregão
+          </h2>
+          <Link href="/leiloes" className="text-xs font-bold text-primary hover:underline">
+            Filtrar pregões por segmento
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {MOCK_CATEGORIES.map((cat) => {
             const catCount = lots.filter((l) => l.produto.categoriaId === cat.id).length;
             return (
               <Link
                 key={cat.id}
-                href={`/catalogo?categoria=${cat.slug}`}
-                className="p-3 bg-surface-container-lowest rounded-xl border border-outline-variant/30 hover:border-primary transition-all text-center flex flex-col items-center gap-2 group shadow-sm hover:shadow-md"
+                href={`/leiloes?categoria=${cat.slug}`}
+                className="p-3.5 bg-surface-container-lowest rounded-xl border border-outline-variant/30 hover:border-primary transition-all text-center flex flex-col items-center gap-2 group shadow-sm hover:shadow-md"
               >
                 <div className="w-10 h-10 rounded-lg bg-surface-container group-hover:bg-primary-fixed text-primary flex items-center justify-center transition-colors">
                   <span className="material-symbols-outlined text-[22px]">{cat.icone}</span>
@@ -794,7 +847,7 @@ export default function HomePage() {
                   <span className="text-xs font-bold text-on-surface block leading-tight">
                     {cat.nome}
                   </span>
-                  <span className="text-[10px] text-on-surface-variant">
+                  <span className="text-[10px] text-on-surface-variant tabular-nums">
                     {catCount} {catCount === 1 ? 'lote' : 'lotes'}
                   </span>
                 </div>
@@ -871,10 +924,16 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Link
-              href="/produtos/novo"
+              href="/produtos/novo?modelo=pequeno_mercado"
               className="px-5 py-2.5 rounded-xl bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container text-xs font-extrabold transition-colors shadow-sm"
             >
-              Cadastrar Meu Estoque
+              Liquidar Estoque (Pequeno Mercado)
+            </Link>
+            <Link
+              href="/produtos/novo"
+              className="px-5 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold transition-colors border border-white/25"
+            >
+              Cadastrar Lote Industrial
             </Link>
             <Link
               href="/negociacoes"
@@ -892,7 +951,9 @@ export default function HomePage() {
           lot={selectedLotForBid}
           isOpen={true}
           onClose={() => setSelectedLotForBid(null)}
-          onBidSuccess={(amount) => handleBidSuccess(selectedLotForBid.id, amount)}
+          onBidSuccess={(amount, updatedTerminaEm) =>
+            handleBidSuccess(selectedLotForBid.id, amount, updatedTerminaEm)
+          }
         />
       )}
 

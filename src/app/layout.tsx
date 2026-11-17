@@ -11,10 +11,21 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
+const SITE_TITLE =
+  'Varejista Online | Pregões B2B de Alimentos, Cerealista, Hortifruti & Higiene e Limpeza';
+const SITE_DESCRIPTION =
+  'O maior marketplace B2B de liquidez de estoque, giro rápido (FEFO) e leilões de alimentos, cerealista, hortifruti e higiene e limpeza com custódia escrow segregada.';
+
 export const metadata: Metadata = {
-  title: 'Varejista Online | Marketplace B2B de Alimentos, Bebidas & Leilões de Estoque',
-  description:
-    'O maior marketplace B2B de liquidez de estoque, giro rápido (FEFO) e leilões industriais de alimentos com custódia escrow segregada.',
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    type: 'website',
+    locale: 'pt_BR',
+    siteName: 'Varejista Online',
+  },
 };
 
 export default function RootLayout({

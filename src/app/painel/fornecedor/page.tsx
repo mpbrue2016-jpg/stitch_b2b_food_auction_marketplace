@@ -2,12 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MOCK_AUCTION_LOTS, MOCK_ORDERS } from '@/lib/mock-data';
+import { MOCK_AUCTION_LOTS, MOCK_ORDERS, MOCK_CATEGORIES } from '@/lib/mock-data';
 import { AuctionLot, EscrowOrder } from '@/lib/types';
 
 export default function PainelFornecedorPage() {
   const [supplierLots, setSupplierLots] = useState<AuctionLot[]>(MOCK_AUCTION_LOTS);
   const [orders, setOrders] = useState<EscrowOrder[]>(MOCK_ORDERS);
+  const [selectedSegment, setSelectedSegment] = useState<string>('todos');
 
   useEffect(() => {
     Promise.all([
@@ -48,13 +49,20 @@ export default function PainelFornecedorPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <Link
             href="/produtos/novo"
             className="bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container px-4 py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5"
           >
             <span className="material-symbols-outlined text-[18px]">add_circle</span>
             <span>Criar Novo Pregão</span>
+          </Link>
+          <Link
+            href="/produtos/novo?modelo=pequeno_mercado"
+            className="bg-tertiary/10 hover:bg-tertiary/20 text-tertiary border border-tertiary/30 px-4 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5"
+          >
+            <span className="material-symbols-outlined text-[18px]">storefront</span>
+            <span>Liquidar Estoque Parado</span>
           </Link>
           <Link
             href="/negociacoes"
@@ -119,6 +127,38 @@ export default function PainelFornecedorPage() {
           </Link>
         </div>
 
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+          <button
+            type="button"
+            onClick={() => setSelectedSegment('todos')}
+            className={`px-3 py-1 rounded-lg text-[11px] font-bold border transition-colors whitespace-nowrap shrink-0 ${
+              selectedSegment === 'todos'
+                ? 'bg-primary text-white border-primary'
+                : 'bg-surface-container-low text-on-surface-variant border-outline-variant/30 hover:text-on-surface'
+            }`}
+          >
+            Todos ({supplierLots.length})
+          </button>
+          {MOCK_CATEGORIES.map((cat) => {
+            const count = supplierLots.filter((l) => l.produto.categoriaId === cat.id).length;
+            const active = selectedSegment === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setSelectedSegment(cat.id)}
+                className={`px-3 py-1 rounded-lg text-[11px] font-bold border transition-colors whitespace-nowrap shrink-0 ${
+                  active
+                    ? 'bg-primary text-white border-primary'
+                    : 'bg-surface-container-low text-on-surface-variant border-outline-variant/30 hover:text-on-surface'
+                }`}
+              >
+                {cat.nome} ({count})
+              </button>
+            );
+          })}
+        </div>
+
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
             <thead className="bg-surface-container-low text-on-surface-variant uppercase font-bold text-[10px]">
@@ -133,40 +173,48 @@ export default function PainelFornecedorPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-surface-container">
-              {supplierLots.map((lot) => (
-                <tr key={lot.id} className="hover:bg-surface-container-low/50">
-                  <td className="p-3 font-mono font-bold text-primary">{lot.codigoLote}</td>
-                  <td className="p-3">
-                    <span className="font-bold text-on-surface block">{lot.produto.titulo}</span>
-                    <span className="text-[10px] text-on-surface-variant">GTIN: {lot.produto.gtinEan}</span>
-                  </td>
-                  <td className="p-3 font-medium text-on-surface">
-                    {lot.produto.totalCaixas} cxs ({lot.produto.paletes} paletes)
-                  </td>
-                  <td className="p-3">
-                    <span className="font-bold text-on-surface">{lot.produto.dataValidade}</span>
-                    <span className="text-[10px] text-secondary block font-semibold">
-                      {lot.produto.diasRestantesValidade} dias restantes
-                    </span>
-                  </td>
-                  <td className="p-3 font-extrabold text-primary text-sm">
-                    R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                  </td>
-                  <td className="p-3">
-                    <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold text-[10px]">
-                      {lot.totalLances} lances
-                    </span>
-                  </td>
-                  <td className="p-3">
-                    <Link
-                      href={`/leiloes/${lot.id}`}
-                      className="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-container text-white font-bold text-[11px] inline-block transition-colors"
-                    >
-                      Monitorar
-                    </Link>
-                  </td>
-                </tr>
-              ))}
+              {supplierLots
+                .filter((l) => (selectedSegment === 'todos' ? true : l.produto.categoriaId === selectedSegment))
+                .map((lot) => {
+                const catName =
+                  MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
+                return (
+                  <tr key={lot.id} className="hover:bg-surface-container-low/50">
+                    <td className="p-3 font-mono font-bold text-primary">{lot.codigoLote}</td>
+                    <td className="p-3">
+                      <span className="font-bold text-on-surface block">{lot.produto.titulo}</span>
+                      <span className="text-[10px] text-on-surface-variant block">
+                        {catName} • GTIN: {lot.produto.gtinEan}
+                      </span>
+                    </td>
+                    <td className="p-3 font-medium text-on-surface">
+                      {lot.produto.totalCaixas} cxs ({lot.produto.paletes} paletes)
+                    </td>
+                    <td className="p-3">
+                      <span className="font-bold text-on-surface">{lot.produto.dataValidade}</span>
+                      <span className="text-[10px] text-secondary block font-semibold">
+                        {lot.produto.diasRestantesValidade} dias restantes
+                      </span>
+                    </td>
+                    <td className="p-3 font-extrabold text-primary text-sm">
+                      R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                    </td>
+                    <td className="p-3">
+                      <span className="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold text-[10px]">
+                        {lot.totalLances} lances
+                      </span>
+                    </td>
+                    <td className="p-3">
+                      <Link
+                        href={`/leiloes/${lot.id}`}
+                        className="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-container text-white font-bold text-[11px] inline-block transition-colors"
+                      >
+                        Monitorar
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

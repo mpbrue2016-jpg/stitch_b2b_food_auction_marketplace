@@ -33,6 +33,15 @@ export async function POST(req: NextRequest) {
       if (idx === -1) {
         return NextResponse.json({ error: 'Proposta não encontrada' }, { status: 404 });
       }
+      if (
+        marketplaceStore.proposals[idx].status === 'aceita' ||
+        marketplaceStore.proposals[idx].status === 'recusada'
+      ) {
+        return NextResponse.json(
+          { error: 'Proposta já finalizada não pode receber contraproposta.' },
+          { status: 409 }
+        );
+      }
       marketplaceStore.proposals[idx] = {
         ...marketplaceStore.proposals[idx],
         status: 'contraproposta',
@@ -50,6 +59,12 @@ export async function POST(req: NextRequest) {
       if (idx === -1) {
         return NextResponse.json({ error: 'Proposta não encontrada' }, { status: 404 });
       }
+      if (marketplaceStore.proposals[idx].status === 'recusada') {
+        return NextResponse.json(
+          { error: 'Não é possível aceitar uma proposta já recusada.' },
+          { status: 409 }
+        );
+      }
       marketplaceStore.proposals[idx] = {
         ...marketplaceStore.proposals[idx],
         status: 'aceita',
@@ -65,6 +80,12 @@ export async function POST(req: NextRequest) {
       const idx = marketplaceStore.proposals.findIndex((p) => p.id === proposalId);
       if (idx === -1) {
         return NextResponse.json({ error: 'Proposta não encontrada' }, { status: 404 });
+      }
+      if (marketplaceStore.proposals[idx].status === 'aceita') {
+        return NextResponse.json(
+          { error: 'Não é possível recusar uma proposta já aceita.' },
+          { status: 409 }
+        );
       }
       marketplaceStore.proposals[idx] = {
         ...marketplaceStore.proposals[idx],

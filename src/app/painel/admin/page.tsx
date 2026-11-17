@@ -37,6 +37,8 @@ export default function PainelAdminPage() {
         setWormNotice(
           `Liquidação D+0 executada para ${order.codigoPedido} via SPI Bancário. Repasse líquido de R$ ${order.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} liberado com selo ${data.order.termoArremateHash}.`
         );
+      } else {
+        setWormNotice(data?.error || 'Não foi possível liquidar a custódia Escrow.');
       }
     } catch {
       setWormNotice('Erro ao executar liquidação D+0 no motor Escrow.');
@@ -59,6 +61,8 @@ export default function PainelAdminPage() {
         setWormNotice(
           `Custódia de ${order.codigoPedido} estornada integralmente ao comprador via PIX SPI.`
         );
+      } else {
+        setWormNotice(data?.error || 'Não foi possível estornar a custódia Escrow.');
       }
     } catch {
       setWormNotice('Erro ao executar estorno no motor Escrow.');
@@ -190,7 +194,11 @@ export default function PainelAdminPage() {
               {orders.map((order) => (
                 <tr key={order.id} className="hover:bg-surface-container-low/50">
                   <td className="p-3 font-mono font-bold text-primary">{order.codigoPedido}</td>
-                  <td className="p-3 font-bold">{order.tituloLote}</td>
+                  <td className="p-3 font-bold">
+                    <Link href={`/leiloes/${order.loteId}`} className="hover:text-primary transition-colors">
+                      {order.tituloLote}
+                    </Link>
+                  </td>
                   <td className="p-3 text-on-surface-variant">
                     {order.compradorNome} ↔ {order.fornecedorNome}
                   </td>

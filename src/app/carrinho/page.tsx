@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { MOCK_AUCTION_LOTS } from '@/lib/mock-data';
+import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
 import {
   CART_UPDATED_EVENT,
   CartItem,
@@ -103,9 +103,15 @@ export default function CarrinhoPage() {
 
                 <div className="flex-1 space-y-1 text-xs">
                   <span className="text-[10px] text-on-surface-variant font-bold uppercase">
-                    LOTE #{item.lot.codigoLote} • {item.lot.produto.marca}
+                    LOTE #{item.lot.codigoLote} •{' '}
+                    {MOCK_CATEGORIES.find((c) => c.id === item.lot.produto.categoriaId)?.nome || 'Geral B2B'} •{' '}
+                    {item.lot.produto.marca}
                   </span>
-                  <h3 className="font-bold text-sm text-on-surface">{item.lot.produto.titulo}</h3>
+                  <h3 className="font-bold text-sm text-on-surface">
+                    <Link href={`/leiloes/${item.lot.id}`} className="hover:text-primary transition-colors">
+                      {item.lot.produto.titulo}
+                    </Link>
+                  </h3>
                   <p className="text-on-surface-variant">
                     Volume: {item.lot.produto.totalCaixas} caixas ({item.lot.produto.paletes} paletes)
                   </p>

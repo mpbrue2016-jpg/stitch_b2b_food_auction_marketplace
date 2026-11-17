@@ -37,10 +37,10 @@ export async function POST(req: NextRequest) {
 
     const lot = marketplaceStore.auctions[lotIndex];
 
-    // 1. Verificação se o leilão expirou
+    // 1. Verificação se o leilão expirou ou foi encerrado
     const now = new Date().getTime();
     const endsAt = new Date(lot.terminaEm).getTime();
-    if (now >= endsAt) {
+    if (lot.status === 'encerrado' || lot.status === 'homologado' || now >= endsAt) {
       return NextResponse.json(
         { error: 'Pregão eletrônico encerrado. Não são aceitos novos lances.' },
         { status: 422 }
@@ -48,8 +48,9 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. Validação do valor mínimo do lance
+    const parsedBid = Number(valorLance);
     const minRequired = lot.lanceAtual + lot.incrementoMinimo;
-    if (valorLance < minRequired) {
+    if (!Number.isFinite(parsedBid) || parsedBid < minRequired) {
       return NextResponse.json(
         {
           error: `Lance inválido. O valor mínimo aceito é R$ ${minRequired.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`,
@@ -70,7 +71,7 @@ export async function POST(req: NextRequest) {
     // 4. Cálculo do custo unitário
     const unitPrice =
       lot.produto.totalUnidades > 0
-        ? Number((valorLance / lot.produto.totalUnidades).toFixed(2))
+        ? Number((parsedBid / lot.produto.totalUnidades).toFixed(2))
         : lot.precoUnitarioAtual;
 
     // 5. Geração de hash criptográfico para auditoria WORM
@@ -82,7 +83,7 @@ export async function POST(req: NextRequest) {
       compradorId: compradorId || 'user-varejista-01',
       empresaNome,
       cnpjAnonimizado: cnpj || '12.***.***/0001-90',
-      valorLance: Number(valorLance),
+      valorLance: parsedBid,
       valorUnitario: unitPrice,
       criadoEm: new Date().toISOString(),
       ehVencedor: true,
@@ -97,7 +98,7 @@ export async function POST(req: NextRequest) {
     // Atualiza lote
     marketplaceStore.auctions[lotIndex] = {
       ...lot,
-      lanceAtual: Number(valorLance),
+      lanceAtual: parsedBid,
       precoUnitarioAtual: unitPrice,
       totalLances: lot.totalLances + 1,
       ultimoLanceEmpresa: empresaNome,

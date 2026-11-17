@@ -13,36 +13,46 @@ function CheckoutContent() {
   const searchParams = useSearchParams();
 
   const fromCart = searchParams.get('fromCart') === '1';
-  const loteId = searchParams.get('loteId') || 'lote-418';
+  const loteId = searchParams.get('loteId') || 'lote-arroz-5kg';
   const valorParam = searchParams.get('valor');
 
+  const matchedMockLot = MOCK_AUCTION_LOTS.find((l) => l.id === loteId);
   const [cartCheckoutItems, setCartCheckoutItems] = useState<CartItem[]>([]);
-  const [lot, setLot] = useState(
-    () => MOCK_AUCTION_LOTS.find((l) => l.id === loteId) || MOCK_AUCTION_LOTS[0]
-  );
+  const [lot, setLot] = useState(() => matchedMockLot || MOCK_AUCTION_LOTS[0]);
+  const [loadingLot, setLoadingLot] = useState<boolean>(() => !fromCart && !matchedMockLot);
 
   useEffect(() => {
+    let active = true;
     if (fromCart) {
       const items = getCartItems();
       if (items.length > 0) {
         setCartCheckoutItems(items);
         setLot(items[0].lot);
       }
+      setLoadingLot(false);
     }
-    fetch('/api/lotes')
+    fetch('/api/lotes', { cache: 'no-store' })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
+        if (!active) return;
         const matched = data?.lots?.find((l: { id: string }) => l.id === loteId);
         if (matched && !fromCart) setLot(matched);
+        setLoadingLot(false);
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) setLoadingLot(false);
+      });
+    return () => {
+      active = false;
+    };
   }, [loteId, fromCart]);
 
+  const parsedValorParam = valorParam ? Number(valorParam) : NaN;
   const isMultiLotCart = fromCart && cartCheckoutItems.length > 1;
   const totalAmount = isMultiLotCart
     ? cartCheckoutItems.reduce((acc, item) => acc + item.precoTotal, 0)
-    : valorParam
-    ? Number(valorParam)
+    : Number.isFinite(parsedValorParam) && parsedValorParam > 0
+    ? parsedValorParam
     : fromCart && cartCheckoutItems[0]
     ? cartCheckoutItems[0].precoTotal
     : lot.lanceAtual;
@@ -75,6 +85,7 @@ function CheckoutContent() {
   const [scannedReceiptCode, setScannedReceiptCode] = useState<string | null>(null);
   const [confirming, setConfirming] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [orderHash, setOrderHash] = useState<string>('SHA256:e3b0c44298fc1c149afbf4c8996fb92427ae');
   const [orderCode, setOrderCode] = useState<string | null>(null);
 
@@ -123,6 +134,7 @@ function CheckoutContent() {
   const handleConfirmPayment = async (pixComprovanteCodigo?: string) => {
     if (confirming || confirmed) return;
     setConfirming(true);
+    setCheckoutError(null);
     try {
       const itemsToOrder = isMultiLotCart
         ? cartCheckoutItems.map((i) => ({ loteId: i.lot.id, valorTotalArremate: i.precoTotal }))
@@ -142,7 +154,12 @@ function CheckoutContent() {
             pixComprovanteCodigo,
           }),
         });
-        const data = res.ok ? await res.json() : null;
+        const data = await res.json();
+        if (!res.ok) {
+          setCheckoutError(data?.error || 'Não foi possível homologar o pagamento em custódia Escrow.');
+          setConfirming(false);
+          return;
+        }
         if (data?.order?.termoArremateHash) {
           lastHash = data.order.termoArremateHash;
         }
@@ -153,16 +170,17 @@ function CheckoutContent() {
 
       if (lastHash) setOrderHash(lastHash);
       if (createdCodes.length > 0) setOrderCode(createdCodes.join(' • '));
-    } catch {
-      // mantém confirmação visual em caso de offline
-    } finally {
+
       if (isMultiLotCart) {
         clearCart();
       } else {
         removeLotFromCart(lot.id);
       }
-      setConfirming(false);
       setConfirmed(true);
+    } catch {
+      setCheckoutError('Falha de comunicação com o servidor Escrow. Verifique a conexão e tente novamente.');
+    } finally {
+      setConfirming(false);
     }
   };
 
@@ -222,8 +240,12 @@ function CheckoutContent() {
               </div>
             )}
             <div className="flex justify-between">
-              <span className="text-on-surface-variant">Retirada FOB:</span>
-              <strong className="text-on-surface">{lot.produto.origem} (Doca 03A)</strong>
+              <span className="text-on-surface-variant">
+                {lot.tipoFrete === 'CIF' ? 'Entrega CIF:' : 'Retirada FOB:'}
+              </span>
+              <strong className="text-on-surface">
+                {lot.tipoFrete === 'CIF' ? `Despacho direto de ${lot.produto.origem}` : `${lot.produto.origem} (Doca 03A)`}
+              </strong>
             </div>
             <div className="flex justify-between">
               <span className="text-on-surface-variant">Janela de Agendamento:</span>
@@ -498,14 +520,23 @@ function CheckoutContent() {
               </div>
             )}
 
+            {checkoutError && (
+              <div className="p-3 rounded-xl bg-error-container text-on-error-container text-xs font-bold flex items-center gap-2">
+                <span className="material-symbols-outlined text-[16px]">error</span>
+                <span>{checkoutError}</span>
+              </div>
+            )}
+
             {/* Confirm Payment CTA */}
             <button
               type="button"
               onClick={() => handleConfirmPayment()}
-              disabled={confirming}
-              className="w-full py-3.5 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+              disabled={confirming || loadingLot}
+              className="w-full py-3.5 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
             >
-              {confirming ? (
+              {loadingLot ? (
+                <span>Carregando dados do lote...</span>
+              ) : confirming ? (
                 <span>Confirmando com o Banco Central...</span>
               ) : (
                 <>

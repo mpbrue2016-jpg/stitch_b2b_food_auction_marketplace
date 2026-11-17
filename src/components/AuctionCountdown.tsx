@@ -28,6 +28,11 @@ export const AuctionCountdown: React.FC<AuctionCountdownProps> = ({
   });
 
   const firedExpireRef = React.useRef(false);
+  const onExpireRef = React.useRef(onExpire);
+
+  useEffect(() => {
+    onExpireRef.current = onExpire;
+  }, [onExpire]);
 
   useEffect(() => {
     firedExpireRef.current = false;
@@ -42,9 +47,9 @@ export const AuctionCountdown: React.FC<AuctionCountdownProps> = ({
           isCritical: true,
           isExpired: true,
         });
-        if (onExpire && !firedExpireRef.current) {
+        if (onExpireRef.current && !firedExpireRef.current) {
           firedExpireRef.current = true;
-          onExpire();
+          onExpireRef.current();
         }
         return;
       }
@@ -66,7 +71,7 @@ export const AuctionCountdown: React.FC<AuctionCountdownProps> = ({
     calculate();
     const interval = setInterval(calculate, 1000);
     return () => clearInterval(interval);
-  }, [terminaEm, onExpire]);
+  }, [terminaEm]);
 
   const sizeClasses = {
     sm: 'text-xs',

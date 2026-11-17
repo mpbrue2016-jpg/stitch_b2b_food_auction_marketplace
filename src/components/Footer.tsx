@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-outline-variant leading-relaxed max-w-sm">
-              Plataforma B2B para leilões industriais, giro rápido de estoque (FEFO) e negociação direta de alimentos e bebidas. Transações 100% integradas com custódia fiduciária auditada e conformidade fiscal/sanitária.
+              Plataforma B2B para leilões industriais, giro rápido de estoque (FEFO) e negociação direta de alimentos, cerealista, hortifruti, bebidas e higiene e limpeza. Transações integradas com custódia fiduciária auditada e conformidade fiscal/sanitária.
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <span className="inline-flex items-center gap-1 text-[10px] bg-surface-container-high/20 px-2 py-1 rounded text-secondary-fixed font-semibold">
@@ -37,17 +37,20 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs text-outline-variant">
               <li><Link href="/catalogo" className="hover:text-white transition-colors">Catálogo de Lotes</Link></li>
               <li><Link href="/leiloes" className="hover:text-white transition-colors">Pregões ao Vivo</Link></li>
+              <li><Link href="/catalogo?categoria=cerealista" className="hover:text-white transition-colors">Pregões Cerealista &amp; Grãos</Link></li>
+              <li><Link href="/catalogo?categoria=hortifruti" className="hover:text-white transition-colors">Hortifruti &amp; CEASA</Link></li>
+              <li><Link href="/catalogo?categoria=higiene-limpeza" className="hover:text-white transition-colors">Higiene e Limpeza</Link></li>
               <li><Link href="/catalogo?filtro=validade_proxima" className="hover:text-white transition-colors">Oportunidades FEFO</Link></li>
               <li><Link href="/painel/comprador" className="hover:text-white transition-colors">Cockpit do Comprador</Link></li>
-              <li><Link href="/cadastro" className="hover:text-white transition-colors">Homologação de CNPJ</Link></li>
             </ul>
           </div>
 
           {/* Indústrias */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">Para Indústrias</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">Para Indústrias &amp; Mercados</h4>
             <ul className="space-y-2 text-xs text-outline-variant">
               <li><Link href="/produtos/novo" className="hover:text-white transition-colors">Criar Novo Pregão</Link></li>
+              <li><Link href="/produtos/novo?modelo=pequeno_mercado" className="hover:text-white transition-colors">Liquidar Estoque (Pequenos Mercados)</Link></li>
               <li><Link href="/painel/fornecedor" className="hover:text-white transition-colors">Cockpit do Fabricante</Link></li>
               <li><Link href="/negociacoes" className="hover:text-white transition-colors">Gestão de Propostas</Link></li>
               <li><Link href="/painel/comissoes" className="hover:text-white transition-colors">Tabela de Take-Rate</Link></li>
@@ -72,8 +75,8 @@ export const Footer: React.FC = () => {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-outline-variant">
           <p>© {new Date().getFullYear()} Varejista Online Marketplace B2B Ltda. Todos os direitos reservados.</p>
           <div className="flex items-center gap-4">
-            <span className="text-secondary-fixed">● Servidores Online • Latência 18ms</span>
-            <span>Versão 2.4.0 (Stitch Pro)</span>
+            <span className="text-secondary-fixed">Ambiente Homologado B2B • Custódia Auditada</span>
+            <span>CNPJ: 48.910.420/0001-88</span>
           </div>
         </div>
       </div>

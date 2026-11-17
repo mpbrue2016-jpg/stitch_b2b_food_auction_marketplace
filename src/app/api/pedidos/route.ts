@@ -15,16 +15,16 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { loteId, valorTotalArremate, compradorNome, pixComprovanteCodigo } = body;
 
-    if (!loteId || !valorTotalArremate || Number(valorTotalArremate) <= 0) {
+    const amount = Number(valorTotalArremate);
+    if (!loteId || !Number.isFinite(amount) || amount <= 0) {
       return NextResponse.json(
-        { error: 'Parâmetros obrigatórios: loteId e valorTotalArremate positivo.' },
+        { error: 'Parâmetros obrigatórios: loteId e valorTotalArremate numérico positivo.' },
         { status: 400 }
       );
     }
 
     const lot = marketplaceStore.auctions.find((l) => l.id === loteId);
     const modalidade = lot?.tipoVenda || 'leilao';
-    const amount = Number(valorTotalArremate);
     const split = calculateSplit(amount, modalidade);
 
     const orderNum = 9045 + marketplaceStore.orders.length + 1;
@@ -155,6 +155,12 @@ export async function PATCH(req: NextRequest) {
     }
 
     if (action === 'refund_escrow') {
+      if (current.statusPagamento === 'estornado') {
+        return NextResponse.json(
+          { error: 'Este pedido já foi estornado anteriormente.' },
+          { status: 409 }
+        );
+      }
       if (current.statusPagamento === 'repasse_liquidado_d0') {
         return NextResponse.json(
           { error: 'Repasse já liquidado D+0 não pode ser estornado automaticamente.' },

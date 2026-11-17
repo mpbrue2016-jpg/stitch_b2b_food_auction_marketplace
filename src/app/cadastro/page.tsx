@@ -62,6 +62,12 @@ export default function CadastroPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitError(null);
+
+    if (cnpj.replace(/\D/g, '').length !== 14) {
+      setSubmitError('Informe um CNPJ válido com 14 dígitos (00.000.000/0001-00).');
+      return;
+    }
+
     setSubmitting(true);
 
     if (isSupabaseConfigured) {

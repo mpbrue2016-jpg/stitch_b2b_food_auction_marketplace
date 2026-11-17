@@ -29,15 +29,15 @@ export const AIAssistantWidget: React.FC = () => {
         body: JSON.stringify({ prompt: userText }),
       });
 
-      const data = await response.json();
-      if (data.reply) {
+      const data = await response.json().catch(() => null);
+      if (response.ok && data?.reply) {
         setMessages((prev) => [...prev, { role: 'assistant', text: data.reply }]);
       } else {
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            text: 'Análise de Inteligência Artificial: Lote com 42% de margem estimada e shelf life seguro de 180 dias. Sugiro lance inicial de R$ 38.500 para garantir taxa de retorno de 35% ao varejista.',
+            text: 'Análise Comercial B2B: Os lotes de maior giro hoje em Alimentos, Cerealista, Hortifruti e Higiene e Limpeza operam com descontos entre 30% e 58% sob custódia Escrow BACEN.',
           },
         ]);
       }
@@ -46,7 +46,7 @@ export const AIAssistantWidget: React.FC = () => {
         ...prev,
         {
           role: 'assistant',
-          text: 'Com base na base histórica de pregões B2B: o preço de referência é R$ 54.600. Lances até R$ 42.000 preservam margem líquida superior a 30% após custos logísticos FOB.',
+          text: 'Com base no livro de ofertas B2B ativo: priorize lotes com curva FEFO compatível com o giro da sua loja para preservar margem líquida acima de 30% após custos logísticos FOB.',
         },
       ]);
     } finally {
@@ -130,14 +130,28 @@ export const AIAssistantWidget: React.FC = () => {
               onClick={() => handleQuickQuestion('Qual o lote com maior margem de revenda hoje?')}
               className="text-[10px] bg-white hover:bg-surface-container px-2 py-1 rounded text-on-surface-variant font-semibold border border-outline-variant/30"
             >
-              📊 Maior margem hoje?
+              Maior margem hoje?
             </button>
             <button
               type="button"
-              onClick={() => handleQuickQuestion('Calcular risco de validade do Leite Piracanjuba')}
+              onClick={() => handleQuickQuestion('Analisar oportunidades em Cerealista e Grãos')}
               className="text-[10px] bg-white hover:bg-surface-container px-2 py-1 rounded text-on-surface-variant font-semibold border border-outline-variant/30"
             >
-              ⏳ Avaliar Shelf Life
+              Cerealista &amp; Grãos
+            </button>
+            <button
+              type="button"
+              onClick={() => handleQuickQuestion('Avaliar giro FEFO em Hortifruti e Frescos')}
+              className="text-[10px] bg-white hover:bg-surface-container px-2 py-1 rounded text-on-surface-variant font-semibold border border-outline-variant/30"
+            >
+              Hortifruti FEFO
+            </button>
+            <button
+              type="button"
+              onClick={() => handleQuickQuestion('Consultar lotes de Higiene e Limpeza ativos')}
+              className="text-[10px] bg-white hover:bg-surface-container px-2 py-1 rounded text-on-surface-variant font-semibold border border-outline-variant/30"
+            >
+              Higiene e Limpeza
             </button>
           </div>
 

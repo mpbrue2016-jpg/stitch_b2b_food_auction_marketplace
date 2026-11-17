@@ -18,22 +18,30 @@ import { HomeBanner } from '@/lib/types';
 
 const PRESET_BANNER_MODELS = [
   {
-    label: 'Modelo 1 · Centro de Distribuição & Paletes',
+    label: 'Modelo 1 · Pequenos Mercados (Estoque Parado)',
+    url: '/images/banners/banner-pequenos-mercados.jpg',
+  },
+  {
+    label: 'Modelo 2 · Centro de Distribuição & Paletes',
     url: '/images/banners/banner-atacado-pallets.jpg',
   },
   {
-    label: 'Modelo 2 · Alimentos, Cafés & Óleos',
+    label: 'Modelo 3 · Alimentos, Cafés & Óleos',
     url: '/images/banners/banner-safra-alimentos.jpg',
   },
   {
-    label: 'Modelo 3 · Docas & Logística FOB',
+    label: 'Modelo 4 · Docas & Logística FOB',
     url: '/images/banners/banner-logistica-docas.jpg',
   },
 ];
 
 const CTA_ROUTE_PRESETS = [
   { label: 'Leilões ao Vivo (/leiloes)', value: '/leiloes' },
+  { label: 'Pregões · Cerealista & Grãos', value: '/leiloes?categoria=cerealista' },
+  { label: 'Pregões · Hortifruti & Frescos', value: '/leiloes?categoria=hortifruti' },
+  { label: 'Pregões · Higiene e Limpeza', value: '/leiloes?categoria=higiene-limpeza' },
   { label: 'Catálogo de Lotes (/catalogo)', value: '/catalogo' },
+  { label: 'Liquidar Estoque · Pequeno Mercado', value: '/produtos/novo?modelo=pequeno_mercado' },
   { label: 'Anunciar Novo Lote (/produtos/novo)', value: '/produtos/novo' },
   { label: 'Mesa de Negociações (/negociacoes)', value: '/negociacoes' },
   { label: 'Cadastro B2B (/cadastro)', value: '/cadastro' },
@@ -51,12 +59,12 @@ interface BannerFormState {
 }
 
 const EMPTY_FORM: BannerFormState = {
-  eyebrow: 'Campanha Oficial Varejista Online',
+  eyebrow: 'Pequenos Mercados & Minimercados · Estoque Parado',
   titulo: '',
   subtitulo: '',
-  ctaLabel: 'Explorar Lotes',
-  ctaHref: '/catalogo',
-  imagemUrl: '/images/banners/banner-atacado-pallets.jpg',
+  ctaLabel: 'Liquidar Meu Estoque',
+  ctaHref: '/produtos/novo',
+  imagemUrl: '/images/banners/banner-pequenos-mercados.jpg',
   intervaloSegundos: 6,
   ativo: true,
 };
@@ -218,6 +226,8 @@ export const AdminBannerManager: React.FC = () => {
         setNotice(
           `Banner "${banner.titulo}" ${!banner.ativo ? 'ativado' : 'pausado'} na Home.`
         );
+      } else {
+        setErrorMsg(data?.error || 'Não foi possível alterar a visibilidade do banner.');
       }
     } catch {
       setErrorMsg('Falha ao alterar visibilidade do banner.');
@@ -235,6 +245,8 @@ export const AdminBannerManager: React.FC = () => {
       const data = await res.json();
       if (res.ok && Array.isArray(data?.banners)) {
         setBanners(data.banners);
+      } else {
+        setErrorMsg(data?.error || 'Não foi possível reordenar o banner.');
       }
     } catch {
       setErrorMsg('Falha ao reordenar banners.');
@@ -253,6 +265,8 @@ export const AdminBannerManager: React.FC = () => {
         setConfirmDeleteId(null);
         if (editingId === id) resetForm();
         setNotice('Banner removido da série rotativa.');
+      } else {
+        setErrorMsg(data?.error || 'Não foi possível excluir o banner.');
       }
     } catch {
       setErrorMsg('Falha ao excluir banner.');
@@ -272,6 +286,8 @@ export const AdminBannerManager: React.FC = () => {
         setBanners(data.banners);
         resetForm();
         setNotice('Série de banners modelo restaurada na Home.');
+      } else {
+        setErrorMsg(data?.error || 'Não foi possível restaurar os banners modelo.');
       }
     } catch {
       setErrorMsg('Falha ao restaurar os banners modelo.');
@@ -541,7 +557,7 @@ export const AdminBannerManager: React.FC = () => {
           {/* Preset Images + Upload */}
           <div className="space-y-1.5">
             <label className="block font-bold text-on-surface">Imagem do Banner (16:9 Responsivo)</label>
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
               {PRESET_BANNER_MODELS.map((preset) => (
                 <button
                   key={preset.url}
