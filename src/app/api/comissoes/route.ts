@@ -55,8 +55,14 @@ export async function GET(req: NextRequest) {
       }
 
       const activeRule = rules.find((r) => r.slug === modalidadeParam && r.ativo);
-      const effectiveRate = customRate ?? activeRule?.percentualPadrao ?? 6.0;
-      const split = calculateSplit(amount, modalidadeParam, effectiveRate);
+      const effectiveRate = customRate ?? activeRule?.percentualPadrao;
+      if (effectiveRate === undefined) {
+        return NextResponse.json(
+          { error: 'Não há regra ativa de comissão para esta modalidade.' },
+          { status: 409 }
+        );
+      }
+      const split = calculateSplit(amount, effectiveRate);
       return NextResponse.json({ split, rules });
     }
 

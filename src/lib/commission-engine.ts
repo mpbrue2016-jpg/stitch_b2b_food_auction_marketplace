@@ -1,76 +1,29 @@
-import { CommissionRule, EscrowOrder } from './types';
-
-// Regras padrão iniciais que podem ser atualizadas dinamicamente pelo Painel Administrativo
-export const DEFAULT_COMMISSION_RULES: CommissionRule[] = [
-  {
-    id: 'rule-leilao-padrao',
-    nomeModalidade: 'Leilões Industriais Padrão (Pregão)',
-    slug: 'leilao',
-    percentualPadrao: 6.0, // 6% configurável
-    descricao: 'Comissão padrão aplicada sobre pregões eletrônicos de grande volume.',
-    ativo: true,
-    atualizadoEm: new Date().toISOString(),
-  },
-  {
-    id: 'rule-giro-rapido',
-    nomeModalidade: 'Giro Rápido & Validade Próxima (FEFO)',
-    slug: 'giro_rapido',
-    percentualPadrao: 8.5,
-    descricao: 'Taxa para liquidação acelerada de lotes com validade inferior a 60 dias.',
-    ativo: true,
-    atualizadoEm: new Date().toISOString(),
-  },
-  {
-    id: 'rule-venda-direta',
-    nomeModalidade: 'Venda Direta & Cargas Fechadas (FOB)',
-    slug: 'venda_direta',
-    percentualPadrao: 5.0,
-    descricao: 'Negociação direta de pallets fechados direto da fábrica.',
-    ativo: true,
-    atualizadoEm: new Date().toISOString(),
-  },
-  {
-    id: 'rule-operacao-especial',
-    nomeModalidade: 'Intermediação & Arbitragem Especial B2B',
-    slug: 'operacao_especial',
-    percentualPadrao: 20.0, // 20% configurável
-    descricao: 'Operações com garantia integral de recompra ou lotes de alto valor agregado.',
-    ativo: true,
-    atualizadoEm: new Date().toISOString(),
-  },
-];
+import { EscrowOrder } from './types';
 
 export interface SplitCalculationResult {
   valorBrutoTotal: number;
   percentualComissao: number;
   valorComissaoPlataforma: number;
   valorRepasseLiquidoFornecedor: number;
-  taxaEscrowBancaria: number; // Ex: custo de liquidação D+0
+  taxaEscrowBancaria: number;
   valorDisponivelCustodia: number;
 }
 
 /**
- * Calcula o split fiduciário com taxa dinâmica vinda do banco de dados.
- * NUNCA fixa percentuais estáticos quando a alíquota do Supabase é informada.
+ * Calculates an estimate using the commission rate loaded from the database.
  */
 export function calculateSplit(
   valorTotalArremate: number,
-  tipoNegociacaoSlug: string = 'leilao',
-  taxaCustomizada?: number
+  taxaCustomizada: number
 ): SplitCalculationResult {
-  let percentual = taxaCustomizada;
-
-  if (percentual === undefined) {
-    const rule = DEFAULT_COMMISSION_RULES.find((r) => r.slug === tipoNegociacaoSlug && r.ativo);
-    percentual = rule ? rule.percentualPadrao : 6.0;
+  if (!Number.isFinite(taxaCustomizada) || taxaCustomizada < 0 || taxaCustomizada > 100) {
+    throw new Error('A alíquota da comissão deve estar entre 0% e 100%.');
   }
 
-  // Respeita limites percentuais razoáveis (0 a 100%)
-  percentual = Math.max(0, Math.min(100, percentual));
+  const percentual = taxaCustomizada;
 
   const valorComissaoPlataforma = Number(((valorTotalArremate * percentual) / 100).toFixed(2));
-  // Taxa operacional bancária STR/SPI D+0 (R$ 3,85 padrão fixo ou 0 se zero)
-  const taxaEscrowBancaria = valorTotalArremate > 0 ? 3.85 : 0;
+  const taxaEscrowBancaria = 0;
   const valorRepasseLiquidoFornecedor = Number(
     (valorTotalArremate - valorComissaoPlataforma).toFixed(2)
   );
@@ -95,11 +48,11 @@ export interface FinancialReportSummary {
 }
 
 export function generateFinancialSummary(orders: EscrowOrder[]): FinancialReportSummary {
-  const activeOrders = orders.filter((o) => o.statusPagamento !== 'estornado');
-  const gmv = activeOrders.reduce((acc, o) => acc + o.valorTotalArremate, 0);
-  const receita = activeOrders.reduce((acc, o) => acc + o.valorComissaoPlataforma, 0);
-  const repasses = activeOrders.reduce((acc, o) => acc + o.valorRepasseLiquidoFornecedor, 0);
-  const emCustodia = activeOrders
+  const settledOrders = orders.filter((o) => o.statusPagamento === 'repasse_liquidado_d0');
+  const gmv = settledOrders.reduce((acc, o) => acc + o.valorTotalArremate, 0);
+  const receita = settledOrders.reduce((acc, o) => acc + o.valorComissaoPlataforma, 0);
+  const repasses = settledOrders.reduce((acc, o) => acc + o.valorRepasseLiquidoFornecedor, 0);
+  const emCustodia = orders
     .filter((o) => o.statusPagamento === 'em_custodia_escrow' || o.statusPagamento === 'em_disputa')
     .reduce((acc, o) => acc + o.valorTotalArremate, 0);
 
@@ -111,6 +64,6 @@ export function generateFinancialSummary(orders: EscrowOrder[]): FinancialReport
     totalRepassesFornecedores: repasses,
     totalEmCustodiaEscrow: emCustodia,
     takeRateMedioEfetivo: takeRateMedio,
-    quantidadeTransacoes: activeOrders.length,
+    quantidadeTransacoes: settledOrders.length,
   };
 }

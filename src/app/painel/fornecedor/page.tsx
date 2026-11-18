@@ -158,8 +158,8 @@ export default function PainelFornecedorPage() {
     }
   };
 
-  const activeOrders = orders.filter((o) => o.statusPagamento !== 'estornado');
-  const totalRepassesLiquidados = activeOrders.reduce((acc, o) => acc + o.valorRepasseLiquidoFornecedor, 0);
+  const settledOrders = orders.filter((o) => o.statusPagamento === 'repasse_liquidado_d0');
+  const totalRepassesLiquidados = settledOrders.reduce((acc, o) => acc + o.valorRepasseLiquidoFornecedor, 0);
   const totalCaixasOfertadas = supplierLots.reduce((acc, l) => acc + l.produto.totalCaixas, 0);
   const avgDiasValidade =
     supplierLots.length > 0
@@ -182,9 +182,9 @@ export default function PainelFornecedorPage() {
           </h1>
           <p className="text-xs text-on-surface-variant font-mono mt-0.5">
             {profile
-              ? `CNPJ: ${profile.cnpj} • Conta Escrow Segregada (${
-                  profile.statusAprovacao === 'aprovado' ? 'Homologada' : 'Em Análise'
-                }) • Liquidação D+0 SPI`
+              ? `CNPJ: ${profile.cnpj} • Cadastro ${
+                  profile.statusAprovacao === 'aprovado' ? 'homologado' : 'em análise'
+                } • Pagamentos não integrados`
               : 'Faça login com conta fornecedora para gerir lotes e repasses.'}
           </p>
         </div>
@@ -255,13 +255,13 @@ export default function PainelFornecedorPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
           <div className="flex items-center justify-between text-on-surface-variant">
-            <span className="text-xs font-bold uppercase">Repasses Líquidos D+0</span>
+            <span className="text-xs font-bold uppercase">Repasses confirmados pelo provedor</span>
             <span className="material-symbols-outlined text-secondary text-[22px]">payments</span>
           </div>
           <span className="text-2xl font-extrabold text-secondary block">
             R$ {totalRepassesLiquidados.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-outline block">{activeOrders.length} pedidos em custódia/SPI</span>
+          <span className="text-[11px] text-outline block">{settledOrders.length} pedidos com repasse confirmado</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -283,7 +283,7 @@ export default function PainelFornecedorPage() {
           <span className="text-2xl font-extrabold text-on-surface block">
             {totalCaixasOfertadas.toLocaleString('pt-BR')} cxs
           </span>
-          <span className="text-[11px] text-on-surface-variant block">Estoque paletizado homologado</span>
+          <span className="text-[11px] text-on-surface-variant block">Volume registrado nos lotes</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -292,7 +292,7 @@ export default function PainelFornecedorPage() {
             <span className="material-symbols-outlined text-secondary text-[22px]">speed</span>
           </div>
           <span className="text-2xl font-extrabold text-secondary block">{avgDiasValidade} dias</span>
-          <span className="text-[11px] text-on-surface-variant block">Zero perda por vencimento</span>
+          <span className="text-[11px] text-on-surface-variant block">Média conforme validade cadastrada</span>
         </div>
       </div>
 

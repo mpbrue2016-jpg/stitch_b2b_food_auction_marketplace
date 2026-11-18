@@ -45,8 +45,6 @@ export default function PainelAdminPage() {
   const [updatingProfileId, setUpdatingProfileId] = useState<string | null>(null);
   const [openingDocId, setOpeningDocId] = useState<string | null>(null);
   const [updatingDocId, setUpdatingDocId] = useState<string | null>(null);
-  const [releasingId, setReleasingId] = useState<string | null>(null);
-  const [refundingId, setRefundingId] = useState<string | null>(null);
 
   const loadAdminData = useCallback(async () => {
     try {
@@ -80,54 +78,6 @@ export default function PainelAdminPage() {
   useEffect(() => {
     void loadAdminData();
   }, [loadAdminData]);
-
-  const handleReleaseEscrow = async (order: EscrowOrder) => {
-    setReleasingId(order.id);
-    try {
-      const res = await fetch('/api/pedidos', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ orderId: order.id, action: 'release_escrow' }),
-      });
-      const data = await res.json();
-      if (res.ok && data?.order) {
-        setOrders((prev) => prev.map((o) => (o.id === order.id ? data.order : o)));
-        setWormNotice(
-          `Liquidação D+0 executada para ${order.codigoPedido} via SPI Bancário. Repasse líquido de R$ ${order.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} liberado com selo ${data.order.termoArremateHash}.`
-        );
-      } else {
-        setWormNotice(data?.error || 'Não foi possível liquidar a custódia Escrow.');
-      }
-    } catch {
-      setWormNotice('Erro ao executar liquidação D+0 no motor Escrow.');
-    } finally {
-      setReleasingId(null);
-    }
-  };
-
-  const handleRefundEscrow = async (order: EscrowOrder) => {
-    setRefundingId(order.id);
-    try {
-      const res = await fetch('/api/pedidos', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ orderId: order.id, action: 'refund_escrow' }),
-      });
-      const data = await res.json();
-      if (res.ok && data?.order) {
-        setOrders((prev) => prev.map((o) => (o.id === order.id ? data.order : o)));
-        setWormNotice(
-          `Custódia de ${order.codigoPedido} estornada integralmente ao comprador via PIX SPI.`
-        );
-      } else {
-        setWormNotice(data?.error || 'Não foi possível estornar a custódia Escrow.');
-      }
-    } catch {
-      setWormNotice('Erro ao executar estorno no motor Escrow.');
-    } finally {
-      setRefundingId(null);
-    }
-  };
 
   const handleUpdateKycProfile = async (
     targetProfile: UserProfile,
@@ -240,7 +190,7 @@ export default function PainelAdminPage() {
             Painel Administrativo Master &amp; Controle da Plataforma
           </h1>
           <p className="text-xs text-on-surface-variant font-mono mt-0.5">
-            Governança Criptográfica HSM • Validador ITI / BACEN • Motor Split v3.4
+            Gestão administrativa, registros e conciliação de pagamentos recebidos por webhook.
           </p>
         </div>
 
@@ -266,20 +216,20 @@ export default function PainelAdminPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
           <div className="flex items-center justify-between text-on-surface-variant">
-            <span className="text-xs font-bold uppercase">GMV Total Transacionado</span>
+            <span className="text-xs font-bold uppercase">Volume de pedidos com repasse confirmado</span>
             <span className="material-symbols-outlined text-primary text-[22px]">account_balance</span>
           </div>
           <span className="text-2xl font-extrabold text-primary block">
             R$ {summary.gmvTotalTransacionado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
           <span className="text-[11px] text-secondary font-bold block">
-            {summary.quantidadeTransacoes} transações auditadas
+            {summary.quantidadeTransacoes} pedidos confirmados pelo provedor
           </span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
           <div className="flex items-center justify-between text-on-surface-variant">
-            <span className="text-xs font-bold uppercase">Receita da Plataforma (Take Rate)</span>
+            <span className="text-xs font-bold uppercase">Comissões de pedidos liquidados</span>
             <span className="material-symbols-outlined text-secondary text-[22px]">monetization_on</span>
           </div>
           <span className="text-2xl font-extrabold text-secondary block">
@@ -292,24 +242,24 @@ export default function PainelAdminPage() {
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
           <div className="flex items-center justify-between text-on-surface-variant">
-            <span className="text-xs font-bold uppercase">Saldo em Custódia Escrow</span>
+            <span className="text-xs font-bold uppercase">Pedidos marcados em custódia</span>
             <span className="material-symbols-outlined text-primary text-[22px]">lock</span>
           </div>
           <span className="text-2xl font-extrabold text-on-surface block">
             R$ {summary.totalEmCustodiaEscrow.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-secondary font-bold block">100% segregado no STR</span>
+          <span className="text-[11px] text-outline block">Status no sistema; não é saldo bancário</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
           <div className="flex items-center justify-between text-on-surface-variant">
-            <span className="text-xs font-bold uppercase">Status Antifraude &amp; DLQ</span>
+            <span className="text-xs font-bold uppercase">Falhas registradas em webhooks</span>
             <span className="material-symbols-outlined text-secondary text-[22px]">verified</span>
           </div>
           <span className="text-2xl font-extrabold text-secondary block">
             {failedWebhooks} Falhas ({wormLogs.length} WORM)
           </span>
-          <span className="text-[11px] text-on-surface-variant block">Trilha criptográfica íntegra</span>
+          <span className="text-[11px] text-on-surface-variant block">Registros armazenados no banco</span>
         </div>
       </div>
 
@@ -324,10 +274,10 @@ export default function PainelAdminPage() {
         <div className="flex items-center justify-between border-b border-surface-container pb-3">
           <h3 className="font-extrabold text-base text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">security</span>
-            Prevenção a Fraudes e Moderação de Disputas B2B
+            Moderação de disputas B2B
           </h3>
           <span className="text-[10px] bg-secondary-fixed text-on-secondary-fixed font-bold px-2 py-0.5 rounded">
-            MOTOR ANTI-CARTEL ATIVO
+            Revisão administrativa
           </span>
         </div>
 
@@ -338,7 +288,7 @@ export default function PainelAdminPage() {
                 <th className="p-3">Protocolo</th>
                 <th className="p-3">Lote</th>
                 <th className="p-3">Partes Envolvidas</th>
-                <th className="p-3">Valor Escrow</th>
+                <th className="p-3">Valor registrado</th>
                 <th className="p-3">Motivo / Tipo</th>
                 <th className="p-3">Status</th>
                 <th className="p-3">Ação Soberana</th>
@@ -398,7 +348,7 @@ export default function PainelAdminPage() {
                           ? 'ESTORNADO'
                           : order.statusPagamento === 'aguardando_pagamento'
                           ? 'AGUARDANDO PIX'
-                          : 'CONCILIADO D+0'}
+                          : 'REPASSE CONFIRMADO PELO PROVEDOR'}
                       </span>
                     </td>
                     <td className="p-3">
@@ -407,33 +357,18 @@ export default function PainelAdminPage() {
                           type="button"
                           onClick={() =>
                             setWormNotice(
-                              `Dossiê forense WORM (${order.codigoPedido}) validado com integridade criptográfica ${order.termoArremateHash || 'SHA-256'}.`
+                              `Hash do termo registrado para ${order.codigoPedido}: ${order.termoArremateHash || 'indisponível'}. O hash não foi verificado por serviço externo.`
                             )
                           }
                           className="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high rounded text-[11px] font-bold text-primary"
                         >
-                          Ver Dossiê
+                          Ver hash do termo
                         </button>
                         {(order.statusPagamento === 'em_custodia_escrow' ||
                           order.statusPagamento === 'em_disputa') && (
-                          <>
-                            <button
-                              type="button"
-                              disabled={releasingId === order.id || refundingId === order.id}
-                              onClick={() => void handleReleaseEscrow(order)}
-                              className="px-2.5 py-1 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container rounded text-[11px] font-bold disabled:opacity-50"
-                            >
-                              {releasingId === order.id ? 'Liquidando...' : 'Liquidar D+0'}
-                            </button>
-                            <button
-                              type="button"
-                              disabled={refundingId === order.id || releasingId === order.id}
-                              onClick={() => void handleRefundEscrow(order)}
-                              className="px-2.5 py-1 bg-error-container hover:bg-error text-on-error-container hover:text-white rounded text-[11px] font-bold disabled:opacity-50"
-                            >
-                              {refundingId === order.id ? 'Estornando...' : 'Estornar'}
-                            </button>
-                          </>
+                          <span className="px-2.5 py-1 text-[10px] text-on-surface-variant">
+                            Aguardando evento do provedor
+                          </span>
                         )}
                       </div>
                     </td>

@@ -8,7 +8,7 @@ export const CommissionCalculator: React.FC = () => {
   const [rules, setRules] = useState<CommissionRule[]>([]);
   const [loadingRules, setLoadingRules] = useState(true);
   const [selectedRuleSlug, setSelectedRuleSlug] = useState('leilao');
-  const [customRate, setCustomRate] = useState<number>(6.0);
+  const [customRate, setCustomRate] = useState<number | undefined>(undefined);
   const [gmvAmount, setGmvAmount] = useState<number>(100000);
   const [editingRuleId, setEditingRuleId] = useState<string | null>(null);
   const [newRateInput, setNewRateInput] = useState<number>(6.0);
@@ -48,8 +48,8 @@ export const CommissionCalculator: React.FC = () => {
   }, []);
 
   const selectedRule = rules.find((r) => r.slug === selectedRuleSlug);
-  const activeRate = customRate !== undefined ? customRate : (selectedRule?.percentualPadrao ?? 6.0);
-  const splitResult = calculateSplit(gmvAmount, selectedRuleSlug, activeRate);
+  const activeRate = customRate ?? selectedRule?.percentualPadrao;
+  const splitResult = activeRate === undefined ? null : calculateSplit(gmvAmount, activeRate);
 
   const handleSaveRule = async (ruleId: string) => {
     const parsedInput = Number(newRateInput);
@@ -73,7 +73,7 @@ export const CommissionCalculator: React.FC = () => {
           );
           if (refreshed?.rules) setRules(refreshed.rules);
         }
-        setSaveNotice(`Regra atualizada para ${boundedRate}% e aplicada imediatamente aos próximos splits Escrow.`);
+        setSaveNotice(        `Regra de ${boundedRate}% salva no banco. O sistema não processa pagamentos.`);
         if (selectedRule?.id === ruleId) setCustomRate(boundedRate);
       } else {
         setSaveError(data?.error || 'Não foi possível salvar a nova alíquota.');
@@ -101,7 +101,7 @@ export const CommissionCalculator: React.FC = () => {
         </div>
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-          Split v3.4 Conectado ao BACEN
+          Simulação de valores; sem movimentação bancária
         </span>
       </div>
 
@@ -251,7 +251,8 @@ export const CommissionCalculator: React.FC = () => {
                   step="0.5"
                   min="0"
                   max="100"
-                  value={activeRate}
+                  value={activeRate ?? ''}
+                  disabled={activeRate === undefined}
                   onChange={(e) => {
                     const v = Number(e.target.value);
                     setCustomRate(Number.isFinite(v) ? Math.max(0, Math.min(100, v)) : 0);
@@ -265,6 +266,7 @@ export const CommissionCalculator: React.FC = () => {
                   <button
                     key={quick}
                     type="button"
+                    disabled={activeRate === undefined}
                     onClick={() => setCustomRate(quick)}
                     className={`px-2 py-2 rounded text-xs font-bold transition-colors ${
                       activeRate === quick
@@ -283,9 +285,9 @@ export const CommissionCalculator: React.FC = () => {
           <div className="text-xs text-on-surface-variant space-y-1">
             <div className="flex items-center gap-1 text-secondary font-bold">
               <span className="material-symbols-outlined text-[16px]">verified</span>
-              <span>Split Automático em Conta Segregada</span>
+              <span>Simulação de comissão</span>
             </div>
-            <p>Liquidação instantânea D+0 via SPI/PIX para o fornecedor após liberação na doca.</p>
+            <p>Este cálculo é estimativo; o sistema não executa transferências via SPI/PIX.</p>
           </div>
         </div>
 
@@ -293,34 +295,40 @@ export const CommissionCalculator: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-outline-variant/20">
           <div className="bg-white p-3.5 rounded-lg border border-outline-variant/30">
             <span className="text-[11px] text-on-surface-variant uppercase font-semibold block">
-              Valor Total Transacionado (GMV)
+              Valor bruto estimado
             </span>
             <span className="text-lg font-extrabold text-on-surface">
-              R$ {splitResult.valorBrutoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+              {splitResult
+                ? `R$ ${splitResult.valorBrutoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                : 'Indisponível'}
             </span>
           </div>
 
           <div className="bg-primary-fixed/30 p-3.5 rounded-lg border border-primary/20">
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-on-primary-fixed uppercase font-bold block">
-                Comissão Plataforma ({splitResult.percentualComissao}%)
+                Comissão estimada{splitResult ? ` (${splitResult.percentualComissao}%)` : ''}
               </span>
               <span className="material-symbols-outlined text-primary text-[18px]">monetization_on</span>
             </div>
             <span className="text-lg font-extrabold text-primary">
-              R$ {splitResult.valorComissaoPlataforma.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+              {splitResult
+                ? `R$ ${splitResult.valorComissaoPlataforma.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                : 'Indisponível'}
             </span>
           </div>
 
           <div className="bg-secondary-fixed/30 p-3.5 rounded-lg border border-secondary/20">
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-on-secondary-fixed uppercase font-bold block">
-                Repasse Líquido ao Fornecedor
+                Repasse líquido estimado
               </span>
               <span className="material-symbols-outlined text-secondary text-[18px]">payments</span>
             </div>
             <span className="text-lg font-extrabold text-secondary">
-              R$ {splitResult.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+              {splitResult
+                ? `R$ ${splitResult.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                : 'Indisponível'}
             </span>
           </div>
         </div>

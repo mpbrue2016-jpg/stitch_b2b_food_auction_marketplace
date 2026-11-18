@@ -134,72 +134,16 @@ export async function POST(req: NextRequest) {
       loteId,
       sourceType = 'buy_now',
       proposalId,
-      pixComprovanteCodigo,
       orderIdToConfirm,
     } = body;
 
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
 
-    // Caso 1: Confirmar depósito de ordem já gerada em aguardo
     if (orderIdToConfirm) {
-      const { data: existingOrder, error: exErr } = await dbClient
-        .from('orders')
-        .select(ORDER_SELECT)
-        .eq('id', orderIdToConfirm)
-        .maybeSingle();
-
-      if (exErr || !existingOrder) {
-        return NextResponse.json({ error: 'Pedido não localizado.' }, { status: 404 });
-      }
-      if (String(existingOrder.comprador_id) !== ctx.user.id && ctx.profile.role !== 'admin') {
-        return NextResponse.json({ error: 'Acesso negado a este pedido.' }, { status: 403 });
-      }
-
-      const nextStatus =
-        typeof pixComprovanteCodigo === 'string' && pixComprovanteCodigo.trim().length >= 6
-          ? 'em_custodia_escrow'
-          : 'em_custodia_escrow';
-
-      const { data: updatedOrder, error: updErr } = await dbClient
-        .from('orders')
-        .update({
-          status_pagamento: nextStatus,
-          comprovante_pix_spi:
-            typeof pixComprovanteCodigo === 'string' && pixComprovanteCodigo.trim()
-              ? pixComprovanteCodigo.trim().slice(0, 180)
-              : existingOrder.comprovante_pix_spi,
-        })
-        .eq('id', orderIdToConfirm)
-        .select(ORDER_SELECT)
-        .single();
-
-      if (updErr || !updatedOrder) {
-        return NextResponse.json({ error: updErr?.message || 'Erro ao confirmar depósito.' }, { status: 500 });
-      }
-
-      if (existingOrder.auction_id) {
-        await dbClient
-          .from('auctions')
-          .update({ status: 'homologado', vencedor_id: existingOrder.comprador_id })
-          .eq('id', existingOrder.auction_id);
-      }
-
-      await dbClient
-        .from('payment_transactions')
-        .update({
-          status: 'pago',
-          paid_at: new Date().toISOString(),
-          e2e_id:
-            typeof pixComprovanteCodigo === 'string' && pixComprovanteCodigo.trim()
-              ? pixComprovanteCodigo.trim().slice(0, 80)
-              : null,
-        })
-        .eq('order_id', existingOrder.id);
-
-      return NextResponse.json({
-        message: 'Depósito Escrow homologado e pedido gerado com sucesso',
-        order: mapDbOrderToEscrowOrder(updatedOrder as Record<string, unknown>),
-      });
+      return NextResponse.json(
+        { error: 'O pagamento só pode ser confirmado por um webhook autenticado do provedor.' },
+        { status: 409 }
+      );
     }
 
     // Caso 2: Criação de nova ordem com preço autoritativo derivado no servidor
@@ -288,26 +232,25 @@ export async function POST(req: NextRequest) {
     }
 
     // Buscar regra de comissão vigente no banco
-    const { data: ruleRow } = await dbClient
+    const { data: ruleRow, error: ruleError } = await dbClient
       .from('commission_rules')
       .select('percentual_padrao')
       .eq('slug', modalidadeSlug)
       .eq('ativo', true)
       .maybeSingle();
 
-    const { data: fallbackRule } = !ruleRow
-      ? await dbClient
-          .from('commission_rules')
-          .select('percentual_padrao')
-          .eq('slug', 'leilao')
-          .eq('ativo', true)
-          .maybeSingle()
-      : { data: null };
-
-    const commissionRate = Number(
-      ruleRow?.percentual_padrao ?? fallbackRule?.percentual_padrao ?? 6.0
-    );
-    const split = calculateSplit(authoritativeAmount, modalidadeSlug, commissionRate);
+    if (ruleError) {
+      console.error('Falha ao carregar regra de comissão:', ruleError);
+      return NextResponse.json({ error: 'Não foi possível carregar a regra de comissão.' }, { status: 500 });
+    }
+    if (!ruleRow) {
+      return NextResponse.json(
+        { error: 'Não há regra ativa de comissão para esta modalidade.' },
+        { status: 409 }
+      );
+    }
+    const commissionRate = Number(ruleRow.percentual_padrao);
+    const split = calculateSplit(authoritativeAmount, commissionRate);
 
     const suffix = Date.now().toString().slice(-6);
     const codigoPedido = `PED-${new Date().getFullYear()}-${suffix}`;
@@ -316,16 +259,21 @@ export async function POST(req: NextRequest) {
       `${codigoPedido}|${loteId}|${ctx.user.id}|${supplierId}|${split.valorBrutoTotal.toFixed(2)}`
     );
 
+    const pixKey = process.env.PIX_ESCROW_KEY?.trim();
+    if (!pixKey || !process.env.PAYMENT_WEBHOOK_SECRET) {
+      return NextResponse.json(
+        { error: 'A integração PIX e a chave de webhook do provedor não estão configuradas.' },
+        { status: 503 }
+      );
+    }
     const pixCopiaCola = generatePixEmvPayload({
       amount: split.valorBrutoTotal,
       txid,
       description: `${codigoPedido} ${auctionRow.codigo_lote}`,
+      pixKey,
     });
 
-    const hasPixReceipt =
-      typeof pixComprovanteCodigo === 'string' && pixComprovanteCodigo.trim().length > 0;
-    const initialPaymentStatus =
-      body.mode === 'charge_only' ? 'aguardando_pagamento' : 'em_custodia_escrow';
+    const initialPaymentStatus = 'aguardando_pagamento';
 
     const { data: insertedOrder, error: ordErr } = await dbClient
       .from('orders')
@@ -343,7 +291,7 @@ export async function POST(req: NextRequest) {
         status_logistica: 'agendamento_doca',
         doca_agendada: 'Aguardando agendamento de Doca FOB no CD',
         termo_arremate_hash: termoArremateHash,
-        comprovante_pix_spi: hasPixReceipt ? pixComprovanteCodigo.trim().slice(0, 180) : txid,
+        comprovante_pix_spi: null,
       })
       .select(ORDER_SELECT)
       .single();
@@ -361,29 +309,22 @@ export async function POST(req: NextRequest) {
       metodo: 'pix_escrow',
       valor: split.valorBrutoTotal,
       pix_copia_cola: pixCopiaCola,
-      e2e_id: hasPixReceipt ? pixComprovanteCodigo.trim().slice(0, 80) : null,
-      status: initialPaymentStatus === 'em_custodia_escrow' ? 'pago' : 'pendente',
-      paid_at: initialPaymentStatus === 'em_custodia_escrow' ? new Date().toISOString() : null,
+      e2e_id: null,
+      status: 'pendente',
+      paid_at: null,
     });
-
-    if (initialPaymentStatus === 'em_custodia_escrow') {
-      await dbClient
-        .from('auctions')
-        .update({ status: 'homologado', vencedor_id: ctx.user.id })
-        .eq('id', loteId);
-    }
 
     await dbClient.from('notifications').insert([
       {
         user_id: supplierId,
         titulo: `Pedido Escrow Gerado • ${codigoPedido}`,
-        mensagem: `Lote ${auctionRow.codigo_lote} reservado por ${ctx.profile.nomeFantasia} (Valor líquido previsto: R$ ${split.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}).`,
+        mensagem: `Pedido ${codigoPedido} criado e aguardando confirmação de pagamento pelo provedor.`,
         canal: 'in_app',
       },
       {
         user_id: ctx.user.id,
-        titulo: `Custódia Escrow Ativada • ${codigoPedido}`,
-        mensagem: `Prossiga com o agendamento de doca FOB para retirada da carga.`,
+        titulo: `Pagamento pendente • ${codigoPedido}`,
+        mensagem: `O pedido só será confirmado após a notificação autenticada do provedor de pagamentos.`,
         canal: 'in_app',
       },
     ]);
@@ -404,10 +345,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       {
-        message:
-          initialPaymentStatus === 'em_custodia_escrow'
-            ? 'Depósito Escrow homologado e pedido gerado com sucesso'
-            : 'Cobrança PIX Escrow gerada com sucesso',
+        message: 'Pedido criado e aguardando confirmação do pagamento pelo provedor.',
         order: mapDbOrderToEscrowOrder(insertedOrder as Record<string, unknown>),
         pix: {
           txid,
@@ -463,28 +401,23 @@ export async function PATCH(req: NextRequest) {
     const isBuyer = String(currentRow.comprador_id) === ctx.user.id;
     const isAdmin = ctx.profile.role === 'admin';
 
-    if (action === 'confirm_delivery' || action === 'release_escrow') {
-      if (action === 'confirm_delivery' && !isBuyer && !isAdmin) {
+    if (action === 'release_escrow') {
+      return NextResponse.json(
+        { error: 'A liquidação financeira deve ser confirmada pelo webhook autenticado do provedor.' },
+        { status: 409 }
+      );
+    }
+
+    if (action === 'confirm_delivery') {
+      if (!isBuyer && !isAdmin) {
         return NextResponse.json(
           { error: 'Apenas o comprador titular ou administrador pode confirmar o recebimento.' },
           { status: 403 }
         );
       }
-      if (action === 'release_escrow' && !isAdmin) {
+      if (currentRow.status_pagamento !== 'em_custodia_escrow') {
         return NextResponse.json(
-          { error: 'Apenas administradores podem forçar liquidação D+0 de custódia.' },
-          { status: 403 }
-        );
-      }
-      if (currentRow.status_pagamento === 'estornado') {
-        return NextResponse.json(
-          { error: 'Pedido já estornado não pode ser liquidado.' },
-          { status: 400 }
-        );
-      }
-      if (currentRow.status_pagamento === 'aguardando_pagamento') {
-        return NextResponse.json(
-          { error: 'Não é possível liquidar D+0 antes da confirmação do pagamento PIX em Escrow.' },
+          { error: 'A entrega só pode ser confirmada para um pedido com pagamento registrado pelo provedor.' },
           { status: 409 }
         );
       }
@@ -492,8 +425,7 @@ export async function PATCH(req: NextRequest) {
       const { data: updatedRow, error: updErr } = await dbClient
         .from('orders')
         .update({
-          status_pagamento: 'repasse_liquidado_d0',
-          status_logistica: action === 'confirm_delivery' ? 'entregue' : currentRow.status_logistica,
+          status_logistica: 'entregue',
           motivo_disputa: null,
         })
         .eq('id', currentRow.id)
@@ -504,37 +436,32 @@ export async function PATCH(req: NextRequest) {
         return NextResponse.json({ error: updErr?.message || 'Erro ao liquidar pedido.' }, { status: 500 });
       }
 
-      if (action === 'confirm_delivery') {
-        await dbClient
-          .from('dock_appointments')
-          .update({ status: 'liberado' })
-          .eq('order_id', currentRow.id);
-      }
-
       await dbClient
-        .from('payment_transactions')
-        .update({ status: 'liquidado_d0' })
+        .from('dock_appointments')
+        .update({ status: 'liberado' })
         .eq('order_id', currentRow.id);
 
-      await dbClient.from('notifications').insert({
-        user_id: currentRow.fornecedor_id,
-        titulo: `Repasse D+0 Liquidado • ${currentRow.codigo_pedido}`,
-        mensagem: `Valor líquido de R$ ${Number(currentRow.valor_repasse_liquido).toLocaleString('pt-BR', { minimumFractionDigits: 2 })} liberado via SPI.`,
-        canal: 'in_app',
-      });
+      await dbClient
+        .from('notifications')
+        .insert({
+          user_id: currentRow.fornecedor_id,
+          titulo: `Entrega confirmada • ${currentRow.codigo_pedido}`,
+          mensagem: 'A entrega foi registrada no sistema. Esta ação não inicia transferência bancária.',
+          canal: 'in_app',
+        });
 
       await dbClient.from('audit_worm_logs').insert({
-        tipo_evento: `escrow_${action}`,
+        tipo_evento: 'escrow_confirm_delivery',
         protocolo: String(currentRow.codigo_pedido),
         payload_json: { orderId: currentRow.id, actorId: ctx.user.id },
-        merkle_root_hash: buildAuditHash(String(currentRow.codigo_pedido), action, {
+        merkle_root_hash: buildAuditHash(String(currentRow.codigo_pedido), 'confirm_delivery', {
           actorId: ctx.user.id,
         }),
         responsavel_id: ctx.user.id,
       });
 
       return NextResponse.json({
-        message: 'Custódia Escrow liquidada D+0 com sucesso via SPI Bancário',
+        message: 'Entrega registrada. A confirmação não inicia repasse bancário.',
         order: mapDbOrderToEscrowOrder(updatedRow as Record<string, unknown>),
       });
     }
@@ -577,6 +504,13 @@ export async function PATCH(req: NextRequest) {
         .update({ status: 'em_disputa' })
         .eq('order_id', currentRow.id);
 
+      await dbClient.from('notifications').insert({
+        user_id: currentRow.comprador_id,
+        titulo: `Disputa aberta • ${currentRow.codigo_pedido}`,
+        mensagem: `A disputa foi registrada: ${motivo}`,
+        canal: 'in_app',
+      });
+
       await dbClient.from('audit_worm_logs').insert({
         tipo_evento: 'escrow_disputa_aberta',
         protocolo: String(currentRow.codigo_pedido),
@@ -588,7 +522,7 @@ export async function PATCH(req: NextRequest) {
       });
 
       return NextResponse.json({
-        message: 'Divergência registrada e saldo Escrow bloqueado para mediação',
+        message: 'Disputa registrada; a ação não movimenta fundos.',
         order: mapDbOrderToEscrowOrder(updatedRow as Record<string, unknown>),
       });
     }
@@ -600,64 +534,10 @@ export async function PATCH(req: NextRequest) {
           { status: 403 }
         );
       }
-      if (currentRow.status_pagamento === 'estornado') {
-        return NextResponse.json(
-          { error: 'Este pedido já foi estornado anteriormente.' },
-          { status: 409 }
-        );
-      }
-      if (currentRow.status_pagamento === 'repasse_liquidado_d0') {
-        return NextResponse.json(
-          { error: 'Repasse já liquidado D+0 não pode ser estornado automaticamente.' },
-          { status: 400 }
-        );
-      }
-
-      const motivoEstorno =
-        typeof reason === 'string' && reason.trim()
-          ? reason.trim().slice(0, 220)
-          : String(
-              currentRow.motivo_disputa || 'Custódia estornada ao comprador via moderação Escrow'
-            );
-
-      const { data: updatedRow, error: updErr } = await dbClient
-        .from('orders')
-        .update({
-          status_pagamento: 'estornado',
-          motivo_disputa: motivoEstorno,
-        })
-        .eq('id', currentRow.id)
-        .select(ORDER_SELECT)
-        .single();
-
-      if (updErr || !updatedRow) {
-        return NextResponse.json({ error: updErr?.message || 'Erro ao estornar pedido.' }, { status: 500 });
-      }
-
-      await dbClient
-        .from('dock_appointments')
-        .update({ status: 'liberado' })
-        .eq('order_id', currentRow.id);
-
-      await dbClient
-        .from('payment_transactions')
-        .update({ status: 'estornado' })
-        .eq('order_id', currentRow.id);
-
-      await dbClient.from('audit_worm_logs').insert({
-        tipo_evento: 'escrow_estornado',
-        protocolo: String(currentRow.codigo_pedido),
-        payload_json: { orderId: currentRow.id, motivoEstorno, adminId: ctx.user.id },
-        merkle_root_hash: buildAuditHash(String(currentRow.codigo_pedido), 'refund_escrow', {
-          motivoEstorno,
-        }),
-        responsavel_id: ctx.user.id,
-      });
-
-      return NextResponse.json({
-        message: 'Custódia Escrow estornada integralmente ao comprador via PIX SPI',
-        order: mapDbOrderToEscrowOrder(updatedRow as Record<string, unknown>),
-      });
+      return NextResponse.json(
+        { error: 'O estorno deve ser confirmado pelo webhook autenticado do provedor.' },
+        { status: 409 }
+      );
     }
 
     return NextResponse.json({ error: 'Ação desconhecida' }, { status: 400 });

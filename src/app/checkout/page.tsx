@@ -3,11 +3,11 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { QRCodeSVG } from 'qrcode.react';
 import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
 import { CartItem, clearCart, removeLotFromCart, syncCartFromServer } from '@/lib/cart-store';
 import { calculateSplit, SplitCalculationResult } from '@/lib/commission-engine';
-import { PixQrScanner } from '@/components/PixQrScanner';
 import { AuctionLot, EscrowOrder } from '@/lib/types';
 
 interface PendingPixCharge {
@@ -71,18 +71,20 @@ function CheckoutContent() {
             percentualComissao: resumedOrder.percentualComissao,
             valorComissaoPlataforma: resumedOrder.valorComissaoPlataforma,
             valorRepasseLiquidoFornecedor: resumedOrder.valorRepasseLiquidoFornecedor,
-            taxaEscrowBancaria: 3.85,
-            valorLiquidoFinalFornecedor: Number(
-              (resumedOrder.valorRepasseLiquidoFornecedor - 3.85).toFixed(2)
-            ),
+            taxaEscrowBancaria: 0,
+            valorDisponivelCustodia: resumedOrder.valorTotalArremate,
           });
+          setCommissionReady(true);
 
-          if (resumedOrder.statusPagamento !== 'aguardando_pagamento') {
+          if (
+            resumedOrder.statusPagamento === 'em_custodia_escrow' ||
+            resumedOrder.statusPagamento === 'repasse_liquidado_d0'
+          ) {
             setConfirmed(true);
-            if (resumedOrder.comprovantePix) {
-              setScannedReceiptCode(resumedOrder.comprovantePix);
-            }
-          } else if (orderData?.pix?.pixCopiaCola) {
+          } else if (
+            resumedOrder.statusPagamento === 'aguardando_pagamento' &&
+            orderData?.pix?.pixCopiaCola
+          ) {
             setPendingCharge({
               orderIds: [resumedOrder.id],
               orderCodes: [resumedOrder.codigoPedido],
@@ -90,6 +92,14 @@ function CheckoutContent() {
               pixCopiaCola: orderData.pix.pixCopiaCola,
               txid: orderData.pix.txid || '',
             });
+          } else {
+            setCheckoutError(
+              resumedOrder.statusPagamento === 'em_disputa'
+                ? 'Este pedido está em disputa. Consulte Meus Pedidos para acompanhar a resolução.'
+                : resumedOrder.statusPagamento === 'estornado'
+                  ? 'Este pedido foi estornado e não está aguardando pagamento.'
+                  : 'Não há uma cobrança pendente disponível para este pedido.'
+            );
           }
           setResumedOrderLoaded(true);
 
@@ -179,47 +189,57 @@ function CheckoutContent() {
       : 'buy_now';
 
   const [split, setSplit] = useState<SplitCalculationResult>(() =>
-    calculateSplit(totalAmount, modalidade)
+    calculateSplit(totalAmount, 0)
   );
+  const [commissionReady, setCommissionReady] = useState(false);
+  const [commissionError, setCommissionError] = useState<string | null>(null);
 
   useEffect(() => {
     if (resumedOrderLoaded) return;
     if (totalAmount <= 0) {
-      setSplit(calculateSplit(0, modalidade));
+      setSplit(calculateSplit(0, 0));
+      setCommissionReady(false);
+      setCommissionError('Não foi possível calcular a comissão para um valor inválido.');
       return;
     }
     let active = true;
+    setCommissionReady(false);
+    setCommissionError(null);
     fetch(
       `/api/comissoes?amount=${encodeURIComponent(totalAmount)}&modalidade=${encodeURIComponent(modalidade)}`
     )
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (active && data?.split) {
+      .then(async (res) => {
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.split) {
+          throw new Error(data?.error || 'Não foi possível carregar a regra de comissão.');
+        }
+        if (active) {
           setSplit(data.split);
+          setCommissionReady(true);
         }
       })
-      .catch(() => {});
+      .catch((error: unknown) => {
+        if (active) {
+          setCommissionError(
+            error instanceof Error ? error.message : 'Erro ao consultar a regra de comissão.'
+          );
+        }
+      });
     return () => {
       active = false;
     };
   }, [totalAmount, modalidade, resumedOrderLoaded]);
 
-  const [paymentMethod, setPaymentMethod] = useState<'pix' | 'ted'>('pix');
   const [pendingCharge, setPendingCharge] = useState<PendingPixCharge | null>(null);
   const [generatingCharge, setGeneratingCharge] = useState(false);
   const [pixCopied, setPixCopied] = useState(false);
-  const [downloadingQr, setDownloadingQr] = useState(false);
-  const [qrDownloadStatus, setQrDownloadStatus] = useState<string | null>(null);
-  const [showQrScanner, setShowQrScanner] = useState(false);
-  const [scannedReceiptCode, setScannedReceiptCode] = useState<string | null>(null);
-  const [confirming, setConfirming] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [orderHash, setOrderHash] = useState<string>('');
   const [orderCode, setOrderCode] = useState<string | null>(null);
 
   const checkoutCacheKey = lot
-    ? `vo_pix_charge_${user?.id || 'anon'}_${isMultiLotCart ? cartCheckoutItems.map((i) => i.lot.id).join('_') : lot.id}_${totalAmount}_${resolvedSourceType}`
+    ? `vo_pix_charge_provider_v2_${user?.id || 'anon'}_${isMultiLotCart ? cartCheckoutItems.map((i) => i.lot.id).join('_') : lot.id}_${totalAmount}_${resolvedSourceType}`
     : '';
 
   useEffect(() => {
@@ -235,6 +255,8 @@ function CheckoutContent() {
             setPendingCharge(parsed);
             if (parsed.orderHashes[0]) setOrderHash(parsed.orderHashes[0]);
             if (parsed.orderCodes.length) setOrderCode(parsed.orderCodes.join(' • '));
+            if (isMultiLotCart) clearCart();
+            else removeLotFromCart(lot.id);
             return;
           }
         } catch {
@@ -297,6 +319,8 @@ function CheckoutContent() {
           if (typeof window !== 'undefined' && checkoutCacheKey) {
             window.sessionStorage.setItem(checkoutCacheKey, JSON.stringify(charge));
           }
+          if (isMultiLotCart) clearCart();
+          else removeLotFromCart(lot!.id);
         }
       } catch {
         if (active) {
@@ -328,10 +352,6 @@ function CheckoutContent() {
   ]);
 
   const pixCopiaCola = pendingCharge?.pixCopiaCola || '';
-  const qrImageUrl = pixCopiaCola
-    ? `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(pixCopiaCola)}`
-    : '';
-
   const handleCopyPix = async () => {
     if (!pixCopiaCola) return;
     try {
@@ -341,120 +361,6 @@ function CheckoutContent() {
     } catch {
       setPixCopied(false);
     }
-  };
-
-  const handleDownloadQrCode = async () => {
-    if (downloadingQr || !qrImageUrl || !lot) return;
-    setDownloadingQr(true);
-    setQrDownloadStatus(null);
-    try {
-      const response = await fetch(qrImageUrl);
-      if (!response.ok) throw new Error('Falha ao baixar QR');
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = objectUrl;
-      link.download = `comprovante-pix-${lot.codigoLote}.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(objectUrl);
-      setQrDownloadStatus('QR Code salvo! Envie este PNG no leitor abaixo para testar.');
-      setTimeout(() => setQrDownloadStatus(null), 4000);
-    } catch {
-      setQrDownloadStatus('Não foi possível baixar o PNG do QR Code agora.');
-    } finally {
-      setDownloadingQr(false);
-    }
-  };
-
-  const handleConfirmPayment = async (pixComprovanteCodigo?: string) => {
-    if (confirming || confirmed || !lot) return;
-    if (!user) {
-      setCheckoutError('Faça login com seu CNPJ homologado antes de confirmar o pagamento.');
-      return;
-    }
-    setConfirming(true);
-    setCheckoutError(null);
-    try {
-      const createdCodes: string[] = [];
-      let lastHash: string | null = null;
-
-      if (pendingCharge && pendingCharge.orderIds.length > 0) {
-        for (const orderIdToConfirm of pendingCharge.orderIds) {
-          const res = await fetch('/api/pedidos', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              orderIdToConfirm,
-              pixComprovanteCodigo,
-            }),
-          });
-          const data = await res.json();
-          if (!res.ok) {
-            setCheckoutError(
-              data?.error || 'Não foi possível homologar o pagamento em custódia Escrow.'
-            );
-            setConfirming(false);
-            return;
-          }
-          if (data?.order?.termoArremateHash) lastHash = data.order.termoArremateHash;
-          if (data?.order?.codigoPedido) createdCodes.push(data.order.codigoPedido);
-        }
-      } else {
-        const itemsToOrder = isMultiLotCart
-          ? cartCheckoutItems.map((i) => ({ loteId: i.lot.id }))
-          : [{ loteId: lot.id }];
-
-        for (const item of itemsToOrder) {
-          const res = await fetch('/api/pedidos', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              loteId: item.loteId,
-              sourceType: resolvedSourceType,
-              proposalId: proposalId || undefined,
-              pixComprovanteCodigo,
-            }),
-          });
-          const data = await res.json();
-          if (!res.ok) {
-            setCheckoutError(
-              data?.error || 'Não foi possível homologar o pagamento em custódia Escrow.'
-            );
-            setConfirming(false);
-            return;
-          }
-          if (data?.order?.termoArremateHash) lastHash = data.order.termoArremateHash;
-          if (data?.order?.codigoPedido) createdCodes.push(data.order.codigoPedido);
-        }
-      }
-
-      if (lastHash) setOrderHash(lastHash);
-      if (createdCodes.length > 0) setOrderCode(createdCodes.join(' • '));
-      if (typeof window !== 'undefined' && checkoutCacheKey) {
-        window.sessionStorage.removeItem(checkoutCacheKey);
-      }
-
-      if (isMultiLotCart) {
-        clearCart();
-      } else {
-        removeLotFromCart(lot.id);
-      }
-      setConfirmed(true);
-    } catch {
-      setCheckoutError(
-        'Falha de comunicação com o servidor Escrow. Verifique a conexão e tente novamente.'
-      );
-    } finally {
-      setConfirming(false);
-    }
-  };
-
-  const handleQrReceiptScanned = (decodedPayload: string) => {
-    setScannedReceiptCode(decodedPayload);
-    setShowQrScanner(false);
-    void handleConfirmPayment(decodedPayload);
   };
 
   if (loadingLot) {
@@ -474,10 +380,10 @@ function CheckoutContent() {
         <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-sm space-y-3">
           <span className="material-symbols-outlined text-primary text-4xl">lock</span>
           <h1 className="text-xl font-extrabold text-on-surface">
-            Autentique-se para concluir o pagamento PIX Escrow
+            Autentique-se para consultar o pedido
           </h1>
           <p className="text-xs text-on-surface-variant">
-            Entre com a conta compradora titular do pedido para visualizar o QR Code EMV e confirmar o depósito.
+            Entre com a conta compradora titular do pedido para visualizar seu status de pagamento.
           </p>
           <div className="pt-2">
             <Link
@@ -525,13 +431,13 @@ function CheckoutContent() {
       <div className="space-y-1">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold">
           <span className="material-symbols-outlined text-[16px]">lock</span>
-          Ambiente Fiduciário Seguro • BACEN Res. 4.656
+          Checkout de pedido
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
-          Checkout Escrow B2B &amp; Split Fiduciário
+          Checkout B2B
         </h1>
         <p className="text-xs sm:text-sm text-on-surface-variant">
-          Termo de arremate oficial, segregação de custódia e emissão de ordem de pagamento D+0.
+          A confirmação do pagamento depende de uma notificação autenticada do provedor configurado.
         </p>
       </div>
 
@@ -540,7 +446,7 @@ function CheckoutContent() {
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">login</span>
             <span className="font-bold text-on-surface">
-              Entre com sua conta compradora homologada para gerar a cobrança EMV PIX e homologar a custódia Escrow.
+              Entre com sua conta compradora para consultar o pedido e gerar uma cobrança, se o provedor estiver configurado.
             </span>
           </div>
           <Link
@@ -563,12 +469,12 @@ function CheckoutContent() {
           <div className="space-y-1">
             <span className="text-xs font-bold text-secondary uppercase tracking-widest">
               {orderCode
-                ? `PEDIDO ${orderCode} • PAGAMENTO CONFIRMADO EM CUSTÓDIA ESCROW`
-                : 'PAGAMENTO CONFIRMADO EM CUSTÓDIA ESCROW'}
+                ? `PEDIDO ${orderCode} • PAGAMENTO CONFIRMADO PELO PROVEDOR`
+                  : 'PAGAMENTO CONFIRMADO PELO PROVEDOR'}
             </span>
-            <h2 className="text-2xl font-extrabold text-on-surface">Arremate Homologado com Sucesso!</h2>
+            <h2 className="text-2xl font-extrabold text-on-surface">Pagamento confirmado</h2>
             <p className="text-xs text-on-surface-variant max-w-lg mx-auto">
-              O valor de <strong>R$ {totalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi depositado na conta de custódia fiduciária. O repasse líquido de R$ {split.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} será liberado à indústria após conferência de lacres na doca do CD.
+              O provedor confirmou o pagamento do pedido. A confirmação de entrega não executa repasses bancários; acompanhe o status em Meus Pedidos.
             </p>
           </div>
 
@@ -579,25 +485,17 @@ function CheckoutContent() {
                 {orderHash}
               </span>
             </div>
-            {scannedReceiptCode && (
-              <div className="flex justify-between items-center gap-2">
-                <span className="text-on-surface-variant shrink-0">Comprovante QR Lido:</span>
-                <span className="font-mono text-[10px] text-secondary font-bold truncate max-w-[200px]">
-                  {scannedReceiptCode}
-                </span>
-              </div>
-            )}
             <div className="flex justify-between">
               <span className="text-on-surface-variant">
                 {lot.tipoFrete === 'CIF' ? 'Entrega CIF:' : 'Retirada FOB:'}
               </span>
               <strong className="text-on-surface">
-                {lot.tipoFrete === 'CIF' ? `Despacho direto de ${lot.produto.origem}` : `${lot.produto.origem} (Doca 03A)`}
+                {lot.tipoFrete === 'CIF' ? `Despacho direto de ${lot.produto.origem}` : lot.produto.origem}
               </strong>
             </div>
             <div className="flex justify-between">
               <span className="text-on-surface-variant">Janela de Agendamento:</span>
-              <strong className="text-secondary">Liberada em 48 horas</strong>
+              <strong className="text-secondary">Consulte em Meus Pedidos</strong>
             </div>
           </div>
 
@@ -627,7 +525,7 @@ function CheckoutContent() {
                 <span className="material-symbols-outlined text-primary text-[18px]">receipt_long</span>
                 {isMultiLotCart
                   ? `Lotes Consolidados do Carrinho (${cartCheckoutItems.length})`
-                  : 'Dados do Lote Homologado'}
+                  : 'Dados do lote'}
               </h3>
 
               {isMultiLotCart ? (
@@ -699,30 +597,41 @@ function CheckoutContent() {
               <div className="flex items-center justify-between border-b border-surface-container pb-2">
                 <h3 className="font-extrabold text-sm text-on-surface uppercase flex items-center gap-2">
                   <span className="material-symbols-outlined text-primary text-[18px]">call_split</span>
-                  Detalhamento do Split Fiduciário D+0
+                  Estimativa de valores
                 </h3>
-                <span className="text-[10px] text-secondary font-bold">Res. BACEN 4.656</span>
+                <span className="text-[10px] text-outline font-bold">Valores estimados</span>
               </div>
+
+              {commissionError && (
+                <p className="rounded-lg bg-error-container px-3 py-2 text-xs font-semibold text-on-error-container">
+                  {commissionError}
+                </p>
+              )}
 
               <div className="space-y-3">
                 <div className="flex justify-between py-1 border-b border-surface-container">
                   <span className="text-on-surface-variant">Valor Total do Arremate (GMV):</span>
                   <strong className="text-sm font-extrabold text-on-surface">
-                    R$ {split.valorBrutoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                    {commissionReady
+                      ? `R$ ${split.valorBrutoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                      : 'Indisponível'}
                   </strong>
                 </div>
 
                 <div className="flex justify-between py-1 border-b border-surface-container">
                   <div className="space-y-0.5">
                     <span className="text-on-surface-variant block">
-                      Taxa Administrativa da Plataforma ({split.percentualComissao}%):
+                      Taxa Administrativa da Plataforma
+                      {commissionReady ? ` (${split.percentualComissao}%)` : ''}:
                     </span>
                     <span className="text-[10px] text-outline">
                       Intermediação tecnológica, compliance e trava antifraude
                     </span>
                   </div>
                   <strong className="text-sm font-extrabold text-primary">
-                    - R$ {split.valorComissaoPlataforma.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                    {commissionReady
+                      ? `- R$ ${split.valorComissaoPlataforma.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                      : 'Indisponível'}
                   </strong>
                 </div>
 
@@ -732,11 +641,13 @@ function CheckoutContent() {
                       Repasse Líquido à Indústria Fornecedora:
                     </span>
                     <span className="text-[10px] text-on-surface-variant">
-                      Creditado via SPI/PIX D+0 após conferência na doca
+                      Valor estimado; não representa transferência bancária
                     </span>
                   </div>
                   <strong className="text-base font-extrabold text-secondary">
-                    R$ {split.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                    {commissionReady
+                      ? `R$ ${split.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
+                      : 'Indisponível'}
                   </strong>
                 </div>
               </div>
@@ -747,65 +658,24 @@ function CheckoutContent() {
           <div className="lg:col-span-5 bg-surface-container-lowest p-6 rounded-2xl border-2 border-primary/20 shadow-lg space-y-5 text-xs">
             <h3 className="font-extrabold text-sm text-on-surface uppercase border-b border-surface-container pb-2 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary text-[18px]">account_balance</span>
-              Forma de Custódia Fiduciária
+              Pagamento do pedido
             </h3>
 
-            {/* Payment Method Selector */}
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => setPaymentMethod('pix')}
-                className={`py-2 px-3 rounded-xl border font-bold text-xs flex items-center justify-center gap-1.5 transition-all ${
-                  paymentMethod === 'pix'
-                    ? 'border-primary bg-primary text-white shadow-sm'
-                    : 'border-outline-variant bg-surface-container-low text-on-surface'
-                }`}
-              >
-                <span className="material-symbols-outlined text-[16px]">bolt</span>
-                <span>PIX SPI Instantâneo</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setPaymentMethod('ted')}
-                className={`py-2 px-3 rounded-xl border font-bold text-xs flex items-center justify-center gap-1.5 transition-all ${
-                  paymentMethod === 'ted'
-                    ? 'border-primary bg-primary text-white shadow-sm'
-                    : 'border-outline-variant bg-surface-container-low text-on-surface'
-                }`}
-              >
-                <span className="material-symbols-outlined text-[16px]">account_balance</span>
-                <span>TED Judicial / STR</span>
-              </button>
-            </div>
-
-            {/* PIX Details */}
-            {paymentMethod === 'pix' && (
-              <div className="space-y-3 bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 text-center">
-                {!showQrScanner ? (
-                  <>
+            <div className="space-y-3 bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 text-center">
                     <div className="w-36 h-36 mx-auto bg-white p-2 rounded-xl border border-outline-variant/40 flex items-center justify-center shadow-sm">
-                      {qrImageUrl ? (
-                        <Image
-                          src={qrImageUrl}
-                          alt="QR Code PIX Escrow"
-                          width={140}
-                          height={140}
-                          quality={100}
-                          referrerPolicy="no-referrer"
-                          className="w-full h-full object-contain img-crisp-qr"
-                        />
+                      {pixCopiaCola ? (
+                        <QRCodeSVG value={pixCopiaCola} size={124} level="M" includeMargin />
                       ) : (
                         <div className="text-[11px] text-on-surface-variant font-semibold px-2">
                           {generatingCharge
-                            ? 'Gerando EMV PIX...'
-                            : 'Entre com sua conta compradora para emitir o QR Code EMV.'}
+                            ? 'Gerando cobrança PIX...'
+                            : 'PIX indisponível: confirme a configuração do provedor.'}
                         </div>
                       )}
                     </div>
                     <div>
                       <span className="text-[10px] text-on-surface-variant font-bold uppercase block">
-                        Valor a Transferir para Conta Escrow:
+                        Valor da cobrança:
                       </span>
                       <span className="text-xl font-extrabold text-primary">
                         R$ {totalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
@@ -823,64 +693,12 @@ function CheckoutContent() {
                       className="w-full py-2 bg-white hover:bg-surface-container border border-outline-variant text-on-surface font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-1 disabled:opacity-50"
                     >
                       <span className="material-symbols-outlined text-[16px]">content_copy</span>
-                      <span>{pixCopied ? 'Chave PIX Copiada!' : 'Copiar Código PIX Copia e Cola'}</span>
+                      <span>{pixCopied ? 'Código PIX copiado!' : 'Copiar Código PIX Copia e Cola'}</span>
                     </button>
-
-                    <button
-                      type="button"
-                      onClick={handleDownloadQrCode}
-                      disabled={downloadingQr || !qrImageUrl}
-                      className="w-full py-2 bg-white hover:bg-surface-container border border-outline-variant/70 text-on-surface-variant font-bold text-[11px] rounded-lg transition-colors flex items-center justify-center gap-1 disabled:opacity-50"
-                    >
-                      <span className="material-symbols-outlined text-[15px]">download</span>
-                      <span>{downloadingQr ? 'Gerando PNG...' : 'Baixar QR Code PIX (PNG para Teste)'}</span>
-                    </button>
-
-                    {qrDownloadStatus && (
-                      <p className="text-[11px] font-semibold text-secondary">{qrDownloadStatus}</p>
-                    )}
-
-                    <button
-                      type="button"
-                      onClick={() => setShowQrScanner(true)}
-                      disabled={confirming || !user}
-                      className="w-full py-2.5 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary font-extrabold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50"
-                    >
-                      <span className="material-symbols-outlined text-[17px]">qr_code_scanner</span>
-                      <span>Escanear Comprovante PIX (Confirmação Automática)</span>
-                    </button>
-                  </>
-                ) : (
-                  <PixQrScanner
-                    onScanSuccess={handleQrReceiptScanned}
-                    onClose={() => setShowQrScanner(false)}
-                    disabled={confirming}
-                  />
-                )}
-              </div>
-            )}
-
-            {/* TED Details */}
-            {paymentMethod === 'ted' && (
-              <div className="space-y-2 bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-on-surface-variant">Banco Liquidante:</span>
-                  <strong>001 - Banco do Brasil / STR BACEN</strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-on-surface-variant">Agência / Conta Escrow:</span>
-                  <strong className="font-mono">1800-4 / 92040-1</strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-on-surface-variant">Titular:</span>
-                  <strong>Varejista Online Custódia Fiduciária Ltda</strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-on-surface-variant">CNPJ Custodiante:</span>
-                  <strong className="font-mono">48.910.420/0001-88</strong>
-                </div>
-              </div>
-            )}
+                    <p className="text-[11px] text-on-surface-variant">
+                      O pagamento não pode ser confirmado por leitura de QR ou envio de comprovante. A confirmação depende do webhook autenticado do provedor.
+                    </p>
+            </div>
 
             {checkoutError && (
               <div className="p-3 rounded-xl bg-error-container text-on-error-container text-xs font-bold flex items-center gap-2">
@@ -889,24 +707,12 @@ function CheckoutContent() {
               </div>
             )}
 
-            {/* Confirm Payment CTA */}
-            <button
-              type="button"
-              onClick={() => void handleConfirmPayment()}
-              disabled={confirming || loadingLot || generatingCharge || !user}
-              className="w-full py-3.5 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            <Link
+              href="/pedidos"
+              className="w-full py-3.5 bg-primary hover:bg-primary-container text-white font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
             >
-              {loadingLot || generatingCharge ? (
-                <span>Gerando cobrança fiduciária Escrow...</span>
-              ) : confirming ? (
-                <span>Confirmando com o Banco Central...</span>
-              ) : (
-                <>
-                  <span className="material-symbols-outlined text-[18px]">verified_user</span>
-                  <span>Confirmar Depósito e Homologar Arremate</span>
-                </>
-              )}
-            </button>
+              Acompanhar status em Meus Pedidos
+            </Link>
           </div>
         </div>
       )}

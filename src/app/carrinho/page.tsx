@@ -55,21 +55,34 @@ export default function CarrinhoPage() {
       : 'FOB (A retirar no CD)';
 
   const [split, setSplit] = useState<SplitCalculationResult>(() =>
-    calculateSplit(0, modalidade)
+    calculateSplit(0, 0)
   );
+  const [splitError, setSplitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (subtotal <= 0) {
-      setSplit(calculateSplit(0, modalidade));
+      setSplit(calculateSplit(0, 0));
+      setSplitError(null);
       return;
     }
     let active = true;
     fetch(`/api/comissoes?amount=${encodeURIComponent(subtotal)}&modalidade=${encodeURIComponent(modalidade)}`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (active && data?.split) setSplit(data.split);
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok || !data?.split) {
+          throw new Error(data?.error || 'Não foi possível calcular a comissão.');
+        }
+        if (active) {
+          setSplit(data.split);
+          setSplitError(null);
+        }
       })
-      .catch(() => {});
+      .catch((error: unknown) => {
+        if (active) {
+          setSplit(calculateSplit(0, 0));
+          setSplitError(error instanceof Error ? error.message : 'Não foi possível calcular a comissão.');
+        }
+      });
     return () => {
       active = false;
     };
@@ -82,7 +95,7 @@ export default function CarrinhoPage() {
           Carrinho de Arremates &amp; Pedidos B2B
         </h1>
         <p className="text-xs sm:text-sm text-on-surface-variant">
-          Confira seus lotes arrematados e avance para a emissão de custódia fiduciária escrow.
+          Confira os lotes adicionados e revise o pedido antes de continuar.
         </p>
       </div>
 
@@ -225,23 +238,30 @@ export default function CarrinhoPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Taxa Administrativa ({split.percentualComissao}%):</span>
-                <span className="font-bold text-secondary">Inclusa no valor total</span>
+                <span className="font-bold text-secondary">
+                  {splitError ? 'Indisponível' : `Estimativa: R$ ${split.valorComissaoPlataforma.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
+                </span>
               </div>
             </div>
+            {splitError && (
+              <div role="alert" className="rounded-lg border border-error bg-error-container p-3 text-on-error-container">
+                {splitError}
+              </div>
+            )}
 
             <div className="pt-3 border-t border-surface-container flex justify-between items-baseline">
-              <span className="font-extrabold text-sm text-on-surface">Total em Custódia:</span>
+              <span className="font-extrabold text-sm text-on-surface">Subtotal:</span>
               <span className="text-xl font-extrabold text-primary">
                 R$ {subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
               </span>
             </div>
 
-            <div className="p-3 bg-secondary-container/20 rounded-xl border border-secondary/30 text-[11px] text-secondary font-semibold">
+            <div className="p-3 bg-tertiary-fixed/40 rounded-xl text-[11px] text-on-surface">
               <div className="flex items-center gap-1 font-bold mb-0.5">
-                <span className="material-symbols-outlined text-[15px]">security</span>
-                <span>Custódia Escrow Segregada</span>
+                <span className="material-symbols-outlined text-[15px]">info</span>
+                <span>Pagamento pendente de integração</span>
               </div>
-              O valor permanece retido em conta escrow e só é liberado para a indústria após conferência de lacres na doca.
+              O pedido não movimenta dinheiro. O pagamento depende de uma integração ativa com um provedor.
             </div>
 
             <button
@@ -259,7 +279,7 @@ export default function CarrinhoPage() {
               <span>
                 {cartItems.length > 1
                   ? `Prosseguir para Checkout (${cartItems.length} lotes)`
-                  : 'Prosseguir para Checkout Escrow'}
+                  : 'Prosseguir para Checkout'}
               </span>
             </button>
           </div>

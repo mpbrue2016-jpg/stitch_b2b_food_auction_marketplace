@@ -9,15 +9,19 @@ import { EscrowOrder } from '@/lib/types';
 export default function PainelComissoesPage() {
   const [orders, setOrders] = useState<EscrowOrder[]>([]);
   const [loading, setLoading] = useState(true);
+  const [ordersError, setOrdersError] = useState<string | null>(null);
   const [exportNotice, setExportNotice] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/pedidos', { cache: 'no-store' })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.error || 'Não foi possível carregar os pedidos.');
         setOrders(Array.isArray(data?.orders) ? data.orders : []);
       })
-      .catch(() => {})
+      .catch((error: unknown) => {
+        setOrdersError(error instanceof Error ? error.message : 'Não foi possível carregar os pedidos.');
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -82,6 +86,11 @@ export default function PainelComissoesPage() {
               Parametrização dinâmica das alíquotas administrativas da plataforma (6%, 20% ou taxas customizadas).
             </p>
           </div>
+          {ordersError && (
+            <div role="alert" className="rounded-xl border border-error bg-error-container px-4 py-3 text-sm text-on-error-container">
+              {ordersError}
+            </div>
+          )}
           <div className="flex flex-wrap items-center gap-2">
             <Link
               href="/painel/admin#gestao-banners"
@@ -91,7 +100,7 @@ export default function PainelComissoesPage() {
             </Link>
             <span className="text-xs font-bold text-secondary bg-secondary-fixed/50 px-3 py-1.5 rounded-full flex items-center gap-1">
               <span className="material-symbols-outlined text-[16px]">verified</span>
-              Motor BACEN Regulado
+              Simulação de comissões
             </span>
           </div>
         </div>
@@ -100,19 +109,19 @@ export default function PainelComissoesPage() {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <span className="text-xs font-bold uppercase text-on-surface-variant block">GMV Transacionado</span>
+          <span className="text-xs font-bold uppercase text-on-surface-variant block">Volume de pedidos liquidados</span>
           <span className="text-2xl font-extrabold text-primary block">
             R$ {summary.gmvTotalTransacionado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-outline block">{summary.quantidadeTransacoes} arremates liquidados</span>
+          <span className="text-[11px] text-outline block">{summary.quantidadeTransacoes} repasses confirmados pelo provedor</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <span className="text-xs font-bold uppercase text-on-surface-variant block">Receita de Comissões</span>
+          <span className="text-xs font-bold uppercase text-on-surface-variant block">Comissões de pedidos liquidados</span>
           <span className="text-2xl font-extrabold text-secondary block">
             R$ {summary.receitaTotalComissoes.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-secondary font-bold block">Take-Rate Efetivo: {summary.takeRateMedioEfetivo}%</span>
+          <span className="text-[11px] text-secondary font-bold block">Taxa média calculada: {summary.takeRateMedioEfetivo}%</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -120,7 +129,7 @@ export default function PainelComissoesPage() {
           <span className="text-2xl font-extrabold text-on-surface block">
             R$ {summary.totalRepassesFornecedores.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-outline block">Via SPI / PIX Instantâneo D+0</span>
+          <span className="text-[11px] text-outline block">Status confirmado pelo webhook do provedor</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
@@ -128,7 +137,7 @@ export default function PainelComissoesPage() {
           <span className="text-2xl font-extrabold text-primary block">
             R$ {summary.totalEmCustodiaEscrow.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
-          <span className="text-[11px] text-outline block">Aguardando conferência na doca</span>
+          <span className="text-[11px] text-outline block">Status no sistema; não é saldo bancário</span>
         </div>
       </div>
 
@@ -142,7 +151,7 @@ export default function PainelComissoesPage() {
             <h3 className="font-extrabold text-base text-on-surface">
               Relatório Analítico de Comissões por Transação
             </h3>
-            <span className="text-outline text-[11px]">Auditoria Fiduciária em Tempo Real</span>
+            <span className="text-outline text-[11px]">Registros armazenados no banco</span>
           </div>
           <div className="flex items-center gap-2">
             {exportNotice && (
@@ -232,7 +241,9 @@ export default function PainelComissoesPage() {
                           ? 'Estornado'
                           : order.statusPagamento === 'aguardando_pagamento'
                           ? 'Aguardando PIX'
-                          : 'Liquidado D+0'}
+                          : order.statusPagamento === 'repasse_liquidado_d0'
+                          ? 'Repasse confirmado'
+                          : 'Status registrado'}
                       </span>
                     </td>
                   </tr>

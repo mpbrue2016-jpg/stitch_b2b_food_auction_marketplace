@@ -21,8 +21,8 @@ function crc16Ccitt(payload: string): string {
 export interface PixEmvParams {
   amount: number;
   txid: string;
+  pixKey: string;
   description?: string;
-  pixKey?: string;
   merchantName?: string;
   merchantCity?: string;
 }
@@ -31,11 +31,8 @@ export interface PixEmvParams {
  * Gera payload BR Code (EMV QRCPS-MPM) oficial do Banco Central do Brasil com CRC16-CCITT.
  */
 export function generatePixEmvPayload(params: PixEmvParams): string {
-  const pixKey = (
-    params.pixKey ||
-    process.env.PIX_ESCROW_KEY ||
-    'escrow@varejistaonline.com.br'
-  ).trim();
+  const pixKey = params.pixKey.trim();
+  if (!pixKey) throw new Error('Uma chave PIX válida precisa ser configurada.');
   const merchantName = (params.merchantName || 'VAREJISTA ONLINE B2B')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')

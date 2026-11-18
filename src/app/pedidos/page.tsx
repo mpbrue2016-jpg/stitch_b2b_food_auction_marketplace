@@ -704,7 +704,7 @@ export default function PedidosPage() {
               </div>
               {selectedOrderForTermo.comprovantePix && (
                 <div className="pt-2 border-t border-surface-container">
-                  <span className="text-on-surface-variant block mb-1">Comprovante PIX / TXID:</span>
+                  <span className="text-on-surface-variant block mb-1">Identificação da transação PIX:</span>
                   <code className="block bg-secondary-container/20 px-2.5 py-1.5 rounded border border-secondary/30 font-mono text-[11px] text-secondary break-all">
                     {selectedOrderForTermo.comprovantePix}
                   </code>
