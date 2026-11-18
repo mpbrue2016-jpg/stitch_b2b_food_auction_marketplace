@@ -1,35 +1,72 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
 import { BidModal } from '@/components/BidModal';
 import { AIAssistantWidget } from '@/components/AIAssistantWidget';
 import { HomeBannerCarousel } from '@/components/HomeBannerCarousel';
-import { AuctionLot } from '@/lib/types';
+import { useAuth } from '@/components/AuthProvider';
+import { isSupabaseConfigured, supabase } from '@/lib/supabase';
+import { AuctionLot, ProductCategory } from '@/lib/types';
 
 export default function HomePage() {
-  const [lots, setLots] = useState<AuctionLot[]>(MOCK_AUCTION_LOTS);
+  const { profile } = useAuth();
+  const [lots, setLots] = useState<AuctionLot[]>([]);
+  const [categories, setCategories] = useState<ProductCategory[]>([]);
+  const [loadingLots, setLoadingLots] = useState(true);
   const [selectedLotForBid, setSelectedLotForBid] = useState<AuctionLot | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRadius, setSelectedRadius] = useState('300');
   const [selectedMode, setSelectedMode] = useState('todos');
 
-  useEffect(() => {
-    fetch('/api/lotes')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data?.lots?.length) {
-          setLots(data.lots);
-        }
-      })
-      .catch(() => {});
+  const loadHomeData = useCallback(async () => {
+    try {
+      const [lotsRes, catsRes] = await Promise.all([
+        fetch('/api/lotes', { cache: 'no-store' }),
+        fetch('/api/categorias', { cache: 'no-store' }),
+      ]);
+      const [lotsData, catsData] = await Promise.all([
+        lotsRes.ok ? lotsRes.json() : null,
+        catsRes.ok ? catsRes.json() : null,
+      ]);
+      if (Array.isArray(lotsData?.lots)) {
+        setLots(lotsData.lots);
+      }
+      if (Array.isArray(catsData?.categories)) {
+        setCategories(catsData.categories);
+      }
+    } catch {
+      // keep existing state on transient error
+    } finally {
+      setLoadingLots(false);
+    }
   }, []);
 
+  useEffect(() => {
+    void loadHomeData();
+
+    if (!isSupabaseConfigured) return;
+    const channel = supabase
+      .channel('home-auctions-realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'auctions' },
+        () => {
+          void loadHomeData();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      void supabase.removeChannel(channel);
+    };
+  }, [loadHomeData]);
+
   const handleBidSuccess = (lotId: string, newBidAmount: number, updatedTerminaEm?: string) => {
+    const bidderLabel = profile?.nomeFantasia || 'Você';
     setLots((prev) =>
       prev.map((lot) => {
         if (lot.id === lotId) {
@@ -42,7 +79,7 @@ export default function HomePage() {
             lanceAtual: newBidAmount,
             precoUnitarioAtual: newUnitPrice,
             totalLances: lot.totalLances + 1,
-            ultimoLanceEmpresa: 'Supermercado Central Ltda (Você)',
+            ultimoLanceEmpresa: `${bidderLabel} (Você)`,
             terminaEm: updatedTerminaEm || lot.terminaEm,
             status: 'reta_final',
           };
@@ -55,7 +92,7 @@ export default function HomePage() {
   const filteredLots = lots.filter((lot) => {
     const q = searchTerm.trim().toLowerCase();
     const catName =
-      MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId)?.nome.toLowerCase() || '';
+      categories.find((c) => c.id === lot.produto.categoriaId)?.nome.toLowerCase() || '';
     const matchesSearch =
       !q ||
       lot.produto.titulo.toLowerCase().includes(q) ||
@@ -84,17 +121,17 @@ export default function HomePage() {
 
   const liveAuctions = isFiltering
     ? filteredLots.slice(0, 6)
-    : filteredLots
-        .filter((l) => /^lote-86\d+$/.test(l.id) || l.status === 'reta_final' || l.id === 'lote-8512')
+    : [...filteredLots]
+        .filter((l) => l.status !== 'encerrado' && l.status !== 'homologado')
+        .sort((a, b) => {
+          if (a.status === 'reta_final' && b.status !== 'reta_final') return -1;
+          if (b.status === 'reta_final' && a.status !== 'reta_final') return 1;
+          return new Date(a.terminaEm).getTime() - new Date(b.terminaEm).getTime();
+        })
         .slice(0, 6);
 
   const flashDeals = lots
-    .filter(
-      (l) =>
-        (l.tipoVenda === 'venda_direta' || l.tipoVenda === 'giro_rapido') &&
-        l.id !== 'lote-8501' &&
-        l.id !== 'lote-sbe-2026'
-    )
+    .filter((l) => l.tipoVenda === 'venda_direta' || l.tipoVenda === 'giro_rapido')
     .slice(0, 4);
 
   const closingSoonCount = lots.filter((l) => {
@@ -106,6 +143,13 @@ export default function HomePage() {
     .filter((l) => l.produto.diasRestantesValidade <= 120 || l.produto.statusShelfLife !== 'longa')
     .sort((a, b) => a.produto.diasRestantesValidade - b.produto.diasRestantesValidade)
     .slice(0, 4);
+
+  const totalGmvOferta = lots.reduce((acc, l) => acc + l.lanceAtual, 0);
+  const totalCaixasOferta = lots.reduce((acc, l) => acc + l.produto.totalCaixas, 0);
+  const avgMargin =
+    lots.length > 0
+      ? Math.round(lots.reduce((acc, l) => acc + l.margemEstimadaRevenda, 0) / lots.length)
+      : 0;
 
   return (
     <div className="w-full flex flex-col space-y-6 pb-16">
@@ -151,22 +195,33 @@ export default function HomePage() {
             <div className="lg:col-span-4 bg-surface-container-lowest p-5 rounded-2xl shadow-md border border-outline-variant/30 flex flex-col gap-3">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] uppercase tracking-wider text-on-surface-variant font-bold">
-                  Liquidez Instantânea
+                  Liquidez em Oferta
                 </span>
                 <span className="text-[10px] text-secondary font-bold bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
                   Ao Vivo
                 </span>
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-extrabold text-primary">R$ 4.280.950</span>
-                <span className="text-xs text-on-surface-variant">este mês</span>
+                <span className="text-3xl font-extrabold text-primary tabular-nums">
+                  {loadingLots
+                    ? '...'
+                    : `R$ ${totalGmvOferta.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
+                </span>
+                <span className="text-xs text-on-surface-variant">em pregões</span>
               </div>
               <div className="w-full bg-surface-container h-2 rounded-full overflow-hidden">
-                <div className="bg-secondary h-full rounded-full" style={{ width: '78%' }} />
+                <div
+                  className="bg-secondary h-full rounded-full transition-all"
+                  style={{ width: `${Math.min(100, Math.max(12, avgMargin))}%` }}
+                />
               </div>
               <div className="flex justify-between items-center text-xs text-on-surface-variant pt-1 font-semibold">
-                <span>Volume: <strong>18.420 caixas</strong></span>
-                <span>Tempo Médio: <strong className="text-secondary">48h</strong></span>
+                <span>
+                  Volume: <strong>{totalCaixasOferta.toLocaleString('pt-BR')} caixas</strong>
+                </span>
+                <span>
+                  Margem Média: <strong className="text-secondary">{avgMargin}%</strong>
+                </span>
               </div>
             </div>
           </div>
@@ -305,10 +360,10 @@ export default function HomePage() {
               <span className="material-symbols-outlined text-[24px]">payments</span>
             </div>
             <div>
-              <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight">
-                R$ 4.2M
+              <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight tabular-nums">
+                R$ {totalGmvOferta.toLocaleString('pt-BR', { maximumFractionDigits: 0 })}
               </span>
-              <span className="text-[11px] text-on-surface-variant block">Transacionados este mês</span>
+              <span className="text-[11px] text-on-surface-variant block">Em pregões ativos</span>
             </div>
           </div>
 
@@ -317,22 +372,22 @@ export default function HomePage() {
               <span className="material-symbols-outlined text-[24px]">inventory_2</span>
             </div>
             <div>
-              <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight">
-                18.420 Cxs
+              <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight tabular-nums">
+                {totalCaixasOferta.toLocaleString('pt-BR')} Cxs
               </span>
-              <span className="text-[11px] text-on-surface-variant block">Despachadas hoje</span>
+              <span className="text-[11px] text-on-surface-variant block">Em oferta homologada</span>
             </div>
           </div>
 
           <div className="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
             <div className="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
-              <span className="material-symbols-outlined text-[24px]">schedule</span>
+              <span className="material-symbols-outlined text-[24px]">gavel</span>
             </div>
             <div>
-              <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight">
-                48 Horas
+              <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight tabular-nums">
+                {lots.length} {lots.length === 1 ? 'Lote' : 'Lotes'}
               </span>
-              <span className="text-[11px] text-on-surface-variant block">Tempo médio de giro</span>
+              <span className="text-[11px] text-on-surface-variant block">Pregões publicados</span>
             </div>
           </div>
 
@@ -341,10 +396,10 @@ export default function HomePage() {
               <span className="material-symbols-outlined text-[24px]">domain_verification</span>
             </div>
             <div>
-              <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight">
-                3.140 CNPJs
+              <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight tabular-nums">
+                {categories.length} Segmentos
               </span>
-              <span className="text-[11px] text-on-surface-variant block">Compradores homologados</span>
+              <span className="text-[11px] text-on-surface-variant block">Escrow D+0 Auditado</span>
             </div>
           </div>
         </div>
@@ -377,7 +432,14 @@ export default function HomePage() {
         </div>
 
         {/* Live Grid */}
-        {liveAuctions.length === 0 ? (
+        {loadingLots ? (
+          <div className="bg-surface-container-lowest p-10 rounded-2xl border border-outline-variant/30 text-center space-y-3">
+            <div className="w-8 h-8 rounded-full border-4 border-primary/20 border-t-primary animate-spin mx-auto" />
+            <p className="text-xs font-bold text-on-surface-variant">
+              Carregando pregões ao vivo do Supabase...
+            </p>
+          </div>
+        ) : liveAuctions.length === 0 ? (
           <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 text-center space-y-3">
             <span className="material-symbols-outlined text-outline text-4xl">search_off</span>
             <h3 className="font-bold text-base text-on-surface">
@@ -400,10 +462,10 @@ export default function HomePage() {
           </div>
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {liveAuctions.map((lot) => {
+          {liveAuctions.map((lot, idx) => {
             const isLotClosed = lot.status === 'encerrado' || lot.status === 'homologado';
             const catName =
-              MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
+              categories.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
             return (
             <article
               key={lot.id}
@@ -453,7 +515,7 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   quality={92}
-                  priority={lot.id === 'lote-418' || lot.id === 'lote-8492' || lot.id === 'lote-8501'}
+                  priority={idx < 3}
                   referrerPolicy="no-referrer"
                   className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
                 />
@@ -790,7 +852,7 @@ export default function HomePage() {
           ].map((ind) => {
             const brandCount = lots.filter((l) =>
               ind.isCat
-                ? MOCK_CATEGORIES.find((c) => c.id === l.produto.categoriaId)?.slug === ind.query
+                ? categories.find((c) => c.id === l.produto.categoriaId)?.slug === ind.query
                 : l.produto.marca.toLowerCase().includes(ind.query.toLowerCase()) ||
                   l.produto.fabricante.toLowerCase().includes(ind.query.toLowerCase())
             ).length;
@@ -832,7 +894,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {MOCK_CATEGORIES.map((cat) => {
+          {categories.map((cat) => {
             const catCount = lots.filter((l) => l.produto.categoriaId === cat.id).length;
             return (
               <Link

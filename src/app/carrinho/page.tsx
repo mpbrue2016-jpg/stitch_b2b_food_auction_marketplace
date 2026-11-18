@@ -4,32 +4,44 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
 import {
   CART_UPDATED_EVENT,
   CartItem,
   clearCart,
   getCartItems,
   removeLotFromCart,
+  syncCartFromServer,
   updateLotQuantity,
 } from '@/lib/cart-store';
 import { calculateSplit, SplitCalculationResult } from '@/lib/commission-engine';
+import { ProductCategory } from '@/lib/types';
 
 export default function CarrinhoPage() {
   const router = useRouter();
-  const [cartItems, setCartItems] = useState<CartItem[]>(() => [
-    {
-      lot: MOCK_AUCTION_LOTS[0],
-      quantidade: 1,
-      precoTotal: MOCK_AUCTION_LOTS[0].lanceAtual,
-    },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [categories, setCategories] = useState<ProductCategory[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const sync = () => setCartItems(getCartItems());
-    sync();
-    window.addEventListener(CART_UPDATED_EVENT, sync);
-    return () => window.removeEventListener(CART_UPDATED_EVENT, sync);
+    const syncLocal = () => setCartItems(getCartItems());
+    syncLocal();
+
+    Promise.all([
+      syncCartFromServer(),
+      fetch('/api/categorias', { cache: 'no-store' })
+        .then((res) => (res.ok ? res.json() : null))
+        .catch(() => null),
+    ])
+      .then(([items, catsData]) => {
+        setCartItems(items);
+        if (Array.isArray(catsData?.categories)) {
+          setCategories(catsData.categories);
+        }
+      })
+      .finally(() => setLoading(false));
+
+    window.addEventListener(CART_UPDATED_EVENT, syncLocal);
+    return () => window.removeEventListener(CART_UPDATED_EVENT, syncLocal);
   }, []);
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.precoTotal, 0);
@@ -41,32 +53,45 @@ export default function CarrinhoPage() {
       : freightTypes[0] === 'CIF'
       ? 'CIF (Entrega pela Indústria)'
       : 'FOB (A retirar no CD)';
+
   const [split, setSplit] = useState<SplitCalculationResult>(() =>
-    calculateSplit(subtotal, modalidade)
+    calculateSplit(0, modalidade)
   );
 
   useEffect(() => {
-    if (subtotal <= 0) return;
+    if (subtotal <= 0) {
+      setSplit(calculateSplit(0, modalidade));
+      return;
+    }
+    let active = true;
     fetch(`/api/comissoes?amount=${encodeURIComponent(subtotal)}&modalidade=${encodeURIComponent(modalidade)}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (data?.split) setSplit(data.split);
+        if (active && data?.split) setSplit(data.split);
       })
       .catch(() => {});
+    return () => {
+      active = false;
+    };
   }, [subtotal, modalidade]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
       <div className="space-y-1">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
-          Carrinho de Arremates & Pedidos B2B
+          Carrinho de Arremates &amp; Pedidos B2B
         </h1>
         <p className="text-xs sm:text-sm text-on-surface-variant">
           Confira seus lotes arrematados e avance para a emissão de custódia fiduciária escrow.
         </p>
       </div>
 
-      {cartItems.length === 0 ? (
+      {loading ? (
+        <div className="p-12 text-center bg-surface-container-lowest rounded-2xl border border-outline-variant/30 space-y-3">
+          <div className="w-8 h-8 rounded-full border-4 border-primary/20 border-t-primary animate-spin mx-auto" />
+          <p className="text-xs font-bold text-on-surface-variant">Sincronizando carrinho B2B...</p>
+        </div>
+      ) : cartItems.length === 0 ? (
         <div className="p-12 text-center bg-surface-container-lowest rounded-2xl border border-outline-variant/30 space-y-4">
           <span className="material-symbols-outlined text-outline text-5xl">shopping_cart</span>
           <h3 className="font-bold text-base text-on-surface">Seu carrinho está vazio</h3>
@@ -84,9 +109,9 @@ export default function CarrinhoPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Items List */}
           <div className="lg:col-span-8 space-y-4">
-            {cartItems.map((item, idx) => (
+            {cartItems.map((item) => (
               <div
-                key={idx}
+                key={item.lot.id}
                 className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col sm:flex-row items-center gap-4"
               >
                 <div className="relative w-24 h-24 rounded-xl overflow-hidden bg-surface-container shrink-0">
@@ -104,7 +129,7 @@ export default function CarrinhoPage() {
                 <div className="flex-1 space-y-1 text-xs">
                   <span className="text-[10px] text-on-surface-variant font-bold uppercase">
                     LOTE #{item.lot.codigoLote} •{' '}
-                    {MOCK_CATEGORIES.find((c) => c.id === item.lot.produto.categoriaId)?.nome || 'Geral B2B'} •{' '}
+                    {categories.find((c) => c.id === item.lot.produto.categoriaId)?.nome || 'Geral B2B'} •{' '}
                     {item.lot.produto.marca}
                   </span>
                   <h3 className="font-bold text-sm text-on-surface">
@@ -150,7 +175,7 @@ export default function CarrinhoPage() {
                   <div className="flex items-center gap-3 mt-0.5">
                     {cartItems.length > 1 && (
                       <Link
-                        href={`/checkout?loteId=${item.lot.id}&valor=${item.precoTotal}`}
+                        href={`/checkout?loteId=${item.lot.id}&sourceType=buy_now&valor=${item.precoTotal}`}
                         className="text-[11px] text-primary hover:underline font-bold"
                       >
                         Pagar só este
@@ -225,7 +250,7 @@ export default function CarrinhoPage() {
                 router.push(
                   cartItems.length > 1
                     ? '/checkout?fromCart=1'
-                    : `/checkout?fromCart=1&loteId=${cartItems[0].lot.id}&valor=${subtotal}`
+                    : `/checkout?fromCart=1&loteId=${cartItems[0].lot.id}&sourceType=buy_now&valor=${subtotal}`
                 )
               }
               className="w-full py-3 bg-primary hover:bg-primary-container text-white font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2"

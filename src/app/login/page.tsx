@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { formatCnpj } from '@/lib/format';
+import { useAuth } from '@/components/AuthProvider';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { refreshProfile } = useAuth();
   const [role, setRole] = useState<'comprador' | 'fornecedor' | 'admin'>('comprador');
   const [cnpj, setCnpj] = useState('');
   const [email, setEmail] = useState('');
@@ -19,35 +21,72 @@ export default function LoginPage() {
     e.preventDefault();
     setAuthError(null);
 
-    if (cnpj.replace(/\D/g, '').length !== 14) {
+    const cleanCnpj = cnpj.replace(/\D/g, '');
+    if (cleanCnpj.length !== 14) {
       setAuthError('Informe um CNPJ completo com 14 dígitos (00.000.000/0001-00).');
+      return;
+    }
+
+    if (!isSupabaseConfigured) {
+      setAuthError(
+        'Ambiente Supabase não configurado. Defina NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY para autenticar.'
+      );
       return;
     }
 
     setLoading(true);
 
-    if (isSupabaseConfigured) {
+    try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
         setAuthError(error.message || 'Credenciais inválidas. Verifique e-mail e senha.');
         setLoading(false);
         return;
       }
-    } else {
-      await new Promise((r) => setTimeout(r, 450));
-    }
 
-    if (role === 'comprador' || role === 'fornecedor') {
-      window.localStorage.setItem('varejista_active_role', role);
-    }
+      const perfilRes = await fetch('/api/auth/perfil', { cache: 'no-store' });
+      const perfilData = await perfilRes.json().catch(() => null);
+      const dbProfile = perfilData?.profile;
 
-    setLoading(false);
-    if (role === 'comprador') {
-      router.push('/painel/comprador');
-    } else if (role === 'fornecedor') {
-      router.push('/painel/fornecedor');
-    } else {
-      router.push('/painel/admin');
+      if (!perfilRes.ok || !dbProfile) {
+        await supabase.auth.signOut();
+        setAuthError(
+          'Perfil corporativo não localizado no banco de dados. Contate o administrador.'
+        );
+        setLoading(false);
+        return;
+      }
+
+      const dbCnpj = String(dbProfile.cnpj || '').replace(/\D/g, '');
+      if (dbCnpj && !String(dbProfile.cnpj).startsWith('PEND-') && dbCnpj !== cleanCnpj) {
+        await supabase.auth.signOut();
+        setAuthError('O CNPJ informado não corresponde ao titular desta conta.');
+        setLoading(false);
+        return;
+      }
+
+      await refreshProfile();
+
+      const redirectParam =
+        typeof window !== 'undefined'
+          ? new URLSearchParams(window.location.search).get('redirect')
+          : null;
+
+      const actualRole = dbProfile.role as 'comprador' | 'fornecedor' | 'admin';
+      if (redirectParam && redirectParam.startsWith('/')) {
+        router.push(redirectParam);
+      } else if (actualRole === 'admin') {
+        router.push('/painel/admin');
+      } else if (actualRole === 'fornecedor') {
+        router.push('/painel/fornecedor');
+      } else {
+        router.push('/painel/comprador');
+      }
+      router.refresh();
+    } catch {
+      setAuthError('Falha de conexão ao autenticar no servidor.');
+    } finally {
+      setLoading(false);
     }
   };
 

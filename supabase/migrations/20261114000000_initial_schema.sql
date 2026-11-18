@@ -199,21 +199,58 @@ CREATE INDEX IF NOT EXISTS idx_orders_fornecedor ON public.orders(fornecedor_id)
 
 -- 13. Políticas de Segurança RLS (Row Level Security)
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.commission_rules ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.auctions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.bids ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.notifications ENABLE ROW LEVEL SECURITY;
 
+-- Perfis: usuário vê/edita próprio perfil; admin vê/gerencia todos
+CREATE POLICY "Usuário visualiza próprio perfil" ON public.profiles
+    FOR SELECT USING (auth.uid() = id OR EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin'));
+
+CREATE POLICY "Usuário atualiza próprio perfil" ON public.profiles
+    FOR UPDATE USING (auth.uid() = id)
+    WITH CHECK (auth.uid() = id);
+
+CREATE POLICY "Admin gerencia perfis" ON public.profiles
+    FOR ALL USING (EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin'));
+
 -- Regras de Leitura Pública
 CREATE POLICY "Leilões públicos visíveis para todos" ON public.auctions
     FOR SELECT USING (true);
 
+CREATE POLICY "Fornecedor ou admin cria e atualiza leilões" ON public.auctions
+    FOR ALL USING (
+        EXISTS (
+            SELECT 1 FROM public.products prod
+            WHERE prod.id = auctions.produto_id AND prod.fornecedor_id = auth.uid()
+        )
+        OR EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin')
+    );
+
 CREATE POLICY "Produtos do catálogo visíveis para todos" ON public.products
     FOR SELECT USING (true);
 
+CREATE POLICY "Fornecedor ou admin gerencia seus produtos" ON public.products
+    FOR ALL USING (
+        fornecedor_id = auth.uid()
+        OR EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin')
+    );
+
 CREATE POLICY "Categorias visíveis para todos" ON public.categories
     FOR SELECT USING (true);
+
+CREATE POLICY "Admin gerencia categorias" ON public.categories
+    FOR ALL USING (EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin'));
+
+CREATE POLICY "Regras de comissão visíveis para todos" ON public.commission_rules
+    FOR SELECT USING (true);
+
+CREATE POLICY "Admin gerencia regras de comissão" ON public.commission_rules
+    FOR ALL USING (EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin'));
 
 -- Regras de Criação e Gestão de Lances
 CREATE POLICY "Compradores autenticados podem enviar lances" ON public.bids
@@ -223,5 +260,32 @@ CREATE POLICY "Lances de leilões visíveis para todos" ON public.bids
     FOR SELECT USING (true);
 
 -- Regras de Pedidos
-CREATE POLICY "Compradores e fornecedores veem seus próprios pedidos" ON public.orders
-    FOR SELECT USING (auth.uid() = comprador_id OR auth.uid() = fornecedor_id);
+CREATE POLICY "Compradores, fornecedores e admin veem pedidos pertinentes" ON public.orders
+    FOR SELECT USING (
+        auth.uid() = comprador_id
+        OR auth.uid() = fornecedor_id
+        OR EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin')
+    );
+
+CREATE POLICY "Compradores autenticados ou admin criam pedidos" ON public.orders
+    FOR INSERT WITH CHECK (
+        auth.uid() = comprador_id
+        OR EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin')
+    );
+
+CREATE POLICY "Partes envolvidas ou admin atualizam pedidos" ON public.orders
+    FOR UPDATE USING (
+        auth.uid() = comprador_id
+        OR auth.uid() = fornecedor_id
+        OR EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin')
+    );
+
+-- Notificações
+CREATE POLICY "Usuário visualiza e marca suas notificações" ON public.notifications
+    FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Usuário atualiza suas notificações" ON public.notifications
+    FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "Admin gerencia notificações" ON public.notifications
+    FOR ALL USING (EXISTS (SELECT 1 FROM public.profiles p WHERE p.id = auth.uid() AND p.role = 'admin'));

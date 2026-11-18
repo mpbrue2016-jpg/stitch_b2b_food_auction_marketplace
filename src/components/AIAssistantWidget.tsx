@@ -37,7 +37,9 @@ export const AIAssistantWidget: React.FC = () => {
           ...prev,
           {
             role: 'assistant',
-            text: 'Análise Comercial B2B: Os lotes de maior giro hoje em Alimentos, Cerealista, Hortifruti e Higiene e Limpeza operam com descontos entre 30% e 58% sob custódia Escrow BACEN.',
+            text:
+              data?.error ||
+              'Assistente IA B2B indisponível no momento. Tente novamente em instantes.',
           },
         ]);
       }
@@ -46,7 +48,7 @@ export const AIAssistantWidget: React.FC = () => {
         ...prev,
         {
           role: 'assistant',
-          text: 'Com base no livro de ofertas B2B ativo: priorize lotes com curva FEFO compatível com o giro da sua loja para preservar margem líquida acima de 30% após custos logísticos FOB.',
+          text: 'Falha de comunicação com o servidor do Assistente IA B2B. Tente novamente em instantes.',
         },
       ]);
     } finally {

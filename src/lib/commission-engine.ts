@@ -40,24 +40,6 @@ export const DEFAULT_COMMISSION_RULES: CommissionRule[] = [
   },
 ];
 
-let dynamicRules: CommissionRule[] = [...DEFAULT_COMMISSION_RULES];
-
-export function getCommissionRules(): CommissionRule[] {
-  return dynamicRules;
-}
-
-export function updateCommissionRule(id: string, newPercentage: number, active?: boolean): CommissionRule | null {
-  const index = dynamicRules.findIndex((r) => r.id === id);
-  if (index === -1) return null;
-  dynamicRules[index] = {
-    ...dynamicRules[index],
-    percentualPadrao: newPercentage,
-    ativo: active !== undefined ? active : dynamicRules[index].ativo,
-    atualizadoEm: new Date().toISOString(),
-  };
-  return dynamicRules[index];
-}
-
 export interface SplitCalculationResult {
   valorBrutoTotal: number;
   percentualComissao: number;
@@ -68,8 +50,8 @@ export interface SplitCalculationResult {
 }
 
 /**
- * Calcula o split fiduciário com taxa dinâmica configurável.
- * NUNCA fixa percentuais estáticos em código fechado.
+ * Calcula o split fiduciário com taxa dinâmica vinda do banco de dados.
+ * NUNCA fixa percentuais estáticos quando a alíquota do Supabase é informada.
  */
 export function calculateSplit(
   valorTotalArremate: number,
@@ -79,7 +61,7 @@ export function calculateSplit(
   let percentual = taxaCustomizada;
 
   if (percentual === undefined) {
-    const rule = dynamicRules.find((r) => r.slug === tipoNegociacaoSlug && r.ativo);
+    const rule = DEFAULT_COMMISSION_RULES.find((r) => r.slug === tipoNegociacaoSlug && r.ativo);
     percentual = rule ? rule.percentualPadrao : 6.0;
   }
 

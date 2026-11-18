@@ -1,22 +1,80 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { DockAppointment, marketplaceStore } from '@/lib/marketplace-store';
+import {
+  getAuthenticatedUserAndProfile,
+  isSupabaseServerConfigured,
+} from '@/lib/supabase/server';
+import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
+import { mapDbDockToAppointment } from '@/lib/supabase/mappers';
+import { buildAuditHash, buildSha256Hash } from '@/lib/security';
 
 export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const pedidoId = searchParams.get('pedidoId');
-
-  if (pedidoId) {
-    const apt = marketplaceStore.dockAppointments.find((a) => a.pedidoId === pedidoId);
-    return NextResponse.json({ appointment: apt || null });
+  if (!isSupabaseServerConfigured) {
+    return NextResponse.json(
+      { error: 'Supabase não configurado no ambiente.', appointments: [] },
+      { status: 503 }
+    );
   }
 
-  return NextResponse.json({ appointments: marketplaceStore.dockAppointments });
+  try {
+    const ctx = await getAuthenticatedUserAndProfile();
+    if (!ctx?.user || !ctx.profile) {
+      return NextResponse.json(
+        { error: 'Autenticação obrigatória para consultar docas.', appointments: [] },
+        { status: 401 }
+      );
+    }
+
+    const { searchParams } = new URL(req.url);
+    const pedidoId = searchParams.get('pedidoId');
+    const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
+
+    let query = dbClient
+      .from('dock_appointments')
+      .select('*, orders(codigo_pedido)')
+      .order('created_at', { ascending: false });
+
+    if (ctx.profile.role !== 'admin') {
+      query = query.or(`comprador_id.eq.${ctx.user.id},fornecedor_id.eq.${ctx.user.id}`);
+    }
+
+    const { data, error } = await query;
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    const appointments = (data || []).map((row) =>
+      mapDbDockToAppointment(row as Record<string, unknown>)
+    );
+
+    if (pedidoId) {
+      const apt = appointments.find((a) => a.pedidoId === pedidoId) || null;
+      return NextResponse.json({ appointment: apt });
+    }
+
+    return NextResponse.json({ appointments });
+  } catch (err) {
+    console.error('Erro em GET /api/docas:', err);
+    return NextResponse.json({ error: 'Erro ao consultar agendamentos.' }, { status: 500 });
+  }
 }
 
 export async function POST(req: NextRequest) {
+  if (!isSupabaseServerConfigured) {
+    return NextResponse.json({ error: 'Supabase não configurado no ambiente.' }, { status: 503 });
+  }
+
   try {
+    const ctx = await getAuthenticatedUserAndProfile();
+    if (!ctx?.user || !ctx.profile) {
+      return NextResponse.json(
+        { error: 'Autenticação obrigatória para agendar retirada FOB.' },
+        { status: 401 }
+      );
+    }
+
     const body = await req.json();
-    const { pedidoId, janelaHoraria, placaVeiculo, motoristaNome, dataAgendada, docaNumero } = body;
+    const { pedidoId, janelaHoraria, placaVeiculo, motoristaNome, dataAgendada, docaNumero, cdOrigem } =
+      body;
 
     if (!pedidoId || !janelaHoraria || !placaVeiculo || !motoristaNome) {
       return NextResponse.json(
@@ -25,7 +83,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const cleanPlaca = placaVeiculo.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+    const cleanPlaca = String(placaVeiculo).replace(/[^A-Za-z0-9]/g, '').toUpperCase();
     if (cleanPlaca.length !== 7) {
       return NextResponse.json(
         { error: 'Placa inválida. Utilize o formato Mercosul ou padrão brasileiro (7 caracteres).' },
@@ -33,43 +91,269 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const newApt: DockAppointment = {
-      id: `apt-${Date.now()}`,
-      pedidoId,
-      cdOrigem: 'CD Jundiaí - SP (Doca 03A)',
-      docaNumero: docaNumero || 'Doca 03A',
-      janelaHoraria,
-      dataAgendada: dataAgendada || new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
-      placaVeiculo: cleanPlaca,
-      motoristaNome,
+    const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
+
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+      String(pedidoId)
+    );
+
+    const { data: orderRow, error: orderErr } = await dbClient
+      .from('orders')
+      .select('*, auctions(products(origem_cd))')
+      .eq(isUuid ? 'id' : 'codigo_pedido', pedidoId)
+      .maybeSingle();
+
+    if (orderErr || !orderRow) {
+      return NextResponse.json({ error: 'Pedido não encontrado.' }, { status: 404 });
+    }
+
+    if (String(orderRow.comprador_id) !== ctx.user.id && ctx.profile.role !== 'admin') {
+      return NextResponse.json(
+        { error: 'Apenas o comprador titular deste pedido pode agendar a doca FOB.' },
+        { status: 403 }
+      );
+    }
+
+    if (
+      orderRow.status_pagamento !== 'em_custodia_escrow' &&
+      orderRow.status_pagamento !== 'repasse_liquidado_d0'
+    ) {
+      return NextResponse.json(
+        { error: 'O agendamento de doca exige pagamento confirmado em custódia Escrow.' },
+        { status: 409 }
+      );
+    }
+
+    const auction = (orderRow.auctions || {}) as Record<string, unknown>;
+    const product = (auction.products || {}) as Record<string, unknown>;
+    const resolvedCd =
+      typeof cdOrigem === 'string' && cdOrigem.trim()
+        ? cdOrigem.trim()
+        : String(product.origem_cd || 'CD Jundiaí - SP (Rod. Anhanguera, km 58)');
+    const resolvedDoca = typeof docaNumero === 'string' && docaNumero.trim() ? docaNumero.trim() : 'Doca 03A';
+    const resolvedDate =
+      typeof dataAgendada === 'string' && dataAgendada.trim()
+        ? dataAgendada.trim()
+        : new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0];
+
+    // Verifica conflito de janela na mesma doca e data
+    const { data: conflict } = await dbClient
+      .from('dock_appointments')
+      .select('id, order_id')
+      .eq('cd_origem', resolvedCd)
+      .eq('doca_numero', resolvedDoca)
+      .eq('data_agendada', resolvedDate)
+      .eq('janela_horaria', janelaHoraria)
+      .neq('status', 'liberado')
+      .neq('order_id', orderRow.id)
+      .maybeSingle();
+
+    if (conflict) {
+      return NextResponse.json(
+        {
+          error:
+            'Janela horária indisponível nesta doca e data. Selecione outro horário ou doca.',
+        },
+        { status: 409 }
+      );
+    }
+
+    const passeEntradaHash = `PASSE-${buildSha256Hash(
+      `${orderRow.codigo_pedido}|${resolvedDoca}|${resolvedDate}|${cleanPlaca}`
+    )
+      .slice(0, 12)
+      .toUpperCase()}`;
+
+    const { data: existingApt } = await dbClient
+      .from('dock_appointments')
+      .select('id')
+      .eq('order_id', orderRow.id)
+      .maybeSingle();
+
+    const aptPayload = {
+      order_id: orderRow.id,
+      comprador_id: orderRow.comprador_id,
+      fornecedor_id: orderRow.fornecedor_id,
+      cd_origem: resolvedCd,
+      doca_numero: resolvedDoca,
+      janela_horaria: String(janelaHoraria).trim(),
+      data_agendada: resolvedDate,
+      placa_veiculo: cleanPlaca,
+      motorista_nome: String(motoristaNome).trim().slice(0, 120),
       status: 'agendado',
-      passeEntradaHash: `PASSE-JND-${pedidoId}-${cleanPlaca}`,
+      passe_entrada_hash: passeEntradaHash,
     };
 
-    const existingIdx = marketplaceStore.dockAppointments.findIndex(
-      (a) => a.pedidoId === pedidoId
-    );
-    if (existingIdx !== -1) {
-      marketplaceStore.dockAppointments[existingIdx] = newApt;
-    } else {
-      marketplaceStore.dockAppointments.unshift(newApt);
+    const { data: savedApt, error: saveErr } = existingApt
+      ? await dbClient
+          .from('dock_appointments')
+          .update(aptPayload)
+          .eq('id', existingApt.id)
+          .select('*, orders(codigo_pedido)')
+          .single()
+      : await dbClient
+          .from('dock_appointments')
+          .insert(aptPayload)
+          .select('*, orders(codigo_pedido)')
+          .single();
+
+    if (saveErr || !savedApt) {
+      return NextResponse.json(
+        { error: saveErr?.message || 'Erro ao gravar agendamento WMS.' },
+        { status: 500 }
+      );
     }
 
-    const orderIdx = marketplaceStore.orders.findIndex((o) => o.codigoPedido === pedidoId);
-    if (orderIdx !== -1) {
-      marketplaceStore.orders[orderIdx] = {
-        ...marketplaceStore.orders[orderIdx],
-        docaAgendada: `${newApt.docaNumero} • ${newApt.cdOrigem} (${newApt.dataAgendada} às ${newApt.janelaHoraria} • Placa ${newApt.placaVeiculo} • ${newApt.passeEntradaHash})`,
-        statusLogistica: 'em_transito_fob',
-      };
-    }
+    const docaSummary = `${resolvedDoca} • ${resolvedCd} (${resolvedDate} às ${janelaHoraria} • Placa ${cleanPlaca} • ${passeEntradaHash})`;
+    await dbClient
+      .from('orders')
+      .update({
+        doca_agendada: docaSummary,
+        status_logistica: 'em_transito_fob',
+      })
+      .eq('id', orderRow.id);
+
+    await dbClient.from('notifications').insert({
+      user_id: orderRow.fornecedor_id,
+      titulo: `Retirada FOB Agendada • ${orderRow.codigo_pedido}`,
+      mensagem: `Veículo ${cleanPlaca} (${motoristaNome}) agendado para ${resolvedDate} (${janelaHoraria}) em ${resolvedDoca}.`,
+      canal: 'in_app',
+    });
+
+    await dbClient.from('audit_worm_logs').insert({
+      tipo_evento: 'doca_agendada',
+      protocolo: String(orderRow.codigo_pedido),
+      payload_json: aptPayload,
+      merkle_root_hash: buildAuditHash(String(orderRow.codigo_pedido), 'doca_agendada', aptPayload),
+      responsavel_id: ctx.user.id,
+    });
 
     return NextResponse.json({
       message: 'Agendamento de Doca FOB homologado com sucesso no WMS',
-      appointment: newApt,
+      appointment: mapDbDockToAppointment(savedApt as Record<string, unknown>),
     });
   } catch (err) {
     console.error('Erro na API de agendamento de docas:', err);
     return NextResponse.json({ error: 'Erro interno ao processar agendamento' }, { status: 500 });
   }
 }
+
+export async function PATCH(req: NextRequest) {
+  if (!isSupabaseServerConfigured) {
+    return NextResponse.json({ error: 'Supabase não configurado no ambiente.' }, { status: 503 });
+  }
+
+  try {
+    const ctx = await getAuthenticatedUserAndProfile();
+    if (!ctx?.user || !ctx.profile) {
+      return NextResponse.json({ error: 'Autenticação obrigatória.' }, { status: 401 });
+    }
+
+    const body = await req.json();
+    const { appointmentId, status } = body;
+
+    if (
+      !appointmentId ||
+      !['agendado', 'em_doca', 'conferido_cega', 'liberado'].includes(status)
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            'Parâmetros obrigatórios: appointmentId e status (agendado | em_doca | conferido_cega | liberado).',
+        },
+        { status: 400 }
+      );
+    }
+
+    const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
+    const { data: aptRow, error: fetchErr } = await dbClient
+      .from('dock_appointments')
+      .select('*, orders(codigo_pedido)')
+      .eq('id', appointmentId)
+      .maybeSingle();
+
+    if (fetchErr || !aptRow) {
+      return NextResponse.json({ error: 'Agendamento de doca não localizado.' }, { status: 404 });
+    }
+
+    const isSupplier = String(aptRow.fornecedor_id) === ctx.user.id;
+    const isAdmin = ctx.profile.role === 'admin';
+    if (!isSupplier && !isAdmin) {
+      return NextResponse.json(
+        { error: 'Apenas o fornecedor proprietário do CD ou administrador pode atualizar a doca.' },
+        { status: 403 }
+      );
+    }
+
+    const { data: updatedApt, error: updErr } = await dbClient
+      .from('dock_appointments')
+      .update({ status })
+      .eq('id', appointmentId)
+      .select('*, orders(codigo_pedido)')
+      .single();
+
+    if (updErr || !updatedApt) {
+      return NextResponse.json(
+        { error: updErr?.message || 'Erro ao atualizar status da doca.' },
+        { status: 500 }
+      );
+    }
+
+    const orderLogisticsStatus =
+      status === 'liberado'
+        ? 'entregue'
+        : status === 'conferido_cega'
+        ? 'conferido_doca'
+        : 'em_transito_fob';
+
+    await dbClient
+      .from('orders')
+      .update({ status_logistica: orderLogisticsStatus })
+      .eq('id', aptRow.order_id);
+
+    const codigoPedido = String(
+      ((aptRow.orders || {}) as Record<string, unknown>).codigo_pedido || aptRow.order_id
+    );
+
+    const statusLabelMap: Record<string, string> = {
+      agendado: 'Agendado',
+      em_doca: 'Veículo em Doca',
+      conferido_cega: 'Conferência Cega Concluída',
+      liberado: 'Carga Liberada na Portaria',
+    };
+
+    await dbClient.from('notifications').insert({
+      user_id: aptRow.comprador_id,
+      titulo: `WMS Doca Atualizada • ${codigoPedido}`,
+      mensagem: `${aptRow.doca_numero} (${aptRow.placa_veiculo}) atualizada para: ${statusLabelMap[status] || status}.`,
+      canal: 'in_app',
+    });
+
+    await dbClient.from('audit_worm_logs').insert({
+      tipo_evento: `doca_${status}`,
+      protocolo: codigoPedido,
+      payload_json: {
+        appointmentId,
+        orderId: aptRow.order_id,
+        status,
+        orderLogisticsStatus,
+        actorId: ctx.user.id,
+      },
+      merkle_root_hash: buildAuditHash(codigoPedido, `doca_${status}`, {
+        appointmentId,
+        status,
+      }),
+      responsavel_id: ctx.user.id,
+    });
+
+    return NextResponse.json({
+      message: `Status da doca atualizado para "${statusLabelMap[status] || status}".`,
+      appointment: mapDbDockToAppointment(updatedApt as Record<string, unknown>),
+      orderLogisticsStatus,
+    });
+  } catch (err) {
+    console.error('Erro em PATCH /api/docas:', err);
+    return NextResponse.json({ error: 'Erro interno ao atualizar status da doca.' }, { status: 500 });
+  }
+}
+

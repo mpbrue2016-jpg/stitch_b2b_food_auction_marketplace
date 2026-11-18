@@ -3,25 +3,30 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { CART_UPDATED_EVENT, getCartItems } from '@/lib/cart-store';
-import { MOCK_CATEGORIES } from '@/lib/mock-data';
+import { CART_UPDATED_EVENT, getCartItems, syncCartFromServer } from '@/lib/cart-store';
+import { useAuth } from '@/components/AuthProvider';
+import { ProductCategory } from '@/lib/types';
+
+function getInitials(name?: string | null): string {
+  if (!name) return 'VO';
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return `${parts[0][0] || ''}${parts[1][0] || ''}`.toUpperCase();
+}
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const { user, profile, notifications, loading: authLoading, signOut } = useAuth();
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeRole, setActiveRole] = useState<'comprador' | 'fornecedor'>('comprador');
   const [cartCount, setCartCount] = useState(0);
   const [activeLotsCount, setActiveLotsCount] = useState<number | null>(null);
+  const [categories, setCategories] = useState<ProductCategory[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchCategory, setSearchCategory] = useState('todas');
 
   useEffect(() => {
-    const savedRole = window.localStorage.getItem('varejista_active_role');
-    if (savedRole === 'comprador' || savedRole === 'fornecedor') {
-      setActiveRole(savedRole);
-    }
-
     const syncCartCount = () => {
       const items = getCartItems();
       setCartCount(items.reduce((acc, item) => acc + item.quantidade, 0));
@@ -31,17 +36,23 @@ export const Header: React.FC = () => {
     window.addEventListener(CART_UPDATED_EVENT, syncCartCount);
 
     let active = true;
-    fetch('/api/lotes', { cache: 'no-store' })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (active && Array.isArray(data?.lots)) {
-          const openLots = data.lots.filter(
+    Promise.all([
+      fetch('/api/lotes', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/categorias', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+    ])
+      .then(([lotsData, catsData]) => {
+        if (!active) return;
+        if (Array.isArray(lotsData?.lots)) {
+          const openLots = lotsData.lots.filter(
             (l: { terminaEm: string; status: string }) =>
               l.status !== 'encerrado' &&
               l.status !== 'homologado' &&
               new Date(l.terminaEm).getTime() > Date.now()
           );
           setActiveLotsCount(openLots.length);
+        }
+        if (Array.isArray(catsData?.categories)) {
+          setCategories(catsData.categories);
         }
       })
       .catch(() => {});
@@ -52,10 +63,11 @@ export const Header: React.FC = () => {
     };
   }, [pathname]);
 
-  const handleRoleChange = (role: 'comprador' | 'fornecedor') => {
-    setActiveRole(role);
-    window.localStorage.setItem('varejista_active_role', role);
-  };
+  useEffect(() => {
+    if (user) {
+      void syncCartFromServer();
+    }
+  }, [user]);
 
   const handleSearch = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -66,6 +78,28 @@ export const Header: React.FC = () => {
     setMobileMenuOpen(false);
     router.push(qs ? `/catalogo?${qs}` : '/catalogo');
   };
+
+  const handleSignOut = async () => {
+    await signOut();
+    setMobileMenuOpen(false);
+    router.push('/');
+  };
+
+  const panelHref =
+    profile?.role === 'admin'
+      ? '/painel/admin'
+      : profile?.role === 'fornecedor'
+      ? '/painel/fornecedor'
+      : '/painel/comprador';
+
+  const roleLabel =
+    profile?.role === 'admin'
+      ? 'Admin Master'
+      : profile?.role === 'fornecedor'
+      ? 'Fornecedor'
+      : 'Comprador';
+
+  const unreadNotifCount = notifications.filter((n) => !n.lido).length;
 
   const navLinks = [
     { label: 'Todos os Lotes', href: '/catalogo' },
@@ -96,7 +130,11 @@ export const Header: React.FC = () => {
               <span className="material-symbols-outlined text-[16px]">trending_up</span>
               <span>
                 Pregões Ativos:{' '}
-                <strong>{activeLotsCount !== null ? `${activeLotsCount} lotes abertos` : 'Pregão em tempo real'}</strong>
+                <strong>
+                  {activeLotsCount !== null
+                    ? `${activeLotsCount} ${activeLotsCount === 1 ? 'lote aberto' : 'lotes abertos'}`
+                    : 'Pregão em tempo real'}
+                </strong>
               </span>
             </div>
             <div className="hidden lg:flex items-center gap-1.5">
@@ -109,33 +147,45 @@ export const Header: React.FC = () => {
             <Link href="/pedidos" className="hover:text-primary transition-colors hidden sm:inline">
               Histórico de Pedidos
             </Link>
-            <Link href="/login" className="hover:text-primary font-semibold transition-colors hidden sm:inline">
-              Acesso B2B
-            </Link>
-            <div className="flex items-center bg-surface-container rounded-full p-0.5">
-              <button
-                type="button"
-                onClick={() => handleRoleChange('comprador')}
-                className={`text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full transition-all ${
-                  activeRole === 'comprador'
-                    ? 'bg-surface-container-lowest text-primary font-bold shadow-sm'
-                    : 'text-on-surface-variant hover:text-on-surface'
-                }`}
-              >
-                Comprador
-              </button>
-              <button
-                type="button"
-                onClick={() => handleRoleChange('fornecedor')}
-                className={`text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full transition-all ${
-                  activeRole === 'fornecedor'
-                    ? 'bg-surface-container-lowest text-secondary font-bold shadow-sm'
-                    : 'text-on-surface-variant hover:text-on-surface'
-                }`}
-              >
-                Fornecedor
-              </button>
-            </div>
+            {user && profile ? (
+              <div className="flex items-center gap-2.5">
+                <Link
+                  href={panelHref}
+                  className="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-surface-container-lowest text-primary font-bold shadow-sm"
+                >
+                  {roleLabel}
+                </Link>
+                {unreadNotifCount > 0 && (
+                  <Link
+                    href={panelHref}
+                    className="hidden sm:inline-flex items-center gap-1 text-[10px] font-bold text-tertiary"
+                    title="Notificações não lidas"
+                  >
+                    <span className="material-symbols-outlined text-[14px]">notifications_active</span>
+                    <span>{unreadNotifCount}</span>
+                  </Link>
+                )}
+                <button
+                  type="button"
+                  onClick={handleSignOut}
+                  className="hover:text-error font-semibold transition-colors text-[10px] sm:text-xs"
+                >
+                  Sair
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
+                <Link href="/login" className="hover:text-primary font-semibold transition-colors">
+                  Entrar
+                </Link>
+                <Link
+                  href="/cadastro"
+                  className="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-primary text-white font-bold shadow-sm hover:bg-primary-container transition-colors"
+                >
+                  Cadastrar CNPJ
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -169,7 +219,7 @@ export const Header: React.FC = () => {
                   className="bg-transparent text-xs font-semibold text-on-surface focus:outline-none cursor-pointer"
                 >
                   <option value="todas">Todos os Lotes</option>
-                  {MOCK_CATEGORIES.map((cat) => (
+                  {categories.map((cat) => (
                     <option key={cat.id} value={cat.slug}>
                       {cat.nome}
                     </option>
@@ -230,20 +280,47 @@ export const Header: React.FC = () => {
             </Link>
 
             {/* User Profile Pill */}
-            <Link
-              href={activeRole === 'comprador' ? '/painel/comprador' : '/painel/fornecedor'}
-              className="flex items-center gap-2 pl-2 border-l border-surface-container-high hover:opacity-90 transition-opacity"
-            >
-              <div className="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-xs">
-                {activeRole === 'comprador' ? 'SC' : 'IN'}
-              </div>
-              <div className="hidden xl:block text-left text-xs">
-                <span className="font-bold text-on-surface block leading-tight">
-                  {activeRole === 'comprador' ? 'Supermercado Central' : 'Indústria Nacional'}
-                </span>
-                <span className="text-[10px] text-secondary font-bold block leading-tight">CNPJ Validado</span>
-              </div>
-            </Link>
+            {user && profile ? (
+              <Link
+                href={panelHref}
+                className="flex items-center gap-2 pl-2 border-l border-surface-container-high hover:opacity-90 transition-opacity"
+              >
+                <div className="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-xs">
+                  {getInitials(profile.nomeFantasia || profile.razaoSocial)}
+                </div>
+                <div className="hidden xl:block text-left text-xs max-w-[160px]">
+                  <span className="font-bold text-on-surface block leading-tight truncate">
+                    {profile.nomeFantasia || profile.razaoSocial}
+                  </span>
+                  <span
+                    className={`text-[10px] font-bold block leading-tight ${
+                      profile.statusAprovacao === 'aprovado' ? 'text-secondary' : 'text-tertiary'
+                    }`}
+                  >
+                    {profile.statusAprovacao === 'aprovado'
+                      ? `${roleLabel} • Homologado`
+                      : `${roleLabel} • KYC em Análise`}
+                  </span>
+                </div>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center gap-2 pl-2 border-l border-surface-container-high hover:opacity-90 transition-opacity"
+              >
+                <div className="w-8 h-8 rounded-full bg-surface-container text-primary flex items-center justify-center font-bold text-xs">
+                  <span className="material-symbols-outlined text-[18px]">person</span>
+                </div>
+                <div className="hidden xl:block text-left text-xs">
+                  <span className="font-bold text-on-surface block leading-tight">
+                    {authLoading ? 'Verificando...' : 'Acessar Conta'}
+                  </span>
+                  <span className="text-[10px] text-primary font-bold block leading-tight">
+                    Login / Cadastro B2B
+                  </span>
+                </div>
+              </Link>
+            )}
 
             {/* Mobile Hamburger Button */}
             <button
@@ -321,6 +398,23 @@ export const Header: React.FC = () => {
             >
               + Anunciar Novo Estoque
             </Link>
+            {user ? (
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="mt-1 text-center bg-error-container text-on-error-container text-xs font-bold py-2 rounded-lg"
+              >
+                Encerrar Sessão
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-1 text-center bg-primary text-white text-xs font-bold py-2 rounded-lg"
+              >
+                Entrar / Cadastrar CNPJ
+              </Link>
+            )}
           </div>
         </div>
       )}

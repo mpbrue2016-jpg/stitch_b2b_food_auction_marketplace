@@ -4,15 +4,13 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Pause, Play, ArrowRight } from 'lucide-react';
-import { DEFAULT_HOME_BANNERS } from '@/lib/marketplace-store';
 import { HomeBanner } from '@/lib/types';
 
 const FALLBACK_BANNER_IMAGE = '/images/banners/banner-atacado-pallets.jpg';
 
 export const HomeBannerCarousel: React.FC = () => {
-  const [banners, setBanners] = useState<HomeBanner[]>(() =>
-    DEFAULT_HOME_BANNERS.filter((b) => b.ativo)
-  );
+  const [banners, setBanners] = useState<HomeBanner[]>([]);
+  const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -39,7 +37,10 @@ export const HomeBannerCarousel: React.FC = () => {
           setCurrentIndex(0);
         }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (active) setLoading(false);
+      });
     return () => {
       active = false;
     };
@@ -79,6 +80,17 @@ export const HomeBannerCarousel: React.FC = () => {
       else goPrev();
     }
   };
+
+  if (loading) {
+    return (
+      <section
+        aria-label="Carregando destaques Varejista Online"
+        className="max-w-7xl mx-auto px-4 sm:px-6 pt-5 w-full"
+      >
+        <div className="w-full min-h-[260px] sm:min-h-[320px] lg:min-h-[380px] rounded-2xl bg-surface-container animate-pulse border border-outline-variant/20" />
+      </section>
+    );
+  }
 
   if (total === 0 || !activeBanner) {
     return null;

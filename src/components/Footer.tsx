@@ -63,10 +63,10 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">Governança</h4>
             <ul className="space-y-2 text-xs text-outline-variant">
               <li><Link href="/painel/admin" className="hover:text-white transition-colors">Painel Administrativo Master</Link></li>
-              <li><span className="text-outline-variant/80">Compliance Sanitário ANVISA</span></li>
-              <li><span className="text-outline-variant/80">Auditoria Forense WORM</span></li>
-              <li><span className="text-outline-variant/80">Termos de Arremate & Escrow</span></li>
-              <li><span className="text-outline-variant/80">Central de Ajuda 24/7</span></li>
+              <li><Link href="/governanca#anvisa" className="hover:text-white transition-colors">Compliance Sanitário ANVISA</Link></li>
+              <li><Link href="/governanca#worm" className="hover:text-white transition-colors">Auditoria Forense WORM</Link></li>
+              <li><Link href="/governanca#termos" className="hover:text-white transition-colors">Termos de Arremate &amp; Escrow</Link></li>
+              <li><Link href="/governanca#suporte" className="hover:text-white transition-colors">Central de Ajuda 24/7</Link></li>
             </ul>
           </div>
         </div>

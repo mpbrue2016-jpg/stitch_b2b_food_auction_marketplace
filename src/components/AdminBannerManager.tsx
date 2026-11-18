@@ -167,7 +167,21 @@ export const AdminBannerManager: React.FC = () => {
     setErrorMsg(null);
     try {
       const dataUrl = await resizeFileTo16x9Webp(file);
-      setForm((prev) => ({ ...prev, imagemUrl: dataUrl }));
+      const uploadRes = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bucket: 'banners',
+          dataUrl,
+          fileName: file.name.replace(/\.[^.]+$/, '') + '.webp',
+        }),
+      });
+      const uploadData = await uploadRes.json().catch(() => null);
+      if (uploadRes.ok && uploadData?.url) {
+        setForm((prev) => ({ ...prev, imagemUrl: uploadData.url }));
+      } else {
+        setErrorMsg(uploadData?.error || 'Não foi possível enviar a imagem para o Storage.');
+      }
     } catch {
       setErrorMsg('Formato de imagem inválido. Utilize JPG, PNG ou WEBP.');
     } finally {

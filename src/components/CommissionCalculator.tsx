@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { calculateSplit, getCommissionRules, updateCommissionRule } from '@/lib/commission-engine';
+import { calculateSplit } from '@/lib/commission-engine';
+import { CommissionRule } from '@/lib/types';
 
 export const CommissionCalculator: React.FC = () => {
-  const [rules, setRules] = useState(getCommissionRules());
+  const [rules, setRules] = useState<CommissionRule[]>([]);
+  const [loadingRules, setLoadingRules] = useState(true);
   const [selectedRuleSlug, setSelectedRuleSlug] = useState('leilao');
   const [customRate, setCustomRate] = useState<number>(6.0);
   const [gmvAmount, setGmvAmount] = useState<number>(100000);
@@ -15,16 +17,34 @@ export const CommissionCalculator: React.FC = () => {
   const [saveError, setSaveError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/comissoes')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data?.rules?.length) {
+    let active = true;
+    fetch('/api/comissoes', { cache: 'no-store' })
+      .then(async (res) => {
+        const data = await res.json().catch(() => null);
+        return { ok: res.ok, data };
+      })
+      .then(({ ok, data }) => {
+        if (!active) return;
+        if (ok && Array.isArray(data?.rules)) {
           setRules(data.rules);
-          const current = data.rules.find((r: { slug: string }) => r.slug === 'leilao');
-          if (current) setCustomRate(current.percentualPadrao);
+          const current = data.rules.find((r: CommissionRule) => r.slug === 'leilao') || data.rules[0];
+          if (current) {
+            setSelectedRuleSlug(current.slug);
+            setCustomRate(current.percentualPadrao);
+          }
+        } else if (data?.error) {
+          setSaveError(data.error);
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) setSaveError('Erro ao consultar regras de comissão no banco de dados.');
+      })
+      .finally(() => {
+        if (active) setLoadingRules(false);
+      });
+    return () => {
+      active = false;
+    };
   }, []);
 
   const selectedRule = rules.find((r) => r.slug === selectedRuleSlug);
@@ -45,18 +65,21 @@ export const CommissionCalculator: React.FC = () => {
       });
       const data = await res.json().catch(() => null);
       if (res.ok) {
-        updateCommissionRule(ruleId, boundedRate);
-        const refreshed = await fetch('/api/comissoes').then((r) => (r.ok ? r.json() : null));
-        if (refreshed?.rules) setRules(refreshed.rules);
+        if (Array.isArray(data?.rules)) {
+          setRules(data.rules);
+        } else {
+          const refreshed = await fetch('/api/comissoes', { cache: 'no-store' }).then((r) =>
+            r.ok ? r.json() : null
+          );
+          if (refreshed?.rules) setRules(refreshed.rules);
+        }
         setSaveNotice(`Regra atualizada para ${boundedRate}% e aplicada imediatamente aos próximos splits Escrow.`);
         if (selectedRule?.id === ruleId) setCustomRate(boundedRate);
       } else {
         setSaveError(data?.error || 'Não foi possível salvar a nova alíquota.');
-        setRules([...getCommissionRules()]);
       }
     } catch {
       setSaveError('Erro de conexão ao atualizar regra de comissão.');
-      setRules([...getCommissionRules()]);
     } finally {
       setSaving(false);
       setEditingRuleId(null);
@@ -99,6 +122,15 @@ export const CommissionCalculator: React.FC = () => {
             </span>
           )}
         </div>
+        {loadingRules ? (
+          <div className="p-6 text-center text-xs text-on-surface-variant bg-surface-container-low rounded-xl">
+            Carregando regras de comissão do Supabase...
+          </div>
+        ) : rules.length === 0 ? (
+          <div className="p-6 text-center text-xs text-on-surface-variant bg-surface-container-low rounded-xl">
+            Nenhuma regra de comissão carregada. Utilize o simulador abaixo ou configure o banco de dados Supabase.
+          </div>
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {rules.map((rule) => {
             const isEditing = editingRuleId === rule.id;
@@ -176,6 +208,7 @@ export const CommissionCalculator: React.FC = () => {
             );
           })}
         </div>
+        )}
       </div>
 
       {/* Simulador Interativo de Transação */}

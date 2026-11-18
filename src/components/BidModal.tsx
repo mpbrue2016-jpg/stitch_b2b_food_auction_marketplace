@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { AuctionLot } from '@/lib/types';
+import { useAuth } from '@/components/AuthProvider';
 
 interface BidModalProps {
   lot: AuctionLot;
@@ -20,6 +22,7 @@ export const BidModal: React.FC<BidModalProps> = ({
   onClose,
   onBidSuccess,
 }) => {
+  const { user } = useAuth();
   const minNextBid = lot.lanceAtual + lot.incrementoMinimo;
   const [bidAmount, setBidAmount] = useState<number>(minNextBid);
   const [submitting, setSubmitting] = useState(false);
@@ -27,6 +30,7 @@ export const BidModal: React.FC<BidModalProps> = ({
   const [txHash, setTxHash] = useState<string | null>(null);
   const [antiSnipingExtended, setAntiSnipingExtended] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [requiresLogin, setRequiresLogin] = useState(false);
   const [nowMs, setNowMs] = useState<number>(() => Date.now());
 
   const isExpired =
@@ -38,6 +42,7 @@ export const BidModal: React.FC<BidModalProps> = ({
     if (isOpen) {
       setBidAmount(lot.lanceAtual + lot.incrementoMinimo);
       setErrorMsg(null);
+      setRequiresLogin(false);
       setTxHash(null);
       setAntiSnipingExtended(false);
       setSuccess(false);
@@ -60,6 +65,11 @@ export const BidModal: React.FC<BidModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      setRequiresLogin(true);
+      setErrorMsg('Faça login com seu CNPJ homologado para enviar lances no pregão.');
+      return;
+    }
     if (isExpired) {
       setErrorMsg('Pregão eletrônico encerrado. Não são aceitos novos lances.');
       return;
@@ -69,6 +79,7 @@ export const BidModal: React.FC<BidModalProps> = ({
       return;
     }
     setErrorMsg(null);
+    setRequiresLogin(false);
     setSubmitting(true);
 
     try {
@@ -78,12 +89,16 @@ export const BidModal: React.FC<BidModalProps> = ({
         body: JSON.stringify({
           loteId: lot.id,
           valorLance: bidAmount,
-          compradorId: 'user-varejista-01',
-          empresaNome: 'Supermercado Central Ltda',
-          cnpj: '12.***.***/0001-90',
         }),
       });
       const data = await res.json();
+
+      if (res.status === 401) {
+        setRequiresLogin(true);
+        setErrorMsg(data?.error || 'Autenticação obrigatória para enviar lances.');
+        setSubmitting(false);
+        return;
+      }
 
       if (!res.ok) {
         setErrorMsg(data?.error || 'Não foi possível homologar o lance no pregão.');
@@ -227,8 +242,17 @@ export const BidModal: React.FC<BidModalProps> = ({
             </div>
 
             {errorMsg && (
-              <div className="p-2.5 bg-error-container text-on-error-container rounded-lg text-xs font-bold">
-                {errorMsg}
+              <div className="p-2.5 bg-error-container text-on-error-container rounded-lg text-xs font-bold flex items-center justify-between gap-2">
+                <span>{errorMsg}</span>
+                {requiresLogin && (
+                  <Link
+                    href="/login"
+                    onClick={onClose}
+                    className="underline shrink-0 text-primary font-extrabold"
+                  >
+                    Entrar agora
+                  </Link>
+                )}
               </div>
             )}
 

@@ -1,6 +1,5 @@
 'use client';
 
-import { MOCK_AUCTION_LOTS } from './mock-data';
 import { AuctionLot } from './types';
 
 export interface CartItem {
@@ -12,29 +11,15 @@ export interface CartItem {
 const CART_STORAGE_KEY = 'varejista_b2b_cart_v1';
 export const CART_UPDATED_EVENT = 'varejista-cart-updated';
 
-function getInitialDefaultCart(): CartItem[] {
-  return [
-    {
-      lot: MOCK_AUCTION_LOTS[0],
-      quantidade: 1,
-      precoTotal: MOCK_AUCTION_LOTS[0].lanceAtual,
-    },
-  ];
-}
-
 export function getCartItems(): CartItem[] {
-  if (typeof window === 'undefined') return getInitialDefaultCart();
+  if (typeof window === 'undefined') return [];
   try {
     const raw = window.localStorage.getItem(CART_STORAGE_KEY);
-    if (raw === null) {
-      const initial = getInitialDefaultCart();
-      window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(initial));
-      return initial;
-    }
+    if (!raw) return [];
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : [];
   } catch {
-    return getInitialDefaultCart();
+    return [];
   }
 }
 
@@ -77,34 +62,100 @@ export function addLotToCart(lot: AuctionLot, customPrice?: number): CartItem[] 
   }
 
   saveCartItems(updated);
+
+  if (typeof window !== 'undefined') {
+    void fetch('/api/carrinho', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ loteId: lot.id, quantidade: 1 }),
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (Array.isArray(data?.items)) {
+          saveCartItems(data.items);
+        }
+      })
+      .catch(() => {});
+  }
+
   return updated;
 }
 
 export function removeLotFromCart(lotId: string): CartItem[] {
   const updated = getCartItems().filter((item) => item.lot.id !== lotId);
   saveCartItems(updated);
+
+  if (typeof window !== 'undefined') {
+    void fetch(`/api/carrinho?loteId=${encodeURIComponent(lotId)}`, {
+      method: 'DELETE',
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (Array.isArray(data?.items)) {
+          saveCartItems(data.items);
+        }
+      })
+      .catch(() => {});
+  }
+
   return updated;
 }
 
 export function updateLotQuantity(lotId: string, delta: number): CartItem[] {
-  const updated = getCartItems()
-    .map((item) => {
-      if (item.lot.id !== lotId) return item;
-      const unitLotPrice =
-        item.quantidade > 0
-          ? item.precoTotal / item.quantidade
-          : item.lot.precoArremateImediato ?? item.lot.lanceAtual;
-      const nextQty = Math.max(1, item.quantidade + delta);
-      return {
-        ...item,
-        quantidade: nextQty,
-        precoTotal: Number((nextQty * unitLotPrice).toFixed(2)),
-      };
-    });
+  let targetNextQty = 1;
+  const updated = getCartItems().map((item) => {
+    if (item.lot.id !== lotId) return item;
+    const unitLotPrice =
+      item.quantidade > 0
+        ? item.precoTotal / item.quantidade
+        : item.lot.precoArremateImediato ?? item.lot.lanceAtual;
+    const nextQty = Math.max(1, item.quantidade + delta);
+    targetNextQty = nextQty;
+    return {
+      ...item,
+      quantidade: nextQty,
+      precoTotal: Number((nextQty * unitLotPrice).toFixed(2)),
+    };
+  });
   saveCartItems(updated);
+
+  if (typeof window !== 'undefined') {
+    void fetch('/api/carrinho', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ loteId: lotId, quantidade: targetNextQty }),
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (Array.isArray(data?.items)) {
+          saveCartItems(data.items);
+        }
+      })
+      .catch(() => {});
+  }
+
   return updated;
 }
 
 export function clearCart(): void {
   saveCartItems([]);
+  if (typeof window !== 'undefined') {
+    void fetch('/api/carrinho?clear=1', { method: 'DELETE' }).catch(() => {});
+  }
+}
+
+export async function syncCartFromServer(): Promise<CartItem[]> {
+  if (typeof window === 'undefined') return [];
+  try {
+    const res = await fetch('/api/carrinho', { cache: 'no-store' });
+    if (!res.ok) return getCartItems();
+    const data = await res.json();
+    if (Array.isArray(data?.items)) {
+      saveCartItems(data.items);
+      return data.items;
+    }
+  } catch {
+    // keep local cache if unauthenticated
+  }
+  return getCartItems();
 }

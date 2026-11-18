@@ -23,7 +23,10 @@ export default function CadastroPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [approvedModal, setApprovedModal] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [selectedDocs, setSelectedDocs] = useState<string[]>([]);
+  const [emailConfirmationRequired, setEmailConfirmationRequired] = useState(false);
+  const [kycUploadWarning, setKycUploadWarning] = useState<string | null>(null);
   const docInputRef = React.useRef<HTMLInputElement | null>(null);
 
   const [cnpjError, setCnpjError] = useState<string | null>(null);
@@ -68,36 +71,79 @@ export default function CadastroPage() {
       return;
     }
 
+    if (!password || password.length < 6) {
+      setSubmitError('A senha deve conter pelo menos 6 caracteres.');
+      return;
+    }
+
+    if (!isSupabaseConfigured) {
+      setSubmitError(
+        'Ambiente Supabase não configurado. Configure NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY.'
+      );
+      return;
+    }
+
     setSubmitting(true);
 
-    if (isSupabaseConfigured) {
-      const { error } = await supabase.auth.signUp({
+    try {
+      const { data: signUpData, error } = await supabase.auth.signUp({
         email,
-        password: password || 'B2BMarketplace@2026',
+        password,
         options: {
+          emailRedirectTo: `${window.location.origin}/login`,
           data: {
             role: userType,
             cnpj,
             razao_social: razaoSocial,
             nome_fantasia: nomeFantasia,
+            cnae,
             telefone,
             cidade,
             uf,
           },
         },
       });
+
       if (error) {
         setSubmitError(error.message || 'Erro ao criar conta corporativa.');
         setSubmitting(false);
         return;
       }
-    } else {
-      await new Promise((r) => setTimeout(r, 600));
-    }
 
-    window.localStorage.setItem('varejista_active_role', userType);
-    setSubmitting(false);
-    setApprovedModal(true);
+      // Caso sessão já esteja ativa (confirmação automática ou desabilitada), envia docs KYC para Storage
+      setKycUploadWarning(null);
+      if (signUpData.session && selectedFiles.length > 0) {
+        let failedCount = 0;
+        for (const file of selectedFiles) {
+          try {
+            const fd = new FormData();
+            fd.append('file', file);
+            fd.append('bucket', 'kyc-docs');
+            fd.append('tipoDocumento', 'contrato_social');
+            const upRes = await fetch('/api/upload', { method: 'POST', body: fd });
+            if (!upRes.ok) failedCount += 1;
+          } catch {
+            failedCount += 1;
+          }
+        }
+        if (failedCount > 0) {
+          setKycUploadWarning(
+            `${failedCount} arquivo(s) KYC não pôde(ram) ser anexado(s) agora. Reenvie dentro do seu painel após acessar a conta.`
+          );
+        }
+      } else if (!signUpData.session && selectedFiles.length > 0) {
+        setKycUploadWarning(
+          `Após confirmar seu e-mail e entrar, reenvie os ${selectedFiles.length} documento(s) selecionados diretamente no painel da sua empresa.`
+        );
+      }
+
+      setEmailConfirmationRequired(!signUpData.session);
+      setApprovedModal(true);
+    } catch {
+      setSubmitError('Falha inesperada ao finalizar cadastro corporativo.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -328,8 +374,9 @@ export default function CadastroPage() {
                 multiple
                 accept=".pdf,.png,.jpg,.jpeg"
                 onChange={(e) => {
-                  const names = Array.from(e.target.files || []).map((f) => f.name);
-                  setSelectedDocs(names);
+                  const files = Array.from(e.target.files || []);
+                  setSelectedFiles(files);
+                  setSelectedDocs(files.map((f) => f.name));
                 }}
                 className="hidden"
               />
@@ -382,30 +429,43 @@ export default function CadastroPage() {
               <span className="material-symbols-outlined text-4xl">verified</span>
             </div>
             <div>
-              <h3 className="font-extrabold text-xl text-on-surface">Cadastro Aprovado!</h3>
+              <h3 className="font-extrabold text-xl text-on-surface">
+                {emailConfirmationRequired ? 'Confirme seu E-mail Corporativo!' : 'Cadastro Registrado!'}
+              </h3>
               <p className="text-xs text-on-surface-variant mt-1">
-                Limite de <strong>R$ 100.000,00</strong> em custódia fiduciária liberado instantaneamente para seu CNPJ.
+                {emailConfirmationRequired
+                  ? `Enviamos um link de confirmação para ${email}. Após confirmar, sua empresa entrará em validação documental KYC.`
+                  : 'Seu perfil B2B foi criado e encaminhado para homologação KYC.'}
               </p>
             </div>
             <div className="p-3 bg-surface-container-low rounded-xl text-xs text-left space-y-1">
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Empresa:</span>
-                <span className="font-bold text-on-surface">{razaoSocial || 'Supermercado Central'}</span>
+                <span className="font-bold text-on-surface">{razaoSocial}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Modalidade:</span>
                 <span className="font-bold text-secondary uppercase">{userType}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-on-surface-variant">Status BACEN:</span>
-                <span className="text-secondary font-bold">100% Homologado</span>
+                <span className="text-on-surface-variant">Status BACEN / KYC:</span>
+                <span className="text-secondary font-bold">
+                  {emailConfirmationRequired ? 'Aguardando Confirmação de E-mail' : 'Em Análise Documental'}
+                </span>
               </div>
             </div>
+            {kycUploadWarning && (
+              <div className="p-2.5 bg-tertiary-fixed/40 border border-tertiary/30 rounded-xl text-[11px] text-on-tertiary-fixed font-semibold text-left">
+                {kycUploadWarning}
+              </div>
+            )}
             <button
               type="button"
               onClick={() => {
                 setApprovedModal(false);
-                if (userType === 'comprador') {
+                if (emailConfirmationRequired) {
+                  router.push('/login');
+                } else if (userType === 'comprador') {
                   router.push('/painel/comprador');
                 } else {
                   router.push('/painel/fornecedor');
@@ -413,7 +473,7 @@ export default function CadastroPage() {
               }}
               className="w-full py-3 bg-primary hover:bg-primary-container text-white font-bold text-xs rounded-xl shadow-md transition-all"
             >
-              Acessar Meu Painel Agora
+              {emailConfirmationRequired ? 'Ir para Tela de Login' : 'Acessar Meu Painel Agora'}
             </button>
           </div>
         </div>

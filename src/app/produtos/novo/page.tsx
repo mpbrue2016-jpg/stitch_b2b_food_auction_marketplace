@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -12,7 +12,8 @@ import {
   Store,
   Upload,
 } from 'lucide-react';
-import { MOCK_CATEGORIES } from '@/lib/mock-data';
+import { useAuth } from '@/components/AuthProvider';
+import { ProductCategory } from '@/lib/types';
 
 type LotPresetType = 'industria' | 'pequeno_mercado' | 'cerealista' | 'hortifruti' | 'higiene_limpeza';
 
@@ -27,7 +28,7 @@ const LOT_IMAGE_PRESETS = [
   { label: 'Detergentes & Conservação', url: '/images/lotes/lote-detergente-500ml.webp' },
 ];
 
-async function resizeFileTo4x3Webp(file: File): Promise<string> {
+async function resizeFileTo4x3WebpBlob(file: File): Promise<Blob> {
   const objectUrl = URL.createObjectURL(file);
   try {
     const img = new window.Image();
@@ -61,7 +62,11 @@ async function resizeFileTo4x3Webp(file: File): Promise<string> {
     }
 
     ctx.drawImage(img, sx, sy, sw, sh, 0, 0, targetWidth, targetHeight);
-    return canvas.toDataURL('image/webp', 0.85);
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob((result) => resolve(result), 'image/webp', 0.85)
+    );
+    if (!blob) throw new Error('Falha ao codificar imagem WebP');
+    return blob;
   } finally {
     URL.revokeObjectURL(objectUrl);
   }
@@ -72,7 +77,9 @@ function NovoProdutoContent() {
   const searchParams = useSearchParams();
   const modeloParam = searchParams.get('modelo');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { user, profile, loading: authLoading } = useAuth();
 
+  const [categories, setCategories] = useState<ProductCategory[]>([]);
   const [presetMode, setPresetMode] = useState<LotPresetType>(
     modeloParam === 'pequeno_mercado' ? 'pequeno_mercado' : 'industria'
   );
@@ -80,6 +87,8 @@ function NovoProdutoContent() {
   const [success, setSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [aiDescError, setAiDescError] = useState<string | null>(null);
   const [createdLotCode, setCreatedLotCode] = useState<string | null>(null);
 
   // Form states
@@ -88,7 +97,7 @@ function NovoProdutoContent() {
   const [generatingDesc, setGeneratingDesc] = useState(false);
   const [marca, setMarca] = useState('');
   const [fabricante, setFabricante] = useState('');
-  const [categoriaId, setCategoriaId] = useState(MOCK_CATEGORIES[0].id);
+  const [categoriaId, setCategoriaId] = useState('');
   const [gtinEan, setGtinEan] = useState('');
   const [dun14, setDun14] = useState('');
   const [origem, setOrigem] = useState('CD Jundiaí - SP');
@@ -104,119 +113,145 @@ function NovoProdutoContent() {
   const [laudoAnvisa, setLaudoAnvisa] = useState(true);
   const [imagemUrl, setImagemUrl] = useState('/images/lotes/lote-arroz-5kg.webp');
 
-  const applyPreset = (mode: LotPresetType) => {
-    setPresetMode(mode);
-    setSubmitError(null);
-    if (mode === 'pequeno_mercado') {
-      setTitulo('Sobra de Estoque · Café Torrado e Moído 500g (25 Caixas Fechadas)');
-      setMarca('Pilão / Três Corações');
-      setFabricante('Minimercado Central Bairro (Liquidação)');
-      setCategoriaId('cat-1');
-      setGtinEan('7896089011358');
-      setDun14('17896089011355');
-      setOrigem('Depósito Local · Zona Leste - SP');
-      setUnidadesPorEmbalagem(12);
-      setTotalCaixas(25);
-      setPaletes(1);
-      setDataValidade('2027-02-28');
-      setLanceInicial(1800);
-      setIncrementoMinimo(100);
-      setPrecoArremate(2400);
-      setTipoVenda('giro_rapido');
-      setTipoFrete('FOB');
-      setLaudoAnvisa(true);
-      setImagemUrl('/images/banners/banner-pequenos-mercados.jpg');
-      setDescricao(
-        'Lote excedente de loja física em caixas lacradas de fábrica, armazenadas em depósito seco e ventilado. Ideal para mercados de bairro e mercearias com retirada rápida no local e nota fiscal garantida.'
-      );
-    } else if (mode === 'cerealista') {
-      setTitulo('Feijão Carioca Tipo 1 Extra · 200 Fardos (6.000 kg)');
-      setMarca('Cerealista Sul / Kicaldo');
-      setFabricante('Beneficiadora Cerealista Sul Ltda');
-      setCategoriaId('cat-7');
-      setGtinEan('7896292001014');
-      setDun14('17896292001011');
-      setOrigem('Armazém Cerealista Campinas - SP');
-      setUnidadesPorEmbalagem(30);
-      setTotalCaixas(200);
-      setPaletes(5);
-      setDataValidade('2027-05-25');
-      setLanceInicial(22000);
-      setIncrementoMinimo(400);
-      setPrecoArremate(29500);
-      setTipoVenda('leilao');
-      setTipoFrete('FOB');
-      setLaudoAnvisa(true);
-      setImagemUrl('/images/lotes/lote-cerealista-feijao.jpg');
-      setDescricao(
-        'Lote cerealista safra nova em fardos de 30x1kg sobre paletes PBR. Umidade controlada e classificação Tipo 1 oficial para atacado e redes supermercadistas.'
-      );
-    } else if (mode === 'hortifruti') {
-      setTitulo('Hortifruti CEAGESP Mix · Tomate, Cebola & Batata (120 Caixas 20kg)');
-      setMarca('AgroVale Hortifruti');
-      setFabricante('Cooperativa Agrícola Vale Verde');
-      setCategoriaId('cat-8');
-      setGtinEan('7898990021048');
-      setDun14('17898990021045');
-      setOrigem('CEAGESP Vila Leopoldina - SP (Box 14)');
-      setUnidadesPorEmbalagem(20);
-      setTotalCaixas(120);
-      setPaletes(2);
-      setDataValidade('2026-12-03');
-      setLanceInicial(5800);
-      setIncrementoMinimo(200);
-      setPrecoArremate(7900);
-      setTipoVenda('giro_rapido');
-      setTipoFrete('FOB');
-      setLaudoAnvisa(true);
-      setImagemUrl('/images/lotes/lote-hortifruti-caixas.jpg');
-      setDescricao(
-        'Caixas plásticas higienizadas de 20kg com colheita selecionada do dia. Retirada imediata em doca refrigerada para sacolões, hortifrutis e supermercados.'
-      );
-    } else if (mode === 'higiene_limpeza') {
-      setTitulo('Combo Higiene e Limpeza · Sabão em Pó, Desinfetante & Papel (200 Fardos)');
-      setMarca('LimpMais / Ypê');
-      setFabricante('Distribuidora LimpMais Brasil Ltda');
-      setCategoriaId('cat-6');
-      setGtinEan('7891150054127');
-      setDun14('17891150054124');
-      setOrigem('CD Osasco - SP (Galpão Higiene)');
-      setUnidadesPorEmbalagem(12);
-      setTotalCaixas(200);
-      setPaletes(4);
-      setDataValidade('2028-05-10');
-      setLanceInicial(16400);
-      setIncrementoMinimo(300);
-      setPrecoArremate(21900);
-      setTipoVenda('leilao');
-      setTipoFrete('FOB');
-      setLaudoAnvisa(true);
-      setImagemUrl('/images/lotes/lote-higiene-limpeza.jpg');
-      setDescricao(
-        'Carga fechada de produtos de higiene e limpeza com embalagens originais termoencolhidas. Alta margem de revenda para varejo alimentar e perfumarias.'
-      );
-    } else {
-      setTitulo('');
-      setMarca('');
-      setFabricante('');
-      setCategoriaId(MOCK_CATEGORIES[0].id);
-      setGtinEan('');
-      setDun14('');
-      setOrigem('CD Jundiaí - SP');
-      setUnidadesPorEmbalagem(20);
-      setTotalCaixas(100);
-      setPaletes(4);
-      setDataValidade('2026-12-31');
-      setLanceInicial(25000);
-      setIncrementoMinimo(500);
-      setPrecoArremate(32000);
-      setTipoVenda('leilao');
-      setTipoFrete('FOB');
-      setLaudoAnvisa(true);
-      setImagemUrl('/images/lotes/lote-arroz-5kg.webp');
-      setDescricao('');
-    }
-  };
+  const resolveCategoryBySlug = useCallback(
+    (slug: string, list: ProductCategory[] = categories) =>
+      list.find((c) => c.slug === slug)?.id || list[0]?.id || slug,
+    [categories]
+  );
+
+  useEffect(() => {
+    fetch('/api/categorias', { cache: 'no-store' })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (Array.isArray(data?.categories) && data.categories.length > 0) {
+          const cats: ProductCategory[] = data.categories;
+          setCategories(cats);
+          setCategoriaId((prev) => {
+            if (cats.some((c) => c.id === prev)) return prev;
+            const bySlug = cats.find((c) => c.slug === prev);
+            return bySlug ? bySlug.id : cats[0].id;
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const applyPreset = useCallback(
+    (mode: LotPresetType) => {
+      setPresetMode(mode);
+      setSubmitError(null);
+      if (mode === 'pequeno_mercado') {
+        setTitulo('Sobra de Estoque · Café Torrado e Moído 500g (25 Caixas Fechadas)');
+        setMarca('Pilão / Três Corações');
+        setFabricante('Minimercado Central Bairro (Liquidação)');
+        setCategoriaId(resolveCategoryBySlug('alimentos-secos'));
+        setGtinEan('7896089011358');
+        setDun14('17896089011355');
+        setOrigem('Depósito Local · Zona Leste - SP');
+        setUnidadesPorEmbalagem(12);
+        setTotalCaixas(25);
+        setPaletes(1);
+        setDataValidade('2027-02-28');
+        setLanceInicial(1800);
+        setIncrementoMinimo(100);
+        setPrecoArremate(2400);
+        setTipoVenda('giro_rapido');
+        setTipoFrete('FOB');
+        setLaudoAnvisa(true);
+        setImagemUrl('/images/banners/banner-pequenos-mercados.jpg');
+        setDescricao(
+          'Lote excedente de loja física em caixas lacradas de fábrica, armazenadas em depósito seco e ventilado. Ideal para mercados de bairro e mercearias com retirada rápida no local e nota fiscal garantida.'
+        );
+      } else if (mode === 'cerealista') {
+        setTitulo('Feijão Carioca Tipo 1 Extra · 200 Fardos (6.000 kg)');
+        setMarca('Cerealista Sul / Kicaldo');
+        setFabricante('Beneficiadora Cerealista Sul Ltda');
+        setCategoriaId(resolveCategoryBySlug('cerealista'));
+        setGtinEan('7896292001014');
+        setDun14('17896292001011');
+        setOrigem('Armazém Cerealista Campinas - SP');
+        setUnidadesPorEmbalagem(30);
+        setTotalCaixas(200);
+        setPaletes(5);
+        setDataValidade('2027-05-25');
+        setLanceInicial(22000);
+        setIncrementoMinimo(400);
+        setPrecoArremate(29500);
+        setTipoVenda('leilao');
+        setTipoFrete('FOB');
+        setLaudoAnvisa(true);
+        setImagemUrl('/images/lotes/lote-cerealista-feijao.jpg');
+        setDescricao(
+          'Lote cerealista safra nova em fardos de 30x1kg sobre paletes PBR. Umidade controlada e classificação Tipo 1 oficial para atacado e redes supermercadistas.'
+        );
+      } else if (mode === 'hortifruti') {
+        setTitulo('Hortifruti CEAGESP Mix · Tomate, Cebola & Batata (120 Caixas 20kg)');
+        setMarca('AgroVale Hortifruti');
+        setFabricante('Cooperativa Agrícola Vale Verde');
+        setCategoriaId(resolveCategoryBySlug('hortifruti'));
+        setGtinEan('7898990021048');
+        setDun14('17898990021045');
+        setOrigem('CEAGESP Vila Leopoldina - SP (Box 14)');
+        setUnidadesPorEmbalagem(20);
+        setTotalCaixas(120);
+        setPaletes(2);
+        setDataValidade('2026-12-03');
+        setLanceInicial(5800);
+        setIncrementoMinimo(200);
+        setPrecoArremate(7900);
+        setTipoVenda('giro_rapido');
+        setTipoFrete('FOB');
+        setLaudoAnvisa(true);
+        setImagemUrl('/images/lotes/lote-hortifruti-caixas.jpg');
+        setDescricao(
+          'Caixas plásticas higienizadas de 20kg com colheita selecionada do dia. Retirada imediata em doca refrigerada para sacolões, hortifrutis e supermercados.'
+        );
+      } else if (mode === 'higiene_limpeza') {
+        setTitulo('Combo Higiene e Limpeza · Sabão em Pó, Desinfetante & Papel (200 Fardos)');
+        setMarca('LimpMais / Ypê');
+        setFabricante('Distribuidora LimpMais Brasil Ltda');
+        setCategoriaId(resolveCategoryBySlug('higiene-limpeza'));
+        setGtinEan('7891150054127');
+        setDun14('17891150054124');
+        setOrigem('CD Osasco - SP (Galpão Higiene)');
+        setUnidadesPorEmbalagem(12);
+        setTotalCaixas(200);
+        setPaletes(4);
+        setDataValidade('2028-05-10');
+        setLanceInicial(16400);
+        setIncrementoMinimo(300);
+        setPrecoArremate(21900);
+        setTipoVenda('leilao');
+        setTipoFrete('FOB');
+        setLaudoAnvisa(true);
+        setImagemUrl('/images/lotes/lote-higiene-limpeza.jpg');
+        setDescricao(
+          'Carga fechada de produtos de higiene e limpeza com embalagens originais termoencolhidas. Alta margem de revenda para varejo alimentar e perfumarias.'
+        );
+      } else {
+        setTitulo('');
+        setMarca('');
+        setFabricante('');
+        setCategoriaId(categories[0]?.id || 'alimentos-secos');
+        setGtinEan('');
+        setDun14('');
+        setOrigem('CD Jundiaí - SP');
+        setUnidadesPorEmbalagem(20);
+        setTotalCaixas(100);
+        setPaletes(4);
+        setDataValidade('2026-12-31');
+        setLanceInicial(25000);
+        setIncrementoMinimo(500);
+        setPrecoArremate(32000);
+        setTipoVenda('leilao');
+        setTipoFrete('FOB');
+        setLaudoAnvisa(true);
+        setImagemUrl('/images/lotes/lote-arroz-5kg.webp');
+        setDescricao('');
+      }
+    },
+    [categories, resolveCategoryBySlug]
+  );
 
   useEffect(() => {
     if (
@@ -227,7 +262,13 @@ function NovoProdutoContent() {
     ) {
       applyPreset(modeloParam);
     }
-  }, [modeloParam]);
+  }, [modeloParam, applyPreset]);
+
+  useEffect(() => {
+    if (profile && !fabricante) {
+      setFabricante(profile.razaoSocial || profile.nomeFantasia || '');
+    }
+  }, [profile, fabricante]);
 
   const totalUnidades = Math.max(0, unidadesPorEmbalagem) * Math.max(0, totalCaixas);
   const precoUnitarioEstimado = totalUnidades > 0 ? (lanceInicial / totalUnidades).toFixed(2) : '0.00';
@@ -236,12 +277,30 @@ function NovoProdutoContent() {
     const file = e.target.files?.[0];
     if (!file) return;
     setImageError(null);
+    setUploadingImage(true);
     try {
-      const dataUrl = await resizeFileTo4x3Webp(file);
-      setImagemUrl(dataUrl);
+      const webpBlob = await resizeFileTo4x3WebpBlob(file);
+      const formData = new FormData();
+      formData.append('bucket', 'lot-images');
+      formData.append(
+        'file',
+        new File([webpBlob], `lote-${Date.now()}.webp`, { type: 'image/webp' })
+      );
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.url) {
+        setImageError(data?.error || 'Não foi possível enviar a foto para o Storage.');
+        return;
+      }
+      setImagemUrl(data.url);
     } catch {
       setImageError('Não foi possível processar a imagem. Use PNG, JPG ou WEBP.');
     } finally {
+      setUploadingImage(false);
       if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
@@ -249,26 +308,28 @@ function NovoProdutoContent() {
   const handleGenerateDescription = async () => {
     if (!titulo.trim()) return;
     setGeneratingDesc(true);
+    setAiDescError(null);
     try {
       const res = await fetch('/api/ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          prompt: `Gere uma descrição técnica B2B objetiva (máximo 3 frases, sem markdown) para um lote atacadista: Produto "${titulo}", Marca "${marca || 'Linha Comercial'}", Vendedor "${fabricante || 'Estabelecimento Homologado'}", ${totalCaixas} caixas (${paletes} paletes), GTIN "${gtinEan || '7890000000000'}", validade até ${dataValidade}, frete ${tipoFrete} em ${origem}.`,
+          mode: 'description',
+          productName: titulo,
+          brand: marca || 'Linha Comercial',
+          packaging: `${totalCaixas} caixas (${paletes} paletes), validade ${dataValidade}, frete ${tipoFrete} em ${origem}`,
         }),
       });
-      const data = res.ok ? await res.json() : null;
-      if (data?.reply && !String(data.reply).includes('não configurada')) {
-        setDescricao(data.reply);
-      } else {
-        setDescricao(
-          `Lote fechado de ${titulo} (${marca || 'linha comercial'}) com ${totalCaixas} caixas (${totalUnidades.toLocaleString('pt-BR')} unidades) em ${paletes} palete(s). Validade até ${dataValidade}, rastreabilidade GS1 (EAN ${gtinEan || 'homologado'}) e retirada ${tipoFrete} em ${origem}.`
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.reply) {
+        setAiDescError(
+          data?.error || 'Serviço de IA indisponível no momento. Redija a descrição manualmente.'
         );
+        return;
       }
+      setDescricao(data.reply);
     } catch {
-      setDescricao(
-        `Lote fechado de ${titulo} com ${totalCaixas} caixas (${totalUnidades.toLocaleString('pt-BR')} unidades), validade ${dataValidade} e disponibilidade ${tipoFrete} em ${origem}.`
-      );
+      setAiDescError('Falha de comunicação com o serviço de IA.');
     } finally {
       setGeneratingDesc(false);
     }
@@ -277,6 +338,11 @@ function NovoProdutoContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitError(null);
+
+    if (!user) {
+      setSubmitError('Faça login com uma conta fornecedora ou administrativa para publicar lotes.');
+      return;
+    }
 
     if (lanceInicial < 100) {
       setSubmitError('O lance inicial deve ser de no mínimo R$ 100,00.');
@@ -347,7 +413,7 @@ function NovoProdutoContent() {
         <span>/</span>
         <Link href="/painel/fornecedor" className="hover:text-primary">Painel do Vendedor</Link>
         <span>/</span>
-        <span className="font-bold text-primary">Cadastro de Produtos & Liquidação de Estoque</span>
+        <span className="font-bold text-primary">Cadastro de Produtos &amp; Liquidação de Estoque</span>
       </nav>
 
       {/* Title */}
@@ -359,6 +425,24 @@ function NovoProdutoContent() {
           Para indústrias, distribuidores e pequenos mercados: cadastre lotes fechados ou pontas de estoque com validação GS1 e custódia Escrow.
         </p>
       </div>
+
+      {!authLoading && (!user || profile?.role === 'comprador') && (
+        <div className="p-4 rounded-2xl bg-primary-fixed/40 border border-primary/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <span className="font-bold text-on-surface">
+            {!user
+              ? 'Entre com uma conta Fornecedor ou Admin para publicar lotes reais no Supabase.'
+              : 'Seu perfil atual é Comprador. Apenas contas Fornecedor ou Admin publicam lotes.'}
+          </span>
+          {!user && (
+            <Link
+              href="/login?redirect=/produtos/novo"
+              className="px-4 py-2 bg-primary text-white font-bold rounded-xl shrink-0 text-center"
+            >
+              Entrar como Fornecedor
+            </Link>
+          )}
+        </div>
+      )}
 
       {/* Quick Preset Switcher */}
       {!success && (
@@ -464,7 +548,7 @@ function NovoProdutoContent() {
           <div className="space-y-4">
             <h3 className="text-sm font-extrabold text-primary uppercase tracking-wider flex items-center gap-1.5 border-b border-surface-container pb-2">
               <span className="material-symbols-outlined text-[18px]">inventory</span>
-              1. Identificação do Produto & Foto do Lote
+              1. Identificação do Produto &amp; Foto do Lote
             </h3>
 
             <div>
@@ -496,11 +580,12 @@ function NovoProdutoContent() {
                   />
                   <button
                     type="button"
+                    disabled={uploadingImage}
                     onClick={() => fileInputRef.current?.click()}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-surface-container border border-outline-variant/40 text-primary font-bold text-[11px] transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-surface-container border border-outline-variant/40 text-primary font-bold text-[11px] transition-colors disabled:opacity-50"
                   >
                     <Upload className="w-3.5 h-3.5" />
-                    <span>Enviar Foto do Depósito</span>
+                    <span>{uploadingImage ? 'Enviando ao Storage...' : 'Enviar Foto do Depósito'}</span>
                   </button>
                 </div>
               </div>
@@ -569,9 +654,12 @@ function NovoProdutoContent() {
                   className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary-fixed/60 hover:bg-primary-fixed text-primary font-bold text-[11px] transition-colors disabled:opacity-50"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>{generatingDesc ? 'Redigindo...' : 'Sugerir Descrição'}</span>
+                  <span>{generatingDesc ? 'Redigindo com IA...' : 'Sugerir Descrição com IA'}</span>
                 </button>
               </div>
+              {aiDescError && (
+                <p className="text-[11px] font-bold text-error mb-1">{aiDescError}</p>
+              )}
               <textarea
                 rows={3}
                 value={descricao}
@@ -614,10 +702,15 @@ function NovoProdutoContent() {
                   value={categoriaId}
                   onChange={(e) => setCategoriaId(e.target.value)}
                   className="w-full bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30 text-xs cursor-pointer"
+                  required
                 >
-                  {MOCK_CATEGORIES.map((c) => (
-                    <option key={c.id} value={c.id}>{c.nome}</option>
-                  ))}
+                  {categories.length === 0 ? (
+                    <option value="">Carregando categorias...</option>
+                  ) : (
+                    categories.map((c) => (
+                      <option key={c.id} value={c.id}>{c.nome}</option>
+                    ))
+                  )}
                 </select>
               </div>
             </div>
@@ -846,8 +939,8 @@ function NovoProdutoContent() {
             </Link>
             <button
               type="submit"
-              disabled={submitting}
-              className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold shadow-md transition-all flex items-center gap-1.5"
+              disabled={submitting || !user}
+              className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold shadow-md transition-all flex items-center gap-1.5 disabled:opacity-50"
             >
               {submitting ? (
                 <span>Publicando pregão...</span>

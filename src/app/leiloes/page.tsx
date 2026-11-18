@@ -1,43 +1,79 @@
 'use client';
 
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { MOCK_AUCTION_LOTS, MOCK_CATEGORIES } from '@/lib/mock-data';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
 import { BidModal } from '@/components/BidModal';
-import { AuctionLot } from '@/lib/types';
+import { useAuth } from '@/components/AuthProvider';
+import { isSupabaseConfigured, supabase } from '@/lib/supabase';
+import { AuctionLot, ProductCategory } from '@/lib/types';
 
 function LeiloesContent() {
   const searchParams = useSearchParams();
   const categoriaParam = searchParams.get('categoria') || '';
+  const { profile } = useAuth();
 
-  const [lots, setLots] = useState<AuctionLot[]>(MOCK_AUCTION_LOTS);
+  const [lots, setLots] = useState<AuctionLot[]>([]);
+  const [categories, setCategories] = useState<ProductCategory[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedLotForBid, setSelectedLotForBid] = useState<AuctionLot | null>(null);
   const [activeTab, setActiveTab] = useState<'ao_vivo' | 'todos' | 'finalizados'>('ao_vivo');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('todas');
 
-  useEffect(() => {
-    fetch('/api/lances')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data?.auctions?.length) {
-          setLots(data.auctions);
-        }
-      })
-      .catch(() => {});
+  const loadAuctions = useCallback(async () => {
+    try {
+      const [bidsRes, catsRes] = await Promise.all([
+        fetch('/api/lances', { cache: 'no-store' }),
+        fetch('/api/categorias', { cache: 'no-store' }),
+      ]);
+      const [bidsData, catsData] = await Promise.all([
+        bidsRes.ok ? bidsRes.json() : null,
+        catsRes.ok ? catsRes.json() : null,
+      ]);
+      if (Array.isArray(bidsData?.auctions)) {
+        setLots(bidsData.auctions);
+      }
+      if (Array.isArray(catsData?.categories)) {
+        setCategories(catsData.categories);
+      }
+    } catch {
+      // keep existing state
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
-    if (categoriaParam) {
-      const matched = MOCK_CATEGORIES.find(
-        (c) => c.slug === categoriaParam || c.id === categoriaParam
-      );
-      setSelectedCategoryId(matched ? matched.id : 'todas');
+    void loadAuctions();
+    if (!isSupabaseConfigured) return;
+    const channel = supabase
+      .channel('leiloes-list-realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'auctions' },
+        () => {
+          void loadAuctions();
+        }
+      )
+      .subscribe();
+    return () => {
+      void supabase.removeChannel(channel);
+    };
+  }, [loadAuctions]);
+
+  useEffect(() => {
+    if (!categoriaParam) {
+      setSelectedCategoryId('todas');
+      return;
     }
-  }, [categoriaParam]);
+    const matched = categories.find(
+      (c) => c.slug === categoriaParam || c.id === categoriaParam
+    );
+    setSelectedCategoryId(matched ? matched.id : categoriaParam);
+  }, [categoriaParam, categories]);
 
   const statusFilteredLots = lots.filter((lot) => {
     if (activeTab === 'ao_vivo') return lot.status === 'reta_final' || lot.status === 'ativo';
@@ -47,7 +83,10 @@ function LeiloesContent() {
 
   const displayedLots = statusFilteredLots.filter((lot) => {
     if (selectedCategoryId === 'todas') return true;
-    return lot.produto.categoriaId === selectedCategoryId;
+    const catObj = categories.find(
+      (c) => c.id === lot.produto.categoriaId || c.slug === lot.produto.categoriaId
+    );
+    return lot.produto.categoriaId === selectedCategoryId || catObj?.slug === selectedCategoryId;
   });
 
   return (
@@ -121,7 +160,7 @@ function LeiloesContent() {
           >
             Todos os Segmentos ({statusFilteredLots.length})
           </button>
-          {MOCK_CATEGORIES.map((cat) => {
+          {categories.map((cat) => {
             const count = statusFilteredLots.filter((l) => l.produto.categoriaId === cat.id).length;
             const isSelected = selectedCategoryId === cat.id;
             return (
@@ -147,7 +186,14 @@ function LeiloesContent() {
       </div>
 
       {/* Grid */}
-      {displayedLots.length === 0 ? (
+      {loading ? (
+        <div className="bg-surface-container-lowest p-10 rounded-2xl border border-outline-variant/30 text-center space-y-3">
+          <div className="w-8 h-8 rounded-full border-4 border-primary/20 border-t-primary animate-spin mx-auto" />
+          <p className="text-xs font-bold text-on-surface-variant">
+            Carregando pregões eletrônicos ao vivo...
+          </p>
+        </div>
+      ) : displayedLots.length === 0 ? (
         <div className="bg-surface-container-lowest p-10 rounded-2xl border border-outline-variant/30 text-center space-y-3">
           <span className="material-symbols-outlined text-outline text-4xl">gavel</span>
           <h3 className="font-bold text-base text-on-surface">
@@ -171,7 +217,7 @@ function LeiloesContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedLots.map((lot) => {
             const categoryLabel =
-              MOCK_CATEGORIES.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
+              categories.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
 
             return (
               <article
@@ -292,6 +338,7 @@ function LeiloesContent() {
           isOpen={true}
           onClose={() => setSelectedLotForBid(null)}
           onBidSuccess={(amount, updatedTerminaEm) => {
+            const bidderLabel = profile?.nomeFantasia || 'Você';
             setLots((prev) =>
               prev.map((l) =>
                 l.id === selectedLotForBid.id
@@ -303,7 +350,7 @@ function LeiloesContent() {
                           ? Number((amount / l.produto.totalUnidades).toFixed(2))
                           : l.precoUnitarioAtual,
                       totalLances: l.totalLances + 1,
-                      ultimoLanceEmpresa: 'Supermercado Central Ltda (Você)',
+                      ultimoLanceEmpresa: `${bidderLabel} (Você)`,
                       terminaEm: updatedTerminaEm || l.terminaEm,
                       status: 'reta_final',
                     }

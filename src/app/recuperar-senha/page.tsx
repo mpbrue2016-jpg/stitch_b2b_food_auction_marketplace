@@ -13,17 +13,22 @@ export default function RecuperarSenhaPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg(null);
-    setLoading(true);
 
-    if (isSupabaseConfigured) {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/login`,
-      });
-      if (error) {
-        setErrorMsg(error.message || 'Não foi possível enviar o e-mail de recuperação.');
-        setLoading(false);
-        return;
-      }
+    if (!isSupabaseConfigured) {
+      setErrorMsg(
+        'Ambiente Supabase não configurado. Configure NEXT_PUBLIC_SUPABASE_URL e NEXT_PUBLIC_SUPABASE_ANON_KEY.'
+      );
+      return;
+    }
+
+    setLoading(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/redefinir-senha`,
+    });
+    if (error) {
+      setErrorMsg(error.message || 'Não foi possível enviar o e-mail de recuperação.');
+      setLoading(false);
+      return;
     }
 
     setLoading(false);

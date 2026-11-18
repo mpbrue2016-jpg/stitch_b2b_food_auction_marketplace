@@ -1,56 +1,171 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { marketplaceStore } from '@/lib/marketplace-store';
-import { AuctionBid } from '@/lib/types';
+import {
+  createServerSupabaseClient,
+  getAuthenticatedUserAndProfile,
+  isSupabaseServerConfigured,
+} from '@/lib/supabase/server';
+import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
+import { mapDbAuctionToAuctionLot, mapDbBidToAuctionBid } from '@/lib/supabase/mappers';
+import { buildSha256Hash, extractClientIp } from '@/lib/security';
 
 export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const loteId = searchParams.get('loteId');
-
-  if (loteId) {
-    const lot = marketplaceStore.auctions.find((l) => l.id === loteId);
-    if (!lot) {
-      return NextResponse.json({ error: 'Lote não encontrado' }, { status: 404 });
-    }
-    const lotBids = marketplaceStore.bids.filter((b) => b.loteId === loteId);
-    return NextResponse.json({ lot, bids: lotBids });
+  if (!isSupabaseServerConfigured) {
+    return NextResponse.json(
+      { error: 'Supabase não configurado no ambiente.', auctions: [] },
+      { status: 503 }
+    );
   }
 
-  return NextResponse.json({ auctions: marketplaceStore.auctions });
+  try {
+    const supabase = createServerSupabaseClient();
+    const { searchParams } = new URL(req.url);
+    const loteId = searchParams.get('loteId');
+
+    if (loteId) {
+      const [{ data: auctionRow, error: aucErr }, { data: bidsRows, error: bidsErr }] =
+        await Promise.all([
+          supabase.from('auctions').select('*, products(*)').eq('id', loteId).maybeSingle(),
+          supabase
+            .from('bids')
+            .select('*, profiles(nome_fantasia, cnpj)')
+            .eq('auction_id', loteId)
+            .order('valor_lance', { ascending: false })
+            .order('created_at', { ascending: false }),
+        ]);
+
+      if (aucErr) {
+        return NextResponse.json({ error: aucErr.message }, { status: 500 });
+      }
+      if (!auctionRow) {
+        return NextResponse.json({ error: 'Lote não encontrado' }, { status: 404 });
+      }
+      if (bidsErr) {
+        return NextResponse.json({ error: bidsErr.message }, { status: 500 });
+      }
+
+      const lot = mapDbAuctionToAuctionLot(auctionRow as Record<string, unknown>);
+      const winnerId = auctionRow.vencedor_id ? String(auctionRow.vencedor_id) : null;
+      const bids = (bidsRows || []).map((b) =>
+        mapDbBidToAuctionBid(b as Record<string, unknown>, winnerId)
+      );
+
+      return NextResponse.json({ lot, bids });
+    }
+
+    const { data: auctionsRows, error } = await supabase
+      .from('auctions')
+      .select('*, products(*)')
+      .order('termina_em', { ascending: true });
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({
+      auctions: (auctionsRows || []).map((r) =>
+        mapDbAuctionToAuctionLot(r as Record<string, unknown>)
+      ),
+    });
+  } catch (err) {
+    console.error('Erro em GET /api/lances:', err);
+    return NextResponse.json({ error: 'Erro interno ao consultar lances.' }, { status: 500 });
+  }
 }
 
 export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const { loteId, valorLance, compradorId, empresaNome, cnpj } = body;
+  if (!isSupabaseServerConfigured) {
+    return NextResponse.json({ error: 'Supabase não configurado no ambiente.' }, { status: 503 });
+  }
 
-    if (!loteId || !valorLance || !empresaNome) {
+  try {
+    const ctx = await getAuthenticatedUserAndProfile();
+    if (!ctx?.user || !ctx.profile) {
       return NextResponse.json(
-        { error: 'Parâmetros obrigatórios: loteId, valorLance, empresaNome' },
+        { error: 'Autenticação obrigatória para registrar lances.' },
+        { status: 401 }
+      );
+    }
+
+    if (ctx.profile.role === 'fornecedor') {
+      return NextResponse.json(
+        { error: 'Apenas compradores homologados podem enviar lances em pregões.' },
+        { status: 403 }
+      );
+    }
+
+    if (ctx.profile.statusAprovacao !== 'aprovado') {
+      return NextResponse.json(
+        {
+          error:
+            'Seu cadastro ainda está em validação KYC. Aguarde homologação para enviar lances.',
+        },
+        { status: 403 }
+      );
+    }
+
+    const body = await req.json();
+    const { loteId, valorLance } = body;
+    const parsedBid = Number(valorLance);
+
+    if (!loteId || !Number.isFinite(parsedBid) || parsedBid <= 0) {
+      return NextResponse.json(
+        { error: 'Parâmetros obrigatórios: loteId e valorLance positivo.' },
         { status: 400 }
       );
     }
 
-    const lotIndex = marketplaceStore.auctions.findIndex((l) => l.id === loteId);
-    if (lotIndex === -1) {
-      return NextResponse.json({ error: 'Lote de pregão não localizado' }, { status: 404 });
+    const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
+
+    const { data: auctionRow, error: fetchErr } = await dbClient
+      .from('auctions')
+      .select('*, products(*)')
+      .eq('id', loteId)
+      .maybeSingle();
+
+    if (fetchErr || !auctionRow) {
+      return NextResponse.json({ error: 'Lote de pregão não localizado.' }, { status: 404 });
     }
 
-    const lot = marketplaceStore.auctions[lotIndex];
+    const product = (auctionRow.products || {}) as Record<string, unknown>;
+    if (String(product.fornecedor_id) === ctx.user.id) {
+      return NextResponse.json(
+        { error: 'O fornecedor anunciante não pode dar lance no próprio lote.' },
+        { status: 403 }
+      );
+    }
 
-    // 1. Verificação se o leilão expirou ou foi encerrado
-    const now = new Date().getTime();
-    const endsAt = new Date(lot.terminaEm).getTime();
-    if (lot.status === 'encerrado' || lot.status === 'homologado' || now >= endsAt) {
+    const now = Date.now();
+    const endsAt = new Date(String(auctionRow.termina_em)).getTime();
+    if (
+      auctionRow.status === 'encerrado' ||
+      auctionRow.status === 'homologado' ||
+      auctionRow.status === 'cancelado' ||
+      now >= endsAt
+    ) {
       return NextResponse.json(
         { error: 'Pregão eletrônico encerrado. Não são aceitos novos lances.' },
         { status: 422 }
       );
     }
 
-    // 2. Validação do valor mínimo do lance
-    const parsedBid = Number(valorLance);
-    const minRequired = lot.lanceAtual + lot.incrementoMinimo;
-    if (!Number.isFinite(parsedBid) || parsedBid < minRequired) {
+    if (parsedBid > ctx.profile.limiteCreditoEscrow) {
+      return NextResponse.json(
+        {
+          error: `Lance excede seu limite de crédito Escrow aprovado (R$ ${ctx.profile.limiteCreditoEscrow.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}).`,
+        },
+        { status: 403 }
+      );
+    }
+
+    const currentBid = Number(auctionRow.lance_atual ?? auctionRow.lance_inicial ?? 0);
+    const increment = Number(auctionRow.incremento_minimo ?? 500);
+    const totalLances = Number(auctionRow.total_lances ?? 0);
+    const minRequired =
+      totalLances === 0
+        ? Math.max(Number(auctionRow.lance_inicial ?? 0), currentBid)
+        : currentBid + increment;
+
+    if (parsedBid < minRequired) {
       return NextResponse.json(
         {
           error: `Lance inválido. O valor mínimo aceito é R$ ${minRequired.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`,
@@ -60,58 +175,96 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 3. Regra Anti-Sniping B2B: se o lance for feito nos últimos 3 minutos, prorroga em 3 minutos
-    let updatedEndsAt = lot.terminaEm;
     const diffMinutes = (endsAt - now) / (1000 * 60);
-    if (diffMinutes <= 3) {
-      const extendedTime = new Date(endsAt + 3 * 60 * 1000).toISOString();
-      updatedEndsAt = extendedTime;
+    const extendedDueToAntiSniping = diffMinutes <= 3;
+    const updatedEndsAt = extendedDueToAntiSniping
+      ? new Date(endsAt + 3 * 60 * 1000).toISOString()
+      : String(auctionRow.termina_em);
+
+    const totalUnidades = Math.max(1, Number(product.total_unidades ?? 1));
+    const unitPrice = Number((parsedBid / totalUnidades).toFixed(2));
+    const clientIp = extractClientIp(req);
+    const transactionHash = buildSha256Hash(
+      `${loteId}|${ctx.user.id}|${parsedBid.toFixed(2)}|${new Date().toISOString()}`
+    );
+
+    const previousWinnerId = auctionRow.vencedor_id ? String(auctionRow.vencedor_id) : null;
+
+    const { data: insertedBid, error: bidErr } = await dbClient
+      .from('bids')
+      .insert({
+        auction_id: loteId,
+        comprador_id: ctx.user.id,
+        valor_lance: parsedBid,
+        valor_unitario: unitPrice,
+        ip_origem: clientIp,
+        hash_transacao_worm: transactionHash,
+      })
+      .select('*, profiles(nome_fantasia, cnpj)')
+      .single();
+
+    if (bidErr || !insertedBid) {
+      return NextResponse.json(
+        { error: bidErr?.message || 'Erro ao registrar lance no banco de dados.' },
+        { status: 500 }
+      );
     }
 
-    // 4. Cálculo do custo unitário
-    const unitPrice =
-      lot.produto.totalUnidades > 0
-        ? Number((parsedBid / lot.produto.totalUnidades).toFixed(2))
-        : lot.precoUnitarioAtual;
+    const nextStatus = extendedDueToAntiSniping ? 'reta_final' : auctionRow.status;
 
-    // 5. Geração de hash criptográfico para auditoria WORM
-    const transactionHash = `SHA256:${Math.random().toString(36).substring(2)}${Date.now()}`;
+    const { data: updatedAuction, error: updErr } = await dbClient
+      .from('auctions')
+      .update({
+        lance_atual: parsedBid,
+        total_lances: totalLances + 1,
+        ultimo_lance_empresa: ctx.profile.nomeFantasia,
+        vencedor_id: ctx.user.id,
+        termina_em: updatedEndsAt,
+        status: nextStatus,
+      })
+      .eq('id', loteId)
+      .select('*, products(*)')
+      .single();
 
-    const newBid: AuctionBid = {
-      id: `bid-${Date.now()}`,
-      loteId,
-      compradorId: compradorId || 'user-varejista-01',
-      empresaNome,
-      cnpjAnonimizado: cnpj || '12.***.***/0001-90',
-      valorLance: parsedBid,
-      valorUnitario: unitPrice,
-      criadoEm: new Date().toISOString(),
-      ehVencedor: true,
-    };
+    if (updErr || !updatedAuction) {
+      return NextResponse.json(
+        { error: updErr?.message || 'Erro ao atualizar lote do pregão.' },
+        { status: 500 }
+      );
+    }
 
-    // Atualiza status dos lances anteriores
-    marketplaceStore.bids = marketplaceStore.bids.map((b) =>
-      b.loteId === loteId ? { ...b, ehVencedor: false } : b
-    );
-    marketplaceStore.bids.unshift(newBid);
+    // Notificar comprador anterior se foi superado
+    if (previousWinnerId && previousWinnerId !== ctx.user.id) {
+      await dbClient.from('notifications').insert({
+        user_id: previousWinnerId,
+        titulo: `Seu lance no lote ${auctionRow.codigo_lote} foi superado`,
+        mensagem: `Novo lance líder de R$ ${parsedBid.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} registrado no lote ${auctionRow.codigo_lote}.`,
+        canal: 'in_app',
+      });
+    }
 
-    // Atualiza lote
-    marketplaceStore.auctions[lotIndex] = {
-      ...lot,
-      lanceAtual: parsedBid,
-      precoUnitarioAtual: unitPrice,
-      totalLances: lot.totalLances + 1,
-      ultimoLanceEmpresa: empresaNome,
-      terminaEm: updatedEndsAt,
-      status: 'reta_final',
-    };
+    await dbClient.from('audit_worm_logs').insert({
+      tipo_evento: 'lance_homologado',
+      protocolo: `LANCE-${auctionRow.codigo_lote}`,
+      payload_json: {
+        auctionId: loteId,
+        bidId: insertedBid.id,
+        compradorId: ctx.user.id,
+        valorLance: parsedBid,
+        antiSniping: extendedDueToAntiSniping,
+      },
+      merkle_root_hash: transactionHash,
+      responsavel_id: ctx.user.id,
+    });
 
     return NextResponse.json({
-      message: 'Lance homologado com sucesso no livro de ofertas do pregão',
-      bid: newBid,
-      lot: marketplaceStore.auctions[lotIndex],
-      transactionHash,
-      extendedDueToAntiSniping: diffMinutes <= 3,
+      message: extendedDueToAntiSniping
+        ? 'Lance homologado! Proteção Anti-Sniping prorrogou o pregão em +3 min.'
+        : 'Lance homologado com sucesso no livro de ofertas do pregão',
+      bid: mapDbBidToAuctionBid(insertedBid as Record<string, unknown>, ctx.user.id),
+      lot: mapDbAuctionToAuctionLot(updatedAuction as Record<string, unknown>),
+      transactionHash: `SHA256:${transactionHash}`,
+      extendedDueToAntiSniping,
     });
   } catch (err) {
     console.error('Erro na API de lances:', err);

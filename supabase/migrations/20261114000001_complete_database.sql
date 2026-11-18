@@ -121,10 +121,6 @@ CREATE TRIGGER trigger_orders_updated_at
     BEFORE UPDATE ON public.orders
     FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
 
-CREATE TRIGGER trigger_bids_updated_at
-    BEFORE UPDATE ON public.bids
-    FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
-
 CREATE TRIGGER trigger_system_settings_updated_at
     BEFORE UPDATE ON public.system_settings
     FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
@@ -186,14 +182,21 @@ CREATE POLICY "Partes veem documentos fiscais próprios" ON public.fiscal_docume
 CREATE POLICY "Configurações públicas de leitura" ON public.system_settings
     FOR SELECT USING (true);
 
--- Carrinho: usuário vê apenas seus próprios carrinhos
+-- Carrinho: usuário vê apenas seus próprios carrinhos autenticados
 CREATE POLICY "Usuário gerencia seu próprio carrinho" ON public.carts
-    FOR ALL USING (auth.uid() = user_id OR user_id IS NULL);
+    FOR ALL USING (auth.uid() = user_id)
+    WITH CHECK (auth.uid() = user_id);
 
 CREATE POLICY "Usuário gerencia itens do próprio carrinho" ON public.cart_items
     FOR ALL USING (
         EXISTS (
             SELECT 1 FROM public.carts c WHERE c.id = cart_items.cart_id
-            AND (c.user_id = auth.uid() OR c.user_id IS NULL)
+            AND c.user_id = auth.uid()
+        )
+    )
+    WITH CHECK (
+        EXISTS (
+            SELECT 1 FROM public.carts c WHERE c.id = cart_items.cart_id
+            AND c.user_id = auth.uid()
         )
     );

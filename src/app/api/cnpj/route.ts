@@ -1,29 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-function isValidCnpjDigits(cnpj: string): boolean {
-  if (cnpj.length !== 14) return false;
-  if (/^(\d)\1+$/.test(cnpj)) return false;
-
-  const calcDigit = (base: string, weights: number[]) => {
-    const sum = base
-      .split('')
-      .reduce((acc, digit, idx) => acc + Number(digit) * weights[idx], 0);
-    const rem = sum % 11;
-    return rem < 2 ? 0 : 11 - rem;
-  };
-
-  const w1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-  const w2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-  const d1 = calcDigit(cnpj.slice(0, 12), w1);
-  const d2 = calcDigit(cnpj.slice(0, 13), w2);
-
-  return d1 === Number(cnpj[12]) && d2 === Number(cnpj[13]);
-}
+import { isValidCnpjDigits } from '@/lib/security';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const rawCnpj = searchParams.get('cnpj') || '';
-  const role = searchParams.get('role') || 'comprador';
   const digits = rawCnpj.replace(/\D/g, '');
 
   if (digits.length !== 14) {
@@ -33,17 +13,17 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const isDemoCnpj = digits === '12345678000190' || digits === '14892108000144';
-  if (!isDemoCnpj && !isValidCnpjDigits(digits)) {
+  if (!isValidCnpjDigits(digits)) {
     return NextResponse.json(
       { error: 'Dígito verificador de CNPJ inválido. Verifique os números digitados.' },
       { status: 400 }
     );
   }
 
+  // 1. Consulta primária: BrasilAPI (Receita Federal)
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 4000);
+    const timeout = setTimeout(() => controller.abort(), 5000);
     const res = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${digits}`, {
       signal: controller.signal,
       headers: { Accept: 'application/json' },
@@ -52,40 +32,75 @@ export async function GET(req: NextRequest) {
 
     if (res.ok) {
       const data = await res.json();
-      const situacao = data.descricao_situacao_cadastral || 'ATIVA';
+      const situacao = String(data.descricao_situacao_cadastral || 'ATIVA').toUpperCase();
       return NextResponse.json({
-        source: 'receita_federal',
-        verified: true,
+        source: 'receita_federal_brasilapi',
+        verified: situacao === 'ATIVA',
         cnpj: digits,
-        razaoSocial: data.razao_social || 'Empresa Homologada B2B Ltda',
-        nomeFantasia: data.nome_fantasia || data.razao_social || 'Empresa B2B',
-        cnae: data.cnae_fiscal && data.cnae_fiscal_descricao
-          ? `${data.cnae_fiscal} - ${data.cnae_fiscal_descricao}`
-          : '47.11-3-02 - Comércio varejista de produtos alimentícios',
-        cidade: data.municipio || 'São Paulo',
-        uf: data.uf || 'SP',
+        razaoSocial: data.razao_social || '',
+        nomeFantasia: data.nome_fantasia || data.razao_social || '',
+        cnae:
+          data.cnae_fiscal && data.cnae_fiscal_descricao
+            ? `${data.cnae_fiscal} - ${data.cnae_fiscal_descricao}`
+            : '',
+        cidade: data.municipio || '',
+        uf: data.uf || '',
+        situacaoCadastral: situacao,
+      });
+    }
+    if (res.status === 404) {
+      return NextResponse.json(
+        { error: 'CNPJ não encontrado na base oficial da Receita Federal.' },
+        { status: 404 }
+      );
+    }
+  } catch {
+    // Fallback para ReceitaWS
+  }
+
+  // 2. Consulta secundária: ReceitaWS
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    const res = await fetch(`https://www.receitaws.com.br/v1/cnpj/${digits}`, {
+      signal: controller.signal,
+      headers: { Accept: 'application/json' },
+    });
+    clearTimeout(timeout);
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data.status === 'ERROR') {
+        return NextResponse.json(
+          { error: data.message || 'CNPJ não localizado na Receita Federal.' },
+          { status: 404 }
+        );
+      }
+      const situacao = String(data.situacao || 'ATIVA').toUpperCase();
+      const primaryActivity = Array.isArray(data.atividade_principal)
+        ? data.atividade_principal[0]
+        : null;
+      return NextResponse.json({
+        source: 'receita_federal_receitaws',
+        verified: situacao === 'ATIVA',
+        cnpj: digits,
+        razaoSocial: data.nome || '',
+        nomeFantasia: data.fantasia || data.nome || '',
+        cnae: primaryActivity ? `${primaryActivity.code} - ${primaryActivity.text}` : '',
+        cidade: data.municipio || '',
+        uf: data.uf || '',
         situacaoCadastral: situacao,
       });
     }
   } catch {
-    // Continua para resposta de homologação demonstrativa quando offline/rate-limited
+    // Ambos provedores indisponíveis
   }
 
-  return NextResponse.json({
-    source: 'homologacao_b2b',
-    verified: true,
-    cnpj: digits,
-    razaoSocial:
-      role === 'comprador'
-        ? 'Supermercados Alvorada do Vale Ltda'
-        : 'Moinho Alvorada Alimentos & Farinhas S/A',
-    nomeFantasia: role === 'comprador' ? 'Rede Alvorada Supermercados' : 'Alvorada Alimentos',
-    cnae:
-      role === 'comprador'
-        ? '47.11-3-02 - Comércio varejista de mercadorias em geral, com predominância de produtos alimentícios'
-        : '10.61-9-01 - Beneficiamento de arroz e moagem de trigo e grãos alimentícios',
-    cidade: 'São Paulo',
-    uf: 'SP',
-    situacaoCadastral: 'ATIVA',
-  });
+  return NextResponse.json(
+    {
+      error:
+        'Consulta cadastral na Receita Federal temporariamente indisponível. Verifique sua conexão e tente novamente.',
+    },
+    { status: 503 }
+  );
 }

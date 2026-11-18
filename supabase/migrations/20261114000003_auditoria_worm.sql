@@ -76,6 +76,9 @@ BEGIN
     ELSE
         RETURN NEW;
     END IF;
+END;
+$$;
+
 -- 2. Habilitar RLS na tabela de auditoria WORM
 ALTER TABLE public.audit_worm_logs ENABLE ROW LEVEL SECURITY;
 
@@ -130,37 +133,31 @@ STABLE
 AS $$
 DECLARE
     v_rec RECORD;
+    v_calc VARCHAR(128);
+    v_valid_sha BOOLEAN;
 BEGIN
-    IF p_protocolo IS NOT NULL THEN
-        FOR v_rec IN
-            SELECT id, tipo_evento, protocolo, payload_json, merkle_root_hash
-            FROM public.audit_worm_logs
-            WHERE protocolo = p_protocolo
-            ORDER BY created_at
-        LOOP
-            RETURN QUERY SELECT
-                v_rec.protocolo,
-                v_rec.tipo_evento,
-                TRUE AS integridade,
-                v_rec.merkle_root_hash AS hash_armazenado,
-                v_rec.merkle_root_hash AS hash_calculado,
-                FALSE AS diferenca;
-        END LOOP;
-    ELSE
-        FOR v_rec IN
-            SELECT id, tipo_evento, protocolo, payload_json, merkle_root_hash
-            FROM public.audit_worm_logs
-            ORDER BY created_at
-        LOOP
-            RETURN QUERY SELECT
-                v_rec.protocolo,
-                v_rec.tipo_evento,
-                TRUE AS integridade,
-                v_rec.merkle_root_hash AS hash_armazenado,
-                v_rec.merkle_root_hash AS hash_calculado,
-                FALSE AS diferenca;
-        END LOOP;
-    END IF;
+    FOR v_rec IN
+        SELECT id, tipo_evento, protocolo AS log_protocolo, payload_json, merkle_root_hash
+        FROM public.audit_worm_logs
+        WHERE (p_protocolo IS NULL OR audit_worm_logs.protocolo = p_protocolo)
+        ORDER BY created_at
+    LOOP
+        v_valid_sha := (v_rec.merkle_root_hash ~ '^[a-f0-9]{64}$');
+        v_calc := CASE
+            WHEN v_rec.payload_json ? 'canonical_input' THEN
+                encode(digest(v_rec.payload_json->>'canonical_input', 'sha256'), 'hex')
+            ELSE
+                v_rec.merkle_root_hash
+        END;
+
+        RETURN QUERY SELECT
+            v_rec.log_protocolo,
+            v_rec.tipo_evento,
+            (v_valid_sha AND v_calc = v_rec.merkle_root_hash),
+            v_rec.merkle_root_hash,
+            v_calc,
+            (NOT v_valid_sha OR v_calc <> v_rec.merkle_root_hash);
+    END LOOP;
 END;
 $$;
 
@@ -215,10 +212,10 @@ FROM metricas_leiloes l
 CROSS JOIN metricas_usuarios u
 CROSS JOIN metricas_pagamentos p;
 
--- 6. Políticas RLS para a view dashboard
-ALTER VIEW public.v_dashboard_executivo OWNER TO postgres;
-
-GRANT SELECT ON public.v_dashboard_executivo TO authenticated;
+-- 6. Segurança da view dashboard (somente service_role ou admin via security_invoker)
+ALTER VIEW public.v_dashboard_executivo SET (security_invoker = true);
+REVOKE ALL ON public.v_dashboard_executivo FROM anon, authenticated;
+GRANT SELECT ON public.v_dashboard_executivo TO service_role;
 
 -- 7. Função para calcular Take-Rate dinâmico com base na categoria
 CREATE OR REPLACE FUNCTION public.calcular_take_rate_dinamico(
