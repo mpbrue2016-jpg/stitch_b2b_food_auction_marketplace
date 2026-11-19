@@ -11,6 +11,8 @@ import {
   mapDbAuctionToAuctionLot,
 } from '@/lib/supabase/mappers';
 import { buildAuditHash } from '@/lib/security';
+import { DEMO_CATEGORIES, DEMO_SUPPLIER_ID, getDemoLots } from '@/lib/demo-data';
+import type { AuctionLot } from '@/lib/types';
 
 const LEGACY_CATEGORY_SLUG_MAP: Record<string, string> = {
   'cat-1': 'alimentos-secos',
@@ -33,6 +35,20 @@ const CATEGORY_DEFAULT_IMAGE: Record<string, string> = {
   cerealista: '/images/lotes/lote-cerealista-feijao.jpg',
   hortifruti: '/images/lotes/lote-hortifruti-caixas.jpg',
 };
+
+function isRowDemoRecord(row: Record<string, unknown>): boolean {
+  if (typeof row.is_demo === 'boolean') return row.is_demo;
+  const prod = (row.products || {}) as Record<string, unknown>;
+  if (typeof prod.is_demo === 'boolean') return prod.is_demo;
+  const idStr = String(row.id || '');
+  const prodIdStr = String(prod.id || '');
+  const supplierStr = String(prod.fornecedor_id || '');
+  return (
+    idStr.startsWith('a1000000-') ||
+    prodIdStr.startsWith('p1000000-') ||
+    supplierStr === DEMO_SUPPLIER_ID
+  );
+}
 
 function isValidLotImageUrl(url: unknown): url is string {
   if (typeof url !== 'string') return false;
@@ -82,7 +98,32 @@ async function resolveCategoryRow(
     .limit(1)
     .maybeSingle();
 
-  return firstCat ? { id: String(firstCat.id), slug: String(firstCat.slug) } : null;
+  if (firstCat) {
+    return { id: String(firstCat.id), slug: String(firstCat.slug) };
+  }
+
+  // Se o banco estiver com categories vazia, tenta semear automaticamente (quando houver permissão admin/service_role)
+  const seedPayload = DEMO_CATEGORIES.map((c) => ({
+    nome: c.nome,
+    slug: c.slug,
+    icone: c.icone,
+    descricao: c.descricao,
+    ativo: true,
+  }));
+  const { data: seeded } = await supabase
+    .from('categories')
+    .upsert(seedPayload, { onConflict: 'slug' })
+    .select('id, slug');
+
+  if (Array.isArray(seeded) && seeded.length > 0) {
+    const matched =
+      seeded.find((c) => c.slug === mappedSlug) ||
+      seeded.find((c) => c.id === value) ||
+      seeded[0];
+    return { id: String(matched.id), slug: String(matched.slug) };
+  }
+
+  return null;
 }
 
 async function persistLotImageToStorage(
@@ -114,102 +155,202 @@ async function persistLotImageToStorage(
   return pub.publicUrl;
 }
 
-export async function GET(req: NextRequest) {
-  if (!isSupabaseServerConfigured) {
-    return NextResponse.json(
-      { error: 'Supabase não configurado no ambiente.', lots: [] },
-      { status: 503 }
+function applyLotFilters(
+  items: Array<{ lot: AuctionLot; categorySlug: string }>,
+  params: { q: string; categoria: string; filtro: string; fornecedorId: string }
+): AuctionLot[] {
+  let filtered = items;
+
+  if (params.fornecedorId) {
+    filtered = filtered.filter((item) => item.lot.produto.fornecedorId === params.fornecedorId);
+  }
+
+  if (params.categoria && params.categoria !== 'todas') {
+    const legacySlug = LEGACY_CATEGORY_SLUG_MAP[params.categoria] || '';
+    filtered = filtered.filter(
+      (item) =>
+        item.lot.produto.categoriaId.toLowerCase() === params.categoria ||
+        item.categorySlug === params.categoria ||
+        (legacySlug && (item.categorySlug === legacySlug || item.lot.produto.categoriaId.toLowerCase() === legacySlug))
     );
+  }
+
+  if (params.filtro === 'validade_proxima') {
+    filtered = filtered.filter((item) => item.lot.produto.diasRestantesValidade <= 90);
+  } else if (params.filtro === 'giro_rapido') {
+    filtered = filtered.filter(
+      (item) =>
+        item.lot.tipoVenda === 'giro_rapido' ||
+        item.lot.produto.statusShelfLife === 'giro_rapido' ||
+        item.lot.produto.statusShelfLife === 'critica'
+    );
+  } else if (params.filtro === 'pequenos_mercados') {
+    filtered = filtered.filter(
+      (item) => item.lot.lanceAtual <= 10000 || item.lot.produto.paletes <= 6
+    );
+  }
+
+  if (params.q) {
+    filtered = filtered.filter(
+      (item) =>
+        item.lot.produto.titulo.toLowerCase().includes(params.q) ||
+        item.lot.produto.marca.toLowerCase().includes(params.q) ||
+        item.lot.produto.gtinEan.includes(params.q) ||
+        item.lot.codigoLote.toLowerCase().includes(params.q) ||
+        item.lot.produto.origem.toLowerCase().includes(params.q)
+    );
+  }
+
+  return filtered.map((item) => item.lot);
+}
+
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get('id');
+  const envParam = searchParams.get('env') || 'modelo';
+  const q = searchParams.get('q')?.trim().toLowerCase() || '';
+  const categoria = searchParams.get('categoria')?.trim().toLowerCase() || '';
+  const filtro = searchParams.get('filtro')?.trim().toLowerCase() || '';
+  const fornecedorId = searchParams.get('fornecedorId')?.trim() || '';
+
+  // Se id for de lote demonstrativo estático, retorna imediatamente em modo modelo
+  if (id && envParam !== 'original') {
+    const staticDemo = getDemoLots().find((l) => l.id === id || l.codigoLote === id);
+    if (staticDemo && id.startsWith('demo-')) {
+      return NextResponse.json({ lot: staticDemo, lots: [staticDemo], env: 'modelo' });
+    }
+  }
+
+  if (!isSupabaseServerConfigured) {
+    if (envParam === 'original') {
+      return NextResponse.json({ lots: [], env: 'original' });
+    }
+    const demoItems = getDemoLots().map((lot) => ({
+      lot,
+      categorySlug: lot.produto.categoriaId.toLowerCase(),
+    }));
+    const result = applyLotFilters(demoItems, { q, categoria, filtro, fornecedorId });
+    if (id) {
+      const found = getDemoLots().find((l) => l.id === id || l.codigoLote === id);
+      if (!found) return NextResponse.json({ error: 'Lote não encontrado.' }, { status: 404 });
+      return NextResponse.json({ lot: found, lots: [found], env: 'modelo' });
+    }
+    return NextResponse.json({ lots: result, env: 'modelo' });
   }
 
   try {
     const supabase = createServerSupabaseClient();
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get('id');
-    const q = searchParams.get('q')?.trim().toLowerCase() || '';
-    const categoria = searchParams.get('categoria')?.trim().toLowerCase() || '';
-    const filtro = searchParams.get('filtro')?.trim().toLowerCase() || '';
-    const fornecedorId = searchParams.get('fornecedorId')?.trim() || '';
-
     let query = supabase
       .from('auctions')
       .select('*, products(*, categories(id, slug, nome))')
       .order('created_at', { ascending: false });
 
-    if (id) {
+    if (id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) {
       query = query.eq('id', id);
+    } else if (id) {
+      query = query.eq('codigo_lote', id);
     }
 
     const { data, error } = await query;
-    if (error) {
-      return NextResponse.json({ error: error.message, lots: [] }, { status: 500 });
-    }
+    const dbRows = !error && Array.isArray(data) ? (data as Record<string, unknown>[]) : [];
 
-    let lots = (data || []).map((row) => {
-      const lot = mapDbAuctionToAuctionLot(row as Record<string, unknown>);
-      return {
-        lot,
-        rawProduct: (row.products || {}) as Record<string, unknown>,
-        categorySlug: String(
-          ((row.products as Record<string, unknown> | undefined)?.categories as Record<string, unknown> | undefined)?.slug || ''
-        ).toLowerCase(),
-      };
+    const mappedDb = dbRows.map((row) => {
+      const demoFlag = isRowDemoRecord(row);
+      const lot = mapDbAuctionToAuctionLot({ ...row, is_demo: demoFlag });
+      const rawProduct = (row.products || {}) as Record<string, unknown>;
+      const catSlug = String(
+        ((rawProduct.categories as Record<string, unknown> | undefined)?.slug as string | undefined) ||
+          lot.produto.categoriaId ||
+          ''
+      ).toLowerCase();
+      return { lot, categorySlug: catSlug, demoFlag };
     });
 
-    if (fornecedorId) {
-      lots = lots.filter((item) => String(item.rawProduct.fornecedor_id || '') === fornecedorId);
-    }
-
-    if (categoria && categoria !== 'todas') {
-      lots = lots.filter(
-        (item) =>
-          item.lot.produto.categoriaId.toLowerCase() === categoria ||
-          item.categorySlug === categoria ||
-          item.categorySlug === (LEGACY_CATEGORY_SLUG_MAP[categoria] || '')
-      );
-    }
-
-    if (filtro === 'validade_proxima') {
-      lots = lots.filter((item) => item.lot.produto.diasRestantesValidade <= 90);
-    } else if (filtro === 'giro_rapido') {
-      lots = lots.filter(
-        (item) =>
-          item.lot.tipoVenda === 'giro_rapido' ||
-          item.lot.produto.statusShelfLife === 'giro_rapido' ||
-          item.lot.produto.statusShelfLife === 'critica'
-      );
-    } else if (filtro === 'pequenos_mercados') {
-      lots = lots.filter(
-        (item) => item.lot.lanceAtual <= 10000 || item.lot.produto.paletes <= 6
-      );
-    }
-
-    if (q) {
-      lots = lots.filter(
-        (item) =>
-          item.lot.produto.titulo.toLowerCase().includes(q) ||
-          item.lot.produto.marca.toLowerCase().includes(q) ||
-          item.lot.produto.gtinEan.includes(q) ||
-          item.lot.codigoLote.toLowerCase().includes(q) ||
-          item.lot.produto.origem.toLowerCase().includes(q)
-      );
-    }
-
-    const resultLots = lots.map((item) => item.lot);
     if (id) {
-      if (resultLots.length === 0) {
-        return NextResponse.json({ error: 'Lote não encontrado.' }, { status: 404 });
+      const dbMatch = mappedDb[0];
+      if (dbMatch) {
+        if (envParam === 'original' && dbMatch.demoFlag) {
+          return NextResponse.json(
+            { error: 'Este lote pertence exclusivamente ao Ambiente Modelo.' },
+            { status: 404 }
+          );
+        }
+        return NextResponse.json({
+          lot: dbMatch.lot,
+          lots: [dbMatch.lot],
+          env: dbMatch.demoFlag ? 'modelo' : 'original',
+        });
       }
-      return NextResponse.json({ lot: resultLots[0], lots: resultLots });
+      if (envParam !== 'original') {
+        const staticMatch = getDemoLots().find((l) => l.id === id || l.codigoLote === id);
+        if (staticMatch) {
+          return NextResponse.json({ lot: staticMatch, lots: [staticMatch], env: 'modelo' });
+        }
+      }
+      return NextResponse.json({ error: 'Lote não encontrado.' }, { status: 404 });
     }
 
-    return NextResponse.json({ lots: resultLots });
+    if (envParam === 'original') {
+      const realOnly = mappedDb
+        .filter((item) => !item.demoFlag)
+        .map(({ lot, categorySlug }) => ({ lot, categorySlug }));
+      return NextResponse.json({
+        lots: applyLotFilters(realOnly, { q, categoria, filtro, fornecedorId }),
+        env: 'original',
+      });
+    }
+
+    if (envParam === 'all') {
+      const realItems = mappedDb.filter((item) => !item.demoFlag);
+      const dbDemoItems = mappedDb.filter((item) => item.demoFlag);
+      const existingCodes = new Set(mappedDb.map((m) => m.lot.codigoLote));
+      const fallbackDemo = getDemoLots()
+        .filter((l) => !existingCodes.has(l.codigoLote))
+        .map((lot) => ({ lot, categorySlug: lot.produto.categoriaId.toLowerCase() }));
+
+      const combined = [
+        ...realItems.map(({ lot, categorySlug }) => ({ lot, categorySlug })),
+        ...dbDemoItems.map(({ lot, categorySlug }) => ({ lot, categorySlug })),
+        ...fallbackDemo,
+      ];
+      return NextResponse.json({
+        lots: applyLotFilters(combined, { q, categoria, filtro, fornecedorId }),
+        env: 'all',
+      });
+    }
+
+    // Ambiente Modelo: combina lotes is_demo do banco + catálogo modelo do Stitch
+    const dbDemoItems = mappedDb.filter((item) => item.demoFlag);
+    const dbCodes = new Set(dbDemoItems.map((m) => m.lot.codigoLote));
+    const curatedDemo = getDemoLots()
+      .filter((l) => !dbCodes.has(l.codigoLote))
+      .map((lot) => ({ lot, categorySlug: lot.produto.categoriaId.toLowerCase() }));
+
+    const modeloCombined = [
+      ...dbDemoItems.map(({ lot, categorySlug }) => ({
+        lot: { ...lot, isDemo: true, produto: { ...lot.produto, isDemo: true } },
+        categorySlug,
+      })),
+      ...curatedDemo,
+    ];
+
+    return NextResponse.json({
+      lots: applyLotFilters(modeloCombined, { q, categoria, filtro, fornecedorId }),
+      env: 'modelo',
+    });
   } catch (err) {
     console.error('Erro ao buscar lotes no Supabase:', err);
-    return NextResponse.json(
-      { error: 'Erro interno ao consultar lotes.', lots: [] },
-      { status: 500 }
-    );
+    if (envParam === 'original') {
+      return NextResponse.json({ error: 'Erro interno ao consultar lotes.', lots: [] }, { status: 500 });
+    }
+    const demoItems = getDemoLots().map((lot) => ({
+      lot,
+      categorySlug: lot.produto.categoriaId.toLowerCase(),
+    }));
+    return NextResponse.json({
+      lots: applyLotFilters(demoItems, { q, categoria, filtro, fornecedorId }),
+      env: 'modelo',
+    });
   }
 }
 
@@ -225,12 +366,21 @@ export async function POST(req: NextRequest) {
     }
     if (ctx.profile.role !== 'fornecedor' && ctx.profile.role !== 'admin') {
       return NextResponse.json(
-        { error: 'Apenas fornecedores ou administradores podem publicar lotes de estoque.' },
+        { error: 'Apenas fornecedores, anunciantes ou administradores podem publicar lotes de estoque.' },
         { status: 403 }
       );
     }
 
     const body = await req.json();
+    // Usuários comuns NUNCA podem criar lotes demonstrativos nem converter reais em modelo
+    const isDemoRecord = Boolean(body.isDemo) && ctx.profile.role === 'admin';
+    if (Boolean(body.isDemo) && ctx.profile.role !== 'admin') {
+      return NextResponse.json(
+        { error: 'Somente administradores podem publicar lotes demonstrativos (MODELO).' },
+        { status: 403 }
+      );
+    }
+
     const {
       titulo,
       descricao,
@@ -343,35 +493,46 @@ export async function POST(req: NextRequest) {
     const sku = `SKU-${Date.now().toString().slice(-5)}-${randSuffix}`;
     const codigoLote = `LOTE-${Date.now().toString().slice(-4)}${randSuffix.toString().slice(-2)}`;
 
-    const { data: productRow, error: prodErr } = await dbClient
+    const productPayload: Record<string, unknown> = {
+      fornecedor_id: ctx.user.id,
+      categoria_id: catRow.id,
+      sku,
+      titulo: String(titulo).trim(),
+      descricao:
+        String(descricao || '').trim() ||
+        `Lote fechado disponibilizado por ${fabricante}. Carga conferida (${Math.round(boxes)} caixas / ${Math.round(paletesCount)} palete(s)) com rastreabilidade GS1 e procedência homologada.`,
+      marca: String(marca).trim(),
+      fabricante: String(fabricante).trim(),
+      origem_cd: String(origem || 'CD Jundiaí - SP').trim(),
+      gtin_ean: String(gtinEan).trim().slice(0, 14),
+      dun14: String(dun14 || `1${String(gtinEan).trim()}`).trim().slice(0, 14),
+      imagem_url: resolvedImage,
+      embalagem: `Caixa c/ ${Math.round(unitsPerBox)} un`,
+      unidades_por_embalagem: Math.round(unitsPerBox),
+      total_caixas: Math.round(boxes),
+      total_unidades: totalUnidades,
+      paletes_pbr: Math.round(paletesCount),
+      data_validade: validadeIso,
+      status_shelf_life: statusShelfLife,
+      laudo_sanitario_anvisa: Boolean(laudoSanitarioAnvisa ?? true),
+      status_fiscal: 'homologado',
+      preco_referencia_mercado: refMarketPrice,
+      is_demo: isDemoRecord,
+    };
+
+    let { data: productRow, error: prodErr } = await dbClient
       .from('products')
-      .insert({
-        fornecedor_id: ctx.user.id,
-        categoria_id: catRow.id,
-        sku,
-        titulo: String(titulo).trim(),
-        descricao:
-          String(descricao || '').trim() ||
-          `Lote fechado disponibilizado por ${fabricante}. Carga conferida (${Math.round(boxes)} caixas / ${Math.round(paletesCount)} palete(s)) com rastreabilidade GS1 e procedência homologada.`,
-        marca: String(marca).trim(),
-        fabricante: String(fabricante).trim(),
-        origem_cd: String(origem || 'CD Jundiaí - SP').trim(),
-        gtin_ean: String(gtinEan).trim().slice(0, 14),
-        dun14: String(dun14 || `1${String(gtinEan).trim()}`).trim().slice(0, 14),
-        imagem_url: resolvedImage,
-        embalagem: `Caixa c/ ${Math.round(unitsPerBox)} un`,
-        unidades_por_embalagem: Math.round(unitsPerBox),
-        total_caixas: Math.round(boxes),
-        total_unidades: totalUnidades,
-        paletes_pbr: Math.round(paletesCount),
-        data_validade: validadeIso,
-        status_shelf_life: statusShelfLife,
-        laudo_sanitario_anvisa: Boolean(laudoSanitarioAnvisa ?? true),
-        status_fiscal: 'homologado',
-        preco_referencia_mercado: refMarketPrice,
-      })
+      .insert(productPayload)
       .select('*')
       .single();
+
+    if (prodErr && (prodErr.code === '42703' || prodErr.message?.includes('is_demo') || prodErr.message?.includes('embalagem'))) {
+      delete productPayload.is_demo;
+      delete productPayload.embalagem;
+      const retry = await dbClient.from('products').insert(productPayload).select('*').single();
+      productRow = retry.data;
+      prodErr = retry.error;
+    }
 
     if (prodErr || !productRow) {
       return NextResponse.json(
@@ -380,26 +541,41 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { data: auctionRow, error: aucErr } = await dbClient
+    const auctionPayload: Record<string, unknown> = {
+      codigo_lote: codigoLote,
+      produto_id: productRow.id,
+      tipo_venda: tipoVenda || 'leilao',
+      lance_inicial: baseBid,
+      lance_atual: baseBid,
+      incremento_minimo: rawIncrement,
+      preco_arremate_imediato: parsedBuyNow,
+      margem_estimada_revenda: estimatedMargin,
+      total_lances: 0,
+      ultimo_lance_empresa: 'Aguardando primeiro lance',
+      termina_em: new Date(Date.now() + 72 * 3600 * 1000).toISOString(),
+      status: 'ativo',
+      raio_km: 45,
+      tipo_frete: tipoFrete || 'FOB',
+      is_demo: isDemoRecord,
+    };
+
+    let { data: auctionRow, error: aucErr } = await dbClient
       .from('auctions')
-      .insert({
-        codigo_lote: codigoLote,
-        produto_id: productRow.id,
-        tipo_venda: tipoVenda || 'leilao',
-        lance_inicial: baseBid,
-        lance_atual: baseBid,
-        incremento_minimo: rawIncrement,
-        preco_arremate_imediato: parsedBuyNow,
-        margem_estimada_revenda: estimatedMargin,
-        total_lances: 0,
-        ultimo_lance_empresa: 'Aguardando primeiro lance',
-        termina_em: new Date(Date.now() + 72 * 3600 * 1000).toISOString(),
-        status: 'ativo',
-        raio_km: 45,
-        tipo_frete: tipoFrete || 'FOB',
-      })
+      .insert(auctionPayload)
       .select('*, products(*)')
       .single();
+
+    if (aucErr && (aucErr.code === '42703' || aucErr.message?.includes('is_demo') || aucErr.message?.includes('raio_km'))) {
+      delete auctionPayload.is_demo;
+      delete auctionPayload.raio_km;
+      const retryAuc = await dbClient
+        .from('auctions')
+        .insert(auctionPayload)
+        .select('*, products(*)')
+        .single();
+      auctionRow = retryAuc.data;
+      aucErr = retryAuc.error;
+    }
 
     if (aucErr || !auctionRow) {
       return NextResponse.json(
@@ -409,25 +585,31 @@ export async function POST(req: NextRequest) {
     }
 
     await dbClient.from('audit_worm_logs').insert({
-      tipo_evento: 'lote_publicado',
+      tipo_evento: isDemoRecord ? 'lote_modelo_publicado' : 'lote_publicado',
       protocolo: codigoLote,
       payload_json: {
         auctionId: auctionRow.id,
         productId: productRow.id,
         fornecedorId: ctx.user.id,
         lanceInicial: baseBid,
+        isDemo: isDemoRecord,
       },
       merkle_root_hash: buildAuditHash(codigoLote, 'lote_publicado', {
         auctionId: auctionRow.id,
         baseBid,
+        isDemo: isDemoRecord,
       }),
       responsavel_id: ctx.user.id,
     });
 
+    const mappedLot = mapDbAuctionToAuctionLot({ ...auctionRow, is_demo: isDemoRecord } as Record<string, unknown>);
+
     return NextResponse.json(
       {
-        message: 'Lote cadastrado e pregão ativado no marketplace B2B',
-        lot: mapDbAuctionToAuctionLot(auctionRow as Record<string, unknown>),
+        message: isDemoRecord
+          ? 'Lote modelo adicionado ao Ambiente Modelo com sucesso'
+          : 'Lote verdadeiro cadastrado e pregão ativado no Ambiente Original',
+        lot: mappedLot,
       },
       { status: 201 }
     );
@@ -458,6 +640,13 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
+    if (String(loteId).startsWith('demo-') && ctx.profile.role !== 'admin') {
+      return NextResponse.json(
+        { error: 'Registros do Ambiente Modelo não podem ser modificados por usuários comuns.' },
+        { status: 403 }
+      );
+    }
+
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
     const { data: existingAuction, error: fetchErr } = await dbClient
       .from('auctions')
@@ -469,9 +658,17 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: 'Lote não encontrado.' }, { status: 404 });
     }
 
+    const isDemo = isRowDemoRecord(existingAuction as Record<string, unknown>);
     const product = existingAuction.products as Record<string, unknown>;
     const isOwner = String(product.fornecedor_id) === ctx.user.id;
     const isAdmin = ctx.profile.role === 'admin';
+
+    if (isDemo && !isAdmin) {
+      return NextResponse.json(
+        { error: 'Apenas administradores autorizados podem editar lotes demonstrativos.' },
+        { status: 403 }
+      );
+    }
 
     if (!isOwner && !isAdmin) {
       return NextResponse.json(

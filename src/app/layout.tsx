@@ -4,6 +4,9 @@ import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { AuthProvider } from '@/components/AuthProvider';
+import { EnvironmentProvider } from '@/components/EnvironmentProvider';
+import { EnvironmentModeBanner } from '@/components/DemoBadge';
+import { SmartTutorialOverlay } from '@/components/SmartTutorialOverlay';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -45,9 +48,15 @@ export default function RootLayout({
       </head>
       <body className="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-sans">
         <AuthProvider>
-          <Header />
-          <main className="flex-1 pt-[162px] w-full">{children}</main>
-          <Footer />
+          <EnvironmentProvider>
+            <Header />
+            <main className="flex-1 pt-[160px] w-full">
+              <EnvironmentModeBanner />
+              {children}
+            </main>
+            <SmartTutorialOverlay />
+            <Footer />
+          </EnvironmentProvider>
         </AuthProvider>
       </body>
     </html>

@@ -13,6 +13,8 @@ import {
   Upload,
 } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
 import { ProductCategory } from '@/lib/types';
 
 type LotPresetType = 'industria' | 'pequeno_mercado' | 'cerealista' | 'hortifruti' | 'higiene_limpeza';
@@ -78,6 +80,7 @@ function NovoProdutoContent() {
   const modeloParam = searchParams.get('modelo');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { user, profile, loading: authLoading } = useAuth();
+  const { isDemoMode, setEnvMode, simulateCreateProduct } = useEnvironment();
 
   const [categories, setCategories] = useState<ProductCategory[]>([]);
   const [presetMode, setPresetMode] = useState<LotPresetType>(
@@ -85,6 +88,7 @@ function NovoProdutoContent() {
   );
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [simulatedModeCreated, setSimulatedModeCreated] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -120,7 +124,7 @@ function NovoProdutoContent() {
   );
 
   useEffect(() => {
-    fetch('/api/categorias', { cache: 'no-store' })
+    fetch(`/api/categorias?env=${isDemoMode ? 'modelo' : 'original'}`, { cache: 'no-store' })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (Array.isArray(data?.categories) && data.categories.length > 0) {
@@ -134,7 +138,7 @@ function NovoProdutoContent() {
         }
       })
       .catch(() => {});
-  }, []);
+  }, [isDemoMode]);
 
   const applyPreset = useCallback(
     (mode: LotPresetType) => {
@@ -339,11 +343,6 @@ function NovoProdutoContent() {
     e.preventDefault();
     setSubmitError(null);
 
-    if (!user) {
-      setSubmitError('Faça login com uma conta fornecedora ou administrativa para publicar lotes.');
-      return;
-    }
-
     if (lanceInicial < 100) {
       setSubmitError('O lance inicial deve ser de no mínimo R$ 100,00.');
       return;
@@ -354,6 +353,56 @@ function NovoProdutoContent() {
     }
     if (precoArremate > 0 && precoArremate <= lanceInicial) {
       setSubmitError('O preço de arremate imediato deve ser superior ao lance inicial (ou deixe 0 para desativar).');
+      return;
+    }
+
+    if (isDemoMode) {
+      setSubmitting(true);
+      const simLot = simulateCreateProduct({
+        titulo,
+        lanceInicial,
+        incrementoMinimo,
+        precoArremateImediato: precoArremate > 0 ? precoArremate : undefined,
+        tipoVenda,
+        tipoFrete,
+        produto: {
+          id: '',
+          sku: '',
+          titulo,
+          descricao,
+          marca,
+          fabricante: fabricante || 'Empresa Demonstração (Modelo)',
+          origem,
+          categoriaId: categoriaId || 'alimentos-secos',
+          gtinEan: gtinEan || '7890000000001',
+          dun14: dun14 || '17890000000008',
+          imagemUrl,
+          embalagem: `Caixa c/ ${unidadesPorEmbalagem} un`,
+          unidadesPorEmbalagem,
+          totalCaixas,
+          totalUnidades: unidadesPorEmbalagem * totalCaixas,
+          paletes,
+          dataValidade,
+          diasRestantesValidade: 90,
+          statusShelfLife: 'atencao',
+          laudoSanitarioAnvisa: laudoAnvisa,
+          statusFiscal: 'homologado',
+          precoReferenciaMercado: Number(precoUnitarioEstimado) * 1.65,
+          isDemo: true,
+        },
+      });
+      setCreatedLotCode(simLot.codigoLote);
+      setSimulatedModeCreated(true);
+      setSubmitting(false);
+      setSuccess(true);
+      setTimeout(() => {
+        router.push('/leiloes');
+      }, 1800);
+      return;
+    }
+
+    if (!user) {
+      setSubmitError('Faça login com uma conta fornecedora, anunciante ou administrativa para publicar lotes reais.');
       return;
     }
 
@@ -394,16 +443,21 @@ function NovoProdutoContent() {
       }
 
       setCreatedLotCode(data?.lot?.codigoLote || null);
+      setSimulatedModeCreated(false);
       setSubmitting(false);
       setSuccess(true);
       setTimeout(() => {
-        router.push('/leiloes');
+        router.push('/leiloes?env=original');
       }, 1500);
     } catch {
       setSubmitError('Falha de comunicação ao cadastrar o lote. Tente novamente.');
       setSubmitting(false);
     }
   };
+
+  const canPublishReal = Boolean(
+    user && (profile?.role === 'fornecedor' || profile?.role === 'admin')
+  );
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-6">
@@ -418,6 +472,14 @@ function NovoProdutoContent() {
 
       {/* Title */}
       <div className="space-y-1">
+        {isDemoMode && (
+          <div className="mb-1 flex items-center gap-2 flex-wrap">
+            <DemoBadge compact />
+            <span className="text-[11px] font-bold text-amber-800">
+              Simulação de publicação no Ambiente Modelo
+            </span>
+          </div>
+        )}
         <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
           Publicar Lote ou Liquidar Estoque Parado
         </h1>
@@ -426,19 +488,41 @@ function NovoProdutoContent() {
         </p>
       </div>
 
-      {!authLoading && (!user || profile?.role === 'comprador') && (
+      {isDemoMode && (
+        <DidacticHint
+          title="Aqui você cadastra seus produtos"
+          text="Escolha um dos modelos rápidos abaixo ou preencha os campos para testar como um anúncio aparece nos pregões. A publicação será salva apenas na sua simulação demonstrativa."
+        />
+      )}
+
+      {isDemoMode && canPublishReal && (
+        <div className="p-4 rounded-2xl bg-secondary-container/25 border border-secondary/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <span className="font-bold text-on-surface">
+            Você já possui conta fornecedora real! Deseja publicar um produto verdadeiro no Ambiente Original?
+          </span>
+          <button
+            type="button"
+            onClick={() => setEnvMode('original')}
+            className="px-4 py-2 bg-secondary text-white font-bold rounded-xl shrink-0"
+          >
+            Mudar para Ambiente Original (Real)
+          </button>
+        </div>
+      )}
+
+      {!isDemoMode && !authLoading && !canPublishReal && (
         <div className="p-4 rounded-2xl bg-primary-fixed/40 border border-primary/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <span className="font-bold text-on-surface">
             {!user
-              ? 'Entre com uma conta Fornecedor ou Admin para publicar lotes reais no Supabase.'
-              : 'Seu perfil atual é Comprador. Apenas contas Fornecedor ou Admin publicam lotes.'}
+              ? 'Entre com uma conta Fornecedor, Vendedor ou Admin para publicar lotes reais no Supabase.'
+              : 'Seu perfil atual é Comprador. Apenas contas Fornecedor, Vendedor/Anunciante ou Admin publicam lotes reais.'}
           </span>
           {!user && (
             <Link
-              href="/login?redirect=/produtos/novo"
+              href="/cadastro"
               className="px-4 py-2 bg-primary text-white font-bold rounded-xl shrink-0 text-center"
             >
-              Entrar como Fornecedor
+              Cadastrar Fornecedor / Anunciante
             </Link>
           )}
         </div>
@@ -534,12 +618,23 @@ function NovoProdutoContent() {
 
       {success ? (
         <div className="p-8 bg-secondary-container/20 rounded-2xl border border-secondary/30 text-center space-y-3">
+          {simulatedModeCreated && (
+            <div className="flex justify-center">
+              <DemoBadge />
+            </div>
+          )}
           <CheckCircle2 className="w-12 h-12 text-secondary mx-auto" />
           <h3 className="font-bold text-xl text-secondary">
-            {createdLotCode ? `${createdLotCode} Cadastrado e Pregão Ativado!` : 'Lote Cadastrado e Pregão Ativado!'}
+            {simulatedModeCreated
+              ? `SIMULAÇÃO — AMBIENTE MODELO: ${createdLotCode || 'Lote'} publicado na demonstração!`
+              : createdLotCode
+              ? `${createdLotCode} Cadastrado e Pregão Ativado!`
+              : 'Lote Cadastrado e Pregão Ativado!'}
           </h3>
           <p className="text-xs text-on-surface-variant">
-            O lote foi homologado e já está visível para os compradores cadastrados com custódia fiduciária garantida. Redirecionando...
+            {simulatedModeCreated
+              ? 'Seu lote modelo entrou no catálogo demonstrativo local (com tarja MODELO) para você visualizar como funciona. Para anúncios comerciais reais, conclua seu cadastro oficial.'
+              : 'O lote foi homologado no Supabase sem tarja demonstrativa e já está visível no Ambiente Original para compradores reais. Redirecionando...'}
           </p>
         </div>
       ) : (
@@ -939,7 +1034,7 @@ function NovoProdutoContent() {
             </Link>
             <button
               type="submit"
-              disabled={submitting || !user}
+              disabled={submitting || (!isDemoMode && !canPublishReal)}
               className="px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold shadow-md transition-all flex items-center gap-1.5 disabled:opacity-50"
             >
               {submitting ? (
@@ -947,7 +1042,11 @@ function NovoProdutoContent() {
               ) : (
                 <>
                   <span className="material-symbols-outlined text-[18px]">publish</span>
-                  <span>Publicar Lote no Marketplace</span>
+                  <span>
+                    {isDemoMode
+                      ? 'Simular Publicação no Ambiente Modelo'
+                      : 'Publicar Lote no Ambiente Original'}
+                  </span>
                 </>
               )}
             </button>

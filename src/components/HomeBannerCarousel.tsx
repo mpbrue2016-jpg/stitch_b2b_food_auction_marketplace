@@ -5,10 +5,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Pause, Play, ArrowRight } from 'lucide-react';
 import { HomeBanner } from '@/lib/types';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge } from '@/components/DemoBadge';
 
 const FALLBACK_BANNER_IMAGE = '/images/banners/banner-atacado-pallets.jpg';
 
 export const HomeBannerCarousel: React.FC = () => {
+  const { envMode } = useEnvironment();
   const [banners, setBanners] = useState<HomeBanner[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +32,8 @@ export const HomeBannerCarousel: React.FC = () => {
 
   useEffect(() => {
     let active = true;
-    fetch('/api/banners?activeOnly=1', { cache: 'no-store' })
+    setLoading(true);
+    fetch(`/api/banners?activeOnly=1&env=${envMode}`, { cache: 'no-store' })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (active && Array.isArray(data?.banners)) {
@@ -44,7 +48,7 @@ export const HomeBannerCarousel: React.FC = () => {
     return () => {
       active = false;
     };
-  }, []);
+  }, [envMode]);
 
   const total = banners.length;
   const safeIndex = total > 0 ? currentIndex % total : 0;
@@ -144,6 +148,14 @@ export const HomeBannerCarousel: React.FC = () => {
 
         {/* Foreground Content */}
         <div className="relative z-10 h-full min-h-[260px] sm:min-h-[320px] lg:min-h-[380px] flex flex-col justify-between p-5 sm:p-8 lg:p-10">
+          {activeBanner.isDemo && (
+            <div className="flex items-center justify-between gap-2">
+              <DemoBadge variant="amber" />
+              <span className="text-[10px] font-bold text-white/80 bg-black/50 px-2.5 py-1 rounded-lg border border-white/15 hidden sm:inline">
+                Campanha Demonstrativa do Ambiente Modelo
+              </span>
+            </div>
+          )}
           <div className="max-w-2xl space-y-2.5 sm:space-y-3 my-auto">
             <p className="text-xs sm:text-sm font-semibold text-white/85 tracking-wide">
               {activeBanner.eyebrow}

@@ -8,10 +8,14 @@ import {
   NotificationsInboxCard,
 } from '@/components/AccountGovernanceSection';
 import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
+import { DEMO_ANALYTICS_INDICATORS, DEMO_CATEGORIES } from '@/lib/demo-data';
 import { AuctionLot, EscrowOrder, ProductCategory } from '@/lib/types';
 
 export default function PainelCompradorPage() {
   const { user, profile, loading: authLoading, refreshProfile } = useAuth();
+  const { isDemoMode, sandbox } = useEnvironment();
   const [lots, setLots] = useState<AuctionLot[]>([]);
   const [orders, setOrders] = useState<EscrowOrder[]>([]);
   const [categories, setCategories] = useState<ProductCategory[]>([]);
@@ -21,15 +25,29 @@ export default function PainelCompradorPage() {
   const kycInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
+    if (isDemoMode) {
+      setLots(sandbox.simulatedLots);
+      setOrders(sandbox.simulatedOrders);
+      setCategories(DEMO_CATEGORIES);
+      setLoading(false);
+      return;
+    }
+
     if (authLoading) return;
+    if (!user) {
+      setLots([]);
+      setOrders([]);
+      setLoading(false);
+      return;
+    }
+
     let active = true;
+    setLoading(true);
 
     Promise.all([
-      fetch('/api/lotes', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
-      user
-        ? fetch('/api/pedidos', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null))
-        : Promise.resolve(null),
-      fetch('/api/categorias', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/lotes?env=original', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/pedidos?env=original', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/categorias?env=original', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
     ])
       .then(([lotesData, pedidosData, catsData]) => {
         if (!active) return;
@@ -45,11 +63,11 @@ export default function PainelCompradorPage() {
     return () => {
       active = false;
     };
-  }, [user, authLoading]);
+  }, [isDemoMode, sandbox.simulatedLots, sandbox.simulatedOrders, user, authLoading]);
 
   const handleKycUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file) return;
+    if (!file || isDemoMode) return;
     setUploadingKyc(true);
     setKycStatusNotice(null);
     try {
@@ -73,50 +91,92 @@ export default function PainelCompradorPage() {
     }
   };
 
-  const activeOrders = orders.filter((o) => o.statusPagamento !== 'estornado');
+  if (!isDemoMode && !authLoading && !user) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-14 text-center space-y-4">
+        <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4">
+          <span className="material-symbols-outlined text-primary text-4xl">lock</span>
+          <h1 className="text-xl font-extrabold text-on-surface">
+            Painel Original do Comprador — Autenticação Necessária
+          </h1>
+          <p className="text-xs text-on-surface-variant max-w-md mx-auto">
+            Entre com sua conta oficial ou conclua o cadastro para acessar seu painel individual, limites e pedidos reais.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              href="/login?redirect=/painel/comprador"
+              className="px-5 py-2.5 bg-primary text-white text-xs font-bold rounded-xl"
+            >
+              Entrar na Conta
+            </Link>
+            <Link
+              href="/cadastro"
+              className="px-5 py-2.5 bg-secondary text-white text-xs font-bold rounded-xl"
+            >
+              Começar Agora (Cadastro)
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const displayLots = isDemoMode ? sandbox.simulatedLots : lots;
+  const displayOrders = isDemoMode ? sandbox.simulatedOrders : orders;
+  const activeOrders = displayOrders.filter((o) => o.statusPagamento !== 'estornado');
   const totalVolumeArrematado = activeOrders.reduce((acc, o) => acc + o.valorTotalArremate, 0);
   const avgEconomy =
-    lots.length > 0
+    displayLots.length > 0
       ? (
-          lots.reduce((acc, l) => {
+          displayLots.reduce((acc, l) => {
             const ref = l.produto.precoReferenciaMercado || l.lanceAtual;
             return acc + Math.max(0, ((ref - l.lanceAtual) / ref) * 100);
-          }, 0) / lots.length
+          }, 0) / displayLots.length
         ).toFixed(1)
       : '0.0';
 
-  const statusLabel =
-    profile?.statusAprovacao === 'aprovado'
-      ? 'CNPJ HOMOLOGADO'
-      : profile?.statusAprovacao === 'em_analise'
-      ? 'KYC EM ANÁLISE'
-      : 'CADASTRO PENDENTE DE KYC';
+  const displayCompanyName = isDemoMode
+    ? 'Supermercado Demo Ltda.'
+    : profile?.nomeFantasia || profile?.razaoSocial || 'Painel do Comprador';
+
+  const statusLabel = isDemoMode
+    ? 'CONTA MODELO DEMONSTRATIVA'
+    : profile?.statusAprovacao === 'aprovado'
+    ? 'CADASTRO HOMOLOGADO'
+    : profile?.statusAprovacao === 'em_analise'
+    ? 'KYC EM ANÁLISE'
+    : 'CADASTRO RECÉM-CRIADO';
+
+  const escrowLimitDisplay = isDemoMode ? 500000 : (profile?.limiteCreditoEscrow ?? 0);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-surface-container pb-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            {isDemoMode && <DemoBadge compact />}
             <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
             <span className="text-[10px] uppercase font-bold text-secondary">
               COCKPIT DO COMPRADOR B2B • {statusLabel}
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
-            {profile?.nomeFantasia || profile?.razaoSocial || 'Painel do Comprador B2B'}
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface mt-1">
+            {displayCompanyName}
           </h1>
           <p className="text-xs text-on-surface-variant font-mono mt-0.5">
-            {profile
-              ? `CNPJ: ${profile.cnpj} • ${
+            {isDemoMode
+              ? 'CNPJ Modelo: 12.345.678/0001-90 • São Paulo - SP (Dados Fictícios)'
+              : profile
+              ? `${profile.cnpj ? `CNPJ: ${profile.cnpj}` : profile.cpf ? `CPF: ${profile.cpf}` : 'Perfil Comprador'} • ${
                   profile.inscricaoEstadual ? `I.E: ${profile.inscricaoEstadual} • ` : ''
                 }${profile.endereco?.cidade || 'São Paulo'} - ${profile.endereco?.uf || 'SP'}`
-              : 'Autentique-se com seu CNPJ para visualizar limites Escrow e lances.'}
+              : 'Conta real autenticada'}
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          {user && (
+          {!isDemoMode && user && (
             <>
               <input
                 ref={kycInputRef}
@@ -152,6 +212,13 @@ export default function PainelCompradorPage() {
         </div>
       </div>
 
+      {isDemoMode && (
+        <DidacticHint
+          title="Aqui você acompanha suas negociações e compras"
+          text="Este é um painel demonstrativo de comprador varejista. Explore os indicadores fictícios, lances de exemplo e retiradas FOB antes de criar sua conta verdadeira."
+        />
+      )}
+
       {kycStatusNotice && (
         <div className="p-3 rounded-xl bg-secondary-container/30 border border-secondary text-secondary text-xs font-bold flex items-center justify-between gap-2">
           <span>{kycStatusNotice}</span>
@@ -164,31 +231,31 @@ export default function PainelCompradorPage() {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-on-surface-variant">
+          <div className="flex items-center justify-between text-on-surface-variant gap-1">
             <span className="text-xs font-bold uppercase">Limite Escrow Liberado</span>
-            <span className="material-symbols-outlined text-secondary text-[22px]">verified_user</span>
+            {isDemoMode ? <DemoBadge compact /> : <span className="material-symbols-outlined text-secondary text-[22px]">verified_user</span>}
           </div>
           <span className="text-2xl font-extrabold text-secondary block">
-            R$ {(profile?.limiteCreditoEscrow ?? 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+            R$ {escrowLimitDisplay.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
           <span className="text-[11px] text-outline block">Regulado BACEN • Disponível D+0</span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-on-surface-variant">
+          <div className="flex items-center justify-between text-on-surface-variant gap-1">
             <span className="text-xs font-bold uppercase">Pregões em Disputa</span>
-            <span className="material-symbols-outlined text-tertiary text-[22px]">timer</span>
+            {isDemoMode ? <DemoBadge compact /> : <span className="material-symbols-outlined text-tertiary text-[22px]">timer</span>}
           </div>
-          <span className="text-2xl font-extrabold text-primary block">{lots.length} lotes</span>
+          <span className="text-2xl font-extrabold text-primary block">{displayLots.length} lotes</span>
           <span className="text-[11px] text-tertiary font-bold block">
-            {lots.filter((l) => l.status === 'reta_final').length} lotes em Reta Final
+            {displayLots.filter((l) => l.status === 'reta_final').length} lotes em Reta Final
           </span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-on-surface-variant">
+          <div className="flex items-center justify-between text-on-surface-variant gap-1">
             <span className="text-xs font-bold uppercase">Volume Total Arrematado</span>
-            <span className="material-symbols-outlined text-primary text-[22px]">payments</span>
+            {isDemoMode ? <DemoBadge compact /> : <span className="material-symbols-outlined text-primary text-[22px]">payments</span>}
           </div>
           <span className="text-2xl font-extrabold text-on-surface block">
             R$ {totalVolumeArrematado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
@@ -197,14 +264,49 @@ export default function PainelCompradorPage() {
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-on-surface-variant">
+          <div className="flex items-center justify-between text-on-surface-variant gap-1">
             <span className="text-xs font-bold uppercase">Economia Média Obtida</span>
-            <span className="material-symbols-outlined text-secondary text-[22px]">trending_up</span>
+            {isDemoMode ? <DemoBadge compact /> : <span className="material-symbols-outlined text-secondary text-[22px]">trending_up</span>}
           </div>
           <span className="text-2xl font-extrabold text-secondary block">{avgEconomy}%</span>
           <span className="text-[11px] text-on-surface-variant block">Em relação à tabela industrial</span>
         </div>
       </div>
+
+      {/* Demonstrative Chart strictly in Modelo Mode */}
+      {isDemoMode && (
+        <div className="bg-surface-container-lowest p-6 rounded-2xl border border-amber-300 shadow-sm space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <DemoBadge compact />
+                <h3 className="font-extrabold text-base text-on-surface">
+                  Gráfico Demonstrativo — Volume Simulado de Compras por Categoria
+                </h3>
+              </div>
+              <p className="text-xs text-on-surface-variant mt-0.5">
+                Exemplo visual de como o painel apresenta indicadores de economia e compras reais após o cadastro.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {DEMO_ANALYTICS_INDICATORS.map((item) => (
+              <div key={item.label} className="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant/20 space-y-2">
+                <div className="flex items-center justify-between text-xs font-bold">
+                  <span className="text-on-surface truncate pr-2">{item.label}</span>
+                  <span className="text-primary shrink-0">{item.valorFormatado}</span>
+                </div>
+                <div className="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-primary rounded-full"
+                    style={{ width: `${item.percentualBarra}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Grid: 2 Columns */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -213,7 +315,7 @@ export default function PainelCompradorPage() {
           <div className="flex items-center justify-between border-b border-surface-container pb-3">
             <h3 className="font-extrabold text-base text-on-surface flex items-center gap-2">
               <span className="material-symbols-outlined text-primary text-[20px]">gavel</span>
-              Meus Lances &amp; Disputas Ativas
+              <span>{isDemoMode ? 'Pregões Demonstrativos (Modelo)' : 'Pregões & Lotes Reais Ativos'}</span>
             </h3>
             <Link href="/leiloes" className="text-xs text-primary font-bold hover:underline">
               Ver todos os pregões
@@ -224,18 +326,23 @@ export default function PainelCompradorPage() {
             <p className="text-xs text-on-surface-variant py-6 text-center">
               Carregando pregões disponíveis...
             </p>
-          ) : lots.length === 0 ? (
-            <p className="text-xs text-on-surface-variant py-6 text-center">
-              Nenhum pregão ativo encontrado no banco de dados.
-            </p>
+          ) : displayLots.length === 0 ? (
+            <div className="py-6 text-center space-y-2 text-xs text-on-surface-variant">
+              <p>Nenhum pregão real publicado no Ambiente Original até o momento.</p>
+              <Link href="/catalogo" className="text-primary font-bold hover:underline inline-block">
+                Explorar catálogo oficial
+              </Link>
+            </div>
           ) : (
             <div className="space-y-3">
-              {lots.slice(0, 6).map((lot) => {
+              {displayLots.slice(0, 6).map((lot) => {
                 const catName =
                   categories.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
                 const isLotClosed = lot.status === 'encerrado' || lot.status === 'homologado';
                 const isUserLeader = Boolean(
-                  profile?.nomeFantasia && lot.ultimoLanceEmpresa === profile.nomeFantasia
+                  !isDemoMode &&
+                    profile?.nomeFantasia &&
+                    lot.ultimoLanceEmpresa === profile.nomeFantasia
                 );
                 return (
                   <div
@@ -244,6 +351,7 @@ export default function PainelCompradorPage() {
                   >
                     <div className="space-y-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
+                        {(isDemoMode || lot.isDemo) && <DemoBadge compact />}
                         <span className="font-bold text-on-surface">{lot.codigoLote} • {lot.produto.titulo}</span>
                         <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface-container font-bold text-on-surface-variant">
                           {catName}
@@ -307,22 +415,25 @@ export default function PainelCompradorPage() {
             </Link>
           </div>
 
-          {orders.length === 0 ? (
+          {displayOrders.length === 0 ? (
             <div className="py-6 text-center space-y-2 text-xs text-on-surface-variant">
-              <p>Nenhum pedido Escrow vinculado ao seu CNPJ ainda.</p>
+              <p>Você ainda não possui pedidos Escrow registrados em sua conta.</p>
               <Link href="/catalogo" className="text-primary font-bold hover:underline inline-block">
                 Explorar lotes disponíveis
               </Link>
             </div>
           ) : (
             <div className="space-y-3 text-xs">
-              {orders.map((order) => (
+              {displayOrders.map((order) => (
                 <div
                   key={order.id}
                   className="p-3.5 rounded-xl bg-surface-container-low border border-surface-container space-y-2"
                 >
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-on-surface">{order.codigoPedido}</span>
+                  <div className="flex justify-between items-center gap-2 flex-wrap">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {(isDemoMode || order.isDemo) && <DemoBadge compact />}
+                      <span className="font-bold text-on-surface">{order.codigoPedido}</span>
+                    </div>
                     <span
                       className={`text-[10px] px-2 py-0.5 rounded font-bold ${
                         order.statusPagamento === 'em_custodia_escrow'
@@ -359,9 +470,33 @@ export default function PainelCompradorPage() {
         </div>
       </div>
 
-      {/* Central de Alertas & Dados Cadastrais / KYC */}
-      <NotificationsInboxCard />
-      <CompanyProfileAndKycCard />
+      {isDemoMode && (
+        <div className="rounded-2xl bg-primary-fixed/40 border border-primary/30 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <h3 className="text-sm font-extrabold text-on-surface">
+              Gostou de conhecer o Varejista Online? Agora crie sua conta e faça parte da nossa rede comercial.
+            </h3>
+            <p className="text-xs text-on-surface-variant">
+              Cadastre-se como Pessoa Física, Empresa, Comprador ou Fornecedor e inicie sua operação com dados 100% reais.
+            </p>
+          </div>
+          <Link
+            href="/cadastro"
+            className="px-5 py-2.5 bg-primary hover:bg-primary-container text-white text-xs font-extrabold rounded-xl shrink-0 text-center"
+          >
+            COMEÇAR AGORA
+          </Link>
+        </div>
+      )}
+
+      {/* Central de Alertas & Dados Cadastrais / KYC apenas no Ambiente Original */}
+      {!isDemoMode && (
+        <>
+          <NotificationsInboxCard />
+          <CompanyProfileAndKycCard />
+        </>
+      )}
     </div>
   );
 }
+

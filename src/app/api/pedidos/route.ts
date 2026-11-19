@@ -8,6 +8,7 @@ import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supa
 import { mapDbOrderToEscrowOrder } from '@/lib/supabase/mappers';
 import { buildAuditHash, buildSha256Hash } from '@/lib/security';
 import { generatePixEmvPayload } from '@/lib/pix-emv';
+import { DEMO_ORDERS, DEMO_SUPPLIER_ID } from '@/lib/demo-data';
 
 const ORDER_SELECT = `
   *,
@@ -16,7 +17,36 @@ const ORDER_SELECT = `
   fornecedor:profiles!orders_fornecedor_id_fkey(id, nome_fantasia, razao_social)
 `;
 
+function isDemoOrderRow(row: Record<string, unknown>): boolean {
+  if (typeof row.is_demo === 'boolean') return row.is_demo;
+  return (
+    String(row.id || '').startsWith('o1000000-') ||
+    String(row.fornecedor_id || '') === DEMO_SUPPLIER_ID
+  );
+}
+
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const envParam = searchParams.get('env');
+  const orderIdParam = searchParams.get('orderId') || searchParams.get('id');
+
+  if (envParam === 'modelo') {
+    if (orderIdParam) {
+      const demoOrd = DEMO_ORDERS.find(
+        (o) => o.id === orderIdParam || o.codigoPedido === orderIdParam
+      );
+      if (!demoOrd) {
+        return NextResponse.json({ error: 'Pedido modelo não encontrado.' }, { status: 404 });
+      }
+      return NextResponse.json({ order: demoOrd, pix: null, env: 'modelo' });
+    }
+    return NextResponse.json({
+      orders: DEMO_ORDERS,
+      summary: generateFinancialSummary(DEMO_ORDERS),
+      env: 'modelo',
+    });
+  }
+
   if (!isSupabaseServerConfigured) {
     return NextResponse.json(
       { error: 'Supabase não configurado no ambiente.', orders: [] },
@@ -33,9 +63,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const { searchParams } = new URL(req.url);
-    const orderIdParam = searchParams.get('orderId') || searchParams.get('id');
-
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
 
     if (orderIdParam) {
@@ -50,6 +77,10 @@ export async function GET(req: NextRequest) {
 
       if (singleErr || !singleOrder) {
         return NextResponse.json({ error: 'Pedido não localizado.' }, { status: 404 });
+      }
+
+      if (isDemoOrderRow(singleOrder as Record<string, unknown>) && ctx.profile.role !== 'admin') {
+        return NextResponse.json({ error: 'Pedido pertence ao Ambiente Modelo.' }, { status: 404 });
       }
 
       const isOwner =
@@ -78,6 +109,7 @@ export async function GET(req: NextRequest) {
               valor: Number(txRow.valor ?? singleOrder.valor_total_arremate),
             }
           : null,
+        env: 'original',
       });
     }
 
@@ -97,10 +129,15 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: error.message, orders: [] }, { status: 500 });
     }
 
-    const orders = (data || []).map((r) => mapDbOrderToEscrowOrder(r as Record<string, unknown>));
+    // Garante que pedidos demonstrativos não sejam misturados com os pedidos reais do usuário
+    const realOrders = (data || [])
+      .filter((r) => !isDemoOrderRow(r as Record<string, unknown>))
+      .map((r) => mapDbOrderToEscrowOrder(r as Record<string, unknown>));
+
     return NextResponse.json({
-      orders,
-      summary: generateFinancialSummary(orders),
+      orders: realOrders,
+      summary: generateFinancialSummary(realOrders),
+      env: 'original',
     });
   } catch (err) {
     console.error('Erro em GET /api/pedidos:', err);
@@ -140,8 +177,14 @@ export async function POST(req: NextRequest) {
 
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
 
-    // Caso 1: Confirmar depósito de ordem já gerada em aguardo
     if (orderIdToConfirm) {
+      if (String(orderIdToConfirm).startsWith('demo-') || String(orderIdToConfirm).startsWith('o1000000-')) {
+        return NextResponse.json(
+          { error: 'Ambiente Modelo não permite liquidação financeira real.' },
+          { status: 403 }
+        );
+      }
+
       const { data: existingOrder, error: exErr } = await dbClient
         .from('orders')
         .select(ORDER_SELECT)
@@ -151,19 +194,20 @@ export async function POST(req: NextRequest) {
       if (exErr || !existingOrder) {
         return NextResponse.json({ error: 'Pedido não localizado.' }, { status: 404 });
       }
+      if (isDemoOrderRow(existingOrder as Record<string, unknown>)) {
+        return NextResponse.json(
+          { error: 'Ambiente Modelo não permite liquidação financeira real.' },
+          { status: 403 }
+        );
+      }
       if (String(existingOrder.comprador_id) !== ctx.user.id && ctx.profile.role !== 'admin') {
         return NextResponse.json({ error: 'Acesso negado a este pedido.' }, { status: 403 });
       }
 
-      const nextStatus =
-        typeof pixComprovanteCodigo === 'string' && pixComprovanteCodigo.trim().length >= 6
-          ? 'em_custodia_escrow'
-          : 'em_custodia_escrow';
-
       const { data: updatedOrder, error: updErr } = await dbClient
         .from('orders')
         .update({
-          status_pagamento: nextStatus,
+          status_pagamento: 'em_custodia_escrow',
           comprovante_pix_spi:
             typeof pixComprovanteCodigo === 'string' && pixComprovanteCodigo.trim()
               ? pixComprovanteCodigo.trim().slice(0, 180)
@@ -202,11 +246,20 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Caso 2: Criação de nova ordem com preço autoritativo derivado no servidor
     if (!loteId) {
       return NextResponse.json(
         { error: 'Parâmetro obrigatório: loteId.' },
         { status: 400 }
+      );
+    }
+
+    if (String(loteId).startsWith('demo-') || String(loteId).startsWith('a1000000-')) {
+      return NextResponse.json(
+        {
+          error:
+            'Ambiente Modelo é apenas demonstrativo. Não é permitido criar ordens de pagamento reais para lotes modelo.',
+        },
+        { status: 403 }
       );
     }
 
@@ -220,6 +273,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Lote não encontrado no banco de dados.' }, { status: 404 });
     }
 
+    const product = auctionRow.products as Record<string, unknown>;
+    if (
+      (auctionRow as Record<string, unknown>).is_demo === true ||
+      product.is_demo === true ||
+      String(product.fornecedor_id || '') === DEMO_SUPPLIER_ID
+    ) {
+      return NextResponse.json(
+        {
+          error:
+            'Ambiente Modelo é apenas demonstrativo. Não é permitido realizar transações reais em lotes modelo.',
+        },
+        { status: 403 }
+      );
+    }
+
     if (
       (auctionRow.status === 'homologado' || auctionRow.status === 'cancelado') &&
       sourceType !== 'proposal'
@@ -230,7 +298,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const product = auctionRow.products as Record<string, unknown>;
     const supplierId = String(product.fornecedor_id || '');
     if (!supplierId) {
       return NextResponse.json({ error: 'Fornecedor do lote não identificado.' }, { status: 400 });
@@ -274,7 +341,6 @@ export async function POST(req: NextRequest) {
       }
       authoritativeAmount = Number(auctionRow.lance_atual ?? auctionRow.lance_inicial);
     } else {
-      // buy_now / venda direta
       authoritativeAmount = Number(
         auctionRow.preco_arremate_imediato ?? auctionRow.lance_atual ?? auctionRow.lance_inicial
       );
@@ -287,7 +353,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Buscar regra de comissão vigente no banco
     const { data: ruleRow } = await dbClient
       .from('commission_rules')
       .select('percentual_padrao')
@@ -327,26 +392,36 @@ export async function POST(req: NextRequest) {
     const initialPaymentStatus =
       body.mode === 'charge_only' ? 'aguardando_pagamento' : 'em_custodia_escrow';
 
-    const { data: insertedOrder, error: ordErr } = await dbClient
+    const orderPayload: Record<string, unknown> = {
+      codigo_pedido: codigoPedido,
+      auction_id: loteId,
+      comprador_id: ctx.user.id,
+      fornecedor_id: supplierId,
+      valor_total_arremate: split.valorBrutoTotal,
+      percentual_comissao: split.percentualComissao,
+      valor_comissao_plataforma: split.valorComissaoPlataforma,
+      valor_repasse_liquido: split.valorRepasseLiquidoFornecedor,
+      taxa_escrow_bancaria: split.taxaEscrowBancaria,
+      status_pagamento: initialPaymentStatus,
+      status_logistica: 'agendamento_doca',
+      doca_agendada: 'Aguardando agendamento de Doca FOB no CD',
+      termo_arremate_hash: termoArremateHash,
+      comprovante_pix_spi: hasPixReceipt ? pixComprovanteCodigo.trim().slice(0, 180) : txid,
+      is_demo: false,
+    };
+
+    let { data: insertedOrder, error: ordErr } = await dbClient
       .from('orders')
-      .insert({
-        codigo_pedido: codigoPedido,
-        auction_id: loteId,
-        comprador_id: ctx.user.id,
-        fornecedor_id: supplierId,
-        valor_total_arremate: split.valorBrutoTotal,
-        percentual_comissao: split.percentualComissao,
-        valor_comissao_plataforma: split.valorComissaoPlataforma,
-        valor_repasse_liquido: split.valorRepasseLiquidoFornecedor,
-        taxa_escrow_bancaria: split.taxaEscrowBancaria,
-        status_pagamento: initialPaymentStatus,
-        status_logistica: 'agendamento_doca',
-        doca_agendada: 'Aguardando agendamento de Doca FOB no CD',
-        termo_arremate_hash: termoArremateHash,
-        comprovante_pix_spi: hasPixReceipt ? pixComprovanteCodigo.trim().slice(0, 180) : txid,
-      })
+      .insert(orderPayload)
       .select(ORDER_SELECT)
       .single();
+
+    if (ordErr && ordErr.message?.includes('is_demo')) {
+      delete orderPayload.is_demo;
+      const retry = await dbClient.from('orders').insert(orderPayload).select(ORDER_SELECT).single();
+      insertedOrder = retry.data;
+      ordErr = retry.error;
+    }
 
     if (ordErr || !insertedOrder) {
       return NextResponse.json(
@@ -445,6 +520,13 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
+    if (String(orderId).startsWith('demo-') || String(orderId).startsWith('o1000000-')) {
+      return NextResponse.json(
+        { error: 'Pedidos do Ambiente Modelo não podem ser alterados no banco real.' },
+        { status: 403 }
+      );
+    }
+
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
       String(orderId)
@@ -458,6 +540,13 @@ export async function PATCH(req: NextRequest) {
 
     if (fetchErr || !currentRow) {
       return NextResponse.json({ error: 'Pedido escrow não encontrado' }, { status: 404 });
+    }
+
+    if (isDemoOrderRow(currentRow as Record<string, unknown>) && ctx.profile.role !== 'admin') {
+      return NextResponse.json(
+        { error: 'Pedidos demonstrativos não podem ser modificados por usuários comuns.' },
+        { status: 403 }
+      );
     }
 
     const isBuyer = String(currentRow.comprador_id) === ctx.user.id;

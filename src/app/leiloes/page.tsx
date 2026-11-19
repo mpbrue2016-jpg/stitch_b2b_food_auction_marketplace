@@ -1,12 +1,14 @@
 'use client';
 
-import React, { Suspense, useCallback, useEffect, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
 import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
 import { BidModal } from '@/components/BidModal';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
+import { useEnvironment } from '@/components/EnvironmentProvider';
 import { useAuth } from '@/components/AuthProvider';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { AuctionLot, ProductCategory } from '@/lib/types';
@@ -15,6 +17,7 @@ function LeiloesContent() {
   const searchParams = useSearchParams();
   const categoriaParam = searchParams.get('categoria') || '';
   const { profile } = useAuth();
+  const { envMode, isDemoMode, setEnvMode, sandbox } = useEnvironment();
 
   const [lots, setLots] = useState<AuctionLot[]>([]);
   const [categories, setCategories] = useState<ProductCategory[]>([]);
@@ -24,10 +27,11 @@ function LeiloesContent() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('todas');
 
   const loadAuctions = useCallback(async () => {
+    setLoading(true);
     try {
       const [bidsRes, catsRes] = await Promise.all([
-        fetch('/api/lances', { cache: 'no-store' }),
-        fetch('/api/categorias', { cache: 'no-store' }),
+        fetch(`/api/lances?env=${envMode}`, { cache: 'no-store' }),
+        fetch(`/api/categorias?env=${envMode}`, { cache: 'no-store' }),
       ]);
       const [bidsData, catsData] = await Promise.all([
         bidsRes.ok ? bidsRes.json() : null,
@@ -35,6 +39,8 @@ function LeiloesContent() {
       ]);
       if (Array.isArray(bidsData?.auctions)) {
         setLots(bidsData.auctions);
+      } else {
+        setLots([]);
       }
       if (Array.isArray(catsData?.categories)) {
         setCategories(catsData.categories);
@@ -44,11 +50,11 @@ function LeiloesContent() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [envMode]);
 
   useEffect(() => {
     void loadAuctions();
-    if (!isSupabaseConfigured) return;
+    if (!isSupabaseConfigured || isDemoMode) return;
     const channel = supabase
       .channel('leiloes-list-realtime')
       .on(
@@ -62,7 +68,7 @@ function LeiloesContent() {
     return () => {
       void supabase.removeChannel(channel);
     };
-  }, [loadAuctions]);
+  }, [loadAuctions, isDemoMode]);
 
   useEffect(() => {
     if (!categoriaParam) {
@@ -75,7 +81,15 @@ function LeiloesContent() {
     setSelectedCategoryId(matched ? matched.id : categoriaParam);
   }, [categoriaParam, categories]);
 
-  const statusFilteredLots = lots.filter((lot) => {
+  const effectiveLots = useMemo(() => {
+    if (!isDemoMode) return lots;
+    const byId = new Map<string, AuctionLot>();
+    for (const lot of lots) byId.set(lot.id, lot);
+    for (const simLot of sandbox.simulatedLots) byId.set(simLot.id, simLot);
+    return Array.from(byId.values());
+  }, [lots, isDemoMode, sandbox.simulatedLots]);
+
+  const statusFilteredLots = effectiveLots.filter((lot) => {
     if (activeTab === 'ao_vivo') return lot.status === 'reta_final' || lot.status === 'ativo';
     if (activeTab === 'finalizados') return lot.status === 'encerrado' || lot.status === 'homologado';
     return true;
@@ -86,12 +100,15 @@ function LeiloesContent() {
     const catObj = categories.find(
       (c) => c.id === lot.produto.categoriaId || c.slug === lot.produto.categoriaId
     );
-    return lot.produto.categoriaId === selectedCategoryId || catObj?.slug === selectedCategoryId;
+    return (
+      lot.produto.categoriaId === selectedCategoryId ||
+      catObj?.slug === selectedCategoryId ||
+      catObj?.id === selectedCategoryId
+    );
   });
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
-      {/* Breadcrumb & Header */}
       <div className="space-y-3">
         <nav className="text-xs text-on-surface-variant flex items-center gap-1.5">
           <Link href="/" className="hover:text-primary">Início</Link>
@@ -100,6 +117,9 @@ function LeiloesContent() {
         </nav>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
+            <div className="flex items-center gap-2 mb-1">
+              {isDemoMode && <DemoBadge />}
+            </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface flex items-center gap-2">
               <span>Pregões Eletrônicos em Tempo Real</span>
               <span className="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse" />
@@ -109,7 +129,6 @@ function LeiloesContent() {
             </p>
           </div>
 
-          {/* Tab Filter */}
           <div className="flex bg-surface-container-low p-1 rounded-xl border border-outline-variant/30 text-xs font-bold shrink-0">
             <button
               type="button"
@@ -120,7 +139,7 @@ function LeiloesContent() {
                   : 'text-on-surface-variant hover:text-on-surface'
               }`}
             >
-              Disputa Aberta ({lots.filter((l) => l.status === 'reta_final' || l.status === 'ativo').length})
+              Disputa Aberta ({effectiveLots.filter((l) => l.status === 'reta_final' || l.status === 'ativo').length})
             </button>
             <button
               type="button"
@@ -131,7 +150,7 @@ function LeiloesContent() {
                   : 'text-on-surface-variant hover:text-on-surface'
               }`}
             >
-              Todos os Lotes ({lots.length})
+              Todos os Lotes ({effectiveLots.length})
             </button>
             <button
               type="button"
@@ -142,12 +161,18 @@ function LeiloesContent() {
                   : 'text-on-surface-variant hover:text-on-surface'
               }`}
             >
-              Finalizados ({lots.filter((l) => l.status === 'encerrado' || l.status === 'homologado').length})
+              Finalizados ({effectiveLots.filter((l) => l.status === 'encerrado' || l.status === 'homologado').length})
             </button>
           </div>
         </div>
 
-        {/* Segment / Category Filter Strip */}
+        {isDemoMode && (
+          <DidacticHint
+            title="Aqui você acompanha pregões e testa lances em tempo real"
+            description="Entre em qualquer sala de leilão para visualizar o livro de ofertas, a galeria de inspeção e simular novos lances sem compromisso real."
+          />
+        )}
+
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
           <button
             type="button"
@@ -161,7 +186,9 @@ function LeiloesContent() {
             Todos os Segmentos ({statusFilteredLots.length})
           </button>
           {categories.map((cat) => {
-            const count = statusFilteredLots.filter((l) => l.produto.categoriaId === cat.id).length;
+            const count = statusFilteredLots.filter(
+              (l) => l.produto.categoriaId === cat.id || l.produto.categoriaId === cat.slug
+            ).length;
             const isSelected = selectedCategoryId === cat.id;
             return (
               <button
@@ -185,48 +212,66 @@ function LeiloesContent() {
         </div>
       </div>
 
-      {/* Grid */}
       {loading ? (
         <div className="bg-surface-container-lowest p-10 rounded-2xl border border-outline-variant/30 text-center space-y-3">
           <div className="w-8 h-8 rounded-full border-4 border-primary/20 border-t-primary animate-spin mx-auto" />
           <p className="text-xs font-bold text-on-surface-variant">
-            Carregando pregões eletrônicos ao vivo...
+            Carregando pregões ({isDemoMode ? 'Ambiente Modelo' : 'Ambiente Original'})...
           </p>
         </div>
       ) : displayedLots.length === 0 ? (
         <div className="bg-surface-container-lowest p-10 rounded-2xl border border-outline-variant/30 text-center space-y-3">
           <span className="material-symbols-outlined text-outline text-4xl">gavel</span>
           <h3 className="font-bold text-base text-on-surface">
-            Nenhum pregão encontrado neste filtro
+            {isDemoMode
+              ? 'Nenhum pregão encontrado neste filtro'
+              : 'Nenhum pregão real publicado no Ambiente Original'}
           </h3>
           <p className="text-xs text-on-surface-variant">
-            Altere o segmento ou visualize todos os lotes da rodada atual.
+            {isDemoMode
+              ? 'Altere o segmento ou visualize todos os lotes da rodada atual.'
+              : 'Cadastre um novo lote oficial ou alterne para o Ambiente Modelo para explorar exemplos.'}
           </p>
-          <button
-            type="button"
-            onClick={() => {
-              setActiveTab('ao_vivo');
-              setSelectedCategoryId('todas');
-            }}
-            className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-xl"
-          >
-            Ver Todos os Pregões ao Vivo
-          </button>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('ao_vivo');
+                setSelectedCategoryId('todas');
+              }}
+              className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-xl"
+            >
+              Ver Todos os Pregões
+            </button>
+            {!isDemoMode && (
+              <button
+                type="button"
+                onClick={() => setEnvMode('modelo')}
+                className="px-4 py-2 bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl"
+              >
+                Abrir Ambiente Modelo
+              </button>
+            )}
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedLots.map((lot) => {
+            const isLotDemo = Boolean(lot.isDemo || isDemoMode);
             const categoryLabel =
-              categories.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
+              categories.find((c) => c.id === lot.produto.categoriaId || c.slug === lot.produto.categoriaId)
+                ?.nome || 'Geral B2B';
 
             return (
               <article
                 key={lot.id}
                 className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col"
               >
-                {/* Top Bar */}
-                <div className="p-3 bg-surface-container-low flex items-center justify-between border-b border-surface-container">
-                  <span className="text-xs font-bold text-on-surface-variant">{lot.codigoLote}</span>
+                <div className="p-3 bg-surface-container-low flex items-center justify-between gap-2 border-b border-surface-container">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="text-xs font-bold text-on-surface-variant">{lot.codigoLote}</span>
+                    {isLotDemo && <DemoBadge compact />}
+                  </div>
                   <AuctionCountdown
                     terminaEm={lot.terminaEm}
                     size="sm"
@@ -242,7 +287,6 @@ function LeiloesContent() {
                   />
                 </div>
 
-                {/* Imagem */}
                 <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
                   <Image
                     src={lot.produto.imagemUrl}
@@ -261,7 +305,6 @@ function LeiloesContent() {
                   </span>
                 </div>
 
-                {/* Body */}
                 <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                   <div>
                     <span className="text-[11px] text-on-surface-variant font-bold block mb-1">
@@ -282,7 +325,6 @@ function LeiloesContent() {
                     />
                   </div>
 
-                  {/* Pricing */}
                   <div className="bg-surface-container-low p-3 rounded-xl text-xs space-y-1">
                     <div className="flex justify-between items-baseline">
                       <span className="text-on-surface-variant">Lance Atual:</span>
@@ -302,7 +344,6 @@ function LeiloesContent() {
                     </div>
                   </div>
 
-                  {/* Action buttons */}
                   <div className="flex items-center gap-2 pt-1">
                     <Link
                       href={`/leiloes/${lot.id}`}
@@ -320,6 +361,8 @@ function LeiloesContent() {
                       <span>
                         {lot.status === 'encerrado' || lot.status === 'homologado'
                           ? 'Encerrado'
+                          : isLotDemo
+                          ? 'Simular Lance'
                           : 'Dar Lance'}
                       </span>
                     </button>
@@ -331,14 +374,13 @@ function LeiloesContent() {
         </div>
       )}
 
-      {/* Bid Modal */}
       {selectedLotForBid && (
         <BidModal
           lot={selectedLotForBid}
           isOpen={true}
           onClose={() => setSelectedLotForBid(null)}
           onBidSuccess={(amount, updatedTerminaEm) => {
-            const bidderLabel = profile?.nomeFantasia || 'Você';
+            const bidderLabel = profile?.nomeFantasia || (isDemoMode ? 'Visitante (Simulação)' : 'Você');
             setLots((prev) =>
               prev.map((l) =>
                 l.id === selectedLotForBid.id
@@ -350,7 +392,7 @@ function LeiloesContent() {
                           ? Number((amount / l.produto.totalUnidades).toFixed(2))
                           : l.precoUnitarioAtual,
                       totalLances: l.totalLances + 1,
-                      ultimoLanceEmpresa: `${bidderLabel} (Você)`,
+                      ultimoLanceEmpresa: bidderLabel,
                       terminaEm: updatedTerminaEm || l.terminaEm,
                       status: 'reta_final',
                     }

@@ -7,49 +7,88 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbAuctionToAuctionLot, mapDbBidToAuctionBid } from '@/lib/supabase/mappers';
 import { buildSha256Hash, extractClientIp } from '@/lib/security';
+import { DEMO_SUPPLIER_ID, getDemoBidsByLot, getDemoLots } from '@/lib/demo-data';
+
+function isDemoAuctionRow(row: Record<string, unknown>): boolean {
+  if (typeof row.is_demo === 'boolean') return row.is_demo;
+  const prod = (row.products || {}) as Record<string, unknown>;
+  if (typeof prod.is_demo === 'boolean') return prod.is_demo;
+  return (
+    String(row.id || '').startsWith('a1000000-') ||
+    String(prod.fornecedor_id || '') === DEMO_SUPPLIER_ID
+  );
+}
 
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const loteId = searchParams.get('loteId');
+  const envParam = searchParams.get('env') || 'modelo';
+
+  if (loteId && envParam !== 'original' && loteId.startsWith('demo-')) {
+    const demoLot = getDemoLots().find((l) => l.id === loteId);
+    if (!demoLot) {
+      return NextResponse.json({ error: 'Lote modelo não encontrado' }, { status: 404 });
+    }
+    return NextResponse.json({
+      lot: demoLot,
+      bids: getDemoBidsByLot(loteId),
+      env: 'modelo',
+    });
+  }
+
   if (!isSupabaseServerConfigured) {
-    return NextResponse.json(
-      { error: 'Supabase não configurado no ambiente.', auctions: [] },
-      { status: 503 }
-    );
+    if (envParam === 'original') {
+      return NextResponse.json({ auctions: [], bids: [], env: 'original' });
+    }
+    if (loteId) {
+      const demoLot = getDemoLots().find((l) => l.id === loteId);
+      if (!demoLot) return NextResponse.json({ error: 'Lote não encontrado' }, { status: 404 });
+      return NextResponse.json({ lot: demoLot, bids: getDemoBidsByLot(loteId), env: 'modelo' });
+    }
+    return NextResponse.json({ auctions: getDemoLots(), env: 'modelo' });
   }
 
   try {
     const supabase = createServerSupabaseClient();
-    const { searchParams } = new URL(req.url);
-    const loteId = searchParams.get('loteId');
 
     if (loteId) {
-      const [{ data: auctionRow, error: aucErr }, { data: bidsRows, error: bidsErr }] =
-        await Promise.all([
-          supabase.from('auctions').select('*, products(*)').eq('id', loteId).maybeSingle(),
-          supabase
-            .from('bids')
-            .select('*, profiles(nome_fantasia, cnpj)')
-            .eq('auction_id', loteId)
-            .order('valor_lance', { ascending: false })
-            .order('created_at', { ascending: false }),
-        ]);
+      const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(loteId);
+      const [{ data: auctionRow }, { data: bidsRows }] = isUuid
+        ? await Promise.all([
+            supabase.from('auctions').select('*, products(*)').eq('id', loteId).maybeSingle(),
+            supabase
+              .from('bids')
+              .select('*, profiles(nome_fantasia, cnpj)')
+              .eq('auction_id', loteId)
+              .order('valor_lance', { ascending: false })
+              .order('created_at', { ascending: false }),
+          ])
+        : [{ data: null }, { data: [] }];
 
-      if (aucErr) {
-        return NextResponse.json({ error: aucErr.message }, { status: 500 });
-      }
-      if (!auctionRow) {
-        return NextResponse.json({ error: 'Lote não encontrado' }, { status: 404 });
-      }
-      if (bidsErr) {
-        return NextResponse.json({ error: bidsErr.message }, { status: 500 });
+      if (auctionRow) {
+        const isDemo = isDemoAuctionRow(auctionRow as Record<string, unknown>);
+        if (envParam === 'original' && isDemo) {
+          return NextResponse.json({ error: 'Lote modelo indisponível no ambiente original.' }, { status: 404 });
+        }
+        const lot = mapDbAuctionToAuctionLot({ ...auctionRow, is_demo: isDemo } as Record<string, unknown>);
+        const winnerId = auctionRow.vencedor_id ? String(auctionRow.vencedor_id) : null;
+        const bids = (bidsRows || []).map((b) =>
+          mapDbBidToAuctionBid({ ...(b as Record<string, unknown>), is_demo: isDemo }, winnerId)
+        );
+        return NextResponse.json({ lot, bids, env: isDemo ? 'modelo' : 'original' });
       }
 
-      const lot = mapDbAuctionToAuctionLot(auctionRow as Record<string, unknown>);
-      const winnerId = auctionRow.vencedor_id ? String(auctionRow.vencedor_id) : null;
-      const bids = (bidsRows || []).map((b) =>
-        mapDbBidToAuctionBid(b as Record<string, unknown>, winnerId)
-      );
-
-      return NextResponse.json({ lot, bids });
+      if (envParam !== 'original') {
+        const staticLot = getDemoLots().find((l) => l.id === loteId || l.codigoLote === loteId);
+        if (staticLot) {
+          return NextResponse.json({
+            lot: staticLot,
+            bids: getDemoBidsByLot(staticLot.id),
+            env: 'modelo',
+          });
+        }
+      }
+      return NextResponse.json({ error: 'Lote não encontrado' }, { status: 404 });
     }
 
     const { data: auctionsRows, error } = await supabase
@@ -57,18 +96,37 @@ export async function GET(req: NextRequest) {
       .select('*, products(*)')
       .order('termina_em', { ascending: true });
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+    const dbAuctions = !error && Array.isArray(auctionsRows)
+      ? auctionsRows.map((r) => {
+          const isDemo = isDemoAuctionRow(r as Record<string, unknown>);
+          return {
+            isDemo,
+            lot: mapDbAuctionToAuctionLot({ ...(r as Record<string, unknown>), is_demo: isDemo }),
+          };
+        })
+      : [];
+
+    if (envParam === 'original') {
+      return NextResponse.json({
+        auctions: dbAuctions.filter((a) => !a.isDemo).map((a) => a.lot),
+        env: 'original',
+      });
     }
 
+    const dbDemo = dbAuctions.filter((a) => a.isDemo).map((a) => a.lot);
+    const dbCodes = new Set(dbDemo.map((l) => l.codigoLote));
+    const curatedDemo = getDemoLots().filter((l) => !dbCodes.has(l.codigoLote));
+
     return NextResponse.json({
-      auctions: (auctionsRows || []).map((r) =>
-        mapDbAuctionToAuctionLot(r as Record<string, unknown>)
-      ),
+      auctions: [...dbDemo, ...curatedDemo],
+      env: 'modelo',
     });
   } catch (err) {
     console.error('Erro em GET /api/lances:', err);
-    return NextResponse.json({ error: 'Erro interno ao consultar lances.' }, { status: 500 });
+    if (envParam === 'original') {
+      return NextResponse.json({ error: 'Erro interno ao consultar lances.' }, { status: 500 });
+    }
+    return NextResponse.json({ auctions: getDemoLots(), env: 'modelo' });
   }
 }
 
@@ -97,7 +155,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           error:
-            'Seu cadastro ainda está em validação KYC. Aguarde homologação para enviar lances.',
+            'Seu cadastro ainda está em validação KYC. Aguarde homologação para enviar lances reais.',
         },
         { status: 403 }
       );
@@ -114,6 +172,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Bloqueia terminantemente lances reais em lotes do Ambiente Modelo
+    if (String(loteId).startsWith('demo-') || String(loteId).startsWith('a1000000-')) {
+      return NextResponse.json(
+        {
+          error:
+            'Ambiente Modelo é apenas demonstrativo. Lances reais não são permitidos em lotes modelo.',
+        },
+        { status: 403 }
+      );
+    }
+
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
 
     const { data: auctionRow, error: fetchErr } = await dbClient
@@ -124,6 +193,16 @@ export async function POST(req: NextRequest) {
 
     if (fetchErr || !auctionRow) {
       return NextResponse.json({ error: 'Lote de pregão não localizado.' }, { status: 404 });
+    }
+
+    if (isDemoAuctionRow(auctionRow as Record<string, unknown>)) {
+      return NextResponse.json(
+        {
+          error:
+            'Ambiente Modelo é apenas demonstrativo. Lances reais não são permitidos em lotes modelo.',
+        },
+        { status: 403 }
+      );
     }
 
     const product = (auctionRow.products || {}) as Record<string, unknown>;
@@ -190,18 +269,32 @@ export async function POST(req: NextRequest) {
 
     const previousWinnerId = auctionRow.vencedor_id ? String(auctionRow.vencedor_id) : null;
 
-    const { data: insertedBid, error: bidErr } = await dbClient
+    const bidPayload: Record<string, unknown> = {
+      auction_id: loteId,
+      comprador_id: ctx.user.id,
+      valor_lance: parsedBid,
+      valor_unitario: unitPrice,
+      ip_origem: clientIp,
+      hash_transacao_worm: transactionHash,
+      is_demo: false,
+    };
+
+    let { data: insertedBid, error: bidErr } = await dbClient
       .from('bids')
-      .insert({
-        auction_id: loteId,
-        comprador_id: ctx.user.id,
-        valor_lance: parsedBid,
-        valor_unitario: unitPrice,
-        ip_origem: clientIp,
-        hash_transacao_worm: transactionHash,
-      })
+      .insert(bidPayload)
       .select('*, profiles(nome_fantasia, cnpj)')
       .single();
+
+    if (bidErr && bidErr.message?.includes('is_demo')) {
+      delete bidPayload.is_demo;
+      const retry = await dbClient
+        .from('bids')
+        .insert(bidPayload)
+        .select('*, profiles(nome_fantasia, cnpj)')
+        .single();
+      insertedBid = retry.data;
+      bidErr = retry.error;
+    }
 
     if (bidErr || !insertedBid) {
       return NextResponse.json(
@@ -233,7 +326,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Notificar comprador anterior se foi superado
     if (previousWinnerId && previousWinnerId !== ctx.user.id) {
       await dbClient.from('notifications').insert({
         user_id: previousWinnerId,

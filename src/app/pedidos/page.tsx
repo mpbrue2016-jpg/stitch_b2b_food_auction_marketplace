@@ -3,10 +3,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
 import { EscrowOrder } from '@/lib/types';
 
 export default function PedidosPage() {
   const { user, loading: authLoading } = useAuth();
+  const { isDemoMode, sandbox, simulateScheduleDock, simulateConfirmDelivery } = useEnvironment();
   const [orders, setOrders] = useState<EscrowOrder[]>([]);
   const [loading, setLoading] = useState(true);
   const [authRequired, setAuthRequired] = useState(false);
@@ -41,8 +44,8 @@ export default function PedidosPage() {
   const loadOrders = useCallback(async () => {
     try {
       const [ordersRes, docasRes] = await Promise.all([
-        fetch('/api/pedidos', { cache: 'no-store' }),
-        fetch('/api/docas', { cache: 'no-store' }),
+        fetch('/api/pedidos?env=original', { cache: 'no-store' }),
+        fetch('/api/docas?env=original', { cache: 'no-store' }),
       ]);
 
       if (ordersRes.status === 401) {
@@ -82,6 +85,13 @@ export default function PedidosPage() {
   }, []);
 
   useEffect(() => {
+    if (isDemoMode) {
+      setAuthRequired(false);
+      setLoading(false);
+      setOrders(sandbox.simulatedOrders);
+      return;
+    }
+
     if (authLoading) return;
     if (!user) {
       setAuthRequired(true);
@@ -89,8 +99,9 @@ export default function PedidosPage() {
       setOrders([]);
       return;
     }
+    setLoading(true);
     void loadOrders();
-  }, [user, authLoading, loadOrders]);
+  }, [isDemoMode, sandbox.simulatedOrders, user, authLoading, loadOrders]);
 
   const handleAgendarDoca = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,6 +109,26 @@ export default function PedidosPage() {
 
     setDocaError(null);
     setDocaSubmitting(true);
+
+    if (isDemoMode || selectedOrderForDoca.isDemo) {
+      const apt = simulateScheduleDock({
+        pedidoId: selectedOrderForDoca.codigoPedido,
+        janelaHoraria: selectedSlot,
+        placaVeiculo: placaCaminhao,
+        motoristaNome: nomeMotorista,
+        dataAgendada: selectedDate,
+        docaNumero: selectedDoca,
+      });
+      setPasseHash(apt.passeEntradaHash);
+      setDocaSubmitting(false);
+      setDocaSuccess(true);
+      setTimeout(() => {
+        setDocaSuccess(false);
+        setPasseHash(null);
+        setSelectedOrderForDoca(null);
+      }, 2400);
+      return;
+    }
 
     try {
       const res = await fetch('/api/docas', {
@@ -150,6 +181,16 @@ export default function PedidosPage() {
   const handleConfirmDelivery = async (order: EscrowOrder) => {
     setReleasingOrderId(order.id);
     setOrderNotice(null);
+
+    if (isDemoMode || order.isDemo) {
+      simulateConfirmDelivery(order.id);
+      setOrderNotice(
+        `SIMULAÇÃO — AMBIENTE MODELO: Recebimento FOB simulado para ${order.codigoPedido}. Nenhuma liquidação real foi executada.`
+      );
+      setReleasingOrderId(null);
+      return;
+    }
+
     try {
       const res = await fetch('/api/pedidos', {
         method: 'PATCH',
@@ -175,6 +216,27 @@ export default function PedidosPage() {
   const handleOpenDispute = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!disputeOrder || disputeReason.trim().length < 5) return;
+
+    if (isDemoMode || disputeOrder.isDemo) {
+      setOrders((prev) =>
+        prev.map((o) =>
+          o.id === disputeOrder.id
+            ? {
+                ...o,
+                statusPagamento: 'em_disputa',
+                motivoDisputa: `[SIMULAÇÃO] ${disputeReason.trim()}`,
+              }
+            : o
+        )
+      );
+      setOrderNotice(
+        `SIMULAÇÃO — AMBIENTE MODELO: Mediação registrada localmente para ${disputeOrder.codigoPedido}.`
+      );
+      setDisputeOrder(null);
+      setDisputeReason('');
+      return;
+    }
+
     setDisputeSubmitting(true);
     try {
       const res = await fetch('/api/pedidos', {
@@ -204,7 +266,8 @@ export default function PedidosPage() {
     }
   };
 
-  const filteredOrders = orders.filter((o) =>
+  const visibleOrders = isDemoMode ? sandbox.simulatedOrders : orders;
+  const filteredOrders = visibleOrders.filter((o) =>
     statusFilter === 'todos' ? true : o.statusPagamento === statusFilter
   );
 
@@ -219,6 +282,11 @@ export default function PedidosPage() {
         </nav>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
+            {isDemoMode && (
+              <div className="mb-1 flex items-center gap-2 flex-wrap">
+                <DemoBadge compact />
+              </div>
+            )}
             <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
               Histórico de Pedidos &amp; Retiradas FOB
             </h1>
@@ -235,6 +303,13 @@ export default function PedidosPage() {
           </Link>
         </div>
       </div>
+
+      {isDemoMode && (
+        <DidacticHint
+          title="Pedidos, Docas FOB & Custódia Escrow (Modelo)"
+          text="Simule o agendamento de doca no Centro de Distribuição e a confirmação de entrega para visualizar como a plataforma protege comprador e fornecedor até a conferência cega."
+        />
+      )}
 
       {orderNotice && (
         <div className="p-3.5 bg-secondary-container/30 border border-secondary text-secondary font-bold text-xs rounded-xl flex items-center justify-between gap-2">
@@ -263,8 +338,8 @@ export default function PedidosPage() {
         ).map((tab) => {
           const count =
             tab.id === 'todos'
-              ? orders.length
-              : orders.filter((o) => o.statusPagamento === tab.id).length;
+              ? visibleOrders.length
+              : visibleOrders.filter((o) => o.statusPagamento === tab.id).length;
           const active = statusFilter === tab.id;
           return (
             <button
@@ -327,9 +402,12 @@ export default function PedidosPage() {
               {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-container pb-3">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-on-surface-variant">
-                    {order.codigoPedido} • Arrematado em {new Date(order.criadoEm).toLocaleDateString('pt-BR')}
-                  </span>
+                  <div className="flex items-center gap-2 flex-wrap mb-1">
+                    {(isDemoMode || order.isDemo) && <DemoBadge compact />}
+                    <span className="text-[10px] uppercase font-bold text-on-surface-variant">
+                      {order.codigoPedido} • Arrematado em {new Date(order.criadoEm).toLocaleDateString('pt-BR')}
+                    </span>
+                  </div>
                   <h3 className="font-extrabold text-base text-on-surface">
                     <Link href={`/leiloes/${order.loteId}`} className="hover:text-primary transition-colors">
                       {order.tituloLote}

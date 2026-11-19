@@ -49,9 +49,11 @@ export function mapDbAuctionToAuctionLot(row: Record<string, unknown>): AuctionL
   const totalUnidades = Math.max(1, Number(productRow.total_unidades ?? 1));
   const lanceAtual = Number(row.lance_atual ?? row.lance_inicial ?? 0);
   const unidadesPorEmbalagem = Math.max(1, Number(productRow.unidades_por_embalagem ?? 1));
+  const isDemo = Boolean(row.is_demo ?? productRow.is_demo ?? false);
 
   const produto: ProductBatch = {
     id: String(productRow.id || row.produto_id || ''),
+    fornecedorId: productRow.fornecedor_id ? String(productRow.fornecedor_id) : undefined,
     sku: String(productRow.sku || ''),
     titulo: String(productRow.titulo || 'Lote B2B'),
     descricao: String(productRow.descricao || ''),
@@ -75,6 +77,7 @@ export function mapDbAuctionToAuctionLot(row: Record<string, unknown>): AuctionL
     laudoSanitarioAnvisa: Boolean(productRow.laudo_sanitario_anvisa ?? true),
     statusFiscal: (productRow.status_fiscal as ProductBatch['statusFiscal']) || 'homologado',
     precoReferenciaMercado: Number(productRow.preco_referencia_mercado ?? 0),
+    isDemo,
   };
 
   return {
@@ -94,6 +97,7 @@ export function mapDbAuctionToAuctionLot(row: Record<string, unknown>): AuctionL
     status: (row.status as AuctionLot['status']) || 'ativo',
     raioKm: Number(row.raio_km ?? 45),
     tipoFrete: (row.tipo_frete as AuctionLot['tipoFrete']) || 'FOB',
+    isDemo,
   };
 }
 
@@ -113,6 +117,7 @@ export function mapDbBidToAuctionBid(
     valorUnitario: Number(row.valor_unitario ?? 0),
     criadoEm: String(row.created_at || new Date().toISOString()),
     ehVencedor: Boolean(winnerId && winnerId === compradorId),
+    isDemo: Boolean(row.is_demo ?? false),
   };
 }
 
@@ -145,6 +150,7 @@ export function mapDbOrderToEscrowOrder(row: Record<string, unknown>): EscrowOrd
     termoArremateHash: row.termo_arremate_hash ? String(row.termo_arremate_hash) : undefined,
     comprovantePix: row.comprovante_pix_spi ? String(row.comprovante_pix_spi) : undefined,
     motivoDisputa: row.motivo_disputa ? String(row.motivo_disputa) : undefined,
+    isDemo: Boolean(row.is_demo ?? false),
   };
 }
 
@@ -171,6 +177,7 @@ export function mapDbProposalToNegotiationProposal(row: Record<string, unknown>)
       : undefined,
     mensagem: String(row.mensagem || ''),
     criadaEm: String(row.created_at || new Date().toISOString()),
+    isDemo: Boolean(row.is_demo ?? false),
   };
 }
 
@@ -216,6 +223,7 @@ export function mapDbBannerToHomeBanner(row: Record<string, unknown>): HomeBanne
     ativo: Boolean(row.ativo ?? true),
     intervaloSegundos: Number(row.intervalo_segundos ?? 6),
     criadoEm: String(row.created_at || new Date().toISOString()),
+    isDemo: Boolean(row.is_demo ?? false),
   };
 }
 

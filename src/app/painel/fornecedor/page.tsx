@@ -7,11 +7,15 @@ import {
   NotificationsInboxCard,
 } from '@/components/AccountGovernanceSection';
 import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
+import { DEMO_CATEGORIES } from '@/lib/demo-data';
 import type { DockAppointment } from '@/lib/supabase/mappers';
 import { AuctionLot, EscrowOrder, ProductCategory } from '@/lib/types';
 
 export default function PainelFornecedorPage() {
   const { user, profile, loading: authLoading, refreshProfile } = useAuth();
+  const { isDemoMode, sandbox } = useEnvironment();
   const [supplierLots, setSupplierLots] = useState<AuctionLot[]>([]);
   const [orders, setOrders] = useState<EscrowOrder[]>([]);
   const [appointments, setAppointments] = useState<DockAppointment[]>([]);
@@ -26,23 +30,34 @@ export default function PainelFornecedorPage() {
   const kycInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    if (authLoading) return;
-    let active = true;
+    if (isDemoMode) {
+      setSupplierLots(sandbox.simulatedLots);
+      setOrders(sandbox.simulatedOrders);
+      setAppointments(sandbox.simulatedDocks);
+      setCategories(DEMO_CATEGORIES);
+      setLoading(false);
+      return;
+    }
 
-    const lotsUrl =
-      user && profile?.role === 'fornecedor'
-        ? `/api/lotes?fornecedorId=${encodeURIComponent(user.id)}`
-        : '/api/lotes';
+    if (authLoading) return;
+    if (!user) {
+      setSupplierLots([]);
+      setOrders([]);
+      setAppointments([]);
+      setLoading(false);
+      return;
+    }
+
+    let active = true;
+    setLoading(true);
+
+    const lotsUrl = `/api/lotes?env=original&fornecedorId=${encodeURIComponent(user.id)}`;
 
     Promise.all([
       fetch(lotsUrl, { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
-      user
-        ? fetch('/api/pedidos', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null))
-        : Promise.resolve(null),
-      user
-        ? fetch('/api/docas', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null))
-        : Promise.resolve(null),
-      fetch('/api/categorias', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/pedidos?env=original', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/docas?env=original', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch('/api/categorias?env=original', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
     ])
       .then(([lotesData, pedidosData, docasData, catsData]) => {
         if (!active) return;
@@ -59,11 +74,11 @@ export default function PainelFornecedorPage() {
     return () => {
       active = false;
     };
-  }, [user, profile?.role, authLoading]);
+  }, [isDemoMode, sandbox.simulatedLots, sandbox.simulatedOrders, sandbox.simulatedDocks, user, authLoading]);
 
   const handleKycUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file) return;
+    if (!file || isDemoMode) return;
     setUploadingKyc(true);
     setKycNotice(null);
     try {
@@ -94,6 +109,24 @@ export default function PainelFornecedorPage() {
   ) => {
     setUpdatingLotId(lot.id);
     setLotNotice(null);
+
+    if (isDemoMode || lot.isDemo) {
+      setSupplierLots((prev) =>
+        prev.map((item) => {
+          if (item.id !== lot.id) return item;
+          if (action === 'close_auction') return { ...item, status: 'encerrado' };
+          if (action === 'reactivate_auction') return { ...item, status: 'ativo' };
+          return {
+            ...item,
+            terminaEm: new Date(new Date(item.terminaEm).getTime() + (extendHours || 24) * 3600 * 1000).toISOString(),
+          };
+        })
+      );
+      setLotNotice(`SIMULAÇÃO — AMBIENTE MODELO: Ação executada apenas na demonstração para ${lot.codigoLote}.`);
+      setUpdatingLotId(null);
+      return;
+    }
+
     try {
       const res = await fetch('/api/lotes', {
         method: 'PATCH',
@@ -124,6 +157,16 @@ export default function PainelFornecedorPage() {
   ) => {
     setUpdatingDockId(apt.id);
     setLotNotice(null);
+
+    if (isDemoMode) {
+      setAppointments((prev) =>
+        prev.map((item) => (item.id === apt.id ? { ...item, status: nextStatus } : item))
+      );
+      setLotNotice(`SIMULAÇÃO — AMBIENTE MODELO: Etapa WMS "${nextStatus}" simulada na doca ${apt.docaNumero}.`);
+      setUpdatingDockId(null);
+      return;
+    }
+
     try {
       const res = await fetch('/api/docas', {
         method: 'PATCH',
@@ -158,6 +201,36 @@ export default function PainelFornecedorPage() {
     }
   };
 
+  if (!isDemoMode && !authLoading && !user) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-14 text-center space-y-4">
+        <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4">
+          <span className="material-symbols-outlined text-primary text-4xl">lock</span>
+          <h1 className="text-xl font-extrabold text-on-surface">
+            Painel Original do Fornecedor / Vendedor — Autenticação Necessária
+          </h1>
+          <p className="text-xs text-on-surface-variant max-w-md mx-auto">
+            Entre com sua conta oficial ou crie seu cadastro de fornecedor/vendedor para publicar e gerenciar seus lotes reais.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              href="/login?redirect=/painel/fornecedor"
+              className="px-5 py-2.5 bg-primary text-white text-xs font-bold rounded-xl"
+            >
+              Entrar na Conta
+            </Link>
+            <Link
+              href="/cadastro"
+              className="px-5 py-2.5 bg-secondary text-white text-xs font-bold rounded-xl"
+            >
+              Começar Agora (Cadastro)
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const activeOrders = orders.filter((o) => o.statusPagamento !== 'estornado');
   const totalRepassesLiquidados = activeOrders.reduce((acc, o) => acc + o.valorRepasseLiquidoFornecedor, 0);
   const totalCaixasOfertadas = supplierLots.reduce((acc, l) => acc + l.produto.totalCaixas, 0);
@@ -171,26 +244,31 @@ export default function PainelFornecedorPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-surface-container pb-4">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            {isDemoMode && <DemoBadge compact />}
             <span className="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse" />
             <span className="text-[10px] uppercase font-bold text-secondary">
-              COCKPIT DA INDÚSTRIA &amp; FABRICANTE B2B
+              COCKPIT DA INDÚSTRIA, FORNECEDOR &amp; VENDEDOR B2B
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
-            {profile?.razaoSocial || profile?.nomeFantasia || 'Painel do Fornecedor B2B'}
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface mt-1">
+            {isDemoMode
+              ? 'Alimentos Demo Indústria S.A.'
+              : profile?.razaoSocial || profile?.nomeFantasia || 'Painel do Fornecedor / Vendedor'}
           </h1>
           <p className="text-xs text-on-surface-variant font-mono mt-0.5">
-            {profile
-              ? `CNPJ: ${profile.cnpj} • Conta Escrow Segregada (${
+            {isDemoMode
+              ? 'CNPJ Modelo: 98.765.432/0001-10 • Conta Escrow Modelo Segregada • Liquidação D+0 SPI'
+              : profile
+              ? `${profile.cnpj ? `CNPJ: ${profile.cnpj}` : profile.cpf ? `CPF: ${profile.cpf}` : 'Perfil Vendedor'} • Conta Escrow Segregada (${
                   profile.statusAprovacao === 'aprovado' ? 'Homologada' : 'Em Análise'
                 }) • Liquidação D+0 SPI`
-              : 'Faça login com conta fornecedora para gerir lotes e repasses.'}
+              : 'Conta real autenticada'}
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          {user && (
+          {!isDemoMode && user && (
             <>
               <input
                 ref={kycInputRef}
@@ -215,7 +293,7 @@ export default function PainelFornecedorPage() {
             className="bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container px-4 py-2.5 rounded-xl text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5"
           >
             <span className="material-symbols-outlined text-[18px]">add_circle</span>
-            <span>Criar Novo Pregão</span>
+            <span>{isDemoMode ? 'Simular Novo Pregão' : 'Criar Novo Pregão'}</span>
           </Link>
           <Link
             href="/produtos/novo?modelo=pequeno_mercado"
@@ -232,6 +310,13 @@ export default function PainelFornecedorPage() {
           </Link>
         </div>
       </div>
+
+      {isDemoMode && (
+        <DidacticHint
+          title="Aqui você cadastra seus produtos e administra suas vendas"
+          text="Este painel demonstrativo mostra como fornecedores e lojistas acompanham lotes em pregão, validades e conferência nas docas FOB."
+        />
+      )}
 
       {kycNotice && (
         <div className="p-3 rounded-xl bg-secondary-container/30 border border-secondary text-secondary text-xs font-bold flex items-center justify-between gap-2">
@@ -254,9 +339,9 @@ export default function PainelFornecedorPage() {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-on-surface-variant">
+          <div className="flex items-center justify-between text-on-surface-variant gap-1">
             <span className="text-xs font-bold uppercase">Repasses Líquidos D+0</span>
-            <span className="material-symbols-outlined text-secondary text-[22px]">payments</span>
+            {isDemoMode ? <DemoBadge compact /> : <span className="material-symbols-outlined text-secondary text-[22px]">payments</span>}
           </div>
           <span className="text-2xl font-extrabold text-secondary block">
             R$ {totalRepassesLiquidados.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
@@ -265,20 +350,20 @@ export default function PainelFornecedorPage() {
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-on-surface-variant">
+          <div className="flex items-center justify-between text-on-surface-variant gap-1">
             <span className="text-xs font-bold uppercase">Pregões Ativos</span>
-            <span className="material-symbols-outlined text-primary text-[22px]">gavel</span>
+            {isDemoMode ? <DemoBadge compact /> : <span className="material-symbols-outlined text-primary text-[22px]">gavel</span>}
           </div>
           <span className="text-2xl font-extrabold text-primary block">{supplierLots.length} lotes</span>
           <span className="text-[11px] text-on-surface-variant block">
-            {profile?.endereco?.cidade || 'São Paulo'} • {profile?.endereco?.uf || 'SP'}
+            {isDemoMode ? 'Jundiaí • SP' : `${profile?.endereco?.cidade || 'São Paulo'} • ${profile?.endereco?.uf || 'SP'}`}
           </span>
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-on-surface-variant">
+          <div className="flex items-center justify-between text-on-surface-variant gap-1">
             <span className="text-xs font-bold uppercase">Volume em Oferta</span>
-            <span className="material-symbols-outlined text-primary text-[22px]">inventory_2</span>
+            {isDemoMode ? <DemoBadge compact /> : <span className="material-symbols-outlined text-primary text-[22px]">inventory_2</span>}
           </div>
           <span className="text-2xl font-extrabold text-on-surface block">
             {totalCaixasOfertadas.toLocaleString('pt-BR')} cxs
@@ -287,9 +372,9 @@ export default function PainelFornecedorPage() {
         </div>
 
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <div className="flex items-center justify-between text-on-surface-variant">
+          <div className="flex items-center justify-between text-on-surface-variant gap-1">
             <span className="text-xs font-bold uppercase">Shelf Life Médio</span>
-            <span className="material-symbols-outlined text-secondary text-[22px]">speed</span>
+            {isDemoMode ? <DemoBadge compact /> : <span className="material-symbols-outlined text-secondary text-[22px]">speed</span>}
           </div>
           <span className="text-2xl font-extrabold text-secondary block">{avgDiasValidade} dias</span>
           <span className="text-[11px] text-on-surface-variant block">Zero perda por vencimento</span>
@@ -299,9 +384,12 @@ export default function PainelFornecedorPage() {
       {/* Lot Management Table */}
       <div className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4">
         <div className="flex items-center justify-between border-b border-surface-container pb-3">
-          <h3 className="font-extrabold text-base text-on-surface">
-            Gestão dos Meus Lotes em Pregão
-          </h3>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h3 className="font-extrabold text-base text-on-surface">
+              {isDemoMode ? 'Gestão de Lotes Demonstrativos' : 'Gestão dos Meus Lotes em Pregão'}
+            </h3>
+            {isDemoMode && <DemoBadge compact />}
+          </div>
           <Link href="/produtos/novo" className="text-xs text-primary font-bold hover:underline">
             + Adicionar Lote
           </Link>
@@ -364,7 +452,7 @@ export default function PainelFornecedorPage() {
                 ).length === 0 ? (
                 <tr>
                   <td colSpan={7} className="p-8 text-center text-on-surface-variant">
-                    Nenhum lote encontrado para este filtro.{' '}
+                    Você ainda não publicou lotes reais no Ambiente Original.{' '}
                     <Link href="/produtos/novo" className="text-primary font-bold hover:underline">
                       Publicar primeiro lote agora
                     </Link>
@@ -380,7 +468,12 @@ export default function PainelFornecedorPage() {
                     const isEncerrado = lot.status === 'encerrado';
                     return (
                       <tr key={lot.id} className="hover:bg-surface-container-low/50">
-                        <td className="p-3 font-mono font-bold text-primary">{lot.codigoLote}</td>
+                        <td className="p-3 font-mono font-bold text-primary">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            {(isDemoMode || lot.isDemo) && <DemoBadge compact />}
+                            <span>{lot.codigoLote}</span>
+                          </div>
+                        </td>
                         <td className="p-3">
                           <span className="font-bold text-on-surface block">{lot.produto.titulo}</span>
                           <span className="text-[10px] text-on-surface-variant block">
@@ -468,10 +561,13 @@ export default function PainelFornecedorPage() {
       {/* Agenda de Retiradas FOB & Pedidos Escrow */}
       <div className="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4 text-xs">
         <div className="flex items-center justify-between border-b border-surface-container pb-3">
-          <h3 className="font-extrabold text-base text-on-surface flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
-            Agenda de Retiradas FOB &amp; Pedidos Escrow
-          </h3>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h3 className="font-extrabold text-base text-on-surface flex items-center gap-2">
+              <span className="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+              Agenda de Retiradas FOB &amp; Pedidos Escrow
+            </h3>
+            {isDemoMode && <DemoBadge compact />}
+          </div>
           <Link href="/pedidos" className="text-xs text-primary font-bold hover:underline">
             Ver histórico completo
           </Link>
@@ -500,7 +596,12 @@ export default function PainelFornecedorPage() {
                   );
                   return (
                     <tr key={order.id} className="hover:bg-surface-container-low/50">
-                      <td className="p-3 font-mono font-bold text-primary">{order.codigoPedido}</td>
+                      <td className="p-3 font-mono font-bold text-primary">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          {(isDemoMode || order.isDemo) && <DemoBadge compact />}
+                          <span>{order.codigoPedido}</span>
+                        </div>
+                      </td>
                       <td className="p-3">
                         <strong className="text-on-surface block">{order.tituloLote}</strong>
                         <span className="text-[10px] text-on-surface-variant">
@@ -587,10 +688,34 @@ export default function PainelFornecedorPage() {
         )}
       </div>
 
-      {/* Central de Alertas & Dados Cadastrais / KYC */}
-      <NotificationsInboxCard />
-      <CompanyProfileAndKycCard />
+      {isDemoMode && (
+        <div className="rounded-2xl bg-primary-fixed/40 border border-primary/30 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <h3 className="text-sm font-extrabold text-on-surface">
+              Gostou de conhecer o Varejista Online? Agora crie sua conta e faça parte da nossa rede comercial.
+            </h3>
+            <p className="text-xs text-on-surface-variant">
+              Cadastre sua empresa ou seu negócio para anunciar estoque e vender com custódia fiduciária oficial.
+            </p>
+          </div>
+          <Link
+            href="/cadastro"
+            className="px-5 py-2.5 bg-primary hover:bg-primary-container text-white text-xs font-extrabold rounded-xl shrink-0 text-center"
+          >
+            COMEÇAR AGORA
+          </Link>
+        </div>
+      )}
+
+      {/* Central de Alertas & Dados Cadastrais / KYC apenas no Ambiente Original */}
+      {!isDemoMode && (
+        <>
+          <NotificationsInboxCard />
+          <CompanyProfileAndKycCard />
+        </>
+      )}
     </div>
   );
 }
+
 

@@ -6,6 +6,10 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbAuctionToAuctionLot } from '@/lib/supabase/mappers';
 
+function isDemoLotId(id: string): boolean {
+  return id.startsWith('demo-') || id.startsWith('a1000000-');
+}
+
 async function loadUserOpenCart(
   dbClient: ReturnType<typeof createAdminSupabaseClient>,
   userId: string
@@ -39,9 +43,10 @@ async function loadUserOpenCart(
   const items = [];
   for (const row of itemRows || []) {
     const product = (row.products || {}) as Record<string, unknown>;
+    if (product.is_demo) continue;
     const auctionsList = Array.isArray(product.auctions) ? product.auctions : [];
     const auctionRow = auctionsList[0] as Record<string, unknown> | undefined;
-    if (!auctionRow) continue;
+    if (!auctionRow || auctionRow.is_demo) continue;
     const lot = mapDbAuctionToAuctionLot({ ...auctionRow, products: product });
     const qty = Math.max(1, Number(row.quantidade ?? 1));
     const unitLotPrice = lot.precoArremateImediato ?? lot.lanceAtual;
@@ -92,6 +97,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Parâmetro obrigatório: loteId.' }, { status: 400 });
     }
 
+    if (isDemoLotId(String(loteId))) {
+      return NextResponse.json(
+        {
+          error:
+            'Lotes do Ambiente Modelo não podem ser adicionados ao carrinho oficial. Simule apenas no Ambiente Modelo.',
+        },
+        { status: 403 }
+      );
+    }
+
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
     const { data: auctionRow } = await dbClient
       .from('auctions')
@@ -101,6 +116,13 @@ export async function POST(req: NextRequest) {
 
     if (!auctionRow || !auctionRow.products) {
       return NextResponse.json({ error: 'Lote não localizado.' }, { status: 404 });
+    }
+
+    if (auctionRow.is_demo || (auctionRow.products as Record<string, unknown>).is_demo) {
+      return NextResponse.json(
+        { error: 'Lotes demonstrativos (MODELO) não podem compor pedidos reais no carrinho.' },
+        { status: 403 }
+      );
     }
 
     const lot = mapDbAuctionToAuctionLot(auctionRow as Record<string, unknown>);
@@ -183,6 +205,12 @@ export async function PATCH(req: NextRequest) {
 
     const body = await req.json();
     const { loteId, quantidade } = body;
+    if (isDemoLotId(String(loteId || ''))) {
+      return NextResponse.json(
+        { error: 'Operação não permitida para lotes demonstrativos.' },
+        { status: 403 }
+      );
+    }
     const nextQty = Math.max(1, Math.round(Number(quantidade || 1)));
 
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
@@ -194,6 +222,13 @@ export async function PATCH(req: NextRequest) {
 
     if (!auctionRow || !auctionRow.products) {
       return NextResponse.json({ error: 'Lote não localizado.' }, { status: 404 });
+    }
+
+    if (auctionRow.is_demo || (auctionRow.products as Record<string, unknown>).is_demo) {
+      return NextResponse.json(
+        { error: 'Lotes demonstrativos não podem ser alterados no carrinho real.' },
+        { status: 403 }
+      );
     }
 
     const lot = mapDbAuctionToAuctionLot(auctionRow as Record<string, unknown>);
@@ -255,7 +290,7 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ items: [] });
     }
 
-    if (loteId) {
+    if (loteId && !isDemoLotId(loteId)) {
       const { data: auctionRow } = await dbClient
         .from('auctions')
         .select('produto_id')

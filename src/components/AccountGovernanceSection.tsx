@@ -188,7 +188,9 @@ export const CompanyProfileAndKycCard: React.FC = () => {
             <span className="material-symbols-outlined text-primary text-[20px]">apartment</span>
             Dados Cadastrais &amp; Endereço Logístico B2B
           </h3>
-          <span className="text-[10px] font-mono text-on-surface-variant">{profile.cnpj}</span>
+          <span className="text-[10px] font-mono text-on-surface-variant">
+            {profile.cpf ? `CPF: ${profile.cpf}` : profile.cnpj}
+          </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

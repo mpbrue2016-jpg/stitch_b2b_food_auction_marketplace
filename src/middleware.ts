@@ -2,7 +2,15 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import { isConfiguredSupabaseEnv } from '@/lib/supabase/config';
 
-const PROTECTED_PREFIXES = ['/painel', '/checkout', '/pedidos', '/produtos/novo'];
+const STRICT_ADMIN_PREFIXES = ['/painel/admin'];
+const DEMO_EXPLORABLE_PREFIXES = [
+  '/painel/comprador',
+  '/painel/fornecedor',
+  '/painel/comissoes',
+  '/checkout',
+  '/pedidos',
+  '/produtos/novo',
+];
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
@@ -14,11 +22,16 @@ export async function middleware(request: NextRequest) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   const pathname = request.nextUrl.pathname;
-  const isProtected = PROTECTED_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+  const envParam = request.nextUrl.searchParams.get('env');
+
+  const isStrictAdmin = STRICT_ADMIN_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+  const isDemoExplorable = DEMO_EXPLORABLE_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+  const isProtected = isStrictAdmin || isDemoExplorable;
 
   if (!isConfiguredSupabaseEnv(supabaseUrl, supabaseAnonKey)) {
-    if (isProtected) {
+    if (isStrictAdmin || (isDemoExplorable && envParam === 'original')) {
       const loginUrl = new URL('/login', request.url);
+      if (isStrictAdmin) loginUrl.searchParams.set('tab', 'admin');
       loginUrl.searchParams.set('redirect', pathname);
       return NextResponse.redirect(loginUrl);
     }
@@ -59,7 +72,15 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!user) {
+    // Visitante pode explorar fluxos em Ambiente Modelo sem login, exceto Painel Admin Master
+    // ou quando exigir explicitamente ?env=original
+    if (isDemoExplorable && envParam !== 'original') {
+      return response;
+    }
     const loginUrl = new URL('/login', request.url);
+    if (isStrictAdmin) {
+      loginUrl.searchParams.set('tab', 'admin');
+    }
     loginUrl.searchParams.set('redirect', pathname + request.nextUrl.search);
     return NextResponse.redirect(loginUrl);
   }
@@ -78,11 +99,18 @@ export async function middleware(request: NextRequest) {
     role = 'comprador';
   }
 
-  // RBAC de rotas operacionais
-  if (
-    (pathname.startsWith('/painel/admin') || pathname.startsWith('/painel/comissoes')) &&
-    role !== 'admin'
-  ) {
+  // Painel Admin Master é sempre restrito à role admin
+  if (isStrictAdmin && role !== 'admin') {
+    const target = role === 'fornecedor' ? '/painel/fornecedor' : '/painel/comprador';
+    return NextResponse.redirect(new URL(target, request.url));
+  }
+
+  // Se o usuário logado pediu explícito ?env=modelo nas telas exploráveis, permite visualização didática
+  if (envParam === 'modelo' && isDemoExplorable) {
+    return response;
+  }
+
+  if (pathname.startsWith('/painel/comissoes') && role !== 'admin' && envParam !== 'modelo') {
     const target = role === 'fornecedor' ? '/painel/fornecedor' : '/painel/comprador';
     return NextResponse.redirect(new URL(target, request.url));
   }

@@ -5,7 +5,8 @@ import {
   mapDbProfileToUserProfile,
 } from '@/lib/supabase/server';
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
-import { buildAuditHash, isValidCnpjDigits } from '@/lib/security';
+import { buildAuditHash, isValidCnpjDigits, isValidCpfDigits } from '@/lib/security';
+import { formatCnpj, formatCpf } from '@/lib/format';
 
 export async function GET() {
   if (!isSupabaseServerConfigured) {
@@ -22,31 +23,52 @@ export async function GET() {
     }
 
     let profile = ctx.profile;
-    // Caso o trigger ainda não tenha criado o perfil, cria a partir dos metadados do Auth
-    if (!profile && isSupabaseAdminConfigured) {
-      const admin = createAdminSupabaseClient();
+    if (!profile) {
+      const writer = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
       const meta = (ctx.user.user_metadata || {}) as Record<string, string | undefined>;
       const safeRole = meta.role === 'fornecedor' ? 'fornecedor' : 'comprador';
-      const { data: inserted } = await admin
+      const tipoPessoa = meta.tipo_pessoa === 'PF' ? 'PF' : 'PJ';
+      const fallbackInsert: Record<string, unknown> = {
+        id: ctx.user.id,
+        email: ctx.user.email || `${ctx.user.id}@placeholder.local`,
+        role: safeRole,
+        tipo_pessoa: tipoPessoa,
+        perfil_comercial: meta.perfil_comercial || safeRole,
+        is_demo: false,
+        cpf: meta.cpf || null,
+        cnpj:
+          tipoPessoa === 'PF'
+            ? meta.cnpj || null
+            : meta.cnpj || `PEND-${ctx.user.id.slice(0, 12).toUpperCase()}`,
+        razao_social: meta.razao_social || 'Empresa B2B',
+        nome_fantasia: meta.nome_fantasia || meta.razao_social || 'Empresa B2B',
+        telefone: meta.telefone || null,
+        cidade: meta.cidade || 'São Paulo',
+        uf: (meta.uf || 'SP').slice(0, 2).toUpperCase(),
+        limite_credito_escrow: safeRole === 'comprador' ? 50000 : 0,
+        status_aprovacao: 'aprovado',
+      };
+
+      let { data: inserted, error: upsertErr } = await writer
         .from('profiles')
-        .upsert(
-          {
-            id: ctx.user.id,
-            email: ctx.user.email || `${ctx.user.id}@placeholder.local`,
-            role: safeRole,
-            cnpj: meta.cnpj || `PEND-${ctx.user.id.slice(0, 12).toUpperCase()}`,
-            razao_social: meta.razao_social || 'Empresa B2B',
-            nome_fantasia: meta.nome_fantasia || meta.razao_social || 'Empresa B2B',
-            telefone: meta.telefone || null,
-            cidade: meta.cidade || 'São Paulo',
-            uf: (meta.uf || 'SP').slice(0, 2).toUpperCase(),
-            limite_credito_escrow: safeRole === 'comprador' ? 100000 : 0,
-            status_aprovacao: 'em_analise',
-          },
-          { onConflict: 'id' }
-        )
+        .upsert(fallbackInsert, { onConflict: 'id' })
         .select('*')
         .single();
+
+      if (upsertErr && upsertErr.code === '42703') {
+        delete fallbackInsert.tipo_pessoa;
+        delete fallbackInsert.perfil_comercial;
+        delete fallbackInsert.is_demo;
+        if (!fallbackInsert.cnpj) {
+          fallbackInsert.cnpj = meta.cpf || `PF-${ctx.user.id.slice(0, 12).toUpperCase()}`;
+        }
+        const retry = await writer
+          .from('profiles')
+          .upsert(fallbackInsert, { onConflict: 'id' })
+          .select('*')
+          .single();
+        inserted = retry.data;
+      }
 
       if (inserted) {
         profile = mapDbProfileToUserProfile(inserted as Record<string, unknown>);
@@ -61,17 +83,21 @@ export async function GET() {
 
     const { data: notifications } = await ctx.supabase
       .from('notifications')
-      .select('id, titulo, mensagem, canal, lido, created_at')
+      .select('*')
       .eq('user_id', ctx.user.id)
       .order('created_at', { ascending: false })
-      .limit(15);
+      .limit(20);
+
+    const realNotifications = (notifications || []).filter(
+      (n) => !(n as Record<string, unknown>).is_demo
+    );
 
     return NextResponse.json({
       authenticated: true,
       user: { id: ctx.user.id, email: ctx.user.email },
       profile,
       documents: docs || [],
-      notifications: notifications || [],
+      notifications: realNotifications,
     });
   } catch (err) {
     console.error('Erro ao carregar perfil autenticado:', err);
@@ -92,7 +118,6 @@ export async function PATCH(req: NextRequest) {
 
     const body = await req.json();
 
-    // Aprovação administrativa / alteração de limite escrow de outro usuário
     if (body.targetUserId && body.targetUserId !== ctx.user.id) {
       if (ctx.profile.role !== 'admin') {
         return NextResponse.json(
@@ -109,7 +134,10 @@ export async function PATCH(req: NextRequest) {
 
       const admin = createAdminSupabaseClient();
       const updates: Record<string, unknown> = {};
-      if (body.statusAprovacao && ['aprovado', 'em_analise', 'pendente'].includes(body.statusAprovacao)) {
+      if (
+        body.statusAprovacao &&
+        ['aprovado', 'em_analise', 'pendente'].includes(body.statusAprovacao)
+      ) {
         updates.status_aprovacao = body.statusAprovacao;
       }
       if (body.limiteCreditoEscrow !== undefined) {
@@ -135,14 +163,21 @@ export async function PATCH(req: NextRequest) {
         .single();
 
       if (error || !updatedTarget) {
-        return NextResponse.json({ error: error?.message || 'Perfil não encontrado.' }, { status: 400 });
+        return NextResponse.json(
+          { error: error?.message || 'Perfil não encontrado.' },
+          { status: 400 }
+        );
       }
 
       await admin.from('audit_worm_logs').insert({
         tipo_evento: 'kyc_admin_decisao',
-        protocolo: `KYC-${String(updatedTarget.cnpj || body.targetUserId)}`,
+        protocolo: `KYC-${String(updatedTarget.cnpj || updatedTarget.cpf || body.targetUserId)}`,
         payload_json: { targetUserId: body.targetUserId, updates, adminId: ctx.user.id },
-        merkle_root_hash: buildAuditHash(String(body.targetUserId), 'kyc_admin_decisao', updates),
+        merkle_root_hash: buildAuditHash(
+          String(body.targetUserId),
+          'kyc_admin_decisao',
+          updates
+        ),
         responsavel_id: ctx.user.id,
       });
 
@@ -152,7 +187,13 @@ export async function PATCH(req: NextRequest) {
       });
     }
 
-    // Atualização do próprio perfil (sem permitir alteração de role/limite/status)
+    if (ctx.profile.isDemo && ctx.profile.role !== 'admin') {
+      return NextResponse.json(
+        { error: 'Perfis de demonstração não podem ser alterados por usuários comuns.' },
+        { status: 403 }
+      );
+    }
+
     const allowedUpdates: Record<string, unknown> = {};
     if (typeof body.nomeFantasia === 'string' && body.nomeFantasia.trim().length >= 2) {
       allowedUpdates.nome_fantasia = body.nomeFantasia.trim().slice(0, 255);
@@ -174,9 +215,21 @@ export async function PATCH(req: NextRequest) {
     }
     if (typeof body.cnpj === 'string' && body.cnpj.trim()) {
       if (!isValidCnpjDigits(body.cnpj)) {
-        return NextResponse.json({ error: 'CNPJ com dígitos verificadores inválidos.' }, { status: 400 });
+        return NextResponse.json(
+          { error: 'CNPJ com dígitos verificadores inválidos.' },
+          { status: 400 }
+        );
       }
-      allowedUpdates.cnpj = body.cnpj.trim();
+      allowedUpdates.cnpj = formatCnpj(body.cnpj);
+    }
+    if (typeof body.cpf === 'string' && body.cpf.trim()) {
+      if (!isValidCpfDigits(body.cpf)) {
+        return NextResponse.json(
+          { error: 'CPF com dígitos verificadores inválidos.' },
+          { status: 400 }
+        );
+      }
+      allowedUpdates.cpf = formatCpf(body.cpf);
     }
 
     if (Object.keys(allowedUpdates).length === 0) {

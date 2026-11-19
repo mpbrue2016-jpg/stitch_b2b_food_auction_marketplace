@@ -7,53 +7,7 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbBannerToHomeBanner } from '@/lib/supabase/mappers';
 import { buildAuditHash } from '@/lib/security';
-
-const DEFAULT_HOME_BANNERS = [
-  {
-    eyebrow: 'Pequenos Mercados & Minimercados · Estoque Parado',
-    titulo: 'Tem Estoque Parado no Seu Mercado? Transforme em Dinheiro Hoje',
-    subtitulo:
-      'Liquide fardos encalhados, sobras de compra ou itens perto do vencimento para mais de 3.140 compradores com custódia Escrow D+0.',
-    ctaLabel: 'Liquidar Meu Estoque Parado',
-    ctaHref: '/produtos/novo?modelo=pequeno_mercado',
-    imagemUrl: '/images/banners/banner-pequenos-mercados.jpg',
-    ativo: true,
-    intervaloSegundos: 6,
-  },
-  {
-    eyebrow: 'Rodada Industrial SP · Custódia Escrow BACEN',
-    titulo: 'Cargas Fechadas direto da Indústria com até 70% OFF',
-    subtitulo:
-      'Negocie paletes PBR homologados ANVISA/MAPA com repasse D+0 garantido e retirada FOB agendada em 48 horas.',
-    ctaLabel: 'Explorar Leilões ao Vivo',
-    ctaHref: '/leiloes',
-    imagemUrl: '/images/banners/banner-atacado-pallets.jpg',
-    ativo: true,
-    intervaloSegundos: 6,
-  },
-  {
-    eyebrow: 'Pregões Multi-Setor · Cerealista, Hortifruti & Limpeza',
-    titulo: 'Cerealista, Hortifruti CEASA e Higiene e Limpeza em Lotes',
-    subtitulo:
-      'Arroz, feijão em sacaria, caixas frescas de hortifruti e combos de limpeza com deságio imediato para mercados e atacarejos.',
-    ctaLabel: 'Filtrar Pregões por Segmento',
-    ctaHref: '/leiloes',
-    imagemUrl: '/images/banners/banner-safra-alimentos.jpg',
-    ativo: true,
-    intervaloSegundos: 6,
-  },
-  {
-    eyebrow: 'Liquidez Imediata · Escoamento B2B',
-    titulo: 'Transforme Estoque Parado em Liquidez em até 48 Horas',
-    subtitulo:
-      'Publique pontas de lote com NF-e integrada, agendamento de doca no CD e pagamento protegido via PIX SPI.',
-    ctaLabel: 'Anunciar Lote Agora',
-    ctaHref: '/produtos/novo',
-    imagemUrl: '/images/banners/banner-logistica-docas.jpg',
-    ativo: true,
-    intervaloSegundos: 6,
-  },
-];
+import { DEMO_BANNERS } from '@/lib/demo-data';
 
 function isValidImageUrl(url: string): boolean {
   const trimmed = url.trim();
@@ -63,10 +17,7 @@ function isValidImageUrl(url: string): boolean {
       /^data:image\/(webp|png|jpeg|jpg);base64,[A-Za-z0-9+/=]+$/.test(trimmed)
     );
   }
-  return (
-    trimmed.startsWith('/images/') ||
-    trimmed.startsWith('https://')
-  );
+  return trimmed.startsWith('/images/') || trimmed.startsWith('https://');
 }
 
 async function persistBannerImageToStorage(
@@ -76,7 +27,9 @@ async function persistBannerImageToStorage(
   if (!dataUrlOrPath.startsWith('data:image/')) {
     return dataUrlOrPath;
   }
-  const match = dataUrlOrPath.match(/^data:(image\/(?:webp|png|jpeg|jpg));base64,([A-Za-z0-9+/=]+)$/);
+  const match = dataUrlOrPath.match(
+    /^data:(image\/(?:webp|png|jpeg|jpg));base64,([A-Za-z0-9+/=]+)$/
+  );
   if (!match) {
     throw new Error('Formato de imagem inválido.');
   }
@@ -98,7 +51,7 @@ async function persistBannerImageToStorage(
   return pub.publicUrl;
 }
 
-async function fetchSortedBanners(activeOnly = false) {
+async function fetchSortedBanners(activeOnly = false, envMode: 'modelo' | 'original' = 'modelo') {
   const supabase = createServerSupabaseClient();
   let query = supabase.from('home_banners').select('*').order('ordem', { ascending: true });
   if (activeOnly) {
@@ -106,25 +59,63 @@ async function fetchSortedBanners(activeOnly = false) {
   }
   const { data, error } = await query;
   if (error) throw error;
-  return (data || []).map((r) => mapDbBannerToHomeBanner(r as Record<string, unknown>));
+
+  const mapped = (data || []).map((r) => mapDbBannerToHomeBanner(r as Record<string, unknown>));
+
+  if (envMode === 'original') {
+    return mapped.filter((b) => !b.isDemo);
+  }
+
+  const demoRows = mapped.filter((b) => b.isDemo);
+  if (demoRows.length > 0) return demoRows;
+  return activeOnly ? DEMO_BANNERS.filter((b) => b.ativo) : DEMO_BANNERS;
 }
 
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const activeOnly = searchParams.get('activeOnly') === '1';
+  const envParam = searchParams.get('env');
+  const envMode: 'modelo' | 'original' = envParam === 'original' ? 'original' : 'modelo';
+
   if (!isSupabaseServerConfigured) {
-    return NextResponse.json(
-      { error: 'Supabase não configurado no ambiente.', banners: [] },
-      { status: 503 }
-    );
+    if (envMode === 'modelo') {
+      return NextResponse.json({
+        banners: activeOnly ? DEMO_BANNERS.filter((b) => b.ativo) : DEMO_BANNERS,
+        source: 'demo_local',
+      });
+    }
+    return NextResponse.json({ banners: [], source: 'original_offline' });
   }
 
   try {
-    const { searchParams } = new URL(req.url);
-    const activeOnly = searchParams.get('activeOnly') === '1';
-    const banners = await fetchSortedBanners(activeOnly);
-    return NextResponse.json({ banners });
+    const banners = await fetchSortedBanners(activeOnly, envMode);
+    return NextResponse.json({ banners, env: envMode });
   } catch (err) {
+    const code = (err as { code?: string } | null)?.code;
+    if (code === 'PGRST205' || code === '42703') {
+      return NextResponse.json({
+        banners:
+          envMode === 'modelo'
+            ? activeOnly
+              ? DEMO_BANNERS.filter((b) => b.ativo)
+              : DEMO_BANNERS
+            : [],
+        pendingMigration: true,
+      });
+    }
     console.error('Erro ao consultar banners:', err);
-    return NextResponse.json({ error: 'Erro ao carregar banners.', banners: [] }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: 'Erro ao carregar banners.',
+        banners:
+          envMode === 'modelo'
+            ? activeOnly
+              ? DEMO_BANNERS.filter((b) => b.ativo)
+              : DEMO_BANNERS
+            : [],
+      },
+      { status: 500 }
+    );
   }
 }
 
@@ -149,8 +140,12 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     if (body.action === 'restore_defaults') {
-      await dbClient.from('home_banners').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      const defaultsPayload = DEFAULT_HOME_BANNERS.map((b, idx) => ({
+      await dbClient
+        .from('home_banners')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000');
+
+      const defaultsPayload = DEMO_BANNERS.map((b, idx) => ({
         titulo: b.titulo,
         subtitulo: b.subtitulo,
         eyebrow: b.eyebrow,
@@ -160,12 +155,22 @@ export async function POST(req: NextRequest) {
         ordem: idx + 1,
         ativo: b.ativo,
         intervalo_segundos: b.intervaloSegundos,
+        is_demo: true,
       }));
-      const { error: restoreErr } = await dbClient.from('home_banners').insert(defaultsPayload);
+      let { error: restoreErr } = await dbClient.from('home_banners').insert(defaultsPayload);
+      if (restoreErr && restoreErr.code === '42703') {
+        const legacyPayload = defaultsPayload.map((item) => {
+          const copy = { ...item } as Record<string, unknown>;
+          delete copy.is_demo;
+          return copy;
+        });
+        const retry = await dbClient.from('home_banners').insert(legacyPayload);
+        restoreErr = retry.error;
+      }
       if (restoreErr) {
         return NextResponse.json({ error: restoreErr.message }, { status: 500 });
       }
-      const banners = await fetchSortedBanners(false);
+      const banners = await fetchSortedBanners(false, 'modelo');
       return NextResponse.json({
         message: 'Série de banners modelo restaurada com sucesso no Supabase.',
         banners,
@@ -183,6 +188,7 @@ export async function POST(req: NextRequest) {
         : '/images/banners/banner-atacado-pallets.jpg';
     const intervaloSegundos = Math.min(30, Math.max(3, Number(body.intervaloSegundos) || 6));
     const ativo = body.ativo !== false;
+    const isDemo = body.isDemo === true;
 
     if (titulo.length < 4) {
       return NextResponse.json(
@@ -206,24 +212,34 @@ export async function POST(req: NextRequest) {
     }
 
     const imagemUrl = await persistBannerImageToStorage(rawImagemUrl, ctx.user.id);
-    const current = await fetchSortedBanners(false);
+    const current = await fetchSortedBanners(false, isDemo ? 'modelo' : 'original');
     const nextOrder = current.length > 0 ? Math.max(...current.map((b) => b.ordem)) + 1 : 1;
 
-    const { data: inserted, error: insertErr } = await dbClient
+    const insertObj: Record<string, unknown> = {
+      titulo: titulo.slice(0, 120),
+      subtitulo: subtitulo.slice(0, 220),
+      eyebrow: (eyebrow || 'Campanha Oficial Varejista Online').slice(0, 90),
+      cta_label: (ctaLabel || 'Ver Ofertas').slice(0, 40),
+      cta_href: ctaHref,
+      imagem_url: imagemUrl,
+      ordem: Number(body.ordem) > 0 ? Number(body.ordem) : nextOrder,
+      ativo,
+      intervalo_segundos: intervaloSegundos,
+      is_demo: isDemo,
+    };
+
+    let { data: inserted, error: insertErr } = await dbClient
       .from('home_banners')
-      .insert({
-        titulo: titulo.slice(0, 120),
-        subtitulo: subtitulo.slice(0, 220),
-        eyebrow: (eyebrow || 'Campanha Oficial Varejista Online').slice(0, 90),
-        cta_label: (ctaLabel || 'Ver Ofertas').slice(0, 40),
-        cta_href: ctaHref,
-        imagem_url: imagemUrl,
-        ordem: Number(body.ordem) > 0 ? Number(body.ordem) : nextOrder,
-        ativo,
-        intervalo_segundos: intervaloSegundos,
-      })
+      .insert(insertObj)
       .select('*')
       .single();
+
+    if (insertErr && insertErr.code === '42703') {
+      delete insertObj.is_demo;
+      const retry = await dbClient.from('home_banners').insert(insertObj).select('*').single();
+      inserted = retry.data;
+      insertErr = retry.error;
+    }
 
     if (insertErr || !inserted) {
       return NextResponse.json(
@@ -235,15 +251,15 @@ export async function POST(req: NextRequest) {
     await dbClient.from('audit_worm_logs').insert({
       tipo_evento: 'banner_criado',
       protocolo: `BANNER-${inserted.id}`,
-      payload_json: { bannerId: inserted.id, titulo, adminId: ctx.user.id },
-      merkle_root_hash: buildAuditHash(String(inserted.id), 'banner_criado', { titulo }),
+      payload_json: { bannerId: inserted.id, titulo, isDemo, adminId: ctx.user.id },
+      merkle_root_hash: buildAuditHash(String(inserted.id), 'banner_criado', { titulo, isDemo }),
       responsavel_id: ctx.user.id,
     });
 
-    const banners = await fetchSortedBanners(false);
+    const banners = await fetchSortedBanners(false, isDemo ? 'modelo' : 'original');
     return NextResponse.json(
       {
-        message: 'Banner adicionado à série rotativa da Home com sucesso.',
+        message: 'Banner adicionado com sucesso.',
         banner: mapDbBannerToHomeBanner(inserted as Record<string, unknown>),
         banners,
       },
@@ -280,7 +296,13 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: 'Parâmetro obrigatório: id do banner.' }, { status: 400 });
     }
 
-    const sorted = await fetchSortedBanners(false);
+    const { data: allRows } = await dbClient
+      .from('home_banners')
+      .select('*')
+      .order('ordem', { ascending: true });
+    const sorted = (allRows || []).map((r) =>
+      mapDbBannerToHomeBanner(r as Record<string, unknown>)
+    );
     const idx = sorted.findIndex((b) => b.id === id);
     if (idx === -1) {
       return NextResponse.json({ error: 'Banner não encontrado.' }, { status: 404 });
@@ -295,7 +317,7 @@ export async function PATCH(req: NextRequest) {
       ]);
       return NextResponse.json({
         message: 'Ordem de exibição atualizada.',
-        banners: await fetchSortedBanners(false),
+        banners: await fetchSortedBanners(false, current.isDemo ? 'modelo' : 'original'),
       });
     }
 
@@ -308,7 +330,7 @@ export async function PATCH(req: NextRequest) {
       ]);
       return NextResponse.json({
         message: 'Ordem de exibição atualizada.',
-        banners: await fetchSortedBanners(false),
+        banners: await fetchSortedBanners(false, current.isDemo ? 'modelo' : 'original'),
       });
     }
 
@@ -366,13 +388,16 @@ export async function PATCH(req: NextRequest) {
       .single();
 
     if (updErr || !updatedRow) {
-      return NextResponse.json({ error: updErr?.message || 'Erro ao atualizar banner.' }, { status: 500 });
+      return NextResponse.json(
+        { error: updErr?.message || 'Erro ao atualizar banner.' },
+        { status: 500 }
+      );
     }
 
     return NextResponse.json({
       message: 'Banner atualizado com sucesso.',
       banner: mapDbBannerToHomeBanner(updatedRow as Record<string, unknown>),
-      banners: await fetchSortedBanners(false),
+      banners: await fetchSortedBanners(false, current.isDemo ? 'modelo' : 'original'),
     });
   } catch (err) {
     console.error('Erro ao atualizar banner:', err);
@@ -409,7 +434,7 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    const remaining = await fetchSortedBanners(false);
+    const remaining = await fetchSortedBanners(false, 'modelo');
     await Promise.all(
       remaining.map((b, i) =>
         dbClient.from('home_banners').update({ ordem: i + 1 }).eq('id', b.id)
@@ -418,7 +443,7 @@ export async function DELETE(req: NextRequest) {
 
     return NextResponse.json({
       message: 'Banner removido da rotação.',
-      banners: await fetchSortedBanners(false),
+      banners: await fetchSortedBanners(false, 'modelo'),
     });
   } catch (err) {
     console.error('Erro ao excluir banner:', err);

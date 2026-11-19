@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { CART_UPDATED_EVENT, getCartItems, syncCartFromServer } from '@/lib/cart-store';
 import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
 import { ProductCategory } from '@/lib/types';
 
 function getInitials(name?: string | null): string {
@@ -18,6 +19,7 @@ export const Header: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { user, profile, notifications, loading: authLoading, signOut } = useAuth();
+  const { isDemoMode, envMode, setEnvMode, openTutorial, sandbox } = useEnvironment();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -28,21 +30,34 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const syncCartCount = () => {
-      const items = getCartItems();
-      setCartCount(items.reduce((acc, item) => acc + item.quantidade, 0));
+      if (isDemoMode) {
+        setCartCount(sandbox.simulatedCart.reduce((acc, item) => acc + item.quantidade, 0));
+      } else {
+        const items = getCartItems();
+        setCartCount(items.reduce((acc, item) => acc + item.quantidade, 0));
+      }
     };
 
     syncCartCount();
     window.addEventListener(CART_UPDATED_EVENT, syncCartCount);
 
     let active = true;
+    const envQuery = `env=${envMode}`;
     Promise.all([
-      fetch('/api/lotes', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
-      fetch('/api/categorias', { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch(`/api/lotes?${envQuery}`, { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
+      fetch(`/api/categorias?${envQuery}`, { cache: 'no-store' }).then((res) => (res.ok ? res.json() : null)),
     ])
       .then(([lotsData, catsData]) => {
         if (!active) return;
-        if (Array.isArray(lotsData?.lots)) {
+        if (isDemoMode) {
+          const openLots = sandbox.simulatedLots.filter(
+            (l) =>
+              l.status !== 'encerrado' &&
+              l.status !== 'homologado' &&
+              new Date(l.terminaEm).getTime() > Date.now()
+          );
+          setActiveLotsCount(openLots.length);
+        } else if (Array.isArray(lotsData?.lots)) {
           const openLots = lotsData.lots.filter(
             (l: { terminaEm: string; status: string }) =>
               l.status !== 'encerrado' &&
@@ -61,13 +76,13 @@ export const Header: React.FC = () => {
       active = false;
       window.removeEventListener(CART_UPDATED_EVENT, syncCartCount);
     };
-  }, [pathname]);
+  }, [pathname, envMode, isDemoMode, sandbox.simulatedCart, sandbox.simulatedLots]);
 
   useEffect(() => {
-    if (user) {
+    if (user && !isDemoMode) {
       void syncCartFromServer();
     }
-  }, [user]);
+  }, [user, isDemoMode]);
 
   const handleSearch = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -120,13 +135,14 @@ export const Header: React.FC = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       {/* Top Banner Operacional B2B */}
       <div className="bg-surface-container-high text-on-surface-variant text-[10px] sm:text-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-9">
-          <div className="flex items-center gap-3 sm:gap-6">
-            <div className="flex items-center gap-1.5 text-secondary font-semibold">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-9 gap-2">
+          <div className="flex items-center gap-3 sm:gap-5 min-w-0">
+            <div className="flex items-center gap-1.5 text-secondary font-semibold shrink-0">
               <span className="material-symbols-outlined text-[16px]">verified_user</span>
-              <span>Ambiente Seguro B2B • CNPJ Verificado</span>
+              <span className="hidden sm:inline">Ambiente Seguro B2B • CPF &amp; CNPJ</span>
+              <span className="sm:hidden">B2B Seguro</span>
             </div>
-            <div className="hidden md:flex items-center gap-1.5 text-on-surface-variant">
+            <div className="hidden md:flex items-center gap-1.5 text-on-surface-variant shrink-0">
               <span className="material-symbols-outlined text-[16px]">trending_up</span>
               <span>
                 Pregões Ativos:{' '}
@@ -137,14 +153,53 @@ export const Header: React.FC = () => {
                 </strong>
               </span>
             </div>
-            <div className="hidden lg:flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[16px]">location_on</span>
-              <span>Raio SP • Grande São Paulo / Interior (300km)</span>
+            {/* Seletor / Indicador Rápido de Ambiente */}
+            <div className="flex items-center gap-1 bg-surface-container-lowest rounded-full p-0.5 border border-outline-variant/30 shrink-0">
+              <button
+                type="button"
+                onClick={() => setEnvMode('modelo')}
+                className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold transition-colors ${
+                  isDemoMode
+                    ? 'bg-amber-400 text-slate-950 shadow-xs'
+                    : 'text-on-surface-variant hover:text-on-surface'
+                }`}
+              >
+                MODELO
+              </button>
+              {user && profile ? (
+                <button
+                  type="button"
+                  onClick={() => setEnvMode('original')}
+                  className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold transition-colors ${
+                    !isDemoMode
+                      ? 'bg-secondary text-white shadow-xs'
+                      : 'text-on-surface-variant hover:text-on-surface'
+                  }`}
+                >
+                  ORIGINAL
+                </button>
+              ) : (
+                <Link
+                  href="/cadastro"
+                  className="px-2 py-0.5 rounded-full text-[10px] font-bold text-primary hover:bg-primary/10 transition-colors"
+                  title="Crie sua conta oficial para operar no Ambiente Original"
+                >
+                  Original
+                </Link>
+              )}
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link href="/pedidos" className="hover:text-primary transition-colors hidden sm:inline">
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              type="button"
+              onClick={() => openTutorial(0)}
+              className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:underline"
+            >
+              <span className="material-symbols-outlined text-[14px]">help</span>
+              <span>Tutorial</span>
+            </button>
+            <Link href="/pedidos" className="hover:text-primary transition-colors hidden lg:inline">
               Histórico de Pedidos
             </Link>
             {user && profile ? (
@@ -174,7 +229,7 @@ export const Header: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <Link href="/login" className="hover:text-primary font-semibold transition-colors">
                   Entrar
                 </Link>
@@ -182,7 +237,7 @@ export const Header: React.FC = () => {
                   href="/cadastro"
                   className="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-primary text-white font-bold shadow-sm hover:bg-primary-container transition-colors"
                 >
-                  Cadastrar CNPJ
+                  Começar Agora
                 </Link>
               </div>
             )}
@@ -316,7 +371,7 @@ export const Header: React.FC = () => {
                     {authLoading ? 'Verificando...' : 'Acessar Conta'}
                   </span>
                   <span className="text-[10px] text-primary font-bold block leading-tight">
-                    Login / Cadastro B2B
+                    Login / Cadastro Oficial
                   </span>
                 </div>
               </Link>
@@ -364,7 +419,7 @@ export const Header: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-surface-container-lowest border-b border-surface-container p-4 space-y-3">
+        <div className="md:hidden bg-surface-container-lowest border-b border-surface-container p-4 space-y-3 max-h-[75vh] overflow-y-auto">
           <form onSubmit={handleSearch} className="flex items-center bg-surface-container-low rounded-lg px-3 py-2">
             <span className="material-symbols-outlined text-outline text-[18px] mr-2">search</span>
             <input
@@ -375,6 +430,21 @@ export const Header: React.FC = () => {
               className="w-full bg-transparent text-xs text-on-surface focus:outline-none"
             />
           </form>
+          <div className="flex items-center justify-between gap-2 bg-amber-50 border border-amber-200 rounded-lg p-2">
+            <span className="text-[11px] font-bold text-amber-950">
+              {isDemoMode ? 'Modo: Ambiente Modelo' : 'Modo: Conta Original'}
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openTutorial(0);
+              }}
+              className="px-2.5 py-1 rounded bg-white border border-amber-300 text-[11px] font-bold text-primary"
+            >
+              Abrir Tutorial
+            </button>
+          </div>
           <div className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -407,13 +477,22 @@ export const Header: React.FC = () => {
                 Encerrar Sessão
               </button>
             ) : (
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="mt-1 text-center bg-primary text-white text-xs font-bold py-2 rounded-lg"
-              >
-                Entrar / Cadastrar CNPJ
-              </Link>
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                <Link
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center border border-primary text-primary text-xs font-bold py-2 rounded-lg"
+                >
+                  Entrar
+                </Link>
+                <Link
+                  href="/cadastro"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center bg-primary text-white text-xs font-bold py-2 rounded-lg"
+                >
+                  Começar Agora
+                </Link>
+              </div>
             )}
           </div>
         </div>

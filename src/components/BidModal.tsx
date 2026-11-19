@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { AuctionLot } from '@/lib/types';
 import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge } from '@/components/DemoBadge';
 
 interface BidModalProps {
   lot: AuctionLot;
@@ -23,6 +25,9 @@ export const BidModal: React.FC<BidModalProps> = ({
   onBidSuccess,
 }) => {
   const { user } = useAuth();
+  const { isDemoMode, simulateBid } = useEnvironment();
+  const isSimulatedLot = Boolean(lot.isDemo || isDemoMode);
+
   const minNextBid = lot.lanceAtual + lot.incrementoMinimo;
   const [bidAmount, setBidAmount] = useState<number>(minNextBid);
   const [submitting, setSubmitting] = useState(false);
@@ -65,11 +70,6 @@ export const BidModal: React.FC<BidModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) {
-      setRequiresLogin(true);
-      setErrorMsg('Faça login com seu CNPJ homologado para enviar lances no pregão.');
-      return;
-    }
     if (isExpired) {
       setErrorMsg('Pregão eletrônico encerrado. Não são aceitos novos lances.');
       return;
@@ -78,6 +78,34 @@ export const BidModal: React.FC<BidModalProps> = ({
       setErrorMsg(`O valor mínimo para o próximo lance é R$ ${minNextBid.toLocaleString('pt-BR')}`);
       return;
     }
+
+    // No Ambiente Modelo ou em lotes isDemo, executa apenas simulação local (sem operação real no Supabase)
+    if (isSimulatedLot) {
+      setErrorMsg(null);
+      const sim = simulateBid(lot, bidAmount);
+      if (!sim.ok) {
+        setErrorMsg(sim.message);
+        return;
+      }
+      setAntiSnipingExtended(Boolean(sim.extended));
+      setTxHash('SIMULACAO-AMBIENTE-MODELO');
+      setSuccess(true);
+      onBidSuccess(bidAmount, lot.terminaEm, sim.extended);
+      setTimeout(() => {
+        setSuccess(false);
+        setTxHash(null);
+        setAntiSnipingExtended(false);
+        onClose();
+      }, 2100);
+      return;
+    }
+
+    if (!user) {
+      setRequiresLogin(true);
+      setErrorMsg('Faça login com seu cadastro oficial para enviar lances reais no pregão.');
+      return;
+    }
+
     setErrorMsg(null);
     setRequiresLogin(false);
     setSubmitting(true);
@@ -126,14 +154,21 @@ export const BidModal: React.FC<BidModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-outline-variant/30 space-y-5 animate-in fade-in zoom-in-95 duration-200">
+      <div className="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-outline-variant/30 space-y-4 animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-surface-container">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[24px]">gavel</span>
             <div>
-              <h3 className="font-extrabold text-base text-on-surface">Confirmar Lance no Pregão</h3>
-              <p className="text-xs text-on-surface-variant font-bold">{lot.codigoLote} • {lot.produto.titulo}</p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="font-extrabold text-base text-on-surface">
+                  {isSimulatedLot ? 'Simular Lance no Pregão' : 'Confirmar Lance no Pregão'}
+                </h3>
+                {isSimulatedLot && <DemoBadge compact />}
+              </div>
+              <p className="text-xs text-on-surface-variant font-bold">
+                {lot.codigoLote} • {lot.produto.titulo}
+              </p>
             </div>
           </div>
           <button
@@ -145,12 +180,35 @@ export const BidModal: React.FC<BidModalProps> = ({
           </button>
         </div>
 
+        {isSimulatedLot && (
+          <div className="p-3 rounded-xl bg-amber-50 border border-amber-300 text-xs text-amber-950 space-y-1">
+            <p className="font-extrabold uppercase tracking-wider text-[10px]">
+              SIMULAÇÃO — AMBIENTE MODELO
+            </p>
+            <p>
+              Este lote é fictício. Seu lance servirá apenas para aprender como funciona a disputa B2B e não gera compromisso financeiro real.
+            </p>
+          </div>
+        )}
+
         {success ? (
-          <div className="p-8 text-center space-y-3 bg-secondary-container/20 rounded-xl border border-secondary/30">
+          <div className="p-7 text-center space-y-3 bg-secondary-container/20 rounded-xl border border-secondary/30">
             <span className="material-symbols-outlined text-secondary text-5xl">check_circle</span>
-            <h4 className="font-bold text-lg text-secondary">Lance Registrado com Sucesso!</h4>
+            <h4 className="font-bold text-lg text-secondary">
+              {isSimulatedLot
+                ? 'Simulação de Lance Registrada!'
+                : 'Lance Registrado com Sucesso!'}
+            </h4>
             <p className="text-xs text-on-surface-variant">
-              Seu lance de <strong>R$ {bidAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi registrado no livro de ofertas sob custódia BACEN.
+              {isSimulatedLot ? (
+                <>
+                  Simulação de <strong>R$ {bidAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> aplicada no Ambiente Modelo (nenhuma transação real foi enviada).
+                </>
+              ) : (
+                <>
+                  Seu lance de <strong>R$ {bidAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi registrado no livro de ofertas sob custódia BACEN.
+                </>
+              )}
             </p>
             {antiSnipingExtended && (
               <p className="text-[11px] font-bold text-tertiary bg-tertiary-container/30 px-3 py-1.5 rounded-lg border border-tertiary/30">
@@ -159,7 +217,7 @@ export const BidModal: React.FC<BidModalProps> = ({
             )}
             {txHash && (
               <p className="text-[11px] font-mono text-primary bg-white/80 px-3 py-1 rounded-lg inline-block border border-outline-variant/40">
-                Auditoria WORM: {txHash}
+                {isSimulatedLot ? 'SIMULAÇÃO • AMBIENTE MODELO' : `Auditoria WORM: ${txHash}`}
               </p>
             )}
           </div>
@@ -190,7 +248,9 @@ export const BidModal: React.FC<BidModalProps> = ({
             {/* Input de Lance com botões de incremento rápido */}
             <div className="space-y-2">
               <label className="block text-xs font-bold text-on-surface uppercase tracking-wide">
-                Seu Lance no Lote Fechado (R$):
+                {isSimulatedLot
+                  ? 'Valor do Lance Simulado (R$):'
+                  : 'Seu Lance no Lote Fechado (R$):'}
               </label>
               <div className="flex items-center bg-surface-container rounded-xl px-3 py-2 border-2 border-primary/20 focus-within:border-primary">
                 <span className="text-base font-bold text-primary mr-2">R$</span>
@@ -207,7 +267,7 @@ export const BidModal: React.FC<BidModalProps> = ({
               </div>
 
               {/* Botões de incremento rápido */}
-              <div className="flex items-center gap-2 pt-1">
+              <div className="flex items-center gap-2 pt-1 flex-wrap">
                 <span className="text-[10px] text-outline font-bold uppercase">Incrementos:</span>
                 {[500, 1000, 2500, 5000].map((inc) => (
                   <button
@@ -237,7 +297,9 @@ export const BidModal: React.FC<BidModalProps> = ({
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Custódia Fiduciária:</span>
-                <span className="text-[10px] text-secondary font-bold">100% Garantida via Escrow D+0</span>
+                <span className="text-[10px] text-secondary font-bold">
+                  {isSimulatedLot ? 'Simulação Didática (Sem Cobrança)' : '100% Garantida via Escrow D+0'}
+                </span>
               </div>
             </div>
 
@@ -277,11 +339,23 @@ export const BidModal: React.FC<BidModalProps> = ({
                 ) : (
                   <>
                     <span className="material-symbols-outlined text-[16px]">gavel</span>
-                    <span>Confirmar Lance</span>
+                    <span>{isSimulatedLot ? 'Simular Lance' : 'Confirmar Lance'}</span>
                   </>
                 )}
               </button>
             </div>
+
+            {isSimulatedLot && (
+              <div className="text-center pt-1">
+                <Link
+                  href="/cadastro"
+                  onClick={onClose}
+                  className="text-[11px] font-bold text-primary hover:underline"
+                >
+                  Criar Conta Oficial para Operar com Lotes Verdadeiros →
+                </Link>
+              </div>
+            )}
           </form>
         )}
       </div>

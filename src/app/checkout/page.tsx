@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
 import { CartItem, clearCart, removeLotFromCart, syncCartFromServer } from '@/lib/cart-store';
 import { calculateSplit, SplitCalculationResult } from '@/lib/commission-engine';
 import { PixQrScanner } from '@/components/PixQrScanner';
@@ -21,6 +23,8 @@ interface PendingPixCharge {
 function CheckoutContent() {
   const searchParams = useSearchParams();
   const { user, profile, loading: authLoading } = useAuth();
+  const { isDemoMode, sandbox, simulateCreateOrder, simulateRemoveFromCart, simulateClearCart } =
+    useEnvironment();
 
   const fromCart = searchParams.get('fromCart') === '1';
   const orderIdParam = searchParams.get('orderId') || '';
@@ -40,17 +44,60 @@ function CheckoutContent() {
     let active = true;
 
     async function loadTarget() {
-      if (orderIdParam && authLoading) return;
+      if (!isDemoMode && orderIdParam && authLoading) return;
       setLoadingLot(true);
       setNotFoundError(null);
       try {
+        if (isDemoMode) {
+          if (fromCart) {
+            if (sandbox.simulatedCart.length > 0) {
+              setCartCheckoutItems(sandbox.simulatedCart);
+              setLot(sandbox.simulatedCart[0].lot);
+            } else {
+              setCartCheckoutItems([]);
+              setLot(null);
+              setNotFoundError('Seu carrinho demonstrativo está vazio.');
+            }
+            setLoadingLot(false);
+            return;
+          }
+          if (orderIdParam) {
+            const simOrder = sandbox.simulatedOrders.find((o) => o.id === orderIdParam);
+            if (simOrder) {
+              setResumedAmount(simOrder.valorTotalArremate);
+              setOrderCode(simOrder.codigoPedido);
+              const simLot = sandbox.simulatedLots.find((l) => l.id === simOrder.loteId) || sandbox.simulatedLots[0];
+              setLot(simLot || null);
+              setResumedOrderLoaded(true);
+              setLoadingLot(false);
+              return;
+            }
+          }
+          const simMatch = loteId
+            ? sandbox.simulatedLots.find((l) => l.id === loteId)
+            : sandbox.simulatedLots[0];
+          if (simMatch) {
+            setLot(simMatch);
+          } else {
+            const res = await fetch(`/api/lotes?env=modelo&id=${encodeURIComponent(loteId)}`, {
+              cache: 'no-store',
+            });
+            const data = res.ok ? await res.json() : null;
+            if (!active) return;
+            if (data?.lot) setLot(data.lot);
+            else setNotFoundError('Lote modelo não encontrado.');
+          }
+          setLoadingLot(false);
+          return;
+        }
+
         if (orderIdParam) {
           if (!user) {
             setLoadingLot(false);
             return;
           }
           const orderRes = await fetch(
-            `/api/pedidos?orderId=${encodeURIComponent(orderIdParam)}`,
+            `/api/pedidos?env=original&orderId=${encodeURIComponent(orderIdParam)}`,
             { cache: 'no-store' }
           );
           const orderData = orderRes.ok ? await orderRes.json() : await orderRes.json().catch(() => null);
@@ -93,7 +140,7 @@ function CheckoutContent() {
           }
           setResumedOrderLoaded(true);
 
-          const lotRes = await fetch(`/api/lotes?id=${encodeURIComponent(resumedOrder.loteId)}`, {
+          const lotRes = await fetch(`/api/lotes?env=original&id=${encodeURIComponent(resumedOrder.loteId)}`, {
             cache: 'no-store',
           });
           const lotData = lotRes.ok ? await lotRes.json() : null;
@@ -128,7 +175,7 @@ function CheckoutContent() {
           return;
         }
 
-        const res = await fetch(`/api/lotes?id=${encodeURIComponent(loteId)}`, {
+        const res = await fetch(`/api/lotes?env=original&id=${encodeURIComponent(loteId)}`, {
           cache: 'no-store',
         });
         const data = res.ok ? await res.json() : null;
@@ -136,7 +183,7 @@ function CheckoutContent() {
         if (data?.lot) {
           setLot(data.lot);
         } else {
-          setNotFoundError('Lote solicitado não encontrado ou já removido.');
+          setNotFoundError('Lote solicitado não encontrado ou já removido no Ambiente Original.');
         }
       } catch {
         if (active) setNotFoundError('Não foi possível carregar os dados do lote.');
@@ -149,7 +196,7 @@ function CheckoutContent() {
     return () => {
       active = false;
     };
-  }, [loteId, fromCart, orderIdParam, user, authLoading]);
+  }, [isDemoMode, loteId, fromCart, orderIdParam, user, authLoading, sandbox.simulatedCart, sandbox.simulatedLots, sandbox.simulatedOrders]);
 
   const parsedValorParam = valorParam ? Number(valorParam) : NaN;
   const isMultiLotCart = fromCart && cartCheckoutItems.length > 1;
@@ -182,6 +229,8 @@ function CheckoutContent() {
     calculateSplit(totalAmount, modalidade)
   );
 
+  const isSimulationCheckout = Boolean(isDemoMode || lot?.isDemo);
+
   useEffect(() => {
     if (resumedOrderLoaded) return;
     if (totalAmount <= 0) {
@@ -190,7 +239,7 @@ function CheckoutContent() {
     }
     let active = true;
     fetch(
-      `/api/comissoes?amount=${encodeURIComponent(totalAmount)}&modalidade=${encodeURIComponent(modalidade)}`
+      `/api/comissoes?env=${isSimulationCheckout ? 'modelo' : 'original'}&amount=${encodeURIComponent(totalAmount)}&modalidade=${encodeURIComponent(modalidade)}`
     )
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
@@ -202,7 +251,7 @@ function CheckoutContent() {
     return () => {
       active = false;
     };
-  }, [totalAmount, modalidade, resumedOrderLoaded]);
+  }, [totalAmount, modalidade, resumedOrderLoaded, isSimulationCheckout]);
 
   const [paymentMethod, setPaymentMethod] = useState<'pix' | 'ted'>('pix');
   const [pendingCharge, setPendingCharge] = useState<PendingPixCharge | null>(null);
@@ -223,7 +272,20 @@ function CheckoutContent() {
     : '';
 
   useEffect(() => {
-    if (orderIdParam || resumedOrderLoaded || authLoading || loadingLot || !user || !lot || confirmed) return;
+    if (!lot || confirmed) return;
+
+    if (isSimulationCheckout) {
+      setPendingCharge({
+        orderIds: ['demo-sim-order'],
+        orderCodes: ['PED-SIM-MODELO'],
+        orderHashes: ['SIMULACAO-AMBIENTE-MODELO'],
+        pixCopiaCola: `00020126580014BR.GOV.BCB.PIX0136SIMULACAO-AMBIENTE-MODELO-${lot.codigoLote}5204000053039865406${totalAmount.toFixed(2)}5802BR5925VAREJISTA ONLINE MODELO6009SAO PAULO62070503***6304DEMO`,
+        txid: `TXID-MODELO-${lot.codigoLote}`,
+      });
+      return;
+    }
+
+    if (orderIdParam || resumedOrderLoaded || authLoading || loadingLot || !user) return;
     if (profile?.role === 'fornecedor') return;
 
     if (typeof window !== 'undefined' && checkoutCacheKey) {
@@ -312,6 +374,8 @@ function CheckoutContent() {
       active = false;
     };
   }, [
+    isSimulationCheckout,
+    totalAmount,
     orderIdParam,
     resumedOrderLoaded,
     authLoading,
@@ -370,6 +434,31 @@ function CheckoutContent() {
 
   const handleConfirmPayment = async (pixComprovanteCodigo?: string) => {
     if (confirming || confirmed || !lot) return;
+
+    if (isSimulationCheckout) {
+      setConfirming(true);
+      setCheckoutError(null);
+      const itemsToSimulate = isMultiLotCart
+        ? cartCheckoutItems.map((i) => ({ lot: i.lot, amount: i.precoTotal }))
+        : [{ lot, amount: totalAmount }];
+
+      const codes: string[] = [];
+      let lastSimHash = '';
+      for (const item of itemsToSimulate) {
+        const simOrder = simulateCreateOrder(item.lot, item.amount);
+        codes.push(simOrder.codigoPedido);
+        lastSimHash = simOrder.termoArremateHash;
+      }
+      if (isMultiLotCart) simulateClearCart();
+      else simulateRemoveFromCart(lot.id);
+
+      setOrderCode(codes.join(' • '));
+      setOrderHash(lastSimHash);
+      setConfirmed(true);
+      setConfirming(false);
+      return;
+    }
+
     if (!user) {
       setCheckoutError('Faça login com seu CNPJ homologado antes de confirmar o pagamento.');
       return;
@@ -523,9 +612,14 @@ function CheckoutContent() {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
       {/* Title */}
       <div className="space-y-1">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold">
-          <span className="material-symbols-outlined text-[16px]">lock</span>
-          Ambiente Fiduciário Seguro • BACEN Res. 4.656
+        <div className="flex flex-wrap items-center gap-2">
+          {isSimulationCheckout && <DemoBadge compact />}
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold">
+            <span className="material-symbols-outlined text-[16px]">lock</span>
+            {isSimulationCheckout
+              ? 'SIMULAÇÃO — AMBIENTE MODELO (Sem cobrança real)'
+              : 'Ambiente Fiduciário Seguro • BACEN Res. 4.656'}
+          </div>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
           Checkout Escrow B2B &amp; Split Fiduciário
@@ -535,7 +629,14 @@ function CheckoutContent() {
         </p>
       </div>
 
-      {!authLoading && !user && (
+      {isSimulationCheckout && (
+        <DidacticHint
+          title="Simulação do Pagamento em Custódia Escrow"
+          text="Este checkout refere-se a um lote demonstrativo. Nenhuma transferência bancária ou PIX verdadeiro é processado. Para operar com sua empresa, finalize seu cadastro oficial."
+        />
+      )}
+
+      {!isSimulationCheckout && !authLoading && !user && (
         <div className="p-4 rounded-2xl bg-primary-fixed/40 border border-primary/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">login</span>
@@ -556,19 +657,34 @@ function CheckoutContent() {
 
       {confirmed ? (
         <div className="bg-surface-container-lowest p-8 rounded-2xl border border-secondary/40 shadow-xl text-center space-y-5 animate-in fade-in zoom-in-95">
+          {isSimulationCheckout && (
+            <div className="flex justify-center">
+              <DemoBadge />
+            </div>
+          )}
           <div className="w-16 h-16 rounded-full bg-secondary-container text-secondary flex items-center justify-center mx-auto">
             <span className="material-symbols-outlined text-4xl">verified</span>
           </div>
 
           <div className="space-y-1">
             <span className="text-xs font-bold text-secondary uppercase tracking-widest">
-              {orderCode
+              {isSimulationCheckout
+                ? `SIMULAÇÃO — AMBIENTE MODELO • ${orderCode || 'PEDIDO DEMONSTRATIVO'}`
+                : orderCode
                 ? `PEDIDO ${orderCode} • PAGAMENTO CONFIRMADO EM CUSTÓDIA ESCROW`
                 : 'PAGAMENTO CONFIRMADO EM CUSTÓDIA ESCROW'}
             </span>
-            <h2 className="text-2xl font-extrabold text-on-surface">Arremate Homologado com Sucesso!</h2>
+            <h2 className="text-2xl font-extrabold text-on-surface">
+              {isSimulationCheckout
+                ? 'Simulação de Custódia Concluída!'
+                : 'Arremate Homologado com Sucesso!'}
+            </h2>
             <p className="text-xs text-on-surface-variant max-w-lg mx-auto">
-              O valor de <strong>R$ {totalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi depositado na conta de custódia fiduciária. O repasse líquido de R$ {split.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} será liberado à indústria após conferência de lacres na doca do CD.
+              O valor de <strong>R$ {totalAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>{' '}
+              {isSimulationCheckout
+                ? 'foi simulado na conta de custódia do Ambiente Modelo (sem movimentação bancária).'
+                : 'foi depositado na conta de custódia fiduciária.'}{' '}
+              O repasse líquido de R$ {split.valorRepasseLiquidoFornecedor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} será liberado à indústria após conferência de lacres na doca do CD.
             </p>
           </div>
 
@@ -843,7 +959,7 @@ function CheckoutContent() {
                     <button
                       type="button"
                       onClick={() => setShowQrScanner(true)}
-                      disabled={confirming || !user}
+                      disabled={confirming || (!isSimulationCheckout && !user)}
                       className="w-full py-2.5 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary font-extrabold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50"
                     >
                       <span className="material-symbols-outlined text-[17px]">qr_code_scanner</span>
@@ -893,17 +1009,21 @@ function CheckoutContent() {
             <button
               type="button"
               onClick={() => void handleConfirmPayment()}
-              disabled={confirming || loadingLot || generatingCharge || !user}
+              disabled={confirming || loadingLot || generatingCharge || (!isSimulationCheckout && !user)}
               className="w-full py-3.5 bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {loadingLot || generatingCharge ? (
                 <span>Gerando cobrança fiduciária Escrow...</span>
               ) : confirming ? (
-                <span>Confirmando com o Banco Central...</span>
+                <span>Confirmando operação...</span>
               ) : (
                 <>
                   <span className="material-symbols-outlined text-[18px]">verified_user</span>
-                  <span>Confirmar Depósito e Homologar Arremate</span>
+                  <span>
+                    {isSimulationCheckout
+                      ? 'Simular Confirmação Escrow (Modelo)'
+                      : 'Confirmar Depósito e Homologar Arremate'}
+                  </span>
                 </>
               )}
             </button>

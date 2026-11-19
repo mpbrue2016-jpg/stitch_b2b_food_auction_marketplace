@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { AuctionCountdown } from '@/components/AuctionCountdown';
@@ -8,12 +8,16 @@ import { ShelfLifeBadge } from '@/components/ShelfLifeBadge';
 import { BidModal } from '@/components/BidModal';
 import { AIAssistantWidget } from '@/components/AIAssistantWidget';
 import { HomeBannerCarousel } from '@/components/HomeBannerCarousel';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
+import { useEnvironment } from '@/components/EnvironmentProvider';
 import { useAuth } from '@/components/AuthProvider';
+import { DEMO_ANALYTICS_INDICATORS, DEMO_COMPANIES } from '@/lib/demo-data';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { AuctionLot, ProductCategory } from '@/lib/types';
 
 export default function HomePage() {
   const { profile } = useAuth();
+  const { envMode, isDemoMode, setEnvMode, openTutorial, sandbox } = useEnvironment();
   const [lots, setLots] = useState<AuctionLot[]>([]);
   const [categories, setCategories] = useState<ProductCategory[]>([]);
   const [loadingLots, setLoadingLots] = useState(true);
@@ -23,10 +27,11 @@ export default function HomePage() {
   const [selectedMode, setSelectedMode] = useState('todos');
 
   const loadHomeData = useCallback(async () => {
+    setLoadingLots(true);
     try {
       const [lotsRes, catsRes] = await Promise.all([
-        fetch('/api/lotes', { cache: 'no-store' }),
-        fetch('/api/categorias', { cache: 'no-store' }),
+        fetch(`/api/lotes?env=${envMode}`, { cache: 'no-store' }),
+        fetch(`/api/categorias?env=${envMode}`, { cache: 'no-store' }),
       ]);
       const [lotsData, catsData] = await Promise.all([
         lotsRes.ok ? lotsRes.json() : null,
@@ -34,6 +39,8 @@ export default function HomePage() {
       ]);
       if (Array.isArray(lotsData?.lots)) {
         setLots(lotsData.lots);
+      } else {
+        setLots([]);
       }
       if (Array.isArray(catsData?.categories)) {
         setCategories(catsData.categories);
@@ -43,12 +50,12 @@ export default function HomePage() {
     } finally {
       setLoadingLots(false);
     }
-  }, []);
+  }, [envMode]);
 
   useEffect(() => {
     void loadHomeData();
 
-    if (!isSupabaseConfigured) return;
+    if (!isSupabaseConfigured || isDemoMode) return;
     const channel = supabase
       .channel('home-auctions-realtime')
       .on(
@@ -63,10 +70,18 @@ export default function HomePage() {
     return () => {
       void supabase.removeChannel(channel);
     };
-  }, [loadHomeData]);
+  }, [loadHomeData, isDemoMode]);
+
+  const effectiveLots = useMemo(() => {
+    if (!isDemoMode) return lots;
+    const byId = new Map<string, AuctionLot>();
+    for (const lot of lots) byId.set(lot.id, lot);
+    for (const simLot of sandbox.simulatedLots) byId.set(simLot.id, simLot);
+    return Array.from(byId.values());
+  }, [lots, isDemoMode, sandbox.simulatedLots]);
 
   const handleBidSuccess = (lotId: string, newBidAmount: number, updatedTerminaEm?: string) => {
-    const bidderLabel = profile?.nomeFantasia || 'Você';
+    const bidderLabel = profile?.nomeFantasia || (isDemoMode ? 'Visitante (Simulação)' : 'Você');
     setLots((prev) =>
       prev.map((lot) => {
         if (lot.id === lotId) {
@@ -79,7 +94,7 @@ export default function HomePage() {
             lanceAtual: newBidAmount,
             precoUnitarioAtual: newUnitPrice,
             totalLances: lot.totalLances + 1,
-            ultimoLanceEmpresa: `${bidderLabel} (Você)`,
+            ultimoLanceEmpresa: `${bidderLabel}`,
             terminaEm: updatedTerminaEm || lot.terminaEm,
             status: 'reta_final',
           };
@@ -89,10 +104,11 @@ export default function HomePage() {
     );
   };
 
-  const filteredLots = lots.filter((lot) => {
+  const filteredLots = effectiveLots.filter((lot) => {
     const q = searchTerm.trim().toLowerCase();
     const catName =
-      categories.find((c) => c.id === lot.produto.categoriaId)?.nome.toLowerCase() || '';
+      categories.find((c) => c.id === lot.produto.categoriaId || c.slug === lot.produto.categoriaId)
+        ?.nome.toLowerCase() || '';
     const matchesSearch =
       !q ||
       lot.produto.titulo.toLowerCase().includes(q) ||
@@ -110,8 +126,7 @@ export default function HomePage() {
       (selectedMode === 'imediata' && lot.tipoVenda === 'giro_rapido') ||
       (selectedMode === 'palete' && lot.tipoVenda === 'venda_direta');
 
-    const matchesRadius =
-      selectedRadius === 'br' || lot.raioKm <= Number(selectedRadius);
+    const matchesRadius = selectedRadius === 'br' || lot.raioKm <= Number(selectedRadius);
 
     return matchesSearch && matchesMode && matchesRadius;
   });
@@ -130,25 +145,27 @@ export default function HomePage() {
         })
         .slice(0, 6);
 
-  const flashDeals = lots
+  const flashDeals = effectiveLots
     .filter((l) => l.tipoVenda === 'venda_direta' || l.tipoVenda === 'giro_rapido')
     .slice(0, 4);
 
-  const closingSoonCount = lots.filter((l) => {
+  const closingSoonCount = effectiveLots.filter((l) => {
     const diff = new Date(l.terminaEm).getTime() - Date.now();
     return diff > 0 && diff <= 4 * 3600 * 1000;
   }).length;
 
-  const fefoLots = [...lots]
+  const fefoLots = [...effectiveLots]
     .filter((l) => l.produto.diasRestantesValidade <= 120 || l.produto.statusShelfLife !== 'longa')
     .sort((a, b) => a.produto.diasRestantesValidade - b.produto.diasRestantesValidade)
     .slice(0, 4);
 
-  const totalGmvOferta = lots.reduce((acc, l) => acc + l.lanceAtual, 0);
-  const totalCaixasOferta = lots.reduce((acc, l) => acc + l.produto.totalCaixas, 0);
+  const totalGmvOferta = effectiveLots.reduce((acc, l) => acc + l.lanceAtual, 0);
+  const totalCaixasOferta = effectiveLots.reduce((acc, l) => acc + l.produto.totalCaixas, 0);
   const avgMargin =
-    lots.length > 0
-      ? Math.round(lots.reduce((acc, l) => acc + l.margemEstimadaRevenda, 0) / lots.length)
+    effectiveLots.length > 0
+      ? Math.round(
+          effectiveLots.reduce((acc, l) => acc + l.margemEstimadaRevenda, 0) / effectiveLots.length
+        )
       : 0;
 
   return (
@@ -156,11 +173,75 @@ export default function HomePage() {
       {/* Rotating Responsive Campaign Banner Carousel */}
       <HomeBannerCarousel />
 
+      {/* Bloco Didático de Boas-Vindas & Separação Modelo x Original */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+        <div
+          className={`rounded-2xl p-5 sm:p-6 border shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4 ${
+            isDemoMode
+              ? 'bg-amber-50/90 border-amber-300'
+              : 'bg-emerald-50/70 border-emerald-200'
+          }`}
+        >
+          <div className="space-y-2 max-w-3xl">
+            <div className="flex flex-wrap items-center gap-2">
+              {isDemoMode ? (
+                <DemoBadge />
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-700 text-white text-[10px] font-extrabold uppercase tracking-wide">
+                  <span className="material-symbols-outlined text-[13px]">verified_user</span>
+                  <span>AMBIENTE ORIGINAL — DADOS REAIS</span>
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={() => openTutorial(0)}
+                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-white border border-outline-variant/40 text-primary text-[11px] font-bold hover:bg-primary-fixed/30 transition-colors"
+              >
+                <span className="material-symbols-outlined text-[14px]">school</span>
+                <span>Tutorial Interativo</span>
+              </button>
+            </div>
+            <p className="text-sm sm:text-base font-extrabold text-on-surface leading-snug">
+              Conheça o Varejista Online antes de começar. Explore nossos modelos demonstrativos e descubra como funciona a plataforma.
+            </p>
+            <p className="text-xs text-on-surface-variant">
+              {isDemoMode
+                ? 'Você está navegando no Ambiente Modelo: empresas, produtos, fornecedores, indicadores e lances marcados como MODELO servem para aprendizagem sem transações reais.'
+                : 'Você está no Ambiente Original: apenas lotes verdadeiros e operações autenticadas no Supabase aparecem aqui, sem mistura com dados demonstrativos.'}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <button
+              type="button"
+              onClick={() => {
+                setEnvMode('modelo');
+                openTutorial(0);
+                const el = document.getElementById('pregoes-ao-vivo');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-xs shadow-sm flex items-center gap-1.5 transition-colors"
+            >
+              <span className="material-symbols-outlined text-[18px]">explore</span>
+              <span>CONHECER A PLATAFORMA</span>
+            </button>
+            <Link
+              href="/cadastro"
+              className="px-4 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white font-extrabold text-xs shadow-sm flex items-center gap-1.5 transition-colors"
+            >
+              <span className="material-symbols-outlined text-[18px]">how_to_reg</span>
+              <span>COMEÇAR AGORA</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Dynamic Operational B2B Hero Ribbon */}
       <section className="relative w-full bg-surface-container-low px-4 sm:px-6 py-8 sm:py-10 border-y border-surface-container shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-col gap-6 relative z-10">
           {/* Operational Badges & Urgência */}
           <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
+            {isDemoMode && <DemoBadge compact />}
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed shadow-sm">
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
               Pregão Diário Aberto • Rodada SP/Região Sudeste
@@ -193,13 +274,17 @@ export default function HomePage() {
 
             {/* Metric Pulse Card */}
             <div className="lg:col-span-4 bg-surface-container-lowest p-5 rounded-2xl shadow-md border border-outline-variant/30 flex flex-col gap-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 <span className="text-[11px] uppercase tracking-wider text-on-surface-variant font-bold">
                   Liquidez em Oferta
                 </span>
-                <span className="text-[10px] text-secondary font-bold bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
-                  Ao Vivo
-                </span>
+                {isDemoMode ? (
+                  <DemoBadge compact />
+                ) : (
+                  <span className="text-[10px] text-secondary font-bold bg-secondary-fixed/50 px-2 py-0.5 rounded-full">
+                    Original
+                  </span>
+                )}
               </div>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-extrabold text-primary tabular-nums">
@@ -229,7 +314,6 @@ export default function HomePage() {
           {/* High-Conversion Dynamic Query Bar */}
           <div className="w-full bg-surface-container-lowest rounded-2xl p-4 shadow-md border border-outline-variant/30 mt-2">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
-              {/* EAN/SKU Input */}
               <div className="md:col-span-5 flex items-center bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30">
                 <span className="material-symbols-outlined text-outline mr-2 text-[20px]">
                   barcode_scanner
@@ -242,13 +326,12 @@ export default function HomePage() {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Ex: 7891000100412, Café Alvorada..."
+                    placeholder="Ex: 7891000100412, Café Melitta..."
                     className="bg-transparent text-xs sm:text-sm text-on-surface placeholder:text-outline focus:outline-none"
                   />
                 </div>
               </div>
 
-              {/* Raio Logístico */}
               <div className="md:col-span-3 flex items-center bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30">
                 <span className="material-symbols-outlined text-outline mr-2 text-[20px]">
                   near_me
@@ -270,7 +353,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Modo do Pregão */}
               <div className="md:col-span-2 flex items-center bg-surface-container-low px-3 py-2 rounded-xl border border-outline-variant/30">
                 <div className="flex flex-col w-full">
                   <label className="text-[10px] uppercase font-bold text-on-surface-variant">
@@ -289,7 +371,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Submit CTA */}
               <div className="md:col-span-2">
                 <button
                   type="button"
@@ -305,7 +386,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Quick Filter Tags */}
             <div className="flex flex-wrap items-center gap-2 pt-3 mt-1 text-xs text-on-surface-variant">
               <span className="text-[10px] uppercase font-bold text-outline">Atalhos rápidos:</span>
               <button
@@ -353,7 +433,15 @@ export default function HomePage() {
       </section>
 
       {/* Live Stats Dashboard Ribbon */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-3">
+        {isDemoMode && (
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <DemoBadge />
+            <span className="text-[11px] text-on-surface-variant font-medium">
+              Indicadores ilustrativos calculados sobre os lotes do Ambiente Modelo.
+            </span>
+          </div>
+        )}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           <div className="flex items-center gap-3 p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
             <div className="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
@@ -385,7 +473,7 @@ export default function HomePage() {
             </div>
             <div>
               <span className="text-base sm:text-lg font-extrabold text-on-surface block leading-tight tabular-nums">
-                {lots.length} {lots.length === 1 ? 'Lote' : 'Lotes'}
+                {effectiveLots.length} {effectiveLots.length === 1 ? 'Lote' : 'Lotes'}
               </span>
               <span className="text-[11px] text-on-surface-variant block">Pregões publicados</span>
             </div>
@@ -407,6 +495,13 @@ export default function HomePage() {
 
       {/* SEÇÃO 1: 🔥 Leilões ao Vivo Terminando Hoje */}
       <section id="pregoes-ao-vivo" className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-5 scroll-mt-40">
+        {isDemoMode && (
+          <DidacticHint
+            title="Aqui você visualiza oportunidades comerciais e acompanha pregões"
+            description="Clique em 'Ver Pregão' ou 'Dar Lance' para testar como funcionam os lances B2B e o cálculo de margem unitária. Todas as ações deste ambiente são simuladas."
+          />
+        )}
+
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-container pb-3">
           <div>
             <div className="flex items-center gap-1.5 text-tertiary text-xs uppercase tracking-widest font-extrabold">
@@ -419,13 +514,13 @@ export default function HomePage() {
           </div>
           <div className="flex items-center gap-4 text-xs">
             <span className="text-on-surface-variant hidden md:block">
-              Atualização em tempo real via websockets
+              {isDemoMode ? 'Simulação interativa do fluxo de leilão' : 'Atualização em tempo real via websockets'}
             </span>
             <Link
               href="/leiloes"
               className="text-primary hover:underline font-bold flex items-center gap-1"
             >
-              <span>Ver todos os {lots.length} pregões</span>
+              <span>Ver todos os {effectiveLots.length} pregões</span>
               <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
             </Link>
           </div>
@@ -436,404 +531,527 @@ export default function HomePage() {
           <div className="bg-surface-container-lowest p-10 rounded-2xl border border-outline-variant/30 text-center space-y-3">
             <div className="w-8 h-8 rounded-full border-4 border-primary/20 border-t-primary animate-spin mx-auto" />
             <p className="text-xs font-bold text-on-surface-variant">
-              Carregando pregões ao vivo do Supabase...
+              Carregando pregões ({isDemoMode ? 'Ambiente Modelo' : 'Ambiente Original'})...
             </p>
           </div>
         ) : liveAuctions.length === 0 ? (
           <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 text-center space-y-3">
-            <span className="material-symbols-outlined text-outline text-4xl">search_off</span>
+            <span className="material-symbols-outlined text-outline text-4xl">
+              {isDemoMode ? 'search_off' : 'inventory_2'}
+            </span>
             <h3 className="font-bold text-base text-on-surface">
-              Nenhum lote encontrado para os filtros aplicados
+              {isDemoMode
+                ? 'Nenhum lote encontrado para os filtros aplicados'
+                : 'Nenhum lote real publicado no Ambiente Original ainda'}
             </h3>
-            <p className="text-xs text-on-surface-variant">
-              Tente ampliar o raio logístico ou limpar a busca por EAN/produto.
+            <p className="text-xs text-on-surface-variant max-w-lg mx-auto">
+              {isDemoMode
+                ? 'Tente ampliar o raio logístico ou limpar a busca por EAN/produto.'
+                : 'O Ambiente Original exibe exclusivamente lotes verdadeiros cadastrados por empresas e anunciantes reais. Publique seu primeiro lote oficial ou explore o Ambiente Modelo.'}
             </p>
-            <button
-              type="button"
-              onClick={() => {
-                setSearchTerm('');
-                setSelectedMode('todos');
-                setSelectedRadius('300');
-              }}
-              className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-xl"
-            >
-              Limpar Filtros
-            </button>
-          </div>
-        ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {liveAuctions.map((lot, idx) => {
-            const isLotClosed = lot.status === 'encerrado' || lot.status === 'homologado';
-            const catName =
-              categories.find((c) => c.id === lot.produto.categoriaId)?.nome || 'Geral B2B';
-            return (
-            <article
-              key={lot.id}
-              className="bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-xl border border-outline-variant/30 overflow-hidden flex flex-col transition-all duration-200"
-            >
-              {/* Card Top Badges Bar */}
-              <div className="p-3 bg-surface-container-low flex items-center justify-between border-b border-surface-container">
-                <div className="flex items-center gap-1.5">
-                  <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-extrabold flex items-center gap-1 ${
-                      isLotClosed
-                        ? 'bg-surface-container text-outline'
-                        : lot.status === 'reta_final'
-                        ? 'bg-tertiary-fixed text-on-tertiary-fixed'
-                        : 'bg-secondary-fixed text-on-secondary-fixed'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-[13px]">
-                      {isLotClosed ? 'lock_clock' : lot.status === 'reta_final' ? 'local_fire_department' : 'gavel'}
-                    </span>
-                    {isLotClosed ? 'ENCERRADO' : lot.status === 'reta_final' ? 'RETA FINAL' : 'AO VIVO'}
-                  </span>
-                  <span className="text-[11px] font-extrabold text-on-surface-variant">
-                    {lot.codigoLote}
-                  </span>
-                </div>
-                <AuctionCountdown
-                  terminaEm={lot.terminaEm}
-                  size="sm"
-                  onExpire={() =>
-                    setLots((prev) =>
-                      prev.map((item) =>
-                        item.id === lot.id && item.status !== 'encerrado' && item.status !== 'homologado'
-                          ? { ...item, status: 'encerrado' }
-                          : item
-                      )
-                    )
-                  }
-                />
-              </div>
-
-              {/* Product Media */}
-              <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
-                <Image
-                  src={lot.produto.imagemUrl}
-                  alt={lot.produto.titulo}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  quality={92}
-                  priority={idx < 3}
-                  referrerPolicy="no-referrer"
-                  className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
-                />
-                <div className="absolute bottom-2 left-2 bg-inverse-surface/80 backdrop-blur text-inverse-on-surface text-[10px] font-semibold px-2 py-0.5 rounded">
-                  GTIN: {lot.produto.gtinEan}
-                </div>
-                <div className="absolute top-2 right-2 bg-surface-container-lowest/95 px-2 py-0.5 rounded text-[11px] font-extrabold text-secondary shadow-sm">
-                  Margem Est.: {lot.margemEstimadaRevenda}%
-                </div>
-              </div>
-
-              {/* Specs & Title */}
-              <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
-                <div>
-                  <div className="flex items-center justify-between gap-2 text-[11px] text-on-surface-variant mb-1">
-                    <span className="truncate">
-                      <strong>{catName}</strong> • {lot.produto.marca}
-                    </span>
-                    <span className="shrink-0">Origem: <strong>{lot.produto.origem}</strong></span>
-                  </div>
-                  <h3 className="font-bold text-sm sm:text-base text-on-surface leading-snug">
-                    <Link href={`/leiloes/${lot.id}`} className="hover:text-primary transition-colors">
-                      {lot.produto.titulo}
-                    </Link>
-                  </h3>
-                  <p className="text-xs text-on-surface-variant mt-1 line-clamp-2">
-                    {lot.produto.descricao}
-                  </p>
-                </div>
-
-                {/* Shelf Life Badge */}
-                <div className="pt-1">
-                  <ShelfLifeBadge
-                    status={lot.produto.statusShelfLife}
-                    diasRestantes={lot.produto.diasRestantesValidade}
-                    dataValidade={lot.produto.dataValidade}
-                  />
-                </div>
-
-                {/* Valuation Matrix */}
-                <div className="bg-surface-container-low p-3 rounded-xl space-y-1 text-xs">
-                  <div className="flex justify-between items-baseline text-on-surface-variant">
-                    <span>Lance Atual (Lote Fechado):</span>
-                    <span className="line-through text-outline">
-                      Ref: R$ {lot.produto.precoReferenciaMercado.toLocaleString('pt-BR')}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-baseline">
-                    <span className="text-lg font-extrabold text-primary">
-                      R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                    </span>
-                    <div className="text-right">
-                      <span className="text-sm font-extrabold text-secondary block">
-                        R$ {lot.precoUnitarioAtual.toFixed(2)}{' '}
-                        <span className="text-[10px] text-on-surface-variant font-normal">/ un</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] text-on-surface-variant pt-1 border-t border-surface-container">
-                    <span>Último: {lot.ultimoLanceEmpresa}</span>
-                    <span className="text-secondary font-bold">{lot.totalLances} lances</span>
-                  </div>
-                </div>
-
-                {/* Card CTA Group */}
-                <div className="flex items-center gap-2 pt-1">
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+              {isFiltering ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedMode('todos');
+                    setSelectedRadius('300');
+                  }}
+                  className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-xl"
+                >
+                  Limpar Filtros
+                </button>
+              ) : (
+                <>
                   <Link
-                    href={`/leiloes/${lot.id}`}
-                    className="flex-1 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold text-center transition-colors"
+                    href="/produtos/novo"
+                    className="px-4 py-2 bg-primary text-white text-xs font-bold rounded-xl"
                   >
-                    Ver Pregão
+                    Publicar Lote Verdadeiro
                   </Link>
                   <button
                     type="button"
-                    disabled={isLotClosed}
-                    onClick={() => setSelectedLotForBid(lot)}
-                    className="flex-1 py-2 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1 disabled:opacity-45"
+                    onClick={() => setEnvMode('modelo')}
+                    className="px-4 py-2 bg-amber-500 text-slate-950 text-xs font-extrabold rounded-xl"
                   >
-                    <span className="material-symbols-outlined text-[16px]">gavel</span>
-                    <span>{isLotClosed ? 'Encerrado' : 'Dar Lance'}</span>
+                    Explorar Ambiente Modelo
                   </button>
-                </div>
-              </div>
-            </article>
-            );
-          })}
-        </div>
+                </>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {liveAuctions.map((lot, idx) => {
+              const isLotClosed = lot.status === 'encerrado' || lot.status === 'homologado';
+              const showDemoStrip = Boolean(lot.isDemo || isDemoMode);
+              const catName =
+                categories.find(
+                  (c) => c.id === lot.produto.categoriaId || c.slug === lot.produto.categoriaId
+                )?.nome || 'Geral B2B';
+
+              return (
+                <article
+                  key={lot.id}
+                  className="bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-xl border border-outline-variant/30 overflow-hidden flex flex-col transition-all duration-200"
+                >
+                  <div className="p-3 bg-surface-container-low flex items-center justify-between gap-2 border-b border-surface-container">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span
+                        className={`px-2 py-0.5 rounded text-[10px] font-extrabold flex items-center gap-1 ${
+                          isLotClosed
+                            ? 'bg-surface-container text-outline'
+                            : lot.status === 'reta_final'
+                            ? 'bg-tertiary-fixed text-on-tertiary-fixed'
+                            : 'bg-secondary-fixed text-on-secondary-fixed'
+                        }`}
+                      >
+                        <span className="material-symbols-outlined text-[13px]">
+                          {isLotClosed
+                            ? 'lock_clock'
+                            : lot.status === 'reta_final'
+                            ? 'local_fire_department'
+                            : 'gavel'}
+                        </span>
+                        {isLotClosed ? 'ENCERRADO' : lot.status === 'reta_final' ? 'RETA FINAL' : 'AO VIVO'}
+                      </span>
+                      <span className="text-[11px] font-extrabold text-on-surface-variant">
+                        {lot.codigoLote}
+                      </span>
+                      {showDemoStrip && <DemoBadge compact />}
+                    </div>
+                    <AuctionCountdown
+                      terminaEm={lot.terminaEm}
+                      size="sm"
+                      onExpire={() =>
+                        setLots((prev) =>
+                          prev.map((item) =>
+                            item.id === lot.id &&
+                            item.status !== 'encerrado' &&
+                            item.status !== 'homologado'
+                              ? { ...item, status: 'encerrado' }
+                              : item
+                          )
+                        )
+                      }
+                    />
+                  </div>
+
+                  <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
+                    <Image
+                      src={lot.produto.imagemUrl}
+                      alt={lot.produto.titulo}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      quality={92}
+                      priority={idx < 3}
+                      referrerPolicy="no-referrer"
+                      className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
+                    />
+                    <div className="absolute bottom-2 left-2 bg-inverse-surface/80 backdrop-blur text-inverse-on-surface text-[10px] font-semibold px-2 py-0.5 rounded">
+                      GTIN: {lot.produto.gtinEan}
+                    </div>
+                    <div className="absolute top-2 right-2 bg-surface-container-lowest/95 px-2 py-0.5 rounded text-[11px] font-extrabold text-secondary shadow-sm">
+                      Margem Est.: {lot.margemEstimadaRevenda}%
+                    </div>
+                  </div>
+
+                  <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+                    <div>
+                      <div className="flex items-center justify-between gap-2 text-[11px] text-on-surface-variant mb-1">
+                        <span className="truncate">
+                          <strong>{catName}</strong> • {lot.produto.marca}
+                        </span>
+                        <span className="shrink-0">
+                          Origem: <strong>{lot.produto.origem}</strong>
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-sm sm:text-base text-on-surface leading-snug">
+                        <Link href={`/leiloes/${lot.id}`} className="hover:text-primary transition-colors">
+                          {lot.produto.titulo}
+                        </Link>
+                      </h3>
+                      <p className="text-xs text-on-surface-variant mt-1 line-clamp-2">
+                        {lot.produto.descricao}
+                      </p>
+                    </div>
+
+                    <div className="pt-1">
+                      <ShelfLifeBadge
+                        status={lot.produto.statusShelfLife}
+                        diasRestantes={lot.produto.diasRestantesValidade}
+                        dataValidade={lot.produto.dataValidade}
+                      />
+                    </div>
+
+                    <div className="bg-surface-container-low p-3 rounded-xl space-y-1 text-xs">
+                      <div className="flex justify-between items-baseline text-on-surface-variant">
+                        <span>Lance Atual (Lote Fechado):</span>
+                        <span className="line-through text-outline">
+                          Ref: R$ {lot.produto.precoReferenciaMercado.toLocaleString('pt-BR')}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-baseline">
+                        <span className="text-lg font-extrabold text-primary">
+                          R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        </span>
+                        <div className="text-right">
+                          <span className="text-sm font-extrabold text-secondary block">
+                            R$ {lot.precoUnitarioAtual.toFixed(2)}{' '}
+                            <span className="text-[10px] text-on-surface-variant font-normal">/ un</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between text-[11px] text-on-surface-variant pt-1 border-t border-surface-container">
+                        <span>Último: {lot.ultimoLanceEmpresa}</span>
+                        <span className="text-secondary font-bold">{lot.totalLances} lances</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 pt-1">
+                      <Link
+                        href={`/leiloes/${lot.id}`}
+                        className="flex-1 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold text-center transition-colors"
+                      >
+                        Ver Pregão
+                      </Link>
+                      <button
+                        type="button"
+                        disabled={isLotClosed}
+                        onClick={() => setSelectedLotForBid(lot)}
+                        className="flex-1 py-2 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1 disabled:opacity-45"
+                      >
+                        <span className="material-symbols-outlined text-[16px]">gavel</span>
+                        <span>{isLotClosed ? 'Encerrado' : showDemoStrip ? 'Simular Lance' : 'Dar Lance'}</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         )}
       </section>
 
       {/* SEÇÃO 2: ⏰ Oportunidades • Validade Próxima (Stitch) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div>
-            <span className="text-[11px] uppercase tracking-wider font-extrabold text-tertiary flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[15px]">verified_user</span>
-              COMPLIANCE ANVISA • SHELF LIFE AUDITADO POR LAUDO
-            </span>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
-              ⏰ Oportunidades • Validade Próxima
-            </h2>
-            <p className="text-xs text-on-surface-variant">
-              Lotes negociados diretamente por grandes redes e centros de distribuição com deságios de até 70% para giro ultra-rápido no varejo de vizinhança.
-            </p>
-          </div>
-          <div className="self-start sm:self-auto px-3 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-xs flex items-center gap-2 shadow-sm">
-            <span className="material-symbols-outlined text-secondary text-[18px]">health_and_safety</span>
+      {fefoLots.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <span className="font-bold text-on-surface block leading-tight">Risco Sanitário Zero</span>
-              <span className="text-[10px] text-on-surface-variant block">Laudos rastreáveis no CNPJ</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[11px] uppercase tracking-wider font-extrabold text-tertiary flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[15px]">verified_user</span>
+                  COMPLIANCE ANVISA • SHELF LIFE AUDITADO POR LAUDO
+                </span>
+                {isDemoMode && <DemoBadge compact />}
+              </div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
+                ⏰ Oportunidades • Validade Próxima
+              </h2>
+              <p className="text-xs text-on-surface-variant">
+                Lotes negociados diretamente por grandes redes e centros de distribuição com deságios de até 70% para giro ultra-rápido no varejo de vizinhança.
+              </p>
+            </div>
+            <div className="self-start sm:self-auto px-3 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-xs flex items-center gap-2 shadow-sm">
+              <span className="material-symbols-outlined text-secondary text-[18px]">health_and_safety</span>
+              <div>
+                <span className="font-bold text-on-surface block leading-tight">Risco Sanitário Zero</span>
+                <span className="text-[10px] text-on-surface-variant block">Laudos rastreáveis no CNPJ</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm overflow-x-auto">
-          <table className="w-full text-left text-xs min-w-[760px]">
-            <thead className="bg-surface-container-low text-on-surface-variant uppercase font-bold text-[10px] border-b border-surface-container">
-              <tr>
-                <th className="p-3.5">Produto &amp; GTIN/EAN</th>
-                <th className="p-3.5">Fabricante / Origem</th>
-                <th className="p-3.5">Volume Total</th>
-                <th className="p-3.5">Data de Validade</th>
-                <th className="p-3.5">Preço Sugerido</th>
-                <th className="p-3.5">Preço B2B Lote</th>
-                <th className="p-3.5">Desconto</th>
-                <th className="p-3.5 text-right">Ação</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-surface-container">
-              {fefoLots.map((lot) => {
-                const refUnit =
-                  lot.produto.totalUnidades > 0
-                    ? lot.produto.precoReferenciaMercado / lot.produto.totalUnidades
-                    : lot.precoUnitarioAtual * 1.4;
-                const discountPct =
-                  lot.produto.precoReferenciaMercado > 0
-                    ? Math.max(
-                        10,
-                        Math.round(
-                          ((lot.produto.precoReferenciaMercado - lot.lanceAtual) /
-                            lot.produto.precoReferenciaMercado) *
-                            100
+          <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm overflow-x-auto">
+            <table className="w-full text-left text-xs min-w-[760px]">
+              <thead className="bg-surface-container-low text-on-surface-variant uppercase font-bold text-[10px] border-b border-surface-container">
+                <tr>
+                  <th className="p-3.5">Produto &amp; GTIN/EAN</th>
+                  <th className="p-3.5">Fabricante / Origem</th>
+                  <th className="p-3.5">Volume Total</th>
+                  <th className="p-3.5">Data de Validade</th>
+                  <th className="p-3.5">Preço Sugerido</th>
+                  <th className="p-3.5">Preço B2B Lote</th>
+                  <th className="p-3.5">Desconto</th>
+                  <th className="p-3.5 text-right">Ação</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-surface-container">
+                {fefoLots.map((lot) => {
+                  const refUnit =
+                    lot.produto.totalUnidades > 0
+                      ? lot.produto.precoReferenciaMercado / lot.produto.totalUnidades
+                      : lot.precoUnitarioAtual * 1.4;
+                  const discountPct =
+                    lot.produto.precoReferenciaMercado > 0
+                      ? Math.max(
+                          10,
+                          Math.round(
+                            ((lot.produto.precoReferenciaMercado - lot.lanceAtual) /
+                              lot.produto.precoReferenciaMercado) *
+                              100
+                          )
                         )
-                      )
-                    : 40;
-                const days = lot.produto.diasRestantesValidade;
-                const urgencyClass =
-                  days <= 40
-                    ? 'bg-[#FFEBEE] text-[#C62828] border-[#EF9A9A]'
-                    : days <= 75
-                    ? 'bg-[#FFF3E0] text-[#E65100] border-[#FFCC80]'
-                    : 'bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]';
+                      : 40;
+                  const days = lot.produto.diasRestantesValidade;
+                  const urgencyClass =
+                    days <= 40
+                      ? 'bg-[#FFEBEE] text-[#C62828] border-[#EF9A9A]'
+                      : days <= 75
+                      ? 'bg-[#FFF3E0] text-[#E65100] border-[#FFCC80]'
+                      : 'bg-[#E8F5E9] text-[#2E7D32] border-[#A5D6A7]';
+                  const rowIsDemo = Boolean(lot.isDemo || isDemoMode);
 
-                return (
-                  <tr key={lot.id} className="hover:bg-surface-container-low/50">
-                    <td className="p-3.5">
-                      <Link href={`/leiloes/${lot.id}`} className="hover:text-primary transition-colors">
-                        <strong className="text-on-surface block">{lot.produto.titulo.split('•')[0].trim()}</strong>
-                      </Link>
-                      <span className="text-[10px] font-mono text-outline">
-                        EAN: {lot.produto.gtinEan} • {lot.produto.embalagem}
-                      </span>
-                    </td>
-                    <td className="p-3.5">
-                      <strong className="text-on-surface block">{lot.produto.marca}</strong>
-                      <span className="text-[10px] text-on-surface-variant">{lot.produto.origem}</span>
-                    </td>
-                    <td className="p-3.5">
-                      <strong className="text-on-surface block">{lot.produto.totalCaixas} Caixas</strong>
-                      <span className="text-[10px] text-on-surface-variant">
-                        {lot.produto.totalUnidades.toLocaleString('pt-BR')} un
-                      </span>
-                    </td>
-                    <td className="p-3.5">
-                      <span
-                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border font-bold text-[11px] ${urgencyClass}`}
-                      >
-                        {days} dias restantes
-                      </span>
-                    </td>
-                    <td className="p-3.5 line-through text-outline">
-                      R$ {refUnit.toFixed(2).replace('.', ',')} / un
-                    </td>
-                    <td className="p-3.5">
-                      <strong className="text-secondary text-sm block">
-                        R$ {lot.precoUnitarioAtual.toFixed(2).replace('.', ',')} / un
-                      </strong>
-                      <span className="text-[10px] text-on-surface-variant">
-                        Lote: R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                      </span>
-                    </td>
-                    <td className="p-3.5">
-                      <span
-                        className={`px-2 py-0.5 rounded text-white font-extrabold text-[10px] ${
-                          discountPct >= 50 ? 'bg-tertiary' : 'bg-secondary'
-                        }`}
-                      >
-                        {discountPct}% OFF
-                      </span>
-                    </td>
-                    <td className="p-3.5 text-right">
-                      <Link
-                        href={`/checkout?loteId=${lot.id}&valor=${lot.lanceAtual}`}
-                        className="px-3 py-1.5 rounded-lg bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-bold text-[11px] inline-block transition-colors"
-                      >
-                        Arrematar Lote
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </section>
+                  return (
+                    <tr key={lot.id} className="hover:bg-surface-container-low/50">
+                      <td className="p-3.5">
+                        <div className="flex flex-wrap items-center gap-1.5 mb-0.5">
+                          {rowIsDemo && <DemoBadge compact />}
+                        </div>
+                        <Link href={`/leiloes/${lot.id}`} className="hover:text-primary transition-colors">
+                          <strong className="text-on-surface block">{lot.produto.titulo.split('•')[0].trim()}</strong>
+                        </Link>
+                        <span className="text-[10px] font-mono text-outline">
+                          EAN: {lot.produto.gtinEan} • {lot.produto.embalagem}
+                        </span>
+                      </td>
+                      <td className="p-3.5">
+                        <strong className="text-on-surface block">{lot.produto.marca}</strong>
+                        <span className="text-[10px] text-on-surface-variant">{lot.produto.origem}</span>
+                      </td>
+                      <td className="p-3.5">
+                        <strong className="text-on-surface block">{lot.produto.totalCaixas} Caixas</strong>
+                        <span className="text-[10px] text-on-surface-variant">
+                          {lot.produto.totalUnidades.toLocaleString('pt-BR')} un
+                        </span>
+                      </td>
+                      <td className="p-3.5">
+                        <span
+                          className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border font-bold text-[11px] ${urgencyClass}`}
+                        >
+                          {days} dias restantes
+                        </span>
+                      </td>
+                      <td className="p-3.5 line-through text-outline">
+                        R$ {refUnit.toFixed(2).replace('.', ',')} / un
+                      </td>
+                      <td className="p-3.5">
+                        <strong className="text-secondary text-sm block">
+                          R$ {lot.precoUnitarioAtual.toFixed(2).replace('.', ',')} / un
+                        </strong>
+                        <span className="text-[10px] text-on-surface-variant">
+                          Lote: R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        </span>
+                      </td>
+                      <td className="p-3.5">
+                        <span
+                          className={`px-2 py-0.5 rounded text-white font-extrabold text-[10px] ${
+                            discountPct >= 50 ? 'bg-tertiary' : 'bg-secondary'
+                          }`}
+                        >
+                          {discountPct}% OFF
+                        </span>
+                      </td>
+                      <td className="p-3.5 text-right">
+                        <Link
+                          href={`/checkout?loteId=${lot.id}&valor=${lot.lanceAtual}`}
+                          className="px-3 py-1.5 rounded-lg bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-bold text-[11px] inline-block transition-colors"
+                        >
+                          {rowIsDemo ? 'Simular Arremate' : 'Arrematar Lote'}
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
 
       {/* SEÇÃO 3: ⚡ Ofertas Relâmpago & Giro Rápido (Stitch 4-col WebP) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-container pb-3">
-          <div>
-            <span className="text-[11px] uppercase tracking-widest font-extrabold text-secondary">
-              VENDA DIRETA • SEM LEILÃO • PRONTA ENTREGA
-            </span>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
-              ⚡ Ofertas Relâmpago &amp; Giro Rápido
-            </h2>
-          </div>
-          <Link
-            href="/catalogo"
-            className="text-primary hover:underline text-xs font-bold flex items-center gap-1"
-          >
-            <span>Explorar catálogo completo de pronta-entrega</span>
-            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {flashDeals.map((deal) => (
-            <article
-              key={deal.id}
-              className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col"
-            >
-              <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
-                <Image
-                  src={deal.produto.imagemUrl}
-                  alt={deal.produto.titulo}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  quality={92}
-                  referrerPolicy="no-referrer"
-                  className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
-                />
-                <span className="absolute top-2 left-2 bg-primary text-white text-[10px] font-extrabold px-2 py-0.5 rounded shadow-sm">
-                  {deal.tipoVenda === 'venda_direta' ? 'Pallet Fechado' : 'Pronta Entrega'}
+      {flashDeals.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-container pb-3">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] uppercase tracking-widest font-extrabold text-secondary">
+                  VENDA DIRETA • SEM LEILÃO • PRONTA ENTREGA
                 </span>
+                {isDemoMode && <DemoBadge compact />}
               </div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
+                ⚡ Ofertas Relâmpago &amp; Giro Rápido
+              </h2>
+            </div>
+            <Link
+              href="/catalogo"
+              className="text-primary hover:underline text-xs font-bold flex items-center gap-1"
+            >
+              <span>Explorar catálogo completo de pronta-entrega</span>
+              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </Link>
+          </div>
 
-              <div className="p-4 flex-1 flex flex-col justify-between space-y-3 text-xs">
-                <div>
-                  <span className="text-[10px] text-outline font-mono uppercase block">
-                    {deal.produto.marca} • EAN {deal.produto.gtinEan}
-                  </span>
-                  <h3 className="font-bold text-sm text-on-surface mt-0.5 leading-snug">
-                    <Link href={`/leiloes/${deal.id}`} className="hover:text-primary transition-colors">
-                      {deal.produto.titulo.split('•')[0].trim()}
-                    </Link>
-                  </h3>
-                  <p className="text-[11px] text-on-surface-variant mt-1 line-clamp-2">
-                    {deal.produto.descricao}
-                  </p>
-                </div>
-
-                <div className="pt-2 border-t border-surface-container space-y-2">
-                  <div className="flex items-baseline justify-between">
-                    <div>
-                      <span className="text-[10px] line-through text-outline block">
-                        R${' '}
-                        {(deal.produto.totalUnidades > 0
-                          ? deal.produto.precoReferenciaMercado / deal.produto.totalUnidades
-                          : deal.precoUnitarioAtual * 1.38
-                        ).toFixed(2)}{' '}
-                        / un
-                      </span>
-                      <span className="text-lg font-extrabold text-primary">
-                        R$ {deal.precoUnitarioAtual.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-[11px] font-extrabold text-secondary block">
-                        Margem Varejo {deal.margemEstimadaRevenda}%
-                      </span>
-                      <span className="text-[10px] text-on-surface-variant">
-                        Lote: R$ {deal.lanceAtual.toLocaleString('pt-BR')}
-                      </span>
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {flashDeals.map((deal) => {
+              const dealIsDemo = Boolean(deal.isDemo || isDemoMode);
+              return (
+                <article
+                  key={deal.id}
+                  className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col"
+                >
+                  <div className="relative aspect-[4/3] w-full bg-surface-container overflow-hidden">
+                    <Image
+                      src={deal.produto.imagemUrl}
+                      alt={deal.produto.titulo}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      quality={92}
+                      referrerPolicy="no-referrer"
+                      className="object-cover img-sharp hover:scale-[1.03] transition-transform duration-300"
+                    />
+                    <span className="absolute top-2 left-2 bg-primary text-white text-[10px] font-extrabold px-2 py-0.5 rounded shadow-sm">
+                      {deal.tipoVenda === 'venda_direta' ? 'Pallet Fechado' : 'Pronta Entrega'}
+                    </span>
+                    {dealIsDemo && (
+                      <div className="absolute top-2 right-2">
+                        <DemoBadge compact />
+                      </div>
+                    )}
                   </div>
 
+                  <div className="p-4 flex-1 flex flex-col justify-between space-y-3 text-xs">
+                    <div>
+                      <span className="text-[10px] text-outline font-mono uppercase block">
+                        {deal.produto.marca} • EAN {deal.produto.gtinEan}
+                      </span>
+                      <h3 className="font-bold text-sm text-on-surface mt-0.5 leading-snug">
+                        <Link href={`/leiloes/${deal.id}`} className="hover:text-primary transition-colors">
+                          {deal.produto.titulo.split('•')[0].trim()}
+                        </Link>
+                      </h3>
+                      <p className="text-[11px] text-on-surface-variant mt-1 line-clamp-2">
+                        {deal.produto.descricao}
+                      </p>
+                    </div>
+
+                    <div className="pt-2 border-t border-surface-container space-y-2">
+                      <div className="flex items-baseline justify-between">
+                        <div>
+                          <span className="text-[10px] line-through text-outline block">
+                            R${' '}
+                            {(deal.produto.totalUnidades > 0
+                              ? deal.produto.precoReferenciaMercado / deal.produto.totalUnidades
+                              : deal.precoUnitarioAtual * 1.38
+                            ).toFixed(2)}{' '}
+                            / un
+                          </span>
+                          <span className="text-lg font-extrabold text-primary">
+                            R$ {deal.precoUnitarioAtual.toFixed(2)}
+                          </span>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-[11px] font-extrabold text-secondary block">
+                            Margem Varejo {deal.margemEstimadaRevenda}%
+                          </span>
+                          <span className="text-[10px] text-on-surface-variant">
+                            Lote: R$ {deal.lanceAtual.toLocaleString('pt-BR')}
+                          </span>
+                        </div>
+                      </div>
+
+                      <Link
+                        href={`/checkout?loteId=${deal.id}&valor=${deal.lanceAtual}`}
+                        className="w-full py-2 rounded-xl bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-bold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                      >
+                        <span className="material-symbols-outlined text-[16px]">shopping_cart</span>
+                        <span>{dealIsDemo ? 'Simular Compra' : 'Comprar Lote'}</span>
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* SEÇÃO 4: Empresas & Fornecedores Modelo (visível com tarja MODELO no ambiente demonstrativo) */}
+      {isDemoMode && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
+          <DidacticHint
+            title="Aqui você encontra fornecedores, compradores e empresas de exemplo"
+            description="Estas empresas ilustram como indústrias, cerealistas, supermercados e pequenos varejistas interagem no Varejista Online."
+          />
+
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] uppercase tracking-widest font-extrabold text-primary">
+                  EMPRESAS &amp; PARTICIPANTES DEMONSTRATIVOS
+                </span>
+                <DemoBadge compact />
+              </div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
+                Empresas Modelo • Fornecedores e Compradores de Exemplo
+              </h2>
+            </div>
+            <Link
+              href="/catalogo"
+              className="text-xs font-bold text-primary hover:underline"
+            >
+              Ver ofertas por empresa
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {DEMO_COMPANIES.map((comp) => (
+              <div
+                key={comp.id}
+                className="bg-surface-container-lowest p-4 rounded-2xl border border-amber-200 shadow-sm flex flex-col justify-between space-y-3"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <DemoBadge compact />
+                    <span className="px-2 py-0.5 rounded bg-surface-container text-[10px] font-bold text-primary">
+                      {comp.tipo}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-extrabold text-sm text-on-surface">{comp.nomeFantasia}</h3>
+                    <p className="text-[11px] text-on-surface-variant">{comp.razaoSocial}</p>
+                    <p className="text-[10px] font-mono text-outline mt-0.5">
+                      CNPJ Exemplo: {comp.cnpjMascarado} • {comp.cidadeUf}
+                    </p>
+                  </div>
+                  <p className="text-xs text-on-surface-variant leading-relaxed">{comp.destaque}</p>
+                </div>
+                <div className="pt-2 border-t border-surface-container flex items-center justify-between text-[11px]">
+                  <span className="font-semibold text-on-surface-variant truncate">{comp.segmento}</span>
                   <Link
-                    href={`/checkout?loteId=${deal.id}&valor=${deal.lanceAtual}`}
-                    className="w-full py-2 rounded-xl bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container font-bold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                    href={`/catalogo?categoria=${encodeURIComponent(comp.categoriaSlug)}`}
+                    className="text-primary font-bold hover:underline shrink-0 ml-2"
                   >
-                    <span className="material-symbols-outlined text-[16px]">shopping_cart</span>
-                    <span>Comprar Lote</span>
+                    Ver Lotes
                   </Link>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
-      {/* SEÇÃO 4: 🏭 Direto da Indústria, Cerealistas & Produtores (Stitch) */}
+      {/* SEÇÃO 4B: 🏭 Direto da Indústria, Cerealistas & Produtores (Stitch) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
-            <span className="text-[11px] uppercase tracking-widest font-extrabold text-primary">
-              ECOSSISTEMA HOMOLOGADO
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] uppercase tracking-widest font-extrabold text-primary">
+                ECOSSISTEMA HOMOLOGADO
+              </span>
+              {isDemoMode && <DemoBadge compact />}
+            </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight mt-0.5">
               Direto da Indústria, Cerealistas &amp; Produtores
             </h2>
@@ -850,9 +1068,10 @@ export default function HomePage() {
             { code: 'HL', name: 'LimpMais & Ypê', query: 'higiene-limpeza', isCat: true, desc: 'Sabão em Pó, Detergentes & Papel • Paletes fechados FOB/CIF' },
             { code: 'NT', name: 'Nestlé & Piracanjuba', query: 'Nestlé', isCat: false, desc: 'Lácteos, Chocolates & Mercearia • Até 48% abaixo da tabela' },
           ].map((ind) => {
-            const brandCount = lots.filter((l) =>
+            const brandCount = effectiveLots.filter((l) =>
               ind.isCat
-                ? categories.find((c) => c.id === l.produto.categoriaId)?.slug === ind.query
+                ? categories.find((c) => c.id === l.produto.categoriaId)?.slug === ind.query ||
+                  l.produto.categoriaId === ind.query
                 : l.produto.marca.toLowerCase().includes(ind.query.toLowerCase()) ||
                   l.produto.fabricante.toLowerCase().includes(ind.query.toLowerCase())
             ).length;
@@ -883,6 +1102,62 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Gráficos e Indicadores Demonstrativos (somente no Ambiente Modelo) */}
+      {isDemoMode && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+          <div className="bg-surface-container-lowest p-5 sm:p-6 rounded-2xl border border-amber-300 shadow-sm space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-container pb-3">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <DemoBadge />
+                  <span className="text-[10px] uppercase font-bold text-on-surface-variant">
+                    Relatório Ilustrativo de Liquidez
+                  </span>
+                </div>
+                <h2 className="text-lg font-extrabold text-on-surface">
+                  Gráfico Demonstrativo • Volume Negociado por Segmento (Exemplo)
+                </h2>
+              </div>
+              <Link
+                href="/painel/comprador"
+                className="text-xs font-bold text-primary hover:underline"
+              >
+                Ver Painéis Demonstrativos →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {DEMO_ANALYTICS_INDICATORS.map((item) => {
+                const barClass =
+                  item.cor === 'secondary'
+                    ? 'bg-secondary'
+                    : item.cor === 'tertiary'
+                    ? 'bg-tertiary'
+                    : item.cor === 'amber'
+                    ? 'bg-amber-500'
+                    : 'bg-primary';
+                return (
+                  <div key={item.label} className="space-y-1.5 text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-on-surface">{item.label}</span>
+                      <span className="font-extrabold text-primary tabular-nums">
+                        {item.valorFormatado}
+                      </span>
+                    </div>
+                    <div className="w-full h-2.5 rounded-full bg-surface-container overflow-hidden">
+                      <div
+                        className={`h-full rounded-full ${barClass}`}
+                        style={{ width: `${item.percentualBarra}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Categorias em Destaque */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 w-full space-y-4">
         <div className="flex items-center justify-between">
@@ -895,7 +1170,9 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {categories.map((cat) => {
-            const catCount = lots.filter((l) => l.produto.categoriaId === cat.id).length;
+            const catCount = effectiveLots.filter(
+              (l) => l.produto.categoriaId === cat.id || l.produto.categoriaId === cat.slug
+            ).length;
             return (
               <Link
                 key={cat.id}
@@ -926,7 +1203,7 @@ export default function HomePage() {
             TRANSPARÊNCIA E CONFORMIDADE TOTAL
           </span>
           <h2 className="text-xl sm:text-2xl font-extrabold text-on-surface">
-            Como Funciona para Vender e Comprar com o Mesmo CNPJ
+            Como Funciona para Vender e Comprar na Plataforma
           </h2>
           <p className="text-xs text-on-surface-variant">
             Sem mensalidades ou taxas de adesão. A plataforma cobra comissão apenas sobre o êxito da transação, garantindo custódia fiduciária e liquidez imediata.
@@ -937,10 +1214,10 @@ export default function HomePage() {
           {[
             {
               step: '01',
-              badge: 'Receita Federal + Sintegra',
-              title: 'Cadastro & Validação Fiscal',
-              desc: 'Validação automatizada de Inscrição Estadual, CNAE supermercadista/atacadista e situação cadastral para atuar como comprador e vendedor.',
-              footer: 'Homologação em menos de 15 minutos',
+              badge: 'Pessoa Física ou Empresa',
+              title: 'Cadastro Oficial & Validação',
+              desc: 'Cadastre seu CPF ou CNPJ com fluxo simplificado para Comprador, Fornecedor ou Anunciante e acesse imediatamente seu ambiente real exclusivo.',
+              footer: 'Sem dados fictícios misturados na sua conta',
             },
             {
               step: '02',
@@ -971,35 +1248,35 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Banner CTA Liquidez */}
+        {/* Chamada Oficial de Transição para Cadastro Real */}
         <div className="bg-primary text-white p-6 sm:p-8 rounded-2xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <span className="text-[10px] uppercase tracking-widest font-bold text-primary-fixed">
-              LIQUIDEZ COM 1 CLIQUE
+              AMBIENTE ORIGINAL • CONTA VERDADEIRA
             </span>
             <h3 className="text-xl sm:text-2xl font-extrabold">
-              Possui estoque parado ou perto da validade?
+              Gostou de conhecer o Varejista Online? Agora crie sua conta e faça parte da nossa rede comercial.
             </h3>
             <p className="text-xs text-primary-fixed max-w-xl">
-              Monetize agora mesmo antes de gerar perda contábil. Nossa mesa de negociação conecta seu estoque a mais de 3.000 supermercados prontos para arrematar.
+              Inicie seu cadastro como Pessoa Física, Empresa, Comprador, Fornecedor ou Anunciante e comece com seu painel próprio, seguro e independente dos exemplos demonstrativos.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Link
-              href="/produtos/novo?modelo=pequeno_mercado"
-              className="px-5 py-2.5 rounded-xl bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container text-xs font-extrabold transition-colors shadow-sm"
+              href="/cadastro"
+              className="px-5 py-3 rounded-xl bg-secondary hover:bg-secondary-container text-white hover:text-on-secondary-container text-xs font-extrabold transition-colors shadow-sm"
             >
-              Liquidar Estoque (Pequeno Mercado)
+              Criar Minha Conta Oficial
             </Link>
             <Link
               href="/produtos/novo"
-              className="px-5 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold transition-colors border border-white/25"
+              className="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold transition-colors border border-white/25"
             >
-              Cadastrar Lote Industrial
+              Cadastrar Lote
             </Link>
             <Link
               href="/negociacoes"
-              className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-colors border border-white/20"
+              className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-colors border border-white/20"
             >
               Mesa de Negociação B2B
             </Link>

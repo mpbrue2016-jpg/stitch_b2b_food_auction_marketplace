@@ -4,12 +4,15 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { NegotiationProposal } from '@/lib/types';
 
 export default function NegociacoesPage() {
   const router = useRouter();
   const { user, profile, loading: authLoading } = useAuth();
+  const { isDemoMode, sandbox, simulateProposalAction } = useEnvironment();
   const [proposals, setProposals] = useState<NegotiationProposal[]>([]);
   const [loading, setLoading] = useState(true);
   const [authRequired, setAuthRequired] = useState(false);
@@ -20,7 +23,7 @@ export default function NegociacoesPage() {
 
   const loadProposals = useCallback(async () => {
     try {
-      const res = await fetch('/api/propostas', { cache: 'no-store' });
+      const res = await fetch('/api/propostas?env=original', { cache: 'no-store' });
       if (res.status === 401) {
         setAuthRequired(true);
         setProposals([]);
@@ -37,6 +40,13 @@ export default function NegociacoesPage() {
   }, []);
 
   useEffect(() => {
+    if (isDemoMode) {
+      setAuthRequired(false);
+      setLoading(false);
+      setProposals(sandbox.simulatedProposals);
+      return;
+    }
+
     if (authLoading) return;
     if (!user) {
       setAuthRequired(true);
@@ -45,6 +55,7 @@ export default function NegociacoesPage() {
       return;
     }
 
+    setLoading(true);
     void loadProposals();
 
     if (!isSupabaseConfigured) return;
@@ -62,13 +73,24 @@ export default function NegociacoesPage() {
     return () => {
       void supabase.removeChannel(channel);
     };
-  }, [user, authLoading, loadProposals]);
+  }, [isDemoMode, sandbox.simulatedProposals, user, authLoading, loadProposals]);
 
   const handleAccept = async (prop: NegotiationProposal) => {
     const finalUnitPrice = prop.contrapropostaPrecoUnitario || prop.precoUnitarioOfertado;
     const ratio = prop.precoUnitarioOfertado > 0 ? finalUnitPrice / prop.precoUnitarioOfertado : 1;
     const finalTotal = Number((prop.valorTotalProposta * ratio).toFixed(2));
     setErrorMsg(null);
+
+    if (isDemoMode || prop.isDemo) {
+      if (prop.status !== 'aceita') {
+        simulateProposalAction(prop.id, 'accept');
+        setFeedback('SIMULAÇÃO — AMBIENTE MODELO: Proposta aceita localmente. Você pode simular o Checkout Escrow!');
+      }
+      router.push(
+        `/checkout?loteId=${encodeURIComponent(prop.loteId)}&proposalId=${encodeURIComponent(prop.id)}&sourceType=proposal&valor=${finalTotal}`
+      );
+      return;
+    }
 
     if (prop.status === 'aceita') {
       router.push(
@@ -115,6 +137,15 @@ export default function NegociacoesPage() {
     }
     setErrorMsg(null);
 
+    if (isDemoMode) {
+      simulateProposalAction(propId, 'counter', newPrice);
+      setFeedback(
+        `SIMULAÇÃO — AMBIENTE MODELO: Contraproposta de R$ ${newPrice.toFixed(2)}/un simulada com sucesso.`
+      );
+      setTimeout(() => setFeedback(null), 3500);
+      return;
+    }
+
     try {
       const res = await fetch('/api/propostas', {
         method: 'POST',
@@ -149,6 +180,14 @@ export default function NegociacoesPage() {
 
   const handleReject = async (propId: string) => {
     setErrorMsg(null);
+
+    if (isDemoMode) {
+      simulateProposalAction(propId, 'reject');
+      setFeedback('SIMULAÇÃO — AMBIENTE MODELO: Proposta recusada na demonstração (nenhum dado real foi alterado).');
+      setTimeout(() => setFeedback(null), 3500);
+      return;
+    }
+
     try {
       const res = await fetch('/api/propostas', {
         method: 'POST',
@@ -173,7 +212,8 @@ export default function NegociacoesPage() {
     setTimeout(() => setFeedback(null), 3000);
   };
 
-  const filteredProposals = proposals.filter((p) =>
+  const visibleProposals = isDemoMode ? sandbox.simulatedProposals : proposals;
+  const filteredProposals = visibleProposals.filter((p) =>
     statusFilter === 'todas' ? true : p.status === statusFilter
   );
 
@@ -188,6 +228,9 @@ export default function NegociacoesPage() {
         </nav>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
+            <div className="flex items-center gap-2 flex-wrap mb-1">
+              {isDemoMode && <DemoBadge compact />}
+            </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
               Ofertas Comerciais &amp; Negociação Direta
             </h1>
@@ -204,6 +247,13 @@ export default function NegociacoesPage() {
           </Link>
         </div>
       </div>
+
+      {isDemoMode && (
+        <DidacticHint
+          title="Nesta seção você acompanha suas negociações"
+          text="Experimente aceitar propostas, enviar contrapropostas ou avançar para a simulação do checkout Escrow usando os exemplos modelo abaixo — sem comprometer sua empresa ou gerar cobrança real."
+        />
+      )}
 
       {feedback && (
         <div className="p-3 bg-secondary-container/30 border border-secondary text-secondary font-bold text-xs rounded-xl flex items-center gap-2">
@@ -238,8 +288,8 @@ export default function NegociacoesPage() {
         ).map((tab) => {
           const count =
             tab.id === 'todas'
-              ? proposals.length
-              : proposals.filter((p) => p.status === tab.id).length;
+              ? visibleProposals.length
+              : visibleProposals.filter((p) => p.status === tab.id).length;
           const active = statusFilter === tab.id;
           return (
             <button
@@ -305,9 +355,9 @@ export default function NegociacoesPage() {
           </div>
         ) : (
           filteredProposals.map((prop) => {
-            const isBuyer = profile?.role === 'comprador';
+            const isBuyer = !isDemoMode && profile?.role === 'comprador';
             const canCounter =
-              (profile?.role === 'fornecedor' || profile?.role === 'admin') &&
+              (isDemoMode || profile?.role === 'fornecedor' || profile?.role === 'admin') &&
               prop.status !== 'recusada' &&
               prop.status !== 'aceita';
             return (
@@ -317,9 +367,12 @@ export default function NegociacoesPage() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-container pb-3">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-on-surface-variant">
-                      PROPOSTA #{prop.id.slice(0, 8)} • Lote {prop.loteId.slice(0, 8)}
-                    </span>
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      {(isDemoMode || prop.isDemo) && <DemoBadge compact />}
+                      <span className="text-[10px] uppercase font-bold text-on-surface-variant">
+                        PROPOSTA #{prop.id.slice(0, 8)} • Lote {prop.loteId.slice(0, 8)}
+                      </span>
+                    </div>
                     <h3 className="font-extrabold text-base text-on-surface">{prop.tituloProduto}</h3>
                   </div>
                   <span
@@ -429,22 +482,27 @@ export default function NegociacoesPage() {
                       </button>
                     )}
                     {(() => {
-                      const isSupplierRole = profile?.role === 'fornecedor';
+                      const isSupplierRole = !isDemoMode && profile?.role === 'fornecedor';
                       const waitingCounterparty =
-                        (prop.status === 'pendente' && isBuyer) ||
-                        (prop.status === 'contraproposta' && isSupplierRole) ||
-                        (prop.status === 'aceita' && isSupplierRole);
+                        !isDemoMode &&
+                        ((prop.status === 'pendente' && isBuyer) ||
+                          (prop.status === 'contraproposta' && isSupplierRole) ||
+                          (prop.status === 'aceita' && isSupplierRole));
                       const disabledBtn = prop.status === 'recusada' || waitingCounterparty;
 
-                      let actionLabel = 'Aceitar e Ir para Custódia Escrow';
-                      if (prop.status === 'pendente' && isBuyer) {
+                      let actionLabel = isDemoMode
+                        ? 'Simular Aceite & Checkout Modelo'
+                        : 'Aceitar e Ir para Custódia Escrow';
+                      if (!isDemoMode && prop.status === 'pendente' && isBuyer) {
                         actionLabel = 'Aguardando Resposta da Indústria';
-                      } else if (prop.status === 'contraproposta' && isSupplierRole) {
+                      } else if (!isDemoMode && prop.status === 'contraproposta' && isSupplierRole) {
                         actionLabel = 'Aguardando Aceite do Comprador';
-                      } else if (prop.status === 'aceita' && isSupplierRole) {
+                      } else if (!isDemoMode && prop.status === 'aceita' && isSupplierRole) {
                         actionLabel = 'Aguardando Pagamento Escrow';
                       } else if (prop.status === 'aceita') {
-                        actionLabel = 'Ir para Checkout Escrow';
+                        actionLabel = isDemoMode
+                          ? 'Simular Checkout Escrow (Modelo)'
+                          : 'Ir para Checkout Escrow';
                       } else if (isSupplierRole) {
                         actionLabel = 'Aceitar Proposta do Comprador';
                       }

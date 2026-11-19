@@ -1,10 +1,26 @@
 export type UserRole = 'comprador' | 'fornecedor' | 'admin';
 
+export type TipoPessoa = 'PF' | 'PJ';
+
+export type PerfilComercial =
+  | 'comprador'
+  | 'fornecedor'
+  | 'anunciante'
+  | 'empresa'
+  | 'pessoa_fisica'
+  | 'admin';
+
+export type PlatformEnvironment = 'modelo' | 'original';
+
 export interface UserProfile {
   id: string;
   email: string;
   role: UserRole;
+  tipoPessoa?: TipoPessoa;
+  perfilComercial?: PerfilComercial;
+  isDemo?: boolean;
   cnpj: string;
+  cpf?: string;
   razaoSocial: string;
   nomeFantasia: string;
   inscricaoEstadual?: string;
@@ -26,12 +42,14 @@ export interface ProductCategory {
   slug: string;
   icone: string;
   totalLotes: number;
+  isDemo?: boolean;
 }
 
 export type ShelfLifeStatus = 'longa' | 'atencao' | 'giro_rapido' | 'critica';
 
 export interface ProductBatch {
   id: string;
+  fornecedorId?: string;
   sku: string;
   titulo: string;
   descricao: string;
@@ -53,6 +71,7 @@ export interface ProductBatch {
   laudoSanitarioAnvisa: boolean;
   statusFiscal: 'homologado' | 'em_analise';
   precoReferenciaMercado: number;
+  isDemo?: boolean;
 }
 
 export type AuctionStatus = 'ativo' | 'reta_final' | 'encerrado' | 'homologado';
@@ -74,6 +93,7 @@ export interface AuctionLot {
   status: AuctionStatus;
   raioKm: number;
   tipoFrete: 'FOB' | 'CIF';
+  isDemo?: boolean;
 }
 
 export interface AuctionBid {
@@ -86,6 +106,7 @@ export interface AuctionBid {
   valorUnitario: number;
   criadoEm: string;
   ehVencedor: boolean;
+  isDemo?: boolean;
 }
 
 export interface NegotiationProposal {
@@ -103,6 +124,7 @@ export interface NegotiationProposal {
   contrapropostaPrecoUnitario?: number;
   mensagem: string;
   criadaEm: string;
+  isDemo?: boolean;
 }
 
 export interface CommissionRule {
@@ -141,6 +163,7 @@ export interface EscrowOrder {
   termoArremateHash?: string;
   comprovantePix?: string;
   motivoDisputa?: string;
+  isDemo?: boolean;
 }
 
 export interface HomeBanner {
@@ -155,4 +178,27 @@ export interface HomeBanner {
   ativo: boolean;
   intervaloSegundos: number;
   criadoEm: string;
+  isDemo?: boolean;
+}
+
+export interface DemoCompanyShowcase {
+  id: string;
+  nomeFantasia: string;
+  razaoSocial: string;
+  cnpjMascarado: string;
+  tipo: 'Comprador' | 'Fornecedor' | 'Indústria & Cerealista' | 'Pequeno Mercado';
+  segmento: string;
+  cidadeUf: string;
+  destaque: string;
+  categoriaSlug: string;
+  imagemUrl: string;
+  isDemo: true;
+}
+
+export interface DemoIndicatorSeries {
+  label: string;
+  valorFormatado: string;
+  percentualBarra: number;
+  cor: 'primary' | 'secondary' | 'tertiary' | 'amber';
+  isDemo: true;
 }

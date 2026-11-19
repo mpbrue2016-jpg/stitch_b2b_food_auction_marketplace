@@ -8,33 +8,20 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbCommissionRule } from '@/lib/supabase/mappers';
 import { buildAuditHash } from '@/lib/security';
+import { DEMO_COMMISSION_RULES } from '@/lib/demo-data';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const amountParam = searchParams.get('amount');
   const modalidadeParam = searchParams.get('modalidade') || 'leilao';
   const customRateParam = searchParams.get('rate');
+  const envParam = searchParams.get('env');
+  const envMode: 'modelo' | 'original' = envParam === 'original' ? 'original' : 'modelo';
 
-  if (!isSupabaseServerConfigured) {
-    return NextResponse.json(
-      { error: 'Supabase não configurado no ambiente.', rules: [] },
-      { status: 503 }
-    );
-  }
-
-  try {
-    const supabase = createServerSupabaseClient();
-    const { data: rows, error } = await supabase
-      .from('commission_rules')
-      .select('*')
-      .order('created_at', { ascending: true });
-
-    if (error) {
-      return NextResponse.json({ error: error.message, rules: [] }, { status: 500 });
-    }
-
-    const rules = (rows || []).map((r) => mapDbCommissionRule(r as Record<string, unknown>));
-
+  const buildResponse = (
+    rulesList: typeof DEMO_COMMISSION_RULES,
+    extra: Record<string, unknown> = {}
+  ) => {
     if (amountParam) {
       const amount = Number(amountParam);
       if (!Number.isFinite(amount) || amount < 0) {
@@ -54,13 +41,35 @@ export async function GET(req: NextRequest) {
         );
       }
 
-      const activeRule = rules.find((r) => r.slug === modalidadeParam && r.ativo);
+      const activeRule = rulesList.find((r) => r.slug === modalidadeParam && r.ativo);
       const effectiveRate = customRate ?? activeRule?.percentualPadrao ?? 6.0;
       const split = calculateSplit(amount, modalidadeParam, effectiveRate);
-      return NextResponse.json({ split, rules });
+      return NextResponse.json({ split, rules: rulesList, env: envMode, ...extra });
     }
 
-    return NextResponse.json({ rules });
+    return NextResponse.json({ rules: rulesList, env: envMode, ...extra });
+  };
+
+  if (envMode === 'modelo' || !isSupabaseServerConfigured) {
+    return buildResponse(DEMO_COMMISSION_RULES, { isDemo: envMode === 'modelo' });
+  }
+
+  try {
+    const supabase = createServerSupabaseClient();
+    const { data: rows, error } = await supabase
+      .from('commission_rules')
+      .select('*')
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      if (error.code === 'PGRST205') {
+        return buildResponse(DEMO_COMMISSION_RULES, { pendingMigration: true });
+      }
+      return NextResponse.json({ error: error.message, rules: [] }, { status: 500 });
+    }
+
+    const rules = (rows || []).map((r) => mapDbCommissionRule(r as Record<string, unknown>));
+    return buildResponse(rules.length > 0 ? rules : DEMO_COMMISSION_RULES, { isDemo: false });
   } catch (err) {
     console.error('Erro em GET /api/comissoes:', err);
     return NextResponse.json({ error: 'Erro interno ao consultar comissões.' }, { status: 500 });

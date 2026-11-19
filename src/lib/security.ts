@@ -46,6 +46,24 @@ export function isValidCnpjDigits(raw: string): boolean {
   return d2 === Number(digits[13]);
 }
 
+export function isValidCpfDigits(raw: string): boolean {
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length !== 11) return false;
+  if (/^(\d)\1{10}$/.test(digits)) return false;
+
+  const calcDigit = (sliceLen: number) => {
+    let sum = 0;
+    for (let i = 0; i < sliceLen; i++) {
+      sum += Number(digits[i]) * (sliceLen + 1 - i);
+    }
+    const rem = (sum * 10) % 11;
+    return rem >= 10 ? 0 : rem;
+  };
+
+  if (calcDigit(9) !== Number(digits[9])) return false;
+  return calcDigit(10) === Number(digits[10]);
+}
+
 export function safeCompareSecrets(a: string, b: string): boolean {
   const bufA = Buffer.from(a, 'utf8');
   const bufB = Buffer.from(b, 'utf8');

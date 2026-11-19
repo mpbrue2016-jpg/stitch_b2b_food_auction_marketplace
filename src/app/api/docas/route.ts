@@ -7,7 +7,23 @@ import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supa
 import { mapDbDockToAppointment } from '@/lib/supabase/mappers';
 import { buildAuditHash, buildSha256Hash } from '@/lib/security';
 
+function isDemoIdentifier(id: string): boolean {
+  return id.startsWith('demo-') || id.startsWith('o1000000-');
+}
+
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const pedidoId = searchParams.get('pedidoId');
+  const envParam = searchParams.get('env');
+
+  if (envParam === 'modelo' || (pedidoId && isDemoIdentifier(pedidoId))) {
+    return NextResponse.json({
+      appointments: [],
+      appointment: null,
+      isDemo: true,
+    });
+  }
+
   if (!isSupabaseServerConfigured) {
     return NextResponse.json(
       { error: 'Supabase não configurado no ambiente.', appointments: [] },
@@ -24,13 +40,11 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const { searchParams } = new URL(req.url);
-    const pedidoId = searchParams.get('pedidoId');
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
 
     let query = dbClient
       .from('dock_appointments')
-      .select('*, orders(codigo_pedido)')
+      .select('*, orders(codigo_pedido, is_demo)')
       .order('created_at', { ascending: false });
 
     if (ctx.profile.role !== 'admin') {
@@ -39,10 +53,18 @@ export async function GET(req: NextRequest) {
 
     const { data, error } = await query;
     if (error) {
+      if (error.code === 'PGRST205' || error.code === '42703') {
+        return NextResponse.json({ appointments: [], appointment: null, pendingMigration: true });
+      }
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    const appointments = (data || []).map((row) =>
+    const realRows = (data || []).filter((row) => {
+      const ord = (row.orders || {}) as { is_demo?: boolean };
+      return !row.is_demo && !ord.is_demo;
+    });
+
+    const appointments = realRows.map((row) =>
       mapDbDockToAppointment(row as Record<string, unknown>)
     );
 
@@ -73,13 +95,30 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { pedidoId, janelaHoraria, placaVeiculo, motoristaNome, dataAgendada, docaNumero, cdOrigem } =
-      body;
+    const {
+      pedidoId,
+      janelaHoraria,
+      placaVeiculo,
+      motoristaNome,
+      dataAgendada,
+      docaNumero,
+      cdOrigem,
+    } = body;
 
     if (!pedidoId || !janelaHoraria || !placaVeiculo || !motoristaNome) {
       return NextResponse.json(
         { error: 'Parâmetros obrigatórios: pedidoId, janelaHoraria, placaVeiculo, motoristaNome' },
         { status: 400 }
+      );
+    }
+
+    if (isDemoIdentifier(String(pedidoId))) {
+      return NextResponse.json(
+        {
+          error:
+            'Pedidos do Ambiente Modelo são demonstrativos. O agendamento de doca WMS real funciona apenas no Ambiente Original.',
+        },
+        { status: 403 }
       );
     }
 
@@ -107,6 +146,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Pedido não encontrado.' }, { status: 404 });
     }
 
+    if (orderRow.is_demo && ctx.profile.role !== 'admin') {
+      return NextResponse.json(
+        { error: 'Agendamentos reais são proibidos para pedidos de demonstração.' },
+        { status: 403 }
+      );
+    }
+
     if (String(orderRow.comprador_id) !== ctx.user.id && ctx.profile.role !== 'admin') {
       return NextResponse.json(
         { error: 'Apenas o comprador titular deste pedido pode agendar a doca FOB.' },
@@ -130,13 +176,13 @@ export async function POST(req: NextRequest) {
       typeof cdOrigem === 'string' && cdOrigem.trim()
         ? cdOrigem.trim()
         : String(product.origem_cd || 'CD Jundiaí - SP (Rod. Anhanguera, km 58)');
-    const resolvedDoca = typeof docaNumero === 'string' && docaNumero.trim() ? docaNumero.trim() : 'Doca 03A';
+    const resolvedDoca =
+      typeof docaNumero === 'string' && docaNumero.trim() ? docaNumero.trim() : 'Doca 03A';
     const resolvedDate =
       typeof dataAgendada === 'string' && dataAgendada.trim()
         ? dataAgendada.trim()
         : new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0];
 
-    // Verifica conflito de janela na mesma doca e data
     const { data: conflict } = await dbClient
       .from('dock_appointments')
       .select('id, order_id')
@@ -170,7 +216,7 @@ export async function POST(req: NextRequest) {
       .eq('order_id', orderRow.id)
       .maybeSingle();
 
-    const aptPayload = {
+    const aptPayload: Record<string, unknown> = {
       order_id: orderRow.id,
       comprador_id: orderRow.comprador_id,
       fornecedor_id: orderRow.fornecedor_id,
@@ -182,9 +228,10 @@ export async function POST(req: NextRequest) {
       motorista_nome: String(motoristaNome).trim().slice(0, 120),
       status: 'agendado',
       passe_entrada_hash: passeEntradaHash,
+      is_demo: false,
     };
 
-    const { data: savedApt, error: saveErr } = existingApt
+    let { data: savedApt, error: saveErr } = existingApt
       ? await dbClient
           .from('dock_appointments')
           .update(aptPayload)
@@ -196,6 +243,24 @@ export async function POST(req: NextRequest) {
           .insert(aptPayload)
           .select('*, orders(codigo_pedido)')
           .single();
+
+    if (saveErr && saveErr.code === '42703') {
+      delete aptPayload.is_demo;
+      const retry = existingApt
+        ? await dbClient
+            .from('dock_appointments')
+            .update(aptPayload)
+            .eq('id', existingApt.id)
+            .select('*, orders(codigo_pedido)')
+            .single()
+        : await dbClient
+            .from('dock_appointments')
+            .insert(aptPayload)
+            .select('*, orders(codigo_pedido)')
+            .single();
+      savedApt = retry.data;
+      saveErr = retry.error;
+    }
 
     if (saveErr || !savedApt) {
       return NextResponse.json(
@@ -265,6 +330,13 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
+    if (isDemoIdentifier(String(appointmentId))) {
+      return NextResponse.json(
+        { error: 'Agendamentos de demonstração não podem ser modificados no banco oficial.' },
+        { status: 403 }
+      );
+    }
+
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
     const { data: aptRow, error: fetchErr } = await dbClient
       .from('dock_appointments')
@@ -274,6 +346,13 @@ export async function PATCH(req: NextRequest) {
 
     if (fetchErr || !aptRow) {
       return NextResponse.json({ error: 'Agendamento de doca não localizado.' }, { status: 404 });
+    }
+
+    if (aptRow.is_demo && ctx.profile.role !== 'admin') {
+      return NextResponse.json(
+        { error: 'Agendamento demonstrativo protegido contra alterações.' },
+        { status: 403 }
+      );
     }
 
     const isSupplier = String(aptRow.fornecedor_id) === ctx.user.id;
@@ -356,4 +435,3 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: 'Erro interno ao atualizar status da doca.' }, { status: 500 });
   }
 }
-

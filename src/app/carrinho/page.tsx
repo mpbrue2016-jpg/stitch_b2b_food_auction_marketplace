@@ -13,27 +13,49 @@ import {
   syncCartFromServer,
   updateLotQuantity,
 } from '@/lib/cart-store';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
 import { calculateSplit, SplitCalculationResult } from '@/lib/commission-engine';
 import { ProductCategory } from '@/lib/types';
 
 export default function CarrinhoPage() {
   const router = useRouter();
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const {
+    isDemoMode,
+    sandbox,
+    simulateUpdateCartQty,
+    simulateRemoveFromCart,
+    simulateClearCart,
+  } = useEnvironment();
+  const [realCartItems, setRealCartItems] = useState<CartItem[]>([]);
   const [categories, setCategories] = useState<ProductCategory[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const syncLocal = () => setCartItems(getCartItems());
+    const envQuery = isDemoMode ? 'modelo' : 'original';
+
+    if (isDemoMode) {
+      fetch(`/api/categorias?env=modelo`, { cache: 'no-store' })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((catsData) => {
+          if (Array.isArray(catsData?.categories)) setCategories(catsData.categories);
+        })
+        .catch(() => {})
+        .finally(() => setLoading(false));
+      return;
+    }
+
+    const syncLocal = () => setRealCartItems(getCartItems());
     syncLocal();
 
     Promise.all([
       syncCartFromServer(),
-      fetch('/api/categorias', { cache: 'no-store' })
+      fetch(`/api/categorias?env=${envQuery}`, { cache: 'no-store' })
         .then((res) => (res.ok ? res.json() : null))
         .catch(() => null),
     ])
       .then(([items, catsData]) => {
-        setCartItems(items);
+        setRealCartItems(items);
         if (Array.isArray(catsData?.categories)) {
           setCategories(catsData.categories);
         }
@@ -42,8 +64,9 @@ export default function CarrinhoPage() {
 
     window.addEventListener(CART_UPDATED_EVENT, syncLocal);
     return () => window.removeEventListener(CART_UPDATED_EVENT, syncLocal);
-  }, []);
+  }, [isDemoMode]);
 
+  const cartItems: CartItem[] = isDemoMode ? sandbox.simulatedCart : realCartItems;
   const subtotal = cartItems.reduce((acc, item) => acc + item.precoTotal, 0);
   const modalidade = cartItems[0]?.lot.tipoVenda || 'leilao';
   const freightTypes = Array.from(new Set(cartItems.map((item) => item.lot.tipoFrete || 'FOB')));
@@ -64,7 +87,9 @@ export default function CarrinhoPage() {
       return;
     }
     let active = true;
-    fetch(`/api/comissoes?amount=${encodeURIComponent(subtotal)}&modalidade=${encodeURIComponent(modalidade)}`)
+    fetch(
+      `/api/comissoes?env=${isDemoMode ? 'modelo' : 'original'}&amount=${encodeURIComponent(subtotal)}&modalidade=${encodeURIComponent(modalidade)}`
+    )
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (active && data?.split) setSplit(data.split);
@@ -73,11 +98,19 @@ export default function CarrinhoPage() {
     return () => {
       active = false;
     };
-  }, [subtotal, modalidade]);
+  }, [subtotal, modalidade, isDemoMode]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
       <div className="space-y-1">
+        {isDemoMode && (
+          <div className="flex items-center gap-2 flex-wrap mb-1">
+            <DemoBadge compact />
+            <span className="text-[11px] font-bold text-amber-800">
+              Carrinho Simulado — Ambiente Modelo
+            </span>
+          </div>
+        )}
         <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
           Carrinho de Arremates &amp; Pedidos B2B
         </h1>
@@ -85,6 +118,13 @@ export default function CarrinhoPage() {
           Confira seus lotes arrematados e avance para a emissão de custódia fiduciária escrow.
         </p>
       </div>
+
+      {isDemoMode && (
+        <DidacticHint
+          title="Simulação de Carrinho B2B"
+          text="Adicione lotes do catálogo demonstrativo para testar o cálculo automático do Split Escrow antes de criar sua conta comercial."
+        />
+      )}
 
       {loading ? (
         <div className="p-12 text-center bg-surface-container-lowest rounded-2xl border border-outline-variant/30 space-y-3">
@@ -96,7 +136,9 @@ export default function CarrinhoPage() {
           <span className="material-symbols-outlined text-outline text-5xl">shopping_cart</span>
           <h3 className="font-bold text-base text-on-surface">Seu carrinho está vazio</h3>
           <p className="text-xs text-on-surface-variant">
-            Explore os pregões ao vivo ou o catálogo de alimentos para arrematar lotes.
+            {isDemoMode
+              ? 'Adicione lotes demonstrativos do catálogo para simular o pagamento Escrow.'
+              : 'Explore os pregões ao vivo ou o catálogo real para arrematar lotes.'}
           </p>
           <Link
             href="/catalogo"
@@ -127,11 +169,14 @@ export default function CarrinhoPage() {
                 </div>
 
                 <div className="flex-1 space-y-1 text-xs">
-                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">
-                    LOTE #{item.lot.codigoLote} •{' '}
-                    {categories.find((c) => c.id === item.lot.produto.categoriaId)?.nome || 'Geral B2B'} •{' '}
-                    {item.lot.produto.marca}
-                  </span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {(isDemoMode || item.lot.isDemo) && <DemoBadge compact />}
+                    <span className="text-[10px] text-on-surface-variant font-bold uppercase">
+                      LOTE #{item.lot.codigoLote} •{' '}
+                      {categories.find((c) => c.id === item.lot.produto.categoriaId)?.nome || 'Geral B2B'} •{' '}
+                      {item.lot.produto.marca}
+                    </span>
+                  </div>
                   <h3 className="font-bold text-sm text-on-surface">
                     <Link href={`/leiloes/${item.lot.id}`} className="hover:text-primary transition-colors">
                       {item.lot.produto.titulo}
@@ -155,7 +200,11 @@ export default function CarrinhoPage() {
                   <div className="flex items-center gap-1 bg-surface-container-low rounded-lg p-0.5 border border-outline-variant/30">
                     <button
                       type="button"
-                      onClick={() => setCartItems(updateLotQuantity(item.lot.id, -1))}
+                      onClick={() =>
+                        isDemoMode
+                          ? simulateUpdateCartQty(item.lot.id, Math.max(1, item.quantidade - 1))
+                          : setRealCartItems(updateLotQuantity(item.lot.id, -1))
+                      }
                       disabled={item.quantidade <= 1}
                       className="w-6 h-6 rounded flex items-center justify-center font-bold text-xs hover:bg-white disabled:opacity-40"
                       aria-label="Diminuir quantidade"
@@ -165,7 +214,11 @@ export default function CarrinhoPage() {
                     <span className="px-2 text-xs font-extrabold">{item.quantidade}</span>
                     <button
                       type="button"
-                      onClick={() => setCartItems(updateLotQuantity(item.lot.id, 1))}
+                      onClick={() =>
+                        isDemoMode
+                          ? simulateUpdateCartQty(item.lot.id, item.quantidade + 1)
+                          : setRealCartItems(updateLotQuantity(item.lot.id, 1))
+                      }
                       className="w-6 h-6 rounded flex items-center justify-center font-bold text-xs hover:bg-white"
                       aria-label="Aumentar quantidade"
                     >
@@ -183,7 +236,11 @@ export default function CarrinhoPage() {
                     )}
                     <button
                       type="button"
-                      onClick={() => setCartItems(removeLotFromCart(item.lot.id))}
+                      onClick={() =>
+                        isDemoMode
+                          ? simulateRemoveFromCart(item.lot.id)
+                          : setRealCartItems(removeLotFromCart(item.lot.id))
+                      }
                       className="text-[11px] text-error hover:underline font-semibold"
                     >
                       Remover
@@ -196,8 +253,12 @@ export default function CarrinhoPage() {
               <button
                 type="button"
                 onClick={() => {
-                  clearCart();
-                  setCartItems([]);
+                  if (isDemoMode) {
+                    simulateClearCart();
+                  } else {
+                    clearCart();
+                    setRealCartItems([]);
+                  }
                 }}
                 className="text-xs text-outline hover:text-error font-semibold"
               >
@@ -209,7 +270,7 @@ export default function CarrinhoPage() {
           {/* Summary Box */}
           <div className="lg:col-span-4 bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/30 shadow-sm space-y-4 text-xs">
             <h3 className="font-extrabold text-sm text-on-surface uppercase border-b border-surface-container pb-2">
-              Resumo Financeiro do Pedido
+              {isDemoMode ? 'Resumo Simulado do Pedido' : 'Resumo Financeiro do Pedido'}
             </h3>
 
             <div className="space-y-2">
@@ -257,7 +318,9 @@ export default function CarrinhoPage() {
             >
               <span className="material-symbols-outlined text-[18px]">lock</span>
               <span>
-                {cartItems.length > 1
+                {isDemoMode
+                  ? 'Simular Checkout Escrow (Modelo)'
+                  : cartItems.length > 1
                   ? `Prosseguir para Checkout (${cartItems.length} lotes)`
                   : 'Prosseguir para Checkout Escrow'}
               </span>
@@ -268,3 +331,4 @@ export default function CarrinhoPage() {
     </div>
   );
 }
+

@@ -2,11 +2,15 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/components/AuthProvider';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge } from '@/components/DemoBadge';
 import { CommissionCalculator } from '@/components/CommissionCalculator';
 import { AdminBannerManager } from '@/components/AdminBannerManager';
+import { AdminConnectionChecker } from '@/components/AdminConnectionChecker';
 import { NotificationsInboxCard } from '@/components/AccountGovernanceSection';
 import { generateFinancialSummary } from '@/lib/commission-engine';
-import { EscrowOrder, UserProfile } from '@/lib/types';
+import { AuctionLot, EscrowOrder, UserProfile } from '@/lib/types';
 
 interface AdminDocumentRow {
   id: string;
@@ -35,9 +39,18 @@ interface WebhookLogRow {
 }
 
 export default function PainelAdminPage() {
+  const { user, profile, loading: authLoading } = useAuth();
+  const { setEnvMode } = useEnvironment();
   const [wormNotice, setWormNotice] = useState<string | null>(null);
   const [orders, setOrders] = useState<EscrowOrder[]>([]);
   const [profiles, setProfiles] = useState<UserProfile[]>([]);
+  const [demoLots, setDemoLots] = useState<AuctionLot[]>([]);
+  const [separacaoCounts, setSeparacaoCounts] = useState<{
+    realProfiles: number;
+    modeloProfiles: number;
+    realLots: number;
+    modeloLots: number;
+  }>({ realProfiles: 0, modeloProfiles: 0, realLots: 0, modeloLots: 0 });
   const [documents, setDocuments] = useState<AdminDocumentRow[]>([]);
   const [wormLogs, setWormLogs] = useState<WormLogRow[]>([]);
   const [webhooks, setWebhooks] = useState<WebhookLogRow[]>([]);
@@ -48,11 +61,23 @@ export default function PainelAdminPage() {
   const [releasingId, setReleasingId] = useState<string | null>(null);
   const [refundingId, setRefundingId] = useState<string | null>(null);
 
+  // Estado Gestão de Modelos Demonstrativos (is_demo = true)
+  const [newDemoTitle, setNewDemoTitle] = useState('');
+  const [newDemoMarca, setNewDemoMarca] = useState('');
+  const [newDemoCategory, setNewDemoCategory] = useState('alimentos-secos');
+  const [newDemoPrice, setNewDemoPrice] = useState(4500);
+  const [newDemoBoxes, setNewDemoBoxes] = useState(80);
+  const [savingDemo, setSavingDemo] = useState(false);
+  const [seedingDemo, setSeedingDemo] = useState(false);
+  const [demoActionId, setDemoActionId] = useState<string | null>(null);
+  const [demoNotice, setDemoNotice] = useState<string | null>(null);
+
   const loadAdminData = useCallback(async () => {
     try {
-      const [pedidosRes, overviewRes] = await Promise.all([
-        fetch('/api/pedidos', { cache: 'no-store' }),
+      const [pedidosRes, overviewRes, modelosRes] = await Promise.all([
+        fetch('/api/pedidos?env=original', { cache: 'no-store' }),
         fetch('/api/admin/overview', { cache: 'no-store' }),
+        fetch('/api/admin/modelos', { cache: 'no-store' }),
       ]);
       if (pedidosRes.ok) {
         const pData = await pedidosRes.json();
@@ -71,6 +96,18 @@ export default function PainelAdminPage() {
         setDocuments(Array.isArray(oData?.documents) ? oData.documents : []);
         setWormLogs(Array.isArray(oData?.wormLogs) ? oData.wormLogs : []);
         setWebhooks(Array.isArray(oData?.webhooks) ? oData.webhooks : []);
+        if (oData?.separacao) {
+          setSeparacaoCounts({
+            realProfiles: Number(oData.separacao?.real?.profiles ?? profs.length),
+            modeloProfiles: Number(oData.separacao?.modelo?.profiles ?? 0),
+            realLots: Number(oData.separacao?.real?.lots ?? 0),
+            modeloLots: Number(oData.separacao?.modelo?.lots ?? 0),
+          });
+        }
+      }
+      if (modelosRes.ok) {
+        const mData = await modelosRes.json();
+        setDemoLots(Array.isArray(mData?.lots) ? mData.lots : []);
       }
     } catch {
       // keep state on transient error
@@ -78,8 +115,11 @@ export default function PainelAdminPage() {
   }, []);
 
   useEffect(() => {
-    void loadAdminData();
-  }, [loadAdminData]);
+    if (!authLoading && user && profile?.role === 'admin') {
+      setEnvMode('original');
+      void loadAdminData();
+    }
+  }, [authLoading, user, profile?.role, loadAdminData, setEnvMode]);
 
   const handleReleaseEscrow = async (order: EscrowOrder) => {
     setReleasingId(order.id);
@@ -222,6 +262,137 @@ export default function PainelAdminPage() {
     }
   };
 
+  const handleSeedStitchDemos = async () => {
+    setSeedingDemo(true);
+    setDemoNotice(null);
+    try {
+      const res = await fetch('/api/admin/modelos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'seed_stitch_demos' }),
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok) {
+        setDemoNotice(data?.message || 'Modelos demonstrativos do Stitch sincronizados no Supabase.');
+        await loadAdminData();
+      } else {
+        setDemoNotice(data?.error || 'Não foi possível sincronizar os lotes demonstrativos.');
+      }
+    } catch {
+      setDemoNotice('Falha de comunicação ao sincronizar modelos.');
+    } finally {
+      setSeedingDemo(false);
+    }
+  };
+
+  const handleCreateDemoLot = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newDemoTitle.trim()) return;
+    setSavingDemo(true);
+    setDemoNotice(null);
+    try {
+      const res = await fetch('/api/admin/modelos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          titulo: newDemoTitle.trim(),
+          marca: newDemoMarca.trim() || 'Marca Modelo B2B',
+          categoriaSlug: newDemoCategory,
+          lanceInicial: newDemoPrice,
+          totalCaixas: newDemoBoxes,
+        }),
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok && data?.lot) {
+        setDemoLots((prev) => [data.lot, ...prev]);
+        setNewDemoTitle('');
+        setNewDemoMarca('');
+        setDemoNotice(data?.message || 'Novo lote modelo publicado com is_demo = true.');
+      } else {
+        setDemoNotice(data?.error || 'Erro ao publicar lote modelo.');
+      }
+    } catch {
+      setDemoNotice('Falha ao criar lote demonstrativo.');
+    } finally {
+      setSavingDemo(false);
+    }
+  };
+
+  const handleToggleDemoLotStatus = async (lot: AuctionLot) => {
+    setDemoActionId(lot.id);
+    setDemoNotice(null);
+    const nextStatus = lot.status === 'ativo' ? 'encerrado' : 'ativo';
+    try {
+      const res = await fetch('/api/admin/modelos', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: lot.id, status: nextStatus }),
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok && data?.lot) {
+        setDemoLots((prev) => prev.map((l) => (l.id === lot.id ? data.lot : l)));
+        setDemoNotice(`Lote modelo ${lot.codigoLote} atualizado para "${nextStatus}".`);
+      } else {
+        setDemoNotice(data?.error || 'Não foi possível atualizar este registro modelo.');
+      }
+    } catch {
+      setDemoNotice('Erro de comunicação ao atualizar modelo.');
+    } finally {
+      setDemoActionId(null);
+    }
+  };
+
+  const handleDeleteDemoLot = async (lot: AuctionLot) => {
+    setDemoActionId(lot.id);
+    setDemoNotice(null);
+    try {
+      const res = await fetch(`/api/admin/modelos?id=${encodeURIComponent(lot.id)}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok) {
+        setDemoLots((prev) => prev.filter((l) => l.id !== lot.id));
+        setDemoNotice(data?.message || 'Lote modelo removido com segurança.');
+      } else {
+        setDemoNotice(data?.error || 'Não foi possível remover este registro modelo.');
+      }
+    } catch {
+      setDemoNotice('Erro de comunicação ao remover modelo.');
+    } finally {
+      setDemoActionId(null);
+    }
+  };
+
+  if (!authLoading && (!user || profile?.role !== 'admin')) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center space-y-4">
+        <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-md space-y-4">
+          <span className="material-symbols-outlined text-error text-4xl">admin_panel_settings</span>
+          <h1 className="text-xl font-extrabold text-on-surface">
+            Acesso Exclusivo do Administrador Master (CPF)
+          </h1>
+          <p className="text-xs text-on-surface-variant max-w-md mx-auto">
+            Somente administradores autenticados com credencial exclusiva por CPF e chave do cofre podem acessar a governança da plataforma e gerenciar os modelos demonstrativos.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 pt-1">
+            <Link
+              href="/login?tab=admin&redirect=/painel/admin"
+              className="px-5 py-2.5 bg-primary hover:bg-primary-container text-white text-xs font-bold rounded-xl"
+            >
+              Entrar como Administrador (CPF)
+            </Link>
+            <Link
+              href="/"
+              className="px-5 py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold rounded-xl"
+            >
+              Voltar ao Início
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const summary = generateFinancialSummary(orders);
   const failedWebhooks = webhooks.filter((w) => w.status_code >= 400).length;
 
@@ -310,6 +481,194 @@ export default function PainelAdminPage() {
             {failedWebhooks} Falhas ({wormLogs.length} WORM)
           </span>
           <span className="text-[11px] text-on-surface-variant block">Trilha criptográfica íntegra</span>
+        </div>
+      </div>
+
+      {/* Separação Real vs Modelo */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-secondary-container/20 border border-secondary/30 rounded-2xl p-5 flex items-center justify-between gap-4">
+          <div className="space-y-1">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-secondary text-white text-[10px] font-bold uppercase">
+              AMBIENTE ORIGINAL (DADOS REAIS)
+            </span>
+            <h3 className="text-base font-extrabold text-on-surface">
+              {separacaoCounts.realProfiles} Usuários / Empresas Reais • {separacaoCounts.realLots} Lotes Reais
+            </h3>
+            <p className="text-xs text-on-surface-variant">
+              Segregados via RLS (`is_demo = false`) e vinculados exclusivamente ao `auth.uid()`.
+            </p>
+          </div>
+        </div>
+        <div className="bg-amber-50 border border-amber-300 rounded-2xl p-5 flex items-center justify-between gap-4">
+          <div className="space-y-1">
+            <DemoBadge compact />
+            <h3 className="text-base font-extrabold text-amber-950">
+              {separacaoCounts.modeloProfiles} Perfis Modelo • {demoLots.length} Lotes Demonstrativos
+            </h3>
+            <p className="text-xs text-amber-900">
+              Ambiente educativo isolado para visitantes. Gerenciado exclusivamente por administradores.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Diagnóstico de Conexão Supabase */}
+      <AdminConnectionChecker />
+
+      {/* Embedded Gestão de Modelos Demonstrativos (is_demo = true) */}
+      <div className="bg-surface-container-lowest p-6 rounded-2xl border border-amber-300 shadow-sm space-y-5 text-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-surface-container pb-3">
+          <div>
+            <div className="flex items-center gap-2 flex-wrap mb-1">
+              <DemoBadge compact />
+              <h3 className="font-extrabold text-base text-on-surface">
+                Gestão Exclusiva dos Modelos Demonstrativos (`is_demo = true`)
+              </h3>
+            </div>
+            <p className="text-xs text-on-surface-variant">
+              Publique, atualize ou remova lotes fictícios exibidos aos visitantes no Ambiente Modelo sem afetar empresas reais.
+            </p>
+          </div>
+          <button
+            type="button"
+            disabled={seedingDemo}
+            onClick={() => void handleSeedStitchDemos()}
+            className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs shrink-0 disabled:opacity-50"
+          >
+            {seedingDemo ? 'Sincronizando...' : 'Sincronizar Modelos Stitch no Supabase'}
+          </button>
+        </div>
+
+        {demoNotice && (
+          <div className="p-3 rounded-xl bg-amber-50 border border-amber-300 text-amber-950 font-bold flex items-center justify-between gap-2">
+            <span>{demoNotice}</span>
+            <button type="button" onClick={() => setDemoNotice(null)} className="underline text-[11px]">
+              Fechar
+            </button>
+          </div>
+        )}
+
+        <form onSubmit={handleCreateDemoLot} className="grid grid-cols-1 sm:grid-cols-5 gap-3 bg-surface-container-low p-4 rounded-xl border border-outline-variant/20 items-end">
+          <div className="sm:col-span-2">
+            <label className="block font-bold uppercase text-[10px] text-on-surface mb-1">
+              Título do Produto Modelo
+            </label>
+            <input
+              type="text"
+              required
+              value={newDemoTitle}
+              onChange={(e) => setNewDemoTitle(e.target.value)}
+              placeholder="Ex: Café Modelo Especial 500g (120 Caixas)"
+              className="w-full bg-white px-3 py-2 rounded-lg border border-outline-variant/40 text-xs"
+            />
+          </div>
+          <div>
+            <label className="block font-bold uppercase text-[10px] text-on-surface mb-1">
+              Categoria
+            </label>
+            <select
+              value={newDemoCategory}
+              onChange={(e) => setNewDemoCategory(e.target.value)}
+              className="w-full bg-white px-3 py-2 rounded-lg border border-outline-variant/40 text-xs"
+            >
+              <option value="alimentos-secos">Alimentos Secos</option>
+              <option value="cerealista">Cerealista &amp; Grãos</option>
+              <option value="hortifruti">Hortifruti</option>
+              <option value="higiene-limpeza">Higiene &amp; Limpeza</option>
+              <option value="laticinios-frios">Laticínios</option>
+            </select>
+          </div>
+          <div>
+            <label className="block font-bold uppercase text-[10px] text-on-surface mb-1">
+              Lance Inicial (R$)
+            </label>
+            <input
+              type="number"
+              min="100"
+              value={newDemoPrice}
+              onChange={(e) => setNewDemoPrice(Number(e.target.value))}
+              className="w-full bg-white px-3 py-2 rounded-lg border border-outline-variant/40 text-xs font-bold"
+            />
+          </div>
+          <div className="flex gap-2">
+            <div className="flex-1">
+              <label className="block font-bold uppercase text-[10px] text-on-surface mb-1">
+                Caixas
+              </label>
+              <input
+                type="number"
+                min="1"
+                value={newDemoBoxes}
+                onChange={(e) => setNewDemoBoxes(Number(e.target.value))}
+                className="w-full bg-white px-2.5 py-2 rounded-lg border border-outline-variant/40 text-xs"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={savingDemo}
+              className="px-4 py-2 bg-primary hover:bg-primary-container text-white font-bold rounded-lg text-xs shrink-0 self-end disabled:opacity-50"
+            >
+              {savingDemo ? 'Criando...' : '+ Criar Modelo'}
+            </button>
+          </div>
+        </form>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-surface-container-low text-on-surface-variant uppercase font-bold text-[10px]">
+              <tr>
+                <th className="p-2.5">Identificação</th>
+                <th className="p-2.5">Produto Modelo</th>
+                <th className="p-2.5">Valor Atual</th>
+                <th className="p-2.5">Status</th>
+                <th className="p-2.5">Ações Admin</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-surface-container">
+              {demoLots.slice(0, 12).map((lot) => {
+                const isDbUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-/i.test(lot.id);
+                return (
+                  <tr key={lot.id} className="hover:bg-surface-container-low/50">
+                    <td className="p-2.5">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <DemoBadge compact />
+                        <span className="font-mono font-bold text-primary">{lot.codigoLote}</span>
+                      </div>
+                    </td>
+                    <td className="p-2.5 font-bold text-on-surface">{lot.produto.titulo}</td>
+                    <td className="p-2.5 font-extrabold text-primary">
+                      R$ {lot.lanceAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                    </td>
+                    <td className="p-2.5 uppercase font-bold text-[10px]">{lot.status}</td>
+                    <td className="p-2.5">
+                      {isDbUuid ? (
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            type="button"
+                            disabled={demoActionId === lot.id}
+                            onClick={() => void handleToggleDemoLotStatus(lot)}
+                            className="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high font-bold text-primary disabled:opacity-50"
+                          >
+                            {lot.status === 'ativo' ? 'Encerrar' : 'Reativar'}
+                          </button>
+                          <button
+                            type="button"
+                            disabled={demoActionId === lot.id}
+                            onClick={() => void handleDeleteDemoLot(lot)}
+                            className="px-2.5 py-1 rounded bg-error-container text-on-error-container font-bold disabled:opacity-50"
+                          >
+                            Excluir
+                          </button>
+                        </div>
+                      ) : (
+                        <span className="text-[10px] text-outline">Catálogo base Stitch (sincronizável)</span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -473,7 +832,7 @@ export default function PainelAdminPage() {
           <table className="w-full text-left">
             <thead className="bg-surface-container-low text-on-surface-variant uppercase font-bold text-[10px]">
               <tr>
-                <th className="p-3">Empresa / CNPJ</th>
+                <th className="p-3">Empresa / CNPJ / CPF</th>
                 <th className="p-3">Perfil</th>
                 <th className="p-3">Docs KYC</th>
                 <th className="p-3">Limite Escrow (R$)</th>
@@ -495,7 +854,9 @@ export default function PainelAdminPage() {
                     <tr key={prof.id} className="hover:bg-surface-container-low/50">
                       <td className="p-3">
                         <strong className="text-on-surface block">{prof.nomeFantasia}</strong>
-                        <span className="font-mono text-[10px] text-on-surface-variant">{prof.cnpj}</span>
+                        <span className="font-mono text-[10px] text-on-surface-variant">
+                          {prof.cnpj || (prof.cpf ? `CPF: ${prof.cpf}` : 'Sem CNPJ')}
+                        </span>
                       </td>
                       <td className="p-3 uppercase font-bold text-primary">{prof.role}</td>
                       <td className="p-3 text-on-surface-variant">

@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge } from '@/components/DemoBadge';
 import { calculateSplit } from '@/lib/commission-engine';
 import { CommissionRule } from '@/lib/types';
 
 export const CommissionCalculator: React.FC = () => {
+  const { isDemoMode } = useEnvironment();
   const [rules, setRules] = useState<CommissionRule[]>([]);
   const [loadingRules, setLoadingRules] = useState(true);
   const [selectedRuleSlug, setSelectedRuleSlug] = useState('leilao');
@@ -18,7 +21,8 @@ export const CommissionCalculator: React.FC = () => {
 
   useEffect(() => {
     let active = true;
-    fetch('/api/comissoes', { cache: 'no-store' })
+    setLoadingRules(true);
+    fetch(`/api/comissoes?env=${isDemoMode ? 'modelo' : 'original'}`, { cache: 'no-store' })
       .then(async (res) => {
         const data = await res.json().catch(() => null);
         return { ok: res.ok, data };
@@ -45,7 +49,7 @@ export const CommissionCalculator: React.FC = () => {
     return () => {
       active = false;
     };
-  }, []);
+  }, [isDemoMode]);
 
   const selectedRule = rules.find((r) => r.slug === selectedRuleSlug);
   const activeRate = customRate !== undefined ? customRate : (selectedRule?.percentualPadrao ?? 6.0);
@@ -57,6 +61,20 @@ export const CommissionCalculator: React.FC = () => {
     setSaving(true);
     setSaveNotice(null);
     setSaveError(null);
+
+    if (isDemoMode) {
+      setRules((prev) =>
+        prev.map((r) => (r.id === ruleId ? { ...r, percentualPadrao: boundedRate } : r))
+      );
+      if (selectedRule?.id === ruleId) setCustomRate(boundedRate);
+      setSaveNotice(
+        `SIMULAÇÃO — AMBIENTE MODELO: Alíquota ajustada apenas nesta demonstração para ${boundedRate}%.`
+      );
+      setSaving(false);
+      setEditingRuleId(null);
+      return;
+    }
+
     try {
       const res = await fetch('/api/comissoes', {
         method: 'POST',
@@ -68,7 +86,7 @@ export const CommissionCalculator: React.FC = () => {
         if (Array.isArray(data?.rules)) {
           setRules(data.rules);
         } else {
-          const refreshed = await fetch('/api/comissoes', { cache: 'no-store' }).then((r) =>
+          const refreshed = await fetch('/api/comissoes?env=original', { cache: 'no-store' }).then((r) =>
             r.ok ? r.json() : null
           );
           if (refreshed?.rules) setRules(refreshed.rules);
@@ -91,9 +109,10 @@ export const CommissionCalculator: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-surface-container">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="material-symbols-outlined text-primary text-[24px]">account_balance_wallet</span>
-            <h3 className="font-extrabold text-lg text-on-surface">Motor de Take Rate & Split Fiduciário B2B</h3>
+            <h3 className="font-extrabold text-lg text-on-surface">Motor de Take Rate &amp; Split Fiduciário B2B</h3>
+            {isDemoMode && <DemoBadge compact />}
           </div>
           <p className="text-xs text-on-surface-variant mt-0.5">
             Parametrização dinâmica das comissões administrativas da plataforma (6%, 20% ou taxas customizadas por modalidade).
@@ -101,7 +120,7 @@ export const CommissionCalculator: React.FC = () => {
         </div>
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-          Split v3.4 Conectado ao BACEN
+          {isDemoMode ? 'Simulador Demonstrativo' : 'Split v3.4 Conectado ao BACEN'}
         </span>
       </div>
 

@@ -3,25 +3,35 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CommissionCalculator } from '@/components/CommissionCalculator';
+import { useEnvironment } from '@/components/EnvironmentProvider';
+import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
 import { generateFinancialSummary } from '@/lib/commission-engine';
 import { EscrowOrder } from '@/lib/types';
 
 export default function PainelComissoesPage() {
+  const { isDemoMode, sandbox } = useEnvironment();
   const [orders, setOrders] = useState<EscrowOrder[]>([]);
   const [loading, setLoading] = useState(true);
   const [exportNotice, setExportNotice] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/pedidos', { cache: 'no-store' })
+    if (isDemoMode) {
+      setOrders(sandbox.simulatedOrders);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    fetch('/api/pedidos?env=original', { cache: 'no-store' })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         setOrders(Array.isArray(data?.orders) ? data.orders : []);
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isDemoMode, sandbox.simulatedOrders]);
 
-  const summary = generateFinancialSummary(orders);
+  const visibleOrders = isDemoMode ? sandbox.simulatedOrders : orders;
+  const summary = generateFinancialSummary(visibleOrders);
 
   const handleExportCsv = () => {
     const header = [
@@ -36,7 +46,7 @@ export default function PainelComissoesPage() {
       'StatusPagamento',
       'SeloWORM',
     ];
-    const rows = orders.map((o) => [
+    const rows = visibleOrders.map((o) => [
       o.codigoPedido,
       `"${o.tituloLote.replace(/"/g, '""')}"`,
       `"${o.compradorNome.replace(/"/g, '""')}"`,
@@ -75,6 +85,11 @@ export default function PainelComissoesPage() {
         </nav>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
+            {isDemoMode && (
+              <div className="mb-1 flex items-center gap-2 flex-wrap">
+                <DemoBadge compact />
+              </div>
+            )}
             <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface">
               Central de Comissões, Regras de Take-Rate &amp; Split
             </h1>
@@ -97,10 +112,20 @@ export default function PainelComissoesPage() {
         </div>
       </div>
 
+      {isDemoMode && (
+        <DidacticHint
+          title="Indicadores e Relatórios Demonstrativos"
+          text="Os números financeiros abaixo pertencem exclusivamente ao Ambiente Modelo para demonstrar como a plataforma calcula Take Rate e Split D+0."
+        />
+      )}
+
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm space-y-1">
-          <span className="text-xs font-bold uppercase text-on-surface-variant block">GMV Transacionado</span>
+          <div className="flex items-center justify-between gap-1">
+            <span className="text-xs font-bold uppercase text-on-surface-variant block">GMV Transacionado</span>
+            {isDemoMode && <DemoBadge compact />}
+          </div>
           <span className="text-2xl font-extrabold text-primary block">
             R$ {summary.gmvTotalTransacionado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </span>
@@ -183,16 +208,21 @@ export default function PainelComissoesPage() {
                     Carregando transações conciliadas...
                   </td>
                 </tr>
-              ) : orders.length === 0 ? (
+              ) : visibleOrders.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="p-6 text-center text-on-surface-variant">
                     Nenhuma transação registrada para apuração de comissão ainda.
                   </td>
                 </tr>
               ) : (
-                orders.map((order) => (
+                visibleOrders.map((order) => (
                   <tr key={order.id} className="hover:bg-surface-container-low/50">
-                    <td className="p-3 font-mono font-bold text-primary">{order.codigoPedido}</td>
+                    <td className="p-3 font-mono font-bold text-primary">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        {(isDemoMode || order.isDemo) && <DemoBadge compact />}
+                        <span>{order.codigoPedido}</span>
+                      </div>
+                    </td>
                     <td className="p-3 font-medium text-on-surface">
                       <Link href={`/leiloes/${order.loteId}`} className="hover:text-primary transition-colors">
                         {order.tituloLote}

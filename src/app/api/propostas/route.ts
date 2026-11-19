@@ -6,6 +6,7 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbProposalToNegotiationProposal } from '@/lib/supabase/mappers';
 import { buildAuditHash } from '@/lib/security';
+import { DEMO_PROPOSALS, DEMO_SUPPLIER_ID } from '@/lib/demo-data';
 
 const PROPOSAL_SELECT = `
   *,
@@ -15,6 +16,17 @@ const PROPOSAL_SELECT = `
 `;
 
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const envParam = searchParams.get('env');
+  const loteId = searchParams.get('loteId');
+
+  if (envParam === 'modelo') {
+    const filtered = loteId
+      ? DEMO_PROPOSALS.filter((p) => p.loteId === loteId)
+      : DEMO_PROPOSALS;
+    return NextResponse.json({ proposals: filtered, env: 'modelo' });
+  }
+
   if (!isSupabaseServerConfigured) {
     return NextResponse.json(
       { error: 'Supabase não configurado no ambiente.', proposals: [] },
@@ -30,9 +42,6 @@ export async function GET(req: NextRequest) {
         { status: 401 }
       );
     }
-
-    const { searchParams } = new URL(req.url);
-    const loteId = searchParams.get('loteId');
 
     const dbClient = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
     let query = dbClient
@@ -50,13 +59,19 @@ export async function GET(req: NextRequest) {
 
     const { data, error } = await query;
     if (error) {
+      if (error.code === 'PGRST205') {
+        return NextResponse.json({ proposals: [], pendingMigration: true });
+      }
       return NextResponse.json({ error: error.message, proposals: [] }, { status: 500 });
     }
 
+    const realProposals = (data || [])
+      .filter((row) => !(row as Record<string, unknown>).is_demo)
+      .map((row) => mapDbProposalToNegotiationProposal(row as Record<string, unknown>));
+
     return NextResponse.json({
-      proposals: (data || []).map((row) =>
-        mapDbProposalToNegotiationProposal(row as Record<string, unknown>)
-      ),
+      proposals: realProposals,
+      env: 'original',
     });
   } catch (err) {
     console.error('Erro em GET /api/propostas:', err);
@@ -86,6 +101,12 @@ export async function POST(req: NextRequest) {
       if (!proposalId) {
         return NextResponse.json({ error: 'Informe proposalId.' }, { status: 400 });
       }
+      if (String(proposalId).startsWith('demo-')) {
+        return NextResponse.json(
+          { error: 'Propostas do Ambiente Modelo são apenas demonstrativas e não podem ser alteradas no banco.' },
+          { status: 403 }
+        );
+      }
 
       const { data: existing, error: fetchErr } = await dbClient
         .from('negotiation_proposals')
@@ -95,6 +116,13 @@ export async function POST(req: NextRequest) {
 
       if (fetchErr || !existing) {
         return NextResponse.json({ error: 'Proposta não encontrada' }, { status: 404 });
+      }
+
+      if ((existing as Record<string, unknown>).is_demo === true) {
+        return NextResponse.json(
+          { error: 'Propostas demonstrativas são somente leitura para usuários comuns.' },
+          { status: 403 }
+        );
       }
 
       const isBuyer = String(existing.comprador_id) === ctx.user.id;
@@ -259,7 +287,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Criar nova proposta comercial
     if (newProposal) {
       const boxes = Number(newProposal.quantidadeCaixas);
       const unitPrice = Number(newProposal.precoUnitarioOfertado);
@@ -272,14 +299,33 @@ export async function POST(req: NextRequest) {
         );
       }
 
+      if (loteId.startsWith('demo-') || loteId.startsWith('a1000000-')) {
+        return NextResponse.json(
+          { error: 'Ambiente Modelo é apenas demonstrativo. Não é permitido enviar propostas reais para lotes modelo.' },
+          { status: 403 }
+        );
+      }
+
       const { data: auctionRow, error: aucErr } = await dbClient
         .from('auctions')
-        .select('id, codigo_lote, status, termina_em, products(id, titulo, unidades_por_embalagem, fornecedor_id)')
+        .select('id, codigo_lote, status, termina_em, is_demo, products(id, titulo, unidades_por_embalagem, fornecedor_id, is_demo)')
         .eq('id', loteId)
         .maybeSingle();
 
       if (aucErr || !auctionRow) {
         return NextResponse.json({ error: 'Lote informado não encontrado.' }, { status: 404 });
+      }
+
+      const product = (auctionRow.products || {}) as Record<string, unknown>;
+      if (
+        (auctionRow as Record<string, unknown>).is_demo === true ||
+        product.is_demo === true ||
+        String(product.fornecedor_id || '') === DEMO_SUPPLIER_ID
+      ) {
+        return NextResponse.json(
+          { error: 'Ambiente Modelo é apenas demonstrativo. Propostas reais exigem um lote verdadeiro.' },
+          { status: 403 }
+        );
       }
 
       const aucStatus = String(auctionRow.status || '');
@@ -296,7 +342,6 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      const product = (auctionRow.products || {}) as Record<string, unknown>;
       const supplierId = String(product.fornecedor_id || '');
       if (!supplierId) {
         return NextResponse.json({ error: 'Fornecedor do lote não identificado.' }, { status: 400 });
@@ -311,22 +356,36 @@ export async function POST(req: NextRequest) {
       const unitsPerBox = Math.max(1, Number(product.unidades_por_embalagem ?? 1));
       const totalProposalValue = Number((boxes * unitsPerBox * unitPrice).toFixed(2));
 
-      const { data: inserted, error: insErr } = await dbClient
+      const insertPayload: Record<string, unknown> = {
+        auction_id: loteId,
+        comprador_id: ctx.user.id,
+        fornecedor_id: supplierId,
+        quantidade_caixas: Math.round(boxes),
+        preco_unitario_ofertado: Number(unitPrice.toFixed(2)),
+        valor_total_proposta: totalProposalValue,
+        status: 'pendente',
+        mensagem: String(
+          newProposal.mensagem || 'Proposta de compra com retirada FOB agendada.'
+        ).slice(0, 500),
+        is_demo: false,
+      };
+
+      let { data: inserted, error: insErr } = await dbClient
         .from('negotiation_proposals')
-        .insert({
-          auction_id: loteId,
-          comprador_id: ctx.user.id,
-          fornecedor_id: supplierId,
-          quantidade_caixas: Math.round(boxes),
-          preco_unitario_ofertado: Number(unitPrice.toFixed(2)),
-          valor_total_proposta: totalProposalValue,
-          status: 'pendente',
-          mensagem: String(
-            newProposal.mensagem || 'Proposta de compra com retirada FOB agendada.'
-          ).slice(0, 500),
-        })
+        .insert(insertPayload)
         .select(PROPOSAL_SELECT)
         .single();
+
+      if (insErr && insErr.message?.includes('is_demo')) {
+        delete insertPayload.is_demo;
+        const retry = await dbClient
+          .from('negotiation_proposals')
+          .insert(insertPayload)
+          .select(PROPOSAL_SELECT)
+          .single();
+        inserted = retry.data;
+        insErr = retry.error;
+      }
 
       if (insErr || !inserted) {
         return NextResponse.json(
