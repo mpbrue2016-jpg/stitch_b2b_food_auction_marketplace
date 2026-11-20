@@ -37,9 +37,11 @@ export const DemoBadge: React.FC<DemoBadgeProps> = ({
 
 export const DidacticHint: React.FC<{
   title: string;
-  text: string;
+  text?: string;
+  description?: string;
   className?: string;
-}> = ({ title, text, className = '' }) => {
+}> = ({ title, text, description, className = '' }) => {
+  const body = text ?? description ?? '';
   return (
     <div
       className={`rounded-xl bg-blue-50 border border-blue-200 px-3.5 py-2.5 text-xs text-blue-950 flex items-start gap-2.5 ${className}`}
@@ -49,7 +51,7 @@ export const DidacticHint: React.FC<{
       </span>
       <div className="leading-relaxed">
         <strong className="font-bold text-blue-900">{title}: </strong>
-        <span>{text}</span>
+        <span>{body}</span>
       </div>
     </div>
   );

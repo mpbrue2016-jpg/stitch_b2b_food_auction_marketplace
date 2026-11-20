@@ -2,6 +2,7 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { createClient as createSupabaseJsClient, type SupabaseClient, type User } from '@supabase/supabase-js';
 import { cookies, headers } from 'next/headers';
 import type { UserProfile } from '@/lib/types';
+import { isSoleAdminIdentity } from '@/lib/auth-admin';
 import { isConfiguredSupabaseEnv } from './config';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -58,15 +59,24 @@ export interface AuthSessionContext {
 }
 
 export function mapDbProfileToUserProfile(row: Record<string, unknown>): UserProfile {
+  const rawRole = (row.role as UserProfile['role']) || 'comprador';
+  const email = String(row.email || '');
+  const cpf = row.cpf ? String(row.cpf) : undefined;
+  const isDemo = Boolean(row.is_demo ?? false);
+
+  // Restrição fixa: somente mpbrue2016@gmail.com + CPF 11567025854 (conta real) pode ter papel admin
+  const safeRole: UserProfile['role'] =
+    rawRole === 'admin' && !isDemo && isSoleAdminIdentity(email, cpf) ? 'admin' : rawRole === 'admin' ? 'comprador' : rawRole;
+
   return {
     id: String(row.id),
-    email: String(row.email || ''),
-    role: (row.role as UserProfile['role']) || 'comprador',
-    tipoPessoa: (row.tipo_pessoa as UserProfile['tipoPessoa']) || (row.cpf && !row.cnpj ? 'PF' : 'PJ'),
+    email,
+    role: safeRole,
+    tipoPessoa: (row.tipo_pessoa as UserProfile['tipoPessoa']) || (cpf && !row.cnpj ? 'PF' : 'PJ'),
     perfilComercial: (row.perfil_comercial as UserProfile['perfilComercial']) || undefined,
-    isDemo: Boolean(row.is_demo ?? false),
+    isDemo,
     cnpj: row.cnpj ? String(row.cnpj) : '',
-    cpf: row.cpf ? String(row.cpf) : undefined,
+    cpf,
     razaoSocial: String(row.razao_social || ''),
     nomeFantasia: String(row.nome_fantasia || ''),
     inscricaoEstadual: row.inscricao_estadual ? String(row.inscricao_estadual) : undefined,

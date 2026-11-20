@@ -4,6 +4,7 @@ import {
   isSupabaseServerConfigured,
 } from '@/lib/supabase/server';
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 
 const ALLOWED_BUCKETS = new Set(['kyc-docs', 'lot-images', 'banners']);
 const ALLOWED_MIME_TYPES = new Set([
@@ -86,16 +87,17 @@ export async function POST(req: NextRequest) {
     }
 
     // RBAC por bucket
-    if (bucket === 'banners' && ctx.profile.role !== 'admin') {
+    const isAdmin = isAuthorizedAdminProfile(ctx.profile);
+    if (bucket === 'banners' && !isAdmin) {
       return NextResponse.json(
-        { error: 'Apenas administradores podem enviar banners.' },
+        { error: 'Apenas o Administrador Master autorizado pode enviar banners.' },
         { status: 403 }
       );
     }
     if (
       bucket === 'lot-images' &&
       ctx.profile.role !== 'fornecedor' &&
-      ctx.profile.role !== 'admin'
+      !isAdmin
     ) {
       return NextResponse.json(
         { error: 'Apenas fornecedores ou administradores podem publicar imagens de lotes.' },

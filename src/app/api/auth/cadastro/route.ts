@@ -11,6 +11,7 @@ import {
   isValidCnpjDigits,
   isValidCpfDigits,
 } from '@/lib/security';
+import { isSoleAdminCpf, isSoleAdminEmail } from '@/lib/auth-admin';
 import { formatCnpj, formatCpf, formatPhoneBr } from '@/lib/format';
 import type { PerfilComercial, TipoPessoa } from '@/lib/types';
 
@@ -50,7 +51,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           error:
-            'Acesso de Administrador é exclusivo e controlado internamente. Utilize /login com seu CPF autorizado.',
+            'Acesso de Administrador é exclusivo e controlado internamente. Utilize /login?tab=admin com o CPF e e-mail fixos autorizados.',
         },
         { status: 403 }
       );
@@ -107,6 +108,13 @@ export async function POST(req: NextRequest) {
 
     let formattedCpf: string | null = null;
     let formattedCnpj: string | null = null;
+
+    if (cpf && isSoleAdminCpf(String(cpf)) && !isSoleAdminEmail(cleanEmail)) {
+      return NextResponse.json(
+        { error: 'Este CPF é reservado exclusivamente ao Administrador Master autorizado.' },
+        { status: 403 }
+      );
+    }
 
     if (safeTipoPessoa === 'PF') {
       if (!cpf || !isValidCpfDigits(String(cpf))) {
@@ -303,6 +311,7 @@ export async function POST(req: NextRequest) {
             'Cadastro oficial concluído com sucesso! Seu ambiente exclusivo está pronto para uso.',
           profile: mappedProfile,
           redirectTo,
+          requiresEmailConfirmation: false,
         },
         { status: 201 }
       );
@@ -364,11 +373,16 @@ export async function POST(req: NextRequest) {
         ? '/painel/fornecedor?env=original&welcome=1'
         : '/painel/comprador?env=original&welcome=1';
 
+    const requiresEmailConfirmation = !signUpData.session;
+
     return NextResponse.json(
       {
-        message: 'Conta criada no Ambiente Original! Seu perfil oficial está ativo.',
+        message: requiresEmailConfirmation
+          ? 'Cadastro criado! Confirme o link enviado ao seu e-mail para ativar sua sessão.'
+          : 'Conta criada no Ambiente Original! Seu perfil oficial está ativo.',
         userId: signUpData.user.id,
         redirectTo,
+        requiresEmailConfirmation,
       },
       { status: 201 }
     );

@@ -11,6 +11,7 @@ import {
   mapDbAuctionToAuctionLot,
 } from '@/lib/supabase/mappers';
 import { buildAuditHash } from '@/lib/security';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { DEMO_CATEGORIES, DEMO_SUPPLIER_ID, getDemoLots } from '@/lib/demo-data';
 import type { AuctionLot } from '@/lib/types';
 
@@ -107,7 +108,7 @@ async function resolveCategoryRow(
     nome: c.nome,
     slug: c.slug,
     icone: c.icone,
-    descricao: c.descricao,
+    descricao: `Categoria B2B: ${c.nome}`,
     ativo: true,
   }));
   const { data: seeded } = await supabase
@@ -364,7 +365,8 @@ export async function POST(req: NextRequest) {
     if (!ctx?.user || !ctx.profile) {
       return NextResponse.json({ error: 'Autenticação obrigatória para publicar lotes.' }, { status: 401 });
     }
-    if (ctx.profile.role !== 'fornecedor' && ctx.profile.role !== 'admin') {
+    const isAdmin = isAuthorizedAdminProfile(ctx.profile);
+    if (ctx.profile.role !== 'fornecedor' && !isAdmin) {
       return NextResponse.json(
         { error: 'Apenas fornecedores, anunciantes ou administradores podem publicar lotes de estoque.' },
         { status: 403 }
@@ -373,8 +375,8 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
     // Usuários comuns NUNCA podem criar lotes demonstrativos nem converter reais em modelo
-    const isDemoRecord = Boolean(body.isDemo) && ctx.profile.role === 'admin';
-    if (Boolean(body.isDemo) && ctx.profile.role !== 'admin') {
+    const isDemoRecord = Boolean(body.isDemo) && isAdmin;
+    if (Boolean(body.isDemo) && !isAdmin) {
       return NextResponse.json(
         { error: 'Somente administradores podem publicar lotes demonstrativos (MODELO).' },
         { status: 403 }
@@ -640,7 +642,8 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    if (String(loteId).startsWith('demo-') && ctx.profile.role !== 'admin') {
+    const isAdmin = isAuthorizedAdminProfile(ctx.profile);
+    if (String(loteId).startsWith('demo-') && !isAdmin) {
       return NextResponse.json(
         { error: 'Registros do Ambiente Modelo não podem ser modificados por usuários comuns.' },
         { status: 403 }
@@ -661,7 +664,6 @@ export async function PATCH(req: NextRequest) {
     const isDemo = isRowDemoRecord(existingAuction as Record<string, unknown>);
     const product = existingAuction.products as Record<string, unknown>;
     const isOwner = String(product.fornecedor_id) === ctx.user.id;
-    const isAdmin = ctx.profile.role === 'admin';
 
     if (isDemo && !isAdmin) {
       return NextResponse.json(

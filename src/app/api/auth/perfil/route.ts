@@ -5,6 +5,12 @@ import {
   mapDbProfileToUserProfile,
 } from '@/lib/supabase/server';
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
+import {
+  isAuthorizedAdminProfile,
+  isSoleAdminCpf,
+  isSoleAdminEmail,
+  SOLE_ADMIN_CPF_FORMATTED,
+} from '@/lib/auth-admin';
 import { buildAuditHash, isValidCnpjDigits, isValidCpfDigits } from '@/lib/security';
 import { formatCnpj, formatCpf } from '@/lib/format';
 
@@ -26,22 +32,34 @@ export async function GET() {
     if (!profile) {
       const writer = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
       const meta = (ctx.user.user_metadata || {}) as Record<string, string | undefined>;
-      const safeRole = meta.role === 'fornecedor' ? 'fornecedor' : 'comprador';
-      const tipoPessoa = meta.tipo_pessoa === 'PF' ? 'PF' : 'PJ';
+      const isSoleAdminAccount =
+        isSoleAdminEmail(ctx.user.email) &&
+        (meta.role === 'admin' || isSoleAdminCpf(meta.cpf) || !meta.cnpj);
+      const safeRole = isSoleAdminAccount
+        ? 'admin'
+        : meta.role === 'fornecedor'
+        ? 'fornecedor'
+        : 'comprador';
+      const tipoPessoa = isSoleAdminAccount ? 'PF' : meta.tipo_pessoa === 'PF' ? 'PF' : 'PJ';
       const fallbackInsert: Record<string, unknown> = {
         id: ctx.user.id,
         email: ctx.user.email || `${ctx.user.id}@placeholder.local`,
         role: safeRole,
         tipo_pessoa: tipoPessoa,
-        perfil_comercial: meta.perfil_comercial || safeRole,
+        perfil_comercial: isSoleAdminAccount ? 'admin' : meta.perfil_comercial || safeRole,
         is_demo: false,
-        cpf: meta.cpf || null,
-        cnpj:
-          tipoPessoa === 'PF'
-            ? meta.cnpj || null
-            : meta.cnpj || `PEND-${ctx.user.id.slice(0, 12).toUpperCase()}`,
-        razao_social: meta.razao_social || 'Empresa B2B',
-        nome_fantasia: meta.nome_fantasia || meta.razao_social || 'Empresa B2B',
+        cpf: isSoleAdminAccount ? SOLE_ADMIN_CPF_FORMATTED : meta.cpf || null,
+        cnpj: isSoleAdminAccount
+          ? null
+          : tipoPessoa === 'PF'
+          ? meta.cnpj || null
+          : meta.cnpj || `PEND-${ctx.user.id.slice(0, 12).toUpperCase()}`,
+        razao_social: isSoleAdminAccount
+          ? meta.razao_social || 'Administração Master Varejista Online'
+          : meta.razao_social || 'Empresa B2B',
+        nome_fantasia: isSoleAdminAccount
+          ? meta.nome_fantasia || 'Admin Master'
+          : meta.nome_fantasia || meta.razao_social || 'Empresa B2B',
         telefone: meta.telefone || null,
         cidade: meta.cidade || 'São Paulo',
         uf: (meta.uf || 'SP').slice(0, 2).toUpperCase(),
@@ -119,20 +137,14 @@ export async function PATCH(req: NextRequest) {
     const body = await req.json();
 
     if (body.targetUserId && body.targetUserId !== ctx.user.id) {
-      if (ctx.profile.role !== 'admin') {
+      if (!isAuthorizedAdminProfile(ctx.profile)) {
         return NextResponse.json(
-          { error: 'Apenas administradores podem aprovar cadastros ou alterar limites.' },
+          { error: 'Apenas o Administrador Master autorizado pode aprovar cadastros ou alterar limites.' },
           { status: 403 }
         );
       }
-      if (!isSupabaseAdminConfigured) {
-        return NextResponse.json(
-          { error: 'SUPABASE_SERVICE_ROLE_KEY não configurada para operação administrativa.' },
-          { status: 503 }
-        );
-      }
 
-      const admin = createAdminSupabaseClient();
+      const dbAdmin = isSupabaseAdminConfigured ? createAdminSupabaseClient() : ctx.supabase;
       const updates: Record<string, unknown> = {};
       if (
         body.statusAprovacao &&
@@ -155,7 +167,7 @@ export async function PATCH(req: NextRequest) {
         );
       }
 
-      const { data: updatedTarget, error } = await admin
+      const { data: updatedTarget, error } = await dbAdmin
         .from('profiles')
         .update(updates)
         .eq('id', body.targetUserId)
@@ -169,17 +181,21 @@ export async function PATCH(req: NextRequest) {
         );
       }
 
-      await admin.from('audit_worm_logs').insert({
-        tipo_evento: 'kyc_admin_decisao',
-        protocolo: `KYC-${String(updatedTarget.cnpj || updatedTarget.cpf || body.targetUserId)}`,
-        payload_json: { targetUserId: body.targetUserId, updates, adminId: ctx.user.id },
-        merkle_root_hash: buildAuditHash(
-          String(body.targetUserId),
-          'kyc_admin_decisao',
-          updates
-        ),
-        responsavel_id: ctx.user.id,
-      });
+      try {
+        await dbAdmin.from('audit_worm_logs').insert({
+          tipo_evento: 'kyc_admin_decisao',
+          protocolo: `KYC-${String(updatedTarget.cnpj || updatedTarget.cpf || body.targetUserId)}`,
+          payload_json: { targetUserId: body.targetUserId, updates, adminId: ctx.user.id },
+          merkle_root_hash: buildAuditHash(
+            String(body.targetUserId),
+            'kyc_admin_decisao',
+            updates
+          ),
+          responsavel_id: ctx.user.id,
+        });
+      } catch {
+        // Auditoria best-effort
+      }
 
       return NextResponse.json({
         message: 'Perfil corporativo atualizado pelo compliance administrativo.',
@@ -187,7 +203,7 @@ export async function PATCH(req: NextRequest) {
       });
     }
 
-    if (ctx.profile.isDemo && ctx.profile.role !== 'admin') {
+    if (ctx.profile.isDemo && !isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json(
         { error: 'Perfis de demonstração não podem ser alterados por usuários comuns.' },
         { status: 403 }
@@ -214,6 +230,12 @@ export async function PATCH(req: NextRequest) {
       allowedUpdates.cep = body.cep.trim().slice(0, 10);
     }
     if (typeof body.cnpj === 'string' && body.cnpj.trim()) {
+      if (isAuthorizedAdminProfile(ctx.profile)) {
+        return NextResponse.json(
+          { error: 'O Administrador Master opera exclusivamente por CPF (sem CNPJ).' },
+          { status: 403 }
+        );
+      }
       if (!isValidCnpjDigits(body.cnpj)) {
         return NextResponse.json(
           { error: 'CNPJ com dígitos verificadores inválidos.' },
@@ -227,6 +249,12 @@ export async function PATCH(req: NextRequest) {
         return NextResponse.json(
           { error: 'CPF com dígitos verificadores inválidos.' },
           { status: 400 }
+        );
+      }
+      if (isSoleAdminCpf(body.cpf) && !isSoleAdminEmail(ctx.profile.email)) {
+        return NextResponse.json(
+          { error: 'Este CPF é reservado exclusivamente ao Administrador Master autorizado.' },
+          { status: 403 }
         );
       }
       allowedUpdates.cpf = formatCpf(body.cpf);

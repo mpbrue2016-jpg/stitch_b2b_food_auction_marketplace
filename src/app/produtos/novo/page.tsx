@@ -15,6 +15,7 @@ import {
 import { useAuth } from '@/components/AuthProvider';
 import { useEnvironment } from '@/components/EnvironmentProvider';
 import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { ProductCategory } from '@/lib/types';
 
 type LotPresetType = 'industria' | 'pequeno_mercado' | 'cerealista' | 'hortifruti' | 'higiene_limpeza';
@@ -456,7 +457,7 @@ function NovoProdutoContent() {
   };
 
   const canPublishReal = Boolean(
-    user && (profile?.role === 'fornecedor' || profile?.role === 'admin')
+    user && (profile?.role === 'fornecedor' || isAuthorizedAdminProfile(profile))
   );
 
   return (

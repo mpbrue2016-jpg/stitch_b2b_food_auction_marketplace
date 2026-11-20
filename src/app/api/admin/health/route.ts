@@ -4,6 +4,7 @@ import {
   isSupabaseServerConfigured,
 } from '@/lib/supabase/server';
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,9 +25,9 @@ export async function GET() {
     if (!ctx?.user || !ctx.profile) {
       return NextResponse.json({ error: 'Autenticação obrigatória.' }, { status: 401 });
     }
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json(
-        { error: 'Acesso restrito a administradores.' },
+        { error: 'Acesso restrito ao Administrador Master único autorizado.' },
         { status: 403 }
       );
     }

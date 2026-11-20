@@ -119,9 +119,7 @@ function CheckoutContent() {
             valorComissaoPlataforma: resumedOrder.valorComissaoPlataforma,
             valorRepasseLiquidoFornecedor: resumedOrder.valorRepasseLiquidoFornecedor,
             taxaEscrowBancaria: 3.85,
-            valorLiquidoFinalFornecedor: Number(
-              (resumedOrder.valorRepasseLiquidoFornecedor - 3.85).toFixed(2)
-            ),
+            valorDisponivelCustodia: resumedOrder.valorTotalArremate,
           });
 
           if (resumedOrder.statusPagamento !== 'aguardando_pagamento') {
@@ -447,7 +445,7 @@ function CheckoutContent() {
       for (const item of itemsToSimulate) {
         const simOrder = simulateCreateOrder(item.lot, item.amount);
         codes.push(simOrder.codigoPedido);
-        lastSimHash = simOrder.termoArremateHash;
+        lastSimHash = simOrder.termoArremateHash || '';
       }
       if (isMultiLotCart) simulateClearCart();
       else simulateRemoveFromCart(lot.id);

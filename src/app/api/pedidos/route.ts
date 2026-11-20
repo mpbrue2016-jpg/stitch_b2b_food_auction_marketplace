@@ -8,6 +8,7 @@ import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supa
 import { mapDbOrderToEscrowOrder } from '@/lib/supabase/mappers';
 import { buildAuditHash, buildSha256Hash } from '@/lib/security';
 import { generatePixEmvPayload } from '@/lib/pix-emv';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { DEMO_ORDERS, DEMO_SUPPLIER_ID } from '@/lib/demo-data';
 
 const ORDER_SELECT = `
@@ -79,14 +80,15 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error: 'Pedido não localizado.' }, { status: 404 });
       }
 
-      if (isDemoOrderRow(singleOrder as Record<string, unknown>) && ctx.profile.role !== 'admin') {
+      const isAdmin = isAuthorizedAdminProfile(ctx.profile);
+      if (isDemoOrderRow(singleOrder as Record<string, unknown>) && !isAdmin) {
         return NextResponse.json({ error: 'Pedido pertence ao Ambiente Modelo.' }, { status: 404 });
       }
 
       const isOwner =
         String(singleOrder.comprador_id) === ctx.user.id ||
         String(singleOrder.fornecedor_id) === ctx.user.id ||
-        ctx.profile.role === 'admin';
+        isAdmin;
 
       if (!isOwner) {
         return NextResponse.json({ error: 'Acesso negado a este pedido.' }, { status: 403 });
@@ -118,10 +120,12 @@ export async function GET(req: NextRequest) {
       .select(ORDER_SELECT)
       .order('created_at', { ascending: false });
 
-    if (ctx.profile.role === 'comprador') {
-      query = query.eq('comprador_id', ctx.user.id);
-    } else if (ctx.profile.role === 'fornecedor') {
-      query = query.eq('fornecedor_id', ctx.user.id);
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
+      if (ctx.profile.role === 'fornecedor') {
+        query = query.eq('fornecedor_id', ctx.user.id);
+      } else {
+        query = query.eq('comprador_id', ctx.user.id);
+      }
     }
 
     const { data, error } = await query;
@@ -200,7 +204,10 @@ export async function POST(req: NextRequest) {
           { status: 403 }
         );
       }
-      if (String(existingOrder.comprador_id) !== ctx.user.id && ctx.profile.role !== 'admin') {
+      if (
+        String(existingOrder.comprador_id) !== ctx.user.id &&
+        !isAuthorizedAdminProfile(ctx.profile)
+      ) {
         return NextResponse.json({ error: 'Acesso negado a este pedido.' }, { status: 403 });
       }
 
@@ -332,7 +339,7 @@ export async function POST(req: NextRequest) {
       if (
         auctionRow.vencedor_id &&
         String(auctionRow.vencedor_id) !== ctx.user.id &&
-        ctx.profile.role !== 'admin'
+        !isAuthorizedAdminProfile(ctx.profile)
       ) {
         return NextResponse.json(
           { error: 'Apenas o detentor do maior lance vencedor pode liquidar este arremate.' },
@@ -542,7 +549,8 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: 'Pedido escrow não encontrado' }, { status: 404 });
     }
 
-    if (isDemoOrderRow(currentRow as Record<string, unknown>) && ctx.profile.role !== 'admin') {
+    const isAdmin = isAuthorizedAdminProfile(ctx.profile);
+    if (isDemoOrderRow(currentRow as Record<string, unknown>) && !isAdmin) {
       return NextResponse.json(
         { error: 'Pedidos demonstrativos não podem ser modificados por usuários comuns.' },
         { status: 403 }
@@ -550,7 +558,6 @@ export async function PATCH(req: NextRequest) {
     }
 
     const isBuyer = String(currentRow.comprador_id) === ctx.user.id;
-    const isAdmin = ctx.profile.role === 'admin';
 
     if (action === 'confirm_delivery' || action === 'release_escrow') {
       if (action === 'confirm_delivery' && !isBuyer && !isAdmin) {

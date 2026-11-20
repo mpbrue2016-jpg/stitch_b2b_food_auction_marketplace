@@ -129,7 +129,7 @@ export async function POST(req: NextRequest) {
     if (
       lot.status === 'homologado' ||
       lot.status === 'encerrado' ||
-      lot.status === 'cancelado'
+      String(auctionRow.status || '') === 'cancelado'
     ) {
       return NextResponse.json(
         { error: 'Este lote não está mais disponível para adição ao carrinho.' },

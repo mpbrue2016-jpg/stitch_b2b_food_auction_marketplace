@@ -8,6 +8,7 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbCommissionRule } from '@/lib/supabase/mappers';
 import { buildAuditHash } from '@/lib/security';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { DEMO_COMMISSION_RULES } from '@/lib/demo-data';
 
 export async function GET(req: NextRequest) {
@@ -86,9 +87,9 @@ export async function POST(req: NextRequest) {
     if (!ctx?.user || !ctx.profile) {
       return NextResponse.json({ error: 'Autenticação obrigatória.' }, { status: 401 });
     }
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json(
-        { error: 'Apenas administradores podem alterar alíquotas de comissão.' },
+        { error: 'Apenas o Administrador Master autorizado pode alterar alíquotas de comissão.' },
         { status: 403 }
       );
     }

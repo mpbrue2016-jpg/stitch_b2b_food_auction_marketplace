@@ -7,6 +7,7 @@ import { useAuth } from '@/components/AuthProvider';
 import { useEnvironment } from '@/components/EnvironmentProvider';
 import { DemoBadge, DidacticHint } from '@/components/DemoBadge';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { NegotiationProposal } from '@/lib/types';
 
 export default function NegociacoesPage() {
@@ -357,7 +358,7 @@ export default function NegociacoesPage() {
           filteredProposals.map((prop) => {
             const isBuyer = !isDemoMode && profile?.role === 'comprador';
             const canCounter =
-              (isDemoMode || profile?.role === 'fornecedor' || profile?.role === 'admin') &&
+              (isDemoMode || profile?.role === 'fornecedor' || isAuthorizedAdminProfile(profile)) &&
               prop.status !== 'recusada' &&
               prop.status !== 'aceita';
             return (

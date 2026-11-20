@@ -4,6 +4,7 @@ import {
   isSupabaseServerConfigured,
 } from '@/lib/supabase/server';
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { buildAuditHash } from '@/lib/security';
 
 export async function GET(req: NextRequest) {
@@ -34,7 +35,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Documento não encontrado.' }, { status: 404 });
     }
 
-    if (String(docRow.user_id) !== ctx.user.id && ctx.profile.role !== 'admin') {
+    if (String(docRow.user_id) !== ctx.user.id && !isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json({ error: 'Acesso negado a este documento KYC.' }, { status: 403 });
     }
 
@@ -69,9 +70,9 @@ export async function PATCH(req: NextRequest) {
     if (!ctx?.user || !ctx.profile) {
       return NextResponse.json({ error: 'Autenticação obrigatória.' }, { status: 401 });
     }
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json(
-        { error: 'Apenas administradores podem homologar documentos KYC.' },
+        { error: 'Apenas o Administrador Master autorizado pode homologar documentos KYC.' },
         { status: 403 }
       );
     }

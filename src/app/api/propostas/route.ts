@@ -6,6 +6,7 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbProposalToNegotiationProposal } from '@/lib/supabase/mappers';
 import { buildAuditHash } from '@/lib/security';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { DEMO_PROPOSALS, DEMO_SUPPLIER_ID } from '@/lib/demo-data';
 
 const PROPOSAL_SELECT = `
@@ -49,7 +50,7 @@ export async function GET(req: NextRequest) {
       .select(PROPOSAL_SELECT)
       .order('created_at', { ascending: false });
 
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       query = query.or(`comprador_id.eq.${ctx.user.id},fornecedor_id.eq.${ctx.user.id}`);
     }
 
@@ -127,7 +128,7 @@ export async function POST(req: NextRequest) {
 
       const isBuyer = String(existing.comprador_id) === ctx.user.id;
       const isSupplier = String(existing.fornecedor_id) === ctx.user.id;
-      const isAdmin = ctx.profile.role === 'admin';
+      const isAdmin = isAuthorizedAdminProfile(ctx.profile);
 
       if (!isBuyer && !isSupplier && !isAdmin) {
         return NextResponse.json(
@@ -316,7 +317,10 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Lote informado não encontrado.' }, { status: 404 });
       }
 
-      const product = (auctionRow.products || {}) as Record<string, unknown>;
+      const rawProducts = Array.isArray(auctionRow.products)
+        ? auctionRow.products[0]
+        : auctionRow.products;
+      const product = (rawProducts || {}) as Record<string, unknown>;
       if (
         (auctionRow as Record<string, unknown>).is_demo === true ||
         product.is_demo === true ||

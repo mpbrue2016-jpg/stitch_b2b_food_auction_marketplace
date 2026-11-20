@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { CART_UPDATED_EVENT, getCartItems, syncCartFromServer } from '@/lib/cart-store';
 import { useAuth } from '@/components/AuthProvider';
 import { useEnvironment } from '@/components/EnvironmentProvider';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { ProductCategory } from '@/lib/types';
 
 function getInitials(name?: string | null): string {
@@ -100,19 +101,18 @@ export const Header: React.FC = () => {
     router.push('/');
   };
 
-  const panelHref =
-    profile?.role === 'admin'
-      ? '/painel/admin'
-      : profile?.role === 'fornecedor'
-      ? '/painel/fornecedor'
-      : '/painel/comprador';
+  const isSoleAdmin = isAuthorizedAdminProfile(profile);
+  const panelHref = isSoleAdmin
+    ? '/painel/admin'
+    : profile?.role === 'fornecedor'
+    ? '/painel/fornecedor'
+    : '/painel/comprador';
 
-  const roleLabel =
-    profile?.role === 'admin'
-      ? 'Admin Master'
-      : profile?.role === 'fornecedor'
-      ? 'Fornecedor'
-      : 'Comprador';
+  const roleLabel = isSoleAdmin
+    ? 'Admin Master'
+    : profile?.role === 'fornecedor'
+    ? 'Fornecedor'
+    : 'Comprador';
 
   const unreadNotifCount = notifications.filter((n) => !n.lido).length;
 

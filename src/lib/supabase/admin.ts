@@ -6,7 +6,9 @@ const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
 export const isSupabaseAdminConfigured = isConfiguredSupabaseEnv(supabaseUrl, serviceRoleKey);
 
-let cachedAdminClient: SupabaseClient | null = null;
+const globalForAdminSupabase = globalThis as typeof globalThis & {
+  __varejistaSupabaseAdminClient?: SupabaseClient;
+};
 
 export function createAdminSupabaseClient(): SupabaseClient {
   if (typeof window !== 'undefined') {
@@ -17,13 +19,17 @@ export function createAdminSupabaseClient(): SupabaseClient {
       'Supabase Admin não configurado. Defina NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY.'
     );
   }
-  if (!cachedAdminClient) {
-    cachedAdminClient = createClient(supabaseUrl, serviceRoleKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    });
+  if (!globalForAdminSupabase.__varejistaSupabaseAdminClient) {
+    globalForAdminSupabase.__varejistaSupabaseAdminClient = createClient(
+      supabaseUrl,
+      serviceRoleKey,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    );
   }
-  return cachedAdminClient;
+  return globalForAdminSupabase.__varejistaSupabaseAdminClient;
 }

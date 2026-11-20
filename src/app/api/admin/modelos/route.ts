@@ -6,6 +6,7 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbAuctionToAuctionLot } from '@/lib/supabase/mappers';
 import { DEMO_CATEGORIES, getDemoLots } from '@/lib/demo-data';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { buildAuditHash } from '@/lib/security';
 
 export async function GET() {
@@ -18,9 +19,9 @@ export async function GET() {
     if (!ctx?.user || !ctx.profile) {
       return NextResponse.json({ error: 'Autenticação obrigatória.' }, { status: 401 });
     }
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json(
-        { error: 'Somente administradores autorizados podem gerenciar os modelos demonstrativos.' },
+        { error: 'Somente o Administrador Master autorizado pode gerenciar os modelos demonstrativos.' },
         { status: 403 }
       );
     }
@@ -69,9 +70,9 @@ export async function POST(req: NextRequest) {
     if (!ctx?.user || !ctx.profile) {
       return NextResponse.json({ error: 'Autenticação obrigatória.' }, { status: 401 });
     }
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json(
-        { error: 'Acesso negado. Apenas administradores podem publicar ou editar modelos.' },
+        { error: 'Acesso negado. Apenas o Administrador Master autorizado pode publicar ou editar modelos.' },
         { status: 403 }
       );
     }
@@ -292,9 +293,9 @@ export async function PATCH(req: NextRequest) {
     if (!ctx?.user || !ctx.profile) {
       return NextResponse.json({ error: 'Autenticação obrigatória.' }, { status: 401 });
     }
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json(
-        { error: 'Acesso negado. Apenas administradores podem editar modelos.' },
+        { error: 'Acesso negado. Apenas o Administrador Master autorizado pode editar modelos.' },
         { status: 403 }
       );
     }
@@ -364,9 +365,9 @@ export async function DELETE(req: NextRequest) {
     if (!ctx?.user || !ctx.profile) {
       return NextResponse.json({ error: 'Autenticação obrigatória.' }, { status: 401 });
     }
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       return NextResponse.json(
-        { error: 'Apenas administradores podem excluir registros demonstrativos.' },
+        { error: 'Apenas o Administrador Master autorizado pode excluir registros demonstrativos.' },
         { status: 403 }
       );
     }

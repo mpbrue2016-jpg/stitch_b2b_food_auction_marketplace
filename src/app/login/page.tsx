@@ -110,6 +110,13 @@ export default function LoginPage() {
           return;
         }
 
+        if (data?.session?.access_token && data?.session?.refresh_token) {
+          await supabase.auth.setSession({
+            access_token: data.session.access_token,
+            refresh_token: data.session.refresh_token,
+          });
+        }
+
         await refreshProfile();
         redirectAfterLogin('admin');
       } catch {
@@ -195,7 +202,7 @@ export default function LoginPage() {
           </h1>
           <p className="text-xs text-on-surface-variant">
             {role === 'admin'
-              ? 'Acesso exclusivo do administrador autenticado por CPF (sem CNPJ)'
+              ? 'Acesso exclusivo restrito ao Administrador Master autorizado (e-mail e CPF fixos, sem CNPJ)'
               : 'Entre com seu CPF ou CNPJ cadastrado para acessar seu ambiente real'}
           </p>
         </div>
@@ -291,7 +298,7 @@ export default function LoginPage() {
               type="email"
               placeholder={
                 role === 'admin'
-                  ? 'admin@varejistaonline.com.br'
+                  ? 'mpbrue2016@gmail.com'
                   : 'contato@suaempresa.com.br'
               }
               value={email}

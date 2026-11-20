@@ -1,5 +1,6 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { isConfiguredSupabaseEnv } from '@/lib/supabase/config';
 
 const STRICT_ADMIN_PREFIXES = ['/painel/admin'];
@@ -57,12 +58,12 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  let user: { id: string } | null = null;
+  let user: { id: string; email?: string } | null = null;
   try {
     const {
       data: { user: authUser },
     } = await supabase.auth.getUser();
-    user = authUser ? { id: authUser.id } : null;
+    user = authUser ? { id: authUser.id, email: authUser.email } : null;
   } catch {
     user = null;
   }
@@ -89,11 +90,23 @@ export async function middleware(request: NextRequest) {
   try {
     const { data: profile } = await supabase
       .from('profiles')
-      .select('role, status_aprovacao')
+      .select('role, status_aprovacao, email, cpf, is_demo')
       .eq('id', user.id)
       .maybeSingle();
     if (profile?.role) {
-      role = String(profile.role);
+      const rawRole = String(profile.role);
+      if (rawRole === 'admin') {
+        role = isAuthorizedAdminProfile({
+          role: rawRole,
+          email: String(profile.email || user.email || ''),
+          cpf: profile.cpf ? String(profile.cpf) : null,
+          is_demo: Boolean(profile.is_demo),
+        })
+          ? 'admin'
+          : 'comprador';
+      } else {
+        role = rawRole;
+      }
     }
   } catch {
     role = 'comprador';

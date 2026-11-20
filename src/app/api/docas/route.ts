@@ -6,6 +6,7 @@ import {
 import { createAdminSupabaseClient, isSupabaseAdminConfigured } from '@/lib/supabase/admin';
 import { mapDbDockToAppointment } from '@/lib/supabase/mappers';
 import { buildAuditHash, buildSha256Hash } from '@/lib/security';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 
 function isDemoIdentifier(id: string): boolean {
   return id.startsWith('demo-') || id.startsWith('o1000000-');
@@ -47,7 +48,7 @@ export async function GET(req: NextRequest) {
       .select('*, orders(codigo_pedido, is_demo)')
       .order('created_at', { ascending: false });
 
-    if (ctx.profile.role !== 'admin') {
+    if (!isAuthorizedAdminProfile(ctx.profile)) {
       query = query.or(`comprador_id.eq.${ctx.user.id},fornecedor_id.eq.${ctx.user.id}`);
     }
 
@@ -146,14 +147,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Pedido não encontrado.' }, { status: 404 });
     }
 
-    if (orderRow.is_demo && ctx.profile.role !== 'admin') {
+    const isAdmin = isAuthorizedAdminProfile(ctx.profile);
+    if (orderRow.is_demo && !isAdmin) {
       return NextResponse.json(
         { error: 'Agendamentos reais são proibidos para pedidos de demonstração.' },
         { status: 403 }
       );
     }
 
-    if (String(orderRow.comprador_id) !== ctx.user.id && ctx.profile.role !== 'admin') {
+    if (String(orderRow.comprador_id) !== ctx.user.id && !isAdmin) {
       return NextResponse.json(
         { error: 'Apenas o comprador titular deste pedido pode agendar a doca FOB.' },
         { status: 403 }
@@ -348,7 +350,8 @@ export async function PATCH(req: NextRequest) {
       return NextResponse.json({ error: 'Agendamento de doca não localizado.' }, { status: 404 });
     }
 
-    if (aptRow.is_demo && ctx.profile.role !== 'admin') {
+    const isAdmin = isAuthorizedAdminProfile(ctx.profile);
+    if (aptRow.is_demo && !isAdmin) {
       return NextResponse.json(
         { error: 'Agendamento demonstrativo protegido contra alterações.' },
         { status: 403 }
@@ -356,7 +359,6 @@ export async function PATCH(req: NextRequest) {
     }
 
     const isSupplier = String(aptRow.fornecedor_id) === ctx.user.id;
-    const isAdmin = ctx.profile.role === 'admin';
     if (!isSupplier && !isAdmin) {
       return NextResponse.json(
         { error: 'Apenas o fornecedor proprietário do CD ou administrador pode atualizar a doca.' },

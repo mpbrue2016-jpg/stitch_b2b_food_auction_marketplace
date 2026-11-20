@@ -83,6 +83,7 @@ export default function CadastroPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [approvedModal, setApprovedModal] = useState(false);
+  const [needsEmailConfirm, setNeedsEmailConfirm] = useState(false);
   const [redirectRoute, setRedirectRoute] = useState('/painel/comprador?env=original&welcome=1');
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [selectedDocs, setSelectedDocs] = useState<string[]>([]);
@@ -187,15 +188,18 @@ export default function CadastroPage() {
         return;
       }
 
-      // Efetua login automático na conta recém-criada no Supabase Auth
-      const { error: signInErr } = await supabase.auth.signInWithPassword({
-        email: email.trim().toLowerCase(),
-        password,
-      });
+      // Efetua login automático na conta recém-criada no Supabase Auth quando já confirmada
+      const { error: signInErr } = data?.requiresEmailConfirmation
+        ? { error: new Error('confirmation_required') }
+        : await supabase.auth.signInWithPassword({
+            email: email.trim().toLowerCase(),
+            password,
+          });
 
       if (!signInErr) {
         await refreshProfile();
         setEnvMode('original');
+        setNeedsEmailConfirm(false);
 
         if (selectedFiles.length > 0) {
           let failedCount = 0;
@@ -217,6 +221,8 @@ export default function CadastroPage() {
             );
           }
         }
+      } else {
+        setNeedsEmailConfirm(true);
       }
 
       setRedirectRoute(data?.redirectTo || '/painel/comprador?env=original&welcome=1');
@@ -644,7 +650,9 @@ export default function CadastroPage() {
                 Conta Oficial Criada com Sucesso!
               </h3>
               <p className="text-xs text-on-surface-variant mt-1">
-                Seu perfil verdadeiro foi vinculado exclusivamente à sua conta no Ambiente Original, com tutorial inicial pronto para orientar seus primeiros passos.
+                {needsEmailConfirm
+                  ? `Enviamos um link de confirmação para ${email.trim().toLowerCase()}. Após confirmar o e-mail, faça seu primeiro login para abrir seu painel oficial.`
+                  : 'Seu perfil verdadeiro foi vinculado exclusivamente à sua conta no Ambiente Original, com tutorial inicial pronto para orientar seus primeiros passos.'}
               </p>
             </div>
             <div className="p-3 bg-surface-container-low rounded-xl text-xs text-left space-y-1">
@@ -670,13 +678,19 @@ export default function CadastroPage() {
               type="button"
               onClick={() => {
                 setApprovedModal(false);
+                if (needsEmailConfirm) {
+                  router.push(`/login?redirect=${encodeURIComponent(redirectRoute)}`);
+                  return;
+                }
                 setEnvMode('original');
                 openTutorial(0);
                 router.push(redirectRoute);
               }}
               className="w-full py-3 bg-primary hover:bg-primary-container text-white font-bold text-xs rounded-xl shadow-md transition-all"
             >
-              Acessar Meu Painel com Tutorial Inicial
+              {needsEmailConfirm
+                ? 'Ir para Login Oficial'
+                : 'Acessar Meu Painel com Tutorial Inicial'}
             </button>
           </div>
         </div>

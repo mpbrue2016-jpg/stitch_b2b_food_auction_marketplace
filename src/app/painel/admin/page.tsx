@@ -10,6 +10,7 @@ import { AdminBannerManager } from '@/components/AdminBannerManager';
 import { AdminConnectionChecker } from '@/components/AdminConnectionChecker';
 import { NotificationsInboxCard } from '@/components/AccountGovernanceSection';
 import { generateFinancialSummary } from '@/lib/commission-engine';
+import { isAuthorizedAdminProfile } from '@/lib/auth-admin';
 import { AuctionLot, EscrowOrder, UserProfile } from '@/lib/types';
 
 interface AdminDocumentRow {
@@ -98,10 +99,14 @@ export default function PainelAdminPage() {
         setWebhooks(Array.isArray(oData?.webhooks) ? oData.webhooks : []);
         if (oData?.separacao) {
           setSeparacaoCounts({
-            realProfiles: Number(oData.separacao?.real?.profiles ?? profs.length),
-            modeloProfiles: Number(oData.separacao?.modelo?.profiles ?? 0),
-            realLots: Number(oData.separacao?.real?.lots ?? 0),
-            modeloLots: Number(oData.separacao?.modelo?.lots ?? 0),
+            realProfiles: Number(
+              oData.separacao?.real?.usuarios ?? oData.separacao?.real?.profiles ?? profs.length
+            ),
+            modeloProfiles: Number(
+              oData.separacao?.modelo?.usuarios ?? oData.separacao?.modelo?.profiles ?? 0
+            ),
+            realLots: Number(oData.separacao?.real?.lotes ?? oData.separacao?.real?.lots ?? 0),
+            modeloLots: Number(oData.separacao?.modelo?.lotes ?? oData.separacao?.modelo?.lots ?? 0),
           });
         }
       }
@@ -115,11 +120,11 @@ export default function PainelAdminPage() {
   }, []);
 
   useEffect(() => {
-    if (!authLoading && user && profile?.role === 'admin') {
+    if (!authLoading && user && isAuthorizedAdminProfile(profile)) {
       setEnvMode('original');
       void loadAdminData();
     }
-  }, [authLoading, user, profile?.role, loadAdminData, setEnvMode]);
+  }, [authLoading, user, profile, loadAdminData, setEnvMode]);
 
   const handleReleaseEscrow = async (order: EscrowOrder) => {
     setReleasingId(order.id);
@@ -363,7 +368,7 @@ export default function PainelAdminPage() {
     }
   };
 
-  if (!authLoading && (!user || profile?.role !== 'admin')) {
+  if (!authLoading && (!user || !isAuthorizedAdminProfile(profile))) {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center space-y-4">
         <div className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-md space-y-4">
